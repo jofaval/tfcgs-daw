@@ -34,6 +34,8 @@ function sendNotification(message = "An error occurred", error = false) {
     //alert(message);
 }
 
+$("#currentYear").html(printDateWithFormat(new Date(), "Y"));
+
 //print date with certain fromat
 function printDateWithFormat(givenDate, format = "d/m/Y") {
     format = format.replace("y", givenDate.getYear());

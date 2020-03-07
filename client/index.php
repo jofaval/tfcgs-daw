@@ -3,7 +3,6 @@
 require_once __DIR__ . '/../server/classes/Config.php';
 error_reporting(Config::$developmentMode);
 require_once __DIR__ . '/../server/libs/bExceptions.php';
-require_once __DIR__ . '/../server/libs/bConecta.php';
 require_once __DIR__ . '/../server/libs/bFile.php';
 require_once __DIR__ . '/../server/libs/bDate.php';
 require_once __DIR__ . '/../server/libs/bCrypt.php';
@@ -37,6 +36,7 @@ if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ct
 $map = array(
     'signin' => array('controller' => 'Controller', 'action' => 'signin', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'signout' => array('controller' => 'Controller', 'action' => 'signout', 'access' => Config::$ACCESS_LEVEL_GUEST),
+    'project' => array('controller' => 'Controller', 'action' => 'project', 'access' => Config::$ACCESS_LEVEL_ADMIN),
     'admin' => array('controller' => 'Controller', 'action' => 'admin', 'access' => Config::$ACCESS_LEVEL_ADMIN),
     'access' => array('controller' => 'Controller', 'action' => 'access', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'error' => array('controller' => 'Controller', 'action' => 'error', 'access' => Config::$ACCESS_LEVEL_GUEST),
@@ -48,7 +48,8 @@ $map = array(
 
 if (Config::$developmentMode) {
     $map["test"] = array('controller' => 'AjaxController', 'action' => 'test', 'access' => Config::$ACCESS_LEVEL_GUEST);
-    //$sessions->setSession("access", 20);
+    $sessions->setSession("access", 20);
+    $sessions->setSession("username", "test");
 }
 
 // Parseo de la ruta
@@ -56,14 +57,14 @@ if (isset($ctl)) {
     if (isset($map[$ctl])) {
         $ruta = $ctl;
     } else {
-        header('Location: ./index.php?ctl=error&test=esfgwege');
+        header('Location: ./index.php?ctl=error&message=Action isn\'t available at the moment');
         exit;
     }
 } else {
     if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
         $ruta = "signin";
     } else {
-        $ruta = "admin";
+        $ruta = "project";
     }
 }
 
@@ -82,6 +83,6 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
         header('Location: ./index.php?ctl=access');
     }
 } else {
-    header('Location: ./index.php?ctl=error&testse=ewgwehwgh');
+    header('Location: ./index.php?ctl=error&message=Action could not be executed');
     exit;
 }

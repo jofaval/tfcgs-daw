@@ -26,7 +26,7 @@
 <body class="text-light">
 
     <?php if ($showHeader): ?>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="transition: all 0.2s ease-in-out 0s;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-wrap" style="transition: all 0.2s ease-in-out 0s;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08"
             aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation"
             style="transition: all 0.2s ease-in-out 0s;">
@@ -34,14 +34,16 @@
         </button>
 
         <img class="navbar-brand rounded-circle mr-2" width="45" src="<?php echo $sessions->getSession("userImg"); ?>">
-        <small class="text-muted"><?php echo $username; ?></small>
+        <small class="text-muted"><span class="font-weight-bold"><?php echo "@$username"; ?></span>
+            <br>
+            Rol
+        </small>
         <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
             style="transition: all 0.2s ease-in-out 0s;">
             <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
                 <li class="nav-item active" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link" href="index.php?ctl=calendar"
-                        style="transition: all 0.2s ease-in-out 0s;">Schedules<span class="sr-only"
-                            style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
+                    <a class="nav-link" href="index.php" style="transition: all 0.2s ease-in-out 0s;">Schedules<span
+                            class="sr-only" style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
                 </li>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
                     <a class="nav-link selected" href="index.php?ctl=classrooms"
@@ -62,25 +64,30 @@
     </nav>
     <?php endif;?>
     <?php if ($showBreadcrumb): ?>
-    <nav aria-label="breadcrumb">
+    <section class="w-100" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <?php foreach ($breadcrumb as $elem): ?>
-            <li class="breadcrumb-item"><a href="<?php echo $value; ?>"><?php echo $key; ?></a></li>
+            <li class="breadcrumb-item"><a class="<?php if ($elem["active"]) {
+    echo "text-muted";
+}
+?>" href="<?php echo $elem["link"]; ?>"><?php echo $elem["name"]; ?></a></li>
             <?php endforeach;?>
         </ol>
-    </nav>
+    </section>
     <?php endif;?>
-    <main role="main" class="h-100 w-100 d-flex flex-column justify-content-center <?php echo $mainClasses; ?>">
+    <main role="main" class="w-100 d-flex flex-column justify-content-center <?php echo $mainClasses; ?>">
         <!--div class="flex-column row my-auto bg-dark"-->
         <?php echo $contenido ?>
         <!--/div-->
     </main>
 
     <?php if ($showFooter): ?>
-    <footer class="footer fixed-bottom mb-3 d-none d-sm-block">
-        <div class="container">
-            <span class="text-muted float-right">- Developed by <a href="jofaval@iesabastos.org">Pepe Fabra Valverde</a>
-                &copy;
+    <footer class="footer py-3 bg-light d-none d-sm-block">
+        <div class="container text-align-right">
+            <span class="text-dark">- Developed by <a class="font-weight-bold text-dark"
+                    href="jofaval@iesabastos.org">Pepe
+                    Fabra Valverde</a>
+                &copy; <span id="currentYear"></span>
                 -</span>
         </div>
     </footer>

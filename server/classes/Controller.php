@@ -28,6 +28,11 @@ class Controller
         require __DIR__ . '/../templates/notuseragent.php';
     }
 
+    public function project()
+    {
+        require __DIR__ . '/../templates/project.php';
+    }
+
     public function signin()
     {
         $result = false;
