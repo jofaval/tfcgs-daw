@@ -12,7 +12,6 @@ class Config
         "jquery-ui.min.css",
         "mdb.min.css",
         "main.css",
-        "login.css",
         "loader.css",
         "floating-label.css",
         "inputs.css",
@@ -32,7 +31,7 @@ class Config
         "js/FormValidator.js",
         "js/preloader.js",
     ];
-    public static $emailSender = "contact@iesabastos.org";
+    public static $emailSender = "contact@sender.org";
     public static $emailMsgLineLength = 70;
     public static $ACCESS_LEVEL_GUEST = 0;
     public static $ACCESS_LEVEL_NOT_ACTIVATED = 1;
