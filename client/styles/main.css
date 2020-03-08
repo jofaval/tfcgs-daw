@@ -29,6 +29,7 @@ main {
     justify-content: center;
     padding-top: 40px;
     padding-bottom: 40px;
+    height: calc(100vh - 175px);
     background: linear-gradient(to right, #00d2ff, #3a7cd5) no-repeat;
 }
 

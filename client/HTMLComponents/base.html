@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            background: #1f1f22 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="../styles/mdb.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/loader.css">
+    <link rel="stylesheet" href="../styles/floating-label.css">
+    <link rel="stylesheet" href="../styles/inputs.css">
+    <link rel="stylesheet" href="../styles/jquery.sweet-modal.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-wrap" style="transition: all 0.2s ease-in-out 0s;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08"
+            aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation"
+            style="transition: all 0.2s ease-in-out 0s;">
+            <span class="navbar-toggler-icon" style="transition: all 0.2s ease-in-out 0s;"></span>
+        </button>
+
+        <img class="navbar-brand rounded-circle mr-2" width="45" src="test">
+        <small class="text-muted"><span class="font-weight-bold">@$username</span>
+            <br>
+            Rol
+        </small>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
+            style="transition: all 0.2s ease-in-out 0s;">
+            <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
+                <li class="nav-item active" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link" href="index.php" style="transition: all 0.2s ease-in-out 0s;">Schedules<span
+                            class="sr-only" style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
+                </li>
+                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link selected" href="index.php?ctl=classrooms"
+                        style="transition: all 0.2s ease-in-out 0s;">Classrooms</a>
+                </li>
+                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link selected" href="index.php?ctl=admin"
+                        style="transition: all 0.2s ease-in-out 0s;">Admin</a>
+                </li>
+                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link" href="index.php?ctl=signout"
+                        style="transition: all 0.2s ease-in-out 0s;">Signout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="w-100" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 rounded-0">
+            <li class="breadcrumb-item"><a class="" href="index.php">Home</a></li>
+            <li class="breadcrumb-item"><a class="text-muted" href="index.php?ctl=projects">Projects</a></li>
+        </ol>
+    </section>
+    <main role="main" class="w-100 d-flex flex-column justify-content-center <?php echo $mainClasses; ?>">
+        <div id="content">
+
+        </div>
+    </main>
+    <footer class="footer py-3 bg-light d-none d-sm-block fixed-bottom">
+        <div class="container text-align-right">
+            <span class="text-dark">- Developed by <a class="font-weight-bold text-dark"
+                    href="jofaval@iesabastos.org">Pepe
+                    Fabra Valverde</a>
+                &copy; <span id="currentYear"></span>
+                -</span>
+        </div>
+    </footer>
+</body>
+<script src="../scripts/libs/jquery.min.js"></script>
+<script src="../scripts/libs/jquery-ui.min.js"></script>
+<script src="../scripts/libs/bootstrap.min.js"></script>
+<script src="../scripts/libs/bootstrap.bundle.min.js"></script>
+<script src="../scripts/libs/jquery.sweet-modal.min.js"></script>
+<script src="../scripts/js/Modal.js"></script>
+<script src="../scripts/js/utils.js"></script>
+<script src="../scripts/js/inputs.js"></script>
+<script src="../scripts/js/AjaxController.js"></script>
+<script src="../scripts/js/Validator.js"></script>
+<script src="../scripts/js/FormValidator.js"></script>
+<script src="../scripts/js/preloader.js"></script>
+<script>
+    $(window).on("load", function () {
+        $("#content").load("gantt_tasks.html");
+    });
+</script>
+
+</html>
