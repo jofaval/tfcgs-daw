@@ -138,16 +138,21 @@
             $(".taskItem").on("dragstart", function () {
                 $(this).addClass("dragging");
                 console.log("test");
-
-
             });
+
             $(".taskItem").on("drop", function () {
                 $(this).removeClass("dragging");
                 console.log("hahahaha");
             });
+
             $(".taskItem").on("dragover", function () {
                 test.show();
-                $(this).before(test);
+                if ($(this).next().length > 0) {
+                    $(this).before(test);
+                } else {
+                    $(this).after(test);
+                }
+
                 //console.log("estas encima");
                 //console.log($(this).text());
             });
