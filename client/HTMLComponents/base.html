@@ -12,6 +12,10 @@
             background: #1f1f22 !important;
         }
 
+        * {
+            scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+        }
+
         main {
             -ms-flex-align: center;
             -ms-flex-pack: center;
@@ -28,6 +32,19 @@
         .taskItemContainer {
             max-height: 65vh;
             overflow: auto;
+        }
+
+        .taskItem:hover {
+            cursor: pointer;
+        }
+
+        .taskItem:move {
+            cursor: cell;
+        }
+
+        .dragging {
+            cursor: -webkit-grabbing;
+            /*transform: rotate(-30deg);*/
         }
     </style>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
@@ -110,9 +127,33 @@
 <script src="../scripts/js/FormValidator.js"></script>
 <script src="../scripts/js/preloader.js"></script>
 <script>
+    var test = $(`<div class="taskItem card mb-2 bg-dark" draggable="true">
+                        <div class="card-body px-2 py-1">
+                            <p class="card-text">project description.</p>
+                        </div>
+                    </div>`);
     $(window).on("load", function () {
         $("#content").load("todo_lists.html", function () {
             //$(".taskItem").draggable();
+            $(".taskItem").on("dragstart", function () {
+                $(this).addClass("dragging");
+                console.log("test");
+
+
+            });
+            $(".taskItem").on("drop", function () {
+                $(this).removeClass("dragging");
+                console.log("hahahaha");
+            });
+            $(".taskItem").on("dragover", function () {
+                test.show();
+                $(this).before(test);
+                //console.log("estas encima");
+                //console.log($(this).text());
+            });
+            $(".taskItem").on("dragend", function () {
+                test.hide();
+            });
         });
     });
 </script>
