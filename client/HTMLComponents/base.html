@@ -11,6 +11,24 @@
         body {
             background: #1f1f22 !important;
         }
+
+        main {
+            -ms-flex-align: center;
+            -ms-flex-pack: center;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+        }
+
+        .taskList {
+            max-width: 18rem;
+        }
+
+        .taskItemContainer {
+            max-height: 65vh;
+            overflow: auto;
+        }
     </style>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/jquery-ui.min.css">
@@ -31,7 +49,7 @@
         </button>
 
         <img class="navbar-brand rounded-circle mr-2" width="45" src="test">
-        <small class="text-muted"><span class="font-weight-bold">@$username</span>
+        <small class="text-muted"><span class="font-weight-bold">@username</span>
             <br>
             Rol
         </small>
@@ -63,7 +81,7 @@
             <li class="breadcrumb-item"><a class="text-muted" href="index.php?ctl=projects">Projects</a></li>
         </ol>
     </section>
-    <main role="main" class="w-100 d-flex flex-column justify-content-center <?php echo $mainClasses; ?>">
+    <main role="main" class="w-100 d-flex flex-column justify-content-start align-items-start">
         <div id="content">
 
         </div>
@@ -82,6 +100,7 @@
 <script src="../scripts/libs/jquery-ui.min.js"></script>
 <script src="../scripts/libs/bootstrap.min.js"></script>
 <script src="../scripts/libs/bootstrap.bundle.min.js"></script>
+<script src="../scripts/libs/mdb.min.js"></script>
 <script src="../scripts/libs/jquery.sweet-modal.min.js"></script>
 <script src="../scripts/js/Modal.js"></script>
 <script src="../scripts/js/utils.js"></script>
@@ -92,7 +111,9 @@
 <script src="../scripts/js/preloader.js"></script>
 <script>
     $(window).on("load", function () {
-        $("#content").load("todo_lists.html");
+        $("#content").load("todo_lists.html", function () {
+            //$(".taskItem").draggable();
+        });
     });
 </script>
 
