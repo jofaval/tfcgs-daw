@@ -113,6 +113,10 @@
             $("td").on("click", function () {
                 var currentTd = $(this);
                 var currentRow = currentTd.parents("tr");
+                if (currentRow.find(".taskBar").length > 0) {
+                    alert("This already has a taskBar");
+                    return;
+                }
                 if (selectedRow != null) {
                     if (currentRow.prop("id") != selectedRow.prop("id")) {
                         console.log(currentRow, selectedRow);
@@ -127,7 +131,7 @@
                     var indexes = [firstPoint.index(), secondPoint.index()];
                     var toBeAffected = selectedRow.children().slice(Math.min.apply(null,
                         indexes), Math.max.apply(null, indexes) + 1);
-                    var newTd = $("<td></td>");
+                    var newTd = $("<td class='taskBar'></td>");
                     $(toBeAffected[0]).before(newTd);
                     toBeAffected.remove();
                     newTd.prop("colspan", toBeAffected.length);
