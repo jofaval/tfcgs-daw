@@ -15,37 +15,6 @@
         * {
             scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
         }
-
-        main {
-            -ms-flex-align: center;
-            -ms-flex-pack: center;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-        }
-
-        .taskList {
-            max-width: 18rem;
-        }
-
-        .taskItemContainer {
-            max-height: 65vh;
-            overflow: auto;
-        }
-
-        .taskItem:hover {
-            cursor: pointer;
-        }
-
-        .taskItem:move {
-            cursor: cell;
-        }
-
-        .dragging {
-            cursor: -webkit-grabbing;
-            /*transform: rotate(-30deg);*/
-        }
     </style>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/jquery-ui.min.css">
@@ -127,60 +96,9 @@
 <script src="../scripts/js/FormValidator.js"></script>
 <script src="../scripts/js/preloader.js"></script>
 <script>
-    var test = $(`<div class="taskItem card mb-2 bg-dark" draggable="true">
-                        <div class="card-body px-2 py-1">
-                            <p class="card-text">&nbsp;</p>
-                        </div>
-                    </div>`);
-
-    var startingTaskListParent = null;
-    var startingIndex = 0;
-    var endingTaskListParent = null;
-    var endingIndex = 0;
     $(window).on("load", function () {
         $("#content").load("todo_lists.html", function () {
-            //$(".taskItem").draggable();
-            $(".taskItem").on("dragstart", function () {
-                $(this).addClass("dragging");
-                startingIndex = $(this).index();
 
-                console.log("test");
-                startingTaskListParent = $(this).parent().parent().find(".listTitle").text()
-                    .trim();
-            });
-
-            $(".taskItem").on("drop", function () {
-                $(this).removeClass("dragging");
-                console.log("hahahaha");
-            });
-
-            $(".taskItem").on("dragover", function () {
-                test.show();
-                if ($(this).next().length > 0) {
-                    $(this).before(test);
-                } else {
-                    $(this).after(test);
-                }
-
-                //console.log("estas encima");
-                //console.log($(this).text());
-            });
-            $(".taskItem").on("dragend", function () {
-                test.hide();
-                endingTaskListParent = test.parent().parent().find(".listTitle").text().trim();
-                endingIndex = test.index();
-
-                var count = 0;
-                console.log("startingTaskListParent", startingTaskListParent,
-                    "endingTaskListParent", endingTaskListParent);
-                console.log("startingIndex", startingIndex,
-                    "endingIndex", endingIndex);
-                $(this).parent().find(".taskItem").each(function () {
-                    count++;
-                    //console.log("count: ", count, "title", $(this).text().trim());
-
-                })
-            });
         });
     });
 </script>
