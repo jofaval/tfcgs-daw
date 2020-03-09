@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="md-form">
+        <input placeholder="Selected date" type="date" id="date-picker-example" class="form-control datepicker">
+        <label for="date-picker-example">Try me...</label>
+    </div>
+    <div id="summernote">
+        <p>Hello Summernote</p>
+    </div>
+</body>
+<script>
+    $(document).load(function () {
+        $('#summernote').summernote();
+    });
+</script>
+
+</html>
