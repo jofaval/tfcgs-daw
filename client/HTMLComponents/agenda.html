@@ -7,23 +7,47 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-
+        .note-resizebar {
+            cursor: s-resize;
+        }
     </style>
     <link href="../styles/summernote-bs4.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="mx-auto container">
-        <div class="md-form">
-            <input placeholder="Select a date" type="text" id="datepicker" class="form-control datepicker">
+    <div class="mx-auto container" style="width: 1140px;">
+        <div class="mx-auto col-sm-3 rounded bg-white shadow">
+            <div class="md-form">
+                <input placeholder="Select a date" type="text" id="datepicker" class="form-control datepicker">
+            </div>
         </div>
-        <div id="summernote">
-            <p>Hello Summernote</p>
-        </div>
+        <div id="summernote"></div>
     </div>
 </body>
 <script>
-    $('#summernote').summernote();
+    $('#summernote').summernote({
+        lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
+        disableDragAndDrop: true,
+        codeviewFilter: false,
+        codeviewIframeFilter: true,
+        tabDisable: true,
+        placeholder: 'Write here...',
+        codemirror: { // codemirror options
+            theme: 'monokai'
+        },
+        hint: {
+            mentions: ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com'],
+            match: /@(\w*)$/,
+            search: function (keyword, callback) {
+                callback($.grep(this.mentions, function (item) {
+                    return item.indexOf(keyword) == 0;
+                }));
+            },
+            content: function (item) {
+                return '@' + item;
+            }
+        }
+    });
     $('#datepicker').datepicker();
 </script>
 
