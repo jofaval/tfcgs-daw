@@ -2,7 +2,7 @@
 <?php $optionalCSS = ["floating-label.css", "inputs.css"];?>
 <?php $optionalScripts = ["js/signin.js"];?>
 <?php $title = "LogIn";?>
-<?php $mainClasses = "";?>
+<?php $mainClasses = "h-100";?>
 <?php $showFooter = false;?>
 <?php $showHeader = false;?>
 <?php $showBreadcrumb = false;?>
