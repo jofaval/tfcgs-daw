@@ -129,15 +129,24 @@
 <script>
     var test = $(`<div class="taskItem card mb-2 bg-dark" draggable="true">
                         <div class="card-body px-2 py-1">
-                            <p class="card-text">project description.</p>
+                            <p class="card-text">&nbsp;</p>
                         </div>
                     </div>`);
+
+    var startingTaskListParent = null;
+    var startingIndex = 0;
+    var endingTaskListParent = null;
+    var endingIndex = 0;
     $(window).on("load", function () {
         $("#content").load("todo_lists.html", function () {
             //$(".taskItem").draggable();
             $(".taskItem").on("dragstart", function () {
                 $(this).addClass("dragging");
+                startingIndex = $(this).index();
+
                 console.log("test");
+                startingTaskListParent = $(this).parent().parent().find(".listTitle").text()
+                    .trim();
             });
 
             $(".taskItem").on("drop", function () {
@@ -158,6 +167,19 @@
             });
             $(".taskItem").on("dragend", function () {
                 test.hide();
+                endingTaskListParent = test.parent().parent().find(".listTitle").text().trim();
+                endingIndex = test.index();
+
+                var count = 0;
+                console.log("startingTaskListParent", startingTaskListParent,
+                    "endingTaskListParent", endingTaskListParent);
+                console.log("startingIndex", startingIndex,
+                    "endingIndex", endingIndex);
+                $(this).parent().find(".taskItem").each(function () {
+                    count++;
+                    //console.log("count: ", count, "title", $(this).text().trim());
+
+                })
             });
         });
     });
