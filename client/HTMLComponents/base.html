@@ -106,8 +106,53 @@
         "gantt_tasks",
     ];
     $(window).on("load", function () {
-        $("#content").load(templates[1] + ".html", function () {
+        $("#content").load(templates[3] + ".html", function () {
+            var selectedRow = null;
+            var firstPoint = null;
+            var secondPoint = null;
+            $("td").on("click", function () {
+                var currentTd = $(this);
+                var currentRow = currentTd.parents("tr");
+                if (firstPoint != null) {
+                    secondPoint = currentTd;
+                    var indexes = [firstPoint.index(), secondPoint.index()];
+                    var toBeAffected = selectedRow.children().slice(Math.min.apply(null,
+                        indexes), Math.max.apply(null, indexes) + 1);
+                    var newTd = $("<td></td>");
+                    console.log(newTd);
 
+                    toBeAffected[0].before(newTd);
+                    toBeAffected.remove();
+                    newTd.prop("colspan", toBeAffected.length);
+                    newTd.addClass("bg-dark");
+                    firstPoint = null;
+                    secondPoint = null;
+
+                    //toBeAffected.addClass("bg-dark");
+
+                } else {
+                    firstPoint = currentTd;
+                }
+                if (selectedRow != null) {
+                    if (currentRow != selectedRow) {
+                        selectedRow = currentRow;
+                        return;
+                    }
+                } else {
+                    selectedRow = currentRow;
+                }
+            });
+
+            $("span").hover(function () {
+                $(this).animate({
+                    paddingLeft: "6rem"
+                }, 200);
+                $(this).css("cursor", "pointer");
+            }, function () {
+                $(this).animate({
+                    paddingLeft: "4rem"
+                }, 350);
+            })
         });
     });
 </script>
