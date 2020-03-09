@@ -96,8 +96,14 @@
 <script src="../scripts/js/FormValidator.js"></script>
 <script src="../scripts/js/preloader.js"></script>
 <script>
+    var templates = [
+        "agenda",
+        "projects",
+        "todo_lists",
+        "gantt_tasks",
+    ];
     $(window).on("load", function () {
-        $("#content").load("todo_lists.html", function () {
+        $("#content").load(templates[0] + ".html", function () {
 
         });
     });
