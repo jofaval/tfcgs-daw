@@ -113,15 +113,22 @@
             $("td").on("click", function () {
                 var currentTd = $(this);
                 var currentRow = currentTd.parents("tr");
+                if (selectedRow != null) {
+                    if (currentRow.prop("id") != selectedRow.prop("id")) {
+                        console.log(currentRow, selectedRow);
+                        firstPoint = currentTd;
+                        selectedRow = currentRow;
+                        return;
+                    }
+                }
+                selectedRow = currentRow;
                 if (firstPoint != null) {
                     secondPoint = currentTd;
                     var indexes = [firstPoint.index(), secondPoint.index()];
                     var toBeAffected = selectedRow.children().slice(Math.min.apply(null,
                         indexes), Math.max.apply(null, indexes) + 1);
                     var newTd = $("<td></td>");
-                    console.log(newTd);
-
-                    toBeAffected[0].before(newTd);
+                    $(toBeAffected[0]).before(newTd);
                     toBeAffected.remove();
                     newTd.prop("colspan", toBeAffected.length);
                     newTd.addClass("bg-dark");
@@ -133,23 +140,15 @@
                 } else {
                     firstPoint = currentTd;
                 }
-                if (selectedRow != null) {
-                    if (currentRow != selectedRow) {
-                        selectedRow = currentRow;
-                        return;
-                    }
-                } else {
-                    selectedRow = currentRow;
-                }
             });
 
             $("span").hover(function () {
-                $(this).animate({
-                    paddingLeft: "6rem"
+                $(this).stop(true, true).animate({
+                    paddingLeft: "9rem"
                 }, 200);
                 $(this).css("cursor", "pointer");
             }, function () {
-                $(this).animate({
+                $(this).stop(true, true).animate({
                     paddingLeft: "4rem"
                 }, 350);
             })
