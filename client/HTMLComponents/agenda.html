@@ -9,22 +9,22 @@
     <style>
 
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <link href="../styles/summernote-bs4.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="md-form">
-        <input placeholder="Selected date" type="date" id="date-picker-example" class="form-control datepicker">
-        <label for="date-picker-example">Try me...</label>
-    </div>
-    <div id="summernote">
-        <p>Hello Summernote</p>
+    <div class="mx-auto container">
+        <div class="md-form">
+            <input placeholder="Select a date" type="text" id="datepicker" class="form-control datepicker">
+        </div>
+        <div id="summernote">
+            <p>Hello Summernote</p>
+        </div>
     </div>
 </body>
 <script>
-    $(document).load(function () {
-        $('#summernote').summernote();
-    });
+    $('#summernote').summernote();
+    $('#datepicker').datepicker();
 </script>
 
 </html>
