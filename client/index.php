@@ -11,9 +11,11 @@ function requireAllFromDir($dir = null)
     }
 }
 require_once __DIR__ . '/../server/classes/Config.php';
+require_once __DIR__ . '/../server/classes/POPOs/CRUDInterface.php';
 error_reporting(Config::$developmentMode);
 requireAllFromDir("libs");
 requireAllFromDir("classes");
+requireAllFromDir("POPOs");
 
 $sessions = Sessions::getInstance();
 $ctl = $_GET['ctl'];
