@@ -16,6 +16,12 @@
             background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') !important;
             background-attachment: fixed;
             align-items: start;
+            -ms-scroll-snap-type: mandatory;
+            scroll-snap-type: mandatory;
+            -ms-scroll-snap-points-x: repeat(18rem);
+            scroll-snap-points-x: repeat(18rem);
+            -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
         }
 
         .taskList {
@@ -37,6 +43,7 @@
 
         .taskContainer {
             min-width: 18rem;
+            scroll-snap-align: center;
         }
 
         .dragging {
@@ -47,7 +54,7 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-start mx-sm-4 listContainer">
+    <div class="d-flex justify-content-start mx-2 mx-sm-4 listContainer">
         <div class="taskContainer mx-2">
             <div class="taskList shadow bg-light rounded">
                 <section class="listTitle grey lighten-3 text-left p-2">
@@ -420,6 +427,26 @@
         newTask.find(".card-text").text(inputValue);
         container.append(newTask);
     }
+    const gra = function (min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    const gri = function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    const init = function () {
+        let items = document.querySelectorAll('.taskContainer');
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.minHeight = gra(20, 30) + 'vh';
+            items[i].style.background = randomColor({
+                luminosity: 'light'
+            });
+        }
+
+        cssScrollSnapPolyfill()
+    }
+    init();
 </script>
 </script>
 
