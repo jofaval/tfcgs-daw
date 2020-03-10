@@ -5,6 +5,7 @@ RewriteRule ^admin/$ ./index.php?ctl=admin [L]
 RewriteRule ^pro/$ ./index.php?ctl=project [L]
 
 RewriteRule ^login/$ ./index.php?ctl=login [L]
+RewriteRule ^signin/$ ./index.php?ctl=signin [L]
 RewriteRule ^signup/$ ./index.php?ctl=signup [L]
 RewriteRule ^calendar/$ ./index.php?ctl=calendar [L]
 RewriteRule ^notsigned/$ ./index.php?ctl=notsigned [L]
