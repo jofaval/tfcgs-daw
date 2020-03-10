@@ -15,6 +15,28 @@
         * {
             scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
         }
+
+        main {
+            -ms-scroll-snap-type: mandatory;
+            scroll-snap-type: mandatory;
+            -ms-scroll-snap-points-y: repeat(5rem);
+            scroll-snap-points-y: repeat(5rem);
+            -ms-scroll-snap-type: y mandatory;
+            scroll-snap-type: y mandatory;
+            -ms-scroll-snap-points-x: repeat(5rem);
+            scroll-snap-points-x: repeat(5rem);
+            -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
+        }
+
+        tr {
+            scroll-snap-align: start;
+        }
+
+        td,
+        th {
+            scroll-snap-align: start;
+        }
     </style>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <!--link rel="stylesheet" href="../styles/jquery-ui.min.css"-->
@@ -107,7 +129,34 @@
     ];
     $(window).on("load", function () {
         $("#content").load(templates[3] + ".html", function () {
+            $(".taskTitle, .subTaskTitle").hover(function () {
+                $(this).stop(true, true).animate({
+                    paddingLeft: "6rem"
+                }, 200);
+                console.log($(this).css("padding-left"));
 
+                $(this).css("cursor", "pointer");
+            }, function () {
+                $(this).stop(true, true).animate({
+                    paddingLeft: "2rem"
+                }, 350);
+            });
+
+            var titlesLengths = [];
+            $(".taskTitle, .subTaskTitle").each(function () {
+                console.log($(this));
+
+                var title = $(this).text().trim().replace(/\s+/, " ");
+                var titleLen = title.length;
+                console.log(title.trim(), titleLen);
+
+                titlesLengths.push(titleLen);
+            });
+
+            console.log(titlesLengths);
+
+
+            $("#titles").css("min-width", Math.max.apply(null, titlesLengths) + "rem");
         });
     });
 </script>
