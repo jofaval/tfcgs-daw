@@ -983,6 +983,74 @@
         //cssScrollSnapPolyfill();
     }
     init();
+
+    $(".taskTitle, .subTaskTitle").hover(function () {
+        $(this).stop(true, true).animate({
+            paddingLeft: "6rem"
+        }, 200);
+        //console.log($(this).css("padding-left"));
+
+        $(this).css("cursor", "pointer");
+    }, function () {
+        $(this).stop(true, true).animate({
+            paddingLeft: "2rem"
+        }, 350);
+    });
+
+    var titlesLengths = [];
+    $(".taskTitle, .subTaskTitle").each(function () {
+        //console.log($(this));
+
+        var title = $(this).text().trim().replace(/\s+/, " ");
+        var titleLen = title.length;
+        //console.log(title.trim(), titleLen);
+
+        titlesLengths.push($(this).width());
+    });
+
+    //console.log(titlesLengths);
+    //console.log(Math.max.apply(null, titlesLengths));
+
+    $("#titles").css("min-width", "calc(" + Math.max.apply(null, titlesLengths) +
+        "px + 3rem)");
+
+    var currentDate = new Date();
+    $(".startingDate").text(printDateWithFormat(currentDate, "d/m/Y"));
+
+    var newDate = new Date();
+    newDate.setDate(currentDate.getDate() + 3);
+    $(".endingDate").text(printDateWithFormat(newDate, "d/m/Y"));
+
+    var days = Math.round((newDate - currentDate) / (1000 * 60 * 60 * 24));
+    $(".daysSpan").text(`${days}`); /* day(s)*/
+
+    $("th").on("click", function () {
+        var index = $(this).index() + 5;
+        $(".selectedColumn").removeClass("selectedColumn");
+
+        $(".subtask").each(function () {
+            console.log("test");
+            var current = $(this);
+            var children = current.children();
+            var newIndex = index - 1;
+
+            var colspan = current.find("*[colspan]");
+            console.log("colspan", colspan);
+
+            if (colspan.length) {
+                var colspanElement = colspan.first();
+                if (colspanElement.index() < newIndex) {
+                    var indexSubstraction = colspanElement.prop(
+                        "colspan") - 1;
+                    console.log(indexSubstraction);
+
+                    newIndex -= indexSubstraction;
+                }
+            }
+
+            children.eq(newIndex).addClass("selectedColumn");
+        });
+    });
 </script>
 
 </html>
