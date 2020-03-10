@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
     width: 100%;
     height: 100%;
 }
@@ -11,11 +10,21 @@ body {
 body {
     background-color: #1f1f22 !important;
     /*background-color: #ececec !important;*/
+    overflow: hidden;
 }
 
 nav {
     background-color: #343a40 !important;
     color: rgba(255, 255, 255, 0.75) !important;
+}
+
+nav.navbar, nav.navbar+section {
+    position: relative !important;
+    z-index: 20 !important;
+}
+
+nav.navbar+section {
+    z-index: 19 !important;
 }
 
 main {
@@ -57,11 +66,9 @@ main {
         background-color: #dbdbdb;
         color: #1f1f22;
     }
-
     .navbar {
         background-color: #eeeeee !important;
     }
-
     .nav-link {
         color: rgba(0, 0, 0, 0.75) !important;
     }
