@@ -43,6 +43,10 @@
         .subTaskTitle {
             background: #343a40;
         }
+
+        .progressIndicator {
+            vertical-align: middle !important;
+        }
     </style>
 </head>
 
@@ -627,8 +631,11 @@
                         Task 2</span></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td class="progressIndicator"><span class="aqua-gradient rounded d-inline-block py-3"
-                        style="width: 50%;">&nbsp;</span>
+                <td class="progressIndicator">
+                    <div class="progress my-auto bg-dark">
+                        <div class="progress-bar aqua-gradient text-dark font-weight-bold" role="progressbar"
+                            style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
