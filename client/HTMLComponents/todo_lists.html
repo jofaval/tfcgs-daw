@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
@@ -13,7 +13,7 @@
 
         main {
             overflow: auto;
-            background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') !important no-repeat;
+            background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') no-repeat !important;
             background-attachment: fixed;
             align-items: start;
             -ms-scroll-snap-type: mandatory;
@@ -22,6 +22,13 @@
             scroll-snap-points-x: repeat(18rem);
             -ms-scroll-snap-type: x mandatory;
             scroll-snap-type: x mandatory;
+        }
+
+        @media screen and (max-width: 576px) {
+            main {
+                -ms-scroll-snap-points-x: repeat(100vw);
+                scroll-snap-points-x: repeat(100vw);
+            }
         }
 
         .taskList {
