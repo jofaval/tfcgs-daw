@@ -1,8 +1,13 @@
-RewriteRule ^/admin$ /index\.php?ctl=admin
-RewriteRule ^/login$ /index\.php?ctl=login
-RewriteRule ^/signup$ /index\.php?ctl=signup
-RewriteRule ^/calendar$ /index\.php?ctl=calendar
-RewriteRule ^/notsigned$ /index\.php?ctl=notsigned
-RewriteRule ^/error$ /index\.php?ctl=error
-RewriteRule ^/access$ /index\.php?ctl=access
-RewriteRule ^/confirmEmail$ /index\.php?ctl=confirmEmail
+Options -MultiViews
+RewriteEngine On
+
+RewriteRule ^admin/$ ./index.php?ctl=admin [L]
+RewriteRule ^pro/$ ./index.php?ctl=project [L]
+
+RewriteRule ^login/$ ./index.php?ctl=login [L]
+RewriteRule ^signup/$ ./index.php?ctl=signup [L]
+RewriteRule ^calendar/$ ./index.php?ctl=calendar [L]
+RewriteRule ^notsigned/$ ./index.php?ctl=notsigned [L]
+RewriteRule ^error/$ ./index.php?ctl=error [L]
+RewriteRule ^access/$ ./index.php?ctl=access [L]
+RewriteRule ^confirmEmail/$ ./index.php?ctl=confirmEmail [L]
