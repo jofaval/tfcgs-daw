@@ -4,7 +4,7 @@
 $mysqlUserName = "test";
 $mysqlPassword = "";
 $mysqlHostName = "localhost";
-$DbName = "schedule_teachers_abastos";
+$DbName = "database_proyecto_daw_2020";
 $backup_name = "mybackup.sql";
 $tables = array("schedules", "specialDays", "nonWorkWeeklyDays", "users", "classrooms", "events");
 
@@ -41,15 +41,18 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
 
         foreach ($splittedLine as $value) {
             $value = trim($value);
+            if (!$value) {
+                continue;
+            }
             $match = [];
             if (preg_match("/^\`/i", $value)) {
-                preg_match("/`[a-z]+`/i", $value, $match);
+                preg_match("/`.+`/i", $value, $match);
                 $tableKeys[] = str_replace("`", "", $match[0]);
             } else if (preg_match("/^PRIMARY KEY/i", $value, $match)) {
-                preg_match("/`[a-z]+`/i", $value, $match);
+                preg_match("/`.+`/i", $value, $match);
                 $primaryKeys[] = str_replace("`", "", $match[0]);
             } else if (preg_match("/^CONSTRAINT/i", $value, $match)) {
-                preg_match("/`[a-z]+`/i", $value, $match);
+                preg_match("/`.+`/i", $value, $match);
                 $foreignKeys[] = str_replace("`", "", $match[0]);
             }
         }
@@ -224,6 +227,9 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
 
 function camelCase($string, $firstLetterCapital = false)
 {
+    if (!$string) {
+        return $string;
+    }
     $explodedString = preg_split("/[\ \_\-]/", $string);
 
     foreach ($explodedString as $key => $value) {
