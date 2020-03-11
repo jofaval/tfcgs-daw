@@ -36,6 +36,7 @@ class SQLUtils
         } catch (PDOException $ex) {
             $this->$model->rollback();
         }
+
         return false;
     }
 
@@ -57,6 +58,7 @@ class SQLUtils
         } catch (PDOException $ex) {
             $this->$model->rollback();
         }
+
         return false;
     }
 
@@ -95,6 +97,8 @@ class SQLUtils
         } catch (PDOException $ex) {
             $this->$model->rollback();
         }
+
+        return false;
     }
 
     public function delete($table, $identificationParams = [])
@@ -122,6 +126,8 @@ class SQLUtils
         } catch (PDOException $ex) {
             $this->$model->rollback();
         }
+
+        return false;
     }
 
     public function enable($table, $enable = true, $identificationParams = [])
@@ -135,6 +141,8 @@ class SQLUtils
         } catch (PDOException $ex) {
             $this->$model->rollback();
         }
+
+        return false;
     }
 
     public function insert($table, $params = [])
@@ -163,5 +171,7 @@ class SQLUtils
         } catch (PDOException $ex) {
             $this->$model->rollback();
         }
+
+        return false;
     }
 }
