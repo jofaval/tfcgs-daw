@@ -16,7 +16,32 @@ class SQLUtils
 
     public function update($table, $toModify, $identificationParams = [])
     {
-        #code
+        $queryString = "UPDATE $table SET ";
+
+        $paramKeyNames = [];
+        foreach ($toModify as $key => $value) {
+            $paramKeyNames = ":$key=$key";
+        }
+
+        $queryString .= $paramKeyNames . join(", ");
+        if (count($identificationParams) > 0) {
+            $queryString .= "WHERE ";
+            foreach ($identificationParams as $key => $value) {
+                $queryString .= ":$key=$key";
+            }
+        }
+
+        $queryAction = $this->$model->$conexion->prepare($queryString);
+
+        foreach ($toModify as $key => $value) {
+            $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
+        }
+
+        foreach ($identificationParams as $key => $value) {
+            $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
+        }
+
+        return $queryString->execute();
     }
 
     public function delete($table, $identificationParams = [])
