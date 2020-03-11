@@ -48,12 +48,15 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
             if (preg_match("/^\`/i", $value)) {
                 preg_match("/`.+`/i", $value, $match);
                 $tableKeys[] = str_replace("`", "", $match[0]);
-            } else if (preg_match("/^PRIMARY KEY/i", $value, $match)) {
+            } else if (preg_match("/^PRIMARY KEY/i", $value)) {
                 preg_match("/`.+`/i", $value, $match);
-                $primaryKeys[] = str_replace("`", "", $match[0]);
-            } else if (preg_match("/^CONSTRAINT/i", $value, $match)) {
-                preg_match("/`.+`/i", $value, $match);
-                $foreignKeys[] = str_replace("`", "", $match[0]);
+                $primaryKeys = array_merge($primaryKeys, explode(",", str_replace("`", "", $match[0])));
+            } else if (preg_match("/^CONSTRAINT/i", $value)) {
+                preg_match("/(?=FOREIGN KEY \(`).+(?<=`\) REFERENCES)/", $value, $match);
+                print_r($match);
+                $foreignKey = preg_replace("/(FOREIGN KEY \(`|`\) REFERENCES)/", "", $match[0]);
+                $foreignKeys = array_merge($primaryKeys, explode(",", $foreignKey));
+                //$foreignKeys[] = $match;
             }
         }
 
@@ -76,7 +79,7 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
         }
 
         //Table value
-        if (false) {
+        if (true) {
             echo "<h1>$table</h1>";
             echo "<pre>";
             var_dump($splittedLine);
