@@ -92,7 +92,7 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
             echo "</pre>";
         }
 
-        $content .= "\n\nclass " . camelCase($table, true) . "\n{\n\tprivate \$table = \"$table\";
+        $content .= "\n\nclass " . camelCase($table, true) . "\n implements CRUD {\n\tprivate \$table = \"$table\";
         \n";
 
         $content .= "\t//Primary Keys";
@@ -213,7 +213,7 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
 
         $content .= "\n} \n\n\n";
 
-        $filesContent[$table] = $content;
+        $filesContent[camelCase($table, true)] = $content;
         //break;
     }
 
@@ -223,6 +223,13 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
     echo "<pre>";
     var_dump($filesContent);
     echo "</pre>";
+
+    foreach ($filesContent as $key => $value) {
+        $fileWriter = fopen(__DIR__ . "/../server/classes/POPOs/" . "$key.php", "w+");
+        fwrite($fileWriter, str_replace("\n", PHP_EOL, $value));
+        fclose($fileWriter);
+    }
+    //echo __DIR__ . "/../server/classes/POPOs/";
 }
 
 function camelCase($string, $firstLetterCapital = false)
