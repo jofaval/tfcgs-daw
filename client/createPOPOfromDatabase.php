@@ -60,23 +60,32 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
             }
         }
 
-        foreach ($primaryKeys as $primaryKey) {
-            foreach ($tableKeys as $key => $tableKey) {
-                if ($tableKey == $primaryKey) {
-                    unset($tableKeys[$key]);
-                }
-                break;
-            }
+        $tableKeys = array_diff($tableKeys, $foreignKeys);
+        $tableKeys = array_diff($tableKeys, $primaryKeys);
+        $foreignKeys = array_diff($foreignKeys, $primaryKeys);
+        /* foreach ($foreignKeys as $foreignKeyValue) {
+        foreach ($tableKeys as $key => $tableKey) {
+        if ($tableKey == $foreignKeyValue) {
+        unset($tableKeys[$key]);
+        }
+        break;
+        }
         }
 
-        foreach ($foreignKeys as $foreignKey) {
-            foreach ($tableKeys as $key => $tableKey) {
-                if ($tableKey == $foreignKey) {
-                    unset($tableKeys[$key]);
-                }
-                break;
-            }
+        foreach ($primaryKeys as $primaryKey) {
+        foreach ($tableKeys as $keyId => $tableKey) {
+        if ($tableKey == $primaryKey) {
+        unset($tableKeys[$keyId]);
         }
+        break;
+        }
+        foreach ($foreignKeys as $keyId => $foreignKeyValue) {
+        if ($foreignKeyValue == $primaryKey) {
+        unset($foreignKeys[$keyId]);
+        }
+        break;
+        }
+        } */
 
         //Table value
         if (true) {
