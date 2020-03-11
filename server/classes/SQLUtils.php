@@ -11,7 +11,26 @@ class SQLUtils
 
     public function query($table, $values = "*", $params = [])
     {
-        # code...
+        $queryString = "SELECT $values FROM $table";
+
+        if (count($params) > 0) {
+            $queryString .= " WHERE ";
+            foreach ($params as $key => $value) {
+                $queryString .= ":$key=$key";
+            }
+        }
+
+        $queryAction = $this->$model->$conexion->prepare($queryString);
+
+        foreach ($params as $key => $value) {
+            $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
+        }
+
+        if ($queryAction->execute()) {
+            return $queryAction->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return false;
     }
 
     public function complexQuery($queryString, $params = [])
@@ -61,7 +80,22 @@ class SQLUtils
 
     public function delete($table, $identificationParams = [])
     {
-        # code...
+        $queryString = "DELETE FROM $table";
+
+        if (count($identificationParams) > 0) {
+            $queryString .= " WHERE ";
+            foreach ($identificationParams as $key => $value) {
+                $queryString .= ":$key=$key";
+            }
+        }
+
+        $queryAction = $this->$model->$conexion->prepare($queryString);
+
+        foreach ($identificationParams as $key => $value) {
+            $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
+        }
+
+        return $queryString->execute();
     }
 
     public function enable($table, $enable = true, $identificationParams = [])
