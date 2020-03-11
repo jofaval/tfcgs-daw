@@ -66,7 +66,7 @@ class SQLUtils
 
     public function enable($table, $enable = true, $identificationParams = [])
     {
-        # code...
+        return update($table, ["enabled" => $enable], $identificationParams);
     }
 
     public function insert($table, $params = [])
