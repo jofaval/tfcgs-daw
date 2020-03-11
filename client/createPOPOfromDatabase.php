@@ -92,7 +92,7 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
             echo "</pre>";
         }
 
-        $content .= "\n\nclass " . camelCase($table, true) . "\n implements CRUD {\n\tprivate \$table = \"$table\";
+        $content .= "<?php\n\nclass " . camelCase($table, true) . "\n implements CRUD {\n\tprivate \$table = \"$table\";
         \n";
 
         $content .= "\t//Primary Keys";
@@ -189,7 +189,7 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
         public function fill()
         {";
         foreach ($everyKey as $value) {
-            $content .= "\n\t\t\$this->\$$value = Utils::getCleanedData(\"" . camelCase($value) . "\"),";
+            $content .= "\n\t\t\$this->\$$value = Utils::getCleanedData(\"" . camelCase($value) . "\");";
         }
         $content .= "
         }";
