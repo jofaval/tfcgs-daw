@@ -38,7 +38,7 @@ class Task implements CRUD
         $this->fill();
     }
 
-    public function create(Type $var = null)
+    public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
