@@ -14,6 +14,21 @@ class SQLUtils
         # code...
     }
 
+    public function complexQuery($queryString, $params = [])
+    {
+        $queryAction = $this->$model->$conexion->prepare($queryString);
+
+        foreach ($params as $key => $value) {
+            $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
+        }
+
+        if ($queryAction->execute()) {
+            return $queryAction->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return false;
+    }
+
     public function update($table, $toModify, $identificationParams = [])
     {
         $queryString = "UPDATE $table SET ";
