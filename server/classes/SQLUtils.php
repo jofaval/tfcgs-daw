@@ -9,7 +9,7 @@ class SQLUtils
         $this->$model = $paramModel;
     }
 
-    public function query($table, $values = "*", $params = [])
+    public function query($table, $params = [], $values = "*")
     {
         try {
             $this->$model->beginTransaction();
