@@ -8,14 +8,12 @@ class GanttDiagrams
 	private $id;
 
 	//Table Keys
-	private $project_id;
 	private $creator_id;
 	private $title;
 	private $creation_date;
 
 	//Foreign Keys
-	private $gantt_diagram_creator FOREIGN KEY (creator_id) REFERENCES users (id;
-	private $project_parent_gantt FOREIGN KEY (project_id) REFERENCES projects (id;
+	private $project_id;
 
 
         public function create()
@@ -24,12 +22,10 @@ class GanttDiagrams
 
             $params = [
 		"id" => $this->$id,
-		"project_id" => $this->$project_id,
 		"creator_id" => $this->$creator_id,
 		"title" => $this->$title,
 		"creation_date" => $this->$creation_date,
-		"gantt_diagram_creator FOREIGN KEY (creator_id) REFERENCES users (id" => $this->$gantt_diagram_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"project_parent_gantt FOREIGN KEY (project_id) REFERENCES projects (id" => $this->$project_parent_gantt FOREIGN KEY (project_id) REFERENCES projects (id,
+		"project_id" => $this->$project_id,
             ];
 
             return $sqlUtils->insert($params);
@@ -40,12 +36,10 @@ class GanttDiagrams
             $sqlUtils = new SQLUtils(Model::getInstance());
 
             $toModify = [
-		"project_id" => $this->$project_id,
 		"creator_id" => $this->$creator_id,
 		"title" => $this->$title,
 		"creation_date" => $this->$creation_date,
-		"gantt_diagram_creator FOREIGN KEY (creator_id) REFERENCES users (id" => $this->$gantt_diagram_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"project_parent_gantt FOREIGN KEY (project_id) REFERENCES projects (id" => $this->$project_parent_gantt FOREIGN KEY (project_id) REFERENCES projects (id,
+		"project_id" => $this->$project_id,
             ];
 
             $identificationParams = [
@@ -80,23 +74,19 @@ class GanttDiagrams
         public function fill()
         {
 		$this->$id = Utils::getCleanedData("id");
-		$this->$project_id = Utils::getCleanedData("projectId");
 		$this->$creator_id = Utils::getCleanedData("creatorId");
 		$this->$title = Utils::getCleanedData("title");
 		$this->$creation_date = Utils::getCleanedData("creationDate");
-		$this->$gantt_diagram_creator FOREIGN KEY (creator_id) REFERENCES users (id = Utils::getCleanedData("ganttDiagramCreatorForeignKey(creatorId)ReferencesUsers(id");
-		$this->$project_parent_gantt FOREIGN KEY (project_id) REFERENCES projects (id = Utils::getCleanedData("projectParentGanttForeignKey(projectId)ReferencesProjects(id");
+		$this->$project_id = Utils::getCleanedData("projectId");
         }
 
         public function parse()
         {
             return json_encode([
-		"projectId" => $this->$project_id,
 		"creatorId" => $this->$creator_id,
 		"title" => $this->$title,
 		"creationDate" => $this->$creation_date,
-		"ganttDiagramCreatorForeignKey(creatorId)ReferencesUsers(id" => $this->$gantt_diagram_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"projectParentGanttForeignKey(projectId)ReferencesProjects(id" => $this->$project_parent_gantt FOREIGN KEY (project_id) REFERENCES projects (id,
+		"projectId" => $this->$project_id,
             ]);
         }
 } 

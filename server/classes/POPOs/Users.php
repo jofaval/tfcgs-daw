@@ -10,11 +10,9 @@ class Users
 	//Table Keys
 	private $username;
 	private $password;
-	private $level;
 
 	//Foreign Keys
-	private $client_information FOREIGN KEY (id) REFERENCES clients (id;
-	private $client_level FOREIGN KEY (level) REFERENCES global_level (level;
+	private $level;
 
 
         public function create()
@@ -25,9 +23,7 @@ class Users
 		"id" => $this->$id,
 		"username" => $this->$username,
 		"password" => $this->$password,
-		"level" => $this->$level,
-		"client_information FOREIGN KEY (id) REFERENCES clients (id" => $this->$client_information FOREIGN KEY (id) REFERENCES clients (id,
-		"client_level FOREIGN KEY (level) REFERENCES global_level (level" => $this->$client_level FOREIGN KEY (level) REFERENCES global_level (level,
+		"level" => $this->$level,
             ];
 
             return $sqlUtils->insert($params);
@@ -40,9 +36,7 @@ class Users
             $toModify = [
 		"username" => $this->$username,
 		"password" => $this->$password,
-		"level" => $this->$level,
-		"client_information FOREIGN KEY (id) REFERENCES clients (id" => $this->$client_information FOREIGN KEY (id) REFERENCES clients (id,
-		"client_level FOREIGN KEY (level) REFERENCES global_level (level" => $this->$client_level FOREIGN KEY (level) REFERENCES global_level (level,
+		"level" => $this->$level,
             ];
 
             $identificationParams = [
@@ -79,9 +73,7 @@ class Users
 		$this->$id = Utils::getCleanedData("id");
 		$this->$username = Utils::getCleanedData("username");
 		$this->$password = Utils::getCleanedData("password");
-		$this->$level = Utils::getCleanedData("level");
-		$this->$client_information FOREIGN KEY (id) REFERENCES clients (id = Utils::getCleanedData("clientInformationForeignKey(id)ReferencesClients(id");
-		$this->$client_level FOREIGN KEY (level) REFERENCES global_level (level = Utils::getCleanedData("clientLevelForeignKey(level)ReferencesGlobalLevel(level");
+		$this->$level = Utils::getCleanedData("level");
         }
 
         public function parse()
@@ -89,9 +81,7 @@ class Users
             return json_encode([
 		"username" => $this->$username,
 		"password" => $this->$password,
-		"level" => $this->$level,
-		"clientInformationForeignKey(id)ReferencesClients(id" => $this->$client_information FOREIGN KEY (id) REFERENCES clients (id,
-		"clientLevelForeignKey(level)ReferencesGlobalLevel(level" => $this->$client_level FOREIGN KEY (level) REFERENCES global_level (level,
+		"level" => $this->$level,
             ]);
         }
 } 

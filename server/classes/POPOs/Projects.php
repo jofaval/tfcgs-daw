@@ -8,12 +8,11 @@ class Projects
 	private $id;
 
 	//Table Keys
-	private $creator_id;
 	private $title;
 	private $description;
 
 	//Foreign Keys
-	private $project_creator FOREIGN KEY (creator_id) REFERENCES users (id;
+	private $creator_id;
 
 
         public function create()
@@ -22,10 +21,9 @@ class Projects
 
             $params = [
 		"id" => $this->$id,
-		"creator_id" => $this->$creator_id,
 		"title" => $this->$title,
 		"description" => $this->$description,
-		"project_creator FOREIGN KEY (creator_id) REFERENCES users (id" => $this->$project_creator FOREIGN KEY (creator_id) REFERENCES users (id,
+		"creator_id" => $this->$creator_id,
             ];
 
             return $sqlUtils->insert($params);
@@ -36,10 +34,9 @@ class Projects
             $sqlUtils = new SQLUtils(Model::getInstance());
 
             $toModify = [
-		"creator_id" => $this->$creator_id,
 		"title" => $this->$title,
 		"description" => $this->$description,
-		"project_creator FOREIGN KEY (creator_id) REFERENCES users (id" => $this->$project_creator FOREIGN KEY (creator_id) REFERENCES users (id,
+		"creator_id" => $this->$creator_id,
             ];
 
             $identificationParams = [
@@ -74,19 +71,17 @@ class Projects
         public function fill()
         {
 		$this->$id = Utils::getCleanedData("id");
-		$this->$creator_id = Utils::getCleanedData("creatorId");
 		$this->$title = Utils::getCleanedData("title");
 		$this->$description = Utils::getCleanedData("description");
-		$this->$project_creator FOREIGN KEY (creator_id) REFERENCES users (id = Utils::getCleanedData("projectCreatorForeignKey(creatorId)ReferencesUsers(id");
+		$this->$creator_id = Utils::getCleanedData("creatorId");
         }
 
         public function parse()
         {
             return json_encode([
-		"creatorId" => $this->$creator_id,
 		"title" => $this->$title,
 		"description" => $this->$description,
-		"projectCreatorForeignKey(creatorId)ReferencesUsers(id" => $this->$project_creator FOREIGN KEY (creator_id) REFERENCES users (id,
+		"creatorId" => $this->$creator_id,
             ]);
         }
 } 

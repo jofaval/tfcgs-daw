@@ -14,12 +14,9 @@ class GanttDiagramGroupTasks
 	private $creation_date;
 	private $start_date;
 	private $end_date;
-	private $status;
 
 	//Foreign Keys
-	private $gantt_diagram_group_task_creator FOREIGN KEY (creator_id) REFERENCES users (id;
-	private $gantt_diagram_group_task_parent FOREIGN KEY (gantt_diagram_group_id) REFERENCES gantt_diagram_groups (id;
-	private $gantt_diagram_group_task_status FOREIGN KEY (status) REFERENCES gantt_diagram_status (id;
+	private $status;
 
 
         public function create()
@@ -34,10 +31,7 @@ class GanttDiagramGroupTasks
 		"creation_date" => $this->$creation_date,
 		"start_date" => $this->$start_date,
 		"end_date" => $this->$end_date,
-		"status" => $this->$status,
-		"gantt_diagram_group_task_creator FOREIGN KEY (creator_id) REFERENCES users (id" => $this->$gantt_diagram_group_task_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"gantt_diagram_group_task_parent FOREIGN KEY (gantt_diagram_group_id) REFERENCES gantt_diagram_groups (id" => $this->$gantt_diagram_group_task_parent FOREIGN KEY (gantt_diagram_group_id) REFERENCES gantt_diagram_groups (id,
-		"gantt_diagram_group_task_status FOREIGN KEY (status) REFERENCES gantt_diagram_status (id" => $this->$gantt_diagram_group_task_status FOREIGN KEY (status) REFERENCES gantt_diagram_status (id,
+		"status" => $this->$status,
             ];
 
             return $sqlUtils->insert($params);
@@ -54,10 +48,7 @@ class GanttDiagramGroupTasks
 		"creation_date" => $this->$creation_date,
 		"start_date" => $this->$start_date,
 		"end_date" => $this->$end_date,
-		"status" => $this->$status,
-		"gantt_diagram_group_task_creator FOREIGN KEY (creator_id) REFERENCES users (id" => $this->$gantt_diagram_group_task_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"gantt_diagram_group_task_parent FOREIGN KEY (gantt_diagram_group_id) REFERENCES gantt_diagram_groups (id" => $this->$gantt_diagram_group_task_parent FOREIGN KEY (gantt_diagram_group_id) REFERENCES gantt_diagram_groups (id,
-		"gantt_diagram_group_task_status FOREIGN KEY (status) REFERENCES gantt_diagram_status (id" => $this->$gantt_diagram_group_task_status FOREIGN KEY (status) REFERENCES gantt_diagram_status (id,
+		"status" => $this->$status,
             ];
 
             $identificationParams = [
@@ -98,10 +89,7 @@ class GanttDiagramGroupTasks
 		$this->$creation_date = Utils::getCleanedData("creationDate");
 		$this->$start_date = Utils::getCleanedData("startDate");
 		$this->$end_date = Utils::getCleanedData("endDate");
-		$this->$status = Utils::getCleanedData("status");
-		$this->$gantt_diagram_group_task_creator FOREIGN KEY (creator_id) REFERENCES users (id = Utils::getCleanedData("ganttDiagramGroupTaskCreatorForeignKey(creatorId)ReferencesUsers(id");
-		$this->$gantt_diagram_group_task_parent FOREIGN KEY (gantt_diagram_group_id) REFERENCES gantt_diagram_groups (id = Utils::getCleanedData("ganttDiagramGroupTaskParentForeignKey(ganttDiagramGroupId)ReferencesGanttDiagramGroups(id");
-		$this->$gantt_diagram_group_task_status FOREIGN KEY (status) REFERENCES gantt_diagram_status (id = Utils::getCleanedData("ganttDiagramGroupTaskStatusForeignKey(status)ReferencesGanttDiagramStatus(id");
+		$this->$status = Utils::getCleanedData("status");
         }
 
         public function parse()
@@ -113,10 +101,7 @@ class GanttDiagramGroupTasks
 		"creationDate" => $this->$creation_date,
 		"startDate" => $this->$start_date,
 		"endDate" => $this->$end_date,
-		"status" => $this->$status,
-		"ganttDiagramGroupTaskCreatorForeignKey(creatorId)ReferencesUsers(id" => $this->$gantt_diagram_group_task_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"ganttDiagramGroupTaskParentForeignKey(ganttDiagramGroupId)ReferencesGanttDiagramGroups(id" => $this->$gantt_diagram_group_task_parent FOREIGN KEY (gantt_diagram_group_id) REFERENCES gantt_diagram_groups (id,
-		"ganttDiagramGroupTaskStatusForeignKey(status)ReferencesGanttDiagramStatus(id" => $this->$gantt_diagram_group_task_status FOREIGN KEY (status) REFERENCES gantt_diagram_status (id,
+		"status" => $this->$status,
             ]);
         }
 } 

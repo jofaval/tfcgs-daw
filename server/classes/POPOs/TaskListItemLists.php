@@ -13,12 +13,9 @@ class TaskListItemLists
 	private $title;
 	private $description;
 	private $creation_date;
-	private $order_criteria;
 
 	//Foreign Keys
-	private $task_list_creator FOREIGN KEY (creator_id) REFERENCES users (id;
-	private $task_list_parent FOREIGN KEY (task_list_id) REFERENCES task_lists (id;
-	private $task_lists_order_criteria FOREIGN KEY (order_criteria) REFERENCES task_lists_order_criteria (id;
+	private $order_criteria;
 
 
         public function create()
@@ -32,10 +29,7 @@ class TaskListItemLists
 		"title" => $this->$title,
 		"description" => $this->$description,
 		"creation_date" => $this->$creation_date,
-		"order_criteria" => $this->$order_criteria,
-		"task_list_creator FOREIGN KEY (creator_id) REFERENCES users (id" => $this->$task_list_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"task_list_parent FOREIGN KEY (task_list_id) REFERENCES task_lists (id" => $this->$task_list_parent FOREIGN KEY (task_list_id) REFERENCES task_lists (id,
-		"task_lists_order_criteria FOREIGN KEY (order_criteria) REFERENCES task_lists_order_criteria (id" => $this->$task_lists_order_criteria FOREIGN KEY (order_criteria) REFERENCES task_lists_order_criteria (id,
+		"order_criteria" => $this->$order_criteria,
             ];
 
             return $sqlUtils->insert($params);
@@ -51,10 +45,7 @@ class TaskListItemLists
 		"title" => $this->$title,
 		"description" => $this->$description,
 		"creation_date" => $this->$creation_date,
-		"order_criteria" => $this->$order_criteria,
-		"task_list_creator FOREIGN KEY (creator_id) REFERENCES users (id" => $this->$task_list_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"task_list_parent FOREIGN KEY (task_list_id) REFERENCES task_lists (id" => $this->$task_list_parent FOREIGN KEY (task_list_id) REFERENCES task_lists (id,
-		"task_lists_order_criteria FOREIGN KEY (order_criteria) REFERENCES task_lists_order_criteria (id" => $this->$task_lists_order_criteria FOREIGN KEY (order_criteria) REFERENCES task_lists_order_criteria (id,
+		"order_criteria" => $this->$order_criteria,
             ];
 
             $identificationParams = [
@@ -94,10 +85,7 @@ class TaskListItemLists
 		$this->$title = Utils::getCleanedData("title");
 		$this->$description = Utils::getCleanedData("description");
 		$this->$creation_date = Utils::getCleanedData("creationDate");
-		$this->$order_criteria = Utils::getCleanedData("orderCriteria");
-		$this->$task_list_creator FOREIGN KEY (creator_id) REFERENCES users (id = Utils::getCleanedData("taskListCreatorForeignKey(creatorId)ReferencesUsers(id");
-		$this->$task_list_parent FOREIGN KEY (task_list_id) REFERENCES task_lists (id = Utils::getCleanedData("taskListParentForeignKey(taskListId)ReferencesTaskLists(id");
-		$this->$task_lists_order_criteria FOREIGN KEY (order_criteria) REFERENCES task_lists_order_criteria (id = Utils::getCleanedData("taskListsOrderCriteriaForeignKey(orderCriteria)ReferencesTaskListsOrderCriteria(id");
+		$this->$order_criteria = Utils::getCleanedData("orderCriteria");
         }
 
         public function parse()
@@ -108,10 +96,7 @@ class TaskListItemLists
 		"title" => $this->$title,
 		"description" => $this->$description,
 		"creationDate" => $this->$creation_date,
-		"orderCriteria" => $this->$order_criteria,
-		"taskListCreatorForeignKey(creatorId)ReferencesUsers(id" => $this->$task_list_creator FOREIGN KEY (creator_id) REFERENCES users (id,
-		"taskListParentForeignKey(taskListId)ReferencesTaskLists(id" => $this->$task_list_parent FOREIGN KEY (task_list_id) REFERENCES task_lists (id,
-		"taskListsOrderCriteriaForeignKey(orderCriteria)ReferencesTaskListsOrderCriteria(id" => $this->$task_lists_order_criteria FOREIGN KEY (order_criteria) REFERENCES task_lists_order_criteria (id,
+		"orderCriteria" => $this->$order_criteria,
             ]);
         }
 } 
