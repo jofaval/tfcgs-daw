@@ -44,28 +44,9 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
         $tableKeys = [];
         $foreignKeys = [];
 
-        foreach ($splittedLine as $value) {
-            $value = trim($value);
-            if (!$value) {
-                continue;
-            }
-            $match = [];
-            if (preg_match("/^\`/i", $value)) {
-                preg_match("/`.+`/i", $value, $match);
-                $tableKeys[] = str_replace("`", "", $match[0]);
-            } else if (preg_match("/^PRIMARY KEY/i", $value)) {
-                preg_match("/`.+`/i", $value, $match);
-                $primaryKeys = array_merge($primaryKeys, explode(",", str_replace("`", "", $match[0])));
-            } else if (preg_match("/^CONSTRAINT/i", $value)) {
-                preg_match("/(?=FOREIGN KEY \(`).+(?<=`\) REFERENCES)/", $value, $match);
-                $foreignKey = preg_replace("/(FOREIGN KEY \(`|`\) REFERENCES)/", "", $match[0]);
-                $foreignKeys = array_merge($primaryKeys, explode(",", $foreignKey));
-            }
-        }
+        loadKeys($splittedLine, $tableKeys, $foreignKeys, $primaryKeys);
 
-        $tableKeys = array_diff($tableKeys, $foreignKeys);
-        $tableKeys = array_diff($tableKeys, $primaryKeys);
-        $foreignKeys = array_diff($foreignKeys, $primaryKeys);
+        $everyKey = array_merge($primaryKeys, $tableKeys, $foreignKeys);
 
         //Table value
         if ($showTableInfo) {
@@ -86,84 +67,11 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
 
         $content .= "<?php\n\nclass " . $tableAsClass . " implements CRUD \n{\n\tprivate \$table = \"$table\";\n\n";
 
-        $content .= "\t//Primary Keys";
-        foreach ($primaryKeys as $value) {
-            $content .= "\n\tprivate \$$value;";
-        }
-
-        $content .= "\n\n\t//Table Keys";
-        foreach ($tableKeys as $value) {
-            $content .= "\n\tprivate \$$value;";
-        }
-
-        $content .= "\n\n\t//Foreign Keys";
-        foreach ($foreignKeys as $value) {
-            $content .= "\n\tprivate \$$value;";
-        }
+        createClassProperties($content, $primaryKeys, $tableKeys, $foreignKeys);
 
         $content .= "\n";
-        $everyKey = array_merge($primaryKeys, $tableKeys, $foreignKeys);
 
-        //Create
-        $content .= "\n\tpublic function create()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
-        foreach ($everyKey as $value) {
-            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
-        }
-        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->insert(\$params);\n\t}";
-
-        //Update
-        $content .= "\n\n\tpublic function update()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$toModify = [";
-        foreach ($tableKeys as $value) {
-            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
-        }
-        foreach ($foreignKeys as $value) {
-            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
-        }
-        $content .= "\n\t\t];";
-
-        $content .= "\n\n\t\t\$identificationParams = [";
-        foreach ($primaryKeys as $value) {
-            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
-        }
-        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->update(\$this->\$table, \$toModify, \$identificationParams);\n\t}";
-
-        //Delete
-        $content .= "\n\n\tpublic function delete()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
-
-        foreach ($primaryKeys as $value) {
-            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
-        }
-        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->delete(\$this->\$table, \$params);\n\t}";
-
-        //Query
-        $content .= "\n\n\tpublic function query()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
-
-        foreach ($primaryKeys as $value) {
-            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
-        }
-        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->query(\$this->\$table, \$params);\n\t}";
-
-        //Enable
-        $content .= "\n\n\tpublic function enable()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$identificationParams = [";
-
-        foreach ($primaryKeys as $value) {
-            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
-        }
-        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->enable(\$this->\$table, Utils::getCleanedData(\"enable\"), \$identificationParams);\n\t}";
-
-        //Fill
-        $content .= "\n\n\n\tpublic function fill()\n\t{";
-        foreach ($everyKey as $value) {
-            $content .= "\n\t\t\$this->\$$value = Utils::getCleanedData(\"" . camelCase($value) . "\");";
-        }
-        $content .= "\n\t}";
-
-        //Parse
-        $content .= "\n\n\n\tpublic function parse()\n\t{\n\t\treturn json_encode([";
-        foreach ($everyKey as $value) {
-            $content .= "\n\t\t\t\"" . camelCase($value) . "\" => \$this->\$$value,";
-        }
-        $content .= "\n\t\t]);\n\t}";
+        addFunctions($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
 
         $content .= "\n} \n\n\n";
 
@@ -172,10 +80,73 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
 
     $controller .= "\n}";
 
-    /*echo "<h1>Clases</h1>";
+    echo "<h1>Clases</h1>";
     echo "<pre>";
     var_dump($filesContent);
-    echo "</pre>";*/
+    echo "</pre>";
+
+    writeToFile("/../server/classes/POPOs/POPOcontroller.php", $controller);
+
+    if (true) {
+        foreach ($filesContent as $key => $value) {
+            writeToFile("/../server/classes/POPOs/$key.php", $value);
+        }
+    }
+}
+
+function createClassProperties(&$content, $primaryKeys, $tableKeys, $foreignKeys)
+{
+    $content .= "\t//Primary Keys";
+    foreach ($primaryKeys as $value) {
+        $content .= "\n\tprivate \$$value;";
+    }
+
+    $content .= "\n\n\t//Table Keys";
+    foreach ($tableKeys as $value) {
+        $content .= "\n\tprivate \$$value;";
+    }
+
+    $content .= "\n\n\t//Foreign Keys";
+    foreach ($foreignKeys as $value) {
+        $content .= "\n\tprivate \$$value;";
+    }
+}
+
+function loadKeys($splittedLine, &$tableKeys, &$foreignKeys, &$primaryKeys)
+{
+    foreach ($splittedLine as $value) {
+        $value = trim($value);
+        if (!$value) {
+            continue;
+        }
+        $match = [];
+        if (preg_match("/^\`/i", $value)) {
+            preg_match("/`.+`/i", $value, $match);
+            $tableKeys[] = str_replace("`", "", $match[0]);
+        } else if (preg_match("/^PRIMARY KEY/i", $value)) {
+            preg_match("/`.+`/i", $value, $match);
+            $primaryKeys = array_merge($primaryKeys, explode(",", str_replace("`", "", $match[0])));
+        } else if (preg_match("/^CONSTRAINT/i", $value)) {
+            preg_match("/(?=FOREIGN KEY \(`).+(?<=`\) REFERENCES)/", $value, $match);
+            $foreignKey = preg_replace("/(FOREIGN KEY \(`|`\) REFERENCES)/", "", $match[0]);
+            $foreignKeys = array_merge($primaryKeys, explode(",", $foreignKey));
+        }
+    }
+
+    $tableKeys = array_diff($tableKeys, $foreignKeys);
+    $tableKeys = array_diff($tableKeys, $primaryKeys);
+    $foreignKeys = array_diff($foreignKeys, $primaryKeys);
+}
+
+function writeToFile($file, $fileContent)
+{
+    $fileWriter = fopen(__DIR__ . $file, "w+");
+    fwrite($fileWriter, str_replace("\n", PHP_EOL, $fileContent));
+    fclose($fileWriter);
+}
+
+function mapRoutes($methods)
+{
     $mapFile = "<?php\n\n\$map = [";
     $controllerMethods = get_class_methods('Controller');
     foreach ($controllerMethods as $method) {
@@ -186,21 +157,105 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
     }
     $mapFile .= "\n];";
 
-    $fileWriter = fopen(__DIR__ . "/../server/RoutingMap.php", "w+");
-    fwrite($fileWriter, str_replace("\n", PHP_EOL, $mapFile));
-    fclose($fileWriter);
+    writeToFile("/../server/RoutingMap.php", $mapFile);
 
-    $fileWriter = fopen(__DIR__ . "/../server/classes/POPOs/POPOcontroller.php", "w+");
-    fwrite($fileWriter, str_replace("\n", PHP_EOL, $controller));
-    fclose($fileWriter);
-
-    if (true) {
-        foreach ($filesContent as $key => $value) {
-            $fileWriter = fopen(__DIR__ . "/../server/classes/POPOs/$key.php", "w+");
-            fwrite($fileWriter, str_replace("\n", PHP_EOL, $value));
-            fclose($fileWriter);
-        }
+    $everyRoute = array_merge($controllerMethods, $methods);
+    $accessFile = "<?php\n\n\$map = [";
+    foreach ($everyRoute as $value) {
+        $accessFile .= "\n\$map['error']['access'] = Config::\$ACCESS_LEVEL_GUEST);";
     }
+    writeToFile("/../server/Access.php", $mapFile);
+
+}
+
+//Create
+function createFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
+{
+    $content .= "\n\tpublic function create()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
+    foreach ($everyKey as $value) {
+        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+    }
+    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->insert(\$params);\n\t}";
+}
+
+//Update
+function updateFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
+{
+    $content .= "\n\n\tpublic function update()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$toModify = [";
+    foreach ($tableKeys as $value) {
+        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+    }
+    foreach ($foreignKeys as $value) {
+        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+    }
+    $content .= "\n\t\t];";
+
+    $content .= "\n\n\t\t\$identificationParams = [";
+    foreach ($primaryKeys as $value) {
+        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+    }
+    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->update(\$this->\$table, \$toModify, \$identificationParams);\n\t}";
+}
+
+//Delete
+function deleteFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
+{
+    $content .= "\n\n\tpublic function delete()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
+    foreach ($primaryKeys as $value) {
+        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+    }
+    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->delete(\$this->\$table, \$params);\n\t}";
+}
+
+//Query
+function queryFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
+{
+    $content .= "\n\n\tpublic function query()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
+    foreach ($primaryKeys as $value) {
+        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+    }
+    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->query(\$this->\$table, \$params);\n\t}";
+}
+
+//Enable
+function enableFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
+{
+    $content .= "\n\n\tpublic function enable()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$identificationParams = [";
+    foreach ($primaryKeys as $value) {
+        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+    }
+    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->enable(\$this->\$table, Utils::getCleanedData(\"enable\"), \$identificationParams);\n\t}";
+}
+
+//Fill
+function fillFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
+{
+    $content .= "\n\n\n\tpublic function fill()\n\t{";
+    foreach ($everyKey as $value) {
+        $content .= "\n\t\t\$this->\$$value = Utils::getCleanedData(\"" . camelCase($value) . "\");";
+    }
+    $content .= "\n\t}";
+}
+
+//Parse
+function parseFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
+{
+    $content .= "\n\n\n\tpublic function parse()\n\t{\n\t\treturn json_encode([";
+    foreach ($everyKey as $value) {
+        $content .= "\n\t\t\t\"" . camelCase($value) . "\" => \$this->\$$value,";
+    }
+    $content .= "\n\t\t]);\n\t}";
+}
+
+function addFunctions(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
+{
+    createFunction($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
+    updateFunction($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
+    deleteFunction($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
+    queryFunction($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
+    enableFunction($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
+    fillFunction($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
+    parseFunction($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
 }
 
 function camelCase($string = "", $firstLetterCapital = false)
