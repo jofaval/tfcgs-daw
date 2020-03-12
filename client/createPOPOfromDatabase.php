@@ -7,6 +7,7 @@ $mysqlPassword = "";
 $mysqlHostName = "localhost";
 $DbName = "database_proyecto_daw_2020";
 
+//$sqlUtils->lastInsertId();
 function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = true)
 {
     $mysqli = new mysqli($host, $user, $pass, $name);
