@@ -40,7 +40,7 @@ class Controller
             $result = ExceptionUtils::tryCatch("Controller", "signinFunctionality");
 
             if ($result) {
-                header("Location: ./index.php?ctl=classrooms/");
+                header("Location: ../projects/");
             } else {
                 echo "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>";
                 echo "<p class='m-0'>Error: We couldn't sign you in.</p>\n";
@@ -78,7 +78,7 @@ class Controller
                 $sessions->setSession("username", $username);
                 $sessions->setSession("access", $signin[0]["type"]);
                 $sessions->setSession("userImg", $signin[0]["image"]);
-                header("Location: index.php?ctl=calendar");
+                header("Location: ../projects/");
             }
         }
 

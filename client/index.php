@@ -24,7 +24,7 @@ if ($ctl == "") {
 }
 
 if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls)) {
-    header("Location: index.php?ctl=notuseragent");
+    header("Location: ../not-user-agent/");
 }
 
 /*
@@ -56,24 +56,24 @@ if (Config::$developmentMode) {
 }
 
 // Parseo de la ruta
-if (isset($ctl)) {
+if (isset($_REQUEST["ctl"])) {
     if (isset($map[$ctl])) {
         $ruta = $ctl;
     } else {
-        header('Location: ./index.php?ctl=error&message=Action isn\'t available at the moment');
+        header('Location: ../no-action/');
         exit;
     }
 } else {
     if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
-        $ruta = "signin";
+        header("Location: ../sign-in/");
     } else {
-        $ruta = "project";
+        header("Location: ../projects/");
     }
 }
 
 if (!Config::$developmentMode) {
     if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
-        header('Location: ./index.php?ctl=notsigned');
+        header('Location: ../not-signed-in/');
     }
 }
 
@@ -83,9 +83,9 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
     if ($sessions->getSession("access") >= $controlador['access']) {
         call_user_func(array(new $controlador['controller'], $controlador['action']));
     } else {
-        header('Location: ./index.php?ctl=access');
+        header('Location: ../access/');
     }
 } else {
-    header('Location: ./index.php?ctl=error&message=Action could not be executed');
+    header('Location: ../execution-error/');
     exit;
 }
