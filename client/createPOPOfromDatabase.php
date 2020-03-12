@@ -38,9 +38,7 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
         $primaryKeys = [];
         $tableKeys = [];
         $foreignKeys = [];
-
         loadKeys($splittedLine, $tableKeys, $foreignKeys, $primaryKeys);
-
         $everyKey = array_merge($primaryKeys, $tableKeys, $foreignKeys);
 
         foreach ($functionNames as $functionName) {
@@ -78,36 +76,16 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
         }
 
         $content .= "<?php\n\nclass " . $tableAsClass . " implements CRUD \n{\n\tprivate \$table = \"$table\";\n\n";
-
         createClassProperties($content, $primaryKeys, $tableKeys, $foreignKeys);
-
         $content .= "\n";
-
         addFunctions($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
-
         $content .= "\n} \n\n\n";
-
         $filesContent[$tableAsClass] = $content;
     }
 
+    createPHPajaxController($methods, $methodParams);
+
     $controller .= "\n}";
-
-    $phpAjaxController = "<?php\nclass AjaxController\n{";
-    $phpAjaxController .= "\n\tpublic function genericAjaxReturn(\$functionName, \$requiredParams = [])\n\t{\n\t\ttry {\n\t\t\tif (!empty(\$requiredParams)) {\n\t\t\t\t\$this->throwIfExceptionIfDoesntExist(\$requiredParams);\n\t\t\t}\n\t\t\t\$mainController = \"Controller\";\n\t\t\tif (method_exists(\$mainController, \$functionName)) {\n\t\t\t\t\$result = call_user_func([new \$mainController, \$functionName]);\n\t\t\t\techo json_encode(\$result);\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t} catch (Throwable \$th) {\n\t\t\tif (Config::\$developmentMode) {\n\t\t\t\t\$this->returnError(\$th->getMessage());\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t}\n\t}";
-    $phpAjaxController .= "\n\n\tpublic function throwIfExceptionIfDoesntExist(\$elems)\n\t{\n\t\tforeach (\$elems as \$elem) {\n\t\t\tif (!isset(\$_REQUEST[\$elem])) {\n\t\t\t\tthrow new Error(\"\$elem doesn't exist\");\n\t\t\t}\n\t\t}\n\t}";
-    $phpAjaxController .= "public function returnError(\$message = \"\")\n\t{\n\t\t\$object = [\n\t\t\t\t\"error\" => true,\n\t\t];\n\t\tif (\$message != \"\") {\n\t\t\t\$object[\"message\"] = \$message;\n\t\t}\n\t\t\$json = json_encode(\$object);\n\t\techo \$json;\n\t\texit;\n\t}";
-
-    foreach ($methods as $key => $value) {
-        $phpAjaxController .= "\n\n\tpublic function " . $value . "()\n\t{\n\t\t\$this->genericAjaxReturn(__FUNCTION__";
-        $requiredParams = $methodParams[$key];
-        if (count($methodParams[$key]) > 0) {
-            $phpAjaxController .= ", [\"" . join(", ", $requiredParams) . "\"]";
-        }
-        $phpAjaxController .= ");\n\t}";
-    }
-
-    $phpAjaxController .= "\n}";
-    writeToFile("/../server/classes/AjaxController.php", $phpAjaxController);
 
     if (true) {
         echo "<h1>Clases</h1>";
@@ -127,9 +105,24 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
     }
 }
 
-function createPHPajaxController()
+function createPHPajaxController($methods, $methodParams)
 {
+    $phpAjaxController = "<?php\nclass AjaxController\n{";
+    $phpAjaxController .= "\n\tpublic function genericAjaxReturn(\$functionName, \$requiredParams = [])\n\t{\n\t\ttry {\n\t\t\tif (!empty(\$requiredParams)) {\n\t\t\t\t\$this->throwIfExceptionIfDoesntExist(\$requiredParams);\n\t\t\t}\n\t\t\t\$mainController = \"Controller\";\n\t\t\tif (method_exists(\$mainController, \$functionName)) {\n\t\t\t\t\$result = call_user_func([new \$mainController, \$functionName]);\n\t\t\t\techo json_encode(\$result);\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t} catch (Throwable \$th) {\n\t\t\tif (Config::\$developmentMode) {\n\t\t\t\t\$this->returnError(\$th->getMessage());\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t}\n\t}";
+    $phpAjaxController .= "\n\n\tpublic function throwIfExceptionIfDoesntExist(\$elems)\n\t{\n\t\tforeach (\$elems as \$elem) {\n\t\t\tif (!isset(\$_REQUEST[\$elem])) {\n\t\t\t\tthrow new Error(\"\$elem doesn't exist\");\n\t\t\t}\n\t\t}\n\t}";
+    $phpAjaxController .= "public function returnError(\$message = \"\")\n\t{\n\t\t\$object = [\n\t\t\t\t\"error\" => true,\n\t\t];\n\t\tif (\$message != \"\") {\n\t\t\t\$object[\"message\"] = \$message;\n\t\t}\n\t\t\$json = json_encode(\$object);\n\t\techo \$json;\n\t\texit;\n\t}";
 
+    foreach ($methods as $key => $value) {
+        $phpAjaxController .= "\n\n\tpublic function " . $value . "()\n\t{\n\t\t\$this->genericAjaxReturn(__FUNCTION__";
+        $requiredParams = $methodParams[$key];
+        if (count($methodParams[$key]) > 0) {
+            $phpAjaxController .= ", [\"" . join(", ", $requiredParams) . "\"]";
+        }
+        $phpAjaxController .= ");\n\t}";
+    }
+
+    $phpAjaxController .= "\n}";
+    writeToFile("/../server/classes/AjaxController.php", $phpAjaxController);
 }
 
 function createClassProperties(&$content, $primaryKeys, $tableKeys, $foreignKeys)
