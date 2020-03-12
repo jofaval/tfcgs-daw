@@ -30,6 +30,7 @@ class AjaxController {
 		AjaxController.request(requestName, "POST", params, success, error);
 	}
 
+	//Function to createClients
 	static createClients(id, first_name, second_name, email)
 	{
 		AjaxController.genericAjaxRequest("createClients", {
@@ -40,6 +41,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateClients
 	static updateClients(id, first_name, second_name, email)
 	{
 		AjaxController.genericAjaxRequest("updateClients", {
@@ -50,6 +52,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryClients
 	static queryClients(id)
 	{
 		AjaxController.genericAjaxRequest("queryClients", {
@@ -57,6 +60,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteClients
 	static deleteClients(id)
 	{
 		AjaxController.genericAjaxRequest("deleteClients", {
@@ -64,6 +68,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createCollaborators
 	static createCollaborators(project_id, collaborator_id, starting_date, level)
 	{
 		AjaxController.genericAjaxRequest("createCollaborators", {
@@ -74,6 +79,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateCollaborators
 	static updateCollaborators(project_id, collaborator_id, starting_date, level)
 	{
 		AjaxController.genericAjaxRequest("updateCollaborators", {
@@ -84,6 +90,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryCollaborators
 	static queryCollaborators(project_id, collaborator_id, starting_date)
 	{
 		AjaxController.genericAjaxRequest("queryCollaborators", {
@@ -93,6 +100,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteCollaborators
 	static deleteCollaborators(project_id, collaborator_id, starting_date)
 	{
 		AjaxController.genericAjaxRequest("deleteCollaborators", {
@@ -102,6 +110,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createGanttDiagramGroupTaskAssignation
 	static createGanttDiagramGroupTaskAssignation(gantt_diagram_group_task_id, assigned_user_id, assignation_date)
 	{
 		AjaxController.genericAjaxRequest("createGanttDiagramGroupTaskAssignation", {
@@ -111,6 +120,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateGanttDiagramGroupTaskAssignation
 	static updateGanttDiagramGroupTaskAssignation(gantt_diagram_group_task_id, assigned_user_id, assignation_date)
 	{
 		AjaxController.genericAjaxRequest("updateGanttDiagramGroupTaskAssignation", {
@@ -120,6 +130,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryGanttDiagramGroupTaskAssignation
 	static queryGanttDiagramGroupTaskAssignation(gantt_diagram_group_task_id, assigned_user_id, assignation_date)
 	{
 		AjaxController.genericAjaxRequest("queryGanttDiagramGroupTaskAssignation", {
@@ -129,6 +140,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteGanttDiagramGroupTaskAssignation
 	static deleteGanttDiagramGroupTaskAssignation(gantt_diagram_group_task_id, assigned_user_id, assignation_date)
 	{
 		AjaxController.genericAjaxRequest("deleteGanttDiagramGroupTaskAssignation", {
@@ -138,6 +150,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createGanttDiagramGroupTasks
 	static createGanttDiagramGroupTasks(id, gantt_diagram_group_id, creator_id, title, creation_date, start_date, end_date, status)
 	{
 		AjaxController.genericAjaxRequest("createGanttDiagramGroupTasks", {
@@ -152,6 +165,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateGanttDiagramGroupTasks
 	static updateGanttDiagramGroupTasks(id, gantt_diagram_group_id, creator_id, title, creation_date, start_date, end_date, status)
 	{
 		AjaxController.genericAjaxRequest("updateGanttDiagramGroupTasks", {
@@ -166,6 +180,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryGanttDiagramGroupTasks
 	static queryGanttDiagramGroupTasks(id)
 	{
 		AjaxController.genericAjaxRequest("queryGanttDiagramGroupTasks", {
@@ -173,6 +188,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteGanttDiagramGroupTasks
 	static deleteGanttDiagramGroupTasks(id)
 	{
 		AjaxController.genericAjaxRequest("deleteGanttDiagramGroupTasks", {
@@ -180,6 +196,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createGanttDiagramGroups
 	static createGanttDiagramGroups(id, creator_id, title, creation_date, gantt_diagram_id)
 	{
 		AjaxController.genericAjaxRequest("createGanttDiagramGroups", {
@@ -191,6 +208,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateGanttDiagramGroups
 	static updateGanttDiagramGroups(id, creator_id, title, creation_date, gantt_diagram_id)
 	{
 		AjaxController.genericAjaxRequest("updateGanttDiagramGroups", {
@@ -202,6 +220,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryGanttDiagramGroups
 	static queryGanttDiagramGroups(id)
 	{
 		AjaxController.genericAjaxRequest("queryGanttDiagramGroups", {
@@ -209,6 +228,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteGanttDiagramGroups
 	static deleteGanttDiagramGroups(id)
 	{
 		AjaxController.genericAjaxRequest("deleteGanttDiagramGroups", {
@@ -216,6 +236,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createGanttDiagramStatus
 	static createGanttDiagramStatus(id, title, description)
 	{
 		AjaxController.genericAjaxRequest("createGanttDiagramStatus", {
@@ -225,6 +246,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateGanttDiagramStatus
 	static updateGanttDiagramStatus(id, title, description)
 	{
 		AjaxController.genericAjaxRequest("updateGanttDiagramStatus", {
@@ -234,6 +256,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryGanttDiagramStatus
 	static queryGanttDiagramStatus(id)
 	{
 		AjaxController.genericAjaxRequest("queryGanttDiagramStatus", {
@@ -241,6 +264,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteGanttDiagramStatus
 	static deleteGanttDiagramStatus(id)
 	{
 		AjaxController.genericAjaxRequest("deleteGanttDiagramStatus", {
@@ -248,6 +272,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createGanttDiagrams
 	static createGanttDiagrams(id, creator_id, title, creation_date, project_id)
 	{
 		AjaxController.genericAjaxRequest("createGanttDiagrams", {
@@ -259,6 +284,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateGanttDiagrams
 	static updateGanttDiagrams(id, creator_id, title, creation_date, project_id)
 	{
 		AjaxController.genericAjaxRequest("updateGanttDiagrams", {
@@ -270,6 +296,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryGanttDiagrams
 	static queryGanttDiagrams(id)
 	{
 		AjaxController.genericAjaxRequest("queryGanttDiagrams", {
@@ -277,6 +304,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteGanttDiagrams
 	static deleteGanttDiagrams(id)
 	{
 		AjaxController.genericAjaxRequest("deleteGanttDiagrams", {
@@ -284,6 +312,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createGlobalLevel
 	static createGlobalLevel(level, title, description)
 	{
 		AjaxController.genericAjaxRequest("createGlobalLevel", {
@@ -293,6 +322,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateGlobalLevel
 	static updateGlobalLevel(level, title, description)
 	{
 		AjaxController.genericAjaxRequest("updateGlobalLevel", {
@@ -302,6 +332,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryGlobalLevel
 	static queryGlobalLevel(level)
 	{
 		AjaxController.genericAjaxRequest("queryGlobalLevel", {
@@ -309,6 +340,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteGlobalLevel
 	static deleteGlobalLevel(level)
 	{
 		AjaxController.genericAjaxRequest("deleteGlobalLevel", {
@@ -316,6 +348,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createPermissions
 	static createPermissions(level, title, description)
 	{
 		AjaxController.genericAjaxRequest("createPermissions", {
@@ -325,6 +358,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updatePermissions
 	static updatePermissions(level, title, description)
 	{
 		AjaxController.genericAjaxRequest("updatePermissions", {
@@ -334,6 +368,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryPermissions
 	static queryPermissions(level)
 	{
 		AjaxController.genericAjaxRequest("queryPermissions", {
@@ -341,6 +376,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deletePermissions
 	static deletePermissions(level)
 	{
 		AjaxController.genericAjaxRequest("deletePermissions", {
@@ -348,6 +384,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createProjectDiary
 	static createProjectDiary(day, project_id, creator_id, content, creation_date)
 	{
 		AjaxController.genericAjaxRequest("createProjectDiary", {
@@ -359,6 +396,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateProjectDiary
 	static updateProjectDiary(day, project_id, creator_id, content, creation_date)
 	{
 		AjaxController.genericAjaxRequest("updateProjectDiary", {
@@ -370,6 +408,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryProjectDiary
 	static queryProjectDiary(day, project_id)
 	{
 		AjaxController.genericAjaxRequest("queryProjectDiary", {
@@ -378,6 +417,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteProjectDiary
 	static deleteProjectDiary(day, project_id)
 	{
 		AjaxController.genericAjaxRequest("deleteProjectDiary", {
@@ -386,6 +426,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createProjects
 	static createProjects(id, title, description, creator_id)
 	{
 		AjaxController.genericAjaxRequest("createProjects", {
@@ -396,6 +437,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateProjects
 	static updateProjects(id, title, description, creator_id)
 	{
 		AjaxController.genericAjaxRequest("updateProjects", {
@@ -406,6 +448,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryProjects
 	static queryProjects(id)
 	{
 		AjaxController.genericAjaxRequest("queryProjects", {
@@ -413,6 +456,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteProjects
 	static deleteProjects(id)
 	{
 		AjaxController.genericAjaxRequest("deleteProjects", {
@@ -420,6 +464,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createTaskListItemListItems
 	static createTaskListItemListItems(id, task_item_list_id, title, order, description, creation_date, creator_id)
 	{
 		AjaxController.genericAjaxRequest("createTaskListItemListItems", {
@@ -433,6 +478,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateTaskListItemListItems
 	static updateTaskListItemListItems(id, task_item_list_id, title, order, description, creation_date, creator_id)
 	{
 		AjaxController.genericAjaxRequest("updateTaskListItemListItems", {
@@ -446,6 +492,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryTaskListItemListItems
 	static queryTaskListItemListItems(id)
 	{
 		AjaxController.genericAjaxRequest("queryTaskListItemListItems", {
@@ -453,6 +500,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteTaskListItemListItems
 	static deleteTaskListItemListItems(id)
 	{
 		AjaxController.genericAjaxRequest("deleteTaskListItemListItems", {
@@ -460,6 +508,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createTaskListItemLists
 	static createTaskListItemLists(id, task_list_id, creator_id, title, description, creation_date, order_criteria)
 	{
 		AjaxController.genericAjaxRequest("createTaskListItemLists", {
@@ -473,6 +522,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateTaskListItemLists
 	static updateTaskListItemLists(id, task_list_id, creator_id, title, description, creation_date, order_criteria)
 	{
 		AjaxController.genericAjaxRequest("updateTaskListItemLists", {
@@ -486,6 +536,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryTaskListItemLists
 	static queryTaskListItemLists(id)
 	{
 		AjaxController.genericAjaxRequest("queryTaskListItemLists", {
@@ -493,6 +544,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteTaskListItemLists
 	static deleteTaskListItemLists(id)
 	{
 		AjaxController.genericAjaxRequest("deleteTaskListItemLists", {
@@ -500,6 +552,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createTaskLists
 	static createTaskLists(id, project_id, title, creation_date, creator_id)
 	{
 		AjaxController.genericAjaxRequest("createTaskLists", {
@@ -511,6 +564,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateTaskLists
 	static updateTaskLists(id, project_id, title, creation_date, creator_id)
 	{
 		AjaxController.genericAjaxRequest("updateTaskLists", {
@@ -522,6 +576,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryTaskLists
 	static queryTaskLists(id)
 	{
 		AjaxController.genericAjaxRequest("queryTaskLists", {
@@ -529,6 +584,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteTaskLists
 	static deleteTaskLists(id)
 	{
 		AjaxController.genericAjaxRequest("deleteTaskLists", {
@@ -536,6 +592,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createTaskListsOrderCriteria
 	static createTaskListsOrderCriteria(id, title)
 	{
 		AjaxController.genericAjaxRequest("createTaskListsOrderCriteria", {
@@ -544,6 +601,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateTaskListsOrderCriteria
 	static updateTaskListsOrderCriteria(id, title)
 	{
 		AjaxController.genericAjaxRequest("updateTaskListsOrderCriteria", {
@@ -552,6 +610,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryTaskListsOrderCriteria
 	static queryTaskListsOrderCriteria(id)
 	{
 		AjaxController.genericAjaxRequest("queryTaskListsOrderCriteria", {
@@ -559,6 +618,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteTaskListsOrderCriteria
 	static deleteTaskListsOrderCriteria(id)
 	{
 		AjaxController.genericAjaxRequest("deleteTaskListsOrderCriteria", {
@@ -566,6 +626,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to createUsers
 	static createUsers(id, username, password, level)
 	{
 		AjaxController.genericAjaxRequest("createUsers", {
@@ -576,6 +637,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to updateUsers
 	static updateUsers(id, username, password, level)
 	{
 		AjaxController.genericAjaxRequest("updateUsers", {
@@ -586,6 +648,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to queryUsers
 	static queryUsers(id)
 	{
 		AjaxController.genericAjaxRequest("queryUsers", {
@@ -593,6 +656,7 @@ class AjaxController {
 		}, success);
 	}
 
+	//Function to deleteUsers
 	static deleteUsers(id)
 	{
 		AjaxController.genericAjaxRequest("deleteUsers", {

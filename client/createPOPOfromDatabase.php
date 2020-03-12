@@ -115,7 +115,8 @@ function createJSajaxController($methods, $methodParams)
 
     foreach ($methods as $key => $value) {
         $requiredParams = $methodParams[$key];
-        $jsAjaxController .= "\n\n\tstatic " . $value . "(" . join(", ", $requiredParams) . ")\n\t{\n\t\tAjaxController.genericAjaxRequest(\"$value\", {";
+        $jsAjaxController .= "\n\n\t//Function to $value";
+        $jsAjaxController .= "\n\tstatic " . $value . "(" . join(", ", $requiredParams) . ")\n\t{\n\t\tAjaxController.genericAjaxRequest(\"$value\", {";
         if (count($methodParams[$key]) > 0) {
             foreach ($requiredParams as $requiredParam) {
                 $jsAjaxController .= "\n\t\t\t\"$requiredParam\": $requiredParam,";
@@ -136,7 +137,8 @@ function createPHPajaxController($methods, $methodParams)
     $phpAjaxController .= "public function returnError(\$message = \"\")\n\t{\n\t\t\$object = [\n\t\t\t\t\"error\" => true,\n\t\t];\n\t\tif (\$message != \"\") {\n\t\t\t\$object[\"message\"] = \$message;\n\t\t}\n\t\t\$json = json_encode(\$object);\n\t\techo \$json;\n\t\texit;\n\t}";
 
     foreach ($methods as $key => $value) {
-        $phpAjaxController .= "\n\n\tpublic function " . $value . "()\n\t{\n\t\t\$this->genericAjaxReturn(__FUNCTION__";
+        $phpAjaxController .= "\n\n\t//Function to $value";
+        $phpAjaxController .= "\n\tpublic function " . $value . "()\n\t{\n\t\t\$this->genericAjaxReturn(__FUNCTION__";
         $requiredParams = $methodParams[$key];
         if (count($methodParams[$key]) > 0) {
             $phpAjaxController .= ", [\"" . join(", ", $requiredParams) . "\"]";
