@@ -104,8 +104,7 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
             echo "</pre>";
         }
 
-        $content .= "<?php\n\nclass " . camelCase($table, true) . "\n implements CRUD {\n\tprivate \$table = \"$table\";
-        \n";
+        $content .= "<?php\n\nclass " . camelCase($table, true) . " implements CRUD \n{\n\tprivate \$table = \"$table\";\n\n";
 
         $content .= "\t//Primary Keys";
         foreach ($primaryKeys as $value) {
@@ -122,106 +121,60 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
             $content .= "\n\tprivate \$$value;";
         }
 
-        $content .= "\n\n";
+        $content .= "\n";
         $everyKey = array_merge($primaryKeys, $tableKeys, $foreignKeys);
-        $content .= "
-        public function create()
-        {
-            \$sqlUtils = new SQLUtils(Model::getInstance());
 
-            \$params = [";
+        //Create
+        $content .= "\n\tpublic function create()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
         foreach ($everyKey as $value) {
-            $content .= "\n\t\t\"$value\" => \$this->\$$value,";
+            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
         }
-        $content .= "
-            ];
+        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->insert(\$params);\n\t}";
 
-            return \$sqlUtils->insert(\$params);
-        }";
-
-        $content .= "\n
-        public function update()
-        {
-            \$sqlUtils = new SQLUtils(Model::getInstance());
-
-            \$toModify = [";
+        //Update
+        $content .= "\n\n\tpublic function update()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$toModify = [";
         foreach ($tableKeys as $value) {
-            $content .= "\n\t\t\"$value\" => \$this->\$$value,";
+            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
         }
         foreach ($foreignKeys as $value) {
-            $content .= "\n\t\t\"$value\" => \$this->\$$value,";
+            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
         }
-        $content .= "
-            ];
+        $content .= "\n\t\t];";
 
-            \$identificationParams = [";
+        $content .= "\n\n\t\t\$identificationParams = [";
         foreach ($primaryKeys as $value) {
-            $content .= "\n\t\t\"$value\" => \$this->\$$value,";
+            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
         }
-        $content .= "
-            ];
+        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->update(\$this->\$table, \$toModify, \$identificationParams);\n\t}";
 
-            return \$sqlUtils->update(\$this->\$table, \$toModify, \$identificationParams);
-        }";
+        //Delete
+        $content .= "\n\n\tpublic function delete()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
 
-        $content .= "
-
-        public function delete()
-        {
-            \$sqlUtils = new SQLUtils(Model::getInstance());
-
-            \$params = [";
         foreach ($primaryKeys as $value) {
-            $content .= "\n\t\t\"$value\" => \$this->\$$value,";
+            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
         }
-        $content .= "
-            ];
+        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->delete(\$this->\$table, \$params);\n\t}";
 
-            return \$sqlUtils->delete(\$this->\$table, \$params);
-        }";
+        //Query
+        $content .= "\n\n\tpublic function query()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
 
-        $content .= "
-
-        public function query()
-        {
-            \$sqlUtils = new SQLUtils(Model::getInstance());
-
-            \$params = [";
         foreach ($primaryKeys as $value) {
-            $content .= "\n\t\t\"$value\" => \$this->\$$value,";
+            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
         }
-        $content .= "
-            ];
+        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->query(\$this->\$table, \$params);\n\t}";
 
-            return \$sqlUtils->query(\$this->\$table, \$params);
-        }";
-
-        $content .= "
-
-        public function fill()
-        {";
+        //Fill
+        $content .= "\n\n\n\tpublic function fill()\n\t{";
         foreach ($everyKey as $value) {
             $content .= "\n\t\t\$this->\$$value = Utils::getCleanedData(\"" . camelCase($value) . "\");";
         }
-        $content .= "
-        }";
+        $content .= "\n\t}";
 
-        $content .= "
-
-        public function parse()
-        {
-            return json_encode([";
-        foreach ($tableKeys as $value) {
-            $content .= "\n\t\t\"" . camelCase($value) . "\" => \$this->\$$value,";
+        $content .= "\n\n\n\tpublic function fill()\n\t{\n\t\treturn json_encode([";
+        foreach ($everyKey as $value) {
+            $content .= "\n\t\t\t\"" . camelCase($value) . "\" => \$this->\$$value,";
         }
-        foreach ($foreignKeys as $value) {
-            $content .= "\n\t\t\"" . camelCase($value) . "\" => \$this->\$$value,";
-        }
-        $content .= "
-            ]);
-        }";
-
-        //$content .= "\n\n" . $TableMLine . ";\n\n";
+        $content .= "\n\t\t]);\n\t}";
 
         $content .= "\n} \n\n\n";
 
