@@ -84,6 +84,7 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
     }
 
     createPHPajaxController($methods, $methodParams);
+    createJSajaxController($methods, $methodParams);
 
     $controller .= "\n}";
 
@@ -103,6 +104,28 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
             }
         }
     }
+}
+
+function createJSajaxController($methods, $methodParams)
+{
+    $jsAjaxController = "class AjaxController {";
+    $jsAjaxController .= "\n\tstatic request(requestLocation, requestType = \"POST\", params = {}, success = AjaxController.defaultAjaxSuccessAction, error = AjaxController.defaultAjaxErrorAction, async = true) {\n\t\t$.ajax({\n\t\t\turl: 'index.php?ctl=' + requestLocation,\n\t\t\tdata: params,\n\t\t\ttype: requestType,\n\t\t\tasync: async,\n\t\t\tsuccess: success,\n\t\t\terror: error,\n\t\t});\n\t}";
+    $jsAjaxController .= "\n\n\t//When AJAX is succesful\n\tstatic defaultAjaxSuccessAction(data) {\n\t}\n\n\t//When AJAX has some errors\n\tstatic defaultAjaxErrorAction(data) {\n\t\tsendNotification(\"Ha surgido un error al realizar la operación\", true);\n\t}";
+    $jsAjaxController .= "\n\n\t//Generic request for AJAX\n\tstatic genericAjaxRequest(requestName, params, success, error = null) {\n\t\tif (error == null) {\n\t\t\terror = function (data) {\n\t\t\t\tsendNotification(\"Couldn't execute operation succesfully\", true);\n\t\t\t};\n\t\t}\n\n\t\tAjaxController.request(requestName, \"POST\", params, success, error);\n\t}";
+
+    foreach ($methods as $key => $value) {
+        $requiredParams = $methodParams[$key];
+        $jsAjaxController .= "\n\n\tstatic " . $value . "(" . join(", ", $requiredParams) . ")\n\t{\n\t\tAjaxController.genericAjaxRequest(\"$value\", {";
+        if (count($methodParams[$key]) > 0) {
+            foreach ($requiredParams as $requiredParam) {
+                $jsAjaxController .= "\n\t\t\t\"$requiredParam\": $requiredParam,";
+            }
+        }
+        $jsAjaxController .= "\n\t\t}, success);\n\t}";
+    }
+
+    $jsAjaxController .= "\n}";
+    writeToFile("/scripts/js/AjaxController.js", $jsAjaxController);
 }
 
 function createPHPajaxController($methods, $methodParams)
