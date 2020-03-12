@@ -193,7 +193,7 @@ function mapRoutes($methods)
     $everyRoute = array_merge($controllerMethods, $methods);
     $accessFile = "<?php\n";
     foreach ($everyRoute as $value) {
-        $accessFile .= "\n\$map['error']['access'] = Config::\$ACCESS_LEVEL_GUEST);";
+        $accessFile .= "\n\$map['error']['access'] = Config::\$ACCESS_LEVEL_GUEST;";
     }
     writeToFile("/../server/Access.php", $accessFile);
 
