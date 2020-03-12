@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="test">Notification</button>
+    <!--div class="notificationContainer position-absolute  flex-column-reverse d-flex col-md-2 pb-5 h-100">
+        <div>&nbsp;</div>
+        <script>
+            for (let index = 0; index < 5; index++) {
+                document.write(`
+        <notification
+            class="notification position-relative d-block mx-auto px-3 py-2 bg-white mb-3 shadow rounded text-center"
+            style="width: 18rem; bottom: 0">
+            <div class="float-right notificationCloseIcon">
+                <a href="">X</a>
+            </div>
+            <div class="notificationTitle text-left pr-5 font-weight-bold">Bastante largo</div>
+            <div class="notificationBody text-left">
+                Test
+            </div>
+        </notification>`);
+
+            }
+        </script>
+    </div-->
+    <script>
+        document.getElementById("test").addEventListener("click", function () {
+            sendNotification();
+        });
+    </script>
+</body>
+
+</html>

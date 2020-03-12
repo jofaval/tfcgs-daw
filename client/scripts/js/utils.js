@@ -27,11 +27,18 @@ function getWeekFromDate(dayDate) {
 }
 
 //function to send notificcation
-function sendNotification(message = "An error occurred", error = false) {
-    setTimeout(() => {
-        modalError(message);
-    }, 250);
-    //alert(message);
+function sendNotification(message = "An error occurred", title = "Origin - Notificación") {
+    if (window.Notification) {
+        Notification.requestPermission().then((permission) => {
+            if (Notification.permission === "granted") {
+                new Notification(title, {
+                    body: message
+                }).onclick = function () {
+                    console.log("hola");
+                };
+            }
+        });
+    }
 }
 
 $("#currentYear").html(printDateWithFormat(new Date(), "Y"));

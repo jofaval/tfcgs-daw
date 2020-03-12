@@ -29,17 +29,9 @@
             scroll-snap-type: x mandatory;
         }
 
-        tr {
-            scroll-snap-align: start;
-        }
-
-        td,
-        th {
-            scroll-snap-align: start;
-        }
-
-        .selectedColumn {
-            background: white !important;
+        .notificationContainer {
+            top: 0 !important;
+            right: 0 !important;
         }
     </style>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
@@ -130,9 +122,10 @@
         "projects",
         "todo_lists",
         "gantt_tasks",
+        "notification",
     ];
     $(window).on("load", function () {
-        $("#content").load(templates[0] + ".html", function () {});
+        $("#content").load(templates[4] + ".html", function () {});
     });
 </script>
 
