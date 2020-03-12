@@ -177,7 +177,7 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
     }
     $mapFile .= "\n];";
 
-    $fileWriter = fopen(__DIR__ . "/../server/classes/RoutingMap.php", "w+");
+    $fileWriter = fopen(__DIR__ . "/../server/RoutingMap.php", "w+");
     fwrite($fileWriter, str_replace("\n", PHP_EOL, $mapFile));
     fclose($fileWriter);
 

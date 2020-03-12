@@ -12,7 +12,7 @@ function requireAllFromDir($dir = null)
 }
 require_once __DIR__ . '/../server/classes/Config.php';
 require_once __DIR__ . '/../server/classes/POPOs/CRUDInterface.php';
-require_once __DIR__ . '/../server/classes/RoutingMap.php';
+require_once __DIR__ . '/../server/RoutingMap.php';
 error_reporting(Config::$developmentMode);
 requireAllFromDir("libs");
 requireAllFromDir("classes");
