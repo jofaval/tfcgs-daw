@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../server/classes/Controller.php";
+
 $mysqlUserName = "test";
 $mysqlPassword = "";
 $mysqlHostName = "localhost";
@@ -16,9 +18,21 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
         $target_tables[] = $row[0];
     }
 
+    $functionNames = ["create", "update", "query", "delete"];
+
     $filesContent = [];
+    $methods = [];
+    $controller = "<?php\n\nclass POPOcontroller\n{";
     foreach ($target_tables as $table) {
         $content = "";
+
+        $tableAsClass = camelCase($table, true);
+        foreach ($functionNames as $functionName) {
+            $methods[] = $functionName . "" . $tableAsClass;
+            $controller .= "\n\n\tpublic function $functionName$tableAsClass()\n\t{";
+            $controller .= "\n\t\t\$popoInstance = new " . $tableAsClass . "();";
+            $controller .= "\n\n\t\t\$popoInstance->$functionName();\n\t}";
+        }
 
         $res = $mysqli->query('SHOW CREATE TABLE ' . $table);
         $TableMLine = $res->fetch_row()[1];
@@ -70,7 +84,7 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
             echo "</pre>";
         }
 
-        $content .= "<?php\n\nclass " . camelCase($table, true) . " implements CRUD \n{\n\tprivate \$table = \"$table\";\n\n";
+        $content .= "<?php\n\nclass " . $tableAsClass . " implements CRUD \n{\n\tprivate \$table = \"$table\";\n\n";
 
         $content .= "\t//Primary Keys";
         foreach ($primaryKeys as $value) {
@@ -144,13 +158,32 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
 
         $content .= "\n} \n\n\n";
 
-        $filesContent[camelCase($table, true)] = $content;
+        $filesContent[$tableAsClass] = $content;
     }
 
-    echo "<h1>Clases</h1>";
+    $controller .= "\n}";
+
+    /*echo "<h1>Clases</h1>";
     echo "<pre>";
     var_dump($filesContent);
-    echo "</pre>";
+    echo "</pre>";*/
+    $mapFile = "<?php\n\n\$map = [";
+    $controllerMethods = get_class_methods('Controller');
+    foreach ($controllerMethods as $method) {
+        $mapFile .= "\n\t'$method' => array('controller' => 'Controller', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
+    }
+    foreach ($methods as $method) {
+        $mapFile .= "\n\t'$method' => array('controller' => 'POPOcontroller', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
+    }
+    $mapFile .= "\n];";
+
+    $fileWriter = fopen(__DIR__ . "/../server/classes/RoutingMap.php", "w+");
+    fwrite($fileWriter, str_replace("\n", PHP_EOL, $mapFile));
+    fclose($fileWriter);
+
+    $fileWriter = fopen(__DIR__ . "/../server/classes/POPOs/POPOcontroller.php", "w+");
+    fwrite($fileWriter, str_replace("\n", PHP_EOL, $controller));
+    fclose($fileWriter);
 
     if (true) {
         foreach ($filesContent as $key => $value) {
