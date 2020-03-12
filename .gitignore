@@ -17,3 +17,5 @@ css/*
 *.png
 *.gif
 client/test.sql
+!structure/
+structure/*
