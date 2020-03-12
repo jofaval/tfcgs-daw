@@ -143,6 +143,14 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
         }
         $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->query(\$this->\$table, \$params);\n\t}";
 
+        //Enable
+        $content .= "\n\n\tpublic function enable()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$identificationParams = [";
+
+        foreach ($primaryKeys as $value) {
+            $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+        }
+        $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->enable(\$this->\$table, Utils::getCleanedData(\"enable\"), \$identificationParams);\n\t}";
+
         //Fill
         $content .= "\n\n\n\tpublic function fill()\n\t{";
         foreach ($everyKey as $value) {
@@ -150,7 +158,8 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
         }
         $content .= "\n\t}";
 
-        $content .= "\n\n\n\tpublic function fill()\n\t{\n\t\treturn json_encode([";
+        //Parse
+        $content .= "\n\n\n\tpublic function parse()\n\t{\n\t\treturn json_encode([";
         foreach ($everyKey as $value) {
             $content .= "\n\t\t\t\"" . camelCase($value) . "\" => \$this->\$$value,";
         }

@@ -71,6 +71,19 @@ class Collaborators implements CRUD
 		return $sqlUtils->query($this->$table, $params);
 	}
 
+	public function enable()
+	{
+		$sqlUtils = new SQLUtils(Model::getInstance());
+
+		$identificationParams = [
+			"project_id" => $this->$project_id,
+			"collaborator_id" => $this->$collaborator_id,
+			"starting_date" => $this->$starting_date,
+		];
+
+		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+	}
+
 
 	public function fill()
 	{
@@ -81,7 +94,7 @@ class Collaborators implements CRUD
 	}
 
 
-	public function fill()
+	public function parse()
 	{
 		return json_encode([
 			"projectId" => $this->$project_id,

@@ -64,6 +64,17 @@ class GanttDiagramStatus implements CRUD
 		return $sqlUtils->query($this->$table, $params);
 	}
 
+	public function enable()
+	{
+		$sqlUtils = new SQLUtils(Model::getInstance());
+
+		$identificationParams = [
+			"id" => $this->$id,
+		];
+
+		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+	}
+
 
 	public function fill()
 	{
@@ -73,7 +84,7 @@ class GanttDiagramStatus implements CRUD
 	}
 
 
-	public function fill()
+	public function parse()
 	{
 		return json_encode([
 			"id" => $this->$id,

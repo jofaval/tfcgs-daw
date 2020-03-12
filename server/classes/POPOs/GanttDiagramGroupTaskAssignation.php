@@ -68,6 +68,19 @@ class GanttDiagramGroupTaskAssignation implements CRUD
 		return $sqlUtils->query($this->$table, $params);
 	}
 
+	public function enable()
+	{
+		$sqlUtils = new SQLUtils(Model::getInstance());
+
+		$identificationParams = [
+			"gantt_diagram_group_task_id" => $this->$gantt_diagram_group_task_id,
+			"assigned_user_id" => $this->$assigned_user_id,
+			"assignation_date" => $this->$assignation_date,
+		];
+
+		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+	}
+
 
 	public function fill()
 	{
@@ -77,7 +90,7 @@ class GanttDiagramGroupTaskAssignation implements CRUD
 	}
 
 
-	public function fill()
+	public function parse()
 	{
 		return json_encode([
 			"ganttDiagramGroupTaskId" => $this->$gantt_diagram_group_task_id,

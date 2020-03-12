@@ -64,6 +64,17 @@ class Permissions implements CRUD
 		return $sqlUtils->query($this->$table, $params);
 	}
 
+	public function enable()
+	{
+		$sqlUtils = new SQLUtils(Model::getInstance());
+
+		$identificationParams = [
+			"level" => $this->$level,
+		];
+
+		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+	}
+
 
 	public function fill()
 	{
@@ -73,7 +84,7 @@ class Permissions implements CRUD
 	}
 
 
-	public function fill()
+	public function parse()
 	{
 		return json_encode([
 			"level" => $this->$level,
