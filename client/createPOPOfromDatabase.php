@@ -78,20 +78,31 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
         $filesContent[$tableAsClass] = $content;
     }
 
+    writeToFile("/../server/classes/POPOs/AjaxController.php", $controller);
+
     $controller .= "\n}";
 
-    echo "<h1>Clases</h1>";
-    echo "<pre>";
-    var_dump($filesContent);
-    echo "</pre>";
-
-    writeToFile("/../server/classes/POPOs/POPOcontroller.php", $controller);
-
     if (true) {
-        foreach ($filesContent as $key => $value) {
-            writeToFile("/../server/classes/POPOs/$key.php", $value);
+        echo "<h1>Clases</h1>";
+        echo "<pre>";
+        var_dump($filesContent);
+        echo "</pre>";
+
+        mapRoutes($methods);
+
+        writeToFile("/../server/classes/POPOs/POPOcontroller.php", $controller);
+
+        if (true) {
+            foreach ($filesContent as $key => $value) {
+                writeToFile("/../server/classes/POPOs/$key.php", $value);
+            }
         }
     }
+}
+
+function createPHPajaxController()
+{
+
 }
 
 function createClassProperties(&$content, $primaryKeys, $tableKeys, $foreignKeys)
@@ -160,11 +171,11 @@ function mapRoutes($methods)
     writeToFile("/../server/RoutingMap.php", $mapFile);
 
     $everyRoute = array_merge($controllerMethods, $methods);
-    $accessFile = "<?php\n\n\$map = [";
+    $accessFile = "<?php\n";
     foreach ($everyRoute as $value) {
         $accessFile .= "\n\$map['error']['access'] = Config::\$ACCESS_LEVEL_GUEST);";
     }
-    writeToFile("/../server/Access.php", $mapFile);
+    writeToFile("/../server/Access.php", $accessFile);
 
 }
 
