@@ -1,18 +1,11 @@
 <?php
 
-//ENTER THE RELEVANT INFO BELOW
 $mysqlUserName = "test";
 $mysqlPassword = "";
 $mysqlHostName = "localhost";
 $DbName = "database_proyecto_daw_2020";
-$backup_name = "mybackup.sql";
-$tables = array("schedules", "specialDays", "nonWorkWeeklyDays", "users", "classrooms", "events");
 
-//or add 5th parameter(array) of specific tables:    array("mytable1","mytable2","mytable3") for multiple tables
-
-Export_Database($mysqlHostName, $mysqlUserName, $mysqlPassword, $DbName, $tables = false, $backup_name = false);
-
-function Export_Database($host, $user, $pass, $name, $tables = false, $backup_name = false)
+function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = true)
 {
     $mysqli = new mysqli($host, $user, $pass, $name);
     $mysqli->select_db($name);
@@ -22,9 +15,7 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
     while ($row = $queryTables->fetch_row()) {
         $target_tables[] = $row[0];
     }
-    if ($tables !== false) {
-        $target_tables = array_intersect($target_tables, $tables);
-    }
+
     $filesContent = [];
     foreach ($target_tables as $table) {
         $content = "";
@@ -53,42 +44,17 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
                 $primaryKeys = array_merge($primaryKeys, explode(",", str_replace("`", "", $match[0])));
             } else if (preg_match("/^CONSTRAINT/i", $value)) {
                 preg_match("/(?=FOREIGN KEY \(`).+(?<=`\) REFERENCES)/", $value, $match);
-                print_r($match);
                 $foreignKey = preg_replace("/(FOREIGN KEY \(`|`\) REFERENCES)/", "", $match[0]);
                 $foreignKeys = array_merge($primaryKeys, explode(",", $foreignKey));
-                //$foreignKeys[] = $match;
             }
         }
 
         $tableKeys = array_diff($tableKeys, $foreignKeys);
         $tableKeys = array_diff($tableKeys, $primaryKeys);
         $foreignKeys = array_diff($foreignKeys, $primaryKeys);
-        /* foreach ($foreignKeys as $foreignKeyValue) {
-        foreach ($tableKeys as $key => $tableKey) {
-        if ($tableKey == $foreignKeyValue) {
-        unset($tableKeys[$key]);
-        }
-        break;
-        }
-        }
-
-        foreach ($primaryKeys as $primaryKey) {
-        foreach ($tableKeys as $keyId => $tableKey) {
-        if ($tableKey == $primaryKey) {
-        unset($tableKeys[$keyId]);
-        }
-        break;
-        }
-        foreach ($foreignKeys as $keyId => $foreignKeyValue) {
-        if ($foreignKeyValue == $primaryKey) {
-        unset($foreignKeys[$keyId]);
-        }
-        break;
-        }
-        } */
 
         //Table value
-        if (true) {
+        if ($showTableInfo) {
             echo "<h1>$table</h1>";
             echo "<pre>";
             var_dump($splittedLine);
@@ -179,25 +145,23 @@ function Export_Database($host, $user, $pass, $name, $tables = false, $backup_na
         $content .= "\n} \n\n\n";
 
         $filesContent[camelCase($table, true)] = $content;
-        //break;
     }
-
-    $backup_name = $backup_name ? $backup_name : $name . ".sql";
 
     echo "<h1>Clases</h1>";
     echo "<pre>";
     var_dump($filesContent);
     echo "</pre>";
 
-    foreach ($filesContent as $key => $value) {
-        $fileWriter = fopen(__DIR__ . "/../server/classes/POPOs/" . "$key.php", "w+");
-        fwrite($fileWriter, str_replace("\n", PHP_EOL, $value));
-        fclose($fileWriter);
+    if (true) {
+        foreach ($filesContent as $key => $value) {
+            $fileWriter = fopen(__DIR__ . "/../server/classes/POPOs/$key.php", "w+");
+            fwrite($fileWriter, str_replace("\n", PHP_EOL, $value));
+            fclose($fileWriter);
+        }
     }
-    //echo __DIR__ . "/../server/classes/POPOs/";
 }
 
-function camelCase($string, $firstLetterCapital = false)
+function camelCase($string = "", $firstLetterCapital = false)
 {
     if (!$string) {
         return $string;
@@ -220,8 +184,60 @@ function camelCase($string, $firstLetterCapital = false)
 
     return $parsedString;
 }
-
 ?>
-<form action="">
-    <textarea name="sqlScript" id="sqlScript" cols="30" rows="10"></textarea>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="./styles/mdb.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/loader.css">
+    <link rel="stylesheet" href="./styles/floating-label.css">
+    <link rel="stylesheet" href="./styles/inputs.css">
+    <link rel="stylesheet" href="./styles/jquery.sweet-modal.min.css">
+</head>
+
+<body>
+    <main class="w-100 h-100 align-items-start justify-content-start flex-column">
+        <div class="container mx-auto">
+            <form action="" class="w-100 bg-white p-5 rounded" method="POST">
+                <h2>Crear <span class="font-weight-bold">P</span>lain <span class="font-weight-bold">O</span>ld <span
+                        class="font-weight-bold">P</span>HP <span class="font-weight-bold">O</span>bject a partir de una
+                    base de datos</h2>
+                <select class="custom-select " name="dbName" id="">
+                    <?php
+$mysqli = new mysqli($mysqlHostName, $mysqlUserName, $mysqlPassword, $DbName);
+$queryDatabases = $mysqli->query("SHOW DATABASES");
+
+while ($row = $queryDatabases->fetch_row()) {
+    $row = $row[0];
+    ?> <option value="<?php echo $row; ?>"><?php echo camelCase($row, true); ?></option> <?php
+}
+?>
+                </select>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="showTableInfo" name="showTableInfo">
+                    <label class="custom-control-label" for="showTableInfo">Mostrar información de cada tabla</label>
+                </div>
+                <input type="submit" class="btn btn-primary mx-auto" name="createPopo" value="Create POPOs">
+            </form>
+        </div>
+
+        <div class="container">
+            <?php
+if (isset($_REQUEST["createPopo"])) {
+    $DbName = $_REQUEST["dbName"];
+    createPOPOfromDatabase($mysqlHostName, $mysqlUserName, $mysqlPassword, $DbName, isset($_REQUEST["showTableInfo"]));
+}
+?>
+        </div>
+    </main>
+</body>
+
+</html>
