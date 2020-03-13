@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="../styles/floating-label.css">
     <link rel="stylesheet" href="../styles/inputs.css">
     <link rel="stylesheet" href="../styles/jquery.sweet-modal.min.css">
+    <link rel="stylesheet" href="../styles/gantt.css">
 </head>
 
 <body>
@@ -109,12 +110,7 @@
         "signin",
     ];
     $(window).on("load", function () {
-        $("#content").load(templates[3] + ".html", function () {
-            var startingIndex = 0;
-            $(".subtask td").on("dragstart", function () {
-
-            });
-        });
+        $("#content").load(templates[3] + ".html", function () {});
     });
 </script>
 

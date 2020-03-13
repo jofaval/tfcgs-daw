@@ -1,0 +1,157 @@
+$(".addDays").on("click", function (event) {
+    var event = event || window.event;
+    event.preventDefault();
+    var current = $(this).parents("td");
+    current.prop("colspan", parseInt(current.prop("colspan")) + 1);
+    current.next().remove();
+}, false);
+
+$(".removeDays").on("click", function (event) {
+    var event = event || window.event;
+    event.preventDefault();
+    var current = $(this).parents("td");
+    var colspan = parseInt(current.prop("colspan"));
+    current.prop("colspan", colspan - 1);
+    current.after($("<td>&nbsp;</td>"));
+    if (colspan <= 1) {
+        current.remove();
+    }
+}, false);
+
+var selectedRow = null;
+var firstPoint = null;
+var secondPoint = null;
+$("td").on("click", function () {
+    var currentTd = $(this);
+    var currentRow = currentTd.parents("tr");
+    if (currentRow.find(".taskBar").length > 0) {
+        alert("This already has a taskBar");
+        return;
+    }
+    if (selectedRow != null) {
+        if (currentRow.prop("id") != selectedRow.prop("id")) {
+            console.log(currentRow, selectedRow);
+            firstPoint = currentTd;
+            selectedRow = currentRow;
+            return;
+        }
+    }
+    selectedRow = currentRow;
+    if (firstPoint != null) {
+        secondPoint = currentTd;
+        var indexes = [firstPoint.index(), secondPoint.index()];
+        var toBeAffected = selectedRow.children().slice(Math.min.apply(null,
+            indexes), Math.max.apply(null, indexes) + 1);
+        var newTd = $("<td class='taskBar'></td>");
+        $(toBeAffected[0]).before(newTd);
+        toBeAffected.remove();
+        newTd.prop("colspan", toBeAffected.length);
+        newTd.addClass("bg-dark");
+        firstPoint = null;
+        secondPoint = null;
+
+        //toBeAffected.addClass("bg-dark");
+
+    } else {
+        firstPoint = currentTd;
+    }
+});
+$("main").scroll(function () {
+    var height = $(this).scrollTop();
+    //console.log("is working", height + "rem !important");
+
+    $(".taskTitle").css("margin-top", `calc(-1rem - ${height}px)`);
+    $(".subTaskTitle").css("margin-top", `calc(-1rem - ${height}px)`);
+});
+
+const gra = function (min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+const gri = function (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const init = function () {
+    let items = document.querySelectorAll('tr');
+    for (let i = 0; i < items.length; i++) {
+        items[i].style.minHeight = gra(20, 30) + 'vh';
+    }
+
+    //cssScrollSnapPolyfill();
+}
+init();
+
+$(".taskTitle, .subTaskTitle").hover(function () {
+    $(this).stop(true, true).animate({
+        paddingLeft: "6rem"
+    }, 200);
+    //console.log($(this).css("padding-left"));
+
+    $(this).css("cursor", "pointer");
+}, function () {
+    $(this).stop(true, true).animate({
+        paddingLeft: "2rem"
+    }, 350);
+});
+
+var titlesLengths = [];
+$(".taskTitle, .subTaskTitle").each(function () {
+    //console.log($(this));
+
+    var title = $(this).text().trim().replace(/\s+/, " ");
+    var titleLen = title.length;
+    //console.log(title.trim(), titleLen);
+
+    titlesLengths.push($(this).width());
+});
+
+//console.log(titlesLengths);
+//console.log(Math.max.apply(null, titlesLengths));
+
+$("#titles").css("min-width", "calc(" + Math.max.apply(null, titlesLengths) +
+    "px + 3rem)");
+
+var currentDate = new Date();
+$(".startingDate").text(printDateWithFormat(currentDate, "d/m/Y"));
+
+var newDate = new Date();
+newDate.setDate(currentDate.getDate() + 3);
+$(".endingDate").text(printDateWithFormat(newDate, "d/m/Y"));
+
+var days = Math.round((newDate - currentDate) / (1000 * 60 * 60 * 24));
+$(".daysSpan").text(`${days}`); /* day(s)*/
+
+$("th").on("click", function () {
+    var index = $(this).index() + 5;
+    $(".selectedColumn").removeClass("selectedColumn");
+
+    $(".subtask").each(function () {
+        console.log("test");
+        var current = $(this);
+        var children = current.children();
+        var newIndex = index - 1;
+
+        var colspan = current.find("*[colspan]");
+        console.log("colspan", colspan);
+
+        if (colspan.length) {
+            var colspanElement = colspan.first();
+            if (colspanElement.index() < newIndex) {
+                var indexSubstraction = colspanElement.prop(
+                    "colspan") - 1;
+                console.log(indexSubstraction);
+
+                newIndex -= indexSubstraction;
+            }
+        }
+
+        children.eq(newIndex).addClass("selectedColumn");
+    });
+});
+
+
+var startingIndex = 0;
+$(".subtask td").on("dragstart", function () {
+
+});
