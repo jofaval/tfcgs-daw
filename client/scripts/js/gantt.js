@@ -18,7 +18,7 @@ $(".removeDays").on("click", function (event) {
     }
 }, false);
 
-var selectedRow = null;
+/* var selectedRow = null;
 var firstPoint = null;
 var secondPoint = null;
 $("td").on("click", function () {
@@ -62,25 +62,7 @@ $("main").scroll(function () {
 
     $(".taskTitle").css("margin-top", `calc(-1rem - ${height}px)`);
     $(".subTaskTitle").css("margin-top", `calc(-1rem - ${height}px)`);
-});
-
-const gra = function (min, max) {
-    return Math.random() * (max - min) + min;
-}
-
-const gri = function (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-const init = function () {
-    let items = document.querySelectorAll('tr');
-    for (let i = 0; i < items.length; i++) {
-        items[i].style.minHeight = gra(20, 30) + 'vh';
-    }
-
-    //cssScrollSnapPolyfill();
-}
-init();
+}); */
 
 $(".taskTitle, .subTaskTitle").hover(function () {
     $(this).stop(true, true).animate({
@@ -97,17 +79,8 @@ $(".taskTitle, .subTaskTitle").hover(function () {
 
 var titlesLengths = [];
 $(".taskTitle, .subTaskTitle").each(function () {
-    //console.log($(this));
-
-    var title = $(this).text().trim().replace(/\s+/, " ");
-    var titleLen = title.length;
-    //console.log(title.trim(), titleLen);
-
     titlesLengths.push($(this).width());
 });
-
-//console.log(titlesLengths);
-//console.log(Math.max.apply(null, titlesLengths));
 
 $("#titles").css("min-width", "calc(" + Math.max.apply(null, titlesLengths) +
     "px + 3rem)");
@@ -152,6 +125,38 @@ $("th").on("click", function () {
 
 
 var startingIndex = 0;
+var firstOne = null;
+var secondOne = null;
+var rowOne = null;
+$(".subtask td").prop("draggable", true);
 $(".subtask td").on("dragstart", function () {
-
+    //console.log("start");
+    firstOne = $(this);
+    rowOne = firstOne.parent();
+    if (rowOne.find(".taskBar").length > 0) {
+        alert("This already has a taskBar");
+        return;
+    }
+}).on("dragend", function () {
+    //console.log("end");
+    firstOne = null;
+    secondOne = null;
+}).on("dragover", function (event) {
+    var event = event || window.event;
+    event.preventDefault();
+    //console.log("encima");
+}).on("drop", function () {
+    //console.log("drop");
+    if (rowOne.prop("id") != $(this).parent().prop("id")) {
+        return;
+    }
+    secondOne = $(this);
+    var indexes = [firstOne.index(), secondOne.index()];
+    var toBeAffected = rowOne.children().slice(Math.min.apply(null,
+        indexes), Math.max.apply(null, indexes) + 1);
+    var newTd = $("<td class='taskBar'></td>");
+    $(toBeAffected[0]).before(newTd);
+    toBeAffected.remove();
+    newTd.prop("colspan", toBeAffected.length);
+    newTd.addClass("bg-dark");
 });
