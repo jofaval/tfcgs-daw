@@ -55,14 +55,14 @@ $("td").on("click", function () {
     } else {
         firstPoint = currentTd;
     }
-});
+}); */
 $("main").scroll(function () {
     var height = $(this).scrollTop();
     //console.log("is working", height + "rem !important");
 
     $(".taskTitle").css("margin-top", `calc(-1rem - ${height}px)`);
     $(".subTaskTitle").css("margin-top", `calc(-1rem - ${height}px)`);
-}); */
+});
 
 $(".taskTitle, .subTaskTitle").hover(function () {
     $(this).stop(true, true).animate({

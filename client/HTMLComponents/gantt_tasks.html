@@ -113,8 +113,21 @@
                 }];
                 var taskColorCodeLen = taskColorCode.length;
                 var tBody = $("tbody");
-                for (let taskIndex = 0; taskIndex < taskColorCodeLen; taskIndex++) {
+                for (var taskIndex = 0; taskIndex < taskColorCodeLen; taskIndex++) {
                     const colorCode = taskColorCode[taskIndex];
+                    createTask(tBody, colorCode, taskIndex);
+                }
+                var taskCreation = $(`<tr class="taskCreationRow">
+                        <td class="text-dark" colspan="999999">
+                                <button class="btn btn-sm text-white">Create Task +</button>
+                            </td>
+                            </tr>`);
+                tBody.append(taskCreation);
+                taskCreation.find(".btn").on("click", function () {
+                    createTask(tBody, taskColorCode[0], taskIndex++).after(taskCreation);
+                });
+
+                function createTask(tBody, colorCode, taskIndex) {
                     var mainTask = $(`<tr class="bg-${colorCode.background}">
                                         <td class="text-dark" colspan="999999"><span
                                                 class="position-absolute py-3 shadow bg-${colorCode.background} taskTitle gantttitle"
@@ -149,6 +162,13 @@
                         }
                         tBody.append(subTask);
                     }
+                    var subTaskCreation = $(`<tr class="subTaskCreationRow">
+                        <td class="text-dark" colspan="999999">
+                                <button class="btn btn-${colorCode.background} btn-sm text-dark">Create Sub Task +</button>
+                            </td>
+                            </tr>`);
+                    tBody.append(subTaskCreation);
+                    return subTaskCreation;
                 }
             </script>
         </tbody>
