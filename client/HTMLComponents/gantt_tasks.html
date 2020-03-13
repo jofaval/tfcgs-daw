@@ -135,10 +135,54 @@
                                                 Task ${(taskIndex + 1)}</span>&nbsp;</td>
                                     </tr>`);
                     tBody.append(mainTask);
+                    mainTask.find(".taskTitle").unbind("hover");
+                    mainTask.find(".taskTitle").on("hover", function () {
+                        $(this).stop(true, true).animate({
+                            paddingLeft: "6rem"
+                        }, 200);
+                        //console.log($(this).css("padding-left"));
+
+                        $(this).css("cursor", "pointer");
+                    }, function () {
+                        $(this).stop(true, true).animate({
+                            paddingLeft: "2rem"
+                        }, 350);
+                    });
                     var randomTasksNumber = Math.floor(Math.random() * 6);
-                    for (let subTaskIndex = 0; subTaskIndex < 5; subTaskIndex++) {
-                        var randomProgress = Math.floor(Math.random() * 70) + 30;
-                        var subTask = $(`<tr class="subtask" id="task${(taskIndex + 1)}_subtask${(subTaskIndex + 1)}">
+                    for (var subTaskIndex = 0; subTaskIndex < 5; subTaskIndex++) {
+                        tBody.append(createSubTask(tBody, colorCode, taskIndex, subTaskIndex));
+                    }
+                    var subTaskCreation = $(`<tr class="subTaskCreationRow">
+                        <td class="text-dark" colspan="999999">
+                                <button class="btn btn-${colorCode.background} btn-sm text-dark">Create Sub Task +</button>
+                            </td>
+                            </tr>`);
+                    tBody.append(subTaskCreation);
+                    subTaskCreation.find(".btn").on("click", function () {
+                        var subTask = createSubTask(tBody, colorCode, taskIndex,
+                            subTaskIndex++);
+                        subTaskCreation.before(subTask);
+
+                        subTask.find(".subTaskTitle").unbind("hover");
+                        subTask.find(".subTaskTitle").on("hover", function () {
+                            $(this).stop(true, true).animate({
+                                paddingLeft: "6rem"
+                            }, 200);
+                            //console.log($(this).css("padding-left"));
+
+                            $(this).css("cursor", "pointer");
+                        }, function () {
+                            $(this).stop(true, true).animate({
+                                paddingLeft: "2rem"
+                            }, 350);
+                        });
+                    });
+                    return subTaskCreation;
+                }
+
+                function createSubTask(tBody, colorCode, taskIndex, subTaskIndex) {
+                    var randomProgress = Math.floor(Math.random() * 70) + 30;
+                    var subTask = $(`<tr class="subtask" id="task${(taskIndex + 1)}_subtask${(subTaskIndex + 1)}">
                                         <td><span class="position-absolute py-3 shadow subTaskTitle gantttitle"
                                                 style="left: 0; padding-left: 2rem; padding-right: 1rem; margin-top: -1rem; background: #343a40;">Sub
                                                 Task ${(subTaskIndex + 1)}</span></td>
@@ -157,18 +201,10 @@
                                                 class="shadow text-dark addDays float-right">+</span>
                                         </td>
                                     </tr>`);
-                        for (let subTaskColumnIndex = 0; subTaskColumnIndex < 53; subTaskColumnIndex++) {
-                            subTask.append(`<td>&nbsp;</td>`);
-                        }
-                        tBody.append(subTask);
+                    for (let subTaskColumnIndex = 0; subTaskColumnIndex < 53; subTaskColumnIndex++) {
+                        subTask.append(`<td>&nbsp;</td>`);
                     }
-                    var subTaskCreation = $(`<tr class="subTaskCreationRow">
-                        <td class="text-dark" colspan="999999">
-                                <button class="btn btn-${colorCode.background} btn-sm text-dark">Create Sub Task +</button>
-                            </td>
-                            </tr>`);
-                    tBody.append(subTaskCreation);
-                    return subTaskCreation;
+                    return subTask;
                 }
             </script>
         </tbody>
