@@ -34,9 +34,9 @@
         </button>
 
         <img class="navbar-brand rounded-circle mr-2" width="45" src="<?php echo $sessions->getSession("userImg"); ?>">
-        <small class="text-muted"><span class="font-weight-bold"><?php echo "@$username"; ?></span>
+        <small class="text-muted"><span class="font-weight-bold"><?php echo $sessions->getSession("username"); ?></span>
             <br>
-            Rol
+            <?php echo $sessions->getSession("roleName"); ?>
         </small>
         <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
             style="transition: all 0.2s ease-in-out 0s;">
@@ -49,12 +49,10 @@
                     <a class="nav-link selected" href="index.php?ctl=classrooms"
                         style="transition: all 0.2s ease-in-out 0s;">Classrooms</a>
                 </li>
-                <?php if ($sessions->getSession("access") >= 2): ?>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
                     <a class="nav-link selected" href="index.php?ctl=admin"
                         style="transition: all 0.2s ease-in-out 0s;">Admin</a>
                 </li>
-                <?php endif;?>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
                     <a class="nav-link" href="index.php?ctl=signout"
                         style="transition: all 0.2s ease-in-out 0s;">Signout</a>
@@ -64,8 +62,8 @@
     </nav>
     <?php endif;?>
     <?php if ($showBreadcrumb): ?>
-    <section class="w-100" aria-label="breadcrumb">
-        <ol class="breadcrumb">
+    <section class="w-100 breadcrumbContainer" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 rounded-0">
             <?php foreach ($breadcrumb as $elem): ?>
             <li class="breadcrumb-item"><a class="<?php if ($elem["active"]) {
     echo "text-muted";
@@ -75,14 +73,14 @@
         </ol>
     </section>
     <?php endif;?>
-    <main role="main" class="w-100 d-flex flex-column justify-content-center <?php echo $mainClasses; ?>">
+    <main role="main" class="w-100 d-flex flex-column justify-content-start <?php echo $mainClasses; ?>">
         <!--div class="flex-column row my-auto bg-dark"-->
         <?php echo $contenido ?>
         <!--/div-->
     </main>
 
     <?php if ($showFooter): ?>
-    <footer class="footer py-3 bg-light d-none d-sm-block">
+    <footer class="footer py-3 bg-light d-none d-md-block fixed-bottom">
         <div class="container text-align-right">
             <span class="text-dark">- Developed by <a class="font-weight-bold text-dark"
                     href="jofaval@iesabastos.org">Pepe
