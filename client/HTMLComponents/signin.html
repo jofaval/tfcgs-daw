@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        main {
+            flex-direction: row !important;
+        }
+
+        #content {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        nav.navbar,
+        .breadcrumbContainer,
+        .footer {
+            display: none !important;
+        }
+
+        main {
+            height: 100% !important;
+        }
+
+        .md-form {
+            margin: .75rem !important;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+    <div class="h-50 m-auto w-50 shadow d-flex">
+        <form action="" id="registerForm"
+            class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
+            <h1>Welcome back!</h1>
+            <div class="md-form w-100">
+                <input type="text" class="form-control" id="username" name="username">
+                <label for="username">Username</label>
+            </div>
+            <div class="md-form input-group w-100">
+                <input type="password" class="form-control" id="password" name="password">
+                <label for="password">Password</label>
+                <div class="input-group-append">
+                    <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="md-form w-75">
+                <input type="submit" class="btn btn-primary w-100" value="Sign in" id="signin" name="signin">
+            </div>
+        </form>
+        <form action="" id="loginForm"
+            class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
+            <h1>Welcome!</h1>
+            <div class="form-row w-100">
+                <div class="col">
+                    <!-- First name -->
+                    <div class="md-form">
+                        <input type="text" id="materialRegisterFormFirstName" class="form-control">
+                        <label for="materialRegisterFormFirstName">First name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- Last name -->
+                    <div class="md-form">
+                        <input type="email" id="materialRegisterFormLastName" class="form-control">
+                        <label for="materialRegisterFormLastName">Last name</label>
+                    </div>
+                </div>
+            </div>
+            <div class="md-form w-100">
+                <input type="email" class="form-control" id="email" name="email">
+                <label for="email">E-Mail</label>
+            </div>
+            <div class="md-form w-100">
+                <input type="text" class="form-control" id="username" name="username">
+                <label for="username">Username</label>
+            </div>
+            <div class="md-form input-group w-100">
+                <input type="password" class="form-control" id="password" name="password">
+                <label for="password">Password</label>
+                <div class="input-group-append">
+                    <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="md-form w-75">
+                <input type="submit" class="btn btn-primary w-100" value="Sign up" id="signup" name="signup">
+            </div>
+        </form>
+        <div id="mainPanel"
+            class="aqua-gradient rounded text-white shadow position-relative d-flex flex-column justify-content-center align-items-center"
+            style="z-index: 2000 !important; width: 40% !important; height: 120% !important; margin-top: -5% !important">
+            <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="loginPanel">
+                <h2 class="font-weight-bold">Registration form</h2>
+                <p>I'm not signed up, take me to:</p>
+                <br>
+                <button class="btn rounded">sign up</button>
+            </div>
+            <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="registerPanel">
+                <h2 class="font-weight-bold">Login form</h2>
+                <br>
+                <p>I'm already signed up, take me to:</p>
+                <button class="btn rounded">sign in</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(".togglePassword").on("click", function (event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        var togglePassword = $(this);
+
+        var passwordInput = togglePassword.parent().prevAll("input");
+        var isPassword = passwordInput.is(":password");
+        passwordInput.prop("type", isPassword ? "text" : "password");
+
+        togglePassword.find(".fa").removeClass(isPassword ? "fa-eye" : "fa-eye-slash");
+        togglePassword.find(".fa").addClass(isPassword ? "fa-eye-slash" : "fa-eye");
+    });
+
+    $("#loginPanel .btn").on("click", function () {
+        $("#loginPanel").removeClass("d-flex");
+        $("#loginPanel").hide();
+
+        $("#registerPanel").addClass("d-flex");
+        $("#registerPanel").show();
+
+        $("#mainPanel").stop().animate({
+            marginLeft: "-95%",
+        }, 200);
+    });
+
+    $("#registerPanel .btn").on("click", function () {
+        $("#loginPanel").addClass("d-flex");
+        $("#loginPanel").show();
+
+        $("#registerPanel").removeClass("d-flex");
+        $("#registerPanel").hide();
+
+        $("#mainPanel").stop().animate({
+            marginLeft: "-45%",
+        }, 200);
+    });
+
+    $("#loginPanel .btn").trigger("click");
+</script>
+
+</html>
