@@ -31,11 +31,17 @@ function sendNotification(message = "An error occurred", title = "Origin - Notif
     if (window.Notification) {
         Notification.requestPermission().then((permission) => {
             if (Notification.permission === "granted") {
-                new Notification(title, {
+                var notification = new Notification(title, {
                     body: message
-                }).onclick = function () {
+                });
+                console.log(notification);
+                notification.onclick = function () {
                     console.log("hola");
                 };
+
+                setTimeout(function () {
+                    notification.close()
+                }, 2500);
             }
         });
     }
