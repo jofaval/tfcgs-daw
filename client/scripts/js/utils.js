@@ -40,6 +40,7 @@ function sendNotification(message = "An error occurred", title = "Origin - Notif
                 };
 
                 setTimeout(function () {
+                    //Animation on close here
                     notification.close();
                 }, 2500);
             }
