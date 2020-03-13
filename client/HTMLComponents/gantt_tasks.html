@@ -7,6 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        main {
+            -ms-scroll-snap-type: mandatory;
+            scroll-snap-type: mandatory;
+            -ms-scroll-snap-points-y: repeat(5rem);
+            scroll-snap-points-y: repeat(5rem);
+            -ms-scroll-snap-type: y mandatory;
+            scroll-snap-type: y mandatory;
+            -ms-scroll-snap-points-x: repeat(5rem);
+            scroll-snap-points-x: repeat(5rem);
+            -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
+        }
+
         #content {
             /*overflow: auto;*/
         }
