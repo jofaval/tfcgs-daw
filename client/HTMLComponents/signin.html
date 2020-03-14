@@ -57,7 +57,7 @@
 
 <body>
     <div class="h-50 m-auto w-50 shadow d-flex" id="signFormsContainer">
-        <form action="" id="registerForm"
+        <form action="" method="POST" id="registerForm"
             class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
             <h1>Welcome back!</h1>
             <div class="md-form w-100">
@@ -77,7 +77,7 @@
                 <input type="submit" class="btn btn-primary w-100" value="Sign in" id="signin" name="signin">
             </div>
         </form>
-        <form action="" id="loginForm"
+        <form action="" method="POST" id="loginForm"
             class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
             <h1>Welcome!</h1>
             <div class="form-row w-100">
@@ -152,6 +152,7 @@
     var fadeAnimationDuration = 350;
     var panelAnimationDuration = 350;
     var perspectiveAngle = 15;
+    var intervalTime = 30;
 
     $("#loginPanel .btn").on("click", function () {
         $("#loginPanel").removeClass("d-flex");
@@ -176,6 +177,10 @@
                 marginLeft: "-95%",
             }, panelAnimationDuration * 1);
         }, panelAnimationDuration - 30);
+
+        writeInElement($("#registerPanel h2"), "Registration form", intervalTime);
+        writeInElement($("#registerPanel p"), "I'm already signed up, take me to:", intervalTime / 2);
+        writeInElement($("#registerPanel button"), "Login form", intervalTime);
 
         $("#mainPanel").css("transform", "scale(0.95) rotateY(" + perspectiveAngle + "deg)");
         $("#mainPanel").addClass("moveImage");
@@ -204,6 +209,10 @@
                 marginLeft: "-45%",
             }, panelAnimationDuration * 1);
         }, panelAnimationDuration - 30);
+
+        writeInElement($("#loginPanel h2"), "Login form", intervalTime);
+        writeInElement($("#loginPanel p"), "I'm not signed up, take me to:", intervalTime / 2);
+        writeInElement($("#loginPanel button"), "Registration form", intervalTime);
 
         $("#mainPanel").css("transform", "scale(0.95) rotateY(-" + perspectiveAngle + "deg)");
         $("#mainPanel").removeClass("moveImage");
