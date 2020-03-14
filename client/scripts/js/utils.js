@@ -54,12 +54,20 @@ $("#currentYear").html(printDateWithFormat(new Date(), "Y"));
 function printDateWithFormat(givenDate, format = "d/m/Y") {
     format = format.replace("y", givenDate.getYear());
     format = format.replace("Y", givenDate.getFullYear());
-
     format = format = format.toLowerCase();
-
     format = format.replace("d", minNumberOfDigits(givenDate.getDate()));
-
     format = format.replace("m", minNumberOfDigits(givenDate.getMonth() + 1));
-
     return format;
+}
+
+function writeInElement(element, phrase, intervalTime = 25) {
+    phrase = phrase.replace(/\ +/, " ");
+    var phraseLen = phrase.length;
+    element.text("");
+    for (let phraseIndex = 0; phraseIndex < phraseLen; phraseIndex++) {
+        const currentChar = phrase[phraseIndex];
+        setTimeout(() => {
+            element.text(element.first().text() + currentChar);
+        }, intervalTime * phraseIndex);
+    }
 }
