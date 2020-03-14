@@ -72,9 +72,9 @@
     </section>
     <?php endif;?>
     <main role="main" class="w-100 d-flex flex-column justify-content-start <?php echo $mainClasses; ?>">
-        <!--div class="flex-column row my-auto bg-dark"-->
-        <?php echo $contenido ?>
-        <!--/div-->
+        <div id="content" class="w-100 w-100 d-flex">
+            <?php echo $contenido ?>
+        </div>
     </main>
 
     <?php if ($showFooter): ?>
