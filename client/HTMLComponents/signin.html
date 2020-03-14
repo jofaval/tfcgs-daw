@@ -168,8 +168,14 @@
         }, fadeAnimationDuration);
 
         $("#mainPanel").stop().animate({
-            marginLeft: "-95%",
+            marginLeft: "-90%",
         }, panelAnimationDuration);
+
+        setTimeout(() => {
+            $("#mainPanel").stop().animate({
+                marginLeft: "-95%",
+            }, panelAnimationDuration * 1);
+        }, panelAnimationDuration - 30);
 
         $("#mainPanel").css("transform", "scale(0.95) rotateY(" + perspectiveAngle + "deg)");
         $("#mainPanel").addClass("moveImage");
@@ -190,14 +196,20 @@
         }, fadeAnimationDuration);
 
         $("#mainPanel").stop().animate({
-            marginLeft: "-45%",
+            marginLeft: "-50%",
         }, panelAnimationDuration);
+
+        setTimeout(() => {
+            $("#mainPanel").stop().animate({
+                marginLeft: "-45%",
+            }, panelAnimationDuration * 1);
+        }, panelAnimationDuration - 30);
 
         $("#mainPanel").css("transform", "scale(0.95) rotateY(-" + perspectiveAngle + "deg)");
         $("#mainPanel").removeClass("moveImage");
     });
 
-    $("#loginPanel .btn").trigger("click");
+    $("#registerPanel .btn").trigger("click");
 </script>
 
 </html>
