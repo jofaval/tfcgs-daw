@@ -5,8 +5,36 @@
 <?php $mainClasses = "h-100";?>
 <?php $showFooter = false;?>
 <?php $showHeader = false;?>
-<?php $showBreadcrumb = false;?>
-<?php $breadcrumb = [];?>
+<?php $showBreadcrumb = true;?>
+<?php
+$breadcrumb = [
+    [
+        "name" => "Home",
+        "link" => "index.php",
+        "active" => false,
+    ],
+    [
+        "name" => "Projects",
+        "link" => "./projects/",
+        "active" => false,
+    ],
+    [
+        "name" => "ProjectName",
+        "link" => "./project/id/name/",
+        "active" => false,
+    ],
+    [
+        "name" => "ProjectName",
+        "link" => "./project/id/name/tasks/",
+        "active" => false,
+    ],
+    [
+        "name" => "TaskName",
+        "link" => "./project/id/name/tasks/taskname",
+        "active" => true,
+    ],
+];
+?>
 
 <?php ob_start()?>
 

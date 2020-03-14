@@ -14,7 +14,17 @@ $breadcrumb = [
     ],
     [
         "name" => "Projects",
-        "link" => "./gantt/",
+        "link" => "./projects/",
+        "active" => false,
+    ],
+    [
+        "name" => "ProjectName",
+        "link" => "./project/id/name/",
+        "active" => false,
+    ],
+    [
+        "name" => "Gantt",
+        "link" => "./project/id/name/gantt/",
         "active" => true,
     ],
 ];
