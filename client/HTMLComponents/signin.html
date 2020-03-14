@@ -31,13 +31,32 @@
         .md-form {
             margin: .75rem !important;
         }
+
+        #mainPanel {
+            z-index: 2149999999 !important;
+            width: 40% !important;
+            height: 120% !important;
+            margin-top: -5% !important;
+            transform-style: preserve-3d;
+            transition: transform 0.25s ease-in-out;
+            /*background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') no-repeat !important;*/
+            background-position-x: 25% !important;
+        }
+
+        #mainPanel.moveImage {
+            background-position-x: 55% !important;
+        }
+
+        #signFormsContainer {
+            perspective: 1000px;
+        }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 
 <body>
-    <div class="h-50 m-auto w-50 shadow d-flex">
+    <div class="h-50 m-auto w-50 shadow d-flex" id="signFormsContainer">
         <form action="" id="registerForm"
             class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
             <h1>Welcome back!</h1>
@@ -72,7 +91,7 @@
                 <div class="col">
                     <!-- Last name -->
                     <div class="md-form">
-                        <input type="email" id="materialRegisterFormLastName" class="form-control">
+                        <input type="text" id="materialRegisterFormLastName" class="form-control">
                         <label for="materialRegisterFormLastName">Last name</label>
                     </div>
                 </div>
@@ -99,8 +118,7 @@
             </div>
         </form>
         <div id="mainPanel"
-            class="aqua-gradient rounded text-white shadow position-relative d-flex flex-column justify-content-center align-items-center"
-            style="z-index: 2000 !important; width: 40% !important; height: 120% !important; margin-top: -5% !important">
+            class="aqua-gradient rounded text-white shadow position-relative d-flex flex-column justify-content-center align-items-center">
             <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="loginPanel">
                 <h2 class="font-weight-bold">Registration form</h2>
                 <p>I'm not signed up, take me to:</p>
@@ -131,6 +149,10 @@
         togglePassword.find(".fa").addClass(isPassword ? "fa-eye-slash" : "fa-eye");
     });
 
+    var fadeAnimationDuration = 350;
+    var panelAnimationDuration = 350;
+    var perspectiveAngle = 15;
+
     $("#loginPanel .btn").on("click", function () {
         $("#loginPanel").removeClass("d-flex");
         $("#loginPanel").hide();
@@ -138,9 +160,18 @@
         $("#registerPanel").addClass("d-flex");
         $("#registerPanel").show();
 
+        $("#registerForm").find("*").stop().animate({
+            opacity: "0",
+        }, fadeAnimationDuration);
+        $("#loginForm").find("*").stop().animate({
+            opacity: "1",
+        }, fadeAnimationDuration);
+
         $("#mainPanel").stop().animate({
             marginLeft: "-95%",
-        }, 200);
+        }, panelAnimationDuration);
+        $("#mainPanel").css("transform", "scale(0.95) rotateY(" + perspectiveAngle + "deg)");
+        $("#mainPanel").addClass("moveImage");
     });
 
     $("#registerPanel .btn").on("click", function () {
@@ -150,9 +181,19 @@
         $("#registerPanel").removeClass("d-flex");
         $("#registerPanel").hide();
 
+        $("#loginForm").find("*").stop().animate({
+            opacity: "0",
+        }, fadeAnimationDuration);
+        $("#registerForm").find("*").stop().animate({
+            opacity: "1",
+        }, fadeAnimationDuration);
+
         $("#mainPanel").stop().animate({
             marginLeft: "-45%",
-        }, 200);
+        }, panelAnimationDuration);
+
+        $("#mainPanel").css("transform", "scale(0.95) rotateY(-" + perspectiveAngle + "deg)");
+        $("#mainPanel").removeClass("moveImage");
     });
 
     $("#loginPanel .btn").trigger("click");
