@@ -1,0 +1,7 @@
+.note-resizebar {
+    cursor: s-resize;
+}
+
+#content {
+    width: 100% !important;
+}

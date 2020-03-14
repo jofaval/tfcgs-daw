@@ -1,0 +1,54 @@
+.md-form {
+    transition: all 0.2s ease-in-out;
+}
+
+main {
+    overflow: auto;
+    background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') no-repeat !important;
+    background-attachment: fixed;
+    align-items: start;
+    -ms-scroll-snap-type: mandatory;
+    scroll-snap-type: mandatory;
+    -ms-scroll-snap-points-x: repeat(18rem);
+    scroll-snap-points-x: repeat(18rem);
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
+}
+
+@media screen and (max-width: 576px) {
+    main {
+        -ms-scroll-snap-points-x: repeat(100vw);
+        scroll-snap-points-x: repeat(100vw);
+    }
+}
+
+.taskList {
+    max-width: 18rem;
+}
+
+.taskItemContainer {
+    max-height: 65vh;
+    overflow: auto;
+}
+
+.taskItem:hover {
+    cursor: pointer;
+}
+
+.taskItem:move {
+    cursor: cell;
+}
+
+.taskContainer {
+    min-width: 18rem;
+    scroll-snap-align-x: center;
+}
+
+.dragging {
+    cursor: -webkit-grabbing;
+    /*transform: rotate(-30deg);*/
+}
+
+#content {
+    padding-top: 1.5rem !important;
+}

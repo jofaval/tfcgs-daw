@@ -6,15 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .note-resizebar {
-            cursor: s-resize;
-        }
-
-        #content {
-            width: 100% !important;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/agenda.css">
     <link href="../styles/summernote-bs4.min.css" rel="stylesheet">
 </head>
 
@@ -33,57 +25,6 @@
         <div id="summernote"></div>
     </div>
 </body>
-<script>
-    $.ajax({
-        url: 'https://api.github.com/emojis',
-        async: false
-    }).then(function (data) {
-        window.emojis = Object.keys(data);
-        window.emojiUrls = data;
-    });;
-
-    $('#summernote').summernote({
-        lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
-        disableDragAndDrop: true,
-        codeviewFilter: false,
-        codeviewIframeFilter: true,
-        tabDisable: true,
-        placeholder: 'Write here...',
-        codemirror: { // codemirror options
-            theme: 'monokai'
-        },
-        hint: [{
-            mentions: ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com'],
-            match: /@(\w*)$/,
-            search: function (keyword, callback) {
-                callback($.grep(this.mentions, function (item) {
-                    return item.indexOf(keyword) == 0;
-                }));
-            },
-            content: function (item) {
-                return '@' + item;
-            }
-        }, {
-            match: /:([\-+\w]+)$/,
-            search: function (keyword, callback) {
-                callback($.grep(emojis, function (item) {
-                    return item.indexOf(keyword) === 0;
-                }));
-            },
-            template: function (item) {
-                var content = emojiUrls[item];
-                return '<img src="' + content + '" width="20" /> :' + item + ':';
-            },
-            content: function (item) {
-                var url = emojiUrls[item];
-                if (url) {
-                    return $('<img />').attr('src', url).css('width', 20)[0];
-                }
-                return '';
-            }
-        }],
-    });
-    $('#datepicker').datepicker();
-</script>
+<script src="../scripts/js/agenda.js"></script>
 
 </html>

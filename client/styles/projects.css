@@ -1,0 +1,22 @@
+main {
+    flex-direction: row !important;
+}
+
+#content {
+    height: 100% !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+#mainProjectPanel {
+    display: flex !important;
+    flex-direction: row !important;
+    height: 100% !important;
+    width: 100% !important;
+    padding: 0 3rem !important;
+}
+
+.projectContainerTitle {
+    cursor: pointer;
+}

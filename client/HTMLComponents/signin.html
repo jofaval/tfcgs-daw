@@ -6,51 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        main {
-            flex-direction: row !important;
-        }
-
-        #content {
-            height: 100% !important;
-            width: 100% !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
-
-        nav.navbar,
-        .breadcrumbContainer,
-        .footer {
-            display: none !important;
-        }
-
-        main {
-            height: 100% !important;
-        }
-
-        .md-form {
-            margin: .75rem !important;
-        }
-
-        #mainPanel {
-            z-index: 2149999999 !important;
-            width: 40% !important;
-            height: 120% !important;
-            margin-top: -5% !important;
-            transform-style: preserve-3d;
-            transition: transform 0.25s ease-in-out;
-            /*background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') no-repeat !important;*/
-            background-position-x: 25% !important;
-        }
-
-        #mainPanel.moveImage {
-            background-position-x: 55% !important;
-        }
-
-        #signFormsContainer {
-            perspective: 1000px;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/signin.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -134,91 +90,6 @@
         </div>
     </div>
 </body>
-<script>
-    $(".togglePassword").on("click", function (event) {
-        var event = event || window.event;
-        event.preventDefault();
-
-        var togglePassword = $(this);
-
-        var passwordInput = togglePassword.parent().prevAll("input");
-        var isPassword = passwordInput.is(":password");
-        passwordInput.prop("type", isPassword ? "text" : "password");
-
-        togglePassword.find(".fa").removeClass(isPassword ? "fa-eye" : "fa-eye-slash");
-        togglePassword.find(".fa").addClass(isPassword ? "fa-eye-slash" : "fa-eye");
-    });
-
-    var fadeAnimationDuration = 350;
-    var panelAnimationDuration = 350;
-    var perspectiveAngle = 15;
-    var intervalTime = 30;
-
-    $("#loginPanel .btn").on("click", function () {
-        $("#loginPanel").removeClass("d-flex");
-        $("#loginPanel").hide();
-
-        $("#registerPanel").addClass("d-flex");
-        $("#registerPanel").show();
-
-        $("#registerForm").find("*").stop().animate({
-            opacity: "0",
-        }, fadeAnimationDuration);
-        $("#loginForm").find("*").stop().animate({
-            opacity: "1",
-        }, fadeAnimationDuration);
-
-        $("#mainPanel").stop().animate({
-            marginLeft: "-90%",
-        }, panelAnimationDuration);
-
-        setTimeout(() => {
-            $("#mainPanel").stop().animate({
-                marginLeft: "-95%",
-            }, panelAnimationDuration * 1);
-        }, panelAnimationDuration - 30);
-
-        writeInElement($("#registerPanel h2"), "Registration form", intervalTime);
-        writeInElement($("#registerPanel p"), "I'm already signed up, take me to:", intervalTime / 2);
-        writeInElement($("#registerPanel button"), "Login form", intervalTime);
-
-        $("#mainPanel").css("transform", "scale(0.95) rotateY(" + perspectiveAngle + "deg)");
-        $("#mainPanel").addClass("moveImage");
-    });
-
-    $("#registerPanel .btn").on("click", function () {
-        $("#loginPanel").addClass("d-flex");
-        $("#loginPanel").show();
-
-        $("#registerPanel").removeClass("d-flex");
-        $("#registerPanel").hide();
-
-        $("#loginForm").find("*").stop().animate({
-            opacity: "0",
-        }, fadeAnimationDuration);
-        $("#registerForm").find("*").stop().animate({
-            opacity: "1",
-        }, fadeAnimationDuration);
-
-        $("#mainPanel").stop().animate({
-            marginLeft: "-50%",
-        }, panelAnimationDuration);
-
-        setTimeout(() => {
-            $("#mainPanel").stop().animate({
-                marginLeft: "-45%",
-            }, panelAnimationDuration * 1);
-        }, panelAnimationDuration - 30);
-
-        writeInElement($("#loginPanel h2"), "Login form", intervalTime);
-        writeInElement($("#loginPanel p"), "I'm not signed up, take me to:", intervalTime / 2);
-        writeInElement($("#loginPanel button"), "Registration form", intervalTime);
-
-        $("#mainPanel").css("transform", "scale(0.95) rotateY(-" + perspectiveAngle + "deg)");
-        $("#mainPanel").removeClass("moveImage");
-    });
-
-    $("#registerPanel .btn").trigger("click");
-</script>
+<script src="../scripts/js/signin.js"></script>
 
 </html>

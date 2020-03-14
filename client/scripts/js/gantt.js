@@ -18,6 +18,127 @@ $(".removeDays").on("click", function (event) {
     }
 }, false);
 
+var taskColorCode = [{
+    "background": "danger",
+    "gradient": "young-passion-gradient",
+    "task": "red",
+}, {
+    "background": "warning",
+    "gradient": "peach-gradient",
+    "task": "yellow",
+}, {
+    "background": "success",
+    "gradient": "dusty-grass-gradient",
+    "task": "green",
+}, {
+    "background": "primary",
+    "gradient": "blue-gradient",
+    "task": "blue",
+}, {
+    "background": "secondary",
+    "gradient": "ripe-malinka-gradient",
+    "task": "purple",
+}, {
+    "background": "light",
+    "gradient": "bg-white",
+    "task": "grey",
+}];
+var taskColorCodeLen = taskColorCode.length;
+var tBody = $("tbody");
+for (var taskIndex = 0; taskIndex < taskColorCodeLen; taskIndex++) {
+    const colorCode = taskColorCode[taskIndex];
+    createTask(tBody, colorCode, taskIndex);
+}
+var taskCreation = $(`<tr class="taskCreationRow">
+                        <td class="text-dark" colspan="999999">
+                                <button class="btn btn-sm text-white">Create Task +</button>
+                            </td>
+                            </tr>`);
+tBody.append(taskCreation);
+taskCreation.find(".btn").on("click", function () {
+    createTask(tBody, taskColorCode[0], taskIndex++).after(taskCreation);
+});
+
+function createTask(tBody, colorCode, taskIndex) {
+    var mainTask = $(`<tr class="bg-${colorCode.background}">
+                                        <td class="text-dark" colspan="999999"><span
+                                                class="position-absolute py-3 shadow bg-${colorCode.background} taskTitle gantttitle"
+                                                style="left: 0; padding-left: 2rem; padding-right: 1rem; margin-top: -1rem;">
+                                                Task ${(taskIndex + 1)}</span>&nbsp;</td>
+                                    </tr>`);
+    tBody.append(mainTask);
+    mainTask.find(".taskTitle").unbind("hover");
+    mainTask.find(".taskTitle").on("hover", function () {
+        $(this).stop(true, true).animate({
+            paddingLeft: "6rem"
+        }, 200);
+        //console.log($(this).css("padding-left"));
+
+        $(this).css("cursor", "pointer");
+    }, function () {
+        $(this).stop(true, true).animate({
+            paddingLeft: "2rem"
+        }, 350);
+    });
+    var randomTasksNumber = Math.floor(Math.random() * 6);
+    for (var subTaskIndex = 0; subTaskIndex < 5; subTaskIndex++) {
+        tBody.append(createSubTask(tBody, colorCode, taskIndex, subTaskIndex));
+    }
+    var subTaskCreation = $(`<tr class="subTaskCreationRow">
+    <td class="text-dark" colspan="999999">
+            <button class="btn btn-${colorCode.background} btn-sm text-dark">Create Sub Task +</button>
+        </td>
+        </tr>`);
+    tBody.append(subTaskCreation);
+    subTaskCreation.find(".btn").on("click", function () {
+        var subTask = createSubTask(tBody, colorCode, taskIndex,
+            subTaskIndex++);
+        subTaskCreation.before(subTask);
+
+        subTask.find(".subTaskTitle").unbind("hover");
+        subTask.find(".subTaskTitle").on("hover", function () {
+            $(this).stop(true, true).animate({
+                paddingLeft: "6rem"
+            }, 200);
+            //console.log($(this).css("padding-left"));
+
+            $(this).css("cursor", "pointer");
+        }, function () {
+            $(this).stop(true, true).animate({
+                paddingLeft: "2rem"
+            }, 350);
+        });
+    });
+    return subTaskCreation;
+}
+
+function createSubTask(tBody, colorCode, taskIndex, subTaskIndex) {
+    var randomProgress = Math.floor(Math.random() * 70) + 30;
+    var subTask = $(`<tr class="subtask" id="task${(taskIndex + 1)}_subtask${(subTaskIndex + 1)}">
+            <td><span class="position-absolute py-3 shadow subTaskTitle gantttitle"
+                    style="left: 0; padding-left: 2rem; padding-right: 1rem; margin-top: -1rem; background: #343a40;">Sub
+                    Task ${(subTaskIndex + 1)}</span></td>
+            <td class="startingDate">&nbsp;</td>
+            <td class="endingDate">&nbsp;</td>
+            <td class="progressIndicator">
+                <div class="progress my-auto bg-dark" title="${randomProgress}%">
+                    <div class="progress-bar ${colorCode.gradient} text-dark font-weight-bold" role="progressbar"
+                        style="width: ${randomProgress}%;" aria-valuenow="${randomProgress}" aria-valuemin="0" aria-valuemax="100">${randomProgress}%</div>
+                </div>
+            </td>
+            <td class="daysSpan">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td class="${colorCode.task} rounded" colspan="4">&nbsp; <span class="shadow text-dark removeDays">-</span><span
+                    class="shadow text-dark addDays float-right">+</span>
+            </td>
+            </tr>`);
+    for (let subTaskColumnIndex = 0; subTaskColumnIndex < 53; subTaskColumnIndex++) {
+        subTask.append(`<td>&nbsp;</td>`);
+    }
+    return subTask;
+}
+
 /* var selectedRow = null;
 var firstPoint = null;
 var secondPoint = null;
