@@ -38,8 +38,8 @@ $("#loginPanel .btn").on("click", function () {
     setTimeout(() => {
         $("#mainPanel").stop().animate({
             marginLeft: "-95%",
-        }, panelAnimationDuration * 1);
-    }, panelAnimationDuration - 30);
+        }, panelAnimationDuration * 1.3);
+    }, panelAnimationDuration - (panelAnimationDuration * .3));
 
     writeInElement($("#registerPanel h2"), "Registration form", intervalTime);
     writeInElement($("#registerPanel p"), "I'm already signed up, take me to:", intervalTime / 2);
@@ -70,8 +70,8 @@ $("#registerPanel .btn").on("click", function () {
     setTimeout(() => {
         $("#mainPanel").stop().animate({
             marginLeft: "-45%",
-        }, panelAnimationDuration * 1);
-    }, panelAnimationDuration - 30);
+        }, panelAnimationDuration * 1.3);
+    }, panelAnimationDuration - (panelAnimationDuration * .3));
 
     writeInElement($("#loginPanel h2"), "Login form", intervalTime);
     writeInElement($("#loginPanel p"), "I'm not signed up, take me to:", intervalTime / 2);
