@@ -133,7 +133,7 @@ function createJSajaxController($methods, $methodParams)
 function createPHPajaxController($methods, $methodParams)
 {
     $phpAjaxController = "<?php\nclass AjaxController\n{";
-    $phpAjaxController .= "\n\tpublic function genericAjaxReturn(\$functionName, \$requiredParams = [])\n\t{\n\t\ttry {\n\t\t\tif (!empty(\$requiredParams)) {\n\t\t\t\t\$this->throwIfExceptionIfDoesntExist(\$requiredParams);\n\t\t\t}\n\t\t\t\$mainController = \"Controller\";\n\t\t\tif (method_exists(\$mainController, \$functionName)) {\n\t\t\t\t\$result = call_user_func([new \$mainController, \$functionName]);\n\t\t\t\techo json_encode(\$result);\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t} catch (Throwable \$th) {\n\t\t\tif (Config::\$developmentMode) {\n\t\t\t\t\$this->returnError(\$th->getMessage());\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t}\n\t}";
+    $phpAjaxController .= "\n\tpublic function genericAjaxReturn(\$functionName, \$requiredParams = [])\n\t{\n\t\ttry {\n\t\t\tif (!empty(\$requiredParams)) {\n\t\t\t\t\$this->throwIfExceptionIfDoesntExist(\$requiredParams);\n\t\t\t}\n\t\t\t\$mainController = \"POPOController\";\n\t\t\tif (method_exists(\$mainController, \$functionName)) {\n\t\t\t\t\$result = call_user_func([new \$mainController, \$functionName]);\n\t\t\t\techo json_encode(\$result);\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t} catch (Throwable \$th) {\n\t\t\tif (Config::\$developmentMode) {\n\t\t\t\t\$this->returnError(\$th->getMessage());\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t}\n\t}";
     $phpAjaxController .= "\n\n\tpublic function throwIfExceptionIfDoesntExist(\$elems)\n\t{\n\t\tforeach (\$elems as \$elem) {\n\t\t\tif (!isset(\$_REQUEST[\$elem])) {\n\t\t\t\tthrow new Error(\"\$elem doesn't exist\");\n\t\t\t}\n\t\t}\n\t}";
     $phpAjaxController .= "public function returnError(\$message = \"\")\n\t{\n\t\t\$object = [\n\t\t\t\t\"error\" => true,\n\t\t];\n\t\tif (\$message != \"\") {\n\t\t\t\$object[\"message\"] = \$message;\n\t\t}\n\t\t\$json = json_encode(\$object);\n\t\techo \$json;\n\t\texit;\n\t}";
 
@@ -210,7 +210,7 @@ function mapRoutes($methods)
         $mapFile .= "\n\t'$method' => array('controller' => 'Controller', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
     }
     foreach ($methods as $method) {
-        $mapFile .= "\n\t'$method' => array('controller' => 'POPOcontroller', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
+        $mapFile .= "\n\t'$method' => array('controller' => 'AjaxController', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
     }
     $mapFile .= "\n];";
 
