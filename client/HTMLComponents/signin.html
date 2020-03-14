@@ -120,16 +120,16 @@
         <div id="mainPanel"
             class="aqua-gradient rounded text-white shadow position-relative d-flex flex-column justify-content-center align-items-center">
             <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="loginPanel">
-                <h2 class="font-weight-bold">Registration form</h2>
+                <h2 class="font-weight-bold">Login form</h2>
                 <p>I'm not signed up, take me to:</p>
                 <br>
-                <button class="btn rounded">sign up</button>
+                <button class="btn rounded">Registration form</button>
             </div>
             <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="registerPanel">
-                <h2 class="font-weight-bold">Login form</h2>
+                <h2 class="font-weight-bold">Registration form</h2>
                 <br>
                 <p>I'm already signed up, take me to:</p>
-                <button class="btn rounded">sign in</button>
+                <button class="btn rounded">Login form</button>
             </div>
         </div>
     </div>
@@ -170,6 +170,7 @@
         $("#mainPanel").stop().animate({
             marginLeft: "-95%",
         }, panelAnimationDuration);
+
         $("#mainPanel").css("transform", "scale(0.95) rotateY(" + perspectiveAngle + "deg)");
         $("#mainPanel").addClass("moveImage");
     });
