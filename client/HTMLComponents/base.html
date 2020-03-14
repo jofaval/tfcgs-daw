@@ -78,7 +78,7 @@
         </ol>
     </section>
     <main role="main" class="w-100 d-flex flex-column justify-content-start">
-        <div id="content">
+        <div id="content" class="w-100 w-100 d-flex">
 
         </div>
     </main>
@@ -116,19 +116,29 @@
         "notification",
         "signin",
     ];
-    var startingIndex = 3;
+    var templatePageIndex = 3;
     $(window).on("load", function () {
         loadPage();
         $("#prevPage").on("click", function () {
-            if (startingIndex > 0) {
-                startingIndex--;
+            if (templatePageIndex > 0) {
+                console.log("Decremento");
+                console.log("antes: ", templatePageIndex);
+                templatePageIndex--;
+                console.log("despues: ", templatePageIndex);
+            } else {
+                return;
             }
 
             loadPage();
         });
         $("#nextPage").on("click", function () {
-            if (startingIndex < templates.length) {
-                startingIndex++;
+            if (templatePageIndex < templates.length) {
+                console.log("Incremento");
+                console.log("antes: ", templatePageIndex);
+                templatePageIndex++;
+                console.log("despues: ", templatePageIndex);
+            } else {
+                return;
             }
 
             loadPage();
@@ -137,9 +147,10 @@
 
     function loadPage() {
         $("#content").html("");
-        var selectedPage = templates[startingIndex];
+        console.log("en el cambio de página: ", templatePageIndex);
+        var selectedPage = templates[templatePageIndex];
         $("#content").load(selectedPage + ".html", function () {});
-        $("#currentPage").text(selectedPage);
+        $("#currentPage").text(selectedPage + templatePageIndex);
     }
 </script>
 
