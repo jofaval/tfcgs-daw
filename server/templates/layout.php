@@ -42,20 +42,18 @@
             style="transition: all 0.2s ease-in-out 0s;">
             <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
                 <li class="nav-item active" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link" href="index.php" style="transition: all 0.2s ease-in-out 0s;">Schedules<span
+                    <a class="nav-link" href="../projects/" style="transition: all 0.2s ease-in-out 0s;">Schedules<span
                             class="sr-only" style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
                 </li>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link selected" href="index.php?ctl=classrooms"
-                        style="transition: all 0.2s ease-in-out 0s;">Classrooms</a>
+                    <a class="nav-link selected" href="../projects/"
+                        style="transition: all 0.2s ease-in-out 0s;">Projects</a>
                 </li>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link selected" href="index.php?ctl=admin"
-                        style="transition: all 0.2s ease-in-out 0s;">Admin</a>
+                    <a class="nav-link selected" href="../admin/" style="transition: all 0.2s ease-in-out 0s;">Admin</a>
                 </li>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link" href="index.php?ctl=signout"
-                        style="transition: all 0.2s ease-in-out 0s;">Signout</a>
+                    <a class="nav-link" href="../signout/" style="transition: all 0.2s ease-in-out 0s;">Signout</a>
                 </li>
             </ul>
         </div>
