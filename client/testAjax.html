@@ -31,8 +31,12 @@
                 }); */
 
 
-    AjaxController.createClassroom("test", "purrfect", "perfect", function name(data) {
-        console.log(data);
+    AjaxController.request("test", "POST", {
+        "test": "test",
+    }, function (data) {
+        console.log("Ha funcionado", data);
+    }, function () {
+        sendNotification("No ha funcionado");
     });
 </script>
 

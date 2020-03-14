@@ -114,7 +114,7 @@ class Controller
         /* $model = Model::getInstance();
         $sessions = Sessions::getInstance(); */
 
-        return "test";
+        echo "test";
 
         //return Cryptography::blowfishCrypt("test", "test");
         //return count($model->query("SELECT * FROM `schedules`", $params));
