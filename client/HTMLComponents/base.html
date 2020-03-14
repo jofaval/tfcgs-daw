@@ -30,6 +30,13 @@
 </head>
 
 <body>
+    <!--Only to browser through pages-->
+    <div class="d-flex justify-content-center position-absolute w-100"
+        style="z-index: 50000 !important; background: #1f1f22 !important;">
+        <button class="btn btn-primary" id="prevPage">&lt;</button>
+        <h4 id="currentPage" class="text-white"></h4>
+        <button class="btn btn-primary" id="nextPage">&gt;</button>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light flex-wrap" style="transition: all 0.2s ease-in-out 0s;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08"
             aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation"
@@ -109,9 +116,31 @@
         "notification",
         "signin",
     ];
+    var startingIndex = 3;
     $(window).on("load", function () {
-        $("#content").load(templates[3] + ".html", function () {});
+        loadPage();
+        $("#prevPage").on("click", function () {
+            if (startingIndex > 0) {
+                startingIndex--;
+            }
+
+            loadPage();
+        });
+        $("#nextPage").on("click", function () {
+            if (startingIndex < templates.length) {
+                startingIndex++;
+            }
+
+            loadPage();
+        });
     });
+
+    function loadPage() {
+        $("#content").html("");
+        var selectedPage = templates[startingIndex];
+        $("#content").load(selectedPage + ".html", function () {});
+        $("#currentPage").text(selectedPage);
+    }
 </script>
 
 </html>
