@@ -38,28 +38,29 @@
             <div class="col">
                 <!-- First name -->
                 <div class="md-form">
-                    <input type="text" name="firstName" id="firstName" class="form-control" required>
+                    <input type="text" name="firstName" id="firstName" value="Pepe" class="form-control" required>
                     <label for="firstName">First name</label>
                 </div>
             </div>
             <div class="col">
                 <!-- Last name -->
                 <div class="md-form">
-                    <input type="text" name="secondName" id="secondName" class="form-control" required>
+                    <input type="text" name="secondName" id="secondName" value="Apellidos" class="form-control"
+                        required>
                     <label for="secondName">Last name</label>
                 </div>
             </div>
         </div>
         <div class="md-form w-100">
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="email" name="email" value="email@dominio.com" required>
             <label for="email">E-Mail</label>
         </div>
         <div class="md-form w-100">
-            <input type="text" class="form-control" id="username" name="username" required>
+            <input type="text" class="form-control" id="username" name="username" value="usuario" required>
             <label for="username">Username</label>
         </div>
         <div class="md-form input-group w-100">
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control" id="password" name="password" value="test" required>
             <label for="password">Password</label>
             <div class="input-group-append">
                 <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
