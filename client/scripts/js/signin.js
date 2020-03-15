@@ -39,7 +39,13 @@ $("#registerPanel .btn").on("click", function () {
     }, fadeAnimationDuration);
 });
 
-$("#loginPanel .btn").trigger("click");
+
+var url = window.location.href;
+var positionOfLastBar = url.lastIndexOf("/");
+var params = url.substring(positionOfLastBar);
+var panelToActivate = params.includes("#login") ? "registerPanel" : "loginPanel";
+
+$(`#${panelToActivate} .btn`).trigger("click");
 
 function togglePanel(toHide, toShow, toRight) {
     var panelInformationTextArray = [
