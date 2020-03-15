@@ -7,6 +7,7 @@
 <?php $showHeader = false;?>
 <?php $showBreadcrumb = false;?>
 <?php $breadcrumb = [];?>
+<?php $loadLogin = Utils::exists("login")?>
 
 <?php ob_start()?>
 
@@ -74,13 +75,15 @@
     </form>
     <div id="mainPanel"
         class="aqua-gradient rounded text-white shadow position-relative d-flex flex-column justify-content-center align-items-center">
-        <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="loginPanel">
+        <div class="d-flex <?php echo $loadLogin ? "" : "formToLoad"; ?> togglePanel flex-column justify-content-center align-items-center"
+            id="loginPanel">
             <h2 class="font-weight-bold">Login form</h2>
             <p>I'm not signed up, take me to:</p>
             <br>
             <button class="btn rounded">Registration form</button>
         </div>
-        <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="registerPanel">
+        <div class="d-flex <?php echo $loadLogin ? "formToLoad" : ""; ?> togglePanel flex-column justify-content-center align-items-center"
+            id="registerPanel">
             <h2 class="font-weight-bold">Registration form</h2>
             <br>
             <p>I'm already signed up, take me to:</p>

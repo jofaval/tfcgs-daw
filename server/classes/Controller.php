@@ -57,7 +57,6 @@ class Controller
 
     public function signup()
     {
-
         if (Utils::exists("signup")) {
             $model = Model::getInstance();
             $validation = Validation::getInstance();
@@ -103,7 +102,7 @@ class Controller
                 //echo "Se envia";
                 //var_dump($_REQUEST);
                 if ($success) {
-                    header("Location: ../sign-in/#login");
+                    header("Location: ../sign-in/");
                 }
             } else {
                 //var_dump($validation);

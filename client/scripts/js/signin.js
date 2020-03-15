@@ -45,7 +45,7 @@ var positionOfLastBar = url.lastIndexOf("/");
 var params = url.substring(positionOfLastBar);
 var panelToActivate = params.includes("#login") ? "registerPanel" : "loginPanel";
 
-$(`#${panelToActivate} .btn`).trigger("click");
+$(`.formToLoad .btn`).trigger("click");
 
 function togglePanel(toHide, toShow, toRight) {
     var panelInformationTextArray = [
