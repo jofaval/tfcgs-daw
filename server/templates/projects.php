@@ -9,12 +9,12 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "index.php",
+        "link" => "../index.php",
         "active" => false,
     ],
     [
         "name" => "Projects",
-        "link" => "./projects/",
+        "link" => "",
         "active" => true,
     ],
 ];
@@ -22,22 +22,24 @@ $breadcrumb = [
 
 <?php ob_start()?>
 
-<div class="mx-auto container">
-    <div class="form-row d-flex my-4">
-        <button class="btn btn-sm text-white ml-auto">&lt;</button>
-        <div class="col-sm-3 rounded bg-white shadow mx-1">
-            <div class="md-form m-0">
-                <input placeholder="Select a date" type="text" id="datepicker" class="form-control datepicker">
-            </div>
+<div class="container h-100" id="mainProjectPanel">
+    <aside class="col-md-3 p-3 px-4">
+        <div class="list-group list-group-flush shadow">
+            <a href="#" class="list-group-item active waves-effect">
+                <i class="fas fa-chart-pie mr-3"></i>Dashboard
+            </a>
+            <a href="#" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-user mr-3"></i>Profile</a>
+            <a href="#" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-table mr-3"></i>Tables</a>
+            <a href="#" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-map mr-3"></i>Maps</a>
+            <a href="#" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-money-bill-alt mr-3"></i>Orders</a>
         </div>
-        <button class="btn btn-sm text-white mr-auto">&gt;</button>
-    </div>
-    <div id="summernote"></div>
+    </aside>
 </div>
 
-<?php $contenido = ob_get_clean()?>
-
-<?php include_once 'layout.php'?>
 <?php $contenido = ob_get_clean()?>
 
 <?php include_once 'layout.php'?>
