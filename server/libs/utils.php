@@ -19,13 +19,18 @@ class Utils
 
     public static function getCleanedData($var)
     {
-        if (isset($_REQUEST[$var])) {
+        if (Utils::exists($var)) {
             $tmp = strip_tags(self::sinEspacios($_REQUEST[$var]));
         } else {
             $tmp = "";
         }
 
         return $tmp;
+    }
+
+    public static function exists($var)
+    {
+        return isset($_REQUEST[$var]);
     }
 
     public static function sinEspacios($frase)

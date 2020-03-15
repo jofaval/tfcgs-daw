@@ -41,7 +41,7 @@ class Controller
     public function signin()
     {
         $result = false;
-        if (isset($_REQUEST["signin"])) {
+        if (Utils::exists("signin")) {
             $result = ExceptionUtils::tryCatch("Controller", "signinFunctionality");
 
             if ($result) {
@@ -53,6 +53,13 @@ class Controller
             }
         }
         require __DIR__ . '/../templates/signin.php';
+    }
+
+    public function signup()
+    {
+        if (Utils::exists("signup")) {
+            echo ("test");
+        }
     }
 
     public function signinFunctionality()
