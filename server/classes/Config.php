@@ -32,6 +32,7 @@ class Config
         "js/Validator.js",
         "js/FormValidator.js",
         "js/preloader.js",
+        "js/generalScript.js",
     ];
     public static $emailSender = "contact@sender.org";
     public static $emailMsgLineLength = 70;
