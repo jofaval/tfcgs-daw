@@ -10,7 +10,7 @@
 
 <?php ob_start()?>
 
-<div class="h-50 m-auto w-50 shadow d-flex" id="signFormsContainer">
+<div class="h-50 m-auto w-50 shadow d-flex text-dark" id="signFormsContainer">
     <form action="" method="POST" id="registerForm"
         class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
         <h1>Welcome back!</h1>
