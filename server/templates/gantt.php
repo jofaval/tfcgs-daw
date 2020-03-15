@@ -114,6 +114,3 @@ $breadcrumb = [
 <?php $contenido = ob_get_clean()?>
 
 <?php include_once 'layout.php'?>
-<?php $contenido = ob_get_clean()?>
-
-<?php include_once 'layout.php'?>
