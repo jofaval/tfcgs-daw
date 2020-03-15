@@ -57,9 +57,59 @@ class Controller
 
     public function signup()
     {
+
         if (Utils::exists("signup")) {
-            echo ("test");
+            $model = Model::getInstance();
+            $validation = Validation::getInstance();
+            $sessions = Sessions::getInstance();
+
+            //header("Location: ../sign-in/#login");
+
+            $regla = array(
+                array(
+                    'name' => 'firstName',
+                    'regla' => 'no-empty,text',
+                ),
+                array(
+                    'name' => 'secondName',
+                    'regla' => 'no-empty,text',
+                ),
+                array(
+                    'name' => 'email',
+                    'regla' => 'no-empty,email',
+                ),
+                array(
+                    'name' => 'username',
+                    'regla' => 'no-empty,username',
+                ),
+                array(
+                    'name' => 'password',
+                    'regla' => 'no-empty,password',
+                ),
+            );
+            $validation = $validation->rules($regla, $_REQUEST);
+
+            //echo "Llega";
+
+            if ($validation === true) {
+                //echo "Se valida";
+                $success = $model->signup(
+                    Utils::getCleanedData("firstName"),
+                    Utils::getCleanedData("secondName"),
+                    Utils::getCleanedData("email"),
+                    Utils::getCleanedData("username"),
+                    Utils::getCleanedData("password"),
+                );
+                //echo "Se envia";
+                //var_dump($_REQUEST);
+                if ($success) {
+                    header("Location: ../sign-in/#login");
+                }
+            } else {
+                //var_dump($validation);
+            }
         }
+        require __DIR__ . '/../templates/signin.php';
     }
 
     public function signinFunctionality()
@@ -70,17 +120,6 @@ class Controller
 
         $username = Utils::getCleanedData("inputUsername");
         $password = Utils::getCleanedData("inputPassword");
-
-        $regla = array(
-            array(
-                'name' => 'username',
-                'regla' => 'no-empty,username',
-            ),
-            array(
-                'name' => 'password',
-                'regla' => 'no-empty,password',
-            ),
-        );
         $validation = $validation->rules($regla, ["username" => $username, "password" => $password]);
         $validation = true;
 
