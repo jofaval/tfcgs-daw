@@ -38,15 +38,15 @@
             <div class="col">
                 <!-- First name -->
                 <div class="md-form">
-                    <input type="text" id="materialRegisterFormFirstName" class="form-control">
-                    <label for="materialRegisterFormFirstName">First name</label>
+                    <input type="text" name="firstName" id="firstName" class="form-control">
+                    <label for="firstName">First name</label>
                 </div>
             </div>
             <div class="col">
                 <!-- Last name -->
                 <div class="md-form">
-                    <input type="text" id="materialRegisterFormLastName" class="form-control">
-                    <label for="materialRegisterFormLastName">Last name</label>
+                    <input type="text" name="secondName" id="secondName" class="form-control">
+                    <label for="secondName">Last name</label>
                 </div>
             </div>
         </div>
