@@ -33,6 +33,11 @@ class Controller
         require __DIR__ . '/../templates/projects.php';
     }
 
+    public function gantt()
+    {
+        require __DIR__ . '/../templates/gantt.php';
+    }
+
     public function signin()
     {
         $result = false;
