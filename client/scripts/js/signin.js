@@ -18,11 +18,7 @@ var perspectiveAngle = 15;
 var intervalTime = 30;
 
 $("#loginPanel .btn").on("click", function () {
-    $("#loginPanel").removeClass("d-flex");
-    $("#loginPanel").hide();
-
-    $("#registerPanel").addClass("d-flex");
-    $("#registerPanel").show();
+    togglePanel($("#loginPanel"), $("#registerPanel"), false);
 
     $("#registerForm").find("*").stop().animate({
         opacity: "0",
@@ -30,31 +26,10 @@ $("#loginPanel .btn").on("click", function () {
     $("#loginForm").find("*").stop().animate({
         opacity: "1",
     }, fadeAnimationDuration);
-
-    $("#mainPanel").stop().animate({
-        marginLeft: "-90%",
-    }, panelAnimationDuration);
-
-    setTimeout(() => {
-        $("#mainPanel").stop().animate({
-            marginLeft: "-95%",
-        }, panelAnimationDuration * 1.3);
-    }, panelAnimationDuration - (panelAnimationDuration * .3));
-
-    writeInElement($("#registerPanel h2"), "Registration form", intervalTime);
-    writeInElement($("#registerPanel p"), "I'm already signed up, take me to:", intervalTime / 2);
-    writeInElement($("#registerPanel button"), "Login form", intervalTime);
-
-    $("#mainPanel").css("transform", "scale(0.95) rotateY(" + perspectiveAngle + "deg)");
-    $("#mainPanel").addClass("moveImage");
 });
 
 $("#registerPanel .btn").on("click", function () {
-    $("#loginPanel").addClass("d-flex");
-    $("#loginPanel").show();
-
-    $("#registerPanel").removeClass("d-flex");
-    $("#registerPanel").hide();
+    togglePanel($("#registerPanel"), $("#loginPanel"), true);
 
     $("#loginForm").find("*").stop().animate({
         opacity: "0",
@@ -62,23 +37,66 @@ $("#registerPanel .btn").on("click", function () {
     $("#registerForm").find("*").stop().animate({
         opacity: "1",
     }, fadeAnimationDuration);
+});
 
-    $("#mainPanel").stop().animate({
-        marginLeft: "-50%",
+$("#loginPanel .btn").trigger("click");
+
+function togglePanel(toHide, toShow, toRight) {
+    var panelInformationTextArray = [
+        [
+            "Registration form",
+            "I'm already signed up, take me to:",
+            "Login form",
+        ],
+        [
+            "Login form",
+            "I'm not signed up, take me to:",
+            "Registration form",
+        ],
+    ];
+
+    var marginLeftBeforeSteering;
+    var marginLeftAfterSteering;
+    var textIndex;
+
+    var mainPanel = $("#mainPanel");
+    var perspectivePositive = toRight ? "-" : " ";
+
+    if (!toRight) {
+        marginLeftBeforeSteering = "-90%";
+        marginLeftAfterSteering = "-95%";
+        textIndex = 0;
+    } else {
+        marginLeftBeforeSteering = "-50%";
+        marginLeftAfterSteering = "-45%";
+        textIndex = 1;
+    }
+
+    toHide.removeClass("d-flex");
+    toHide.hide();
+
+    toShow.addClass("d-flex");
+    toShow.show();
+
+    mainPanel.stop().animate({
+        marginLeft: marginLeftBeforeSteering,
     }, panelAnimationDuration);
 
     setTimeout(() => {
-        $("#mainPanel").stop().animate({
-            marginLeft: "-45%",
+        mainPanel.stop().animate({
+            marginLeft: marginLeftAfterSteering,
         }, panelAnimationDuration * 1.3);
     }, panelAnimationDuration - (panelAnimationDuration * .3));
 
-    writeInElement($("#loginPanel h2"), "Login form", intervalTime);
-    writeInElement($("#loginPanel p"), "I'm not signed up, take me to:", intervalTime / 2);
-    writeInElement($("#loginPanel button"), "Registration form", intervalTime);
+    mainPanel.css("transform", `scale(0.95) rotateY(${perspectivePositive}${perspectiveAngle}deg)`);
 
-    $("#mainPanel").css("transform", "scale(0.95) rotateY(-" + perspectiveAngle + "deg)");
-    $("#mainPanel").removeClass("moveImage");
-});
+    if (toRight) {
+        mainPanel.addClass("moveImage");
+    } else {
+        mainPanel.removeClass("moveImage");
+    }
 
-$("#registerPanel .btn").trigger("click");
+    writeInElement(toShow.find("h2"), panelInformationTextArray[textIndex][0], intervalTime);
+    writeInElement(toShow.find("p"), panelInformationTextArray[textIndex][1], intervalTime / 2);
+    writeInElement(toShow.find("button"), panelInformationTextArray[textIndex][2], intervalTime);
+}
