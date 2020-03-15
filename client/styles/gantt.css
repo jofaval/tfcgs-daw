@@ -43,7 +43,8 @@ main {
     left: 0 !important;
     padding-left: 2rem !important;
     padding-right: 1rem !important;
-    margin-top: -3.5rem !important;
+    margin-top: -1rem !important;
+    z-index: 3 !important;
 }
 
 .subTaskTitle {
@@ -58,7 +59,8 @@ tr {
     scroll-snap-align: start;
 }
 
-td, th {
+td,
+th {
     scroll-snap-align: start;
 }
 
