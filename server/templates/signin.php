@@ -15,11 +15,11 @@
         class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
         <h1>Welcome back!</h1>
         <div class="md-form w-100">
-            <input type="text" class="form-control" id="username" name="username">
+            <input type="text" class="form-control" id="username" name="username" required>
             <label for="username">Username</label>
         </div>
         <div class="md-form input-group w-100">
-            <input type="password" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password" required>
             <label for="password">Password</label>
             <div class="input-group-append">
                 <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
@@ -38,28 +38,28 @@
             <div class="col">
                 <!-- First name -->
                 <div class="md-form">
-                    <input type="text" name="firstName" id="firstName" class="form-control">
+                    <input type="text" name="firstName" id="firstName" class="form-control" required>
                     <label for="firstName">First name</label>
                 </div>
             </div>
             <div class="col">
                 <!-- Last name -->
                 <div class="md-form">
-                    <input type="text" name="secondName" id="secondName" class="form-control">
+                    <input type="text" name="secondName" id="secondName" class="form-control" required>
                     <label for="secondName">Last name</label>
                 </div>
             </div>
         </div>
         <div class="md-form w-100">
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" required>
             <label for="email">E-Mail</label>
         </div>
         <div class="md-form w-100">
-            <input type="text" class="form-control" id="username" name="username">
+            <input type="text" class="form-control" id="username" name="username" required>
             <label for="username">Username</label>
         </div>
         <div class="md-form input-group w-100">
-            <input type="password" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password" required>
             <label for="password">Password</label>
             <div class="input-group-append">
                 <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
