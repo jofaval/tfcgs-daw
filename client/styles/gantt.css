@@ -43,7 +43,7 @@ main {
     left: 0 !important;
     padding-left: 2rem !important;
     padding-right: 1rem !important;
-    margin-top: -1rem !important;
+    /*margin-top: -1rem !important;*/
     z-index: 3 !important;
 }
 

@@ -1,5 +1,5 @@
 <!--Page configuration-->
-<?php $optionalCSS = ["floating-label.css", "inputs.css", "gantt.css"];?>
+<?php $optionalCSS = ["floating-label.css", "inputs.css"];?>
 <?php $optionalScripts = ["js/gantt.js"];?>
 <?php $title = "ProjectName - Gantt";?>
 <?php $showFooter = true;?>
