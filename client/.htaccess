@@ -2,8 +2,7 @@ Options -MultiViews
 RewriteEngine On
 
 RewriteRule ^admin/$ ./index.php?ctl=admin [L]
-RewriteRule ^projects/$ ./index.php?ctl=project [L]
-RewriteRule ^login/$ ./index.php?ctl=login [L]
+RewriteRule ^projects/$ ./index.php?ctl=projects [L]
 RewriteRule ^sign-in/$ ./index.php?ctl=signin [L]
 RewriteRule ^sign-up/$ ./index.php?ctl=signup [L]
 RewriteRule ^sign-out/$ ./index.php?ctl=signout [L]

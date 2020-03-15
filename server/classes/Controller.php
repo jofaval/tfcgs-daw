@@ -28,9 +28,9 @@ class Controller
         require __DIR__ . '/../templates/notuseragent.php';
     }
 
-    public function project()
+    public function projects()
     {
-        require __DIR__ . '/../templates/project.php';
+        require __DIR__ . '/../templates/projects.php';
     }
 
     public function signin()
