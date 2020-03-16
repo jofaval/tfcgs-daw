@@ -9,9 +9,7 @@ main {
     justify-content: center !important;
 }
 
-nav.navbar,
-.breadcrumbContainer,
-.footer {
+nav.navbar, .breadcrumbContainer, .footer {
     display: none !important;
 }
 
@@ -27,7 +25,7 @@ main {
     z-index: 2149999999 !important;
     width: 40% !important;
     height: 120% !important;
-    margin-top: -5% !important;
+    top: -10% !important;
     transform-style: preserve-3d;
     transition: transform 0.25s ease-in-out;
     /*background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') no-repeat !important;*/

@@ -13,7 +13,7 @@
 
 <div class="h-50 m-auto w-50 shadow d-flex text-dark" id="signFormsContainer">
     <form action="../sign-in/" method="POST" id="registerForm"
-        class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
+        class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1>Welcome back!</h1>
         <div class="md-form w-100">
             <input type="text" class="form-control" id="username" name="username" required>
@@ -33,7 +33,7 @@
         </div>
     </form>
     <form action="../sign-up/" method="POST" id="loginForm"
-        class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
+        class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column pr-5 pl-0 h-100 text-center">
         <h1>Welcome!</h1>
         <div class="form-row w-100">
             <div class="col">
