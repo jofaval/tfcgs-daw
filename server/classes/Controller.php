@@ -1,10 +1,4 @@
 <?php
-include_once '/../libs/utils.php';
-include_once '/../libs/bEmail.php';
-include_once '/../libs/bFile.php';
-include_once '/../libs/bCrypt.php';
-include_once 'Validation.php';
-include_once 'Sessions.php';
 
 class Controller
 {

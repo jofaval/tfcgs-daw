@@ -1,8 +1,4 @@
 <?php
-include_once __DIR__ . '/../Config.php';
-include_once __DIR__ . '/../../libs/bCrypt.php';
-include_once __DIR__ . '/../../libs/bDate.php';
-include_once __DIR__ . '/../../libs/utils.php';
 
 class Model extends PDO
 {

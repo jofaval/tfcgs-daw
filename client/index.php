@@ -17,7 +17,7 @@ require_once __DIR__ . '/../server/Access.php';
 error_reporting(Config::$developmentMode);
 requireAllFromDir("libs");
 requireAllFromDir("classes");
-requireAllFromDir("POPOs");
+requireAllFromDir("classes/POPOs");
 
 $sessions = Sessions::getInstance();
 $ctl = $_GET['ctl'];
