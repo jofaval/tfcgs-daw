@@ -50,4 +50,17 @@ class Utils
 
         return $token;
     }
+
+    public static function ifExistsShowError($array, $name)
+    {
+        ?> <div> <?php
+if (isset($array[$name])) {
+            foreach ($array[$name] as $value) {
+                ?>
+    <small class="text-muted"><?php echo $value ?></small>
+    <?php
+}
+        }
+        ?> </div> <?php
+}
 }

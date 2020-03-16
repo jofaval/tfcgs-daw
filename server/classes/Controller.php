@@ -110,9 +110,9 @@ class Controller
                     'regla' => 'no-empty,password',
                 ),
             );
-            $validation = $validation->rules($regla, $_REQUEST);
+            $validations = $validation->rules($regla, $_REQUEST);
 
-            if ($validation === true) {
+            if ($validations === true) {
                 $success = $model->signup(
                     Utils::getCleanedData("firstName"),
                     Utils::getCleanedData("secondName"),
@@ -134,6 +134,7 @@ class Controller
                 <p class='m-0'>Error: We couldn't sign you up.</p>\n
                 </div>";
             } else {
+                $viewParams = array_merge($viewParams, $validation->mensaje);
                 $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
                 <p class='m-0'>Error: There's validation errors.</p>\n
                 </div>";
