@@ -24,7 +24,12 @@
 </head>
 
 <body class="text-light">
-
+    <div class="position-absolute w-100 h-100 d-flex justify-content-center align-items-center" id="noScript">
+        <div class="main m-5 p-5 w-75 h-75 rounded shadow bg-white d-flex justify-content-center align-items-center">
+            <h1>Para el correcto funcionamiento de esta aplicación se <span class="font-weight-bold">JavaScript</span>.
+                <br>Sentimos las molestias</h1>
+        </div>
+    </div>
     <?php if ($showHeader): ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light flex-wrap" style="transition: all 0.2s ease-in-out 0s;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08"
