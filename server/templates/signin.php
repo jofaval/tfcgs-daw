@@ -10,7 +10,7 @@
 <?php $loadLogin = Utils::exists("login")?>
 
 <?php ob_start()?>
-<div class="h-50 m-auto w-50 shadow d-flex text-dark" id="signFormsContainer">
+<div class="h-75 m-auto w-50 shadow d-flex text-dark" id="signFormsContainer">
     <form action="/daw/sign-in/" method="POST" id="registerForm"
         class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1>Welcome back!</h1>
