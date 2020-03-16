@@ -26,7 +26,7 @@ if ($ctl == "") {
 }
 
 if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls)) {
-    header("Location: ./not-user-agent/");
+    header("Location: /daw/not-user-agent/");
 }
 
 /*
@@ -62,20 +62,20 @@ if (isset($_REQUEST["ctl"])) {
     if (isset($map[$ctl])) {
         $ruta = $ctl;
     } else {
-        //header('Location: ../no-action/');
+        header('Location: /daw/no-action/');
         exit;
     }
 } else {
     if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
-        header("Location: ./sign-in/");
+        header("Location: /daw/sign-in/");
     } else {
-        header("Location: ./projects/");
+        header("Location: /daw/projects/");
     }
 }
 
 if (!Config::$developmentMode) {
     if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
-        //header('Location: ../not-signed-in/');
+        header('Location: /daw/not-signed-in/');
     }
 }
 
@@ -85,9 +85,9 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
     if ($sessions->getSession("access") >= $controlador['access']) {
         call_user_func(array(new $controlador['controller'], $controlador['action']));
     } else {
-        //header('Location: ../access/');
+        header('Location: /daw/access/');
     }
 } else {
-    //header('Location: ../execution-error/');
+    header('Location: /daw/execution-error/');
     exit;
 }

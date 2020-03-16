@@ -9,6 +9,7 @@ $map = [
     'gantt' => array('controller' => 'Controller', 'action' => 'gantt', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'signin' => array('controller' => 'Controller', 'action' => 'signin', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'signup' => array('controller' => 'Controller', 'action' => 'signup', 'access' => Config::$ACCESS_LEVEL_GUEST),
+    'signout' => array('controller' => 'Controller', 'action' => 'signout', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'signinFunctionality' => array('controller' => 'Controller', 'action' => 'signinFunctionality', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'getEventsFromMonth' => array('controller' => 'Controller', 'action' => 'getEventsFromMonth', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'test' => array('controller' => 'Controller', 'action' => 'test', 'access' => Config::$ACCESS_LEVEL_GUEST),

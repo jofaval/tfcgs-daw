@@ -32,6 +32,14 @@ class Controller
         require __DIR__ . '/../templates/gantt.php';
     }
 
+    public function signout()
+    {
+        $sessions = Sessions::getInstance();
+        $sessions->setSession("access", 0);
+        $sessions->deleteSession("username");
+        header("Location: /daw/sign-in/");
+    }
+
     public function signin()
     {
         $result = false;
@@ -96,7 +104,7 @@ class Controller
                 //echo "Se envia";
                 //var_dump($_REQUEST);
                 if ($success) {
-                    header("Location: ../sign-in/");
+                    header("Location: /daw/sign-in/");
                 }
             } else {
                 //var_dump($validation);
@@ -122,7 +130,7 @@ class Controller
                 $sessions->setSession("username", $username);
                 $sessions->setSession("access", $signin[0]["type"]);
                 $sessions->setSession("userImg", $signin[0]["image"]);
-                header("Location: ../projects/");
+                header("Location: /daw/projects/");
             }
         }
 
