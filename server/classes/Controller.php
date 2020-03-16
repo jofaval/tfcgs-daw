@@ -112,6 +112,12 @@ class Controller
             );
             $validations = $validation->rules($regla, $_REQUEST);
 
+            $viewParams["signupFirstName"] = Utils::getCleanedData("firstName");
+            $viewParams["signupSecondName"] = Utils::getCleanedData("secondName");
+            $viewParams["signupUsername"] = Utils::getCleanedData("email");
+            $viewParams["signupPassword"] = Utils::getCleanedData("username");
+            $viewParams["signupEmail"] = Utils::getCleanedData("password");
+
             if ($validations === true) {
                 $success = $model->signup(
                     Utils::getCleanedData("firstName"),
@@ -120,12 +126,6 @@ class Controller
                     Utils::getCleanedData("username"),
                     Utils::getCleanedData("password"),
                 );
-
-                $viewParams["signupFirstName"] = Utils::getCleanedData("firstName");
-                $viewParams["signupSecondName"] = Utils::getCleanedData("secondName");
-                $viewParams["signupUsername"] = Utils::getCleanedData("email");
-                $viewParams["signupPassword"] = Utils::getCleanedData("username");
-                $viewParams["signupEmail"] = Utils::getCleanedData("password");
 
                 if ($success) {
                     header("Location: /daw/sign-in/");
