@@ -15,17 +15,22 @@ body {
     overflow: hidden;
 }
 
+#noScript {
+    z-index: 5 !important;
+    margin: 0 !important;
+}
+
 nav {
     background-color: #343a40 !important;
     color: rgba(255, 255, 255, 0.75) !important;
 }
 
-nav.navbar, nav.navbar+section {
+nav.navbar, .breadcrumbContainer {
     position: relative !important;
     z-index: 20 !important;
 }
 
-nav.navbar+section {
+.breadcrumbContainer {
     z-index: 19 !important;
 }
 
