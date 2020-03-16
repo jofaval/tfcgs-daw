@@ -16,11 +16,13 @@
         class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1>Welcome back!</h1>
         <div class="md-form w-100">
-            <input type="text" class="form-control" id="username" name="username" required>
+            <input type="text" class="form-control" id="username" name="username"
+                value="<?php echo $viewParams["signinUsername"]; ?>" required>
             <label for="username">Username</label>
         </div>
         <div class="md-form input-group w-100">
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control" id="password" name="password"
+                value="<?php echo $viewParams["signinUsername"]; ?>" required>
             <label for="password">Password</label>
             <div class="input-group-append">
                 <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
@@ -39,29 +41,33 @@
             <div class="col">
                 <!-- First name -->
                 <div class="md-form">
-                    <input type="text" name="firstName" id="firstName" value="Pepe" class="form-control" required>
+                    <input type="text" name="firstName" id="firstName"
+                        value="<?php echo $viewParams["signupFirstName"]; ?>" class="form-control" required>
                     <label for="firstName">First name</label>
                 </div>
             </div>
             <div class="col">
                 <!-- Last name -->
                 <div class="md-form">
-                    <input type="text" name="secondName" id="secondName" value="Apellidos" class="form-control"
-                        required>
+                    <input type="text" name="secondName" id="secondName"
+                        value="<?php echo $viewParams["signupSecondName"]; ?>" class="form-control" required>
                     <label for="secondName">Last name</label>
                 </div>
             </div>
         </div>
         <div class="md-form w-100">
-            <input type="email" class="form-control" id="email" name="email" value="email@dominio.com" required>
+            <input type="email" class="form-control" id="email" name="email"
+                value="<?php echo $viewParams["signupEmail"]; ?>" required>
             <label for="email">E-Mail</label>
         </div>
         <div class="md-form w-100">
-            <input type="text" class="form-control" id="username" name="username" value="usuario" required>
+            <input type="text" class="form-control" id="username" name="username"
+                value="<?php echo $viewParams["signupUsername"]; ?>" required>
             <label for="username">Username</label>
         </div>
         <div class="md-form input-group w-100">
-            <input type="password" class="form-control" id="password" name="password" value="test" required>
+            <input type="password" class="form-control" id="password" name="password"
+                value="<?php echo $viewParams["signupPassword"]; ?>" required>
             <label for="password">Password</label>
             <div class="input-group-append">
                 <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">

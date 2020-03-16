@@ -56,11 +56,14 @@ class Model extends PDO
         return $this->cudOperation($queryString, $params);
     }
 
-    public function signin($username)
+    public function signin($username, $password)
     {
         $params = ["username" => $username];
-        $signin = $this->query("SELECT type, password, image FROM users WHERE username=:username or email=:username", $params);
-        return $signin;
+        $signin = $this->query("SELECT password FROM users WHERE username=:username", $params);
+        if ($signin[0]["password"] == Cryptography::blowfishCrypt($password, $username)) {
+            return $signin;
+        }
+        return false;
     }
 
     public function signup($firstName, $secondName, $email, $username, $password)

@@ -45,9 +45,19 @@ class Controller
         $result = false;
         $viewParams = [
             "error" => "",
+            "signinUsername" => "",
+            "signinPassword" => "",
+            "signupFirstName" => "",
+            "signupSecondName" => "",
+            "signupUsername" => "",
+            "signupPassword" => "",
+            "signupEmail" => "",
         ];
         if (Utils::exists("signin")) {
             $result = ExceptionUtils::tryCatch("Controller", "signinFunctionality");
+
+            $viewParams["signinUsername"] = Utils::getCleanedData("username");
+            $viewParams["signinPassword"] = Utils::getCleanedData("password");
 
             if ($result) {
                 header("Location: ../projects/");
@@ -62,12 +72,21 @@ class Controller
 
     public function signup()
     {
+        $viewParams = [
+            "error" => "",
+            "signinUsername" => "",
+            "signinPassword" => "",
+            "signupFirstName" => "",
+            "signupSecondName" => "",
+            "signupUsername" => "",
+            "signupPassword" => "",
+            "signupEmail" => "",
+        ];
+
         if (Utils::exists("signup")) {
             $model = Model::getInstance();
             $validation = Validation::getInstance();
             $sessions = Sessions::getInstance();
-
-            //header("Location: ../sign-in/#login");
 
             $regla = array(
                 array(
@@ -93,10 +112,7 @@ class Controller
             );
             $validation = $validation->rules($regla, $_REQUEST);
 
-            //echo "Llega";
-
             if ($validation === true) {
-                //echo "Se valida";
                 $success = $model->signup(
                     Utils::getCleanedData("firstName"),
                     Utils::getCleanedData("secondName"),
@@ -104,8 +120,13 @@ class Controller
                     Utils::getCleanedData("username"),
                     Utils::getCleanedData("password"),
                 );
-                //echo "Se envia";
-                //var_dump($_REQUEST);
+
+                $viewParams["signupFirstName"] = Utils::getCleanedData("firstName");
+                $viewParams["signupSecondName"] = Utils::getCleanedData("secondName");
+                $viewParams["signupUsername"] = Utils::getCleanedData("email");
+                $viewParams["signupPassword"] = Utils::getCleanedData("username");
+                $viewParams["signupEmail"] = Utils::getCleanedData("password");
+
                 if ($success) {
                     header("Location: /daw/sign-in/");
                 }
@@ -133,11 +154,10 @@ class Controller
         $validation = true;
 
         if ($validation === true) {
-            $signin = $model->signin($username);
-            if (Cryptography::blowfishCrypt($password, $username) == $signin[0]["password"]) {
+            $signin = $model->signin($username, $password);
+            if ($signin) {
                 $sessions->setSession("username", $username);
-                $sessions->setSession("access", $signin[0]["type"]);
-                $sessions->setSession("userImg", $signin[0]["image"]);
+                $sessions->setSession("access", $signin[0]["level"]);
                 header("Location: /daw/projects/");
             }
         }
