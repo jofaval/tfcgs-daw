@@ -43,15 +43,18 @@ class Controller
     public function signin()
     {
         $result = false;
+        $viewParams = [
+            "error" => "",
+        ];
         if (Utils::exists("signin")) {
             $result = ExceptionUtils::tryCatch("Controller", "signinFunctionality");
 
             if ($result) {
                 header("Location: ../projects/");
             } else {
-                echo "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>";
-                echo "<p class='m-0'>Error: We couldn't sign you in.</p>\n";
-                echo "</div>";
+                $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>Error: We couldn't sign you in.</p>\n
+                </div>";
             }
         }
         require __DIR__ . '/../templates/signin.php';
@@ -106,8 +109,13 @@ class Controller
                 if ($success) {
                     header("Location: /daw/sign-in/");
                 }
+                $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>Error: We couldn't sign you up.</p>\n
+                </div>";
             } else {
-                //var_dump($validation);
+                $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>Error: There's validation errors.</p>\n
+                </div>";
             }
         }
         require __DIR__ . '/../templates/signin.php';

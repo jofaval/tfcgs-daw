@@ -92,6 +92,8 @@
     </div>
 </div>
 
+<?php echo $viewParams["error"]; ?>
+
 <?php $contenido = ob_get_clean()?>
 
 <?php include_once 'layout.php'?>
