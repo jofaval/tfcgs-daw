@@ -7,15 +7,36 @@ class ExceptionUtils
             if (method_exists($class, $function)) {
                 return call_user_func([new $class, $function]);
             } else {
-                header("Location: ./index.php?ctl=error");
+                header("Location: /daw/error/");
             }
         } catch (Exception $exception) {
             writeToLog("Exception", "Exception happend at " . microtime() . " with message (" . $exception->getMessage() . ")." . PHP_EOL);
-            header("Location: ./index.php?ctl=error");
-            var_dump($e);
+
+            if (!Config::$developmentMode) {
+                header("Location: /daw/error/");
+            } else {
+                echo "error";
+                echo "<style>
+                    * { color: #ccc !important; }
+                    </style>";
+                echo "<pre>";
+                var_dump($exception);
+                echo "</pre>";
+            }
         } catch (Error $e) {
             writeToLog("Error", "Error with number " . ($errno) . " happend at " . microtime() . " with message (" . ($e->$errstr) . ") inside \"" . ($e->$errfile) . "\" file at line " . ($e . $errline) . "." . PHP_EOL);
-            header("Location: ./index.php?ctl=error");
+
+            if (!Config::$developmentMode) {
+                header("Location: /daw/error/");
+            } else {
+                echo "error";
+                echo "<style>
+                    * { color: #ccc !important; }
+                    </style>";
+                echo "<pre>";
+                var_dump($e);
+                echo "</pre>";
+            }
         }
 
         return null;
@@ -37,11 +58,33 @@ if (!Config::$developmentMode) {
 function expcetionHandler($exception)
 {
     writeToLog("Exception", "Exception happend at " . microtime() . " with message (" . $exception->getMessage() . ")." . PHP_EOL);
-    header("Location: ./index.php?ctl=error");
+
+    if (!Config::$developmentMode) {
+        header("Location: /daw/error/");
+    } else {
+        echo "error";
+        echo "<style>
+            * { color: #ccc !important; }
+            </style>";
+        echo "<pre>";
+        var_dump($exception);
+        echo "</pre>";
+    }
 }
 
 function errorAction($errno = -1, $errstr = "", $errfile = "", $errline = 0)
 {
     writeToLog("Error", "Error with number " . ($errno) . " happend at " . microtime() . " with message (" . ($errstr) . ") inside \"" . ($errfile) . "\" file at line " . ($errline) . "." . PHP_EOL);
-    header("Location: ./index.php?ctl=error");
+
+    if (!Config::$developmentMode) {
+        header("Location: /daw/error/");
+    } else {
+        echo "error";
+        echo "<style>
+            * { color: #ccc !important; }
+            </style>";
+        echo "<pre>";
+        var_dump("Error with number " . ($errno) . " happend at " . microtime() . " with message (" . ($errstr) . ") inside \"" . ($errfile) . "\" file at line " . ($errline) . ".");
+        echo "</pre>";
+    }
 }
