@@ -83,7 +83,7 @@
     </main>
 
     <?php if ($showFooter): ?>
-    <footer class="footer py-3 bg-light d-none d-md-block fixed-bottom">
+    <footer class="footer py-3 bg-light d-none d-sm-block fixed-bottom">
         <div class="container text-align-right">
             <span class="text-dark">- Developed by <a class="font-weight-bold text-dark"
                     href="jofaval@iesabastos.org">Pepe
