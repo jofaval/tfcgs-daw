@@ -42,16 +42,16 @@ class Controller
 
     public function signin()
     {
-        $result = false;
+        $result = "ewgwegwe";
         $viewParams = [
             "error" => "",
             "signinUsername" => "",
             "signinPassword" => "",
-            "signupFirstName" => "",
-            "signupSecondName" => "",
-            "signupUsername" => "",
-            "signupPassword" => "",
-            "signupEmail" => "",
+            "signupFirstName" => "Pepe",
+            "signupSecondName" => "Fabra",
+            "signupUsername" => "jofaval",
+            "signupPassword" => "test",
+            "signupEmail" => "test1@test.test",
         ];
         if (Utils::exists("signin")) {
             $result = ExceptionUtils::tryCatch("Controller", "signinFunctionality");
@@ -59,28 +59,52 @@ class Controller
             $viewParams["signinUsername"] = Utils::getCleanedData("username");
             $viewParams["signinPassword"] = Utils::getCleanedData("password");
 
-            if ($result) {
-                header("Location: ../projects/");
+            if ($result !== false) {
+                header("Location: /daw/projects/");
             } else {
                 $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
                 <p class='m-0'>Error: We couldn't sign you in.</p>\n
                 </div>";
             }
         }
+
         require __DIR__ . '/../templates/signin.php';
+    }
+
+    public function signinFunctionality()
+    {
+        $model = Model::getInstance();
+        $validation = Validation::getInstance();
+        $sessions = Sessions::getInstance();
+
+        $username = Utils::getCleanedData("username");
+        $password = Utils::getCleanedData("password");
+        $validation = $validation->rules($regla, ["username" => $username, "password" => $password]);
+        $validation = true;
+
+        if ($validation === true) {
+            $signin = $model->signin($username, $password);
+            if ($signin) {
+                $sessions->setSession("username", $username);
+                $sessions->setSession("access", $signin[0]["level"]);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function signup()
     {
         $viewParams = [
             "error" => "",
-            "signinUsername" => "",
-            "signinPassword" => "",
-            "signupFirstName" => "",
-            "signupSecondName" => "",
-            "signupUsername" => "",
-            "signupPassword" => "",
-            "signupEmail" => "",
+            "signinUsername" => "jofaval",
+            "signinPassword" => "test",
+            "signupFirstName" => "Pepe",
+            "signupSecondName" => "Fabra",
+            "signupUsername" => "jofaval",
+            "signupPassword" => "test",
+            "signupEmail" => "test1@test.test",
         ];
 
         if (Utils::exists("signup")) {
@@ -141,29 +165,6 @@ class Controller
             }
         }
         require __DIR__ . '/../templates/signin.php';
-    }
-
-    public function signinFunctionality()
-    {
-        $model = Model::getInstance();
-        $validation = Validation::getInstance();
-        $sessions = Sessions::getInstance();
-
-        $username = Utils::getCleanedData("inputUsername");
-        $password = Utils::getCleanedData("inputPassword");
-        $validation = $validation->rules($regla, ["username" => $username, "password" => $password]);
-        $validation = true;
-
-        if ($validation === true) {
-            $signin = $model->signin($username, $password);
-            if ($signin) {
-                $sessions->setSession("username", $username);
-                $sessions->setSession("access", $signin[0]["level"]);
-                header("Location: /daw/projects/");
-            }
-        }
-
-        return false;
     }
 
     public function getEventsFromMonth()
