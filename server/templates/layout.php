@@ -4,7 +4,8 @@
 <?php $username = $sessions->getSession("username");?>
 
 <head>
-    <title><?php echo $title; ?></title>
+    <title>Origin - <?php echo $title; ?></title>
+    <link rel="icon" href="https://www.mclibre.org/consultar/htmlcss/varios/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
     /*Avoid flashing the user with white background*/
