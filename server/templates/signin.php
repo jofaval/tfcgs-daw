@@ -21,7 +21,7 @@
         </div>
         <div class="md-form input-group w-100">
             <input type="password" class="form-control" id="password" name="password" required
-                value="<?php echo $viewParams["signinUsername"]; ?>">
+                value="<?php echo $viewParams["signinPassword"]; ?>">
             <label for="password">Password</label>
             <div class="input-group-append">
                 <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
