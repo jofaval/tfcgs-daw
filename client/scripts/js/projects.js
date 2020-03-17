@@ -35,7 +35,7 @@ function createProjectSection(parent, title) {
 }
 
 var container = $(
-    `<div class="h-100 col-md-9" id="projectsContainer" style="overflow: auto;"></div>`
+    `<div class="col-md-9" id="projectsContainer" style="overflow: auto;"></div>`
 );
 $("#mainProjectPanel").append(container);
 createProjectSection(container, "Bookmarked");

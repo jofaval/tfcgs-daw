@@ -21,8 +21,7 @@ $breadcrumb = [
 ?>
 
 <?php ob_start()?>
-
-<div class="container h-100" id="mainProjectPanel">
+<div class="container h-100 d-block flex-row d-sm-flex container px-0 px-sm-3 h-100" id="mainProjectPanel">
     <aside class="col-md-3 p-3 px-4">
         <div class="list-group list-group-flush shadow">
             <a href="#" class="list-group-item active waves-effect">
