@@ -52,9 +52,9 @@ if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ct
 ); */
 
 if (Config::$developmentMode) {
-    $map["test"] = array('controller' => 'AjaxController', 'action' => 'test', 'access' => Config::$ACCESS_LEVEL_GUEST);
-    $sessions->setSession("access", 20);
-    $sessions->setSession("username", "test");
+    /* $map["test"] = array('controller' => 'AjaxController', 'action' => 'test', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$sessions->setSession("access", 20);
+$sessions->setSession("username", "test"); */
 }
 
 // Parseo de la ruta
