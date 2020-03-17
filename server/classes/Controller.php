@@ -37,7 +37,7 @@ class Controller
         $sessions = Sessions::getInstance();
         $sessions->setSession("access", 0);
         $sessions->deleteSession("username");
-        header("Location: /daw/sign-in/");
+        header("Location: /daw/signin/");
     }
 
     public function signin()
