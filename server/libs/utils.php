@@ -63,4 +63,11 @@ if (isset($array[$name])) {
         }
         ?> </div> <?php
 }
+
+    public function varDumpData($data)
+    {
+        echo "<pre>";
+        var_dump($data);
+        echo "</pre>";
+    }
 }
