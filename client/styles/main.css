@@ -56,7 +56,7 @@ main {
 
 @media (min-width: 576px) {
     main {
-        height: calc(100vh - 175px) !important;
+        height: calc(100vh - 127px) !important;
     }
 }
 
