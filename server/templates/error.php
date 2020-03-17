@@ -1,5 +1,5 @@
 <!--Page configuration-->
-<?php $optionalCSS = [];?>
+<?php $optionalCSS = ["message.css"];?>
 <?php $optionalScripts = [];?>
 <?php $title = "Error";?>
 <?php $mainClasses = "";?>
@@ -18,6 +18,7 @@
                     Oops!</h1>
                 <h2>
                     An error has occured</h2>
+                <h4><?php echo preg_replace("/\_/", " ", Utils::getCleanedData("message")); ?></h4>
                 <div class="error-details">
                     Please, go back and <a href="mailto:admin@iesabastos.org">contact us</a> if it happens
                     again!

@@ -1,5 +1,5 @@
 <!--Page configuration-->
-<?php $optionalCSS = [];?>
+<?php $optionalCSS = ["message.css"];?>
 <?php $optionalScripts = [];?>
 <?php $title = "Error";?>
 <?php $mainClasses = "";?>

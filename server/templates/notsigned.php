@@ -1,5 +1,5 @@
 <!--Page configuration-->
-<?php $optionalCSS = ["floating-label.css", "inputs.css"];?>
+<?php $optionalCSS = ["message.css"];?>
 <?php $optionalScripts = [];?>
 <?php $title = "LogIn";?>
 <?php $mainClasses = "";?>
@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="notsigned-template text-center text-light">
                 <h1>
-                    You're not signin!</h1>
+                    You're not signed in!</h1>
                 <h2>Please <a href="index.php?ctl=signin">signin</a>. </h2>
             </div>
         </div>
