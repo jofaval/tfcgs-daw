@@ -59,7 +59,7 @@ class Model extends PDO
     public function signin($username, $password)
     {
         $params = ["username" => $username];
-        $signin = $this->query("SELECT password FROM users WHERE username=:username", $params);
+        $signin = $this->query("SELECT * FROM users WHERE username=:username", $params);
         if ($signin[0]["password"] == Cryptography::blowfishCrypt($password, $username)) {
             return $signin;
         }
