@@ -1,5 +1,5 @@
 var $dashboard = $(`
-<aside class="col-md-3 p-3 px-4 dashboard">
+<aside class="col-sm-3 p-3 px-4 dashboard">
     <div class="list-group list-group-flush shadow">
         <a href="#" class="list-group-item active waves-effect">
             <i class="fas fa-chart-pie mr-3"></i>Dashboard
@@ -13,10 +13,10 @@ var $dashboardOption = $(`
     Profile
 </a>`);
 
-var $dashboardContainers = $(`<div class="col-md-9" id="dashboardContainers" style="overflow: auto;"></div>`);
+var $dashboardContainers = $(`<div class="col-sm-9 rounded" id="dashboardContainers" style="overflow: auto;"></div>`);
 var $dashboardContainer = $(`<div class="w-100" style="overflow: auto;"></div>`);
 
-var $projectContainer = $(`<div class="projectContainer aqua-gradient rounded shadow mb-4 justify-content-around d-flex flex-wrap"
+var $projectContainer = $(`<div class="projectContainer px-3 aqua-gradient rounded shadow mb-4 justify-content-around d-flex flex-wrap"
 style="max-height: 20rem !important; overflow: hidden;">
 </div>`);
 var $projectContainerTitle = $(`<h6 class="mt-4 projectContainerTitle mb-0 waves-effect text shadow p-2 rounded text-white">&nbsp;<span class="icon float-right"></span></h6>`);
@@ -156,10 +156,12 @@ class View {
     }
 
     hideComponent(component) {
+        //component.fadeOut();
         component.hide();
     }
 
     showComponent(component) {
+        //component.fadeIn();
         component.show();
     }
 }
