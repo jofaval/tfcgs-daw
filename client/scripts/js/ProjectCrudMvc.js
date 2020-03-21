@@ -193,6 +193,7 @@ class Controller {
         </div>
         <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
     </form>`));
+        $(".dashboardOption").first().trigger("click");
     }
 
     addToggleProjectsEvent(title, container) {
@@ -239,7 +240,6 @@ class Controller {
         option.on("click", function () {
             controller.onDashboardOptionClick($(this));
         });
-        option.trigger("click");
 
         return container;
     }
