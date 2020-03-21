@@ -2,29 +2,34 @@
 
 class Projects implements CRUD
 {
-    private $table = "projects";
+    public static $table = "projects";
 
     //Primary Keys
-    private $id;
+    public $id;
 
     //Table Keys
-    private $title;
-    private $description;
+    public $title;
+    public $description;
 
     //Foreign Keys
-    private $creator_id;
+    public $creator_id;
+
+    public function __construct()
+    {
+        $this->fill();
+    }
 
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "title" => $this->$title,
-            "description" => $this->$description,
-            "creator_id" => $this->$creator_id,
+            "title" => $this->title,
+            "description" => $this->description,
+            "creator_id" => $this->creator_id,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert(Projects::$table, $params);
     }
 
     public function update()
@@ -32,16 +37,16 @@ class Projects implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "title" => $this->$title,
-            "description" => $this->$description,
-            "creator_id" => $this->$creator_id,
+            "title" => $this->title,
+            "description" => $this->description,
+            "creator_id" => $this->creator_id,
         ];
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -49,10 +54,10 @@ class Projects implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -60,10 +65,10 @@ class Projects implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -71,27 +76,29 @@ class Projects implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
     {
-        $this->$id = Utils::getCleanedData("id");
-        $this->$title = Utils::getCleanedData("title");
-        $this->$description = Utils::getCleanedData("description");
-        $this->$creator_id = Sessions::getInstance()->getSession("userId");
+        $this->id = Utils::getCleanedData("id");
+        $this->title = Utils::getCleanedData("title");
+        $this->description = Utils::getCleanedData("description");
+        $this->creator_id = Sessions::getInstance()->getSession("userId");
+
+        var_dump($this);
     }
 
     public function parse()
     {
         return json_encode([
-            "id" => $this->$id,
-            "title" => $this->$title,
-            "description" => $this->$description,
-            "creatorId" => $this->$creator_id,
+            "id" => $this->id,
+            "title" => $this->title,
+            "description" => $this->description,
+            "creatorId" => $this->creator_id,
         ]);
     }
 }

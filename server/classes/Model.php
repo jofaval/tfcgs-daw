@@ -7,11 +7,11 @@ class Model extends PDO
 
     public function __construct()
     {
-        $this->conexion = new PDO('mysql:host=' . Config::$mvc_bd_hostname . ';dbname=' . Config::$mvc_bd_nombre . '', Config::$mvc_bd_usuario, Config::$mvc_bd_clave);
+        $this->$conexion = new PDO('mysql:host=' . Config::$mvc_bd_hostname . ';dbname=' . Config::$mvc_bd_nombre . '', Config::$mvc_bd_usuario, Config::$mvc_bd_clave);
         // Realiza el enlace con la BD en utf-8
-        $this->conexion->exec("set names utf8");
-        $this->conexion->exec("SET auto_commit = 0");
-        $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->$conexion->exec("set names utf8");
+        $this->$conexion->exec("SET auto_commit = 0");
+        $this->$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     public static function getInstance()
@@ -29,7 +29,7 @@ class Model extends PDO
 
     public function query($queryString, $params = [])
     {
-        $result = $this->conexion->prepare($queryString);
+        $result = $this->$conexion->prepare($queryString);
 
         $result->execute($params);
         return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -37,7 +37,7 @@ class Model extends PDO
 
     public function cudOperation($insertString, $params = [])
     {
-        $result = $this->conexion->prepare($insertString);
+        $result = $this->$conexion->prepare($insertString);
 
         return $result->execute($params);
     }

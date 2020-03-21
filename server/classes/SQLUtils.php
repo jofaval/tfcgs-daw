@@ -153,11 +153,15 @@ class SQLUtils
 
             $paramKeyNames = [];
             foreach ($params as $key => $value) {
-                $paramKeyNames = $key;
+                $paramKeyNames[] = $key;
             }
 
-            $queryString .= "(" . $paramKeyNames . join(", ") . ")";
-            $queryString .= "VALUES (:" . $paramKeyNames . join(", :") . ")";
+            var_dump($paramKeyNames . join(", "));
+
+            $queryString .= "(" . join(", ", $paramKeyNames) . ")";
+            $queryString .= " VALUES (:" . join(", :", $paramKeyNames) . ")";
+
+            var_dump($queryString);
 
             $queryAction = $this->$model->$conexion->prepare($queryString);
 
@@ -165,7 +169,7 @@ class SQLUtils
                 $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
             }
 
-            $result = $queryString->execute();
+            $result = $queryAction->execute();
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
