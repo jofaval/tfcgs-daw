@@ -188,8 +188,8 @@ class Controller {
             <label for="title">Title</label>
         </div>
         <div class="md-form">
-        <textarea class="md-textarea form-control" placeholder="" id="desc" name="desc"></textarea>
-        <label for="desc">Description</label>
+        <textarea class="md-textarea form-control" placeholder="" id="description" name="description"></textarea>
+        <label for="description">Description</label>
         </div>
         <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
     </form>`));
