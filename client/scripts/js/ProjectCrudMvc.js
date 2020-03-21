@@ -182,7 +182,7 @@ class Controller {
 
         var create = this.createDashboardOption(this, "Create");
 
-        create.append($(`<form action="" class="col-sm-10 bg-white p-3 mx-auto" method="POST">
+        create.append($(`<form action="/daw/index.php?ctl=createProjects" class="col-sm-10 bg-white p-3 mx-auto" method="POST">
         <div class="md-form">
             <input type="text" placeholder="" id="title" name="title" class="form-control">
             <label for="title">Title</label>
@@ -248,7 +248,9 @@ class Controller {
         this.view.hideComponent($(".dashboardContainer"));
         this.view.showComponent($("#" + dashboardOption.prop("dashboard-container")));
         $(".dashboardOption.btn-primary").removeClass("btn-primary");
+        $(".dashboardOption.btn-primary").addClass("btn-white");
         dashboardOption.addClass("btn-primary");
+        dashboardOption.removeClass("btn-white");
     }
 }
 
