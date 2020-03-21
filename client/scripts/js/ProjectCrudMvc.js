@@ -10,7 +10,7 @@ var $dashboardOption = $(`
     Profile
 </a>`);
 
-var $dashboardContainers = $(`<div class="col-sm-12 mb-auto mt-3" id="dashboardContainers" style="overflow: auto;"></div>`);
+var $dashboardContainers = $(`<div class="w-100 mb-auto mt-3" id="dashboardContainers" style="overflow: auto;"></div>`);
 var $dashboardContainer = $(`<div class="w-100" style="overflow: auto;"></div>`);
 
 var $projectContainer = $(`<div class="projectContainer px-3 mb-4 aqua-gradient rounded shadow justify-content-around d-flex flex-wrap"
@@ -112,6 +112,7 @@ class View {
 
         clonedOption.text(name);
         clonedOption.prop("dashboard-container", `${name}`);
+        clonedOption.addClass("dashboardOption");
 
         $dashboard.children(".btn-group").append(clonedOption);
 
@@ -181,7 +182,7 @@ class Controller {
 
         var create = this.createDashboardOption(this, "Create");
 
-        create.append($(`<form action="bg-white" class="col-sm-10 bg-white p-3 mx-auto" method="POST">
+        create.append($(`<form action="" class="col-sm-10 bg-white p-3 mx-auto" method="POST">
         <div class="md-form">
             <input type="text" placeholder="" id="title" name="title" class="form-control">
             <label for="title">Title</label>
@@ -236,12 +237,18 @@ class Controller {
         var container = controllerView.visualizeDashboardContainer(name);
 
         option.on("click", function () {
-            controllerView.hideComponent($(".dashboardContainer"));
-            controllerView.showComponent($("#" + $(this).prop("dashboard-container")));
+            controller.onDashboardOptionClick($(this));
         });
         option.trigger("click");
 
         return container;
+    }
+
+    onDashboardOptionClick(dashboardOption) {
+        this.view.hideComponent($(".dashboardContainer"));
+        this.view.showComponent($("#" + dashboardOption.prop("dashboard-container")));
+        $(".dashboardOption.btn-primary").removeClass("btn-primary");
+        dashboardOption.addClass("btn-primary");
     }
 }
 
