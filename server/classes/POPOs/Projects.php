@@ -1,102 +1,97 @@
 <?php
 
-class Projects implements CRUD 
+class Projects implements CRUD
 {
-	private $table = "projects";
+    private $table = "projects";
 
-	//Primary Keys
-	private $id;
+    //Primary Keys
+    private $id;
 
-	//Table Keys
-	private $title;
-	private $description;
+    //Table Keys
+    private $title;
+    private $description;
 
-	//Foreign Keys
-	private $creator_id;
+    //Foreign Keys
+    private $creator_id;
 
-	public function create()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function create()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"id" => $this->$id,
-			"title" => $this->$title,
-			"description" => $this->$description,
-			"creator_id" => $this->$creator_id,
-		];
+        $params = [
+            "title" => $this->$title,
+            "description" => $this->$description,
+            "creator_id" => $this->$creator_id,
+        ];
 
-		return $sqlUtils->insert($params);
-	}
+        return $sqlUtils->insert($params);
+    }
 
-	public function update()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function update()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$toModify = [
-			"title" => $this->$title,
-			"description" => $this->$description,
-			"creator_id" => $this->$creator_id,
-		];
+        $toModify = [
+            "title" => $this->$title,
+            "description" => $this->$description,
+            "creator_id" => $this->$creator_id,
+        ];
 
-		$identificationParams = [
-			"id" => $this->$id,
-		];
+        $identificationParams = [
+            "id" => $this->$id,
+        ];
 
-		return $sqlUtils->update($this->$table, $toModify, $identificationParams);
-	}
+        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+    }
 
-	public function delete()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function delete()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"id" => $this->$id,
-		];
+        $params = [
+            "id" => $this->$id,
+        ];
 
-		return $sqlUtils->delete($this->$table, $params);
-	}
+        return $sqlUtils->delete($this->$table, $params);
+    }
 
-	public function query()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function query()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"id" => $this->$id,
-		];
+        $params = [
+            "id" => $this->$id,
+        ];
 
-		return $sqlUtils->query($this->$table, $params);
-	}
+        return $sqlUtils->query($this->$table, $params);
+    }
 
-	public function enable()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function enable()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$identificationParams = [
-			"id" => $this->$id,
-		];
+        $identificationParams = [
+            "id" => $this->$id,
+        ];
 
-		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
-	}
+        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+    }
 
+    public function fill()
+    {
+        $this->$id = Utils::getCleanedData("id");
+        $this->$title = Utils::getCleanedData("title");
+        $this->$description = Utils::getCleanedData("description");
+        $this->$creator_id = Sessions::getInstance()->getSession("userId");
+    }
 
-	public function fill()
-	{
-		$this->$id = Utils::getCleanedData("id");
-		$this->$title = Utils::getCleanedData("title");
-		$this->$description = Utils::getCleanedData("description");
-		$this->$creator_id = Utils::getCleanedData("creatorId");
-	}
-
-
-	public function parse()
-	{
-		return json_encode([
-			"id" => $this->$id,
-			"title" => $this->$title,
-			"description" => $this->$description,
-			"creatorId" => $this->$creator_id,
-		]);
-	}
-} 
-
-
+    public function parse()
+    {
+        return json_encode([
+            "id" => $this->$id,
+            "title" => $this->$title,
+            "description" => $this->$description,
+            "creatorId" => $this->$creator_id,
+        ]);
+    }
+}

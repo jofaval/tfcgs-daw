@@ -87,6 +87,7 @@ class Controller
             if ($signin) {
                 $sessions->setSession("username", $username);
                 $sessions->setSession("access", $signin[0]["level"]);
+                $sessions->setSession("userId", $signin[0]["id"]);
                 return true;
             }
         }

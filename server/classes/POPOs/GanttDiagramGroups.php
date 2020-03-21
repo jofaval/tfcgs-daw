@@ -85,7 +85,7 @@ class GanttDiagramGroups implements CRUD
 	public function fill()
 	{
 		$this->$id = Utils::getCleanedData("id");
-		$this->$creator_id = Utils::getCleanedData("creatorId");
+		$this->$creator_id = Sessions::getInstance()->getSession("userId");
 		$this->$title = Utils::getCleanedData("title");
 		$this->$creation_date = Utils::getCleanedData("creationDate");
 		$this->$gantt_diagram_id = Utils::getCleanedData("ganttDiagramId");

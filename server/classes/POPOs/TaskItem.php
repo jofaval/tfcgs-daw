@@ -80,7 +80,7 @@ $this->$title = Utils::getCleanedData("title");
 $this->$description = Utils::getCleanedData("description");
 $this->$creation_date = Utils::getCleanedData("creationDate");
 
-$this->$creator_id = Utils::getCleanedData("creatorId");
+$this->$creator_id = Sessions::getInstance()->getSession("userId");
 $this->$task_list_id = Utils::getCleanedData("taskListId");
 $this->$order_criteria = Utils::getCleanedData("orderCriteria");
 }

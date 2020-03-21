@@ -96,7 +96,7 @@ class TaskListItemListItems implements CRUD
 		$this->$order = Utils::getCleanedData("order");
 		$this->$description = Utils::getCleanedData("description");
 		$this->$creation_date = Utils::getCleanedData("creationDate");
-		$this->$creator_id = Utils::getCleanedData("creatorId");
+		$this->$creator_id = Sessions::getInstance()->getSession("userId");
 	}
 
 

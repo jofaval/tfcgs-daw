@@ -95,7 +95,7 @@ class GanttDiagramGroupTasks implements CRUD
 	{
 		$this->$id = Utils::getCleanedData("id");
 		$this->$gantt_diagram_group_id = Utils::getCleanedData("ganttDiagramGroupId");
-		$this->$creator_id = Utils::getCleanedData("creatorId");
+		$this->$creator_id = Sessions::getInstance()->getSession("userId");
 		$this->$title = Utils::getCleanedData("title");
 		$this->$creation_date = Utils::getCleanedData("creationDate");
 		$this->$start_date = Utils::getCleanedData("startDate");

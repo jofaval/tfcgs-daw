@@ -88,7 +88,7 @@ class TaskLists implements CRUD
 		$this->$project_id = Utils::getCleanedData("projectId");
 		$this->$title = Utils::getCleanedData("title");
 		$this->$creation_date = Utils::getCleanedData("creationDate");
-		$this->$creator_id = Utils::getCleanedData("creatorId");
+		$this->$creator_id = Sessions::getInstance()->getSession("userId");
 	}
 
 

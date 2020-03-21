@@ -89,7 +89,7 @@ class ProjectDiary implements CRUD
 	{
 		$this->$day = Utils::getCleanedData("day");
 		$this->$project_id = Utils::getCleanedData("projectId");
-		$this->$creator_id = Utils::getCleanedData("creatorId");
+		$this->$creator_id = Sessions::getInstance()->getSession("userId");
 		$this->$content = Utils::getCleanedData("content");
 		$this->$creation_date = Utils::getCleanedData("creationDate");
 	}
