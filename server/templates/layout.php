@@ -15,11 +15,11 @@
     }
     </style>
     <?php foreach (Config::$mvc_vis_css as $css_link): ?>
-    <link rel="stylesheet" type="text/css" href="../styles/<?php echo $css_link ?>" />
+    <link rel="stylesheet" type="text/css" href="/daw/styles/<?php echo $css_link ?>" />
     <?php endforeach;?>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <?php foreach ($optionalCSS as $css_link): ?>
-    <link rel="stylesheet" type="text/css" href="../styles/<?php echo $css_link ?>" />
+    <link rel="stylesheet" type="text/css" href="/daw/styles/<?php echo $css_link ?>" />
     <?php endforeach;?>
 
 </head>
@@ -48,18 +48,20 @@
             style="transition: all 0.2s ease-in-out 0s;">
             <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
                 <li class="nav-item active" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link" href="../projects/" style="transition: all 0.2s ease-in-out 0s;">Schedules<span
-                            class="sr-only" style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
+                    <a class="nav-link" href="/daw/projects/"
+                        style="transition: all 0.2s ease-in-out 0s;">Schedules<span class="sr-only"
+                            style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
                 </li>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link selected" href="../projects/"
+                    <a class="nav-link selected" href="/daw/projects/"
                         style="transition: all 0.2s ease-in-out 0s;">Projects</a>
                 </li>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link selected" href="../admin/" style="transition: all 0.2s ease-in-out 0s;">Admin</a>
+                    <a class="nav-link selected" href="/daw/admin/"
+                        style="transition: all 0.2s ease-in-out 0s;">Admin</a>
                 </li>
                 <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link" href="../signout/" style="transition: all 0.2s ease-in-out 0s;">Signout</a>
+                    <a class="nav-link" href="/daw/signout/" style="transition: all 0.2s ease-in-out 0s;">Signout</a>
                 </li>
             </ul>
         </div>
@@ -102,10 +104,10 @@
 </body>
 
 <?php foreach (Config::$mvc_vis_scripts as $script_link): ?>
-<script src="../scripts/<?php echo $script_link ?>"></script>
+<script src="/daw/scripts/<?php echo $script_link ?>"></script>
 <?php endforeach;?>
 <?php foreach ($optionalScripts as $script_link): ?>
-<script src="../scripts/<?php echo $script_link ?>"></script>
+<script src="/daw/scripts/<?php echo $script_link ?>"></script>
 <?php endforeach;?>
 
 </html>
