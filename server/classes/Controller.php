@@ -32,6 +32,11 @@ class Controller
         require __DIR__ . '/../templates/gantt.php';
     }
 
+    public function project()
+    {
+        require __DIR__ . '/../templates/project.php';
+    }
+
     public function signout()
     {
         $sessions = Sessions::getInstance();

@@ -6,6 +6,7 @@ $map = [
     'notsigned' => array('controller' => 'Controller', 'action' => 'notsigned', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'notuseragent' => array('controller' => 'Controller', 'action' => 'notuseragent', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'projects' => array('controller' => 'Controller', 'action' => 'projects', 'access' => Config::$ACCESS_LEVEL_GUEST),
+    'project' => array('controller' => 'Controller', 'action' => 'project', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'gantt' => array('controller' => 'Controller', 'action' => 'gantt', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'signin' => array('controller' => 'Controller', 'action' => 'signin', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'signup' => array('controller' => 'Controller', 'action' => 'signup', 'access' => Config::$ACCESS_LEVEL_GUEST),
