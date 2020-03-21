@@ -46,7 +46,7 @@ class Projects implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->table, $toModify, $identificationParams);
+        return $sqlUtils->update(Projects::$table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -57,7 +57,7 @@ class Projects implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->table, $params);
+        return $sqlUtils->delete(Projects::$table, $params);
     }
 
     public function query()
@@ -68,7 +68,7 @@ class Projects implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->table, $params);
+        return $sqlUtils->query(Projects::$table, $params);
     }
 
     public function enable()
@@ -79,7 +79,7 @@ class Projects implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable(Projects::$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
@@ -88,8 +88,6 @@ class Projects implements CRUD
         $this->title = Utils::getCleanedData("title");
         $this->description = Utils::getCleanedData("description");
         $this->creator_id = Sessions::getInstance()->getSession("userId");
-
-        var_dump($this);
     }
 
     public function parse()
