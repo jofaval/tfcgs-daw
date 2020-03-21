@@ -18,7 +18,7 @@ class SQLUtils
             if (count($params) > 0) {
                 $queryString .= " WHERE ";
                 foreach ($params as $key => $value) {
-                    $queryString .= ":$key=$key";
+                    $queryString .= "$key=:$key";
                 }
             }
 
@@ -30,9 +30,10 @@ class SQLUtils
 
             if ($queryAction->execute()) {
                 return $queryAction->fetchAll(PDO::FETCH_ASSOC);
+                $this->$model->commit();
             }
 
-            $this->$model->commit();
+            $this->$model->rollback();
         } catch (PDOException $ex) {
             $this->$model->rollback();
         }
@@ -156,12 +157,8 @@ class SQLUtils
                 $paramKeyNames[] = $key;
             }
 
-            var_dump($paramKeyNames . join(", "));
-
             $queryString .= "(" . join(", ", $paramKeyNames) . ")";
             $queryString .= " VALUES (:" . join(", :", $paramKeyNames) . ")";
-
-            var_dump($queryString);
 
             $queryAction = $this->$model->$conexion->prepare($queryString);
 
