@@ -13,13 +13,13 @@ var $dashboardOption = $(`
     Profile
 </a>`);
 
-var $dashboardContainers = $(`<div class="col-sm-9 rounded" id="dashboardContainers" style="overflow: auto;"></div>`);
+var $dashboardContainers = $(`<div class="col-sm-9 mb-auto mt-3" id="dashboardContainers" style="overflow: auto;"></div>`);
 var $dashboardContainer = $(`<div class="w-100" style="overflow: auto;"></div>`);
 
-var $projectContainer = $(`<div class="projectContainer px-3 aqua-gradient rounded shadow mb-4 justify-content-around d-flex flex-wrap"
+var $projectContainer = $(`<div class="projectContainer px-3 mb-4 aqua-gradient rounded shadow justify-content-around d-flex flex-wrap"
 style="max-height: 20rem !important; overflow: hidden;">
 </div>`);
-var $projectContainerTitle = $(`<h6 class="mt-4 projectContainerTitle mb-0 waves-effect text shadow p-2 rounded text-white">&nbsp;<span class="icon float-right"></span></h6>`);
+var $projectContainerTitle = $(`<h6 class="projectContainerTitle my-0 waves-effect text shadow p-2 rounded text-white">&nbsp;<span class="icon float-right"></span></h6>`);
 
 var $projectCard = $(`
 <div class="card my-3 mx-0" style="width: 12.5rem !important;">
@@ -181,6 +181,20 @@ class Controller {
         this.createProjectSection(projectsContainer, "Yours", newProjects);
         this.createProjectSection(projectsContainer, "Shared", newProjects);
         this.createProjectSection(projectsContainer, "All", newProjects);
+
+        var create = this.createDashboardOption(this, "Create");
+
+        create.append($(`<form action="bg-white" class="col-sm-10 bg-white p-3 mx-auto" method="POST">
+        <div class="md-form">
+            <input type="text" placeholder="" id="title" name="title" class="form-control">
+            <label for="title">Title</label>
+        </div>
+        <div class="md-form">
+        <textarea class="md-textarea form-control" placeholder="" id="desc" name="desc"></textarea>
+        <label for="desc">Description</label>
+        </div>
+        <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
+    </form>`));
     }
 
     addToggleProjectsEvent(title, container) {
