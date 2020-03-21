@@ -1,19 +1,16 @@
 var $dashboard = $(`
-<aside class="col-sm-3 p-3 px-4 dashboard">
-    <div class="list-group list-group-flush shadow">
-        <a href="#" class="list-group-item active waves-effect">
-            <i class="fas fa-chart-pie mr-3"></i>Dashboard
-        </a>
+<aside class="w-100 p-3 px-4 dashboard">
+    <div class="btn-group bg-white rounded shadow">
     </div>
 </aside>`);
 
 var $dashboardOption = $(`
-<a href="#" class="list-group-item list-group-item-action waves-effect">
+<a href="#" class="btn shadow-none waves-effect float-left" style="text-transform: capitalize !important;">
     <i class="fas icon mr-3"></i>
     Profile
 </a>`);
 
-var $dashboardContainers = $(`<div class="col-sm-9 mb-auto mt-3" id="dashboardContainers" style="overflow: auto;"></div>`);
+var $dashboardContainers = $(`<div class="col-sm-12 mb-auto mt-3" id="dashboardContainers" style="overflow: auto;"></div>`);
 var $dashboardContainer = $(`<div class="w-100" style="overflow: auto;"></div>`);
 
 var $projectContainer = $(`<div class="projectContainer px-3 mb-4 aqua-gradient rounded shadow justify-content-around d-flex flex-wrap"
@@ -116,7 +113,7 @@ class View {
         clonedOption.text(name);
         clonedOption.prop("dashboard-container", `${name}`);
 
-        $dashboard.find(".list-group").append(clonedOption);
+        $dashboard.children(".btn-group").append(clonedOption);
 
         return clonedOption;
     }
