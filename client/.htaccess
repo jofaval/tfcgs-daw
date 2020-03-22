@@ -3,7 +3,6 @@ RewriteEngine On
 
 RewriteRule ^admin/$ ./index.php?ctl=admin [L]
 RewriteRule ^projects/$ ./index.php?ctl=projects [L]
-RewriteRule ^gantt/$ ./index.php?ctl=gantt [L]
 RewriteRule ^signin/$ ./index.php?ctl=signin&login=test [L]
 RewriteRule ^signup/$ ./index.php?ctl=signup [L]
 RewriteRule ^signout/$ ./index.php?ctl=signout [L]
@@ -15,7 +14,9 @@ RewriteRule ^execution-error/$ ./index.php?ctl=error&message=Action_could_not_be
 RewriteRule ^access/$ ./index.php?ctl=access [L]
 RewriteRule ^confirm-email/$ ./index.php?ctl=confirmEmail [L]
 
-RewriteRule ^projects/(.*)/$ ./index.php?ctl=project&id=$1 [L]
-RewriteRule ^projects/(.*)/tasklist/(.*)/$ ./index.php?ctl=project&projectId=$1&taskListId=$2 [L]
-RewriteRule ^projects/(.*)/gantt/(.*)/$ ./index.php?ctl=project&projectId=$1&taskListId=$2 [L]
-RewriteRule ^projects/(.*)/diary/(.*)/$ ./index.php?ctl=project&projectId=$1&taskListId=$2 [L]
+#Project Rules
+RewriteRule ^projects/id/(.*)/$ ./index.php?ctl=project&id=$1 [L]
+RewriteRule ^projects/id/(.*)/tasklist/id/(.*)/$ ./index.php?ctl=project&id=$1$element=tasklist&secondaryId=$2 [L]
+RewriteRule ^projects/id/(.*)/gantt/id/(.*)/$ ./index.php?ctl=project&id=$1$element=gantt&secondaryId=$2 [L]
+RewriteRule ^projects/id/(.*)/diary/(.*)/$ ./index.php?ctl=project&id=$1$element=diary&date=$2 [L]
+RewriteRule ^projects/id/(.*)/diary/$ ./index.php?ctl=project&id=$1$element=diary [L]
