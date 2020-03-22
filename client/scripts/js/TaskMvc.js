@@ -100,8 +100,10 @@ class View {
 
     visualizeTaskListItem(taskList, id, title) {
         var clonedTaskListItem = $taskListItem.clone();
+
         clonedTaskListItem.find(".taskListItemTitle").text(title);
         taskList.find(".taskListItemsContainer").append(clonedTaskListItem);
+
         return clonedTaskListItem;
     }
 }
@@ -125,6 +127,7 @@ class Controller {
             };
             //ajax here
             controller.createTaskList(controller, returnedValue);
+            onTaskListCreation(returnedValue);
 
             taskListAddInput.val("");
         });
@@ -143,6 +146,20 @@ class Controller {
         });
     }
 
+    onTaskListCreation(taskList) {
+
+    }
+
+    onTaskListItemCreation(taskList, taskItem) {
+
+    }
+
+    onTaskItemMoved(startingTaskList, endingTaskList, taskItem) {
+        if (startingTaskList != endingTaskList) {
+
+        }
+    }
+
     createTaskList(controller, taskListData) {
         var controllerView = controller.view;
         var taskList = controllerView.visualizeTaskList(taskListData.id, taskListData.title);
@@ -155,6 +172,7 @@ class Controller {
                 "title": taskListInput.val(),
             };
             controller.createTaskItem(controller, taskList, returnedValue);
+            onTaskListItemCreation(taskList, returnedValue);
             taskListInput.val("");
         });
 
@@ -176,8 +194,7 @@ class Controller {
             startingIndex = $(this).index();
 
             console.log("test");
-            startingTaskListParent = $(this).parent().parent().find(".listTitle rounded").text()
-                .trim();
+            startingTaskListParent = $(this).prevAll(".taskList");
         });
 
         taskItem.on("drop", function () {
