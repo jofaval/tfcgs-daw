@@ -112,6 +112,12 @@ class View {
 
         return clonedTaskListItem;
     }
+
+    scrollTo(element) {
+        $(element).get(0).scrollIntoView({
+            behavior: "smooth"
+        });
+    }
 }
 
 class Controller {
@@ -156,8 +162,10 @@ class Controller {
             "items": [],
         };
         //ajax here
-        controller.createTaskList(controller, returnedValue);
+        var taskList = controller.createTaskList(controller, returnedValue);
         controller.onTaskListCreation(returnedValue);
+
+        controller.view.scrollTo(taskListAddInput);
 
         taskListAddInput.val("");
     }
