@@ -26,20 +26,20 @@ main {
     max-width: 18rem;
 }
 
-.taskItemContainer {
+.taskListItemsContainer {
     max-height: 65vh;
     overflow: auto;
 }
 
-.taskItem:hover {
+.taskListItem:hover {
     cursor: pointer;
 }
 
-.taskItem:move {
+.taskListItem:move {
     cursor: cell;
 }
 
-.taskContainer {
+.taskListContainer {
     min-width: 18rem;
     scroll-snap-align-x: center;
 }
