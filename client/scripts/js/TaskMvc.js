@@ -124,20 +124,16 @@ class Controller {
 
         view.initializeView(mainContainer);
 
-        $("#taskListInputCreation").find(".taskListInputBtn").on("click", function () {
-            var taskListAddInput = $("#taskListInputCreation").find(".taskListInput");
-            var returnedValue = {
-                "id": 0,
-                "title": taskListAddInput.val(),
-                "items": [],
-            };
-            //ajax here
-            controller.createTaskList(controller, returnedValue);
-            onTaskListCreation(returnedValue);
-
-            taskListAddInput.val("");
+        $("#taskListInputCreation").find(".taskListInputBtn").on("click", function (event) {
+            var event = event || window.event;
+            controller.taskListInputCreationEvent(event, controller);
         });
-
+        $("#taskListInputCreation").find(".taskListInput").on("keypress", function (event) {
+            var event = event || window.event;
+            if (event.keyCode == 13) {
+                controller.taskListInputCreationEvent(event, controller);
+            }
+        });
 
         $(taskListJSON).each(function () {
             var taskList = controller.createTaskList(controller, this);
@@ -150,6 +146,20 @@ class Controller {
                 });
             }
         });
+    }
+
+    taskListInputCreationEvent(event, controller) {
+        var taskListAddInput = $("#taskListInputCreation").find(".taskListInput");
+        var returnedValue = {
+            "id": 0,
+            "title": taskListAddInput.val(),
+            "items": [],
+        };
+        //ajax here
+        controller.createTaskList(controller, returnedValue);
+        controller.onTaskListCreation(returnedValue);
+
+        taskListAddInput.val("");
     }
 
     onTaskListCreation(taskList) {
@@ -184,7 +194,7 @@ class Controller {
                 "title": taskListInput.val(),
             };
             controller.createTaskItem(controller, taskList, returnedValue);
-            onTaskListItemCreation(taskList, returnedValue);
+            controller.onTaskListItemCreation(taskList, returnedValue);
             taskListInput.val("");
         });
 
@@ -236,7 +246,7 @@ class Controller {
 
             $referenceTaskListItem.before(taskItem);
 
-            onTaskItemMoved({
+            controller.onTaskItemMoved({
                 "startingTaskList": startingTaskListParent,
                 "startingIndex": startingIndex,
                 "endingTaskList": endingTaskListParent,
