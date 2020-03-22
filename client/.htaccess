@@ -14,3 +14,8 @@ RewriteRule ^no-action/$ ./index.php?ctl=error&message=Action_isn\'t_available_a
 RewriteRule ^execution-error/$ ./index.php?ctl=error&message=Action_could_not_be_executed [L]
 RewriteRule ^access/$ ./index.php?ctl=access [L]
 RewriteRule ^confirm-email/$ ./index.php?ctl=confirmEmail [L]
+
+RewriteRule ^projects/(.*)/$ ./index.php?ctl=project&id=$1 [L]
+RewriteRule ^projects/(.*)/tasklist/(.*)/$ ./index.php?ctl=project&projectId=$1&taskListId=$2 [L]
+RewriteRule ^projects/(.*)/gantt/(.*)/$ ./index.php?ctl=project&projectId=$1&taskListId=$2 [L]
+RewriteRule ^projects/(.*)/diary/(.*)/$ ./index.php?ctl=project&projectId=$1&taskListId=$2 [L]
