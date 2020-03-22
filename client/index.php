@@ -67,7 +67,7 @@ if (isset($_REQUEST["ctl"])) {
     }
 } else {
     if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
-        header("Location: /daw/sign-in/");
+        header("Location: /daw/signin/");
     } else {
         header("Location: /daw/projects/");
     }
