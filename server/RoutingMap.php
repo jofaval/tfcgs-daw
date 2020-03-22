@@ -1,6 +1,7 @@
 <?php
 
 $map = [
+    'accessLevel' => array('controller' => 'Controller', 'action' => 'accessLevel', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'error' => array('controller' => 'Controller', 'action' => 'error', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'access' => array('controller' => 'Controller', 'action' => 'access', 'access' => Config::$ACCESS_LEVEL_GUEST),
     'notsigned' => array('controller' => 'Controller', 'action' => 'notsigned', 'access' => Config::$ACCESS_LEVEL_GUEST),

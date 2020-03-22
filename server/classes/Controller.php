@@ -65,6 +65,12 @@ class Controller
         require __DIR__ . '/../templates/error404.php';
     }
 
+    public function accessLevel()
+    {
+
+        //require __DIR__ . '/../templates/accessLevels.php';
+    }
+
     public function signout()
     {
         $sessions = Sessions::getInstance();
