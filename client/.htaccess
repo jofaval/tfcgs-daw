@@ -14,6 +14,9 @@ RewriteRule ^execution-error/$ ./index.php?ctl=error&message=Action_could_not_be
 RewriteRule ^access/$ ./index.php?ctl=access [L]
 RewriteRule ^confirm-email/$ ./index.php?ctl=confirmEmail [L]
 
+ErrorDocument 404 /daw/404/
+RewriteRule ^404/$ ./index.php?ctl=404 [L]
+
 #Project Rules
 RewriteRule ^projects/id/(.*)/$ ./index.php?ctl=project&id=$1 [L]
 RewriteRule ^projects/id/(.*)/tasklist/id/(.*)/$ ./index.php?ctl=project&id=$1$element=tasklist&secondaryId=$2 [L]

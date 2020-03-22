@@ -52,6 +52,11 @@ class Controller
         require __DIR__ . '/../templates/project.php';
     }
 
+    public function error404()
+    {
+        require __DIR__ . '/../templates/error404.php';
+    }
+
     public function signout()
     {
         $sessions = Sessions::getInstance();
