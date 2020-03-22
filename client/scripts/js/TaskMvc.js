@@ -247,6 +247,14 @@ class Controller {
 
         return taskItem;
     }
+
+    parseTaskListToJSON() {
+
+    }
+
+    parseTaskListItemToJSON() {
+
+    }
 }
 
 const tasksController = new Controller(
