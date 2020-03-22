@@ -187,18 +187,30 @@ class Controller {
         }).addClass("sr-only"); */
 
         taskList.find(".taskListInputBtn").on("click", function () {
-            var taskListInput = taskList.find(".taskListInput");
-            var returnedValue = {
-                "id": 0,
-                "order": 0,
-                "title": taskListInput.val(),
-            };
-            controller.createTaskItem(controller, taskList, returnedValue);
-            controller.onTaskListItemCreation(taskList, returnedValue);
-            taskListInput.val("");
+            var event = event || window.event;
+            controller.taskListItemCreation(event, controller, taskList);
+        });
+
+        taskList.find(".taskListInput").on("keypress", function (event) {
+            var event = event || window.event;
+            if (event.keyCode == 13) {
+                controller.taskListItemCreation(event, controller, taskList);
+            }
         });
 
         return taskList;
+    }
+
+    taskListItemCreation(event, controller, taskList) {
+        var taskListInput = taskList.find(".taskListInput");
+        var returnedValue = {
+            "id": 0,
+            "order": 0,
+            "title": taskListInput.val(),
+        };
+        controller.createTaskItem(controller, taskList, returnedValue);
+        controller.onTaskListItemCreation(taskList, returnedValue);
+        taskListInput.val("");
     }
 
     createTaskItem(controller, taskList, taskItemData) {
