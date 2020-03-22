@@ -40,16 +40,24 @@ class Controller
             "creation_date" => "",
         ];
         if (Utils::exists("id")) {
-            Utils::getCleanedData("id");
             $project = new Projects();
             $projectData = $project->query()[0];
             $viewParams["title"] = $projectData["title"];
             $viewParams["creation_date"] = $projectData["creation_date"];
+
+            $direction = "project";
+
+            if (Utils::exists("element")) {
+                $element = Utils::getCleanedData("element");
+                if (in_array($element, ["gantt", "tasks", "agenda"])) {
+                    $direction = $element;
+                }
+            }
+
+            require __DIR__ . "/../templates/$direction.php";
         } else {
             header("Location: /daw/projects/");
         }
-
-        require __DIR__ . '/../templates/project.php';
     }
 
     public function error404()
