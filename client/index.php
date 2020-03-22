@@ -10,14 +10,21 @@ function requireAllFromDir($dir = null)
         }
     }
 }
+
+//Basics
 require_once __DIR__ . '/../server/classes/Config.php';
-require_once __DIR__ . '/../server/classes/POPOs/CRUDInterface.php';
-require_once __DIR__ . '/../server/RoutingMap.php';
-require_once __DIR__ . '/../server/Access.php';
 error_reporting(Config::$developmentMode);
+
+//Core
 requireAllFromDir("libs");
 requireAllFromDir("classes");
+require_once __DIR__ . '/../server/classes/POPOs/CRUDInterface.php';
 requireAllFromDir("classes/POPOs");
+
+//Security
+require_once __DIR__ . '/../server/RoutingMap.php';
+require_once __DIR__ . '/../server/OnlyAdmin.php';
+require_once __DIR__ . '/../server/Access.php';
 
 $sessions = Sessions::getInstance();
 $ctl = $_GET['ctl'];
