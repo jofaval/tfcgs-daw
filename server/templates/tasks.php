@@ -3,8 +3,8 @@
 <?php $optionalScripts = ["js/tasks.js"];?>
 <?php $title = "ProjectName - TaskName - Task";?>
 <?php $mainClasses = "h-100";?>
-<?php $showFooter = false;?>
-<?php $showHeader = false;?>
+<?php $showFooter = true;?>
+<?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
 <?php
 $breadcrumb = [
@@ -292,4 +292,4 @@ $breadcrumb = [
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once 'layout.php'?>
+<?php include_once 'layoutProject.php'?>
