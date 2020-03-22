@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "tasks.css"];?>
-<?php $optionalScripts = ["js/tasks.js"];?>
+<?php $optionalScripts = ["js/TaskMvc.js"];?>
 <?php $title = "ProjectName - TaskName - Task";?>
 <?php $mainClasses = "h-100";?>
 <?php $showFooter = true;?>
