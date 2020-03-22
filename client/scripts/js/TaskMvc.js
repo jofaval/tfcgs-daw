@@ -31,13 +31,19 @@ var $taskListItem = $(`
     </div>
 </div>`);
 
+var $referenceTaskListItem = $(`<div class="taskItem card mb-2 bg-dark" draggable="true">
+                        <div class="card-body px-2 py-1">
+                            <p class="card-text">&nbsp;</p>
+                        </div>
+                    </div>`);
+
 var taskListJSON = [{
         "id": 0,
         "title": "Prueba",
         "items": [{
             "id": 0,
             "order": 0,
-            "title": "test",
+            "title": "TaskList 1 Item 1",
         }, ],
     },
     {
@@ -46,7 +52,7 @@ var taskListJSON = [{
         "items": [{
             "id": 0,
             "order": 1,
-            "title": "test",
+            "title": "TaskList 2 Item 1",
         }, ],
     },
 ];
@@ -154,8 +160,8 @@ class Controller {
 
     }
 
-    onTaskItemMoved(startingTaskList, endingTaskList, taskItem) {
-        if (startingTaskList != endingTaskList) {
+    onTaskItemMoved(movedData) {
+        if (movedData.startingTaskList != movedData.endingTaskList) {
 
         }
     }
@@ -163,6 +169,12 @@ class Controller {
     createTaskList(controller, taskListData) {
         var controllerView = controller.view;
         var taskList = controllerView.visualizeTaskList(taskListData.id, taskListData.title);
+
+        /* controller.createTaskItem(controller, taskList, {
+            "id": -1,
+            "order": -1,
+            "title": "",
+        }).addClass("sr-only"); */
 
         taskList.find(".taskListInputBtn").on("click", function () {
             var taskListInput = taskList.find(".taskListInput");
@@ -187,49 +199,49 @@ class Controller {
         var endingTaskListParent = null;
         var endingIndex = 0;
 
-        taskItem.draggable(true);
+        taskItem.prop("draggable", true);
 
         taskItem.on("dragstart", function () {
             $(this).addClass("dragging");
             startingIndex = $(this).index();
 
-            console.log("test");
-            startingTaskListParent = $(this).prevAll(".taskList");
+            startingTaskListParent = $(this).parents(".taskList");
+            console.log("Empieza");
         });
 
         taskItem.on("drop", function () {
-            console.log("hahahaha");
+            console.log("Se suelta");
         });
 
         taskItem.on("dragover", function () {
-            test.show();
+            $referenceTaskListItem.show();
+
             var index = $(this).index();
             if (index == 0) {
-                $(this).before(test);
+                $(this).before($referenceTaskListItem);
                 endingIndex = 0;
             } else {
                 if (index > 1) {
                     endingIndex = -1;
                 }
-                $(this).after(test);
+                $(this).after($referenceTaskListItem);
             }
         });
+
         taskItem.on("dragend", function () {
             $(this).removeClass("dragging");
-            test.hide();
-            var parent = test.parent().parent();
-            endingTaskListParent = parent.find(".listTitle rounded").text().trim();
-            endingIndex += test.index();
+            $referenceTaskListItem.hide();
+            endingTaskListParent = $referenceTaskListItem.parents(".taskList");
+            endingIndex += $referenceTaskListItem.index();
 
-            parent.find(".taskItem:nth-child(" + (endingIndex + 1) + ")").after($(this));
+            $referenceTaskListItem.before(taskItem);
 
-            var count = 0;
-            console.log("startingTaskListParent", startingTaskListParent,
-                "endingTaskListParent", endingTaskListParent);
-            console.log("startingIndex", startingIndex,
-                "endingIndex", endingIndex);
-            $(this).parent().find(".taskItem").each(function () {
-                count++;
+            onTaskItemMoved({
+                "startingTaskList": startingTaskListParent,
+                "startingIndex": startingIndex,
+                "endingTaskList": endingTaskListParent,
+                "endingIndex": endingIndex,
+                "taskItem": taskItem,
             });
         });
 
