@@ -20,7 +20,8 @@
                     An error has occured</h2>
                 <h4><?php echo preg_replace("/\_/", " ", Utils::getCleanedData("message")); ?></h4>
                 <div class="error-details">
-                    Please, go back and <a href="mailto:<?php echo Config::$emailSender ?>">contact us</a> if it happens
+                    Please, go back and <a href="mailto:<?php echo Config::$emailSender; ?>">contact us</a> if it
+                    happens
                     again!
                 </div>
             </div>

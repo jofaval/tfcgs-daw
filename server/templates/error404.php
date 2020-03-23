@@ -3,8 +3,8 @@
 <?php $optionalScripts = ["js/customCursor.js"];?>
 <?php $title = "404 Not found";?>
 <?php $mainClasses = "";?>
-<?php $showFooter = true;?>
-<?php $showHeader = true;?>
+<?php $showFooter = false;?>
+<?php $showHeader = false;?>
 <?php $showBreadcrumb = false;?>
 <?php $breadcrumb = [];?>
 

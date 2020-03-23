@@ -1,7 +1,7 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["message.css"];?>
 <?php $optionalScripts = [];?>
-<?php $title = "Error";?>
+<?php $title = "Not user agent";?>
 <?php $mainClasses = "";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
@@ -19,7 +19,8 @@
                 <h2>
                     It seems you're not who you're telling.</h2>
                 <div class="error-details">
-                    Please, go back and <a href="mailto:admin@iesabastos.org">contact us</a> if it happens
+                    Please, go back and <a href="mailto:<?php echo Config::$emailSender; ?>">contact us</a> if it
+                    happens
                     again!
                 </div>
             </div>

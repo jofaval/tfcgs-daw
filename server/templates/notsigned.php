@@ -1,7 +1,7 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["message.css"];?>
 <?php $optionalScripts = [];?>
-<?php $title = "LogIn";?>
+<?php $title = "Not signed in";?>
 <?php $mainClasses = "";?>
 <?php $showFooter = false;?>
 <?php $showHeader = false;?>
@@ -16,7 +16,7 @@
             <div class="notsigned-template text-center text-light">
                 <h1>
                     You're not signed in!</h1>
-                <h2>Please <a href="index.php?ctl=signin">signin</a>. </h2>
+                <h2>Please <a href="/daw/signin/">signin</a>. </h2>
             </div>
         </div>
     </div>
