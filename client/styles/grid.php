@@ -28,7 +28,12 @@ grid-area: footer;
 }
 <?php endif;?>
 
-/*Main grid*/
+/*Main*/
+body>main {
+grid-area: main;
+}
+
+/*Body grid*/
 body {
 display: grid;
 grid-template-areas:
@@ -40,8 +45,8 @@ grid-template-areas:
 <?php endif;?>
 "main"
 <?php if ($showFooter): ?>
-"footer";
-<?php endif;?>
+"footer"
+<?php endif;?>;
 
 grid-template-rows:
 <?php if ($showHeader): ?>
@@ -56,6 +61,29 @@ auto
 <?php endif;?>;
 }
 
-body>main {
-grid-area: main;
+/*Responsiveness*/
+@media (max-width: 576px) {
+/*Body grid*/
+body {
+display: grid;
+grid-template-areas:
+"main"
+<?php if ($showHeader): ?>
+"header"
+<?php endif;?>
+<?php if ($showBreadcrumb): ?>
+"breadcrumb"
+<?php endif;?>
+;
+
+grid-template-rows:
+1fr
+<?php if ($showHeader): ?>
+auto
+<?php endif;?>
+<?php if ($showBreadcrumb): ?>
+auto
+<?php endif;?>
+;
+}
 }
