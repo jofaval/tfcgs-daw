@@ -54,7 +54,7 @@
     </nav>
     <?php endif;?>
     <?php if ($showBreadcrumb): ?>
-    <section class="w-100 breadcrumbContainer d-none d-sm-block" aria-label="breadcrumb">
+    <section class="w-100 breadcrumbContainer" aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 rounded-0">
             <li class="breadcrumb-item"><a href="">Go back to project stats</a></li>
         </ol>
