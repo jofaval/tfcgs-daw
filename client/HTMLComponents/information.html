@@ -764,7 +764,7 @@ button:hover, input[type=submit]:hover {
                 padding: 1.5vh;
                 display: inline;
                 opacity: 1;
-                border-radius: 0 !important;
+                border-radius: 0;
             }
 
             .content {
@@ -859,7 +859,7 @@ button:hover, input[type=submit]:hover {
 
         .parallax_section_2 .border,
         .parallax_section_3 .border {
-            background-color: transparent !important;
+            background-color: transparent;
             font-size: 25px;
             color: #f7f7f7;
         }
@@ -953,7 +953,7 @@ button:hover, input[type=submit]:hover {
 
         .pricing_card h3 {
             border-radius: 2.5vh;
-            color: white !important;
+            color: white;
         }
 
         .jadeite {
@@ -1138,6 +1138,16 @@ button:hover, input[type=submit]:hover {
             }
         }
 
+        .navigation #menuDisplay {
+            display: none;
+        }
+
+        .navigation ul {
+            -webkit-transition: height 0.2s ease-in-out !important;
+            -ms-transition: height 0.2s ease-in-out !important;
+            transition: height 0.2s ease-in-out !important;
+        }
+
         @media screen and (max-width: 800px) {
             .row {
                 flex-direction: column;
@@ -1154,24 +1164,52 @@ button:hover, input[type=submit]:hover {
             }
 
             .pricing_card {
-                width: 100% !important;
-                margin-bottom: 0 !important;
+                width: 100%;
+                margin-bottom: 0;
             }
 
             .navigation {
-                transform: translateY(0vh) !important;
-                opacity: 1 !important;
-                height: auto !important;
+                transform: translateY(0vh);
+                opacity: 1;
+                height: auto;
             }
 
             .navigation li {
-                width: 100% !important;
+                width: 100%;
             }
 
             .navigation ul {
                 flex-direction: column;
             }
+
+            .navigation #menuDisplay {
+                display: block;
+                margin: 1rem;
+            }
+
+            .toggledMenuDispaly {
+                overflow: hidden !important;
+                height: 0rem !important;
+            }
         }
+
+        #menuDisplay {
+            -webkit-appearance: none !important;
+            border-radius: 50%;
+            width: 20px !important;
+            height: 20px !important;
+            background: rgba(0, 0, 0, 0.5);
+            -webkit-transition: background-color 0.2s linear;
+            -ms-transition: background-color 0.2s linear;
+            transition: background-color 0.2s linear;
+            cursor: pointer;
+        }
+
+        #menuDisplay:checked {
+            background: rgba(18, 255, 117, 0.5);
+        }
+    </style>
+    <style>
     </style>
 </head>
 
@@ -1189,6 +1227,7 @@ button:hover, input[type=submit]:hover {
             <li><a href="#team">Team</a></li>
             <li><a href="#get_started">Get Started</a></li>
         </ul>
+        <input type="checkbox" name="menuDisplay" id="menuDisplay">
     </div>
     <div id="home" class="parallax_section_1">
         <div class="caption">
@@ -1327,5 +1366,20 @@ button:hover, input[type=submit]:hover {
 
 
 </body>
+<script>
+    document.querySelector("#menuDisplay").addEventListener("click", function () {
+        if (this.checked) {
+            this.previousElementSibling.classList.remove("toggledMenuDispaly");
+            this.classList.remove("toggledMenuDispaly");
+        } else {
+            this.previousElementSibling.classList.add("toggledMenuDispaly");
+            this.classList.add("toggledMenuDispaly");
+        }
+
+        toggle = !toggle;
+    });
+    document.querySelector("#menuDisplay").click();
+    document.querySelector("#menuDisplay").click();
+</script>
 
 </html>
