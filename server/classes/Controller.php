@@ -67,41 +67,68 @@ class Controller
 
     public function accessLevel()
     {
-        $content = file_get_contents(__DIR__ . '/../Access.php');
+        $filePath = __DIR__ . '/../Access.php';
+        $viewParams = [
+            "routes" => [],
+            "accessLevels" => [
+                "0" => "Guest",
+                "1" => "Non confirmed",
+                "2" => "Confirmed",
+                "3" => "Admin",
+            ],
+        ];
+
+        $content = file_get_contents($filePath);
 
         $explodedContent = explode(PHP_EOL, $content);
 
-        for ($linesToRemove = 0; $linesToRemove < 3; $linesToRemove++) {
-            array_shift($explodedContent);
+        $startLines = [];
+        for ($linesToRemove = 0; $linesToRemove < 2; $linesToRemove++) {
+            $startLines[] = array_shift($explodedContent);
         }
 
-        echo "<form action=''><select name='route'>";
+        $routes = [];
+        $accessMapArray = [];
         foreach ($explodedContent as $value) {
             $element = explode(" = ", $value);
             $identification = $element[0];
-            //$value = $element[1];
+            $value = preg_replace("/;/", "", $element[1]);
 
             $regex = '/(?<=\$map\[\').*?(?=\'\]\[\'access\'\])/s';
-            $str = '$map[\'error\'][\'access\'] = Config::$ACCESS_LEVEL_GUEST;';
 
             preg_match($regex, $identification, $matches, PREG_OFFSET_CAPTURE, 0);
 
             $route = $matches[0][0];
-            echo "<option value='$route'>$route</option>";
+            $routes[] = $route;
+            $accessMapArray[$route] = $value;
         }
 
-        echo "</select>
-        <select name='access'>
-            <option value='0'>Guest</option>
-            <option value='1'>Non confirmed</option>
-            <option value='2'>Confirmed</option>
-            <option value='3'>Admin</option>
-        </select>
-        <br />
-        <input type='submit' name='change' value='Change'>
-        </form>";
+        $viewParams["routes"] = $routes;
 
-        //require __DIR__ . '/../templates/accessLevels.php';
+        $changeFile = false;
+        if (Utils::exists("change")) {
+            $selectOption = Utils::getCleanedData("route");
+            $accessMapArray[$selectOption] = Utils::getCleanedData("access");
+            $changeFile = true;
+        } else if (Utils::exists("add")) {
+            $newRoute = Utils::getCleanedData("newRoute");
+            $accessMapArray[$newRoute] = Utils::getCleanedData("access");
+            $changeFile = true;
+        }
+
+        if ($changeFile) {
+            $newFileContent = "<?php\n";
+
+            foreach ($accessMapArray as $key => $value) {
+                $newFileContent .= "\n\$map['$key']['access'] = $value;";
+            }
+
+            $newFileContent = str_replace("\n", PHP_EOL, $newFileContent);
+
+            file_put_contents($filePath, $newFileContent);
+        }
+
+        require __DIR__ . '/../templates/accessLevel.php';
     }
 
     public function signout()
