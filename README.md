@@ -2,9 +2,25 @@
 
 #### Trabajo Final de Ciclo Formativo Grado Superior Desarrollo de Aplicaciones Web
 
+## Módulos del ciclo relacionados con el proyecto
+
+ * Lenguajes de Marcas y Sistemas de Informacion,
+ * Programacion de Servicios y Procesos,
+ * Inglés,
+ * Sistemas informáticos,
+ * Bases de Datos,
+ * Programación,
+ * Desarrollo de Interfaces Web,
+ * Entornos de Desarrollo,
+ * Despliegue de Aplicaciones Web,
+ * Desarrolo Web en Entorno Servidor,
+ * Desarrolo Web en Entorno Cliente,
+
+## Descripción del proyecto:
+
 Se pretende proporcionar una gestión básica de cualquier tipo de proyecto con un conjunto de herramientas unificadas en una única plataforma de modo que todo sea más intuitivo y práctico.
 
-## · Herramientas a proveer:
+## Herramientas a proveer:
 
 ### (Principales)
  * Listas de tareas para gestionar subtareas.
