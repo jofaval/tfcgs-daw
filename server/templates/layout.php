@@ -83,7 +83,7 @@
     </section>
     <?php endif;?>
     <main role="main" class="w-100 d-flex flex-column justify-content-start <?php echo $mainClasses; ?>">
-        <div id="content" class="w-100 w-100 d-flex">
+        <div id="content" class="w-100 h-100 d-flex">
             <?php echo $contenido ?>
         </div>
     </main>
