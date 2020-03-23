@@ -97,6 +97,11 @@ class Sessions
         }
     }
 
+    public function isUserLogged()
+    {
+        return $this->doesSessionExist("username");
+    }
+
     public function doesSessionExist($name)
     {
         return isset($_SESSION[$name]);

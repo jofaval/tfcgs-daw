@@ -3,8 +3,8 @@
 <?php $optionalScripts = [];?>
 <?php $title = "Error";?>
 <?php $mainClasses = "";?>
-<?php $showFooter = true;?>
-<?php $showHeader = true;?>
+<?php $showFooter = Sessions::getInstance()->isUserLogged();?>
+<?php $showHeader = Sessions::getInstance()->isUserLogged();?>
 <?php $showBreadcrumb = false;?>
 <?php $breadcrumb = [];?>
 

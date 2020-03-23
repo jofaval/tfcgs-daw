@@ -3,8 +3,8 @@
 <?php $optionalScripts = [];?>
 <?php $title = "Not user agent";?>
 <?php $mainClasses = "";?>
-<?php $showFooter = true;?>
-<?php $showHeader = true;?>
+<?php $showFooter = false;?>
+<?php $showHeader = false;?>
 <?php $showBreadcrumb = false;?>
 <?php $breadcrumb = [];?>
 

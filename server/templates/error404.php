@@ -3,8 +3,8 @@
 <?php $optionalScripts = ["js/customCursor.js"];?>
 <?php $title = "404 Not found";?>
 <?php $mainClasses = "";?>
-<?php $showFooter = false;?>
-<?php $showHeader = false;?>
+<?php $showFooter = Sessions::getInstance()->isUserLogged();?>
+<?php $showHeader = Sessions::getInstance()->isUserLogged();?>
 <?php $showBreadcrumb = false;?>
 <?php $breadcrumb = [];?>
 
