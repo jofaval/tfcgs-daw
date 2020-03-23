@@ -50,14 +50,55 @@ var taskListJSON = [{
         "id": 1,
         "title": "Test",
         "items": [{
-            "id": 0,
-            "order": 1,
-            "title": `TaskList 2 Item 1
+                "id": 0,
+                "order": 1,
+                "title": `TaskList 2 Item 1
             TaskList 2 Item 1
             TaskList 2 Item 1
             TaskList 2 Item 1
             TaskList 2 Item 1`,
-        }, ],
+            },
+            {
+                "id": 0,
+                "order": 1,
+                "title": `Fill`,
+            },
+            {
+                "id": 0,
+                "order": 1,
+                "title": `Fill`,
+            },
+            {
+                "id": 0,
+                "order": 1,
+                "title": `Fill`,
+            },
+            {
+                "id": 0,
+                "order": 1,
+                "title": `Fill`,
+            },
+            {
+                "id": 0,
+                "order": 1,
+                "title": `Fill`,
+            },
+            {
+                "id": 0,
+                "order": 1,
+                "title": `Fill`,
+            },
+            {
+                "id": 0,
+                "order": 1,
+                "title": `Fill`,
+            },
+            {
+                "id": 0,
+                "order": 1,
+                "title": `Fill`,
+            },
+        ],
     },
 ];
 
@@ -232,13 +273,14 @@ class Controller {
         var startingIndex = 0;
         var endingTaskListParent = null;
         var endingIndex = 0;
+        var draggingTaskItem = taskItem;
 
         taskItem.prop("draggable", true);
 
         taskItem.on("dragstart", function () {
             $(this).addClass("dragging");
             startingIndex = $(this).index();
-
+            draggingTaskItem = $(this);
             startingTaskListParent = $(this).parents(".taskList");
             console.log("Empieza");
         });
@@ -250,7 +292,7 @@ class Controller {
         taskItem.on("dragover", function () {
             $referenceTaskListItem.show();
 
-            $referenceTaskListItem.find(".taskListItemTitle").html(taskItem.text());
+            $referenceTaskListItem.find(".taskListItemTitle").html($(".dragging").text());
 
             var index = $(this).index();
             if (index == 0) {
