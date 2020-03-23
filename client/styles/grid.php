@@ -1,6 +1,10 @@
 <!--Configuration-->
 <?php
+require_once __DIR__ . "/../../server/libs/utils.php";
 header("Content-type: text/css; charset: UTF-8");
+$showHeader = Utils::getCleanedData("showHeader") != "0";
+$showBreadcrumb = Utils::getCleanedData("showBreadcrumb") != "0";
+$showFooter = Utils::getCleanedData("showFooter") != "0";
 ?>
 
 <?php if ($showHeader): ?>
@@ -21,7 +25,6 @@ grid-area: footer;
 }
 <?php endif;?>
 
-<!--CSS-->
 body {
 display: grid;
 grid-template-areas:

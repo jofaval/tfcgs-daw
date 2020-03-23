@@ -22,7 +22,9 @@
     <?php foreach ($optionalCSS as $css_link): ?>
     <link rel="stylesheet" type="text/css" href="/daw/styles/<?php echo $css_link ?>" />
     <?php endforeach;?>
-    <link rel="stylesheet" type="text/css" href="/daw/styles/grid.php">
+    <link rel="stylesheet" type="text/css" href="/daw/styles/grid.php?
+    showHeader=<?php echo $showHeader ? "1" : "0"; ?>&showBreadcrumb=<?php echo $showBreadcrumb ? "1" : "0"; ?>
+    &showFooter=<?php echo $showFooter ? "1" : "0"; ?>">
 </head>
 
 <body class="text-light">
