@@ -22,7 +22,7 @@
     <?php foreach ($optionalCSS as $css_link): ?>
     <link rel="stylesheet" type="text/css" href="/daw/styles/<?php echo $css_link ?>" />
     <?php endforeach;?>
-
+    <link rel="stylesheet" type="text/css" href="/daw/styles/grid.php">
 </head>
 
 <body class="text-light">
@@ -87,7 +87,7 @@
     </main>
 
     <?php if ($showFooter): ?>
-    <footer class="footer py-3 bg-light d-none d-sm-block fixed-bottom">
+    <footer class="footer py-3 bg-light d-none d-sm-block">
         <div class="container text-align-right">
             <span class="text-dark">- Developed by <a class="font-weight-bold text-dark"
                     href="jofaval@iesabastos.org">Pepe
