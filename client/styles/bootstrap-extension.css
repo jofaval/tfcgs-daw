@@ -1,0 +1,51 @@
+.overflow-auto {
+    overflow: auto !important;
+}
+
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.overflow-hidden {
+    overflow: scroll !important;
+}
+
+.overflow-x-auto {
+    overflow-x: auto !important;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden !important;
+}
+
+.overflow-x-scroll {
+    overflow-x: scroll !important;
+}
+
+.overflow-y-auto {
+    overflow-y: auto !important;
+}
+
+.overflow-y-hidden {
+    overflow-y: hidden !important;
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll !important;
+}
+
+.bg-transparent {
+    background: transparent !important;
+}
+
+.z-index-hidden {
+    z-index: -1 !important;
+}
+
+.z-index-normal {
+    z-index: 1 !important;
+}
+
+.z-index-overlap {
+    z-index: 2140000001 !important;
+}

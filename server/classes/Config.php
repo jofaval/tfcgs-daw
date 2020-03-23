@@ -9,8 +9,9 @@ class Config
     public static $mvc_img_exts = ["image/png", "image/jpg", "image/jpeg", "image/gif"];
     public static $mvc_vis_css = [
         "bootstrap.min.css",
-        "jquery-ui.min.css",
         "mdb.min.css",
+        "bootstrap-extension.css",
+        "jquery-ui.min.css",
         "main.css",
         "loader.css",
         "floating-label.css",
