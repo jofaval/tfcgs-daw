@@ -42,6 +42,7 @@ class Controller
         if (Utils::exists("id")) {
             $project = new Projects();
             $projectData = $project->query()[0];
+
             $viewParams["title"] = $projectData["title"];
             $viewParams["creation_date"] = $projectData["creation_date"];
 
@@ -49,7 +50,7 @@ class Controller
 
             if (Utils::exists("element")) {
                 $element = Utils::getCleanedData("element");
-                if (in_array($element, ["gantt", "tasks", "agenda"])) {
+                if (in_array($element, Config::$projectElements)) {
                     $direction = $element;
                 }
             }

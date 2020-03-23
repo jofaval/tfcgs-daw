@@ -50,5 +50,10 @@ class Config
     public static $notuseragent_ctls = [
         "notuseragent",
     ];
+    public static $projectElements = [
+        "gantt",
+        "tasks",
+        "agenda",
+    ];
     public static $developmentMode = 1;
 }
