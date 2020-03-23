@@ -7,16 +7,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        html,
+        body {
+            background: #1f1f22 !important;
+        }
+
+        /* .notificationContainer {
+            top: 0 !important;
+            right: 0 !important;
+        } */
     </style>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <!--link rel="stylesheet" href="../styles/jquery-ui.min.css"-->
+    <!--link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"-->
+    <link rel="stylesheet" href="../styles/mdb.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/loader.css">
+    <link rel="stylesheet" href="../styles/floating-label.css">
+    <link rel="stylesheet" href="../styles/inputs.css">
+    <link rel="stylesheet" href="../styles/jquery.sweet-modal.min.css">
+    <link rel="stylesheet" href="../styles/gantt.css">
 </head>
 
-
 <body>
-    <div class="container h-100 d-block flex-column d-sm-flex container px-0 px-sm-3 h-100" id="mainProjectPanel">
-    </div>
-</body>
-<script>
 
+</body>
+<script src="../scripts/libs/jquery.min.js"></script>
+<script src="../scripts/libs/jquery-ui.min.js"></script>
+<script src="../scripts/libs/popper.min.js"></script>
+<script src="../scripts/libs/bootstrap.min.js"></script>
+<script src="../scripts/libs/bootstrap.bundle.min.js"></script>
+<script src="../scripts/libs/mdb.min.js"></script>
+<script src="../scripts/libs/jquery.sweet-modal.min.js"></script>
+<script src="../scripts/js/Modal.js"></script>
+<script src="../scripts/js/utils.js"></script>
+<script src="../scripts/js/inputs.js"></script>
+<script src="../scripts/js/AjaxController.js"></script>
+<script src="../scripts/js/Validator.js"></script>
+<script src="../scripts/js/FormValidator.js"></script>
+<script src="../scripts/js/preloader.js"></script>
+<script src="../scripts/libs/summernote-bs4.min.js"></script>
+<script>
+    $(window).on("load", function () {
+
+    });
+
+    function loadPage() {
+        $("#content").html("");
+        console.log("en el cambio de página: ", templatePageIndex);
+        var selectedPage = templates[templatePageIndex];
+        $("#content").load(selectedPage + ".html", function () {});
+        $("#currentPage").text(selectedPage + templatePageIndex);
+    }
 </script>
 
 </html>
