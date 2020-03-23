@@ -77,6 +77,10 @@ main {
     color: #343a40 !important;
 }
 
+.footer {
+    z-index: 19 !important;
+}
+
 @media screen and (prefer-color-scheme: light) {
     body {
         background-color: #dbdbdb;
