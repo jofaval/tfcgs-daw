@@ -1,7 +1,7 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["message.css"];?>
 <?php $optionalScripts = [];?>
-<?php $title = "Access";?>
+<?php $title = "Access Level control";?>
 <?php $mainClasses = "";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
@@ -16,13 +16,16 @@
 
 <?php ob_start()?>
 
-<form action="/daw/index.php" class="bg-white rounded shadow p-5">
-    <h1>Access Level control</h1>
+<form action="/daw/index.php" method="POST" class="bg-white rounded shadow p-5">
+    <h2>New route</h2>
+    <input type="hidden" name="ctl" value="accessLevel">
     <div class="md-form">
         <input type="text" class="form-control" placeholder="" name="newRoute" id="newRoute" />
         <label for="newRoute">New route</label>
+        <button type="submit" name="add" class="btn btn-primary w-100 mx-auto" value="Add">Add</button>
     </div>
     <br />
+    <h2>Change access</h2>
     <div class="form-row">
         <label for="route" class="col">Routes</label>
         <label for="access" class="col">Access Levels</label>
@@ -43,10 +46,8 @@
                 <?php endforeach;?>
             </select>
         </div>
+        <button type="submit" name="change" class="btn btn-primary w-100 mx-auto" value="Change">Change</button>
     </div>
-    <br />
-    <input type="hidden" name="ctl" value="accessLevel">
-    <button type="submit" name="change" class="btn btn-primary w-100 mx-auto" value="Change">Change</button>
 </form>
 <?php $contenido = ob_get_clean()?>
 <?php include_once 'layout.php'?>
