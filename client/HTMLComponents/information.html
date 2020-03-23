@@ -1191,6 +1191,12 @@ button:hover, input[type=submit]:hover {
                 overflow: hidden !important;
                 height: 0rem !important;
             }
+
+            .navigation {
+                position: fixed;
+                bottom: 0;
+                top: inherit;
+            }
         }
 
         #menuDisplay {
@@ -1375,8 +1381,6 @@ button:hover, input[type=submit]:hover {
             this.previousElementSibling.classList.add("toggledMenuDispaly");
             this.classList.add("toggledMenuDispaly");
         }
-
-        toggle = !toggle;
     });
     document.querySelector("#menuDisplay").click();
     document.querySelector("#menuDisplay").click();
