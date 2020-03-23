@@ -31,9 +31,9 @@ var $taskListItem = $(`
     </div>
 </div>`);
 
-var $referenceTaskListItem = $(`<div class="taskItem card mb-2 bg-dark" draggable="true">
-                        <div class="card-body px-2 py-1">
-                            <p class="card-text">&nbsp;</p>
+var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference card mb-2 bg-dark" draggable="true">
+                        <div class="card-body px-2 py-1 taskListItemBody">
+                            <p class="card-text taskListItemTitle text-transparent">&nbsp;</p>
                         </div>
                     </div>`);
 
@@ -52,7 +52,11 @@ var taskListJSON = [{
         "items": [{
             "id": 0,
             "order": 1,
-            "title": "TaskList 2 Item 1",
+            "title": `TaskList 2 Item 1
+            TaskList 2 Item 1
+            TaskList 2 Item 1
+            TaskList 2 Item 1
+            TaskList 2 Item 1`,
         }, ],
     },
 ];
@@ -245,6 +249,8 @@ class Controller {
 
         taskItem.on("dragover", function () {
             $referenceTaskListItem.show();
+
+            $referenceTaskListItem.find(".taskListItemTitle").html(taskItem.text());
 
             var index = $(this).index();
             if (index == 0) {

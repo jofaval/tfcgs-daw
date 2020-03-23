@@ -49,3 +49,7 @@
 .z-index-overlap {
     z-index: 2140000001 !important;
 }
+
+.text-transparent {
+    color: transparent !important;
+}
