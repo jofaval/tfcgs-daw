@@ -35,7 +35,18 @@ $breadcrumb = [
 <table class="table mb-0 w-100 table-dark table-bordered">
     <thead class="thead-dark">
         <tr class="weekDays">
-            <th class="nonRotatedText" colspan="5">Days</th>
+            <th class="nonRotatedText" colspan="5">
+                <div class="form-row px-2 col-10 mx-auto">
+                    <div class="col md-form">
+                        <input type="date" class="form-control text-white" name="startDate" id="startDate"
+                            placeholder="Starting Date">
+                    </div>
+                    <div class="col md-form">
+                        <input type="date" class="form-control text-white" name="endDate" id="endDate"
+                            placeholder="Ending Date">
+                    </div>
+                </div>
+            </th>
             <th>Monday, 1</th>
             <th>Tuesday, 2</th>
             <th>Wednesday, 3</th>
