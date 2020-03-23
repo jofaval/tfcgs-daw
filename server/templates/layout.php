@@ -42,7 +42,8 @@
             <span class="navbar-toggler-icon" style="transition: all 0.2s ease-in-out 0s;"></span>
         </button>
 
-        <img class="navbar-brand rounded-circle mr-2" width="45" src="<?php echo $sessions->getSession("userImg"); ?>">
+        <img class="navbar-brand rounded-circle mr-2" width="45"
+            src="/daw/img/profile-pic.png<?php /* echo $sessions->getSession("userImg"); */?>">
         <small class="text-muted"><span class="font-weight-bold"><?php echo $sessions->getSession("username"); ?></span>
             <br>
             <?php echo $sessions->getSession("roleName"); ?>
