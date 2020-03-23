@@ -67,6 +67,39 @@ class Controller
 
     public function accessLevel()
     {
+        $content = file_get_contents(__DIR__ . '/../Access.php');
+
+        $explodedContent = explode(PHP_EOL, $content);
+
+        for ($linesToRemove = 0; $linesToRemove < 3; $linesToRemove++) {
+            array_shift($explodedContent);
+        }
+
+        echo "<form action=''><select name='route'>";
+        foreach ($explodedContent as $value) {
+            $element = explode(" = ", $value);
+            $identification = $element[0];
+            //$value = $element[1];
+
+            $regex = '/(?<=\$map\[\').*?(?=\'\]\[\'access\'\])/s';
+            $str = '$map[\'error\'][\'access\'] = Config::$ACCESS_LEVEL_GUEST;';
+
+            preg_match($regex, $identification, $matches, PREG_OFFSET_CAPTURE, 0);
+
+            $route = $matches[0][0];
+            echo "<option value='$route'>$route</option>";
+        }
+
+        echo "</select>
+        <select name='access'>
+            <option value='0'>Guest</option>
+            <option value='1'>Non confirmed</option>
+            <option value='2'>Confirmed</option>
+            <option value='3'>Admin</option>
+        </select>
+        <br />
+        <input type='submit' name='change' value='Change'>
+        </form>";
 
         //require __DIR__ . '/../templates/accessLevels.php';
     }
