@@ -16,9 +16,8 @@
 
 <?php ob_start()?>
 
-<form action="/daw/index.php" method="POST" class="bg-white rounded shadow p-5">
+<form action="/daw/index.php?ctl=accessLevel" method="POST" class="bg-white rounded shadow p-5">
     <h2>New route</h2>
-    <input type="hidden" name="ctl" value="accessLevel">
     <div class="md-form">
         <input type="text" class="form-control" placeholder="" name="newRoute" id="newRoute" />
         <label for="newRoute">New route</label>
