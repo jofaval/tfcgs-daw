@@ -282,17 +282,12 @@ class Controller {
             startingIndex = $(this).index();
             draggingTaskItem = $(this);
             startingTaskListParent = $(this).parents(".taskList");
+            $referenceTaskListItem.find(".taskListItemTitle").html(draggingTaskItem.text());
             console.log("Empieza");
-        });
-
-        taskItem.on("drop", function () {
+        }).on("drop", function () {
             console.log("Se suelta");
-        });
-
-        taskItem.on("dragover", function () {
+        }).on("dragover", function () {
             $referenceTaskListItem.show();
-
-            $referenceTaskListItem.find(".taskListItemTitle").html($(".dragging").text());
 
             var index = $(this).index();
             if (index == 0) {
@@ -304,9 +299,7 @@ class Controller {
                 }
                 $(this).after($referenceTaskListItem);
             }
-        });
-
-        taskItem.on("dragend", function () {
+        }).on("dragend", function () {
             $(this).removeClass("dragging");
             $referenceTaskListItem.hide();
             endingTaskListParent = $referenceTaskListItem.parents(".taskList");
