@@ -53,3 +53,7 @@
 .text-transparent {
     color: transparent !important;
 }
+
+.click-through {
+    pointer-events: none !important;
+}
