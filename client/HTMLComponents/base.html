@@ -16,6 +16,57 @@
             top: 0 !important;
             right: 0 !important;
         } */
+
+        /*Header*/
+        body>.navbar {
+            grid-area: header;
+        }
+
+        /*Breadcrumb*/
+        body>.breadcrumbContainer {
+            grid-area: breadcrumb;
+        }
+
+        /*Footer*/
+        body>.footer {
+            grid-area: footer;
+        }
+
+        /*Main*/
+        body>main {
+            grid-area: main;
+        }
+
+        /*Body grid*/
+        body {
+            display: grid;
+            grid-template-areas:
+                "header"
+                "breadcrumb"
+                "main"
+                "footer"
+            ;
+
+            grid-template-rows:
+                auto auto 1fr auto;
+        }
+
+        /*Responsiveness*/
+        @media (max-width: 576px) {
+
+            /*Body grid*/
+            body {
+                display: grid;
+                grid-template-areas:
+                    "main"
+                    "header"
+                    "breadcrumb"
+                ;
+
+                grid-template-rows:
+                    1fr auto auto;
+            }
+        }
     </style>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <!--link rel="stylesheet" href="../styles/jquery-ui.min.css"-->
@@ -82,7 +133,7 @@
 
         </div>
     </main>
-    <footer class="footer py-3 bg-light d-none d-md-block fixed-bottom">
+    <footer class="footer py-3 bg-light d-none d-md-block">
         <div class="container text-align-right">
             <span class="text-dark">- Developed by <a class="font-weight-bold text-dark"
                     href="jofaval@iesabastos.org">Pepe
