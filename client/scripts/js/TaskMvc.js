@@ -99,6 +99,10 @@ var taskListJSON = [{
                 "title": `Fill`,
             },
         ],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
     },
 ];
 
@@ -164,6 +168,11 @@ class View {
         });
     }
 }
+
+var startingTaskListParent = null;
+var startingIndex = 0;
+var endingTaskListParent = null;
+var endingIndex = 0;
 
 class Controller {
     constructor(model, view) {
@@ -251,6 +260,18 @@ class Controller {
             }
         });
 
+        taskList.on("dragover", function () {
+            var itemsContainer = taskList.find(".taskListItemsContainer");
+            $referenceTaskListItem.show();
+
+            var totalTaskListItems = itemsContainer.children(".taskListItem").length;
+
+            if (totalTaskListItems == 0) {
+                endingIndex = 0;
+                itemsContainer.append($referenceTaskListItem);
+            }
+        });
+
         return taskList;
     }
 
@@ -269,10 +290,6 @@ class Controller {
     createTaskItem(controller, taskList, taskItemData) {
         var taskItem = controller.view.visualizeTaskListItem(taskList, taskItemData.id, taskItemData.title);
 
-        var startingTaskListParent = null;
-        var startingIndex = 0;
-        var endingTaskListParent = null;
-        var endingIndex = 0;
         var draggingTaskItem = taskItem;
 
         taskItem.prop("draggable", true);
