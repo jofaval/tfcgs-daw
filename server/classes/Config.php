@@ -28,6 +28,7 @@ class Config
         "libs/jquery.sweet-modal.min.js",
         "js/Modal.js",
         "js/utils.js",
+        "js/ViewUtils.js",
         "js/inputs.js",
         "js/AjaxController.js",
         "js/Validator.js",

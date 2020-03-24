@@ -46,6 +46,13 @@ var $formCheckeable = $(`
 </div>
 `);
 
+var $table = $(`<table class="table mb-0 w-100 table-dark table-bordered"></table>`);
+var $thead = $(`<thead class="thead-dark"></thead>`);
+var $tbody = $(`<tbody></tbody>`);
+var $tr = $(`<tr></tr>`);
+var $th = $(`<th></th>`);
+var $td = $(`<td></td>`);
+
 class ViewUtils {
     static createForm(container, action = "", method = "POST") {
         var clonedForm = $formBase.clone();
@@ -158,5 +165,54 @@ class ViewUtils {
         form.append(submitInput);
 
         return submitInput;
+    }
+
+    static createTable(container) {
+        var clonedTable = $table.clone();
+
+        container.append(clonedTable);
+
+        return clonedTable;
+    }
+    static createTableHeader(table) {
+        var clonedTheader = $thead.clone();
+
+        table.append(clonedTheader);
+
+        return clonedTheader;
+    }
+
+    static createTableBody(table) {
+        var clonedTbody = $tbody.clone();
+
+        table.append(clonedTbody);
+
+        return clonedTbody;
+    }
+
+    static createTableRow(parent) {
+        var clonedTableRow = $tr.clone();
+
+        parent.append(clonedTableRow);
+
+        return clonedTableRow;
+    }
+
+    static createTableHead(row, content) {
+        var clonedTheader = $th.clone();
+
+        row.append(clonedTheader);
+        clonedTheader.html(content);
+
+        return clonedTheader;
+    }
+
+    static createTableData(row, content) {
+        var clonedTdata = $td.clone();
+
+        row.append(clonedTdata);
+        clonedTdata.html(content);
+
+        return clonedTdata;
     }
 }
