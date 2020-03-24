@@ -95,7 +95,7 @@
             <span class="navbar-toggler-icon" style="transition: all 0.2s ease-in-out 0s;"></span>
         </button>
 
-        <img class="navbar-brand rounded-circle mr-2" width="45" src="test">
+        <img class="navbar-brand rounded-circle mr-2" width="45" src="../img/profile-pic.png">
         <small class="text-muted"><span class="font-weight-bold">@username</span>
             <br>
             Rol
@@ -122,7 +122,7 @@
             </ul>
         </div>
     </nav>
-    <section class="w-100 breadcrumbContainer d-none d-sm-block" aria-label="breadcrumb">
+    <section class="w-100 breadcrumbContainer" aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 rounded-0">
             <li class="breadcrumb-item"><a class="" href="index.php">Home</a></li>
             <li class="breadcrumb-item"><a class="text-muted" href="index.php?ctl=projects">Projects</a></li>
@@ -169,6 +169,11 @@
         "signin",
     ];
     var templatePageIndex = 3;
+    var url = window.location.href;
+    var index = url.indexOf("#") + 1;
+    if (index > 0) {
+        templatePageIndex = url.substring(index);
+    }
     $(window).on("load", function () {
         loadPage();
         $("#prevPage").on("click", function () {
