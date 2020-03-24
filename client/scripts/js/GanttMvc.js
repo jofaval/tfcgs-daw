@@ -385,7 +385,7 @@ class Controller {
             firstOne = $(this);
             rowOne = firstOne.parent();
             if (rowOne.find(".taskBar").length > 0) {
-                alert("This already has a taskBar");
+                sendNotification("This already has a taskBar");
                 return;
             }
         }).on("dragend", function () {
