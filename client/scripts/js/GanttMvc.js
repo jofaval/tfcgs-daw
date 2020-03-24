@@ -2,39 +2,43 @@ var currentDate = new Date();
 var newDate = new Date();
 newDate.setDate(currentDate.getDate() + 3);
 var tasks = [{
-    "id": 0,
+    "id": 1,
     "color": 1,
     "title": "Title",
     "desc": "Desc",
     "startingDate": currentDate,
     "endingDate": newDate,
-    "subtasks": [{
-            "id": 0,
+    "subTasks": [{
+            "id": 1,
             "title": "Title",
             "desc": "Desc",
             "startingDate": currentDate,
             "endingDate": newDate,
+            "daysSpan": "3",
         },
         {
-            "id": 0,
+            "id": 2,
             "title": "Title",
             "desc": "Desc",
             "startingDate": currentDate,
             "endingDate": newDate,
+            "daysSpan": "3",
         },
         {
-            "id": 0,
+            "id": 3,
             "title": "Title",
             "desc": "Desc",
             "startingDate": currentDate,
             "endingDate": newDate,
+            "daysSpan": "3",
         },
         {
-            "id": 0,
+            "id": 4,
             "title": "Title",
             "desc": "Desc",
             "startingDate": currentDate,
             "endingDate": newDate,
+            "daysSpan": "3",
         },
     ],
 }, ];
@@ -210,11 +214,11 @@ class View {
 
         var startingDate = ViewUtils.createTableData(tr, "&nbsp;")
             .addClass("startingDate");
-        startingDate.text(subTaskData.startDate);
+        startingDate.text(printDateWithFormat(subTaskData.startingDate, "d/m/Y"));
 
         var endingDate = ViewUtils.createTableData(tr, "&nbsp;")
             .addClass("endingDate");
-        endingDate.text(subTaskData.endDate);
+        endingDate.text(printDateWithFormat(subTaskData.endingDate, "d/m/Y"));
 
         var progressIndicator = ViewUtils.createTableData(tr, "")
             .addClass("progressIndicator align-middle");
@@ -288,50 +292,18 @@ class Controller {
             ViewUtils.createTableHead($(".ganttRowDates"), dayInString);
         }
 
-        view.visualizeTask($("tbody"), {
-            "title": "test",
+        //Load from JSON
+        $(tasks).each(function () {
+            var taskData = this;
+            var task = controller.createTask(controller, taskData);
+            var subTasks = this.subTasks;
+
+            $(subTasks).each(function () {
+                var subTask = controller.createSubTask(controller, taskData, this);
+            })
         });
 
-        var subTask = view.visualizeSubTask($("tbody"), {
-            "title": "test",
-            "startDate": "20/03/2020",
-            "endDate": "23/03/2020",
-            "daysSpan": "3",
-        });
-        controller.onSubTaskDrop(subTask.find("td"));
-        view.adjustMaxLengthTitles();
-
-        var taskCreationButton = view.visualizeTaskCreation($("tbody"))
-            .removeClass("text-dark").addClass("text-white");
-
-        taskCreationButton.find(".btn").on("click", function () {
-            var newTask = view.visualizeTask($("tbody"), {
-                "title": `Task ${$(".taskTitle").length + 1}`,
-            });
-
-            newTask.after(taskCreationButton);
-        });
-
-        var subTaskCreationButton = view.visualizeTaskCreation($("tbody"), "Create SubTask +")
-            .removeClass("text-dark").addClass("text-white");
-
-        var count = 0;
-        subTaskCreationButton.find(".btn").on("click", function () {
-            var newsubTask = view.visualizeSubTask($("tbody"), {
-                "title": `Sub Task ${count + 1}`,
-                "startDate": "20/03/2020",
-                "endDate": "23/03/2020",
-                "daysSpan": "3",
-            });
-            view.adjustMaxLengthTitles();
-            count++;
-
-            subTaskCreationButton.before(newsubTask);
-        });
-
-        for (let index = 0; index < 2; index++) {
-            taskCreationButton.find(".btn").trigger("click");
-        }
+        controller.createTaskCreationBtn(controller);
 
         $("main").scroll(function () {
             var height = $(this).scrollTop();
@@ -340,28 +312,66 @@ class Controller {
         });
     }
 
-    addDaysToDeadline(deadline) {
-        deadline.find(".addDays").on("click", function (event) {
-            var event = event || window.event;
-            event.preventDefault();
-            var current = $(this).parents("td");
-            current.prop("colspan", parseInt(current.prop("colspan")) + 1);
-            current.next().remove();
-        }, false);
+    createTaskCreationBtn(controller) {
+        var controllerView = controller.view;
+        var taskCreationButton = controllerView.visualizeTaskCreation($("tbody"))
+            .removeClass("text-dark").addClass("text-white");
+
+        taskCreationButton.find(".btn").on("click", function () {
+            var newTask = controller.createTask(controller, {
+                "title": `Task ${$(".taskTitle").length + 1}`,
+                "id": `${$(".taskTitle").length + 1}`,
+            });
+
+            $("tbody").append(taskCreationButton);
+        });
+
+        return taskCreationButton;
     }
 
-    removeDaysToDeadline(deadline) {
-        deadline.find(".removeDays").on("click", function (event) {
-            var event = event || window.event;
-            event.preventDefault();
-            var current = $(this).parents("td");
-            var colspan = parseInt(current.prop("colspan"));
-            current.prop("colspan", colspan - 1);
-            current.after($("<td>&nbsp;</td>"));
-            if (colspan <= 1) {
-                current.remove();
-            }
-        }, false);
+    createTask(controller, taskData) {
+        var controllerView = controller.view;
+
+        var task = controllerView.visualizeTask($("tbody"), taskData);
+        controller.createSubTaskCreationBtn(controller, taskData);
+
+        controllerView.adjustMaxLengthTitles();
+
+        return task;
+    }
+
+    createSubTask(controller, taskData, subTaskData) {
+        var controllerView = controller.view;
+
+        var subTask = controllerView.visualizeSubTask($("tbody"), subTaskData);
+        controller.onSubTaskDrop(subTask.find("td"));
+        $(`#${taskData.id}SubTaskCreation`).before(subTask);
+
+        controllerView.adjustMaxLengthTitles();
+
+        return subTask;
+    }
+
+    createSubTaskCreationBtn(controller, taskData) {
+        var controllerView = controller.view;
+        var subTaskCreationButton = controllerView.visualizeTaskCreation($("tbody"), "Create SubTask +")
+            .removeClass("text-dark").addClass("text-white")
+            .prop("id", `${taskData.id}SubTaskCreation`);
+
+        var count = 0;
+        subTaskCreationButton.find(".btn").on("click", function () {
+            var newsubTask = controller.createSubTask(controller, taskData, {
+                "title": `Sub Task ${count + 1}`,
+                "startingDate": currentDate,
+                "endingDate": newDate,
+                "daysSpan": "3",
+            });
+            count++;
+
+            subTaskCreationButton.before(newsubTask);
+        }).addClass("btn-primary text-dark");
+
+        return subTaskCreationButton;
     }
 
     onSubTaskDrop(elements) {
@@ -401,6 +411,30 @@ class Controller {
             newTd.prop("colspan", toBeAffected.length);
             newTd.addClass("bg-dark");
         });
+    }
+
+    addDaysToDeadline(deadline) {
+        deadline.find(".addDays").on("click", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+            var current = $(this).parents("td");
+            current.prop("colspan", parseInt(current.prop("colspan")) + 1);
+            current.next().remove();
+        }, false);
+    }
+
+    removeDaysToDeadline(deadline) {
+        deadline.find(".removeDays").on("click", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+            var current = $(this).parents("td");
+            var colspan = parseInt(current.prop("colspan"));
+            current.prop("colspan", colspan - 1);
+            current.after($("<td>&nbsp;</td>"));
+            if (colspan <= 1) {
+                current.remove();
+            }
+        }, false);
     }
 
     onTaskCreation(taskData) {
