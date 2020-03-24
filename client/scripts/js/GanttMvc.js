@@ -87,7 +87,7 @@ var taskColorCode = {
 };
 
 var $taskTitleSpan = $(`
-<span class="position-absolute py-3 shadow "
+<span class="position-absolute py-3 shadow ganttTitle"
 style="left: 0; padding-left: 2rem; padding-right: 1rem; margin-top: -1rem;"></span>
 `);
 
