@@ -1,28 +1,37 @@
 Options -MultiViews
 RewriteEngine On
 
-RewriteRule ^admin/$ ./index.php?ctl=admin [L]
-RewriteRule ^projects/$ ./index.php?ctl=projects [L]
-RewriteRule ^signin/$ ./index.php?ctl=signin&login=test [L]
-RewriteRule ^signup/$ ./index.php?ctl=signup [L]
-RewriteRule ^signout/$ ./index.php?ctl=signout [L]
-RewriteRule ^not-signed-in/$ ./index.php?ctl=notsigned [L]
-RewriteRule ^not-user-agent/$ ./index.php?ctl=notuseragent [L]
-RewriteRule ^error/$ ./index.php?ctl=error [L]
-RewriteRule ^no-action/$ ./index.php?ctl=error&message=Action_is_not_available_at_the_moment [L]
-RewriteRule ^execution-error/$ ./index.php?ctl=error&message=Action_could_not_be_executed [L]
-RewriteRule ^access/$ ./index.php?ctl=access [L]
-RewriteRule ^confirm-email/$ ./index.php?ctl=confirmEmail [L]
-
+#HTTP Error redirections
 ErrorDocument 404 /daw/404/
 RewriteRule ^404/$ ./index.php?ctl=404 [L]
 
+#Main pages
+RewriteRule ^admin/$ ./index.php?ctl=admin [L]
+RewriteRule ^projects/$ ./index.php?ctl=projects [L]
+
+#Signin
+RewriteRule ^signin/$ ./index.php?ctl=signin&login=test [L]
+RewriteRule ^signout/$ ./index.php?ctl=signout [L]
+RewriteRule ^signup/$ ./index.php?ctl=signup [L]
+
+#Errors
+RewriteRule ^access/$ ./index.php?ctl=access [L]
+RewriteRule ^error/$ ./index.php?ctl=error [L]
+RewriteRule ^execution-error/$ ./index.php?ctl=error&message=Action_could_not_be_executed [L]
+RewriteRule ^no-action/$ ./index.php?ctl=error&message=Action_is_not_available_at_the_moment [L]
+RewriteRule ^not-signed-in/$ ./index.php?ctl=notsigned [L]
+RewriteRule ^not-user-agent/$ ./index.php?ctl=notuseragent [L]
+
 #Project Rules
 RewriteRule ^projects/id/([^/]+)/$ ./index.php?ctl=project&id=$1 [L]
+
+#Task list
 RewriteRule ^projects/id/([^/]+)/tasklist/id/([^/]+)/$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2 [L]
 
+#Gantt
 RewriteRule ^projects/id/([^/]+)/gantt/id/([^/]+)/$ ./index.php?ctl=project&id=$1&element=gantt&secondaryId=$2 [L]
 RewriteRule ^projects/id/([^/]+)/gantt/id/([^/]+)/from/([^/]+)/to/([^/]+)/$ ./index.php?ctl=project&id=$1&element=gantt&secondaryId=$2&startDate=$3&startDate=$4 [L]
 
+#Diary
 RewriteRule ^projects/id/([^/]+)/diary/date/([^/]+)/$ ./index.php?ctl=project&id=$1&element=diary&date=$2 [L]
 RewriteRule ^projects/id/([^/]+)/diary/$ ./index.php?ctl=project&id=$1&element=diary [L]
