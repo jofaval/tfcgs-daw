@@ -146,7 +146,10 @@ function createPHPajaxController($methods, $methodParams)
         $phpAjaxController .= "\n    public function " . $value . "()\n    {\n        \$this->genericAjaxReturn(__FUNCTION__";
         $requiredParams = $methodParams[$key];
         if (count($methodParams[$key]) > 0) {
-            $phpAjaxController .= ", [\"" . join(", ", $requiredParams) . "\"]";
+            foreach ($requiredParams as $key => $value) {
+                $requiredParams[$key] = "\"$value\"";
+            }
+            $phpAjaxController .= ", [" . join(", ", $requiredParams) . "]";
         }
         $phpAjaxController .= ");\n    }";
     }
