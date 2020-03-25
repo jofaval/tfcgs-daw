@@ -269,6 +269,12 @@ class View {
 
         $("#titles, .taskTitle, .subTaskTitle").css("min-width", `calc(${Math.max.apply(null, titlesLengths)}px + 3rem)`);
     }
+
+    scrollTo(element) {
+        $(element).get(0).scrollIntoView({
+            behavior: "smooth"
+        });
+    }
 }
 
 class Controller {
@@ -324,6 +330,7 @@ class Controller {
                 "id": `${$(".taskTitle").length + 1}`,
             });
 
+            controllerView.scrollTo(taskCreationButton);
             $("tbody").append(taskCreationButton);
         });
 
@@ -369,6 +376,7 @@ class Controller {
             });
             count++;
 
+            controllerView.scrollTo(subTaskCreationButton);
             subTaskCreationButton.before(newsubTask);
         }).addClass("btn-primary text-dark");
 
