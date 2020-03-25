@@ -43,9 +43,23 @@ class Controller
             "secondaryId" => "",
             "elementName" => "Element title",
         ];
+
         if (Utils::exists("id")) {
+            $id = Utils::getCleanedData("id");
+
+            $sessions = Sessions::getInstance();
+            $projectDataFromSession = $sessions->getSession("projectData");
+
             $project = new Projects();
             $projectData = $project->query()[0];
+
+            if ($projectDataFromSession != null) {
+                if ($projectDataFromSession->$id != $id) {
+                    $projectDataFromSession = new ProjectData($this, $projectData);
+                }
+            } else {
+                $projectDataFromSession = new ProjectData($this, $projectData);
+            }
 
             $viewParams["title"] = $projectData["title"];
             $viewParams["id"] = $projectData["id"];
