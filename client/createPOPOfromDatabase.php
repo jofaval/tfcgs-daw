@@ -56,7 +56,7 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
             }
             $controller .= "\n\n\tpublic function $functionName$tableAsClass()\n\t{";
             $controller .= "\n\t\t\$popoInstance = new " . $tableAsClass . "();";
-            $controller .= "\n\n\t\t\$popoInstance->$functionName();\n\t}";
+            $controller .= "\n\n\t\treturn \$popoInstance->$functionName();\n\t}";
         }
 
         //Table value
