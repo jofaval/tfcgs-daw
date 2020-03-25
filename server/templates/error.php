@@ -5,8 +5,14 @@
 <?php $mainClasses = "";?>
 <?php $showFooter = Sessions::getInstance()->isUserLogged();?>
 <?php $showHeader = Sessions::getInstance()->isUserLogged();?>
-<?php $showBreadcrumb = false;?>
-<?php $breadcrumb = [];?>
+<?php $showBreadcrumb = true;?>
+<?php $breadcrumb = [
+    [
+        "name" => "Go back home",
+        "link" => "/daw/projects/",
+        "active" => false,
+    ],
+];?>
 
 <?php ob_start()?>
 
