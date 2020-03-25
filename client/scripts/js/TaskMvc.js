@@ -233,9 +233,10 @@ class Controller {
 
         var newTaskListTitle = taskListAddInput.val();
         if (newTaskListTitle.length < 3) {
-            sendNotification("Task list title must have atleast 3 characters");
+            sendNotification("Task list title must have at least 3 characters");
             return;
         }
+
         var returnedValue = {
             "id": 0,
             "title": newTaskListTitle,
@@ -303,12 +304,21 @@ class Controller {
 
     taskListItemCreation(event, controller, taskList) {
         var taskListInput = taskList.find(".taskListInput");
+
+        var taskListItemValue = taskListInput.val();
+        if (taskListItemValue.length < 3) {
+            sendNotification("Task list item title must have at least 3 characters");
+            return;
+        }
+
         var returnedValue = {
             "id": 0,
             "order": 0,
-            "title": taskListInput.val(),
+            "title": taskListItemValue,
         };
-        controller.createTaskItem(controller, taskList, returnedValue);
+
+        var taskItem = controller.createTaskItem(controller, taskList, returnedValue);
+        controller.view.scrollTo(taskItem);
         controller.onTaskListItemCreation(taskList, returnedValue);
         taskListInput.val("");
     }
