@@ -20,6 +20,9 @@ RewriteRule ^404/$ ./index.php?ctl=404 [L]
 #Project Rules
 RewriteRule ^projects/id/([^/]+)/$ ./index.php?ctl=project&id=$1 [L]
 RewriteRule ^projects/id/([^/]+)/tasklist/id/([^/]+)/$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2 [L]
+
 RewriteRule ^projects/id/([^/]+)/gantt/id/([^/]+)/$ ./index.php?ctl=project&id=$1&element=gantt&secondaryId=$2 [L]
+RewriteRule ^projects/id/([^/]+)/gantt/id/([^/]+)/from/([^/]+)/to/([^/]+)/$ ./index.php?ctl=project&id=$1&element=gantt&secondaryId=$2&startDate=$3&startDate=$4 [L]
+
 RewriteRule ^projects/id/([^/]+)/diary/date/([^/]+)/$ ./index.php?ctl=project&id=$1&element=diary&date=$2 [L]
 RewriteRule ^projects/id/([^/]+)/diary/$ ./index.php?ctl=project&id=$1&element=diary [L]
