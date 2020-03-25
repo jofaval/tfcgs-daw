@@ -3,6 +3,8 @@ class AjaxController
 {
     public function genericAjaxReturn($functionName, $requiredParams = [])
     {
+        header('Content-Type: application/json');
+
         try {
             if (!empty($requiredParams)) {
                 $this->throwIfExceptionIfDoesntExist($requiredParams);
