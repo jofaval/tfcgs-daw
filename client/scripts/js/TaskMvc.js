@@ -162,6 +162,24 @@ class View {
         return clonedTaskListItem;
     }
 
+    //Reference - https://kryogenix.org/code/browser/custom-drag-image.html
+    addGhostImage(e, taskItem, nodeToClone) {
+        var crt = nodeToClone.cloneNode(true);
+
+        var currentHeight = taskItem.height();
+        var currentWidth = taskItem.width();
+
+        $("body").append(
+            $(crt).css({
+                position: "absolute",
+                width: `${currentWidth}px`,
+                height: `${currentHeight}px`,
+                opacity: `100%`,
+            }).addClass("dragging")
+        );
+        e.dataTransfer.setDragImage(crt, currentWidth, currentHeight);
+    }
+
     scrollTo(element) {
         $(element).get(0).scrollIntoView({
             behavior: "smooth"
@@ -288,36 +306,44 @@ class Controller {
     }
 
     createTaskItem(controller, taskList, taskItemData) {
-        var taskItem = controller.view.visualizeTaskListItem(taskList, taskItemData.id, taskItemData.title);
+        var controllerView = controller.view;
+        var taskItem = controllerView.visualizeTaskListItem(taskList, taskItemData.id, taskItemData.title);
 
         var draggingTaskItem = taskItem;
 
         taskItem.prop("draggable", true);
 
-        taskItem.on("dragstart", function () {
-            $(this).addClass("dragging");
-            startingIndex = $(this).index();
-            draggingTaskItem = $(this);
-            startingTaskListParent = $(this).parents(".taskList");
+        taskItem.on("dragstart", function (event) {
+            var event = event.originalEvent || window.event;
+            var currentTaskItem = $(this);
+
+            controllerView.addGhostImage(event, currentTaskItem, this);
+
+            startingIndex = currentTaskItem.index();
+            draggingTaskItem = currentTaskItem;
+            startingTaskListParent = currentTaskItem.parents(".taskList");
             $referenceTaskListItem.find(".taskListItemTitle").html(draggingTaskItem.text());
             console.log("Empieza");
         }).on("drop", function () {
             console.log("Se suelta");
         }).on("dragover", function () {
+            var currentTaskItem = $(this);
+
             $referenceTaskListItem.show();
 
-            var index = $(this).index();
+            var index = currentTaskItem.index();
             if (index == 0) {
-                $(this).before($referenceTaskListItem);
+                currentTaskItem.before($referenceTaskListItem);
                 endingIndex = 0;
             } else {
                 if (index > 1) {
                     endingIndex = -1;
                 }
-                $(this).after($referenceTaskListItem);
+                currentTaskItem.after($referenceTaskListItem);
             }
         }).on("dragend", function () {
-            $(this).removeClass("dragging");
+            var currentTaskItem = $(this);
+            currentTaskItem.removeClass("dragging");
             $referenceTaskListItem.hide();
             endingTaskListParent = $referenceTaskListItem.parents(".taskList");
             endingIndex += $referenceTaskListItem.index();

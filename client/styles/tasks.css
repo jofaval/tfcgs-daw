@@ -45,8 +45,8 @@ main {
 }
 
 .dragging {
-    cursor: -webkit-grabbing;
-    /*transform: rotate(-30deg);*/
+    cursor: -webkit-grabbing !important;
+    transform: rotate(-15deg);
 }
 
 #content {
