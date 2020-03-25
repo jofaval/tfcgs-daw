@@ -10,9 +10,9 @@
 <?php $loadLogin = Utils::exists("login")?>
 
 <?php ob_start()?>
-<div class="h-75 m-auto w-50 shadow d-flex text-dark" id="signFormsContainer">
+<div class="h-75 m-auto w-50 shadow d-flex text-dark bg-white" id="signFormsContainer">
     <form action="/daw/signin/" method="POST" id="registerForm"
-        class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
+        class="col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1>Welcome back!</h1>
         <div class="md-form w-100">
             <input type="text" class="form-control" id="username" name="username" required
@@ -34,7 +34,7 @@
         </div>
     </form>
     <form action="/daw/signup/" method="POST" id="loginForm"
-        class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column pr-5 pl-0 h-100 text-center">
+        class="col-md-6 d-flex align-items-center justify-content-center flex-column pr-5 pl-0 h-100 text-center">
         <h1>Welcome!</h1>
         <div class="form-row w-100">
             <div class="col">
@@ -83,8 +83,10 @@
             <input type="submit" class="btn btn-primary w-100" value="Sign up" id="signup" name="signup" required>
         </div>
     </form>
+    <div class="position-absolute btn btn-primary d-block d-sm-none" id="changeForm" style="bottom: 0;">Cambiar
+    </div>
     <div id="mainPanel"
-        class="aqua-gradient rounded text-white shadow position-relative d-flex flex-column justify-content-center align-items-center">
+        class="aqua-gradient rounded text-white shadow position-relative d-none d-sm-flex z-index-overlap flex-column justify-content-center align-items-center">
         <div class="d-flex <?php echo $loadLogin ? "" : "formToLoad"; ?> togglePanel flex-column justify-content-center align-items-center"
             id="loginPanel">
             <h2 class="font-weight-bold">Login form</h2>
