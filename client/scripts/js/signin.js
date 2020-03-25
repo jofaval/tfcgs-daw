@@ -20,10 +20,10 @@ var intervalTime = 30;
 $("#loginPanel .btn").on("click", function () {
     togglePanel($("#loginPanel"), $("#registerPanel"), false);
 
-    $("#registerForm").find("*").stop().animate({
+    $("#registerForm").stop().animate({
         opacity: "0",
     }, fadeAnimationDuration);
-    $("#loginForm").find("*").stop().animate({
+    $("#loginForm").stop().animate({
         opacity: "1",
     }, fadeAnimationDuration);
 });
@@ -31,21 +31,13 @@ $("#loginPanel .btn").on("click", function () {
 $("#registerPanel .btn").on("click", function () {
     togglePanel($("#registerPanel"), $("#loginPanel"), true);
 
-    $("#loginForm").find("*").stop().animate({
+    $("#loginForm").stop().animate({
         opacity: "0",
     }, fadeAnimationDuration);
-    $("#registerForm").find("*").stop().animate({
+    $("#registerForm").stop().animate({
         opacity: "1",
     }, fadeAnimationDuration);
 });
-
-
-var url = window.location.href;
-var positionOfLastBar = url.lastIndexOf("/");
-var params = url.substring(positionOfLastBar);
-var panelToActivate = params.includes("#login") ? "registerPanel" : "loginPanel";
-
-$(`.formToLoad .btn`).trigger("click");
 
 function togglePanel(toHide, toShow, toRight) {
     var panelInformationTextArray = [
@@ -106,3 +98,29 @@ function togglePanel(toHide, toShow, toRight) {
     writeInElement(toShow.find("p"), panelInformationTextArray[textIndex][1], intervalTime / 2);
     writeInElement(toShow.find("button"), panelInformationTextArray[textIndex][2], intervalTime);
 }
+
+var url = window.location.href;
+var positionOfLastBar = url.lastIndexOf("/");
+var params = url.substring(positionOfLastBar);
+var panelToActivate = params.includes("#login") ? "registerPanel" : "loginPanel";
+
+$(`.formToLoad .btn`).trigger("click");
+
+var isInLogin = $(".formToLoad").prop("id").includes("login");
+$("#changeForm").on("click", function () {
+    var current = $(this);
+
+    current.stop().animate({
+        left: isInLogin ? "50%" : "0%",
+        right: isInLogin ? "0%" : "50%",
+    });
+
+    current.text(`Go to ${isInLogin ? "signin" : "signup"} form`);
+
+    $(`#${isInLogin ? "loginForm" : "registerForm"}`).get(0).scrollIntoView({
+        behavior: "smooth"
+    });
+
+    isInLogin = !isInLogin;
+});
+$("#changeForm").trigger("click");

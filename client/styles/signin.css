@@ -9,7 +9,9 @@ main {
     justify-content: center !important;
 }
 
-nav.navbar, .breadcrumbContainer, .footer {
+nav.navbar,
+.breadcrumbContainer,
+.footer {
     display: none !important;
 }
 
@@ -38,4 +40,40 @@ main {
 
 #signFormsContainer {
     perspective: 1000px;
+}
+
+@media (max-width: 800px) {
+    main {
+        -ms-scroll-snap-type: mandatory;
+        scroll-snap-type: mandatory;
+        -ms-scroll-snap-points-x: repeat(100vw);
+        scroll-snap-points-x: repeat(100vw);
+        -ms-scroll-snap-type: x mandatory;
+        scroll-snap-type: x mandatory;
+        overflow: auto;
+    }
+
+    #signFormsContainer {
+        width: 200% !important;
+        height: 100% !important;
+    }
+
+    #content {
+        width: 200% !important;
+    }
+
+    #signFormsContainer form {
+        width: 100% !important;
+        padding: 0% !important;
+        scroll-snap-align-x: center !important;
+        opacity: 1 !important;
+    }
+
+    .md-form {
+        max-width: 75% !important;
+    }
+
+    #changeForm {
+        transition: all 0.2s ease-in-out;
+    }
 }

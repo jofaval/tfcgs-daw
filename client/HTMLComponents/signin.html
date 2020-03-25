@@ -12,16 +12,16 @@
 
 
 <body>
-    <div class="h-50 m-auto w-50 shadow d-flex" id="signFormsContainer">
-        <form action="" method="POST" id="registerForm"
-            class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
+    <div class="h-75 m-auto w-50 shadow d-flex text-dark bg-white" id="signFormsContainer">
+        <form action="/daw/signin/" method="POST" id="registerForm"
+            class=" col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
             <h1>Welcome back!</h1>
             <div class="md-form w-100">
-                <input type="text" class="form-control" id="username" name="username">
+                <input type="text" class="form-control" id="username" name="username" required>
                 <label for="username">Username</label>
             </div>
             <div class="md-form input-group w-100">
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password" required>
                 <label for="password">Password</label>
                 <div class="input-group-append">
                     <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
@@ -30,58 +30,62 @@
                 </div>
             </div>
             <div class="md-form w-75">
-                <input type="submit" class="btn btn-primary w-100" value="Sign in" id="signin" name="signin">
+                <input type="submit" class="btn btn-primary w-100" value="Sign in" id="signin" name="signin" required>
             </div>
         </form>
-        <form action="" method="POST" id="loginForm"
-            class="bg-white col-md-6 d-flex align-items-center justify-content-center flex-column px-5 h-100 text-center">
+        <form action="/daw/signup/" method="POST" id="loginForm"
+            class="col-md-6 d-flex align-items-center justify-content-center flex-column pr-5 pl-0 h-100 text-center">
             <h1>Welcome!</h1>
             <div class="form-row w-100">
                 <div class="col">
                     <!-- First name -->
                     <div class="md-form">
-                        <input type="text" id="materialRegisterFormFirstName" class="form-control">
-                        <label for="materialRegisterFormFirstName">First name</label>
+                        <input type="text" name="firstName" id="firstName" required class="form-control">
+                        <label for="firstName">First name</label>
                     </div>
                 </div>
                 <div class="col">
                     <!-- Last name -->
                     <div class="md-form">
-                        <input type="text" id="materialRegisterFormLastName" class="form-control">
-                        <label for="materialRegisterFormLastName">Last name</label>
+                        <input type="text" name="secondName" id="secondName" required class="form-control">
+                        <label for="secondName">Last name</label>
                     </div>
                 </div>
             </div>
             <div class="md-form w-100">
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" required>
                 <label for="email">E-Mail</label>
             </div>
             <div class="md-form w-100">
-                <input type="text" class="form-control" id="username" name="username">
+                <input type="text" class="form-control" id="username" name="username" required>
                 <label for="username">Username</label>
             </div>
             <div class="md-form input-group w-100">
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password" required>
                 <label for="password">Password</label>
                 <div class="input-group-append">
                     <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
                         <i class="fa fa-eye"></i>
                     </a>
                 </div>
+
             </div>
             <div class="md-form w-75">
-                <input type="submit" class="btn btn-primary w-100" value="Sign up" id="signup" name="signup">
+                <input type="submit" class="btn btn-primary w-100" value="Sign up" id="signup" name="signup" required>
             </div>
         </form>
+        <div class="position-absolute btn btn-primary d-block d-sm-none" id="changeForm" style="bottom: 0;">Cambiar
+        </div>
         <div id="mainPanel"
-            class="aqua-gradient rounded text-white shadow position-relative d-flex flex-column justify-content-center align-items-center">
+            class="aqua-gradient rounded text-white shadow position-relative d-none d-sm-flex z-index-overlap flex-column justify-content-center align-items-center">
             <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="loginPanel">
                 <h2 class="font-weight-bold">Login form</h2>
                 <p>I'm not signed up, take me to:</p>
                 <br>
                 <button class="btn rounded">Registration form</button>
             </div>
-            <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="registerPanel">
+            <div class="d-flex formToLoad togglePanel flex-column justify-content-center align-items-center"
+                id="registerPanel">
                 <h2 class="font-weight-bold">Registration form</h2>
                 <br>
                 <p>I'm already signed up, take me to:</p>
