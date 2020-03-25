@@ -56,13 +56,6 @@
     errorContainer = $formErrorContainer.clone();
     input.append(errorContainer);
     errorContainer.append(clonedError);
-
-    input.find("input").on("keydown", removePhpMessages);
-
-    function removePhpMessages() {
-        input.find(".test").remove();
-        input.unbind("keydown", removePhpMessages);
-    }
 </script>
 
 </html>

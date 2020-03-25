@@ -132,6 +132,15 @@ class ViewUtils {
         inputElement.prop("maxlength", maxLen);
     }
 
+    removePhpErrorMessages(input, className = "php", event = "keydown") {
+        input.find("input, textarea").on(event, removePhpMessages);
+
+        function removePhpMessages() {
+            input.find(`.${className}`).remove();
+            input.unbind(event, removePhpMessages);
+        }
+    }
+
     static addSelect(parent, id) {
         var clonedInput = $formSelect.clone();
 
