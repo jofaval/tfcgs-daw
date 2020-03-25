@@ -38,18 +38,24 @@ class Controller
         $viewParams = [
             "title" => "",
             "creation_date" => "",
+            "creator" => "",
+            "id" => "",
+            "secondaryId" => "",
+            "elementName" => "Element title",
         ];
         if (Utils::exists("id")) {
             $project = new Projects();
             $projectData = $project->query()[0];
 
             $viewParams["title"] = $projectData["title"];
+            $viewParams["id"] = $projectData["id"];
             $viewParams["creation_date"] = $projectData["creation_date"];
 
             $direction = "project";
 
             if (Utils::exists("element")) {
                 $element = Utils::getCleanedData("element");
+                $viewParams["secondaryId"] = Utils::getCleanedData("secondaryId");
                 if (in_array($element, Config::$projectElements)) {
                     $direction = $element;
                 }

@@ -9,12 +9,17 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "../index.php",
+        "link" => "/daw/",
         "active" => false,
     ],
     [
-        "name" => "Projects",
-        "link" => "",
+        "name" => "Your projects",
+        "link" => "/daw/projects/",
+        "active" => false,
+    ],
+    [
+        "name" => $viewParams["title"],
+        "link" => "./project/id/" . $viewParams["id"] . "/",
         "active" => true,
     ],
 ];

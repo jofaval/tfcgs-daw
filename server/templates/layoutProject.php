@@ -56,7 +56,12 @@
     <?php if ($showBreadcrumb): ?>
     <section class="w-100 breadcrumbContainer" aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 rounded-0">
-            <li class="breadcrumb-item"><a href="">Go back to project stats</a></li>
+            <?php foreach ($breadcrumb as $elem): ?>
+            <li class="breadcrumb-item"><a class="<?php if ($elem["active"]) {
+    echo "text-muted";
+}
+?>" href="<?php echo $elem["link"]; ?>"><?php echo $elem["name"]; ?></a></li>
+            <?php endforeach;?>
         </ol>
     </section>
     <?php endif;?>

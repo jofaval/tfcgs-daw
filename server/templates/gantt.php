@@ -9,22 +9,22 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "index.php",
+        "link" => "/daw/",
         "active" => false,
     ],
     [
-        "name" => "Projects",
-        "link" => "./projects/",
+        "name" => "Your projects",
+        "link" => "/daw/projects/",
         "active" => false,
     ],
     [
-        "name" => "ProjectName",
-        "link" => "./project/id/name/",
+        "name" => $viewParams["title"],
+        "link" => "./project/id/" . $viewParams["id"] . "/",
         "active" => false,
     ],
     [
-        "name" => "Gantt",
-        "link" => "./project/id/name/gantt/",
+        "name" => $viewParams["elementName"],
+        "link" => "./project/id/name/gantt/id/" . $viewParams["secondaryId"],
         "active" => true,
     ],
 ];
