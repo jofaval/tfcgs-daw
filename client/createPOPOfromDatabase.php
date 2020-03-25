@@ -237,7 +237,7 @@ function createFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $ever
 {
     $content .= "\n    public function create()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$params = [";
     foreach ($everyKey as $value) {
-        $content .= "\n            \"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->$value,";
     }
     $content .= "\n        ];\n\n        return \$sqlUtils->insert(\$params);\n    }";
 }
@@ -247,16 +247,16 @@ function updateFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $ever
 {
     $content .= "\n\n    public function update()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$toModify = [";
     foreach ($tableKeys as $value) {
-        $content .= "\n            \"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->$value,";
     }
     foreach ($foreignKeys as $value) {
-        $content .= "\n            \"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->$value,";
     }
     $content .= "\n        ];";
 
     $content .= "\n\n        \$identificationParams = [";
     foreach ($primaryKeys as $value) {
-        $content .= "\n            \"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->$value,";
     }
     $content .= "\n        ];\n\n        return \$sqlUtils->update(\$this->\$table, \$toModify, \$identificationParams);\n    }";
 }
@@ -266,7 +266,7 @@ function deleteFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $ever
 {
     $content .= "\n\n    public function delete()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$params = [";
     foreach ($primaryKeys as $value) {
-        $content .= "\n            \"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->$value,";
     }
     $content .= "\n        ];\n\n        return \$sqlUtils->delete(\$this->\$table, \$params);\n    }";
 }
@@ -276,7 +276,7 @@ function queryFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $every
 {
     $content .= "\n\n    public function query()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$params = [";
     foreach ($primaryKeys as $value) {
-        $content .= "\n            \"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->$value,";
     }
     $content .= "\n        ];\n\n        return \$sqlUtils->query(\$this->\$table, \$params);\n    }";
 }
@@ -286,7 +286,7 @@ function enableFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $ever
 {
     $content .= "\n\n    public function enable()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$identificationParams = [";
     foreach ($primaryKeys as $value) {
-        $content .= "\n            \"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->$value,";
     }
     $content .= "\n        ];\n\n        return \$sqlUtils->enable(\$this->\$table, Utils::getCleanedData(\"enable\"), \$identificationParams);\n    }";
 }
@@ -296,7 +296,7 @@ function fillFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyK
 {
     $content .= "\n\n\n    public function fill()\n    {";
     foreach ($everyKey as $value) {
-        $content .= "\n        \$this->\$$value = Utils::getCleanedData(\"" . camelCase($value) . "\");";
+        $content .= "\n        \$this->$value = Utils::getCleanedData(\"" . camelCase($value) . "\");";
     }
     $content .= "\n    }";
 }
@@ -306,7 +306,7 @@ function parseFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $every
 {
     $content .= "\n\n\n    public function parse()\n    {\n        return json_encode([";
     foreach ($everyKey as $value) {
-        $content .= "\n            \"" . camelCase($value) . "\" => \$this->\$$value,";
+        $content .= "\n            \"" . camelCase($value) . "\" => \$this->$value,";
     }
     $content .= "\n        ]);\n    }";
 }
