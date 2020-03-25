@@ -228,17 +228,24 @@ class Controller {
     }
 
     taskListInputCreationEvent(event, controller) {
+        var taskListAddContainer = $("#taskListInputCreation");
         var taskListAddInput = $("#taskListInputCreation").find(".taskListInput");
+
+        var newTaskListTitle = taskListAddInput.val();
+        if (newTaskListTitle.length < 3) {
+            sendNotification("Task list title must have atleast 3 characters");
+            return;
+        }
         var returnedValue = {
             "id": 0,
-            "title": taskListAddInput.val(),
+            "title": newTaskListTitle,
             "items": [],
         };
         //ajax here
         var taskList = controller.createTaskList(controller, returnedValue);
         controller.onTaskListCreation(returnedValue);
 
-        controller.view.scrollTo(taskListAddInput);
+        controller.view.scrollTo(taskListAddContainer);
 
         taskListAddInput.val("");
     }
