@@ -79,6 +79,10 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
         $content .= "<?php\n\nclass " . $tableAsClass . " implements CRUD \n{\n    private \$table = \"$table\";\n\n";
         createClassProperties($content, $primaryKeys, $tableKeys, $foreignKeys);
         $content .= "\n";
+        $content .= "\npublic function __construct()
+        {
+            \$this->fill();
+        }";
         addFunctions($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
         $content .= "\n} \n\n\n";
         $filesContent[$tableAsClass] = $content;
