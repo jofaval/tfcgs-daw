@@ -1,6 +1,17 @@
 Options -MultiViews
 RewriteEngine On
 
+#Improved SEO rules
+AddDefaultCharset UTF-8
+DefaultLanguage en-us
+
+Header set X-Robots-Tag "noindex, noarchive, nosnippet"
+Header set Cache-Control "max-age=300, public"
+
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|css|pdf)$">
+	Header set Cache-Control "max-age=28800"
+</FilesMatch>
+
 #HTTP Error redirections
 ErrorDocument 404 /daw/404/
 RewriteRule ^404[/]?$ ./index.php?ctl=404 [L]
@@ -47,4 +58,3 @@ RewriteRule ^projects/id/([^/]+)/gantt/id/([^/]+)/from/([^/]+)/to[/]?$ ./index.p
 RewriteRule ^projects/id/([^/]+)/diary[/]?$ ./index.php?ctl=project&id=$1&element=diary [L]
 RewriteRule ^projects/id/([^/]+)/diary/date[/]?$ ./index.php?ctl=project&id=$1&element=diary [L]
 RewriteRule ^projects/id/([^/]+)/diary/date/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&element=diary&date=$2 [L]
-
