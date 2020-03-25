@@ -54,9 +54,9 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
                     $methodParams[] = $primaryKeys;
                     break;
             }
-            $controller .= "\n\n\tpublic function $functionName$tableAsClass()\n\t{";
-            $controller .= "\n\t\t\$popoInstance = new " . $tableAsClass . "();";
-            $controller .= "\n\n\t\treturn \$popoInstance->$functionName();\n\t}";
+            $controller .= "\n\n    public function $functionName$tableAsClass()\n    {";
+            $controller .= "\n        \$popoInstance = new " . $tableAsClass . "();";
+            $controller .= "\n\n        return \$popoInstance->$functionName();\n    }";
         }
 
         //Table value
@@ -76,7 +76,7 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
             echo "</pre>";
         }
 
-        $content .= "<?php\n\nclass " . $tableAsClass . " implements CRUD \n{\n\tprivate \$table = \"$table\";\n\n";
+        $content .= "<?php\n\nclass " . $tableAsClass . " implements CRUD \n{\n    private \$table = \"$table\";\n\n";
         createClassProperties($content, $primaryKeys, $tableKeys, $foreignKeys);
         $content .= "\n";
         addFunctions($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
@@ -110,20 +110,20 @@ function createPOPOfromDatabase($host, $user, $pass, $name, $showTableInfo = tru
 function createJSajaxController($methods, $methodParams)
 {
     $jsAjaxController = "class AjaxController {";
-    $jsAjaxController .= "\n\tstatic request(requestLocation, requestType = \"POST\", params = {}, success = AjaxController.defaultAjaxSuccessAction, error = AjaxController.defaultAjaxErrorAction, async = true) {\n\t\t$.ajax({\n\t\t\turl: 'index.php?ctl=' + requestLocation,\n\t\t\tdata: params,\n\t\t\ttype: requestType,\n\t\t\tasync: async,\n\t\t\tsuccess: success,\n\t\t\terror: error,\n\t\t});\n\t}";
-    $jsAjaxController .= "\n\n\t//When AJAX is succesful\n\tstatic defaultAjaxSuccessAction(data) {\n\t}\n\n\t//When AJAX has some errors\n\tstatic defaultAjaxErrorAction(data) {\n\t\tsendNotification(\"Ha surgido un error al realizar la operación\", true);\n\t}";
-    $jsAjaxController .= "\n\n\t//Generic request for AJAX\n\tstatic genericAjaxRequest(requestName, params, success, error = null) {\n\t\tif (error == null) {\n\t\t\terror = function (data) {\n\t\t\t\tsendNotification(\"Couldn't execute operation succesfully\", true);\n\t\t\t};\n\t\t}\n\n\t\tAjaxController.request(requestName, \"POST\", params, success, error);\n\t}";
+    $jsAjaxController .= "\n    static request(requestLocation, requestType = \"POST\", params = {}, success = AjaxController.defaultAjaxSuccessAction, error = AjaxController.defaultAjaxErrorAction, async = true) {\n        $.ajax({\n            url: 'index.php?ctl=' + requestLocation,\n            data: params,\n            type: requestType,\n            async: async,\n            success: success,\n            error: error,\n        });\n    }";
+    $jsAjaxController .= "\n\n    //When AJAX is succesful\n    static defaultAjaxSuccessAction(data) {\n    }\n\n    //When AJAX has some errors\n    static defaultAjaxErrorAction(data) {\n        sendNotification(\"Ha surgido un error al realizar la operación\", true);\n    }";
+    $jsAjaxController .= "\n\n    //Generic request for AJAX\n    static genericAjaxRequest(requestName, params, success, error = null) {\n        if (error == null) {\n            error = function (data) {\n                sendNotification(\"Couldn't execute operation succesfully\", true);\n            };\n        }\n\n        AjaxController.request(requestName, \"POST\", params, success, error);\n    }";
 
     foreach ($methods as $key => $value) {
         $requiredParams = $methodParams[$key];
-        $jsAjaxController .= "\n\n\t//Function to $value";
-        $jsAjaxController .= "\n\tstatic " . $value . "(" . join(", ", $requiredParams) . ")\n\t{\n\t\tAjaxController.genericAjaxRequest(\"$value\", {";
+        $jsAjaxController .= "\n\n    //Function to $value";
+        $jsAjaxController .= "\n    static " . $value . "(" . join(", ", $requiredParams) . ")\n    {\n        AjaxController.genericAjaxRequest(\"$value\", {";
         if (count($methodParams[$key]) > 0) {
             foreach ($requiredParams as $requiredParam) {
-                $jsAjaxController .= "\n\t\t\t\"$requiredParam\": $requiredParam,";
+                $jsAjaxController .= "\n            \"$requiredParam\": $requiredParam,";
             }
         }
-        $jsAjaxController .= "\n\t\t}, success);\n\t}";
+        $jsAjaxController .= "\n        }, success);\n    }";
     }
 
     $jsAjaxController .= "\n}";
@@ -133,18 +133,18 @@ function createJSajaxController($methods, $methodParams)
 function createPHPajaxController($methods, $methodParams)
 {
     $phpAjaxController = "<?php\nclass AjaxController\n{";
-    $phpAjaxController .= "\n\tpublic function genericAjaxReturn(\$functionName, \$requiredParams = [])\n\t{\n\t\ttry {\n\t\t\tif (!empty(\$requiredParams)) {\n\t\t\t\t\$this->throwIfExceptionIfDoesntExist(\$requiredParams);\n\t\t\t}\n\t\t\t\$mainController = \"POPOController\";\n\t\t\tif (method_exists(\$mainController, \$functionName)) {\n\t\t\t\t\$result = call_user_func([new \$mainController, \$functionName]);\n\t\t\t\techo json_encode(\$result);\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t} catch (Throwable \$th) {\n\t\t\tif (Config::\$developmentMode) {\n\t\t\t\t\$this->returnError(\$th->getMessage());\n\t\t\t} else {\n\t\t\t\t\$this->returnError();\n\t\t\t}\n\t\t}\n\t}";
-    $phpAjaxController .= "\n\n\tpublic function throwIfExceptionIfDoesntExist(\$elems)\n\t{\n\t\tforeach (\$elems as \$elem) {\n\t\t\tif (!isset(\$_REQUEST[\$elem])) {\n\t\t\t\tthrow new Error(\"\$elem doesn't exist\");\n\t\t\t}\n\t\t}\n\t}";
-    $phpAjaxController .= "public function returnError(\$message = \"\")\n\t{\n\t\t\$object = [\n\t\t\t\t\"error\" => true,\n\t\t];\n\t\tif (\$message != \"\") {\n\t\t\t\$object[\"message\"] = \$message;\n\t\t}\n\t\t\$json = json_encode(\$object);\n\t\techo \$json;\n\t\texit;\n\t}";
+    $phpAjaxController .= "\n    public function genericAjaxReturn(\$functionName, \$requiredParams = [])\n    {\n        try {\n            if (!empty(\$requiredParams)) {\n                \$this->throwIfExceptionIfDoesntExist(\$requiredParams);\n            }\n            \$mainController = \"POPOController\";\n            if (method_exists(\$mainController, \$functionName)) {\n                \$result = call_user_func([new \$mainController, \$functionName]);\n                echo json_encode(\$result);\n            } else {\n                \$this->returnError();\n            }\n        } catch (Throwable \$th) {\n            if (Config::\$developmentMode) {\n                \$this->returnError(\$th->getMessage());\n            } else {\n                \$this->returnError();\n            }\n        }\n    }";
+    $phpAjaxController .= "\n\n    public function throwIfExceptionIfDoesntExist(\$elems)\n    {\n        foreach (\$elems as \$elem) {\n            if (!isset(\$_REQUEST[\$elem])) {\n                throw new Error(\"\$elem doesn't exist\");\n            }\n        }\n    }";
+    $phpAjaxController .= "public function returnError(\$message = \"\")\n    {\n        \$object = [\n                \"error\" => true,\n        ];\n        if (\$message != \"\") {\n            \$object[\"message\"] = \$message;\n        }\n        \$json = json_encode(\$object);\n        echo \$json;\n        exit;\n    }";
 
     foreach ($methods as $key => $value) {
-        $phpAjaxController .= "\n\n\t//Function to $value";
-        $phpAjaxController .= "\n\tpublic function " . $value . "()\n\t{\n\t\t\$this->genericAjaxReturn(__FUNCTION__";
+        $phpAjaxController .= "\n\n    //Function to $value";
+        $phpAjaxController .= "\n    public function " . $value . "()\n    {\n        \$this->genericAjaxReturn(__FUNCTION__";
         $requiredParams = $methodParams[$key];
         if (count($methodParams[$key]) > 0) {
             $phpAjaxController .= ", [\"" . join(", ", $requiredParams) . "\"]";
         }
-        $phpAjaxController .= ");\n\t}";
+        $phpAjaxController .= ");\n    }";
     }
 
     $phpAjaxController .= "\n}";
@@ -153,19 +153,19 @@ function createPHPajaxController($methods, $methodParams)
 
 function createClassProperties(&$content, $primaryKeys, $tableKeys, $foreignKeys)
 {
-    $content .= "\t//Primary Keys";
+    $content .= "    //Primary Keys";
     foreach ($primaryKeys as $value) {
-        $content .= "\n\tprivate \$$value;";
+        $content .= "\n    private \$$value;";
     }
 
-    $content .= "\n\n\t//Table Keys";
+    $content .= "\n\n    //Table Keys";
     foreach ($tableKeys as $value) {
-        $content .= "\n\tprivate \$$value;";
+        $content .= "\n    private \$$value;";
     }
 
-    $content .= "\n\n\t//Foreign Keys";
+    $content .= "\n\n    //Foreign Keys";
     foreach ($foreignKeys as $value) {
-        $content .= "\n\tprivate \$$value;";
+        $content .= "\n    private \$$value;";
     }
 }
 
@@ -207,10 +207,10 @@ function mapRoutes($methods)
     $mapFile = "<?php\n\n\$map = [";
     $controllerMethods = get_class_methods('Controller');
     foreach ($controllerMethods as $method) {
-        $mapFile .= "\n\t'$method' => array('controller' => 'Controller', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
+        $mapFile .= "\n    '$method' => array('controller' => 'Controller', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
     }
     foreach ($methods as $method) {
-        $mapFile .= "\n\t'$method' => array('controller' => 'AjaxController', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
+        $mapFile .= "\n    '$method' => array('controller' => 'AjaxController', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
     }
     $mapFile .= "\n];";
 
@@ -228,80 +228,80 @@ function mapRoutes($methods)
 //Create
 function createFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
 {
-    $content .= "\n\tpublic function create()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
+    $content .= "\n    public function create()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$params = [";
     foreach ($everyKey as $value) {
-        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->\$$value,";
     }
-    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->insert(\$params);\n\t}";
+    $content .= "\n        ];\n\n        return \$sqlUtils->insert(\$params);\n    }";
 }
 
 //Update
 function updateFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
 {
-    $content .= "\n\n\tpublic function update()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$toModify = [";
+    $content .= "\n\n    public function update()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$toModify = [";
     foreach ($tableKeys as $value) {
-        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->\$$value,";
     }
     foreach ($foreignKeys as $value) {
-        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->\$$value,";
     }
-    $content .= "\n\t\t];";
+    $content .= "\n        ];";
 
-    $content .= "\n\n\t\t\$identificationParams = [";
+    $content .= "\n\n        \$identificationParams = [";
     foreach ($primaryKeys as $value) {
-        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->\$$value,";
     }
-    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->update(\$this->\$table, \$toModify, \$identificationParams);\n\t}";
+    $content .= "\n        ];\n\n        return \$sqlUtils->update(\$this->\$table, \$toModify, \$identificationParams);\n    }";
 }
 
 //Delete
 function deleteFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
 {
-    $content .= "\n\n\tpublic function delete()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
+    $content .= "\n\n    public function delete()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$params = [";
     foreach ($primaryKeys as $value) {
-        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->\$$value,";
     }
-    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->delete(\$this->\$table, \$params);\n\t}";
+    $content .= "\n        ];\n\n        return \$sqlUtils->delete(\$this->\$table, \$params);\n    }";
 }
 
 //Query
 function queryFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
 {
-    $content .= "\n\n\tpublic function query()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$params = [";
+    $content .= "\n\n    public function query()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$params = [";
     foreach ($primaryKeys as $value) {
-        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->\$$value,";
     }
-    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->query(\$this->\$table, \$params);\n\t}";
+    $content .= "\n        ];\n\n        return \$sqlUtils->query(\$this->\$table, \$params);\n    }";
 }
 
 //Enable
 function enableFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
 {
-    $content .= "\n\n\tpublic function enable()\n\t{\n\t\t\$sqlUtils = new SQLUtils(Model::getInstance());\n\n\t\t\$identificationParams = [";
+    $content .= "\n\n    public function enable()\n    {\n        \$sqlUtils = new SQLUtils(Model::getInstance());\n\n        \$identificationParams = [";
     foreach ($primaryKeys as $value) {
-        $content .= "\n\t\t\t\"$value\" => \$this->\$$value,";
+        $content .= "\n            \"$value\" => \$this->\$$value,";
     }
-    $content .= "\n\t\t];\n\n\t\treturn \$sqlUtils->enable(\$this->\$table, Utils::getCleanedData(\"enable\"), \$identificationParams);\n\t}";
+    $content .= "\n        ];\n\n        return \$sqlUtils->enable(\$this->\$table, Utils::getCleanedData(\"enable\"), \$identificationParams);\n    }";
 }
 
 //Fill
 function fillFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
 {
-    $content .= "\n\n\n\tpublic function fill()\n\t{";
+    $content .= "\n\n\n    public function fill()\n    {";
     foreach ($everyKey as $value) {
-        $content .= "\n\t\t\$this->\$$value = Utils::getCleanedData(\"" . camelCase($value) . "\");";
+        $content .= "\n        \$this->\$$value = Utils::getCleanedData(\"" . camelCase($value) . "\");";
     }
-    $content .= "\n\t}";
+    $content .= "\n    }";
 }
 
 //Parse
 function parseFunction(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
 {
-    $content .= "\n\n\n\tpublic function parse()\n\t{\n\t\treturn json_encode([";
+    $content .= "\n\n\n    public function parse()\n    {\n        return json_encode([";
     foreach ($everyKey as $value) {
-        $content .= "\n\t\t\t\"" . camelCase($value) . "\" => \$this->\$$value,";
+        $content .= "\n            \"" . camelCase($value) . "\" => \$this->\$$value,";
     }
-    $content .= "\n\t\t]);\n\t}";
+    $content .= "\n        ]);\n    }";
 }
 
 function addFunctions(&$content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey)
