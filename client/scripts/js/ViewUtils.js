@@ -125,7 +125,11 @@ class ViewUtils {
 
     static addLenErrorToInput(input, fieldName, minLen, maxLen) {
         ViewUtils.addErrorToInput(input, "minLen", `${fieldName} is too short!`, new RegExp(`^(.){0,${minLen}}$`, "gi"));
-        ViewUtils.addErrorToInput(input, "maxLen", `${fieldName} is too long!`, new RegExp(`^(.){${maxLen},999999999}$`, "gi"));
+        ViewUtils.addErrorToInput(input, "maxLen", `${fieldName} is too long!`, new RegExp(`^(.){${maxLen + 1},999999999}$`, "gi"));
+        var inputElement = input.find("input, textarea");
+        inputElement.prop("min", minLen);
+        inputElement.prop("max", maxLen);
+        inputElement.prop("maxlength", maxLen);
     }
 
     static addSelect(parent, id) {

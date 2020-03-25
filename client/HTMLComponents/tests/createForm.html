@@ -48,6 +48,21 @@
 
     ViewUtils.addErrorToInput(input, "errorTest", "Error message", /test/);
     ViewUtils.addLenErrorToInput(input, "First name", 3, 10);
+
+    var clonedError = $formErrorMessage.clone();
+    clonedError.text("test");
+    clonedError.addClass("test");
+    var errorContainer = input.find(".errorContainer");
+    errorContainer = $formErrorContainer.clone();
+    input.append(errorContainer);
+    errorContainer.append(clonedError);
+
+    input.find("input").on("keydown", removePhpMessages);
+
+    function removePhpMessages() {
+        input.find(".test").remove();
+        input.unbind("keydown", removePhpMessages);
+    }
 </script>
 
 </html>
