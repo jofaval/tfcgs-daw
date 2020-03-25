@@ -233,7 +233,7 @@ class Controller {
 
         var newTaskListTitle = taskListAddInput.val();
         if (newTaskListTitle.length < 3) {
-            sendNotification("Task list title must have at least 3 characters");
+            sendNotification("Task list title must have at least 3 characters", "taskListTitleTooShort");
             return;
         }
 
@@ -307,7 +307,7 @@ class Controller {
 
         var taskListItemValue = taskListInput.val();
         if (taskListItemValue.length < 3) {
-            sendNotification("Task list item title must have at least 3 characters");
+            sendNotification("Task list item title must have at least 3 characters", "taskListItemTooShort");
             return;
         }
 
