@@ -27,6 +27,7 @@ require_once __DIR__ . '/../server/OnlyAdmin.php';
 require_once __DIR__ . '/../server/Access.php';
 
 $sessions = Sessions::getInstance();
+
 $ctl = $_GET['ctl'];
 if ($ctl == "") {
     $ctl = "signin";
@@ -73,10 +74,12 @@ if (isset($_REQUEST["ctl"])) {
         exit;
     }
 } else {
-    if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
+    if (!$sessions->doesSessionExist("username")) {
         header("Location: /daw/signin/");
+        $ruta = "signin";
     } else {
         header("Location: /daw/projects/");
+        $ruta = "projects";
     }
 }
 
