@@ -147,7 +147,8 @@ class View {
 
     visualizeTaskIntervalForm(tableData) {
         var daysForm = ViewUtils.createForm(tableData);
-        daysForm.removeClass("bg-white");
+        daysForm.removeClass("bg-white")
+            .addClass("mb-0");
 
         var daysFormRow = ViewUtils.addFormRow(daysForm);
 
