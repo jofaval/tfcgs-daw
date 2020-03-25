@@ -50,7 +50,7 @@ main {
         scroll-snap-points-x: repeat(100vw);
         -ms-scroll-snap-type: x mandatory;
         scroll-snap-type: x mandatory;
-        overflow: auto;
+        overflow: visible;
     }
 
     #signFormsContainer {
@@ -71,6 +71,14 @@ main {
 
     .md-form {
         max-width: 75% !important;
+    }
+
+    .form-row {
+        max-width: 75% !important;
+    }
+
+    .form-row .md-form {
+        max-width: 100% !important;
     }
 
     #changeForm {
