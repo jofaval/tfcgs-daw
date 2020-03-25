@@ -27,7 +27,7 @@ function getWeekFromDate(dayDate) {
 }
 
 //function to send notificcation
-function sendNotification(message = "An error occurred", title = "Origin - Notificación") {
+function sendNotification(message = "An error occurred", title = "Origin - Notificación", timeout = 5000) {
     if (window.Notification) {
         Notification.requestPermission().then((permission) => {
             if (Notification.permission === "granted") {
@@ -42,7 +42,7 @@ function sendNotification(message = "An error occurred", title = "Origin - Notif
                 setTimeout(function () {
                     //Animation on close here
                     notification.close();
-                }, 2500);
+                }, timeout);
             }
         });
     }
