@@ -27,6 +27,8 @@
 <script src="../../scripts/libs/bootstrap.min.js"></script>
 <script src="../../scripts/libs/bootstrap.bundle.min.js"></script>
 <script src="../../scripts/libs/mdb.min.js"></script>
+<script src="../../scripts/js/utils.js"></script>
+<script src="../../scripts/js/inputs.js"></script>
 <script src="../../scripts/js/ViewUtils.js"></script>
 <script>
     var form = ViewUtils.createForm($("main"));
@@ -43,6 +45,9 @@
     var textarea = ViewUtils.addTextArea(ViewUtils.addFormRow(form), "textarea", "text", "Prueba");
     var submit = ViewUtils.addSubmit(form, "Prueba", "submit");
     var title = ViewUtils.addFormTitle(form, "Test");
+
+    ViewUtils.addErrorToInput(input, "errorTest", "Error message", /test/);
+    ViewUtils.addLenErrorToInput(input, "First name", 3, 10);
 </script>
 
 </html>

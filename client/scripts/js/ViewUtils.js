@@ -46,6 +46,14 @@ var $formCheckeable = $(`
 </div>
 `);
 
+var $formErrorContainer = $(`
+<div class="errorContainer"></div>
+`);
+
+var $formErrorMessage = $(`
+<small class="errorMessage font-weight-bold"></small>
+`);
+
 var $table = $(`<table class="table mb-0 w-100 table-dark table-bordered"></table>`);
 var $thead = $(`<thead class="thead-dark"></thead>`);
 var $tbody = $(`<tbody></tbody>`);
@@ -80,6 +88,44 @@ class ViewUtils {
         parent.append(clonedInput);
 
         return clonedInput;
+    }
+
+    static addErrorToInput(input, id, errorMessage, regex) {
+        var clonedError = $formErrorMessage.clone();
+        clonedError.text(errorMessage);
+        clonedError.addClass(id);
+
+        var errorContainer = input.find(".errorContainer");
+        if (errorContainer.length == 0) {
+            errorContainer = $formErrorContainer.clone();
+            input.append(errorContainer);
+        }
+
+        var inputElement = input.find("input, textarea");
+        whenUserDoneTypingInInput(inputElement, inputElement.prop("id"), function () {
+            var value = inputElement.val();
+
+            var errorMessageInErrorContainer = errorContainer.find(`.${id}`);
+            console.log("\"Regex: \"", regex, "\"Id:\"", id, "\"Error container: \"", errorContainer);
+            if (regex.test(value)) {
+                if (errorMessageInErrorContainer.length == 0) {
+                    errorContainer.append(clonedError);
+                    console.log("no existe previamente");
+                }
+
+                console.log("al final", regex.test(value));
+
+            } else {
+                errorMessageInErrorContainer.remove();
+            }
+        });
+
+        return clonedError;
+    }
+
+    static addLenErrorToInput(input, fieldName, minLen, maxLen) {
+        ViewUtils.addErrorToInput(input, "minLen", `${fieldName} is too short!`, new RegExp(`^(.){0,${minLen}}$`, "gi"));
+        ViewUtils.addErrorToInput(input, "maxLen", `${fieldName} is too long!`, new RegExp(`^(.){${maxLen},999999999}$`, "gi"));
     }
 
     static addSelect(parent, id) {

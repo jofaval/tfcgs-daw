@@ -1,6 +1,6 @@
 var $messageContainer = $("<span class='font-weight-class'></span>");
 
-function whenUserDoneTypingInInput(input, id, action, interval = 250) {
+function whenUserDoneTypingInInput(input, id, action, interval = 50) {
     var typingTimeID = id;
     input.on("keyup", function () {
         clearTimeout(typingTimeID);
