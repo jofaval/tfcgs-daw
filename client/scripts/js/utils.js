@@ -26,15 +26,23 @@ function getWeekFromDate(dayDate) {
     return weekDates;
 }
 
+var notifications = {
+
+};
 //function to send notificcation
-function sendNotification(message = "An error occurred", title = "Origin - Notificación", timeout = 5000) {
+function sendNotification(message = "An error occurred", id = "empty", title = "Origin - Notificación", timeout = 5000) {
     if (window.Notification) {
         Notification.requestPermission().then((permission) => {
             if (Notification.permission === "granted") {
                 var notification = new Notification(title, {
-                    body: message
+                    body: message,
+                    tag: "empty",
                 });
-                console.log(notification);
+                if (notifications[id]) {
+                    notifications[id].close();
+                }
+                notifications[id] = notification;
+
                 notification.onclick = function () {
                     console.log("hola");
                 };
@@ -45,6 +53,8 @@ function sendNotification(message = "An error occurred", title = "Origin - Notif
                 }, timeout);
             }
         });
+    } else {
+        alert(message);
     }
 }
 
