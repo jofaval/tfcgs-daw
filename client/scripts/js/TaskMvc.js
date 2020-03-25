@@ -1,7 +1,7 @@
-var $taskListsContainer = $(`<div class="d-flex justify-content-start mx-2 mx-sm-4 listContainer"></div>`);
+var $taskListsContainer = $(`<div class="d-flex justify-content-start mx-1 mx-sm-1 listContainer"></div>`);
 
 var $taskList = $(`
-<div class="taskListContainer mx-2">
+<div class="taskListContainer mx-1">
     <div class="taskList shadow bg-light rounded">
         <div class="taskListProperties d-none">
             <span class="taskListId"></span>
@@ -31,7 +31,7 @@ var $taskListItem = $(`
     </div>
 </div>`);
 
-var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference card mb-2 bg-dark" draggable="true">
+var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference card mb-2 grey lighten-2" draggable="true">
                         <div class="card-body px-2 py-1 taskListItemBody">
                             <p class="card-text taskListItemTitle text-transparent">&nbsp;</p>
                         </div>
@@ -120,6 +120,7 @@ class View {
     initializeView(parent) {
         parent.append($taskListsContainer);
 
+        $("#content").addClass("pt-2");
         this.visualizeTaskListCreation($taskListsContainer);
     }
 

@@ -6,6 +6,8 @@ main {
     overflow: auto;
     background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') no-repeat !important;
     background-attachment: fixed;
+    background-size: 100vw 100vh;
+    background-position: 0vw 0vh;
     align-items: start;
     -ms-scroll-snap-type: mandatory;
     scroll-snap-type: mandatory;
@@ -47,8 +49,4 @@ main {
 .dragging {
     cursor: -webkit-grabbing !important;
     transform: rotate(-15deg);
-}
-
-#content {
-    padding-top: 1.5rem !important;
 }
