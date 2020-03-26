@@ -394,7 +394,7 @@ class Controller {
             firstOne = $(this);
             rowOne = firstOne.parent();
             if (rowOne.find(".taskBar").length > 0) {
-                sendNotification("This already has a taskBar");
+                sendNotification("This already has a taskBar", "ganttRowHasDeadline");
                 return;
             }
         }).on("dragend", function () {
@@ -408,6 +408,7 @@ class Controller {
         }).on("drop", function () {
             console.log("drop");
             if (rowOne.prop("id") != $(this).parent().prop("id")) {
+                sendNotification("Rows are not the same", "ganttRowsNotMatching");
                 return;
             }
             secondOne = $(this);
