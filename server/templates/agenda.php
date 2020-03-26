@@ -10,22 +10,22 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "index.php",
+        "link" => "/daw/",
         "active" => false,
     ],
     [
-        "name" => "Projects",
-        "link" => "./projects/",
+        "name" => "Your projects",
+        "link" => "/daw/projects/",
         "active" => false,
     ],
     [
-        "name" => "Projects",
-        "link" => "./project/id/name/",
+        "name" => $viewParams["title"],
+        "link" => "./project/id/" . $viewParams["id"] . "/",
         "active" => false,
     ],
     [
-        "name" => "Projects",
-        "link" => "./project/id/name/agenda/",
+        "name" => $viewParams["elementName"],
+        "link" => "./project/id/name/diary/",
         "active" => true,
     ],
 ];
@@ -35,17 +35,17 @@ $breadcrumb = [
 
 <div class="mx-auto container">
     <div class="form-row d-flex my-4">
-        <button class="btn btn-sm text-white ml-auto">&lt;</button>
-        <div class="col-sm-3 rounded bg-white shadow mx-1">
+        <div class="col-sm-3 rounded order-0 mb-2 order-sm-2 bg-white shadow mx-1">
             <div class="md-form m-0">
                 <input placeholder="Select a date" type="text" id="datepicker" class="form-control datepicker">
             </div>
         </div>
-        <button class="btn btn-sm text-white mr-auto">&gt;</button>
+        <button class="btn btn-sm order-2 order-sm-1 text-white ml-auto">&lt;</button>
+        <button class="btn btn-sm order-3 text-white mr-auto">&gt;</button>
     </div>
     <div id="summernote"></div>
 </div>
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once 'layout.php'?>
+<?php include_once 'layoutProject.php'?>
