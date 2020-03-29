@@ -40,20 +40,20 @@ class Sessions
 
     private function regenerateSession()
     {
-        if ($this->doesSessionExist("time")) {
-            $currentTimeStamp = time();
-            if (($this->getSession("time") - $currentTimeStamp) < 0) {
-                header("Location: /daw/signout/");
-            }
-        }
 
         if ($this->doesSessionExist("clicks")) {
             $this->setSession("clicks", $this->getSession("clicks") - 1);
         } else {
-            $this->setSession("clicks", 10);
+            $this->setSession("clicks", 0);
         }
 
         if ($this->getSession("clicks") <= 0) {
+            if ($this->doesSessionExist("time")) {
+                $currentTimeStamp = time();
+                if (($this->getSession("time") - $currentTimeStamp) < 0) {
+                    header("Location: /daw/signout/");
+                }
+            }
             session_regenerate_id(true);
             $this->setSession("time", time() + Config::$inactivityTime);
             $this->setSession("clicks", 10);
