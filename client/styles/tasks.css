@@ -26,6 +26,7 @@ main {
 
 .taskList {
     max-width: 18rem;
+    background: #222224 !important;
 }
 
 .taskListItemsContainer {
@@ -37,8 +38,20 @@ main {
     cursor: pointer;
 }
 
+.taskListItem {
+    background: #333334 !important;
+}
+
+html body .taskListItemReference {
+    background-color: #646464 !important;
+}
+
 .taskListItem:move {
     cursor: cell;
+}
+
+.taskListTitle {
+    background: #646464 !important;
 }
 
 .taskListContainer {

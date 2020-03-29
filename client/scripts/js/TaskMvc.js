@@ -6,15 +6,15 @@ var $taskList = $(`
         <div class="taskListProperties d-none">
             <span class="taskListId"></span>
         </div>
-        <section class="taskListTitle rounded grey lighten-3 text-left p-2">
-            <p class="mb-0 ml-3 taskListTitleText">Titulo 1</p>
+        <section class="taskListTitle text-left p-2">
+            <p class="mb-0 ml-3 taskListTitleText text-white">Titulo 1</p>
         </section>
         <div class="taskListItemsContainer px-3 pt-2 mb-3 " ondragover="event.preventDefault()">
         </div>
         <div class="pb-3 taskListInputContainer">
             <div class="col d-flex taskListInputRow">
                 <div class="input-group md-form my-0 taskListInputGroup">
-                    <input type="text" class="form-control taskListInput" placeholder="Title">
+                    <input type="text" class="form-control taskListInput text-white" placeholder="Title">
                     <div class="input-group-append taskListInputBtnContainer">
                         <button class="btn addTask btn-sm btn-primary m-0 taskListInputBtn">+</button>
                     </div>
@@ -26,12 +26,12 @@ var $taskList = $(`
 
 var $taskListItem = $(`
 <div class="taskListItem card mb-2" draggable="true" draggable="true">
-    <div class="taskListItemBody card-body px-2 py-1">
+    <div class="taskListItemBody text-white card-body px-2 py-1">
         <p class="card-text taskListItemTitle">project description.</p>
     </div>
 </div>`);
 
-var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference card mb-2 grey lighten-2" draggable="true">
+var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference card mb-2" draggable="true">
                         <div class="card-body px-2 py-1 taskListItemBody">
                             <p class="card-text taskListItemTitle text-transparent">&nbsp;</p>
                         </div>
