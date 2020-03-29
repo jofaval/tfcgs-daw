@@ -1231,6 +1231,7 @@ button:hover, input[type=submit]:hover {
             <li><a href="#about">About</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#team">Team</a></li>
+            <li><a href="#faqs">FAQs</a></li>
             <li><a href="#get_started">Get Started</a></li>
         </ul>
         <input type="checkbox" name="menuDisplay" id="menuDisplay">
@@ -1364,6 +1365,74 @@ button:hover, input[type=submit]:hover {
         </div>
     </div>
 
+    <div id="faqs" class="parallax_section_2">
+        <div class="caption">
+            <span class="border">FAQs</span>
+        </div>
+    </div>
+
+    <style>
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
+    </style>
+    <div class="content_block">
+        <div class="detail_shape"></div>
+        <div style="padding: 5rem !important;">
+            <button class="accordion" style="border-radius: 0 !important;">Generic question number 1</button>
+            <div class="panel">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
+                    blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
+                    consequuntur delectus voluptate.</p>
+            </div>
+            <button class="accordion" style="border-radius: 0 !important;">Generic question number 2</button>
+            <div class="panel">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
+                    blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
+                    consequuntur delectus voluptate.</p>
+            </div>
+            <button class="accordion" style="border-radius: 0 !important;">Generic question number 3</button>
+            <div class="panel">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
+                    blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
+                    consequuntur delectus voluptate.</p>
+            </div>
+            <button class="accordion" style="border-radius: 0 !important;">Generic question number 4</button>
+            <div class="panel">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
+                    blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
+                    consequuntur delectus voluptate.</p>
+            </div>
+            <button class="accordion" style="border-radius: 0 !important;">Generic question number 5</button>
+            <div class="panel">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
+                    blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
+                    consequuntur delectus voluptate.</p>
+            </div>
+        </div>
+    </div>
+
     <div id="get_started" class="parallax_section_4">
         <div class="caption">
             <span class="border"><a href="">LET'S GET STARTED!</a></span>
@@ -1384,6 +1453,22 @@ button:hover, input[type=submit]:hover {
     });
     document.querySelector("#menuDisplay").click();
     document.querySelector("#menuDisplay").click();
+</script>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
 </script>
 
 </html>
