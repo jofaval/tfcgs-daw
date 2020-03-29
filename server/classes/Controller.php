@@ -155,8 +155,9 @@ class Controller
     public function signout()
     {
         $sessions = Sessions::getInstance();
-        $sessions->setSession("access", 0);
-        $sessions->deleteSession("username");
+        /* $sessions->setSession("access", 0);
+        $sessions->deleteSession("username"); */
+        $sessions->deleteSession();
         header("Location: /daw/signin/");
     }
 
@@ -208,6 +209,7 @@ class Controller
                 $sessions->setSession("username", $username);
                 $sessions->setSession("access", $signin[0]["level"]);
                 $sessions->setSession("userId", $signin[0]["id"]);
+                $sessions->setSession("time", time() + Config::$inactivityTime);
                 return true;
             }
         }

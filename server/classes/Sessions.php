@@ -40,6 +40,13 @@ class Sessions
 
     private function regenerateSession()
     {
+        if ($this->doesSessionExist("time")) {
+            $currentTimeStamp = time();
+            if (($this->getSession("time") - $currentTimeStamp) < 0) {
+                header("Location: /daw/signout/");
+            }
+        }
+
         if ($this->doesSessionExist("clicks")) {
             $this->setSession("clicks", $this->getSession("clicks") - 1);
         } else {
@@ -48,6 +55,7 @@ class Sessions
 
         if ($this->getSession("clicks") <= 0) {
             session_regenerate_id(true);
+            $this->setSession("time", time() + Config::$inactivityTime);
             $this->setSession("clicks", 10);
         }
     }
@@ -57,6 +65,7 @@ class Sessions
         $this->ifNotExistSetSession("access", 0);
         $this->ifNotExistSetSession("clicks", 10);
         $this->ifNotExistSetSession("userImg", "default.png");
+        $this->ifNotExistSetSession("time", "default.png");
     }
 
     public function ifNotExistSetSession($name, $value)

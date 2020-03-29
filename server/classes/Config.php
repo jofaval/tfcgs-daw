@@ -58,4 +58,5 @@ class Config
         "agenda",
     ];
     public static $developmentMode = 1;
+    public static $inactivityTime = 15 * 60;
 }
