@@ -167,7 +167,7 @@ class ViewUtils {
         var clonedTitle = $formTitle.clone();
 
         clonedTitle.text(title);
-        form.prepend(clonedTitle);
+        form.children().first().prepend(clonedTitle);
 
         return clonedTitle;
     }
