@@ -38,10 +38,17 @@ function sendNotification(message = "An error occurred", id = "empty", title = "
                     body: message,
                     tag: "empty",
                 });
+
                 if (notifications[id]) {
                     notifications[id].close();
+                    notifications[id]["audio"].stop();
                 }
+
+                let src = 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3';
+
                 notifications[id] = notification;
+                notifications[id]["audio"] = new Audio(src);
+                notifications[id]["audio"].play();
 
                 notification.onclick = function () {
                     console.log("hola");
