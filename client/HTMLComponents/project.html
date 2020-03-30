@@ -110,23 +110,6 @@
     </div>
 </body>
 <script>
-    $("#content").addClass("d-flex flex-row");
-    var form = ViewUtils.createForm($("#diaryForm"), "./diary/date/")
-        .addClass("w-100").removeClass("bg-white").css({
-            background: "#222224",
-        });
-    var title = ViewUtils.addFormTitle($("#diaryForm"), "Project diary")
-        .addClass("text-white").replaceWith(function () {
-            return $("<h3>", {
-                "class": this.className,
-                html: $(this).html(),
-            });
-        });
-    var row = ViewUtils.addFormRow(form);
-    var date = ViewUtils.addInput(form, "diaryDate", "date")
-        .find("input").addClass("text-white");
-    ViewUtils.addSubmit(form, "Go to date", "date");
-    $("#diaryDate").val(printDateWithFormat(new Date(), "Y-m-d"));
 </script>
 <!--script src="../scripts/js/projects.js"></script-->
 <!--script src="../scripts/js/ProjectManagementMvc.js"></script-->
