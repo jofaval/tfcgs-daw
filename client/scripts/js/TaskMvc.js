@@ -24,6 +24,13 @@ var $taskList = $(`
     </div>
 </div>`);
 
+var $referenceTaskList = $(`
+<div class="taskListContainer mx-1">
+    <div class="taskList shadow bg-light rounded">
+        
+    </div>
+</div>`);
+
 var $taskListItem = $(`
 <div class="taskListItem card mb-2" draggable="true" draggable="true">
     <div class="taskListItemBody text-white card-body px-2 py-1">
@@ -164,7 +171,7 @@ class View {
     }
 
     //Reference - https://kryogenix.org/code/browser/custom-drag-image.html
-    addGhostImage(e, taskItem, nodeToClone) {
+    addGhostImage(e, taskItem, nodeToClone, addClass = "dragging") {
         var crt = nodeToClone.cloneNode(true);
 
         var currentHeight = taskItem.height();
@@ -176,7 +183,7 @@ class View {
                 width: `${currentWidth}px`,
                 height: `${currentHeight}px`,
                 opacity: `100%`,
-            }).addClass("dragging")
+            }).addClass(addClass)
         );
         e.dataTransfer.setDragImage(crt, currentWidth, currentHeight);
     }
@@ -288,16 +295,54 @@ class Controller {
         });
 
         taskList.on("dragover", function () {
-            var itemsContainer = taskList.find(".taskListItemsContainer");
-            $referenceTaskListItem.show();
+            if ($referenceTaskListItem.is(":visible")) {
+                var itemsContainer = taskList.find(".taskListItemsContainer");
+                $referenceTaskListItem.show();
 
-            var totalTaskListItems = itemsContainer.children(".taskListItem").length;
+                var totalTaskListItems = itemsContainer.children(".taskListItem").length;
 
-            if (totalTaskListItems == 0) {
-                endingIndex = 0;
-                itemsContainer.append($referenceTaskListItem);
+                if (totalTaskListItems == 0) {
+                    endingIndex = 0;
+                    itemsContainer.append($referenceTaskListItem);
+                }
             }
         });
+
+        console.log(taskList);
+
+        var taskListElement = taskList.find(".taskList");
+        taskListElement.prop("draggable", true);
+        taskListElement.on("dragstart", function (e) {
+            var e = e || window.event;
+            //controller.view.addGhostImage(e, $(this), this, "");
+            $referenceTaskList.show();
+            console.log("Empieza");
+            $referenceTaskList.find(".taskList").height(taskList.find(".taskList").height());
+            taskList.hide();
+        });
+        taskList.on("drop", function () {
+            console.log("Se suelta");
+        }).on("dragover", function () {
+            var index = $(this).index();
+            console.log("encima", index);
+
+            if (index > 0) {
+                $(this).after($referenceTaskList);
+            } else {
+                $(this).before($referenceTaskList);
+            }
+        }).on("dragend", function () {
+            console.log("fin");
+            taskList.show();
+            $referenceTaskList.hide();
+            $referenceTaskList.before(taskList);
+        });
+
+        $("#taskListInputCreation").on("dragover", function () {
+            console.log("encima");
+            $(this).before($referenceTaskList);
+        });
+
 
         return taskList;
     }
