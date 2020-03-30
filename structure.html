@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Estructura - Pepe Fabra Valverde - DAW 2020</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #222224;
+            overflow: hidden;
+        }
+
+        .accordion {
+            width: 100%;
+            padding: .5rem;
+            background: transparent
+                /* lightgray */
+            ;
+            background: rgba(0, 0, 0, .3);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.25rem;
+        }
+
+        .accordion::after {
+            content: ' - ';
+            float: left;
+        }
+
+        .accordion.open::after {
+            content: ' + ';
+        }
+
+        .accordionContent {
+            padding-left: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .accordionContent.hide {
+            display: none;
+        }
+
+        h1 {
+            margin: 2rem;
+        }
+
+        #content {
+            width: 90%;
+            margin-left: 5%;
+            overflow: auto;
+            max-height: 75vh;
+        }
+
+        h1,
+        #content,
+        .accordion,
+        p {
+            color: lightgrey !important;
+        }
+
+        h1,
+        p {
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.25rem;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin: .5rem;
+            font-size: 1rem;
+            background: #4f9bff
+                /* #5385ec */
+            ;
+            padding: .5rem;
+            color: #222224 !important;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Estructura del código
+        <p>Los elementos que tienen un <span class="bold">+</span> o un <span class="bold">-</span> son desplegables,
+            representan a los directorios</p>
+    </h1>
+
+    <div id="content">
+        <button class="accordion"><span class="bold">client</span> - contiene el los estilos, los scripts de JS, el
+            index.php y el
+            .htaccess</button>
+        <div class="accordionContent">
+            <button class="accordion"><span class="bold">HTMLComponents</span> - contiene los HTMLs de pruebas visuales
+                y de scripts para
+                futuras
+                implementaciones</button>
+            <div class="accordionContent">
+                <button class="accordion"><span class="bold">tests</span> - contiene pruebas de HTML o javascript para
+                    su
+                    funcionamiento</button>
+                <div class="accordionContent">
+                    <ul>
+                        <li>createForm.html</li>
+                        <li>getURL.html</li>
+                        <li>snaps.html</li>
+                        <li>touch.html</li>
+                        <li>URLwithHREF.html</li>
+                        <li>writting_text.html</li>
+                    </ul>
+                </div>
+                <ul>
+                    <li>agenda.html</li>
+                    <li><span class="bold">base.html</span> - es un html que simula la generación del HTML como si fuese
+                        PHP para hacer
+                        pruebas más fácilmente</li>
+                    <li><span class="bold">example.html<span class="bold"> - la base de los HTML para las pruebas</li>
+                    <li>gantt_tasks.html</li>
+                    <li>information.html</li>
+                    <li>notification.htm</li>
+                    <li>project.html</li>
+                    <li>projects.html</li>
+                    <li>schedule.html</li>
+                    <li>signin.html</li>
+                    <li>summernote.html</li>
+                    <li>todo_lists.html</li>
+                </ul>
+            </div>
+            <button class="accordion"><span class="bold">img</span> - contiene las imágenes de la web, dentro de cliente
+                para poder acceder
+                a
+                ellas</button>
+            <div class="accordionContent">
+                <ul>
+                    <li><span class="bold">profile-pic.png</span> - Para probar</li>
+                </ul>
+            </div>
+            <button class="accordion"><span class="bold">scripts</span> - contiene </button>
+            <div class="accordionContent">
+                <button class="accordion"><span class="bold">js</span> - contiene los scripts generados por mí</button>
+                <div class="accordionContent">
+                    <ul>
+                        <li>agenda.js</li>
+                        <li><span class="bold">AjaxController.js</span> - </li>
+                        <li>customCursor.js</li>
+                        <li>FormValidator.js</li>
+                        <li>gantt.js</li>
+                        <li><span class="bold">GanttMvc.js</span> - ModeloVistaControlador implementado para Gantt</li>
+                        <li>generalScript.js</li>
+                        <li>inputs.js</li>
+                        <li>Modal.js</li>
+                        <li>MVCAdmin.js</li>
+                        <li>preloader.js</li>
+                        <li><span class="bold">ProjectManagementMvc.js</span> - ModeloVistaControlador implementado para
+                            la página de un
+                            proyecto</li>
+                        <li>projects.js</li>
+                        <li><span class="bold">ProjectsCrudMvc.js</span> - ModeloVistaControlador implementado para la
+                            página de todos los
+                            proyectos</li>
+                        <li>signin.js</li>
+                        <li><span class="bold">TaskMvc.js</span> - ModeloVistaControlador implementado para los Tableros
+                        </li>
+                        <li>tasks.js</li>
+                        <li>utils.js</li>
+                        <li>Validator.js</li>
+                        <li>ViewUtils.js</li>
+                    </ul>
+                </div>
+                <button class="accordion"><span class="bold">libs</span> - contiene las librerías de js que se
+                    utilizan</button>
+                <div class="accordionContent">
+                    <ul>
+                        <li>bootstrap.bundle.min.js</li>
+                        <li>bootstrap.min.js</li>
+                        <li>jquery-ui.min.js</li>
+                        <li>jquery.min.js</li>
+                        <li>jquery.sweet-modal.min.js</li>
+                        <li>mdb.min.js</li>
+                        <li>popper.min.js</li>
+                        <li>summernote-bs4.min.js</li>
+                    </ul>
+                </div>
+                <button class="accordion"><span class="bold">webcomponents</span> - contiene elementos que agrupan
+                    código HTML para su
+                    reutilización</button>
+                <div class="accordionContent">
+                    <ul>
+                        <li>classroom.js</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="accordion"><span class="bold">styles</span> - contiene las reglas y librerías de CSS</button>
+            <div class="accordionContent">
+                <ul>
+                    <li>agenda.css</li>
+                    <li>bootstrap-extension.css</li>
+                    <li>bootstrap.min.css</li>
+                    <li>floating-label.css</li>
+                    <li>font</li>
+                    <li>gantt.css</li>
+                    <li><span class="bold">grid.php</span> - un .php porque es dinámico dependiendo de si se muestra la
+                        cabezera, el footer
+                        y/o el breadcrum</li>
+                    <li>inputs.css</li>
+                    <li>jquery-ui.min.css</li>
+                    <li>jquery.sweet-modal.min.css</li>
+                    <li>loader.css</li>
+                    <li>main.css</li>
+                    <li>margin.css</li>
+                    <li>mdb.min.css</li>
+                    <li>message.css</li>
+                    <li>projects.css</li>
+                    <li>signin.css</li>
+                    <li>summernote-bs4.min.css</li>
+                    <li>tabs.css</li>
+                    <li>tasks.css</li>
+                </ul>
+            </div>
+            <ul>
+                <li><span class="bold">.htaccess</span> - configura los enlaces amigables y algunas
+                    optimizaciones/redirecciones</li>
+                <li><span class="bold">createPOPOfromDatabase.php</span> - Crea POPOs, las rutas de acceso y los
+                    controladores de Ajax de
+                    PHP y
+                    JS
+                </li>
+                <li><span class="bold">index.php</span> - página principal a la que acceder todos los usuarios</li>
+                <li><span class="bold">testAjax.html</span> - página para probar solo el Ajax desde cliente</li>
+            </ul>
+        </div>
+        <button class="accordion"><span class="bold">server</span> - contiene todo el código de PHP, no se puede acceder
+            desde el
+            navegador</button>
+        <div class="accordionContent">
+            <button class="accordion"><span class="bold">classes</span> - contiene los elementos principales para el
+                funcionamiento de la aplicación en PHP</button>
+            <div class="accordionContent">
+                <button class="accordion"><span class="bold">one_execution</span> - archivos que solo se ejecutan una
+                    vez para cumplir su
+                    cometido</button>
+                <div class="accordionContent">
+                    <ul>
+                        <li><span class="bold">ExportDatabase-backup.php</span> - Exporta la base de datos entera</li>
+                    </ul>
+                </div><button class="accordion"><span class="bold">POPOs</span> - son la representación de las entidades
+                    de base de datos
+                    en PHP</button>
+                <div class="accordionContent">
+                    <ul>
+                        <li>Clients.php</li>
+                        <li>Collaborators.php</li>
+                        <li><span class="bold">CRUDInterface.php</span> - es una interfaz con los métodos que comparten
+                            los POPOs</li>
+                        <li>GanttDiagramGroups.php</li>
+                        <li>GanttDiagramGroupTaskAssignation.php</li>
+                        <li>GanttDiagramGroupTasks.php</li>
+                        <li>GanttDiagrams.php</li>
+                        <li>GanttDiagramStatus.php</li>
+                        <li>GlobalLevel.php</li>
+                        <li>Permissions.php</li>
+                        <li><span class="bold">POPOcontroller.php</span> - es el controlador de POPO, como el general
+                            pero específico para
+                            POPOs y llamadas de AJAX</li>
+                        <li>ProjectDiary.php</li>
+                        <li>Projects.php</li>
+                        <li>TaskItem.php</li>
+                        <li>TaskListItemListItems.php</li>
+                        <li>TaskListItemLists.php</li>
+                        <li>TaskLists.php</li>
+                        <li>TaskListsOrderCriteria.php</li>
+                        <li>Users.php</li>
+                    </ul>
+                </div>
+                <ul>
+                    <li><span class="bold">AjaxController.php</span> - gestiona las llamadas desde AJAX</li>
+                    <li><span class="bold">Config.php</span> - gestiona </li>
+                    <li><span class="bold">Controller.php</span> - gestiona el enrutamiento del index para completar las
+                        acciones
+                        necesarias y dirigir a las vistas</li>
+                    <li><span class="bold">Model.php</span> - gestiona las llamadas a la base de datos y el tratamiento
+                        de estos</li>
+                    <li><span class="bold">ProjectDataSession.php</span> - es una clase que almacena los datos de un
+                        proyecto en la sesion,
+                        y los recoge para manejarlos más fácilmente</li>
+                    <li><span class="bold">Sessions.php</span> - gestiona las sesiones en PHP</li>
+                    <li><span class="bold">SQLUtils.php</span> - implementa las operaciones CRUD en PHP</li>
+                    <li><span class="bold">Validation.php</span> - gestiona la validacion de los datos en PHP</li>
+                </ul>
+            </div>
+            <button class="accordion"><span class="bold">libs</span> - contiene las utilidades que se necesiten para
+                mejorar el flujo de
+                trabajo</button>
+            <div class="accordionContent">
+                <ul>
+                    <li><span class="bold">bCrypt.php</span> - permite encriptar datos</li>
+                    <li><span class="bold">bDate.php</span> - permite manejar las fechas en PHP</li>
+                    <li><span class="bold">bEmail.php</span> - permite mandar emails (falta probar)</li>
+                    <li><span class="bold">bExceptions.php</span> - permite capturar y tratar las excepciones</li>
+                    <li><span class="bold">bFile.php</span> - permite tratar con archivos en PHP</li>
+                    <li><span class="bold">utils.php</span> - conjunto de funciones que facilitan el funcionamiento,
+                        aquí esta el
+                        <span class="bold">recoge</span>
+                    </li>
+                </ul>
+            </div>
+            <button class="accordion"><span class="bold">logs</span> - contiene los txts de los errores</button>
+            <div class="accordionContent">
+                <ul>
+                    <li>logError.txt</li>
+                    <li>logException.txt</li>
+                </ul>
+            </div>
+            <button class="accordion"><span class="bold">templates</span> - contiene son los layouts que utilizará el
+                index para mostrar
+                información al usuario</button>
+            <div class="accordionContent">
+                <button class="accordion"><span class="bold">forms</span> - contiene los formularios que pueden
+                    reutilizarse dentro de los
+                    templates</button>
+                <div class="accordionContent">
+                    <ul>
+                        <li>formSignin.html</li>
+                    </ul>
+                </div>
+                <ul>
+                    <li>access.php</li>
+                    <li>accessLevel.php</li>
+                    <li>admin.php</li>
+                    <li>diary.php</li>
+                    <li>error.php</li>
+                    <li>error404.php</li>
+                    <li>example.php</li>
+                    <li>gantt.php</li>
+                    <li>layout.php</li>
+                    <li>layoutProject.php</li>
+                    <li>notsigned.php</li>
+                    <li>notuseragent.php</li>
+                    <li>project.php</li>
+                    <li>projects.php</li>
+                    <li>signin.php</li>
+                    <li>tasks.php</li>
+                </ul>
+            </div>
+            <ul>
+                <li><span class="bold">Access.php</span> - Sobreescribe el nivel de acceso de las rutas</li>
+                <li><span class="bold">OnlyAdmin.php</span> - Añade las rutas que solo están disponibles si se accede
+                    como administrador
+                </li>
+                <li><span class="bold">RoutingMap.php</span> - Añade todas las rutas existentes en la ejecución del
+                    programa</li>
+                <li><span class="bold">Testing.php</span> - Base para testear en PHP</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    var accordionBtns = document.querySelectorAll(".accordion");
+    var accordionBtnsLen = accordionBtns.length;
+    for (let btnIndex = 0; btnIndex < accordionBtnsLen; btnIndex++) {
+        const element = accordionBtns[btnIndex];
+        element.addEventListener("click", onAccordionClick);
+
+        for (let clickIndex = 0; clickIndex < 1; clickIndex++) {
+            element.click();
+        }
+    }
+
+    function onAccordionClick() {
+        var content = this.nextElementSibling;
+        content.classList.toggle("hide");
+        this.classList.toggle("open");
+    }
+</script>
+
+</html>
