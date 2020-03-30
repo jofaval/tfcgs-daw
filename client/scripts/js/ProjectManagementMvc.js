@@ -9,6 +9,10 @@ class View {
 
     }
 
+    initializeView(container) {
+
+    }
+
     hideComponent(component) {
         //component.fadeOut();
         component.hide();
