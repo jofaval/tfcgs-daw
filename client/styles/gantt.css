@@ -59,10 +59,13 @@ tr {
     scroll-snap-align: start;
 }
 
-td, th {
+td,
+th {
     scroll-snap-align: start;
 }
 
 .selectedColumn {
     background: white !important;
 }
+
+/*deadline bg-primary rounded shadow*/
