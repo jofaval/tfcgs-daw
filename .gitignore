@@ -24,3 +24,5 @@ structure/*
 .VSCodeCounter/results.md
 .VSCodeCounter/results.txt
 client/testAjax.html
+!backups/
+backups/*
