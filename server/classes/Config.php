@@ -17,7 +17,6 @@ class Config
         "floating-label.css",
         "inputs.css",
         "jquery.sweet-modal.min.css",
-        "gantt.css",
     ];
     public static $mvc_vis_scripts = [
         "libs/jquery.min.js",
@@ -53,7 +52,6 @@ class Config
         "notuseragent",
     ];
     public static $projectElements = [
-        "gantt",
         "tasks",
         "agenda",
     ];
