@@ -17,6 +17,7 @@ class Config
         "floating-label.css",
         "inputs.css",
         "jquery.sweet-modal.min.css",
+        "gantt.css",
     ];
     public static $mvc_vis_scripts = [
         "libs/jquery.min.js",
@@ -53,7 +54,7 @@ class Config
     ];
     public static $projectElements = [
         "tasks",
-        "agenda",
+        "diary",
     ];
     public static $developmentMode = 1;
     public static $inactivityTime = 15 * 60;
