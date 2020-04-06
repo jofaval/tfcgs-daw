@@ -1,10 +1,10 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "summernote-bs4.min.css", "agenda.css"];?>
-<?php $optionalScripts = ["js/agenda.js"];?>
+<?php $optionalScripts = ["libs/summernote-bs4.min.js", "js/agenda.js"];?>
 <?php $title = "ProjectName - Agenda";?>
 <?php $mainClasses = "h-100";?>
-<?php $showFooter = false;?>
-<?php $showHeader = false;?>
+<?php $showFooter = true;?>
+<?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
 <?php
 $breadcrumb = [
