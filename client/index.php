@@ -21,8 +21,10 @@ requireAllFromDir("classes");
 require_once __DIR__ . '/../server/classes/POPOs/CRUDInterface.php';
 requireAllFromDir("classes/POPOs");
 
+$map = [];
 //Security
 require_once __DIR__ . '/../server/RoutingMap.php';
+require_once __DIR__ . '/../server/ExtraRoutes.php';
 require_once __DIR__ . '/../server/OnlyAdmin.php';
 require_once __DIR__ . '/../server/Access.php';
 

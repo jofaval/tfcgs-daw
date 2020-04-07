@@ -1,0 +1,1 @@
+$map = ['error' => array('controller' => 'Controller', 'action' => 'error', 'access' => Config::$ACCESS_LEVEL_GUEST)];
