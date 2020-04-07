@@ -27,6 +27,11 @@ class Controller
         require __DIR__ . '/../templates/projects.php';
     }
 
+    public function getDatabase()
+    {
+        require __DIR__ . '/../classes/one_execution/ExportDatabase-backup.php';
+    }
+
     public function project()
     {
         $id = 0;

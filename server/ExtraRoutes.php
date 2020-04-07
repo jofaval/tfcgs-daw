@@ -1,1 +1,3 @@
-$map = ['error' => array('controller' => 'Controller', 'action' => 'error', 'access' => Config::$ACCESS_LEVEL_GUEST)];
+<?php
+
+$map['getDatabase'] = array('controller' => 'Controller', 'action' => 'getDatabase', 'access' => Config::$ACCESS_LEVEL_GUEST);
