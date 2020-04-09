@@ -4,8 +4,10 @@
 <?php $username = $sessions->getSession("username");?>
 
 <head>
-    <title>Origin - <?php echo $title; ?></title>
-    <link rel="icon" href="https://www.mclibre.org/consultar/htmlcss/varios/favicon.ico">
+    <title>Origen - <?php echo $title; ?></title>
+    <link rel="shortcut icon" href="/daw/img/branding/favicon-16x16.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/daw/img/branding/favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/daw/img/branding/favicon-96x96.png" type="image/x-icon">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <style>
