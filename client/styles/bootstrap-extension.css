@@ -73,3 +73,18 @@
 .text-shadow-none {
     text-shadow: none !important;
 }
+
+.justify-text-left {
+    text-align: justify;
+    text-align-last: left;
+}
+
+.justify-text-center {
+    text-align: justify;
+    text-align-last: center;
+}
+
+.justify-text-right {
+    text-align: justify;
+    text-align-last: right;
+}
