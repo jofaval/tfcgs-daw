@@ -14,6 +14,7 @@ function requireAllFromDir($dir = null)
 //Basics
 require_once __DIR__ . '/../server/classes/Config.php';
 error_reporting(Config::$developmentMode);
+requireAllFromDir("classes/config");
 
 //Core
 requireAllFromDir("libs");
