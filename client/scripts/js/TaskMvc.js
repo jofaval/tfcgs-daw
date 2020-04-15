@@ -308,7 +308,7 @@ class Controller {
             }
         });
 
-        console.log(taskList);
+        /* console.log(taskList);
 
         var taskListElement = taskList.find(".taskList");
         taskListElement.prop("draggable", true);
@@ -341,7 +341,7 @@ class Controller {
         $("#taskListInputCreation").on("dragover", function () {
             console.log("encima");
             $(this).before($referenceTaskList);
-        });
+        }); */
 
 
         return taskList;
