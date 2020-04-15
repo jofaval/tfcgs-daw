@@ -7,29 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        :root {
-            /*Greens*/
-            /* --main-color-first: #38ef7d;
-            --main-color-second: #25c485;
-            --main-color-accent: #54f0b1;
-            --main-color-third: #1ee46a; */
-            /*Blues*/
+        @import "https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap";
 
+        :root {
             --main-color-first: #38e9ef;
             --main-color-second: #2499c4;
             --main-color-accent: #54d9f0;
             --main-color-third: #1ea5e4;
-            /*Reds*/
-            /*
-    --main-color-first: #ef386a;
-    --main-color-second: #c4252b;
-    --main-color-accent: #f05454;
-    --main-color-third: #e41e1e;
-    /**/
             --accent-color: #45494E;
             --gradient-color: #FBFBFB;
-
-            --box-shadow-color: #00000005;
+            --box-shadow-color: #00000005
         }
 
         * {
@@ -38,62 +25,43 @@
             padding: 0;
             outline: none;
             font-size: 2vh;
-            color: white;
+            color: #fff;
             word-break: break-all;
-            transition: all 0.2s ease-in-out;
+            transition: all .2s ease-in-out;
             scrollbar-width: thin;
             scrollbar-color: var(--main-color-second) transparent;
-            scroll-behavior: smooth;
+            scroll-behavior: smooth
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.5rem
         }
 
         h2 {
-            font-size: 2.25rem;
+            font-size: 2.25rem
         }
 
         h3 {
-            font-size: 1.75rem;
+            font-size: 1.75rem
         }
 
         h4 {
-            font-size: 1.5rem;
+            font-size: 1.5rem
         }
 
         h5 {
-            font-size: 1.25rem;
+            font-size: 1.25rem
         }
 
         h6 {
-            font-size: 1rem;
+            font-size: 1rem
         }
 
         html,
         body {
             width: 100%;
-            height: 100%;
+            height: 100%
         }
-
-        /*body {
-    width: /*92.5vw 85vw;
-    margin-left: 7.5vw;
-    height: 85vh;
-    margin-top: 7.5vh;
-    font-family: 'Montserrat', sans-serif;
-    /*Quepal uigradients
-    background: var(--main-color-second);
-    background: no-repeat -webkit-linear-gradient(to right, var(--main-color-first), var(--main-color-second));
-    background: no-repeat linear-gradient(to right, var(--main-color-first), var(--main-color-second));
-    display: grid;
-    grid-template-areas: "aside header" "aside nav" "aside main";
-    grid-template-columns: 25fr 75fr;
-    grid-template-rows: 10vh 7.5vh auto;
-    grid-column-gap: 5vw;
-    overflow: hidden;
-    transition: background-color 0s ease;
-}*/
 
         body {
             width: calc(100vw - 15vh);
@@ -108,16 +76,9 @@
             grid-template-areas: "aside main";
             grid-template-columns: 25fr 75fr;
             grid-template-rows: auto;
-            /* grid-column-gap: 5vw; */
             overflow: hidden;
-            transition: background-color 0s ease;
+            transition: background-color 0 ease
         }
-
-        /*
-Load imports
-*/
-
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap');
 
         aside {
             grid-area: aside;
@@ -125,7 +86,7 @@ Load imports
             overflow: auto;
             border-radius: 2.5vh 0 0 2.5vh;
             box-shadow: 0 0 1.5vh var(--box-shadow-color);
-            z-index: 5;
+            z-index: 5
         }
 
         .preloader {
@@ -138,7 +99,7 @@ Load imports
             z-index: 20;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center
         }
 
         .loader {
@@ -146,7 +107,7 @@ Load imports
             display: grid;
             grid-template-columns: 33% 33% 33%;
             width: 25vh;
-            height: 25vh;
+            height: 25vh
         }
 
         .loader>div {
@@ -156,80 +117,66 @@ Load imports
             background: var(--main-color-accent);
             transform: scale(0);
             transform-origin: center center;
-            animation: loader 2s infinite linear;
+            animation: loader 2s infinite linear
         }
 
         .loader>div:nth-child(1) {
-            border-radius: 2.5vh 0 0 0;
+            border-radius: 2.5vh 0 0 0
         }
 
         .loader>div:nth-child(3) {
-            border-radius: 0 2.5vh 0 0;
+            border-radius: 0 2.5vh 0 0
         }
 
         .loader>div:nth-child(7) {
-            border-radius: 0 0 0 2.5vh;
+            border-radius: 0 0 0 2.5vh
         }
 
         .loader>div:nth-of-type(9) {
-            border-radius: 0 0 2.5vh 0;
+            border-radius: 0 0 2.5vh 0
         }
 
         .loader>div:nth-of-type(1),
         .loader>div:nth-of-type(5),
         .loader>div:nth-of-type(9) {
-            animation-delay: 0.4s;
+            animation-delay: .4s
         }
 
         .loader>div:nth-of-type(4),
         .loader>div:nth-of-type(8) {
-            animation-delay: 0.2s;
+            animation-delay: .2s
         }
 
         .loader>div:nth-of-type(2),
         .loader>div:nth-of-type(6) {
-            animation-delay: 0.6s;
+            animation-delay: .6s
         }
 
         .loader>div:nth-of-type(3) {
-            animation-delay: 0.8s;
+            animation-delay: .8s
         }
 
         @keyframes loader {
             0% {
-                transform: scale(0);
+                transform: scale(0)
             }
 
             40% {
-                transform: scale(1);
+                transform: scale(1)
             }
 
             80% {
-                transform: scale(1);
+                transform: scale(1)
             }
 
             100% {
-                transform: scale(0);
+                transform: scale(0)
             }
         }
 
         .loaded .preloader {
-            display: none;
+            display: none
         }
-
-        /*button, input[type=submit] {
-    padding: 2.5vh 2.5vw;
-    border-radius: 5vh;
-    border: 0.5vh solid white;
-    background: transparent;
-    cursor: pointer;
-}
-
-button:hover, input[type=submit]:hover {
-    border: 0.5vh solid var(--main-color-first);
-    color: var(--main-color-second);
-    background: white;
-}*/
 
         button,
         input[type=submit],
@@ -238,31 +185,25 @@ button:hover, input[type=submit]:hover {
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        button,
-        input[type=submit],
-        input[type=button] {
             border: none;
             border-radius: 1.5vh;
             padding: 1vh;
-            background: var(--main-color-second);
-            /*font-weight: bold;*/
+            background: var(--main-color-second)
         }
 
         button .fa {
-            color: white;
+            color: #fff
         }
 
         button:hover,
         input[type=submit]:hover,
         input[type=button]:hover {
-            background: white;
-            color: var(--main-color-second);
+            background: #fff;
+            color: var(--main-color-second)
         }
 
         button:hover .fa {
-            color: var(--main-color-second);
+            color: var(--main-color-second)
         }
 
         header {
@@ -270,21 +211,21 @@ button:hover, input[type=submit]:hover {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: center
         }
 
         aside,
         header,
         nav,
         main {
-            transition: filter 0.1s ease-in-out;
+            transition: filter .1s ease-in-out
         }
 
         .page_title {
             font-size: 2rem;
-            font-weight: bold;
+            font-weight: 700;
             text-transform: uppercase;
-            color: white;
+            color: #fff
         }
 
         nav {
@@ -293,7 +234,7 @@ button:hover, input[type=submit]:hover {
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 20;
+            z-index: 20
         }
 
         ol {
@@ -301,122 +242,109 @@ button:hover, input[type=submit]:hover {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            list-style: none;
+            list-style: none
         }
 
         main {
             grid-area: main;
             overflow: visible;
             border-collapse: collapse;
-            z-index: 5;
+            z-index: 5
         }
 
         nav li {
-            /*cursor: pointer;*/
             flex: 1 1 10vh;
             padding: 0 -5vh;
             text-align: center;
             height: 25%;
             background: var(--main-color-second);
-            border-radius: 0;
+            border-radius: 0
         }
 
         nav a {
             display: block;
             width: 100%;
-            height: 100%;
+            height: 100%
         }
 
         .menu-item:hover .sub-menu {
-            display: block;
+            display: block
         }
-
-        /*arreglar menu*/
 
         .sub-menu {
             display: block;
             position: absolute;
-            /*top: calc(0% + 0.5em + 1.5vh);*/
             margin-top: 1.5vh;
             margin-left: -1.5vh;
             width: 15%;
             height: auto;
-            background: var(--main-color-third)
-                /*linear-gradient(to top, var(--main-color-third), var(--main-color-second) 200%)*/
-            ;
+            background: var(--main-color-third);
             z-index: 25;
-        }
-
-        .sub-menu {
-            display: none;
+            display: none
         }
 
         .sub-menu li {
-            display: block;
+            display: block
         }
 
         .menu>ol>li {
-            opacity: 0;
+            opacity: 0
         }
 
         .menu>ol:hover>li:first-child {
-            border-radius: 2.5vh 0 0 2.5vh;
+            border-radius: 2.5vh 0 0 2.5vh
         }
 
         .menu>ol:hover>li:last-child {
-            border-radius: 0 2.5vh 2.5vh 0;
+            border-radius: 0 2.5vh 2.5vh 0
         }
 
         .menu>ol:hover #hover {
             opacity: 0;
-            font-size: 0em;
+            font-size: 0
         }
 
         .menu * {
-            word-break: keep-all;
+            word-break: keep-all
         }
 
         .menu>ol:hover>li {
             display: inline;
-            opacity: 1;
+            opacity: 1
         }
 
         .menu ol:hover li {
-            padding: 1.5vh;
+            padding: 1.5vh
         }
 
         .menu li:hover {
-            /*background: rgba(0, 0, 0, 0.25);*/
-            background: var(--main-color-third);
+            background: var(--main-color-third)
         }
 
         nav .menu-item .menu-item {
-            background: transparent;
+            background: transparent
         }
 
         nav .menu-item .menu-item:hover {
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.15)
         }
 
         a {
-            text-decoration: none;
+            text-decoration: none
         }
 
         .content {
-            /*height: calc(100% - 10vh);*/
             height: 100%;
-            /*margin: 2.5vh 5vw 5vw 5vh;*/
-            /*margin: 2.5vh 5vw 5vw 0;*/
             background: #ebebeb;
             border-radius: 0 5vh 5vh 0;
-            box-shadow: 0 0 1.5vh var(--box-shadow-color);
+            box-shadow: 0 0 1.5vh var(--box-shadow-color)
         }
 
         table,
         tbody {
             width: 100%;
             height: 100%;
-            text-align: center;
+            text-align: center
         }
 
         .login {
@@ -425,12 +353,12 @@ button:hover, input[type=submit]:hover {
             top: 2.5vh;
             left: calc(85vw - 2.5vh);
             height: 10vh;
-            text-align: right;
+            text-align: right
         }
 
         .login p,
         .login a {
-            font-size: 0.75em;
+            font-size: .75em
         }
 
         .profile {
@@ -441,7 +369,7 @@ button:hover, input[type=submit]:hover {
             align-items: center;
             text-align: center;
             overflow: hidden;
-            flex-direction: column;
+            flex-direction: column
         }
 
         .profile_img {
@@ -449,18 +377,18 @@ button:hover, input[type=submit]:hover {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 1em;
+            margin-top: 1em
         }
 
         .profile_img img {
             height: 15vh;
             width: 15vh;
             border-radius: 50%;
-            border: 1vh solid #272b2e;
+            border: 1vh solid #272b2e
         }
 
         .profile_img img:hover {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.5)
         }
 
         .profile_info {
@@ -468,14 +396,14 @@ button:hover, input[type=submit]:hover {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-content: center;
+            align-content: center
         }
 
         .profile_actions {
             min-height: 70%;
             height: auto;
             align-self: center;
-            overflow: auto;
+            overflow: auto
         }
 
         .sidenav {
@@ -483,16 +411,13 @@ button:hover, input[type=submit]:hover {
             justify-content: space-evenly;
             align-content: center;
             flex-direction: column;
-            /*height: 100%;*/
             width: 100%;
             z-index: 1;
             top: 0;
             left: 0;
             overflow-x: hidden;
-            padding-top: 2vh;
+            padding-top: 2vh
         }
-
-        /* Style the sidenav links and the dropdown button */
 
         .sidenav a,
         .dropdown-btn {
@@ -507,63 +432,57 @@ button:hover, input[type=submit]:hover {
             text-align: left;
             cursor: pointer;
             outline: none;
-            border-left: 0vw solid var(--main-color-first);
+            border-left: 0 solid var(--main-color-first)
         }
 
         .divider {
-            margin: 1vh 0 1vh 0.5em;
+            margin: 1vh 0 1vh .5em
         }
-
-        /* On mouse-over */
 
         .sidenav a:hover,
         .dropdown-btn:hover,
         .active {
             color: var(--main-color-first);
             background: rgba(0, 0, 0, 0.25);
-            border-left: 0.3vw solid var(--main-color-first);
+            border-left: .3vw solid var(--main-color-first)
         }
 
         .dropdown-container a:hover {
             color: var(--main-color-first);
             background: rgba(0, 0, 0, 0.25);
-            border: none;
+            border: none
         }
 
         .dropdown-btn {
-            border-top: 0vh solid var(--main-color-second);
-            font-weight: 300;
+            border-top: 0 solid var(--main-color-second);
+            font-weight: 300
         }
 
         .active {
-            border-top: 0.5vh solid var(--main-color-second);
+            border-top: .5vh solid var(--main-color-second);
             border-left: none;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25));
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25))
         }
-
-        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 
         .dropdown-container {
             display: none;
             background-color: #262626;
             padding-left: 1vw;
             border-radius: 5% 0 0 5%;
-            border-left: 0.5vw solid var(--main-color-first);
+            border-left: .5vw solid var(--main-color-first)
         }
-
-        /* Optional: Style the caret down icon */
 
         .fa-caret-down {
             float: right;
-            padding-right: 1vw;
+            padding-right: 1vw
         }
 
         #name {
-            margin-top: 1em;
+            margin-top: 1em
         }
 
         #username::before {
-            content: '@';
+            content: '@'
         }
 
         .pages {
@@ -574,42 +493,42 @@ button:hover, input[type=submit]:hover {
             height: 12.5vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center
         }
 
         .pages>* {
             flex: 0 0 5vh;
             height: 5vh;
-            margin: 1vh;
+            margin: 1vh
         }
 
         .inp {
             position: relative;
             margin: 0 auto;
             width: 100%;
-            max-width: 80%;
+            max-width: 80%
         }
 
         .inp .label {
             position: absolute;
             top: 16px;
-            left: 0.5em;
+            left: .5em;
             color: #9098a9;
             font-weight: 500;
             transform-origin: 0 0;
-            transition: all 0.2s ease;
+            transition: all .2s ease
         }
 
         .inp .border {
             position: absolute;
             bottom: 0;
             left: 0;
-            height: 0.25vh;
+            height: .25vh;
             width: 100%;
             background: var(--main-color-second);
             transform: scaleX(0);
             transform-origin: 0 0;
-            transition: all 0.15s ease;
+            transition: all .15s ease
         }
 
         .inp input,
@@ -625,52 +544,52 @@ button:hover, input[type=submit]:hover {
             background: none;
             border-radius: 0;
             color: #223254;
-            transition: all 0.15s ease;
+            transition: all .15s ease
         }
 
         .inp textarea {
             height: 25vh;
-            resize: none;
+            resize: none
         }
 
         .inp input:hover,
         .inp textarea:hover {
-            background: rgba(34, 50, 84, 0.03);
+            background: rgba(34, 50, 84, 0.03)
         }
 
         .inp input:not(:placeholder-shown)+span,
         .inp textarea:not(:placeholder-shown)+span {
             color: #5a667f;
-            transform: translateY(-26px) scale(0.75);
+            transform: translateY(-26px) scale(0.75)
         }
 
         .inp input:focus,
         .inp textarea:focus {
             background: none;
-            outline: none;
+            outline: none
         }
 
         .inp input:focus+span,
         .inp textarea:focus+span {
             color: var(--main-color-second);
             transform: translateY(-4vh) scale(0.75);
-            left: 0;
+            left: 0
         }
 
         .inp input:focus+span+.border,
         .inp textarea:focus+span+.border {
-            transform: scaleX(1);
+            transform: scaleX(1)
         }
 
         .modal {
             position: absolute;
             width: 100vw;
             height: 100vh;
-            top: 0vh;
-            left: 0vh;
+            top: 0;
+            left: 0;
             background: rgba(0, 0, 0, 0.35);
             padding: 10vh 7.5vw;
-            z-index: 20;
+            z-index: 20
         }
 
         .modal_content {
@@ -678,123 +597,114 @@ button:hover, input[type=submit]:hover {
             width: 70%;
             height: 100%;
             border-radius: 5vh;
-            background: white;
+            background: #fff
         }
 
         #contextMenu {
             position: absolute;
             width: 22.5vh;
             height: auto;
-            /*background: rgba(0, 0, 0, 0.25);*/
             background: var(--main-color-accent);
             padding: 2.5vh;
-            box-shadow: 0.5vh 0.5vh 0vh black;
-            transition: top 0s ease;
-            transition: left 0s ease;
+            box-shadow: .5vh .5vh 0 #000;
+            transition: top 0 ease;
+            transition: left 0 ease;
             z-index: 25;
-            border-radius: 2.5vh;
+            border-radius: 2.5vh
         }
 
         #contextMenu ul {
-            list-style: none;
+            list-style: none
         }
 
         #contextMenu hr {
             height: 1vh;
-            border: none;
-            /*background: white;*/
+            border: none
         }
 
         #contextMenu li {
             cursor: pointer;
-            padding: 0.5vh 0;
-            border-radius: 0.5vh;
+            padding: .5vh 0;
+            border-radius: .5vh
         }
 
         #contextMenu li:hover {
-            /*background: rgba(0, 0, 0, 0.25);*/
-            background: var(--main-color-second);
+            background: var(--main-color-second)
         }
 
         @media screen and (max-width: 800px) {
             .preloader {
-                width: 180vw;
+                width: 180vw
             }
 
             body {
-                /*grid-template-areas: "aside" "header" "nav" "main";
-        grid-template-columns: auto;
-        grid-template-rows: 10fr 10fr 5fr 80fr;*/
                 grid-template-columns: 80vw 100vw;
                 grid-column-gap: 0;
                 width: 100vw;
                 height: 100vh;
                 margin: 0;
                 background-size: 120vw 100vh;
-                background-position: 0vw 0;
+                background-position: 0 0;
                 scroll-snap-type: mandatory;
                 scroll-snap-points-x: repeat(100vw);
                 scroll-snap-type: x mandatory;
-                overflow-x: unset;
+                overflow-x: unset
             }
 
             html {
                 font-family: sans-serif;
                 scroll-snap-type: mandatory;
                 scroll-snap-points-x: repeat(100vw);
-                scroll-snap-type: x mandatory;
+                scroll-snap-type: x mandatory
             }
 
             aside {
-                border-radius: 0;
+                border-radius: 0
             }
 
             header,
             nav,
             main,
             aside {
-                scroll-snap-align: start;
+                scroll-snap-align: start
             }
 
             #hover {
-                display: none;
+                display: none
             }
 
             .menu ol li {
                 padding: 1.5vh;
                 display: inline;
                 opacity: 1;
-                border-radius: 0;
+                border-radius: 0
             }
 
             .content {
                 margin: 0;
                 border-radius: 0;
-                height: 100%;
+                height: 100%
             }
 
             ol {
-                flex: 0 0 100%;
+                flex: 0 0 100%
             }
 
             .login {
-                display: none;
+                display: none
             }
         }
-
-        /*fix landscape mode*/
 
         @media screen and (max-width: 800px) and (orientation: landscape) {
             body {
                 transform: rotateZ(90deg);
                 width: 100vw;
-                height: 100vh;
+                height: 100vh
             }
         }
-    </style>
-    <style>
+
         * {
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
         body,
@@ -806,8 +716,7 @@ button:hover, input[type=submit]:hover {
             scrollbar-width: none;
             height: 100%;
             margin: 0;
-            color: #777;
-            /*width: calc(100% + 0.5vh);*/
+            color: #777
         }
 
         .parallax_section_1,
@@ -815,53 +724,46 @@ button:hover, input[type=submit]:hover {
         .parallax_section_3,
         .parallax_section_4 {
             position: relative;
-            opacity: 0.65;
+            opacity: .65;
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: cover
         }
 
         .parallax_section_1 {
             opacity: 1;
+            min-height: 100%
         }
-
-        .parallax_section_1 {
-            /*background-image: linear-gradient(-45deg, #f12711, #f5af19);*/
-            /*background-image: url('https://viewbug_com.s3.amazonaws.com/media/images/contests/contest7840_banner.jpg');*/
-            min-height: 100%;
-        }
-
 
         .parallax_section_2 {
             background-image: linear-gradient(90deg, purple, orange);
             background: linear-gradient(90deg, #ef386a, #c4252b);
             background: linear-gradient(45deg, #00adb3, #007eac);
-            min-height: 35vh;
+            min-height: 35vh
         }
 
         .parallax_section_3 {
             background-image: linear-gradient(-127deg, green, aquamarine);
             background: linear-gradient(45deg, #38ef7d, #25c485);
-            min-height: 35vh;
+            min-height: 35vh
         }
 
         .parallax_section_4 {
-            /*background-image: linear-gradient(-45deg, #f12711, #f5af19);*/
-            background-image: linear-gradient(420deg, rgb(70, 70, 211), rgb(43, 103, 214), rgb(53, 218, 207));
+            background-image: linear-gradient(420deg, #4646d3, #2b67d6, #35dacf);
             background: linear-gradient(90deg, #ef386a, #c4252b);
-            min-height: 40vh;
+            min-height: 40vh
         }
 
         .parallax_section_4 .caption {
-            top: 45%;
+            top: 45%
         }
 
         .parallax_section_2 .border,
         .parallax_section_3 .border {
             background-color: transparent;
             font-size: 25px;
-            color: #f7f7f7;
+            color: #f7f7f7
         }
 
         .caption {
@@ -870,7 +772,7 @@ button:hover, input[type=submit]:hover {
             top: 50%;
             width: 100%;
             text-align: center;
-            color: #000;
+            color: #000
         }
 
         .caption span.border {
@@ -878,23 +780,22 @@ button:hover, input[type=submit]:hover {
             color: #fff;
             padding: 18px;
             font-size: 25px;
-            letter-spacing: 10px;
+            letter-spacing: 10px
         }
 
         h3 {
             letter-spacing: 5px;
             text-transform: uppercase;
-            color: #0e1116;
+            color: #0e1116
         }
 
-        /* Turn off parallax scrolling for tablets and phones */
         @media only screen and (max-device-width: 1024px) {
 
             .parallax_section_1,
             .parallax_section_2,
             .parallax_section_3,
             .parallax_section_4 {
-                background-attachment: scroll;
+                background-attachment: scroll
             }
         }
 
@@ -902,36 +803,35 @@ button:hover, input[type=submit]:hover {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            /*width: 1200px;*/
             margin: 0 auto;
-            width: 80vw;
+            width: 80vw
         }
 
         .pricing_card {
             margin-top: 2rem;
             margin-bottom: 2rem;
-            transition: all 0.25s ease-in;
-            box-shadow: 0 0.5vh 1vh 0 rgba(0, 0, 0, 0.15);
+            transition: all .25s ease-in;
+            box-shadow: 0 .5vh 1vh 0 rgba(0, 0, 0, 0.15);
             background-color: #fff;
             position: relative;
             width: 27.5vw;
             overflow: hidden;
-            border-radius: 2.5vh;
+            border-radius: 2.5vh
         }
 
         .pricing_card:hover {
-            transform: translateY(-2.5vh);
+            transform: translateY(-2.5vh)
         }
 
         .pricing_card li {
             color: #0e1116;
-            margin-bottom: 1rem;
+            margin-bottom: 1rem
         }
 
         .pricing_card a {
             margin-left: 2rem;
             margin-bottom: 2rem;
-            color: #0e1116;
+            color: #0e1116
         }
 
         .pricings,
@@ -940,32 +840,32 @@ button:hover, input[type=submit]:hover {
             background-color: #282E34;
             text-align: center;
             padding: 5vh 7.5vw;
-            text-align: justify;
+            text-align: justify
         }
 
         .pricings {
-            padding: 0;
+            padding: 0
         }
 
         .pricing_card>div {
-            padding: 2rem;
+            padding: 2rem
         }
 
         .pricing_card h3 {
             border-radius: 2.5vh;
-            color: white;
+            color: #fff
         }
 
         .jadeite {
-            background: linear-gradient(45deg, #38ef7d, #25c485);
+            background: linear-gradient(45deg, #38ef7d, #25c485)
         }
 
         .draconic {
-            background: linear-gradient(45deg, #ef386a, #c4252b);
+            background: linear-gradient(45deg, #ef386a, #c4252b)
         }
 
         .entropy {
-            background: linear-gradient(45deg, #38e9ef, #2499c4);
+            background: linear-gradient(45deg, #38e9ef, #2499c4)
         }
 
         strong.jadeite,
@@ -973,22 +873,21 @@ button:hover, input[type=submit]:hover {
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            border-radius: 0;
+            border-radius: 0
         }
 
         li {
-            font-size: 0.75rem;
+            font-size: .75rem
         }
 
         p {
-            color: #0e1116;
+            color: #0e1116
         }
 
         .card {
             border-radius: 2.5vh;
-            /*background: linear-gradient(45deg, black, white);*/
             width: 20vw;
-            text-align: center;
+            text-align: center
         }
 
         .card img {
@@ -996,27 +895,27 @@ button:hover, input[type=submit]:hover {
             width: 70%;
             margin: 0 15%;
             object-fit: fill;
-            float: left;
+            float: left
         }
 
         .card h2 {
             font-size: 1.5rem;
-            word-break: normal;
+            word-break: normal
         }
 
         .card h3 {
             font-size: 1rem;
-            word-break: normal;
+            word-break: normal
         }
 
         .row {
             display: flex;
             justify-content: space-evenly;
-            align-items: center;
+            align-items: center
         }
 
         .row h3 {
-            color: #ebebeb;
+            color: #ebebeb
         }
 
         .navigation {
@@ -1029,15 +928,14 @@ button:hover, input[type=submit]:hover {
             height: 7.5vh;
             transform: translateY(-5vh);
             opacity: 0;
-            /*background: linear-gradient(45deg, var(--main-color-first), var(--main-color-third));*/
             background: var(--main-color-second);
             overflow: hidden;
-            box-shadow: 0 0 2.5vh rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 2.5vh rgba(0, 0, 0, 0.15)
         }
 
         .navigation:hover {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0)
         }
 
         .navigation ul {
@@ -1045,23 +943,23 @@ button:hover, input[type=submit]:hover {
             list-style: none;
             justify-content: space-evenly;
             align-items: center;
-            height: 100%;
+            height: 100%
         }
 
         .content_block {
             position: relative;
-            background-color: #282E34;
+            background-color: #282E34
         }
 
         #about {
             color: #777;
-            background-color: white;
+            background-color: #fff;
             text-align: center;
-            text-align: justify;
+            text-align: justify
         }
 
         #about>* {
-            padding: 5vh 7.5vw;
+            padding: 5vh 7.5vw
         }
 
         h3 {
@@ -1069,53 +967,51 @@ button:hover, input[type=submit]:hover {
             letter-spacing: 5px;
             text-transform: uppercase;
             color: rgba(0, 0, 0, 0.9);
-            font-weight: normal;
+            font-weight: 400;
             margin-top: 0;
             text-align: center;
             font-size: 1.75rem;
-            line-height: 1.25;
+            line-height: 1.25
         }
 
         p {
             margin-bottom: 1rem;
-            font-size: 0.75rem;
+            font-size: .75rem;
             letter-spacing: 2px;
             font-weight: 500;
-            text-transform: uppercase;
+            text-transform: uppercase
         }
 
         a {
             text-decoration: none;
             outline: none;
-            transition: all 0.25s ease-in;
+            transition: all .25s ease-in;
             display: inline-block;
             text-align: center;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+            letter-spacing: .2em;
+            text-transform: uppercase
         }
 
         a:hover {
-            font-weight: bold;
+            font-weight: 700
         }
 
         .navigation li:hover {
             background: transparent;
-            box-shadow: 0 0 2.5vh rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 2.5vh rgba(0, 0, 0, 0.3)
         }
 
         .navigation a:hover {
-            background: var(--main-color-third);
-            /*background: linear-gradient(to top, var(--main-color-third), transparent 80%);*/
+            background: var(--main-color-third)
         }
 
         .navigation li,
         .navigation a {
-            /*border-radius: 2.5vh;*/
             flex: auto;
             height: 7.5vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center
         }
 
         .detail_shape {
@@ -1124,78 +1020,78 @@ button:hover, input[type=submit]:hover {
             height: 100%;
             transform: skewY(10deg);
             background-color: #282e34;
-            z-index: -1;
+            z-index: -1
         }
 
-        @media screen and (min-aspect-ratio: 21/9) {
+        @media screen and (min-aspect-ratio: 219) {
             body {
                 width: 70vw;
-                margin: 0 auto;
+                margin: 0 auto
             }
 
             .navigation {
-                width: 70vw;
+                width: 70vw
             }
         }
 
         .navigation #menuDisplay {
-            display: none;
+            display: none
         }
 
         .navigation ul {
-            -webkit-transition: height 0.2s ease-in-out !important;
-            -ms-transition: height 0.2s ease-in-out !important;
-            transition: height 0.2s ease-in-out !important;
+            -webkit-transition: height .2s ease-in-out !important;
+            -ms-transition: height .2s ease-in-out !important;
+            transition: height .2s ease-in-out !important
         }
 
         @media screen and (max-width: 800px) {
             .row {
-                flex-direction: column;
+                flex-direction: column
             }
 
             .card {
                 width: 90vw;
-                margin: 2.5vh;
+                margin: 2.5vh
             }
 
             .pricings {
                 flex-direction: column;
-                padding-bottom: 2rem;
+                padding-bottom: 2rem
             }
 
             .pricing_card {
                 width: 100%;
-                margin-bottom: 0;
+                margin-bottom: 0
             }
 
             .navigation {
                 transform: translateY(0vh);
                 opacity: 1;
-                height: auto;
+                height: auto
             }
 
             .navigation li {
-                width: 100%;
+                width: 100%
             }
 
             .navigation ul {
-                flex-direction: column;
+                flex-direction: column
             }
 
             .navigation #menuDisplay {
                 display: block;
-                margin: 1rem;
+                margin: 1rem
             }
 
             .toggledMenuDispaly {
                 overflow: hidden !important;
-                height: 0rem !important;
+                height: 0 !important
             }
 
             .navigation {
                 position: fixed;
                 bottom: 0;
-                top: inherit;
+                top: inherit
             }
         }
 
@@ -1205,17 +1101,15 @@ button:hover, input[type=submit]:hover {
             width: 20px !important;
             height: 20px !important;
             background: rgba(0, 0, 0, 0.5);
-            -webkit-transition: background-color 0.2s linear;
-            -ms-transition: background-color 0.2s linear;
-            transition: background-color 0.2s linear;
-            cursor: pointer;
+            -webkit-transition: background-color .2s linear;
+            -ms-transition: background-color .2s linear;
+            transition: background-color .2s linear;
+            cursor: pointer
         }
 
         #menuDisplay:checked {
-            background: rgba(18, 255, 117, 0.5);
+            background: rgba(18, 255, 117, 0.5)
         }
-    </style>
-    <style>
     </style>
 </head>
 
