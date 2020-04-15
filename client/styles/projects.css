@@ -12,3 +12,16 @@ main {
 .projectContainerTitle {
     cursor: pointer;
 }
+
+.action {
+    width: 150px;
+    height: 150px;
+}
+
+.action .actionIcon {
+    text-align: center;
+}
+
+.action .actionIcon .fa {
+    font-size: 5rem;
+}
