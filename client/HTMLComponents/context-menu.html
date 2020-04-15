@@ -21,7 +21,7 @@
         </ul>
     </div> -->
 
-    <ul class="context">
+    <!-- <ul class="context">
         <li class="context__header">Menú contextual</li>
         <li class="context__item context__item--twitter"><a href="#"><i class="pre entypo-twitter"> </i>Elemento de menu
                 1</a>
@@ -45,8 +45,71 @@
             </ul>
         </li>
         <li class="context__item context__item--email"><a href="#">Elemento de menu 6</a></li>
-    </ul>
+    </ul> -->
 </body>
+
+<script>
+    var context = $(`<ul class="context"></ul>`);
+    var subContext = $(`<ul class="context context--sub"></ul>`);
+    var contextTitle = $(`<li class="context__header"></li>`);
+    var contextItem = $(
+        `<li class="context__item">
+            <a href="#">
+                <i class="pre entypo-twitter"></i>
+            </a>
+        </li>`
+    );
+    var contextDivider = $(`<li class="context__divider"></li>`);
+    var disableClass = "context__item--nope";
+
+    function createContext(title = "test") {
+        var contextClone = context.clone();
+
+        $("body").append(contextClone);
+        var titleClone = contextTitle.clone();
+        titleClone.text(title);
+        contextClone.append(titleClone);
+
+        return contextClone;
+    }
+
+    function createContextItem(context, itemContent, href) {
+        var itemClone = contextItem.clone();
+
+        itemClone.find("a").prop("href", href);
+        itemClone.text(itemContent);
+        context.append(itemClone);
+
+        return itemClone;
+    }
+
+    function createSubMenu(contextItem) {
+        var subMenu = subContext.clone();
+
+        contextItem.append(subMenu);
+
+        return subMenu;
+    }
+
+    function addDivider(item, before = true) {
+        var divider = contextDivider.clone();
+
+        if (before) {
+            item.before(divider);
+        } else {
+            item.after(divider);
+        }
+
+        return divider;
+    }
+
+    var c = createContext("Test");
+    var item = createContextItem(c, "test", "tgest");
+    var item2 = createContextItem(c, "wegwegweg", "tgest");
+    var subMenu = createSubMenu(item2);
+    var subItem1 = createContextItem(subMenu, "wegwegweg", "tgest");
+    addDivider(item2);
+</script>
 <script src="../scripts/js/context-menu.js"></script>
 
 </html>
