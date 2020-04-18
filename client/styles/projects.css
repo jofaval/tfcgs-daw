@@ -39,6 +39,7 @@ main {
 .tab {
     border-bottom: .5em solid transparent;
     transition: all 0.2s ease;
+    padding-bottom: -.5em !important;
 }
 
 .tab:hover, .tab.active {
@@ -49,9 +50,15 @@ main {
     border-bottom: .5em solid transparent !important;
 }
 
+/* .projectCollaboratorCard {
+    border-top-left-radius: 50rem !important;
+    border-bottom-left-radius: 50rem !important;
+} */
+
 .projectCollaboratorImg {
     width: 75px;
     height: 75px;
+    /* margin-left: -.5rem !important; */
 }
 
 .projectCollaboratorProfileBtn {
