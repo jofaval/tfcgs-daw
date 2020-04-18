@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/projects.css">
+    <link rel="stylesheet" href="../styles/agenda.css">
+    <link rel="stylesheet" href="../styles/summernote-bs4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 </head>
 
@@ -289,15 +291,29 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="w-100 h-100 d-none" id="tabContent3">
+            <div class="w-100 h-100 d-none" id="tabContent3">
+                <div class="mx-auto">
+                    <div class="form-row d-flex py-4">
+                        <div class="col-sm-3 rounded order-0 order-sm-2 bg-white shadow mx-1">
+                            <div class="md-form m-0">
+                                <input placeholder="Select a date" type="text" id="datepicker"
+                                    class="form-control datepicker">
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary order-2 order-sm-1 text-white ml-auto">&lt;</button>
+                        <button class="btn btn-sm btn-primary order-3 text-white mr-auto">&gt;</button>
+                    </div>
+                    <div class="mx-sm-5">
+                        <div id="summernote"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100 h-100 d-block" id="tabContent4">
 
-        </div>
-        <div class="w-100 h-100 d-none" id="tabContent4">
+            </div>
+            <div class="w-100 h-100 d-none" id="tabContent5">
 
-        </div>
-        <div class="w-100 h-100 d-none" id="tabContent5">
-
+            </div>
         </div>
     </div>
     </div>
@@ -344,5 +360,6 @@
 </script>
 <!--script src="../scripts/js/projects.js"></script-->
 <!--script src="../scripts/js/ProjectManagementMvc.js"></script-->
+<script src="../scripts/js/agenda.js"></script>
 
 </html>

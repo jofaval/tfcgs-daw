@@ -44,3 +44,12 @@ main {
 .tab.active {
     border-bottom: .5em solid rgb(21, 103, 255);
 }
+
+.projectCollaboratorImg {
+    width: 75px;
+    height: 75px;
+}
+
+.projectCollaboratorProfileBtn {
+    align-self: center;
+}
