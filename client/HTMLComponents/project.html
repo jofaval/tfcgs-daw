@@ -38,7 +38,7 @@
             <div class="tab p-3">Detalles</div>
         </div>
         <div class="row grey darken-3 m-0 px-2">
-            <div class="w-100 h-100 d-block" id="tabContent1">
+            <div class="w-100 h-100 tabContent d-none" id="tabContent1">
                 <div class="w-100 display-none display-sm-block p-2 text-white d-flex justify-content-start">
                     <div class="collaborators mx-2">
                         <span id="numberOfCollaborators">24</span>
@@ -195,7 +195,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-100 h-100 d-none" id="tabContent2">
+            <div class="w-100 h-100 tabContent d-none" id="tabContent2">
                 <div
                     class="row d-flex text-white justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0">
                     <div class="projectsCount ml-3">
@@ -303,7 +303,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-100 h-100 d-none" id="tabContent3">
+            <div class="w-100 h-100 tabContent d-none" id="tabContent3">
                 <div class="mx-auto">
                     <div class="form-row d-flex py-4">
                         <div class="col-sm-3 rounded order-0 order-sm-2 bg-white shadow mx-1">
@@ -320,7 +320,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-100 h-100 d-none" id="tabContent4">
+            <div class="w-100 h-100 tabContent d-none" id="tabContent4">
                 <div class="md-form input-group col my-2">
                     <input type="text" class="form-control pl-0 rounded-0" name="searchCollaborator"
                         id="searchCollaborator" placeholder="Collaborator's username">
@@ -421,7 +421,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-100 h-100 d-none" id="tabContent5">
+            <div class="w-100 h-100 tabContent d-block" id="tabContent5">
 
             </div>
         </div>
@@ -429,7 +429,7 @@
     </div>
 </body>
 <script>
-    $(".tab").hover(function () {
+    /* $(".tab").hover(function () {
         if ($(this).not(":first")) {
             $(".tab.active").removeClass("active");
             $(this).addClass("active");
@@ -439,10 +439,10 @@
             $(this).removeClass("active");
             $(".tab:first").addClass("active");
         }
-    });
+    }); */
 </script>
 <script>
-    $('li').click(function () {
+    $('.pagination li').click(function () {
         $(this).addClass('active').siblings().removeClass('active');
     });
 
@@ -466,6 +466,19 @@
                 </form>`,
             theme: $.sweetModal.THEME_DARK
         });
+    });
+
+    $('.tab').on("click", function () {
+        var current = $(this);
+
+        $(".tabContent.d-block").addClass("d-none")
+            .removeClass("d-block");
+
+        $(`#tabContent${current.index() + 1}`).addClass("d-block")
+            .removeClass("d-none");
+
+        $(".tab.active").removeClass("active");
+        current.addClass("active");
     });
 </script>
 <!--script src="../scripts/js/projects.js"></script-->

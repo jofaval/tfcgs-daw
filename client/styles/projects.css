@@ -37,12 +37,16 @@ main {
 }
 
 .tab {
-    border-bottom: 0.5em solid transparent;
+    border-bottom: .5em solid transparent;
     transition: all 0.2s ease;
 }
 
-.tab.active {
+.tab:hover, .tab.active {
     border-bottom: .5em solid rgb(21, 103, 255);
+}
+
+.tabs:hover .tab.active {
+    border-bottom: .5em solid transparent !important;
 }
 
 .projectCollaboratorImg {
