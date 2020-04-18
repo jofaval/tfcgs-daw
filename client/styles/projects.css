@@ -53,3 +53,7 @@ main {
 .projectCollaboratorProfileBtn {
     align-self: center;
 }
+
+.recentlyCreated, .recentlyInvited {
+    width: 95%;
+}

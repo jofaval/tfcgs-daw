@@ -38,7 +38,7 @@
             <div class="tab p-3">Detalles</div>
         </div>
         <div class="row grey darken-3 m-0 px-2">
-            <div class="w-100 h-100 d-none" id="tabContent1">
+            <div class="w-100 h-100 d-block" id="tabContent1">
                 <div class="w-100 display-none display-sm-block p-2 text-white d-flex justify-content-start">
                     <div class="collaborators mx-2">
                         <span id="numberOfCollaborators">24</span>
@@ -132,8 +132,8 @@
                     </div>
                     <div class="col">
                         <div class="row">
-                            <h4 class="h4">Creado recientemente</h4>
-                            <div class="recentlyCreated w-100">
+                            <h4 class="h4 text-white">Creado recientemente</h4>
+                            <div class="recentlyCreated">
                                 <div class="card w-100">
                                     <div class="card-body p-0">
                                         <p class="card-text my-auto d-inline">Test</p>
@@ -157,24 +157,36 @@
                         </div>
                         <br>
                         <div class="row">
-                            <h4 class="h4">Invitados recientemente</h4>
-                            <div class="recentlyInvited w-100">
-                                <div class="card w-100">
-                                    <div class="card-body p-0">
-                                        <p class="card-text my-auto d-inline">Test</p>
-                                        <a href="#" class="btn btn-primary float-right">Go somewhere</a>
+                            <h4 class="h4 text-white">Invitados recientemente</h4>
+                            <div class="recentlyInvited">
+                                <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                                    <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png"
+                                        alt="">
+                                    <div class="projectCollaboratorDetails my-auto col">
+                                        <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                        <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                                    </div>
+                                    <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile
                                     </div>
                                 </div>
-                                <div class="card w-100">
-                                    <div class="card-body p-0">
-                                        <p class="card-text my-auto d-inline">Test</p>
-                                        <a href="#" class="btn btn-primary float-right">Go somewhere</a>
+                                <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                                    <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png"
+                                        alt="">
+                                    <div class="projectCollaboratorDetails my-auto col">
+                                        <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                        <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                                    </div>
+                                    <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile
                                     </div>
                                 </div>
-                                <div class="card w-100">
-                                    <div class="card-body p-0">
-                                        <p class="card-text my-auto d-inline">Test</p>
-                                        <a href="#" class="btn btn-primary float-right">Go somewhere</a>
+                                <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                                    <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png"
+                                        alt="">
+                                    <div class="projectCollaboratorDetails my-auto col">
+                                        <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                        <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                                    </div>
+                                    <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile
                                     </div>
                                 </div>
                                 <span class="btn btn-primary w-100">Ver todos</span>
@@ -308,8 +320,106 @@
                     </div>
                 </div>
             </div>
-            <div class="w-100 h-100 d-block" id="tabContent4">
-
+            <div class="w-100 h-100 d-none" id="tabContent4">
+                <div class="md-form input-group col my-2">
+                    <input type="text" class="form-control pl-0 rounded-0" name="searchCollaborator"
+                        id="searchCollaborator" placeholder="Collaborator's username">
+                    <div class="input-group-append">
+                        <span class="btn btn-sm btn-success m-0 input-group-text md-addon">Invite</span>
+                        <span class="btn btn-sm btn-warning m-0 input-group-text md-addon">Search</span>
+                    </div>
+                </div>
+                <div class="grey darken-3 m-0 px-2 pt-2">
+                    <div class="row projectCardRow d-flex justify-content-center m-0">
+                        <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                            <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
+                            <div class="projectCollaboratorDetails my-auto col">
+                                <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                            </div>
+                            <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile</div>
+                        </div>
+                        <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                            <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
+                            <div class="projectCollaboratorDetails my-auto col">
+                                <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                            </div>
+                            <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile</div>
+                        </div>
+                    </div>
+                    <div class="row projectCardRow d-flex justify-content-center m-0">
+                        <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                            <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
+                            <div class="projectCollaboratorDetails my-auto col">
+                                <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                            </div>
+                            <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile</div>
+                        </div>
+                        <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                            <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
+                            <div class="projectCollaboratorDetails my-auto col">
+                                <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                            </div>
+                            <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile</div>
+                        </div>
+                    </div>
+                    <div class="row projectCardRow d-flex justify-content-center m-0">
+                        <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                            <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
+                            <div class="projectCollaboratorDetails my-auto col">
+                                <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                            </div>
+                            <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile</div>
+                        </div>
+                        <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                            <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
+                            <div class="projectCollaboratorDetails my-auto col">
+                                <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                            </div>
+                            <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile</div>
+                        </div>
+                    </div>
+                    <div class="row projectCardRow d-flex justify-content-center m-0">
+                        <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                            <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
+                            <div class="projectCollaboratorDetails my-auto col">
+                                <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                            </div>
+                            <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile</div>
+                        </div>
+                        <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                            <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
+                            <div class="projectCollaboratorDetails my-auto col">
+                                <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                                <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                            </div>
+                            <div class="projectCollaboratorProfileBtn btn btn-primary float-right">See profile</div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center py-3">
+                        <nav aria-label="Page navigation example" class="bg-transparent">
+                            <ul class="pagination pg-blue mb-0">
+                                <li class="page-item ">
+                                    <a class="page-link" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link">1</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link">3</a></li>
+                                <li class="page-item ">
+                                    <a class="page-link">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
             <div class="w-100 h-100 d-none" id="tabContent5">
 
