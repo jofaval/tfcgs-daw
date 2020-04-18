@@ -25,3 +25,13 @@ main {
 .action .actionIcon .fa {
     font-size: 5rem;
 }
+
+.projectCardFlags {
+    position: absolute;
+    right: .5em;
+}
+
+.projectHeader {
+    background-image: url("https://i.picsum.photos/id/1060/1920/1080.jpg");
+    background-size: 100% 100%;
+}
