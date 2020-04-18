@@ -81,6 +81,21 @@ main {
     z-index: 19 !important;
 }
 
+.informationText {
+    cursor: help;
+}
+
+.informationTextQuote {
+    display: none !important;
+    position: absolute;
+    background: rgba(127, 127, 127, 1);
+}
+
+.informationText:hover+.informationTextQuote,
+.informationTextQuote:hover {
+    display: block !important;
+}
+
 @media screen and (prefer-color-scheme: light) {
     body {
         background-color: #dbdbdb;
