@@ -35,3 +35,12 @@ main {
     background-image: url("https://i.picsum.photos/id/1060/1920/1080.jpg");
     background-size: 100% 100%;
 }
+
+.tab {
+    border-bottom: 0.5em solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tab.active {
+    border-bottom: .5em solid rgb(21, 103, 255);
+}

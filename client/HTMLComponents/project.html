@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row py-5">
+    <div class="container p-0">
+        <div class="row py-5 projectHeader m-0">
             <div class="projectImageContainer col-3">
                 <img class="projectImage mx-5" src="../img/profile-pic.png" alt="" width="200">
             </div>
@@ -28,15 +28,15 @@
                 </a>
             </div>
         </div>
-        <div class="row tabs shadow w-100 m-0 grey darken-2">
-            <div class="tab p-3">General</div>
+        <div class="row tabs shadow w-100 m-0 grey darken-2 text-white">
+            <div class="tab p-3 active">General</div>
             <div class="tab p-3">Tableros</div>
             <div class="tab p-3">Diario</div>
             <div class="tab p-3">Colaboradores</div>
             <div class="tab p-3">Detalles</div>
         </div>
         <div class="row grey darken-3 m-0 px-2">
-            <div class="w-100 h-100" id="tabContent1">
+            <div class="w-100 h-100 d-none" id="tabContent1">
                 <div class="w-100 display-none display-sm-block p-2 text-white d-flex justify-content-start">
                     <div class="collaborators mx-2">
                         <span id="numberOfCollaborators">24</span>
@@ -61,22 +61,22 @@
                             <h4 class="actionsTitle text-white">Tablero</h4>
                             <div class="actionsButton d-flex justify-content-space-between flex-wrap">
                                 <div class="action blue m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
                                 <div class="action blue m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
                                 <div class="action blue m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
                             </div>
                         </div>
@@ -84,16 +84,16 @@
                             <h4 class="actionsTitle text-white">Diario</h4>
                             <div class="actionsButton d-flex justify-content-space-between flex-wrap">
                                 <div class="action green m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
                                 <div class="action green m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
                             </div>
                         </div>
@@ -101,28 +101,28 @@
                             <h4 class="actionsTitle text-white">Proyecto</h4>
                             <div class="actionsButton d-flex justify-content-space-between flex-wrap">
                                 <div class="action red m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
                                 <div class="action red m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
                                 <div class="action red m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
                                 <div class="action red m-2">
-                                    <div class="actionIcon text-white p-3">
+                                    <div class="actionIcon h-75 text-white p-3">
                                         <i class="fa fa-eye"></i>
                                     </div>
-                                    <h5 class="actionTitle text-white bg-dark">Test</h5>
+                                    <div class="actionTitle h-25 text-center text-white bg-dark">Test</div>
                                 </div>
 
                             </div>
@@ -134,7 +134,6 @@
                             <div class="recentlyCreated w-100">
                                 <div class="card w-100">
                                     <div class="card-body p-0">
-                                        <!-- d-flex justify-content-start align-items-center -->
                                         <p class="card-text my-auto d-inline">Test</p>
                                         <a href="#" class="btn btn-primary float-right">Go somewhere</a>
                                     </div>
@@ -182,22 +181,166 @@
                     </div>
                 </div>
             </div>
-            <div class="w-100 h-100" id="tabContent2">
-
-            </div>
-            <div class="w-100 h-100" id="tabContent3">
-
-            </div>
-            <div class="w-100 h-100" id="tabContent4">
-
-            </div>
-            <div class="w-100 h-100" id="tabContent5">
-
+            <div class="w-100 h-100 d-none" id="tabContent2">
+                <div
+                    class="row d-flex text-white justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0">
+                    <div class="projectsCount ml-3">
+                        <span class="numberOfProjects">15</span>&nbsp;
+                        <span class="font-weight-bold">dashboard(s)</span>
+                    </div>
+                    <div class="btn-group">
+                        <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
+                        <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
+                    </div>
+                    <div class="row w-auto mx-2">
+                        Show&nbsp;
+                        <select class="custom-select custom-select-sm w-auto">
+                            <option value="2">2</option>
+                            <option value="4">4</option>
+                            <option selected value="6">6</option>
+                            <option value="8">8</option>
+                            <option value="10">10</option>
+                        </select>
+                        &nbsp;entries.
+                    </div>
+                    <div class="btn btn-success btn-sm projectBtnAdd">+ Add</div>
+                    <div class="md-form input-group col my-2">
+                        <input type="search" class="form-control pl-0 rounded-0" name="search" id="search"
+                            placeholder="Search...">
+                        <div class="input-group-append">
+                            <span class="btn btn-sm btn-primary m-0 input-group-text md-addon">Search</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grey darken-3 m-0 px-2 pt-2">
+                    <div class="row projectCardRow d-flex justify-content-center m-0">
+                        <div class="projectCard row col m-2 bg-white">
+                            <div
+                                class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+                                <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
+                                <div class="btn btn-sm btn-primary">Go to dashboard</div>
+                                <div class="btn btn-sm btn-danger">Delete dashboard</div>
+                                <img src="" alt="" class="projectCardBookmarkedIcon">
+                                <div class="projectCardFlags float-right btn-group">
+                                    <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
+                                    <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
+                                </div>
+                            </div>
+                            <div class="projectCardDescription text-justify my-2">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
+                                dolorum
+                                nostrum sit iure qui amet maxime.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row projectCardRow d-flex justify-content-center m-0">
+                        <div class="projectCard row col m-2 bg-white">
+                            <div
+                                class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+                                <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
+                                <div class="btn btn-sm btn-primary">Go to dashboard</div>
+                                <div class="btn btn-sm btn-danger">Delete dashboard</div>
+                                <img src="" alt="" class="projectCardBookmarkedIcon">
+                                <div class="projectCardFlags float-right btn-group">
+                                    <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
+                                </div>
+                            </div>
+                            <div class="projectCardDescription text-justify my-2">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
+                                dolorum
+                                nostrum sit iure qui amet maxime.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row projectCardRow d-flex justify-content-center m-0">
+                        <div class="projectCard row col m-2 bg-white">
+                            <div
+                                class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+                                <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
+                                <div class="btn btn-sm btn-primary">Go to dashboard</div>
+                                <div class="btn btn-sm btn-danger">Delete dashboard</div>
+                                <img src="" alt="" class="projectCardBookmarkedIcon">
+                                <div class="projectCardFlags float-right btn-group">
+                                </div>
+                            </div>
+                            <div class="projectCardDescription text-justify my-2">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
+                                dolorum
+                                nostrum sit iure qui amet maxime.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center py-3">
+                        <nav aria-label="Page navigation example" class="bg-transparent">
+                            <ul class="pagination pg-blue mb-0">
+                                <li class="page-item ">
+                                    <a class="page-link" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link">1</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link">3</a></li>
+                                <li class="page-item ">
+                                    <a class="page-link">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="w-100 h-100 d-none" id="tabContent3">
+
+        </div>
+        <div class="w-100 h-100 d-none" id="tabContent4">
+
+        </div>
+        <div class="w-100 h-100 d-none" id="tabContent5">
+
+        </div>
+    </div>
     </div>
 </body>
 <script>
+    $(".tab").hover(function () {
+        if ($(this).not(":first")) {
+            $(".tab.active").removeClass("active");
+            $(this).addClass("active");
+        }
+    }, function () {
+        if ($(this).not(":first")) {
+            $(this).removeClass("active");
+            $(".tab:first").addClass("active");
+        }
+    });
+</script>
+<script>
+    $('li').click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+    });
+
+    $(".projectBtnAdd").on("click", function (event) {
+        var event = event || window.event;
+
+        $.sweetModal({
+            title: 'Create dashboard',
+            content: `<form action="/daw/index.php?ctl=createProjects" class="col-sm-10  p-3 mx-auto" method="POST">
+                    <div class="md-form">
+                        <input type="text" placeholder="" id="title" name="title" class="form-control">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="md-form">
+                    <textarea class="md-textarea form-control" placeholder="" id="description" name="description"></textarea>
+                    <label for="description">Description</label>
+                    </div>
+                    <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                            <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
+                    </div>
+                </form>`,
+            theme: $.sweetModal.THEME_DARK
+        });
+    });
 </script>
 <!--script src="../scripts/js/projects.js"></script-->
 <!--script src="../scripts/js/ProjectManagementMvc.js"></script-->
