@@ -100,3 +100,11 @@
 .text-capitalize {
     text-transform: capitalize;
 }
+
+.cursor-default {
+    cursor: default;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
