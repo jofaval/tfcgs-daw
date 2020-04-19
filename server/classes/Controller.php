@@ -275,7 +275,7 @@ class Controller
                 );
 
                 if ($success) {
-                    header("Location: /daw/sign-in/");
+                    header("Location: /daw/signin/");
                 }
                 $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
                 <p class='m-0'>Error: We couldn't sign you up.</p>\n
