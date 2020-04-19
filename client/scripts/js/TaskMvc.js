@@ -9,7 +9,7 @@ var $taskList = $(`
         <section class="taskListTitle text-left p-2">
             <p class="mb-0 ml-3 taskListTitleText text-white">Titulo 1</p>
         </section>
-        <div class="taskListItemsContainer px-3 pt-2 mb-3 " ondragover="event.preventDefault()">
+        <div class="taskListItemsContainer px-2 pt-2 mb-3 " ondragover="event.preventDefault()">
         </div>
         <div class="pb-3 taskListInputContainer">
             <div class="col d-flex taskListInputRow">
