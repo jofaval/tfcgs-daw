@@ -261,9 +261,9 @@ class Controller
 
             $viewParams["signupFirstName"] = Utils::getCleanedData("firstName");
             $viewParams["signupSecondName"] = Utils::getCleanedData("secondName");
-            $viewParams["signupUsername"] = Utils::getCleanedData("email");
-            $viewParams["signupPassword"] = Utils::getCleanedData("username");
-            $viewParams["signupEmail"] = Utils::getCleanedData("password");
+            $viewParams["signupUsername"] = Utils::getCleanedData("username");
+            $viewParams["signupPassword"] = Utils::getCleanedData("password");
+            $viewParams["signupEmail"] = Utils::getCleanedData("email");
 
             if ($validations === true) {
                 $success = $model->signup(
