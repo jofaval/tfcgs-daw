@@ -45,7 +45,8 @@ var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference c
 
                     </div>`);
 var $dashboardModal = $(`
-<div class="col">
+<div>
+    <div class="col text-left">
         <h3 class="dashboardModalTitle" contenteditable="true"><span class="fa fa-eye"></span>Task title</h3>
         <small class="dashboardModalListNameContainer text-muted">in list <a href=""
                 class="dashboardModalListName">list</a></small>
@@ -61,7 +62,7 @@ var $dashboardModal = $(`
                     <input type="text" class="form-control text-white" id="comment">
                     <label for="comment" class="">Comment</label>
                     <div class="input-group-append">
-                        <span class="input-group-text md-addon btn btn-primary">Comment</span>
+                        <span class="input-group-text md-addon btn btn-sm btn-primary">Comment</span>
                     </div>
                 </div>
                 <div class="dashboardCommentsContainer">
@@ -72,7 +73,7 @@ var $dashboardModal = $(`
                             <div class="dashboardCommentUsername text-white mr-2">Test</div>
                             <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
                         </div>
-                        <span class="dashboardCommentContent p-2 m-2 rounded w-auto bg-light">Test</span>
+                        <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
                         <div class="row dashboardCommentActions text-white ml-2 mt-2">
                             <a href="" class="dashboardCommentAction">Edit</a>
                             &nbsp;-&nbsp;
@@ -86,7 +87,7 @@ var $dashboardModal = $(`
                             <div class="dashboardCommentUsername text-white mr-2">Test</div>
                             <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
                         </div>
-                        <span class="dashboardCommentContent p-2 m-2 rounded w-auto bg-light">Test</span>
+                        <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
                         <div class="row dashboardCommentActions text-white ml-2 mt-2">
                             <a href="" class="dashboardCommentAction">Edit</a>
                             &nbsp;-&nbsp;
@@ -100,7 +101,7 @@ var $dashboardModal = $(`
                             <div class="dashboardCommentUsername text-white mr-2">Test</div>
                             <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
                         </div>
-                        <span class="dashboardCommentContent p-2 m-2 rounded w-auto bg-light">Test</span>
+                        <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
                         <div class="row dashboardCommentActions text-white ml-2 mt-2">
                             <a href="" class="dashboardCommentAction">Edit</a>
                             &nbsp;-&nbsp;
@@ -136,6 +137,7 @@ var $dashboardModal = $(`
             </div>
         </div>
     </div>
+</div>
 `);
 
 var taskListJSON = [{
