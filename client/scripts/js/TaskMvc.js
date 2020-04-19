@@ -422,6 +422,17 @@ class Controller {
             });
         });
 
+        taskItem.on("click", function (event) {
+            var event = event || window.event;
+
+            $.sweetModal({
+                content: 'You can place <b>anything</b> <i>you</i> want in here.',
+                theme: $.sweetModal.THEME_DARK
+            });
+
+
+        });
+
         return taskItem;
     }
 
