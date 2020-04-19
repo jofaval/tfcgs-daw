@@ -137,6 +137,7 @@
         <div id="content" class="w-100 w-100 d-flex">
 
         </div>
+        <a href="#content" id="backToTop" class="position-absolute p-3 bg-light rounded cursor-pointer">↑</a>
     </main>
     <footer class="footer py-3 bg-light d-none d-md-block">
         <div class="container text-align-right">
@@ -164,6 +165,7 @@
 <script src="../scripts/js/FormValidator.js"></script>
 <script src="../scripts/js/preloader.js"></script>
 <script src="../scripts/libs/summernote-bs4.min.js"></script>
+<script src="../scripts/js/generalScript.js"></script>
 <script>
     var templates = [
         "agenda",
@@ -176,7 +178,7 @@
         "context-menu",
         "schedule",
     ];
-    var templatePageIndex = 3;
+    var templatePageIndex = 2;
     var url = window.location.href;
     var index = url.indexOf("#") + 1;
     if (index > 0) {

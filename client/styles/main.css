@@ -97,6 +97,15 @@ main {
     display: block !important;
 }
 
+#backToTop {
+    bottom: 4em;
+    right: 2em;
+}
+
+.scrollOnTop #backToTop {
+    display: none;
+}
+
 @media screen and (prefer-color-scheme: light) {
     body {
         background-color: #dbdbdb;
