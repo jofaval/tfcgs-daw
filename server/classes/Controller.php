@@ -86,6 +86,16 @@ class Controller
         require __DIR__ . '/../templates/error404.php';
     }
 
+    public function condenseFilesIntoOne()
+    {
+        require __DIR__ . '/../classes/one_execution/condenseFilesIntoOne.php';
+    }
+
+    public function createPOPOfromDatabase()
+    {
+        require __DIR__ . '/../classes/one_execution/createPOPOfromDatabase.php';
+    }
+
     public function accessLevel()
     {
         $filePath = __DIR__ . '/../Access.php';
