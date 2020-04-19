@@ -74,7 +74,7 @@ class Model extends PDO
         ];
 
         //echo "Empieza la transaccion";
-        //$this->$conexion->beginTransaction();
+        $this->$conexion->beginTransaction();
         try {
             $queryString = 'SELECT *
                         FROM `clients`
@@ -84,12 +84,12 @@ class Model extends PDO
             //echo "<pre>";
             //var_dump($emails);
             //echo "</pre>";
-            if (count($emails) != 1) {
-                $params["first_name"] = $firstName;
-                $params["second_name"] = $secondName;
+            if (count($emails) == 0) {
+                $params["name"] = $firstName;
+                $params["surname"] = $secondName;
 
-                $clientQueryString = 'INSERT Into `clients` (`first_name`, `second_name`, `email`)
-                Values (:first_name, :second_name, :email)';
+                $clientQueryString = 'INSERT Into `clients` (`name`, `surname`, `email`)
+                Values (:name, :surname, :email)';
                 $client = $this->cudOperation($clientQueryString, $params);
 
                 $queryString = 'SELECT `id`
@@ -100,26 +100,31 @@ class Model extends PDO
                 $params = [
                     "username" => $username,
                     "password" => Cryptography::blowfishCrypt($password, $username),
-                    "id" => $clientId,
+                    "id_client" => $clientId,
                 ];
 
-                $userQueryString = 'INSERT Into `users` (`id`, `username`, `password`, `level`)
-                Values (:id, :username, :password, 1)';
+                $userQueryString = 'INSERT Into `users` (`id_client`, `username`, `password`, `role`)
+                Values (:id_client, :username, :password, 1)';
                 $user = $this->cudOperation($userQueryString, $params);
 
+                echo "test";
+                echo "<pre>";
+                var_dump($user);
+                echo "</pre>";
+
                 //echo "Tiene exito";
-                //$this->$conexion->commit();
+                $this->$conexion->commit();
                 return $client && $user;
             }
 
             //echo "Ya existe ese cliente";
-            //$this->$conexion->rollBack();
+            $this->$conexion->rollBack();
         } catch (\Throwable $th) {
-            //echo "<pre>";
-            //var_dump($th);
-            //echo "</pre>";
-            //echo "Ha surgido un error";
-            //$this->$conexion->rollBack();
+            /*  echo "<pre>";
+            var_dump($th);
+            echo "</pre>";
+            echo "Ha surgido un error"; */
+            $this->$conexion->rollBack();
         }
 
         return false;
