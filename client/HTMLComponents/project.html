@@ -13,60 +13,8 @@
 </head>
 
 <body>
-    <ul id="projectDiaryNavigationScheme" class="position-absolute z-index-overlap bg-light shadow">
-        <li>
-            <h2>Navigation scheme</h2>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h3>1. Title 1</h3>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h4 class="pl-1">1.1. Title 1</h4>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h5 class="pl-2">1.1.1. Title 1</h5>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h6 class="pl-3">1.1.1.1. Title 1</h6>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h4 class="pl-1">1.2. Title 1</h4>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h5 class="pl-2">1.2.1 Title 1</h5>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h5 class="pl-2">1.2.2 Title 1</h5>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h5 class="pl-2">1.2.3 Title 1</h5>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h3>2. Title 2</h3>
-            </a>
-        </li>
-        <li class="px-2">
-            <a href="#test">
-                <h3>3. Title 3</h3>
-            </a>
-        </li>
+    <ul id="projectDiaryNavigationScheme" class="position-absolute d-none z-index-overlap bg-light shadow">
+
     </ul>
     <div class="container p-0">
         <div class="row py-5 projectHeader m-0">
@@ -519,6 +467,7 @@
         </div>
     </div>
     </div>
+
 </body>
 <script>
     /* $(".tab").hover(function () {
@@ -575,41 +524,110 @@
         $(".tab.active").removeClass("active");
         current.addClass("active");
     });
-    $('.tab').eq(2).click();
+    $('.tab').eq(0).click();
 
     var navigationScheme = $("#projectDiaryNavigationScheme");
-    navigationScheme.html("");
     $(".note-editable.card-block").append("<h1>Test 1656</h1>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
     $(".note-editable.card-block").append("<h1>Test 552</h1>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
     $(".note-editable.card-block").append("<h2>subtitle</h2>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h3>ewgewhweh</h3>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h3>trjyuykt</h3>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h3>weyweywey45yh5r</h3>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h4>jeggwef</h4>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h5>yjk67kj67</h5>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
     $(".note-editable.card-block").append("<h1>Test 12</h1>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
     $(".note-editable.card-block").append("<h1>subtitle 2</h1>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h2>subtitle</h2>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h3>ewgewhweh</h3>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h3>trjyuykt</h3>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h3>weyweywey45yh5r</h3>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+    $(".note-editable.card-block").append("<h4>jeggwef</h4>");
+    $(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
     $(".note-editable.card-block").append("<h1>Test 1564156</h1>");
 
+
     $("#navigationSchemeBtn").on("click", function () {
+        navigationScheme.html("");
+        var levels = {
+            "H1": 0,
+            "H2": 0,
+            "H3": 0,
+            "H4": 0,
+            "H5": 0,
+            "H6": 0,
+        };
         var summernoteContent = $(".note-editable.card-block");
         var content = $(summernoteContent.html());
         summernoteContent.html("");
         content.each(function () {
             var current = $(this);
+            current.find(".level").remove();
             var indentationLevel = -1;
+            var tagName = current.get(0).tagName;
+            levels[tagName]++;
             if (current.is("h1, h2, h3, h4, h5, h6")) {
-                indentationLevel += parseInt(current.get(0).tagName.replace("h", ""));
+                //console.log("current", current.get(0).tagName.replace("H", ""), current);
+
+                indentationLevel += parseInt(tagName.replace("H", ""));
+                levels
             }
+
 
             var title = current.text().trim();
             if (indentationLevel != -1) {
+                var tagNameToResetIndex = indentationLevel + 2;
+                while (tagNameToResetIndex <= 6) {
+                    levels["H" + tagNameToResetIndex] = 0;
+                    tagNameToResetIndex++;
+                }
+
                 var newTitle = title;
                 if (newTitle.length > 15) {
                     newTitle = newTitle.substring(0, 14);
                 }
+
+                var trueLevel = getTrueLevel(levels, indentationLevel);
                 navigationScheme.append($(
-                    `<li class="pl-${indentationLevel}"><a href="#${title}">${newTitle}</li>`));
+                    `<li style="padding-left: ${indentationLevel * 0.5}em">
+                        <a href="#${trueLevel}">
+                            ${trueLevel} ${newTitle}
+                        </a>
+                    </li>`));
+                current.prop("id", trueLevel);
+                if (current.find(".level").length == 0) {
+                    current.prepend(`<span class="level">${trueLevel}</span> `);
+                }
             }
-            current.prop("id", title);
             summernoteContent.append(current);
         });
     });
+    $("#navigationSchemeBtn").click();
+
+    function getTrueLevel(levels, indentationLevel) {
+        indentationLevel++;
+        var string = "";
+
+        while (indentationLevel >= 1) {
+            string = `${levels["H" + indentationLevel]}.${string}`;
+            indentationLevel--;
+        }
+
+        return string;
+    }
 </script>
 
 </html>
