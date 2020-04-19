@@ -377,8 +377,10 @@ class Controller {
             var event = event || window.event;
             mousedown = true;
             originalPosition = event.pageX;
+            $(this).addClass("cursor-grabbing");
         }).on("mouseup", function (event) {
             var event = event || window.event;
+            $(this).removeClass("cursor-grabbing");
             mousedown = false;
         }).on("mousemove", function (event) {
             var event = event || window.event;
