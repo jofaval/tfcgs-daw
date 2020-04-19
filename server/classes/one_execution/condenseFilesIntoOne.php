@@ -1,24 +1,24 @@
 <?php
 
 $newFileName = "condensed.js";
-$path = __DIR__ . "/scripts/$newFileName";
+$path = __DIR__ . "/../../../client/scripts/$newFileName";
 
 $filesToRead = [
-    "/scripts/libs/jquery.min.js",
-    "/scripts/libs/jquery-ui.min.js",
-    "/scripts/libs/bootstrap.min.js",
-    "/scripts/libs/bootstrap.bundle.min.js",
-    "/scripts/libs/mdb.min.js",
-    "/scripts/libs/jquery.sweet-modal.min.js",
-    "/scripts/js/Modal.js",
-    "/scripts/js/utils.js",
-    "/scripts/js/ViewUtils.js",
-    "/scripts/js/inputs.js",
-    "/scripts/js/AjaxController.js",
-    "/scripts/js/Validator.js",
-    "/scripts/js/FormValidator.js",
-    "/scripts/js/preloader.js",
-    "/scripts/js/generalScript.js",
+    "/../../../client/scripts/libs/jquery.min.js",
+    "/../../../client/scripts/libs/jquery-ui.min.js",
+    "/../../../client/scripts/libs/bootstrap.min.js",
+    "/../../../client/scripts/libs/bootstrap.bundle.min.js",
+    "/../../../client/scripts/libs/mdb.min.js",
+    "/../../../client/scripts/libs/jquery.sweet-modal.min.js",
+    "/../../../client/scripts/js/Modal.js",
+    "/../../../client/scripts/js/utils.js",
+    "/../../../client/scripts/js/ViewUtils.js",
+    "/../../../client/scripts/js/inputs.js",
+    "/../../../client/scripts/js/AjaxController.js",
+    "/../../../client/scripts/js/Validator.js",
+    "/../../../client/scripts/js/FormValidator.js",
+    "/../../../client/scripts/js/preloader.js",
+    "/../../../client/scripts/js/generalScript.js",
 ];
 
 $content = "";
