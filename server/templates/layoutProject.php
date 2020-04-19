@@ -71,6 +71,7 @@
         <div id="content" class="w-100 w-100 d-flex">
             <?php echo $contenido ?>
         </div>
+        <a href="#content" id="backToTop" class="position-absolute p-3 bg-light rounded cursor-pointer">↑</a>
     </main>
 
     <?php if ($showFooter): ?>
