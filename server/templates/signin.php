@@ -15,7 +15,8 @@
         class="col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1>Welcome back!</h1>
         <div class="md-form w-100">
-            <input type="text" class="form-control" id="username" name="username" required
+            <input type="text" class="form-control" autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false" id="username" name="username" required
                 value="<?php echo $viewParams["signinUsername"]; ?>">
             <label for="username">Username</label>
         </div>
@@ -57,13 +58,15 @@
             </div>
         </div>
         <div class="md-form w-100">
-            <input type="email" class="form-control" id="email" name="email" required
+            <input type="email" class="form-control" id="email" autocomplete="off" autocorrect="off"
+                autocapitalize="off" spellcheck="false" name="email" required
                 value="<?php echo $viewParams["signupEmail"]; ?>">
             <label for="email">E-Mail</label>
             <?php Utils::ifExistsShowError($viewParams, "email");?>
         </div>
         <div class="md-form w-100">
-            <input type="text" class="form-control" id="username" name="username" required
+            <input type="text" class="form-control" autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false" id="username" name="username" required
                 value="<?php echo $viewParams["signupUsername"]; ?>">
             <label for="username">Username</label>
             <?php Utils::ifExistsShowError($viewParams, "username");?>
