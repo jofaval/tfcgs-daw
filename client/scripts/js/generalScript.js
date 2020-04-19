@@ -1,3 +1,6 @@
+let vw;
+let vh;
+
 $(window).on("load", function () {
     $(document.body).removeClass("text-light");
     $(document.body).addClass("text-dark");
@@ -23,4 +26,7 @@ $(window).on("load", function () {
             current.removeClass("scrollOnBottom");
         }
     });
+
+    vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 });
