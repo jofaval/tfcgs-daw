@@ -42,7 +42,101 @@ var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference c
                         <div class="card-body px-2 py-1 taskListItemBody">
                             <p class="card-text taskListItemTitle text-transparent">&nbsp;</p>
                         </div>
+
                     </div>`);
+var $dashboardModal = $(`
+<div class="col">
+        <h3 class="dashboardModalTitle" contenteditable="true"><span class="fa fa-eye"></span>Task title</h3>
+        <small class="dashboardModalListNameContainer text-muted">in list <a href=""
+                class="dashboardModalListName">list</a></small>
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-eye"></span>Description</h4>
+                <div class="md-form">
+                    <textarea id="description" class="md-textarea form-control text-white" rows="3"></textarea>
+                    <label for="description">Description</label>
+                </div>
+                <h4 class="dashboardModalCommentsTitle"><span class="fa fa-eye"></span>Comments</h4>
+                <div class="md-form input-group mb-4">
+                    <input type="text" class="form-control text-white" id="comment">
+                    <label for="comment" class="">Comment</label>
+                    <div class="input-group-append">
+                        <span class="input-group-text md-addon btn btn-primary">Comment</span>
+                    </div>
+                </div>
+                <div class="dashboardCommentsContainer">
+                    <div class="w-100 dashboardComment my-2">
+                        <img src="../img/profile-pic.png" width="50"
+                            class="dashboardCommentUserImg rounded-pill float-left mr-2" />
+                        <div class="row dashboardCommentInformation mb-2">
+                            <div class="dashboardCommentUsername text-white mr-2">Test</div>
+                            <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
+                        </div>
+                        <span class="dashboardCommentContent p-2 m-2 rounded w-auto bg-light">Test</span>
+                        <div class="row dashboardCommentActions text-white ml-2 mt-2">
+                            <a href="" class="dashboardCommentAction">Edit</a>
+                            &nbsp;-&nbsp;
+                            <a href="" class="dashboardCommentAction">Delete</a>
+                        </div>
+                    </div>
+                    <div class="w-100 dashboardComment my-2">
+                        <img src="../img/profile-pic.png" width="50"
+                            class="dashboardCommentUserImg rounded-pill float-left mr-2" />
+                        <div class="row dashboardCommentInformation mb-2">
+                            <div class="dashboardCommentUsername text-white mr-2">Test</div>
+                            <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
+                        </div>
+                        <span class="dashboardCommentContent p-2 m-2 rounded w-auto bg-light">Test</span>
+                        <div class="row dashboardCommentActions text-white ml-2 mt-2">
+                            <a href="" class="dashboardCommentAction">Edit</a>
+                            &nbsp;-&nbsp;
+                            <a href="" class="dashboardCommentAction">Delete</a>
+                        </div>
+                    </div>
+                    <div class="w-100 dashboardComment my-2">
+                        <img src="../img/profile-pic.png" width="50"
+                            class="dashboardCommentUserImg rounded-pill float-left mr-2" />
+                        <div class="row dashboardCommentInformation mb-2">
+                            <div class="dashboardCommentUsername text-white mr-2">Test</div>
+                            <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
+                        </div>
+                        <span class="dashboardCommentContent p-2 m-2 rounded w-auto bg-light">Test</span>
+                        <div class="row dashboardCommentActions text-white ml-2 mt-2">
+                            <a href="" class="dashboardCommentAction">Edit</a>
+                            &nbsp;-&nbsp;
+                            <a href="" class="dashboardCommentAction">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="dasbhoardModalActions d-flex flex-column">
+                    <div class="dasbhoardModalActionsTitle text-uppercase">Action title</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                </div>
+                <div class="dasbhoardModalActions d-flex flex-column">
+                    <div class="dasbhoardModalActionsTitle text-uppercase">Action title</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                </div>
+                <div class="dasbhoardModalActions d-flex flex-column">
+                    <div class="dasbhoardModalActionsTitle text-uppercase">Action title</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                </div>
+            </div>
+        </div>
+    </div>
+`);
 
 var taskListJSON = [{
         "id": 0,
@@ -426,7 +520,7 @@ class Controller {
             var event = event || window.event;
 
             $.sweetModal({
-                content: 'You can place <b>anything</b> <i>you</i> want in here.',
+                content: $dashboardModal.html(),
                 theme: $.sweetModal.THEME_DARK
             });
 
