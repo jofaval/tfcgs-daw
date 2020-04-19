@@ -103,7 +103,7 @@ main {
 }
 
 .scrollOnTop #backToTop {
-    display: none;
+    bottom: -20em;
 }
 
 @media screen and (prefer-color-scheme: light) {
