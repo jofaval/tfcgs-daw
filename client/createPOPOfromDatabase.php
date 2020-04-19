@@ -5,7 +5,7 @@ require_once __DIR__ . "/../server/classes/Controller.php";
 $mysqlUserName = "test";
 $mysqlPassword = "";
 $mysqlHostName = "localhost";
-$DbName = "database_proyecto_daw_2020";
+$DbName = "origen";
 
 $settings = [
     "showTableLog" => false,
@@ -488,7 +488,7 @@ if (isset($_REQUEST["createPopo"])) {
         </div>
     </main>
     <script>
-    document.querySelector("#dbName").value = "database_proyecto_daw_2020";
+    document.querySelector("#dbName").value = "origen";
     </script>
 </body>
 
