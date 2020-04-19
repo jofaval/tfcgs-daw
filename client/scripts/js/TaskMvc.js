@@ -206,6 +206,42 @@ var taskListJSON = [{
         "id": 0,
         "title": "Empty",
         "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
+    }, {
+        "id": 0,
+        "title": "Empty",
+        "items": [],
     },
 ];
 
@@ -326,6 +362,23 @@ class Controller {
                 $(items).each(function () {
                     controller.createTaskItem(controller, taskList, this);
                 });
+            }
+        });
+
+        var mousedown = false;
+        var originalPosition;
+        var main = $("main");
+        main.on("mousedown", function (event) {
+            var event = event || window.event;
+            mousedown = true;
+            originalPosition = event.pageX;
+        }).on("mouseup", function (event) {
+            var event = event || window.event;
+            mousedown = false;
+        }).on("mousemove", function (event) {
+            var event = event || window.event;
+            if (mousedown) {
+                main.scrollLeft((originalPosition - event.pageX) * 1.5);
             }
         });
     }

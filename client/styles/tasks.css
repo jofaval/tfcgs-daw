@@ -17,6 +17,14 @@ main {
     scroll-snap-type: x mandatory;
 }
 
+main * {
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -ms-touch-select: none;
+}
+
 @media screen and (max-width: 576px) {
     main {
         -ms-scroll-snap-points-x: repeat(100vw);
