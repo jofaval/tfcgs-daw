@@ -331,6 +331,7 @@ var startingTaskListParent = null;
 var startingIndex = 0;
 var endingTaskListParent = null;
 var endingIndex = 0;
+var mousedown = false;
 
 class Controller {
     constructor(model, view) {
@@ -365,7 +366,10 @@ class Controller {
             }
         });
 
-        var mousedown = false;
+        controller.moveScrollWithMouse();
+    }
+
+    moveScrollWithMouse(increment = 5) {
         var originalPosition;
         var scrollID = 0;
         var main = $("main");
@@ -378,10 +382,24 @@ class Controller {
             mousedown = false;
         }).on("mousemove", function (event) {
             var event = event || window.event;
+            var newPosition = event.pageX;
             if (mousedown) {
+                /* //clearTimeout(scrollID);
+                //scrollID = setTimeout(() => {
+                main.get(0).scrollHeight;
+                var operationResult = (originalPosition - event.pageX);
+                console.log(1, operationResult);
+                operationResult = ((operationResult * 100) / main.get(0).scrollWidth);
+                console.log(2, operationResult);
+
+                main.scrollLeft(main.scrollLeft() + (operationResult));
+                //}, 5); */
+                /* var operationResult = ((event.pageX - originalPosition) * 100) / (vw - originalPosition);
+                console.log(operationResult);
+                operationResult = ((operationResult * 100) / main.get(0).scrollWidth); */
                 clearTimeout(scrollID);
                 scrollID = setTimeout(() => {
-                    main.scrollLeft(main.scrollLeft() + ((originalPosition - event.pageX) * 1.35));
+                    main.scrollLeft(main.scrollLeft() + (originalPosition - newPosition));
                 }, 5);
             }
         });
@@ -530,6 +548,8 @@ class Controller {
         taskItem.prop("draggable", true);
 
         taskItem.on("dragstart", function (event) {
+            mousedown = false;
+
             var event = event.originalEvent || window.event;
             var currentTaskItem = $(this);
 
