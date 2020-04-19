@@ -367,6 +367,7 @@ class Controller {
 
         var mousedown = false;
         var originalPosition;
+        var scrollID = 0;
         var main = $("main");
         main.on("mousedown", function (event) {
             var event = event || window.event;
@@ -378,7 +379,10 @@ class Controller {
         }).on("mousemove", function (event) {
             var event = event || window.event;
             if (mousedown) {
-                main.scrollLeft((originalPosition - event.pageX) * 1.5);
+                clearTimeout(scrollID);
+                scrollID = setTimeout(() => {
+                    main.scrollLeft(main.scrollLeft() + ((originalPosition - event.pageX) * 1.35));
+                }, 5);
             }
         });
     }
