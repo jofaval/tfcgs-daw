@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../server/classes/Controller.php";
+require_once __DIR__ . "/../Controller.php";
 
 $mysqlUserName = "test";
 $mysqlPassword = "";
@@ -77,9 +77,9 @@ function createPOPOfromDatabase($host, $user, $pass, $name)
         $content .= "\n";
         //Relleno los campos al inicializar la clase POPO
         $content .= "\npublic function __construct()
-        {
-            \$this->fill();
-        }";
+                    {
+                    \$this->fill();
+                    }";
         //Creo las respectivas funciones
         addFunctions($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
         $content .= "\n} \n\n\n";
@@ -109,11 +109,11 @@ function createPOPOfromDatabase($host, $user, $pass, $name)
 
         mapRoutes($methods);
 
-        writeToFile("/../server/classes/POPOs/POPOcontroller.php", $controller);
+        writeToFile("/../POPOs/POPOcontroller.php", $controller);
 
         if (true) {
             foreach ($filesContent as $key => $value) {
-                writeToFile("/../server/classes/POPOs/$key.php", $value);
+                writeToFile("/../POPOs/$key.php", $value);
             }
         }
     }
@@ -179,7 +179,7 @@ function createJSajaxController($methods, $methodParams)
     }
 
     $jsAjaxController .= "\n}";
-    writeToFile("/scripts/js/AjaxController.js", $jsAjaxController);
+    writeToFile("/../../../client/scripts/js/AjaxController.js", $jsAjaxController);
 }
 
 //Crea el controlador de AJAX para PHP
@@ -204,7 +204,7 @@ function createPHPajaxController($methods, $methodParams)
     }
 
     $phpAjaxController .= "\n}";
-    writeToFile("/../server/classes/AjaxController.php", $phpAjaxController);
+    writeToFile("/../AjaxController.php", $phpAjaxController);
 }
 
 //Añade las propiedades de la clase POPO en un orden específico
@@ -274,7 +274,7 @@ function mapRoutes($methods)
             $mapFile .= "\n    '$method' => array('controller' => 'AjaxController', 'action' => '$method', 'access' => Config::\$ACCESS_LEVEL_GUEST),";
         }
         $mapFile .= "\n];";
-        writeToFile("/../server/RoutingMap.php", $mapFile);
+        writeToFile("/../../RoutingMap.php", $mapFile);
     }
 
     if ($settings["overrideAccess"]) {
@@ -283,7 +283,7 @@ function mapRoutes($methods)
         foreach ($everyRoute as $value) {
             $accessFile .= "\n\$map['error']['access'] = Config::\$ACCESS_LEVEL_GUEST;";
         }
-        writeToFile("/../server/Access.php", $accessFile);
+        writeToFile("/../../Access.php", $accessFile);
     }
 
 }
