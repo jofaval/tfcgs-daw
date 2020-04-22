@@ -171,7 +171,7 @@ class Controller {
 
         var mainContainer = $("#mainProjectPanel");
 
-        view.initializeView(mainContainer);
+        /* view.initializeView(mainContainer);
 
         var projectsContainer = this.createDashboardOption(this, "Projects");
 
@@ -193,7 +193,7 @@ class Controller {
         </div>
         <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
     </form>`));
-        $(".dashboardOption").first().trigger("click");
+        $(".dashboardOption").first().trigger("click"); */
     }
 
     addToggleProjectsEvent(title, container) {
@@ -258,3 +258,29 @@ const projectsController = new Controller(
     new Model(),
     new View()
 );
+
+$('li').click(function () {
+    $(this).addClass('active').siblings().removeClass('active');
+});
+
+$(".projectBtnAdd").on("click", function (event) {
+    var event = event || window.event;
+
+    $.sweetModal({
+        title: 'Create project',
+        content: `<form action="/daw/index.php?ctl=createProjects" class="col-sm-10  p-3 mx-auto" method="POST">
+    <div class="md-form">
+        <input type="text" placeholder="" id="title" name="title" class="form-control">
+        <label for="title">Title</label>
+    </div>
+    <div class="md-form">
+    <textarea class="md-textarea form-control" placeholder="" id="description" name="description"></textarea>
+    <label for="description">Description</label>
+    </div>
+    <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+            <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
+    </div>
+</form>`,
+        theme: $.sweetModal.THEME_DARK
+    });
+});
