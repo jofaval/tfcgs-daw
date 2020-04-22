@@ -32,3 +32,4 @@ composer.lock
 !.vscode/
 .vscode/*
 .VSCodeCounter/*
+testing.txt
