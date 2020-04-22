@@ -166,22 +166,22 @@ class AjaxController {
 	}
 
 	//Function to createProjectDiary
-	static createProjectDiary(day, project_id, creator_id, content, creation_date) {
+	static createProjectDiary(day, project_id, id_creator, content, creation_date) {
 		AjaxController.genericAjaxRequest("createProjectDiary", {
 			"day": day,
 			"project_id": project_id,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 			"content": content,
 			"creation_date": creation_date,
 		}, success);
 	}
 
 	//Function to updateProjectDiary
-	static updateProjectDiary(day, project_id, creator_id, content, creation_date) {
+	static updateProjectDiary(day, project_id, id_creator, content, creation_date) {
 		AjaxController.genericAjaxRequest("updateProjectDiary", {
 			"day": day,
 			"project_id": project_id,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 			"content": content,
 			"creation_date": creation_date,
 		}, success);
@@ -204,22 +204,22 @@ class AjaxController {
 	}
 
 	//Function to createProjects
-	static createProjects(id, title, description, creator_id) {
+	static createProjects(id, title, description, id_creator) {
 		AjaxController.genericAjaxRequest("createProjects", {
 			"id": id,
 			"title": title,
 			"description": description,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 		}, success);
 	}
 
 	//Function to updateProjects
-	static updateProjects(id, title, description, creator_id) {
+	static updateProjects(id, title, description, id_creator) {
 		AjaxController.genericAjaxRequest("updateProjects", {
 			"id": id,
 			"title": title,
 			"description": description,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 		}, success);
 	}
 
@@ -238,7 +238,7 @@ class AjaxController {
 	}
 
 	//Function to createTaskListItemListItems
-	static createTaskListItemListItems(id, task_item_list_id, title, order, description, creation_date, creator_id) {
+	static createTaskListItemListItems(id, task_item_list_id, title, order, description, creation_date, id_creator) {
 		AjaxController.genericAjaxRequest("createTaskListItemListItems", {
 			"id": id,
 			"task_item_list_id": task_item_list_id,
@@ -246,12 +246,12 @@ class AjaxController {
 			"order": order,
 			"description": description,
 			"creation_date": creation_date,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 		}, success);
 	}
 
 	//Function to updateTaskListItemListItems
-	static updateTaskListItemListItems(id, task_item_list_id, title, order, description, creation_date, creator_id) {
+	static updateTaskListItemListItems(id, task_item_list_id, title, order, description, creation_date, id_creator) {
 		AjaxController.genericAjaxRequest("updateTaskListItemListItems", {
 			"id": id,
 			"task_item_list_id": task_item_list_id,
@@ -259,7 +259,7 @@ class AjaxController {
 			"order": order,
 			"description": description,
 			"creation_date": creation_date,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 		}, success);
 	}
 
@@ -278,11 +278,11 @@ class AjaxController {
 	}
 
 	//Function to createTaskListItemLists
-	static createTaskListItemLists(id, task_list_id, creator_id, title, description, creation_date, order_criteria) {
+	static createTaskListItemLists(id, task_list_id, id_creator, title, description, creation_date, order_criteria) {
 		AjaxController.genericAjaxRequest("createTaskListItemLists", {
 			"id": id,
 			"task_list_id": task_list_id,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 			"title": title,
 			"description": description,
 			"creation_date": creation_date,
@@ -291,11 +291,11 @@ class AjaxController {
 	}
 
 	//Function to updateTaskListItemLists
-	static updateTaskListItemLists(id, task_list_id, creator_id, title, description, creation_date, order_criteria) {
+	static updateTaskListItemLists(id, task_list_id, id_creator, title, description, creation_date, order_criteria) {
 		AjaxController.genericAjaxRequest("updateTaskListItemLists", {
 			"id": id,
 			"task_list_id": task_list_id,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 			"title": title,
 			"description": description,
 			"creation_date": creation_date,
@@ -318,24 +318,24 @@ class AjaxController {
 	}
 
 	//Function to createTaskLists
-	static createTaskLists(id, project_id, title, creation_date, creator_id) {
+	static createTaskLists(id, project_id, title, creation_date, id_creator) {
 		AjaxController.genericAjaxRequest("createTaskLists", {
 			"id": id,
 			"project_id": project_id,
 			"title": title,
 			"creation_date": creation_date,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 		}, success);
 	}
 
 	//Function to updateTaskLists
-	static updateTaskLists(id, project_id, title, creation_date, creator_id) {
+	static updateTaskLists(id, project_id, title, creation_date, id_creator) {
 		AjaxController.genericAjaxRequest("updateTaskLists", {
 			"id": id,
 			"project_id": project_id,
 			"title": title,
 			"creation_date": creation_date,
-			"creator_id": creator_id,
+			"id_creator": id_creator,
 		}, success);
 	}
 

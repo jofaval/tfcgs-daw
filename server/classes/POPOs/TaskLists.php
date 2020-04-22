@@ -1,107 +1,103 @@
 <?php
 
-class TaskLists implements CRUD 
+class TaskLists implements CRUD
 {
-	private $table = "task_lists";
+    private $table = "task_lists";
 
-	//Primary Keys
-	private $id;
+    //Primary Keys
+    private $id;
 
-	//Table Keys
-	private $project_id;
-	private $title;
-	private $creation_date;
+    //Table Keys
+    private $project_id;
+    private $title;
+    private $creation_date;
 
-	//Foreign Keys
-	private $creator_id;
+    //Foreign Keys
+    private $id_creator;
 
-	public function create()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function create()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"id" => $this->$id,
-			"project_id" => $this->$project_id,
-			"title" => $this->$title,
-			"creation_date" => $this->$creation_date,
-			"creator_id" => $this->$creator_id,
-		];
+        $params = [
+            "id" => $this->$id,
+            "project_id" => $this->$project_id,
+            "title" => $this->$title,
+            "creation_date" => $this->$creation_date,
+            "id_creator" => $this->$id_creator,
+        ];
 
-		return $sqlUtils->insert($params);
-	}
+        return $sqlUtils->insert($params);
+    }
 
-	public function update()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function update()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$toModify = [
-			"project_id" => $this->$project_id,
-			"title" => $this->$title,
-			"creation_date" => $this->$creation_date,
-			"creator_id" => $this->$creator_id,
-		];
+        $toModify = [
+            "project_id" => $this->$project_id,
+            "title" => $this->$title,
+            "creation_date" => $this->$creation_date,
+            "id_creator" => $this->$id_creator,
+        ];
 
-		$identificationParams = [
-			"id" => $this->$id,
-		];
+        $identificationParams = [
+            "id" => $this->$id,
+        ];
 
-		return $sqlUtils->update($this->$table, $toModify, $identificationParams);
-	}
+        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+    }
 
-	public function delete()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function delete()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"id" => $this->$id,
-		];
+        $params = [
+            "id" => $this->$id,
+        ];
 
-		return $sqlUtils->delete($this->$table, $params);
-	}
+        return $sqlUtils->delete($this->$table, $params);
+    }
 
-	public function query()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function query()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"id" => $this->$id,
-		];
+        $params = [
+            "id" => $this->$id,
+        ];
 
-		return $sqlUtils->query($this->$table, $params);
-	}
+        return $sqlUtils->query($this->$table, $params);
+    }
 
-	public function enable()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function enable()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$identificationParams = [
-			"id" => $this->$id,
-		];
+        $identificationParams = [
+            "id" => $this->$id,
+        ];
 
-		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
-	}
+        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+    }
 
+    public function fill()
+    {
+        $this->$id = Utils::getCleanedData("id");
+        $this->$project_id = Utils::getCleanedData("projectId");
+        $this->$title = Utils::getCleanedData("title");
+        $this->$creation_date = Utils::getCleanedData("creationDate");
+        $this->$id_creator = Sessions::getInstance()->getSession("userId");
+    }
 
-	public function fill()
-	{
-		$this->$id = Utils::getCleanedData("id");
-		$this->$project_id = Utils::getCleanedData("projectId");
-		$this->$title = Utils::getCleanedData("title");
-		$this->$creation_date = Utils::getCleanedData("creationDate");
-		$this->$creator_id = Sessions::getInstance()->getSession("userId");
-	}
-
-
-	public function parse()
-	{
-		return json_encode([
-			"id" => $this->$id,
-			"projectId" => $this->$project_id,
-			"title" => $this->$title,
-			"creationDate" => $this->$creation_date,
-			"creatorId" => $this->$creator_id,
-		]);
-	}
-} 
-
-
+    public function parse()
+    {
+        return json_encode([
+            "id" => $this->$id,
+            "projectId" => $this->$project_id,
+            "title" => $this->$title,
+            "creationDate" => $this->$creation_date,
+            "creatorId" => $this->$id_creator,
+        ]);
+    }
+}

@@ -12,7 +12,7 @@ class Projects implements CRUD
     public $description;
 
     //Foreign Keys
-    public $creator_id;
+    public $id_creator;
 
     public function __construct()
     {
@@ -26,8 +26,10 @@ class Projects implements CRUD
         $params = [
             "title" => $this->title,
             "description" => $this->description,
-            "creator_id" => $this->creator_id,
+            "id_creator" => $this->id_creator,
         ];
+
+        $params["id_creator"] = 16;
 
         return $sqlUtils->insert(Projects::$table, $params);
     }
@@ -39,7 +41,7 @@ class Projects implements CRUD
         $toModify = [
             "title" => $this->title,
             "description" => $this->description,
-            "creator_id" => $this->creator_id,
+            "id_creator" => $this->id_creator,
         ];
 
         $identificationParams = [
@@ -87,7 +89,7 @@ class Projects implements CRUD
         $this->id = Utils::getCleanedData("id");
         $this->title = Utils::getCleanedData("title");
         $this->description = Utils::getCleanedData("description");
-        $this->creator_id = Sessions::getInstance()->getSession("userId");
+        $this->id_creator = Sessions::getInstance()->getSession("userId");
     }
 
     public function parse()
@@ -96,7 +98,7 @@ class Projects implements CRUD
             "id" => $this->id,
             "title" => $this->title,
             "description" => $this->description,
-            "creatorId" => $this->creator_id,
+            "creatorId" => $this->id_creator,
         ]);
     }
 }

@@ -10,7 +10,7 @@ class ProjectData
         $projectDataFromSession->$description = "";
         $projectDataFromSession->$collaboration_level = "";
         $projectDataFromSession->$creation_date = "";
-        $projectDataFromSession->$creator_id = "";
+        $projectDataFromSession->$id_creator = "";
         $projectDataFromSession->$creator_username = "";
     }
 
@@ -20,6 +20,6 @@ class ProjectData
     public $collaboration_level;
 
     public $creation_date;
-    public $creator_id;
+    public $id_creator;
     public $creator_username;
 }

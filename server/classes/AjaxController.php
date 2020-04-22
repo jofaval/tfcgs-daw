@@ -144,13 +144,13 @@ class AjaxController
     //Function to createProjectDiary
     public function createProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "project_id", "creator_id", "content", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["day", "project_id", "id_creator", "content", "creation_date"]);
     }
 
     //Function to updateProjectDiary
     public function updateProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "project_id", "creator_id", "content", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["day", "project_id", "id_creator", "content", "creation_date"]);
     }
 
     //Function to queryProjectDiary
@@ -174,7 +174,7 @@ class AjaxController
     //Function to updateProjects
     public function updateProjects()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "title", "description", "creator_id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "title", "description", "id_creator"]);
     }
 
     //Function to queryProjects
@@ -192,13 +192,13 @@ class AjaxController
     //Function to createTaskListItemListItems
     public function createTaskListItemListItems()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_item_list_id", "title", "order", "description", "creation_date", "creator_id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_item_list_id", "title", "order", "description", "creation_date", "id_creator"]);
     }
 
     //Function to updateTaskListItemListItems
     public function updateTaskListItemListItems()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_item_list_id", "title", "order", "description", "creation_date", "creator_id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_item_list_id", "title", "order", "description", "creation_date", "id_creator"]);
     }
 
     //Function to queryTaskListItemListItems
@@ -216,13 +216,13 @@ class AjaxController
     //Function to createTaskListItemLists
     public function createTaskListItemLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_list_id", "creator_id", "title", "description", "creation_date", "order_criteria"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_list_id", "id_creator", "title", "description", "creation_date", "order_criteria"]);
     }
 
     //Function to updateTaskListItemLists
     public function updateTaskListItemLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_list_id", "creator_id", "title", "description", "creation_date", "order_criteria"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_list_id", "id_creator", "title", "description", "creation_date", "order_criteria"]);
     }
 
     //Function to queryTaskListItemLists
@@ -240,13 +240,13 @@ class AjaxController
     //Function to createTaskLists
     public function createTaskLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "project_id", "title", "creation_date", "creator_id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "project_id", "title", "creation_date", "id_creator"]);
     }
 
     //Function to updateTaskLists
     public function updateTaskLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "project_id", "title", "creation_date", "creator_id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "project_id", "title", "creation_date", "id_creator"]);
     }
 
     //Function to queryTaskLists

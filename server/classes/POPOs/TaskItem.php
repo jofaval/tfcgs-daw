@@ -10,7 +10,7 @@ private $description;
 private $creation_date;
 
 //Foreign keys
-private $creator_id;
+private $id_creator;
 private $task_list_id;
 private $order_criteria;
 
@@ -27,7 +27,7 @@ $params = [
 "title" => $this->$title,
 "description" => $this->$description,
 "creation_date" => $this->$creation_date,
-"creator_id" => $this->$creator_id,
+"id_creator" => $this->$id_creator,
 "task_list_id" => $this->$task_list_id,
 "order_criteria" => $this->$order_criteria,
 ];
@@ -80,7 +80,7 @@ $this->$title = Utils::getCleanedData("title");
 $this->$description = Utils::getCleanedData("description");
 $this->$creation_date = Utils::getCleanedData("creationDate");
 
-$this->$creator_id = Sessions::getInstance()->getSession("userId");
+$this->$id_creator = Sessions::getInstance()->getSession("userId");
 $this->$task_list_id = Utils::getCleanedData("taskListId");
 $this->$order_criteria = Utils::getCleanedData("orderCriteria");
 }
@@ -92,7 +92,7 @@ return json_encode([
 "title" => $this->$title,
 "description" => $this->$description,
 "creationDate" => $this->$creation_date,
-"creatorId" => $this->$creator_id,
+"creatorId" => $this->$id_creator,
 "taskListId" => $this->$task_list_id,
 "orderCriteria" => $this->$order_criteria,
 ]);
