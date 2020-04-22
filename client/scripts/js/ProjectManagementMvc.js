@@ -52,7 +52,150 @@ class Controller {
 
 }
 
-const projectsController = new Controller(
+const projectController = new Controller(
     new Model(),
     new View()
 );
+
+$('.pagination li').click(function () {
+    $(this).addClass('active').siblings().removeClass('active');
+});
+
+$(".projectBtnAdd").on("click", function (event) {
+    var event = event || window.event;
+
+    $.sweetModal({
+        title: 'Create dashboard',
+        content: `<form action="/daw/index.php?ctl=createProjects" class="col-sm-10  p-3 mx-auto" method="POST">
+                <div class="md-form">
+                    <input type="text" placeholder="" id="title" name="title" class="form-control">
+                    <label for="title">Title</label>
+                </div>
+                <div class="md-form">
+                <textarea class="md-textarea form-control" placeholder="" id="description" name="description"></textarea>
+                <label for="description">Description</label>
+                </div>
+                <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                        <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
+                </div>
+            </form>`,
+        theme: $.sweetModal.THEME_DARK
+    });
+});
+
+$('.tab').on("click", function () {
+    var current = $(this);
+
+    $(".tabContent.d-block").addClass("d-none")
+        .removeClass("d-block");
+
+    $(`#tabContent${current.index() + 1}`).addClass("d-block")
+        .removeClass("d-none");
+
+    $(".tab.active").removeClass("active");
+    current.addClass("active");
+});
+$('.tab').eq(0).click();
+
+var navigationScheme = $("#projectDiaryNavigationScheme");
+$(".note-editable.card-block").append("<h1>Test 1656</h1>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h1>Test 552</h1>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h2>subtitle</h2>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>ewgewhweh</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>trjyuykt</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>weyweywey45yh5r</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h4>jeggwef</h4>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h5>yjk67kj67</h5>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h1>Test 12</h1>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h1>subtitle 2</h1>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h2>subtitle</h2>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>ewgewhweh</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>trjyuykt</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>weyweywey45yh5r</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h4>jeggwef</h4>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h1>Test 1564156</h1>");
+
+
+$("#navigationSchemeBtn").on("click", function () {
+    navigationScheme.html("");
+    var levels = {
+        "H1": 0,
+        "H2": 0,
+        "H3": 0,
+        "H4": 0,
+        "H5": 0,
+        "H6": 0,
+    };
+    var summernoteContent = $(".note-editable.card-block");
+    var content = $(summernoteContent.html());
+    summernoteContent.html("");
+    content.each(function () {
+        var current = $(this);
+        current.find(".level").remove();
+        var indentationLevel = -1;
+        var tagName = current.get(0).tagName;
+        levels[tagName]++;
+        if (current.is("h1, h2, h3, h4, h5, h6")) {
+            //console.log("current", current.get(0).tagName.replace("H", ""), current);
+
+            indentationLevel += parseInt(tagName.replace("H", ""));
+            levels
+        }
+
+
+        var title = current.text().trim();
+        if (indentationLevel != -1) {
+            var tagNameToResetIndex = indentationLevel + 2;
+            while (tagNameToResetIndex <= 6) {
+                levels["H" + tagNameToResetIndex] = 0;
+                tagNameToResetIndex++;
+            }
+
+            var newTitle = title;
+            if (newTitle.length > 15) {
+                newTitle = newTitle.substring(0, 14);
+            }
+
+            var trueLevel = getTrueLevel(levels, indentationLevel);
+            navigationScheme.append($(
+                `<li style="padding-left: ${indentationLevel * 0.5}em">
+                    <a href="#${trueLevel}">
+                        ${trueLevel} ${newTitle}
+                    </a>
+                </li>`));
+            current.prop("id", trueLevel);
+            if (current.find(".level").length == 0) {
+                current.prepend(`<span class="level">${trueLevel}</span> `);
+            }
+        }
+        summernoteContent.append(current);
+    });
+});
+$("#navigationSchemeBtn").click();
+
+function getTrueLevel(levels, indentationLevel) {
+    indentationLevel++;
+    var string = "";
+
+    while (indentationLevel >= 1) {
+        string = `${levels["H" + indentationLevel]}.${string}`;
+        indentationLevel--;
+    }
+
+    return string;
+}
