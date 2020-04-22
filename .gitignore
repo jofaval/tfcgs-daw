@@ -1,4 +1,4 @@
-
+#Client files to ignore
 test.html
 test.php
 css/*
@@ -9,9 +9,11 @@ client/testAjax.html
 *.png
 *.gif
 
+#Server files to ignore
 !server/logs/
 server/logs/*
 
+#Local files
 !structure/
 structure/*
 !backups/
@@ -20,11 +22,13 @@ backups/*
 !client/downloads/
 client/downloads/*
 
+#PHPUnit 9.0.0 by Sebastian Bergmann and contributors.
 !vendor/
 vendor/*
 composer.json
 composer.lock
 
+#Visual Studio Code configuration files
 !.vscode/
 .vscode/*
 .VSCodeCounter/*
