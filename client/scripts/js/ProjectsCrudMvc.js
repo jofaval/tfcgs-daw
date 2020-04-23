@@ -268,19 +268,37 @@ $(".projectBtnAdd").on("click", function (event) {
 
     $.sweetModal({
         title: 'Create project',
-        content: `<form action="/daw/index.php?ctl=createProjects" class="col-sm-10  p-3 mx-auto" method="POST">
+        content: `<form action="/daw/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
     <div class="md-form">
-        <input type="text" placeholder="" id="title" name="title" class="form-control">
+        <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control">
         <label for="title">Title</label>
     </div>
     <div class="md-form">
-    <textarea class="md-textarea form-control" placeholder="" id="description" name="description"></textarea>
+    <textarea class="md-textarea form-control" placeholder="" id="description" name="description">Test</textarea>
     <label for="description">Description</label>
     </div>
     <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-            <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
+            <input class="btn btn-primary w-100" type="submit" name="createProject" id="createProject" value="Create project">
     </div>
 </form>`,
         theme: $.sweetModal.THEME_DARK
-    });
+    }).params["onOpen"] = function () {
+        $("#formCreateProject").on("submit", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
+            $.ajax({
+                url: "/daw/index.php?ctl=createProjects",
+                data: {
+                    title: $("#title").val(),
+                    description: $("#description").val(),
+                },
+                success: function (result) {
+                    console.log(result);
+
+                }
+            });
+
+        });
+    };
 });
