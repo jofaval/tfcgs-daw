@@ -170,9 +170,9 @@ class SQLUtils
 
             $result = $queryAction->execute();
 
-            if ($result) {
-                return $this->$model->lastInsertId();
-            }
+            /* if ($result) {
+            return $this->$model->lastInsertId();
+            } */
 
             $this->$model->commit();
             return $result;
