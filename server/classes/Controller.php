@@ -81,6 +81,18 @@ class Controller
         }
     }
 
+    public function getProjectsOfUser()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+
+        $result = [];
+
+        $result["created"] = $sqlUtils->query("projects", ["id_creator" => "16"]);
+        $result["shared"] = $sqlUtils->query("collaborators", ["id_collaborator" => "16"]);
+
+        return $result;
+    }
+
     public function error404()
     {
         require __DIR__ . '/../templates/error404.php';

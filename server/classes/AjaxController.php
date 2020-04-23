@@ -1,7 +1,7 @@
 <?php
 class AjaxController
 {
-    public function genericAjaxReturn($functionName, $requiredParams = [])
+    public function genericAjaxReturn($functionName, $requiredParams = [], $mainController = "POPOController")
     {
         header('Content-Type: application/json');
 
@@ -9,7 +9,6 @@ class AjaxController
             if (!empty($requiredParams)) {
                 $this->throwIfExceptionIfDoesntExist($requiredParams);
             }
-            $mainController = "POPOController";
             if (method_exists($mainController, $functionName)) {
                 $result = call_user_func([new $mainController, $functionName]);
                 echo json_encode($result);
@@ -43,6 +42,12 @@ class AjaxController
         $json = json_encode($object);
         echo $json;
         exit;
+    }
+
+    //Function to getProjectsOfUser
+    public function getProjectsOfUser()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, [], "Controller");
     }
 
     //Function to createClients
