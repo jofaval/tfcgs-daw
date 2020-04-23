@@ -25,13 +25,20 @@ class Projects implements CRUD
 
         $params = [
             "title" => $this->title,
-            "description" => $this->description,
             "id_creator" => $this->id_creator,
         ];
 
         $params["id_creator"] = 16;
 
-        return $sqlUtils->insert(Projects::$table, $params);
+        $result = $sqlUtils->query(Projects::$table, $params);
+
+        if (count($result) == 0) {
+            $params["description"] = $this->description;
+            $sqlUtils->insert(Projects::$table, $params);
+            return $sqlUtils->query(Projects::$table, $params);
+        }
+
+        return false;
     }
 
     public function update()
