@@ -15,11 +15,13 @@ class SQLUtils
             $this->$model->beginTransaction();
             $queryString = "SELECT $values FROM $table";
 
+            $queryParams = [];
             if (count($params) > 0) {
                 $queryString .= " WHERE ";
                 foreach ($params as $key => $value) {
-                    $queryString .= "$key=:$key";
+                    $queryParams[] = "$key=:$key";
                 }
+                $queryString .= join(" and ", $queryParams);
             }
 
             $queryAction = $this->$model->$conexion->prepare($queryString);
@@ -28,13 +30,13 @@ class SQLUtils
                 $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
             }
 
-            if ($queryAction->execute()) {
-                return $queryAction->fetchAll(PDO::FETCH_ASSOC);
-                $this->$model->commit();
-            }
+            $queryAction->execute();
+            $this->$model->commit();
+            return $queryAction->fetchAll(PDO::FETCH_ASSOC);
 
             $this->$model->rollback();
         } catch (PDOException $ex) {
+            return $ex;
             $this->$model->rollback();
         }
 
