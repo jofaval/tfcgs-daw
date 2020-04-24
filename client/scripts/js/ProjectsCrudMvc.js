@@ -17,23 +17,6 @@ var $projectCard = $(`
     <div class="projectCardDescription text-justify my-2"></div>
 </div>`);
 
-var newProjects = [{
-        "id": "7",
-        "title": "test",
-        "description": "testeto",
-        "created": "1",
-        "bookmarked": "1",
-    },
-    {
-        "id": "8",
-        "title": "Prueba",
-        "description": "Test",
-        "created": "1",
-        "bookmarked": "0",
-    }
-];
-
-
 class Model {
     constructor() {
 
