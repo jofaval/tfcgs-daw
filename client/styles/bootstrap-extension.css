@@ -112,3 +112,35 @@
 .cursor-grabbing {
     cursor: grabbing;
 }
+
+.special-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media (min-width:576px) {
+    .special-container {
+        max-width: 540px
+    }
+}
+
+@media (min-width:768px) {
+    .special-container {
+        max-width: 720px
+    }
+}
+
+@media (min-width:992px) {
+    .special-container {
+        max-width: 960px
+    }
+}
+
+@media (min-width:1200px) {
+    .special-container {
+        margin: inherit 7.5em;
+    }
+}
