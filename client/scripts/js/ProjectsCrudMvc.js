@@ -1,96 +1,38 @@
-var $dashboard = $(`
-<aside class="w-100 p-3 px-4 dashboard">
-    <div class="btn-group bg-white rounded shadow">
-    </div>
-</aside>`);
+var $projectRow = $(`<div class="row projectCardRow d-flex justify-content-center m-0"></div>`);
 
-var $dashboardOption = $(`
-<a href="#" class="btn shadow-none waves-effect float-left" style="text-transform: capitalize !important;">
-    <i class="fas icon mr-3"></i>
-    Profile
-</a>`);
-
-var $dashboardContainers = $(`<div class="w-100 mb-auto mt-3" id="dashboardContainers" style="overflow: auto;"></div>`);
-var $dashboardContainer = $(`<div class="w-100" style="overflow: auto;"></div>`);
-
-var $projectContainer = $(`<div class="projectContainer px-3 mb-4 aqua-gradient rounded shadow justify-content-around d-flex flex-wrap"
-style="max-height: 20rem !important; overflow: hidden;">
-</div>`);
-var $projectContainerTitle = $(`<h6 class="projectContainerTitle my-0 waves-effect text shadow p-2 rounded text-white">&nbsp;<span class="icon float-right"></span></h6>`);
+var $projectFlagBookmarked = $(`<div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>`);
+var $projectFlagCreated = $(`<div class="projectsBtnCreated btn btn-sm btn-success">Created</div>`);
+var $projectFlagShared = $(`<div class="projectsBtnShared btn btn-sm btn-primary">Shared</div>`);
 
 var $projectCard = $(`
-<div class="card my-3 mx-0" style="width: 12.5rem !important;">
-    <div class="card-body px-3 py-2">
-        <h5 class="card-title projectTitle mb-2"></h5>
-        <small style="line-height: 1rem !important;" class="d-block projectDescription"></small>
+<div class="projectCard row col m-2 bg-white">
+    <div
+        class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+        <h5 class="projectCardTitle m-0 font-weight-bold">Project title</h5>
+        <div class="btn btn-sm btn-primary projectCardBtnView">Go to project</div>
+        <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
+        <img src="" alt="" class="projectCardBookmarkedIcon">
+        <div class="projectCardFlags float-right btn-group"></div>
     </div>
+    <div class="projectCardDescription text-justify my-2"></div>
 </div>`);
 
 var newProjects = [{
-        "title": "Title",
-        "desc": "Desc",
+        "id": "7",
+        "title": "test",
+        "description": "testeto",
+        "created": "1",
+        "bookmarked": "1",
     },
     {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
-    {
-        "title": "Title",
-        "desc": "Desc",
-    },
+        "id": "8",
+        "title": "Prueba",
+        "description": "Test",
+        "created": "1",
+        "bookmarked": "0",
+    }
 ];
+
 
 class Model {
     constructor() {
@@ -103,54 +45,41 @@ class View {
 
     }
 
-    initializeView(container) {
-        container.append($dashboard, $dashboardContainers);
-    }
-
-    visualizeDashboardOption(name) {
-        var clonedOption = $dashboardOption.clone();
-
-        clonedOption.text(name);
-        clonedOption.prop("dashboard-container", `${name}`);
-        clonedOption.addClass("dashboardOption");
-
-        $dashboard.children(".btn-group").append(clonedOption);
-
-        return clonedOption;
-    }
-
-    visualizeDashboardContainer(name) {
-        var clonedOption = $dashboardContainer.clone();
-
-        clonedOption.prop("id", `${name}`);
-        clonedOption.addClass("dashboardContainer");
-
-        $dashboardContainers.append(clonedOption);
-
-        return clonedOption;
-    }
-
-    visualizeProjectContainer(container, name) {
-        var clonedContainer = $projectContainer.clone();
-        clonedContainer.prop("id", name);
-
-        var clonedTitle = $projectContainerTitle.clone();
-        clonedTitle.text(name);
-
-        container.append(clonedTitle, clonedContainer);
-
-        return clonedContainer;
-    }
+    initializeView(container) {}
 
     visualizeProject(container, name, desc = "") {
         var clonedCard = $projectCard.clone();
 
-        clonedCard.find(".projectTitle").text(name);
-        clonedCard.find(".projectDescription").text(desc);
+        clonedCard.find(".projectCardTitle").text(name);
+        clonedCard.find(".projectCardDescription").text(desc);
 
         container.append(clonedCard);
 
         return clonedCard;
+    }
+
+    visualizeProjectRow(container) {
+        var clonedRow = $projectRow.clone();
+
+        container.append(clonedRow);
+
+        return clonedRow;
+    }
+
+    visualizeProjectFlags(project, created, bookmarked) {
+        var projectFlagsContainer = project.find(".projectCardFlags");
+
+        if (created) {
+            projectFlagsContainer.append($projectFlagCreated.clone());
+        } else {
+            projectFlagsContainer.append($projectFlagShared.clone());
+        }
+
+        if (bookmarked) {
+            projectFlagsContainer.prepend($projectFlagBookmarked.clone());
+        }
+
+        return projectFlagsContainer;
     }
 
     hideComponent(component) {
@@ -169,88 +98,93 @@ class Controller {
         this.model = model;
         this.view = view;
 
+        var controller = this;
+
         var mainContainer = $("#mainProjectPanel");
 
-        /* view.initializeView(mainContainer);
+        view.initializeView(mainContainer);
 
-        var projectsContainer = this.createDashboardOption(this, "Projects");
+        var projectContainer = $(".projectsContainer");
 
-        this.createProjectSection(projectsContainer, "Bookmarked", newProjects);
-        this.createProjectSection(projectsContainer, "Yours", newProjects);
-        this.createProjectSection(projectsContainer, "Shared", newProjects);
-        this.createProjectSection(projectsContainer, "All", newProjects);
+        $.ajax({
+            url: "/daw/index.php?ctl=getProjectsOfUser",
+            success: function (data) {
+                console.log("proyectos", data);
+                $(data).each(function () {
+                    var projectRow = projectContainer.find(".projectCardRow ");
+                    if (projectContainer.find(".projectCardRow").length == 0 || (projectRow.last().find(".projectCard").length >= 2)) {
+                        projectRow = controller.view.visualizeProjectRow(projectContainer);
+                        console.log(projectRow);
+                    } else {
+                        projectRow = projectRow.last();
+                    }
 
-        var create = this.createDashboardOption(this, "Create");
-
-        create.append($(`<form action="/daw/index.php?ctl=createProjects" class="col-sm-10 bg-white p-3 mx-auto" method="POST">
-        <div class="md-form">
-            <input type="text" placeholder="" id="title" name="title" class="form-control">
-            <label for="title">Title</label>
-        </div>
-        <div class="md-form">
-        <textarea class="md-textarea form-control" placeholder="" id="description" name="description"></textarea>
-        <label for="description">Description</label>
-        </div>
-        <input class="btn btn-primary w-100" type="submit" name="createProject" value="Create project">
-    </form>`));
-        $(".dashboardOption").first().trigger("click"); */
-    }
-
-    addToggleProjectsEvent(title, container) {
-        var toggled = true;
-
-        var styles = "blue darken-1 font-weight-bold";
-        title.toggleClass(styles);
-
-        var alterStyles = "grey darken-3";
-
-        title.on("click", function () {
-            container.stop().animate({
-                maxHeight: toggled ? "0px" : "20rem",
-                paddingTop: toggled ? "0rem" : "1.5rem",
-                paddingBottom: toggled ? "0rem" : "1.5rem",
-            }, toggled ? 450 : 250);
-
-            title.toggleClass(styles);
-            title.toggleClass(alterStyles);
-
-            title.find(".icon").text(toggled ? "+" : "^");
-
-            toggled = !toggled;
-        });
-    }
-
-    createProjectSection(container, name, projects) {
-        var controllerView = this.view;
-        var projectsContainer = controllerView.visualizeProjectContainer(container, name);
-        this.addToggleProjectsEvent(projectsContainer.prev(), projectsContainer);
-
-        $(projects).each(function () {
-            var currentProject = $(this);
-            controllerView.visualizeProject(projectsContainer, currentProject.prop("title"), currentProject.prop("desc"));
-        });
-    }
-
-    createDashboardOption(controller, name) {
-        var controllerView = controller.view;
-
-        var option = controllerView.visualizeDashboardOption(name);
-        var container = controllerView.visualizeDashboardContainer(name);
-
-        option.on("click", function () {
-            controller.onDashboardOptionClick($(this));
+                    var project = controller.view.visualizeProject(projectRow, this.title, this.description);
+                    controller.view.visualizeProjectFlags(project, this.created != 0, this.bookmarked != 0);
+                });
+            }
         });
 
-        return container;
+        var searchBar = $("#projectSearch");
+        whenUserDoneTypingInInput(searchBar, "projectSearch", function () {
+            var content = searchBar.val().toLowerCase();
+            $(".projectCard").each(function () {
+                var projectCardTitle = $(this).find(".projectCardTitle").text().trim().toLowerCase();
+                var projectCardDescription = $(this).find(".projectCardDescription").text().trim().toLowerCase();
+                console.log(projectCardTitle, projectCardTitle.includes(content));
+
+                if (content != "" && (!projectCardTitle.includes(content) && !projectCardDescription.includes(content))) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        }, 100);
+
+        $(".projectBtnAdd").on("click", controller.addProjectBtnEvent);
     }
 
-    onDashboardOptionClick(dashboardOption) {
-        this.view.hideComponent($(".dashboardContainer"));
-        this.view.showComponent($("#" + dashboardOption.prop("dashboard-container")));
-        $(".dashboardOption.btn-primary").removeClass("btn-primary");
-        $(".dashboardOption.btn-primary").addClass("btn-white");
-        dashboardOption.addClass("btn-primary");
-        dashboardOption.removeClass("btn-white");
+    addProjectBtnEvent(event) {
+        var event = event || window.event;
+
+        var modal = $.sweetModal({
+            title: 'Create project',
+            content: `<form action="/daw/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
+                        <div class="md-form">
+                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control">
+                            <label for="title">Title</label>
+                        </div>
+                        <div class="md-form">
+                        <textarea class="md-textarea form-control" placeholder="" id="description" name="description">Test</textarea>
+                        <label for="description">Description</label>
+                        </div>
+                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                <input class="btn btn-primary w-100" type="submit" name="createProject" id="createProject" value="Create project">
+                        </div>
+                    </form>`,
+            theme: $.sweetModal.THEME_DARK
+        });
+        modal.params["onOpen"] = function () {
+            $("#formCreateProject").on("submit", function (event) {
+                var event = event || window.event;
+                event.preventDefault();
+
+                $.ajax({
+                    url: "/daw/index.php?ctl=createProjects",
+                    data: {
+                        title: $("#title").val(),
+                        description: $("#description").val(),
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            modal.close();
+                        }
+                    }
+                });
+
+            });
+        };
     }
 }
 
@@ -261,44 +195,4 @@ const projectsController = new Controller(
 
 $('li').click(function () {
     $(this).addClass('active').siblings().removeClass('active');
-});
-
-$(".projectBtnAdd").on("click", function (event) {
-    var event = event || window.event;
-
-    $.sweetModal({
-        title: 'Create project',
-        content: `<form action="/daw/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
-    <div class="md-form">
-        <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control">
-        <label for="title">Title</label>
-    </div>
-    <div class="md-form">
-    <textarea class="md-textarea form-control" placeholder="" id="description" name="description">Test</textarea>
-    <label for="description">Description</label>
-    </div>
-    <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-            <input class="btn btn-primary w-100" type="submit" name="createProject" id="createProject" value="Create project">
-    </div>
-</form>`,
-        theme: $.sweetModal.THEME_DARK
-    }).params["onOpen"] = function () {
-        $("#formCreateProject").on("submit", function (event) {
-            var event = event || window.event;
-            event.preventDefault();
-
-            $.ajax({
-                url: "/daw/index.php?ctl=createProjects",
-                data: {
-                    title: $("#title").val(),
-                    description: $("#description").val(),
-                },
-                success: function (result) {
-                    console.log(result);
-
-                }
-            });
-
-        });
-    };
 });
