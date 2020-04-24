@@ -44,7 +44,7 @@ $breadcrumb = [
             <span class="numberOfProjects">15</span>&nbsp;
             <span class="font-weight-bold">project(s)</span>
         </div>
-        <div class="btn-group">
+        <div class="btn-group projectsBtnFilters">
             <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
             <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
             <div class="projectsBtnShared btn btn-sm btn-primary">Shared</div>
