@@ -1,11 +1,11 @@
-var $projectRow = $(`<div class="row projectCardRow d-flex justify-content-center m-0"></div>`);
+var $projectRow = $(`<div class="row projectCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
 
 var $projectFlagBookmarked = $(`<div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>`);
 var $projectFlagCreated = $(`<div class="projectsBtnCreated btn btn-sm btn-success">Created</div>`);
 var $projectFlagShared = $(`<div class="projectsBtnShared btn btn-sm btn-primary">Shared</div>`);
 
 var $projectCard = $(`
-<div class="projectCard row col m-2 bg-white">
+<div class="projectCard row col-12 col-sm m-2 bg-white">
     <div
         class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
         <div class="btn btn-sm btn-primary projectCardBtnView">Go to project</div>
@@ -87,23 +87,12 @@ class Controller {
 
         view.initializeView(mainContainer);
 
-        var projectContainer = $(".projectsContainer");
-
         $.ajax({
             url: "/daw/index.php?ctl=getProjectsOfUser",
             success: function (data) {
                 console.log("proyectos", data);
                 $(data).each(function () {
-                    var projectRow = projectContainer.find(".projectCardRow ");
-                    if (projectContainer.find(".projectCardRow").length == 0 || (projectRow.last().find(".projectCard").length >= 2)) {
-                        projectRow = controller.view.visualizeProjectRow(projectContainer);
-                        console.log(projectRow);
-                    } else {
-                        projectRow = projectRow.last();
-                    }
-
-                    var project = controller.view.visualizeProject(projectRow, this.title, this.description);
-                    controller.view.visualizeProjectFlags(project, this.created != 0, this.bookmarked != 0);
+                    controller.addProject(controller, this);
                 });
             }
         });
@@ -124,7 +113,9 @@ class Controller {
             });
         }, 100);
 
-        $(".projectBtnAdd").on("click", controller.addProjectBtnEvent);
+        $(".projectBtnAdd").on("click", function (event) {
+            controller.addProjectBtnEvent(controller, event);
+        });
 
         $(".projectsBtnBookmarked").on("click", function () {
             controller.hideProjectsOfType("bookmarked", $(this));
@@ -138,6 +129,20 @@ class Controller {
             controller.hideProjectsOfType("shared", $(this));
         });
 
+    }
+
+    addProject(controller, json) {
+        var projectContainer = $(".projectsContainer");
+        var projectRow = projectContainer.find(".projectCardRow ");
+        if (projectContainer.find(".projectCardRow").length == 0 || (projectRow.last().find(".projectCard").length >= 2)) {
+            projectRow = controller.view.visualizeProjectRow(projectContainer);
+            console.log(projectRow);
+        } else {
+            projectRow = projectRow.last();
+        }
+
+        var project = controller.view.visualizeProject(projectRow, json.title, json.description);
+        controller.view.visualizeProjectFlags(project, json.created != 0, json.bookmarked != 0);
     }
 
     hideProjectsOfType(className, btn) {
@@ -154,7 +159,7 @@ class Controller {
         });
     }
 
-    addProjectBtnEvent(event) {
+    addProjectBtnEvent(controller, event) {
         var event = event || window.event;
 
         var modal = $.sweetModal({
@@ -189,6 +194,7 @@ class Controller {
                         console.log(result);
                         if (result !== false) {
                             modal.close();
+                            controller.addProject(controller, result);
                         }
                     }
                 });
