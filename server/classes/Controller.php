@@ -85,12 +85,14 @@ class Controller
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
-        $result = [];
-
-        $result["created"] = $sqlUtils->query("projects", ["id_creator" => "16"]);
-        $result["shared"] = $sqlUtils->query("collaborators", ["id_collaborator" => "16"]);
-
-        return $result;
+        return $sqlUtils->complexQuery("SELECT projects.id, projects.title, projects.description,
+        projects.id_creator = :id_creator as created,
+        projects.id_creator in (select bookmarked.id_client from bookmarked where bookmarked.id_project = projects.id) as bookmarked
+        FROM `projects`
+            WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
+                (SELECT collaborators.id_collaborator
+                     FROM collaborators
+                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16"]);
     }
 
     public function error404()
