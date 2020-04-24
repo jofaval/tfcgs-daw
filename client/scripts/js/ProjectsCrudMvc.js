@@ -8,9 +8,9 @@ var $projectCard = $(`
 <div class="projectCard row col m-2 bg-white">
     <div
         class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
-        <h5 class="projectCardTitle m-0 font-weight-bold">Project title</h5>
         <div class="btn btn-sm btn-primary projectCardBtnView">Go to project</div>
         <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
+        <h5 class="projectCardTitle m-0 font-weight-bold">Project title</h5>
         <img src="" alt="" class="projectCardBookmarkedIcon">
         <div class="projectCardFlags float-right btn-group"></div>
     </div>
@@ -142,6 +142,33 @@ class Controller {
         }, 100);
 
         $(".projectBtnAdd").on("click", controller.addProjectBtnEvent);
+
+        $(".projectsBtnBookmarked").on("click", function () {
+            controller.hideProjectsOfType("bookmarked", $(this));
+        });
+
+        $(".projectsBtnCreated").on("click", function () {
+            controller.hideProjectsOfType("created", $(this));
+        });
+
+        $(".projectsBtnShared").on("click", function () {
+            controller.hideProjectsOfType("shared", $(this));
+        });
+
+    }
+
+    hideProjectsOfType(className, btn) {
+        btn.toggleClass("active");
+        $(".projectCard").each(function () {
+            var projectCard = $(this);
+            if (projectCard.find(`.projectsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
+                if (btn.hasClass("active")) {
+                    projectCard.addClass("d-none");
+                } else {
+                    projectCard.removeClass("d-none");
+                }
+            }
+        });
     }
 
     addProjectBtnEvent(event) {
@@ -186,6 +213,8 @@ class Controller {
             });
         };
     }
+
+    //pagination
 }
 
 const projectsController = new Controller(
