@@ -94,7 +94,7 @@ class SQLUtils
                 $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
             }
 
-            $result = $queryString->execute();
+            $result = $queryAction->execute();
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
@@ -110,11 +110,13 @@ class SQLUtils
             $this->$model->beginTransaction();
             $queryString = "DELETE FROM $table";
 
+            $queryParams = [];
             if (count($identificationParams) > 0) {
                 $queryString .= " WHERE ";
                 foreach ($identificationParams as $key => $value) {
-                    $queryString .= ":$key=$key";
+                    $queryParams[] = "$key=:$key";
                 }
+                $queryString .= join(" and ", $queryParams);
             }
 
             $queryAction = $this->$model->$conexion->prepare($queryString);
@@ -123,7 +125,7 @@ class SQLUtils
                 $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
             }
 
-            $result = $queryString->execute();
+            $result = $queryAction->execute();
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
