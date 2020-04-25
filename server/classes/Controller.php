@@ -51,6 +51,9 @@ class Controller
 
             $project = new Projects();
             $projectData = $project->query()[0];
+            if (is_null($projectData)) {
+                header("Location: /daw/projects/");
+            }
 
             /* $sessions = Sessions::getInstance();
             $projectDataFromSession = $sessions->getSession("projectData");
