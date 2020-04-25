@@ -12,7 +12,7 @@ var $projectCard = $(`
 <div class="projectCard text-dark row col-12 col-sm m-2 bg-white">
     <div
         class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
-        <a href="" class="btn btn-sm btn-primary projectCardBtnView">Go to project</a>
+        <a href="" class="btn btn-sm btn-primary projectCardBtnView">View</a>
         <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
         <h5 class="projectCardTitle m-0 font-weight-bold">Project title</h5>
         <div class="projectCardBookmarkedIcon"></div>
@@ -188,7 +188,10 @@ class Controller {
         }); */
 
         $(".projectsBtnFilters .btn").on("click", function () {
-            controller.hideProjectsOfType(controller, $(this));
+            //controller.hideProjectsOfType(controller, $(this));
+            $(this).toggleClass("active");
+
+            controller.reload(controller);
         });
 
         $(".page-item.nav-previous .page-link").on("click", function () {
@@ -270,9 +273,28 @@ class Controller {
         pagination.html("");
         pagination.append(navigation);
 
+        var projectFilters = $(".projectsBtnFilters");
+        var hideBookmarked = projectFilters.find(".projectsBtnBookmarked").hasClass("active");
+        var hideCreated = projectFilters.find(".projectsBtnCreated").hasClass("active");
+        var hideShared = projectFilters.find(".projectsBtnShared").hasClass("active");
+
+        console.log(
+            "hideBookmarked", hideBookmarked,
+            "hideCreated", hideCreated,
+            "hideShared", hideShared
+        );
+
         $(controller.model.workingProjects).each(function () {
-            controller.addProject(controller, this);
+            if ((hideBookmarked && (this.bookmarked != 0)) ||
+                (hideCreated && (this.created != 0)) ||
+                (hideShared && !(this.created != 0))
+            ) {
+                return;
+            }
+
+            this.html = controller.addProject(controller, this);
         });
+        console.log(controller.model.workingProjects);
 
         $(".page-item").eq(1).trigger("click");
     }
