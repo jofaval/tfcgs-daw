@@ -163,6 +163,7 @@ class Controller {
 
             if (newProjectsJSON.length > 0) {
                 controller.model.workingProjects = newProjectsJSON;
+                controller.model.filterProjects = newProjectsJSON;
                 controller.reload(controller);
             } else {
                 controller.clearContainer(controller);
@@ -174,7 +175,7 @@ class Controller {
             controller.addProjectBtnEvent(controller, event);
         });
 
-        $(".projectsBtnBookmarked").on("click", function () {
+        /* $(".projectsBtnBookmarked").on("click", function () {
             controller.hideProjectsOfType("bookmarked", $(this));
         });
 
@@ -184,7 +185,75 @@ class Controller {
 
         $(".projectsBtnShared").on("click", function () {
             controller.hideProjectsOfType("shared", $(this));
+        }); */
+
+        $(".projectsBtnFilters .btn").on("click", function () {
+            controller.hideProjectsOfType(controller, $(this));
         });
+
+        $(".page-item.nav-previous .page-link").on("click", function () {
+            var activePage = $(this).parent().siblings(".active").prev();
+            if (!activePage.hasClass("nav-previous")) {
+                activePage.trigger("click");
+            }
+        });
+
+        $(".page-item.nav-next .page-link").on("click", function () {
+            var activePage = $(this).parent().siblings(".active").next();
+            if (!activePage.hasClass("nav-next")) {
+                activePage.trigger("click");
+            }
+        });
+    }
+
+    hideProjectsOfType(controller, btn) {
+        btn.toggleClass("active");
+
+        var projects = controller.model.workingProjects;
+
+        var projectFilters = $(".projectsBtnFilters");
+        var hideBookmarked = projectFilters.find(".projectsBtnBookmarked").hasClass("active");
+        var hideCreated = projectFilters.find(".projectsBtnCreated").hasClass("active");
+        var hideShared = projectFilters.find(".projectsBtnShared").hasClass("active");
+        var newProjects = [];
+        $(projects).each(function () {
+
+            if ((hideBookmarked && (this.bookmarked != 0)) ||
+                (hideCreated && (this.created != 0)) ||
+                (hideShared && !(this.created != 0))
+            ) {
+                console.log(this);
+                return;
+            }
+
+            newProjects.push(this);
+        });
+        if (newProjects.length > 0) {
+            controller.model.workingProjects = newProjects;
+            controller.reload(controller);
+        } else {
+            controller.clearContainer(controller);
+            $(".projectsContainer").text("No se han encontrado resultados.");
+        }
+        /* $(".projectCard").each(function () {
+            /* var projectCard = $(this);
+            if (projectCard.find(`.projectsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
+                if (btn.hasClass("active")) {
+                    projectCard.addClass("d-none");
+                } else {
+                    projectCard.removeClass("d-none");
+                }
+            } */
+        /* if (projectCard.find(`.projectsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
+            if (btn.hasClass("active")) {
+                projectCard.removeClass("d-none");
+            } else {
+                projectCard.addClass("d-none");
+            }
+        } else {
+            projectCard.removeClass("d-none");
+        }
+    });*/
     }
 
     clearContainer(controller) {
@@ -293,29 +362,6 @@ class Controller {
             });
             bookmarkedIcon.unbind("click");
         };
-    }
-
-    hideProjectsOfType(className, btn) {
-        btn.toggleClass("active");
-        $(".projectCard").each(function () {
-            var projectCard = $(this);
-            if (projectCard.find(`.projectsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
-                if (btn.hasClass("active")) {
-                    projectCard.addClass("d-none");
-                } else {
-                    projectCard.removeClass("d-none");
-                }
-            }
-            /* if (projectCard.find(`.projectsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
-                if (btn.hasClass("active")) {
-                    projectCard.removeClass("d-none");
-                } else {
-                    projectCard.addClass("d-none");
-                }
-            } else {
-                projectCard.removeClass("d-none");
-            } */
-        });
     }
 
     addProjectBtnEvent(controller, event) {
