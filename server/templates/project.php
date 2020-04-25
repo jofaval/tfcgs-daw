@@ -287,7 +287,7 @@ break;
             </div>
         </div>
         <?php
-
+break;
     case "overview":
     default:
         ?>
