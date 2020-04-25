@@ -33,3 +33,4 @@ composer.lock
 .vscode/*
 .VSCodeCounter/*
 testing.txt
+client/testAjax.html

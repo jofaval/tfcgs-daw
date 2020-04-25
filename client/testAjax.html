@@ -18,6 +18,14 @@
 <script src="./scripts/js/utils.js"></script>
 <script src="./scripts/js/AjaxController.js"></script>
 <script>
+    AjaxController.request("bookmarkProject", "POST", {
+        "id_project": 7,
+        "bookmarked": false,
+    }, function (result) {
+        console.log("resultado", result);
+    }, function () {
+        sendNotification("No ha funcionado");
+    });
     /* AjaxController.genericAjaxRequest("test", {
                     "inputScheduleStartHour": "7:55",
                     "inputScheduleEndHour": "8:50",
@@ -31,13 +39,13 @@
                 }); */
 
 
-    AjaxController.request("test", "POST", {
+    /* AjaxController.request("test", "POST", {
         "test": "test",
     }, function (data) {
         console.log("Ha funcionado", data);
     }, function () {
         sendNotification("No ha funcionado");
-    });
+    }); */
 </script>
 
 </html>

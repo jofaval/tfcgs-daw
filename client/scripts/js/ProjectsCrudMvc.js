@@ -59,7 +59,7 @@ class View {
         }
 
         if (bookmarked) {
-            projectFlagsContainer.prepend($projectFlagBookmarked.clone());
+            //projectFlagsContainer.prepend($projectFlagBookmarked.clone());
         }
 
         return projectFlagsContainer;
@@ -151,11 +151,12 @@ class Controller {
                 url: "/daw/index.php?ctl=bookmarkProject",
                 data: {
                     "id_project": json.id,
-                    "bookmarked": bookmarkedIcon.hasClass("active"),
+                    "bookmarked": json.bookmarked,
                 },
                 success: function (result) {
                     if (result !== false) {
                         bookmarkedIcon.toggleClass("active");
+                        json.bookmarked = !json.bookmarked;
                     }
 
                     console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
