@@ -51,14 +51,14 @@ $breadcrumb = [
         </div>
         <div class="row w-auto mx-2">
             Show&nbsp;
-            <select class="custom-select custom-select-sm w-auto">
+            <select class="custom-select custom-select-sm w-auto" id="selectNumberOfRows">
+                <option value="1">1</option>
                 <option value="2">2</option>
+                <option selected value="3">3</option>
                 <option value="4">4</option>
-                <option selected value="6">6</option>
-                <option value="8">8</option>
-                <option value="10">10</option>
+                <option value="5">5</option>
             </select>
-            &nbsp;entries.
+            &nbsp;row(s).
         </div>
         <div class="btn btn-success btn-sm projectBtnAdd">+ Add</div>
         <div class="md-form input-group col my-2">
@@ -70,7 +70,9 @@ $breadcrumb = [
         </div>
     </div>
     <div class="grey darken-3 m-0 mx-auto px-2 pt-2">
-        <div class="projectsContainer col-md-10 m-0 mx-auto"></div>
+        <div class="projectsContainer col-md-10 m-0 mx-auto">
+            <div class="projectsPage"></div>
+        </div>
         <div class="row d-flex justify-content-center py-3">
             <nav aria-label="Page navigation example" class="bg-transparent">
                 <ul class="pagination pg-blue mb-0">

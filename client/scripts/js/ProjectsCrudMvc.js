@@ -1,4 +1,5 @@
 var $projectRow = $(`<div class="row projectCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
+var $projectPage = $(`<div class="projectsPage"></div>`);
 
 var $projectFlagBookmarked = $(`<div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>`);
 var $projectFlagCreated = $(`<div class="projectsBtnCreated btn btn-sm btn-success">Created</div>`);
@@ -54,6 +55,14 @@ class View {
 
     visualizeProjectRow(container) {
         var clonedRow = $projectRow.clone();
+
+        container.append(clonedRow);
+
+        return clonedRow;
+    }
+
+    visualizeProjectPage(container) {
+        var clonedRow = $projectPage.clone();
 
         container.append(clonedRow);
 
@@ -140,15 +149,42 @@ class Controller {
 
     }
 
-    addProject(controller, json) {
-        var projectContainer = $(".projectsContainer");
-        var projectRow = projectContainer.find(".projectCardRow ");
-        if (projectContainer.find(".projectCardRow").length == 0 || (projectRow.last().find(".projectCard").length >= 2)) {
-            projectRow = controller.view.visualizeProjectRow(projectContainer);
-            console.log(projectRow);
+    getProjectPage(controller, container) {
+        var projectsPage = container.find(".projectsPage").last();
+        var projectPageRows = projectsPage.find(".projectCardRow");
+
+        console.log(
+            "número páginas", container.find(".projectsPage").length,
+            "demasiadas rows por página", projectPageRows.length > $("#selectNumberOfRows").val(),
+            "la página está completa", projectPageRows.last().find(".projectCard").length >= 2
+        );
+
+        if (container.find(".projectsPage").length == 0 ||
+            (projectPageRows.length >= $("#selectNumberOfRows").val() &&
+                projectPageRows.last().find(".projectCard").length >= 2)) {
+            projectsPage = controller.view.visualizeProjectPage(container);
+            //console.log(projectsPage);
+        }
+
+        return projectsPage;
+    }
+
+    getProjectRow(controller, container) {
+        var projectPage = controller.getProjectPage(controller, container);
+        var projectRow = projectPage.find(".projectCardRow ");
+        if (projectPage.find(".projectCardRow").length == 0 || (projectRow.last().find(".projectCard").length >= 2)) {
+            projectRow = controller.view.visualizeProjectRow(projectPage);
+            //console.log(projectRow);
         } else {
             projectRow = projectRow.last();
         }
+
+        return projectRow;
+    }
+
+    addProject(controller, json) {
+        var projectContainer = $(".projectsContainer");
+        var projectRow = controller.getProjectRow(controller, projectContainer);
 
         var project = controller.view.visualizeProject(projectRow, json.title, json.description);
         var bookmarkedIcon = project.find(".projectCardBookmarkedIcon");
