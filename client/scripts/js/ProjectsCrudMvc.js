@@ -1,3 +1,6 @@
+var $paginationItem = $(`<li class="page-item"><a class="page-link"></a></li>`);
+var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
+
 var $projectRow = $(`<div class="row projectCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
 var $projectPage = $(`<div class="projectsPage"></div>`);
 
@@ -20,16 +23,17 @@ var $projectCard = $(`
 
 class Model {
     constructor() {
-
+        this.paginationIndex = 1;
     }
 
     loadProjects(whenFinished) {
         var model = this;
         $.ajax({
             url: "/daw/index.php?ctl=getProjectsOfUser",
-            success: function (data) {
-                model.projects = data;
-                whenFinished(data);
+            success: function (projects) {
+                model.projects = projects;
+                model.workingProjects = projects;
+                whenFinished(projects);
             }
         });
     }
@@ -67,6 +71,15 @@ class View {
         container.append(clonedRow);
 
         return clonedRow;
+    }
+
+    visualizePaginationItem(index) {
+        var clonedPageItem = $paginationItem.clone();
+
+        clonedPageItem.find(".page-link").html(index + "");
+        $(".pagination .nav-next").before(clonedPageItem);
+
+        return clonedPageItem;
     }
 
     visualizeProjectFlags(project, created, bookmarked) {
@@ -109,26 +122,47 @@ class Controller {
 
         model.loadProjects(function (projects) {
             console.log("proyectos", projects);
-            $(projects).each(function () {
-                controller.addProject(controller, this);
-            });
+            controller.reload(controller);
             $(".numberOfProjects").text(projects.length);
+            $(".page-item").eq(1).trigger("click");
+        });
+
+        var selectNumberOfRows = $("#selectNumberOfRows");
+        selectNumberOfRows.val(localStorage.getItem("numberOfRowsInProjects") || 3);
+        selectNumberOfRows.on("change", function () {
+            controller.reload(controller);
+            localStorage.setItem("numberOfRowsInProjects", selectNumberOfRows.val());
         });
 
         var searchBar = $("#projectSearch");
         whenUserDoneTypingInInput(searchBar, "projectSearch", function () {
             var content = searchBar.val().toLowerCase();
-            $(".projectCard").each(function () {
-                var projectCardTitle = $(this).find(".projectCardTitle").text().trim().toLowerCase();
-                var projectCardDescription = $(this).find(".projectCardDescription").text().trim().toLowerCase();
-                console.log(projectCardTitle, projectCardTitle.includes(content));
+            /*  $(".projectCard").each(function () {
+                 var projectCardTitle = $(this).find(".projectCardTitle").text().trim().toLowerCase();
+                 var projectCardDescription = $(this).find(".projectCardDescription").text().trim().toLowerCase();
+                 console.log(projectCardTitle, projectCardTitle.includes(content));
 
-                if (content != "" && (!projectCardTitle.includes(content) && !projectCardDescription.includes(content))) {
-                    $(this).hide();
-                } else {
-                    $(this).show();
-                }
-            });
+                 if (content != "" && (!projectCardTitle.includes(content) && !projectCardDescription.includes(content))) {
+                     $(this).hide();
+                 } else {
+                     $(this).show();
+                 }
+             }); */
+            var newProjectsJSON = [];
+            if (content == "") {
+                newProjectsJSON = controller.model.projects;
+            } else {
+                $(controller.model.projects).each(function () {
+                    if (content == "" || (!this.title.toLowerCase().includes(content) && !this.description.toLowerCase().includes(content))) {
+                        return;
+                    }
+
+                    newProjectsJSON.push(this);
+                });
+            }
+            console.log(newProjectsJSON);
+            controller.model.workingProjects = newProjectsJSON;
+            controller.reload(controller);
         }, 100);
 
         $(".projectBtnAdd").on("click", function (event) {
@@ -146,27 +180,58 @@ class Controller {
         $(".projectsBtnShared").on("click", function () {
             controller.hideProjectsOfType("shared", $(this));
         });
+    }
 
+    reload(controller) {
+        $(".projectsContainer").html("");
+        controller.model.paginationIndex = 1;
+        var pagination = $(".pagination");
+
+        var navigation = $(".page-item.nav-previous, .page-item.nav-next");
+        pagination.before(navigation);
+        pagination.html("");
+        pagination.append(navigation);
+
+        $(controller.model.workingProjects).each(function () {
+            controller.addProject(controller, this);
+        });
+
+        $(".page-item").eq(1).trigger("click");
     }
 
     getProjectPage(controller, container) {
         var projectsPage = container.find(".projectsPage").last();
         var projectPageRows = projectsPage.find(".projectCardRow");
 
-        console.log(
+        /* console.log(
             "número páginas", container.find(".projectsPage").length,
             "demasiadas rows por página", projectPageRows.length > $("#selectNumberOfRows").val(),
             "la página está completa", projectPageRows.last().find(".projectCard").length >= 2
-        );
+        ); */
 
         if (container.find(".projectsPage").length == 0 ||
             (projectPageRows.length >= $("#selectNumberOfRows").val() &&
                 projectPageRows.last().find(".projectCard").length >= 2)) {
             projectsPage = controller.view.visualizeProjectPage(container);
+
+            controller.addPaginationItem(controller);
             //console.log(projectsPage);
         }
 
         return projectsPage;
+    }
+
+    addPaginationItem(controller) {
+        var paginationItem = controller.view.visualizePaginationItem(controller.model.paginationIndex);
+        controller.model.paginationIndex++;
+
+        paginationItem.on("click", function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            $(this).find(".page-link").append($currentPaginationItem);
+            var projectPages = $(".projectsPage");
+            projectPages.hide();
+            projectPages.eq(parseInt($(this).text()) - 1).show();
+        });
     }
 
     getProjectRow(controller, container) {
@@ -281,6 +346,7 @@ class Controller {
                             modal.close();
                             controller.addProject(controller, result[0]);
                             controller.model.projects.push(result[0]);
+                            controller.model.workingProjects.push(result[0]);
                         }
                     }
                 });
@@ -296,7 +362,3 @@ const projectsController = new Controller(
     new Model(),
     new View()
 );
-
-$('li').click(function () {
-    $(this).addClass('active').siblings().removeClass('active');
-});

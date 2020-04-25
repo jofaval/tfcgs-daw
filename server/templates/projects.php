@@ -71,20 +71,14 @@ $breadcrumb = [
     </div>
     <div class="grey darken-3 m-0 mx-auto px-2 pt-2">
         <div class="projectsContainer col-md-10 m-0 mx-auto">
-            <div class="projectsPage"></div>
         </div>
         <div class="row d-flex justify-content-center py-3">
             <nav aria-label="Page navigation example" class="bg-transparent">
                 <ul class="pagination pg-blue mb-0">
-                    <li class="page-item ">
+                    <li class="page-item nav-previous">
                         <a class="page-link" tabindex="-1">Previous</a>
                     </li>
-                    <li class="page-item"><a class="page-link">1</a></li>
-                    <li class="page-item active">
-                        <a class="page-link">2 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="page-item"><a class="page-link">3</a></li>
-                    <li class="page-item ">
+                    <li class="page-item nav-next">
                         <a class="page-link">Next</a>
                     </li>
                 </ul>
