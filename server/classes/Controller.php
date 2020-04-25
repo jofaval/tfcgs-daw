@@ -87,7 +87,7 @@ class Controller
 
         return $sqlUtils->complexQuery("SELECT projects.id, projects.title, projects.description,
         projects.id_creator = :id_creator as created,
-        projects.id_creator in (select bookmarked.id_client from bookmarked where bookmarked.id_project = projects.id) as bookmarked
+        projects.id in (select bookmarked.id_project from bookmarked where bookmarked.id_project = projects.id) as bookmarked
         FROM `projects`
             WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
                 (SELECT collaborators.id_collaborator
