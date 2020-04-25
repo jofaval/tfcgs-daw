@@ -24,6 +24,13 @@ $breadcrumb = [
     ],
 ];
 ?>
+<?php $tabNames = [
+    "overview",
+    "dashboards",
+    "diary",
+    "collaborators",
+    "details",
+];?>
 
 <?php ob_start()?>
 
@@ -48,14 +55,243 @@ $breadcrumb = [
         </div>
     </div>
     <div class="row tabs shadow w-100 m-0 grey darken-2 text-white">
-        <div class="tab p-3 active">General</div>
-        <div class="tab p-3">Tableros</div>
-        <div class="tab p-3">Diario</div>
-        <div class="tab p-3">Colaboradores</div>
-        <div class="tab p-3">Detalles</div>
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/overview/" class="tab p-3 active">General</a>
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/" class="tab p-3">Tableros</a>
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/" class="tab p-3">Diario</a>
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/collaborators/" class="tab p-3">Colaboradores</a>
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/details/" class="tab p-3">Detalles</a>
     </div>
     <div class="row grey darken-3 m-0 px-2">
-        <div class="w-100 h-100 tabContent d-none" id="tabContent1">
+        <?php
+switch ($viewParams["tabName"]) {
+    case "dashboards":
+        ?>
+        <div class="w-100 h-100 tabContent d-block" id="tabContent2">
+            <div
+                class="row d-flex text-white justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0">
+                <div class="projectsCount ml-3">
+                    <span class="numberOfProjects">15</span>&nbsp;
+                    <span class="font-weight-bold">dashboard(s)</span>
+                </div>
+                <div class="btn-group">
+                    <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
+                    <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
+                </div>
+                <div class="row w-auto mx-2">
+                    Show&nbsp;
+                    <select class="custom-select custom-select-sm w-auto">
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option selected value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                    </select>
+                    &nbsp;entries.
+                </div>
+                <div class="btn btn-success btn-sm projectBtnAdd">+ Add</div>
+                <div class="md-form input-group col my-2">
+                    <input type="search" class="form-control pl-0 rounded-0" name="search" id="search"
+                        placeholder="Search...">
+                    <div class="input-group-append">
+                        <span class="btn btn-sm btn-primary m-0 input-group-text md-addon">Search</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grey darken-3 m-0 px-2 pt-2">
+                <div class="row projectCardRow d-flex justify-content-center m-0">
+                    <div class="projectCard row col m-2 bg-white">
+                        <div
+                            class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+                            <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
+                            <div class="btn btn-sm btn-primary">Go to dashboard</div>
+                            <div class="btn btn-sm btn-danger">Delete dashboard</div>
+                            <img src="" alt="" class="projectCardBookmarkedIcon">
+                            <div class="projectCardFlags float-right btn-group">
+                                <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
+                                <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
+                            </div>
+                        </div>
+                        <div class="projectCardDescription text-justify my-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
+                            dolorum
+                            nostrum sit iure qui amet maxime.
+                        </div>
+                    </div>
+                </div>
+                <div class="row projectCardRow d-flex justify-content-center m-0">
+                    <div class="projectCard row col m-2 bg-white">
+                        <div
+                            class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+                            <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
+                            <div class="btn btn-sm btn-primary">Go to dashboard</div>
+                            <div class="btn btn-sm btn-danger">Delete dashboard</div>
+                            <img src="" alt="" class="projectCardBookmarkedIcon">
+                            <div class="projectCardFlags float-right btn-group">
+                                <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
+                            </div>
+                        </div>
+                        <div class="projectCardDescription text-justify my-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
+                            dolorum
+                            nostrum sit iure qui amet maxime.
+                        </div>
+                    </div>
+                </div>
+                <div class="row projectCardRow d-flex justify-content-center m-0">
+                    <div class="projectCard row col m-2 bg-white">
+                        <div
+                            class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+                            <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
+                            <div class="btn btn-sm btn-primary">Go to dashboard</div>
+                            <div class="btn btn-sm btn-danger">Delete dashboard</div>
+                            <img src="" alt="" class="projectCardBookmarkedIcon">
+                            <div class="projectCardFlags float-right btn-group">
+                            </div>
+                        </div>
+                        <div class="projectCardDescription text-justify my-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
+                            dolorum
+                            nostrum sit iure qui amet maxime.
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center py-3">
+                    <nav aria-label="Page navigation example" class="bg-transparent">
+                        <ul class="pagination pg-blue mb-0">
+                            <li class="page-item ">
+                                <a class="page-link" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link">1</a></li>
+                            <li class="page-item active">
+                                <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item ">
+                                <a class="page-link">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <?php
+break;
+    case "diary":
+        ?>
+        <div class="w-100 h-100 tabContent d-block" id="tabContent3">
+            <div class="mx-auto">
+                <button class="btn m-3 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
+                <div class="form-row d-flex py-4">
+                    <div class="col-sm-3 rounded order-0 order-sm-2 bg-white shadow mx-1">
+                        <div class="md-form m-0">
+                            <input placeholder="Select a date" type="text" id="datepicker"
+                                class="form-control datepicker">
+                        </div>
+                    </div>
+                    <button class="btn btn-sm btn-primary order-2 order-sm-1 text-white ml-auto">&lt;</button>
+                    <button class="btn btn-sm btn-primary order-3 text-white mr-auto">&gt;</button>
+                    <br>
+                </div>
+                <div class="mx-sm-5 mb-sm-5">
+                    <div id="summernote"></div>
+                </div>
+            </div>
+        </div>
+        <?php
+break;
+    case "collaborators":
+        ?>
+        <div class="w-100 h-100 tabContent d-block" id="tabContent4">
+            <div class="md-form input-group col my-2">
+                <input type="text" class="form-control pl-0 rounded-0" name="searchCollaborator" id="searchCollaborator"
+                    placeholder="Collaborator's username">
+                <div class="input-group-append">
+                    <span class="btn btn-sm btn-success m-0 input-group-text md-addon">Invite</span>
+                    <span class="btn btn-sm btn-warning m-0 input-group-text md-addon">Search</span>
+                </div>
+            </div>
+            <div class="grey darken-3 m-0 px-2 pt-2">
+                <?php
+for ($i = 0; $i < 4; $i++):
+        ?>
+                <div class="row projectCardRow d-flex justify-content-center m-0">
+                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                        <img class="projectCollaboratorImg my-2 rounded-pill" src="/daw/img/profile-pic.png" alt="">
+                        <div class="projectCollaboratorDetails my-auto col">
+                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                        </div>
+                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
+                        </div>
+                    </div>
+                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
+                        <img class="projectCollaboratorImg my-2 rounded-pill" src="/daw/img/profile-pic.png" alt="">
+                        <div class="projectCollaboratorDetails my-auto col">
+                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
+                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
+                        </div>
+                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
+                        </div>
+                    </div>
+                </div>
+                <?php
+endfor;?>
+                <div class="row d-flex justify-content-center py-3">
+                    <nav aria-label="Page navigation example" class="bg-transparent">
+                        <ul class="pagination pg-blue mb-0">
+                            <li class="page-item ">
+                                <a class="page-link" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link">1</a></li>
+                            <li class="page-item active">
+                                <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item ">
+                                <a class="page-link">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <?php
+break;
+    case "details":
+        ?>
+        <div class="w-100 h-100 tabContent d-block" id="tabContent5">
+            <div class="content px-5">
+                <h5 class="text-white mt-5">Project title</h5>
+                <h3 class="text-white font-weight-bold mb-5">Origen</h3>
+                <h5 class="text-white">Project description</h5>
+                <div class="md-form mb-5 mt-0">
+                    <textarea id="form7" class="md-textarea form-control text-white p-0" disabled
+                        rows="3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error facere.</textarea>
+                    <label for="form7" class="d-none">Material textarea</label>
+                </div>
+                <div class="projectCreationDetails mb-5 text-muted">
+                    <div class="float-right text-right">
+                        Te invitó <a href="" class="projectCreatedBy">Pepe Fabra Valverde</a>
+                        <br> el <span class="projectCreationDate">04/04/2020</span> como <span
+                            class="projectCreationRole informationText font-weight-bold">colaborador</span>
+                        <div class="informationTextQuote text-white p-3 position-absolute rounded">Lorem ipsum dolor
+                            sit amet
+                            consectetur.
+                        </div>
+                    </div>
+                    <div>Creador por <a href="" class="projectCreatedBy">Pepe Fabra
+                            Valverde</a>
+                        <br> el <span class="projectCreationDate">04/04/2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+
+    case "overview":
+    default:
+        ?>
+        <div class="w-100 h-100 tabContent d-block" id="tabContent1">
             <div class="w-100 display-none display-sm-block p-2 text-white d-flex justify-content-start">
                 <div class="collaborators mx-2">
                     <span id="numberOfCollaborators">24</span>
@@ -215,269 +451,15 @@ $breadcrumb = [
                 </div>
             </div>
         </div>
-        <div class="w-100 h-100 tabContent d-none" id="tabContent2">
-            <div
-                class="row d-flex text-white justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0">
-                <div class="projectsCount ml-3">
-                    <span class="numberOfProjects">15</span>&nbsp;
-                    <span class="font-weight-bold">dashboard(s)</span>
-                </div>
-                <div class="btn-group">
-                    <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
-                    <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
-                </div>
-                <div class="row w-auto mx-2">
-                    Show&nbsp;
-                    <select class="custom-select custom-select-sm w-auto">
-                        <option value="2">2</option>
-                        <option value="4">4</option>
-                        <option selected value="6">6</option>
-                        <option value="8">8</option>
-                        <option value="10">10</option>
-                    </select>
-                    &nbsp;entries.
-                </div>
-                <div class="btn btn-success btn-sm projectBtnAdd">+ Add</div>
-                <div class="md-form input-group col my-2">
-                    <input type="search" class="form-control pl-0 rounded-0" name="search" id="search"
-                        placeholder="Search...">
-                    <div class="input-group-append">
-                        <span class="btn btn-sm btn-primary m-0 input-group-text md-addon">Search</span>
-                    </div>
-                </div>
-            </div>
-            <div class="grey darken-3 m-0 px-2 pt-2">
-                <div class="row projectCardRow d-flex justify-content-center m-0">
-                    <div class="projectCard row col m-2 bg-white">
-                        <div
-                            class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
-                            <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
-                            <div class="btn btn-sm btn-primary">Go to dashboard</div>
-                            <div class="btn btn-sm btn-danger">Delete dashboard</div>
-                            <img src="" alt="" class="projectCardBookmarkedIcon">
-                            <div class="projectCardFlags float-right btn-group">
-                                <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
-                                <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
-                            </div>
-                        </div>
-                        <div class="projectCardDescription text-justify my-2">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
-                            dolorum
-                            nostrum sit iure qui amet maxime.
-                        </div>
-                    </div>
-                </div>
-                <div class="row projectCardRow d-flex justify-content-center m-0">
-                    <div class="projectCard row col m-2 bg-white">
-                        <div
-                            class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
-                            <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
-                            <div class="btn btn-sm btn-primary">Go to dashboard</div>
-                            <div class="btn btn-sm btn-danger">Delete dashboard</div>
-                            <img src="" alt="" class="projectCardBookmarkedIcon">
-                            <div class="projectCardFlags float-right btn-group">
-                                <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
-                            </div>
-                        </div>
-                        <div class="projectCardDescription text-justify my-2">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
-                            dolorum
-                            nostrum sit iure qui amet maxime.
-                        </div>
-                    </div>
-                </div>
-                <div class="row projectCardRow d-flex justify-content-center m-0">
-                    <div class="projectCard row col m-2 bg-white">
-                        <div
-                            class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
-                            <h5 class="projectCardTitle m-0 font-weight-bold">Dashboard title</h5>
-                            <div class="btn btn-sm btn-primary">Go to dashboard</div>
-                            <div class="btn btn-sm btn-danger">Delete dashboard</div>
-                            <img src="" alt="" class="projectCardBookmarkedIcon">
-                            <div class="projectCardFlags float-right btn-group">
-                            </div>
-                        </div>
-                        <div class="projectCardDescription text-justify my-2">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repellendus voluptatem,
-                            dolorum
-                            nostrum sit iure qui amet maxime.
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-center py-3">
-                    <nav aria-label="Page navigation example" class="bg-transparent">
-                        <ul class="pagination pg-blue mb-0">
-                            <li class="page-item ">
-                                <a class="page-link" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link">3</a></li>
-                            <li class="page-item ">
-                                <a class="page-link">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <div class="w-100 h-100 tabContent d-none" id="tabContent3">
-            <div class="mx-auto">
-                <button class="btn m-3 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
-                <div class="form-row d-flex py-4">
-                    <div class="col-sm-3 rounded order-0 order-sm-2 bg-white shadow mx-1">
-                        <div class="md-form m-0">
-                            <input placeholder="Select a date" type="text" id="datepicker"
-                                class="form-control datepicker">
-                        </div>
-                    </div>
-                    <button class="btn btn-sm btn-primary order-2 order-sm-1 text-white ml-auto">&lt;</button>
-                    <button class="btn btn-sm btn-primary order-3 text-white mr-auto">&gt;</button>
-                    <br>
-                </div>
-                <div class="mx-sm-5 mb-sm-5">
-                    <div id="summernote"></div>
-                </div>
-            </div>
-        </div>
-        <div class="w-100 h-100 tabContent d-none" id="tabContent4">
-            <div class="md-form input-group col my-2">
-                <input type="text" class="form-control pl-0 rounded-0" name="searchCollaborator" id="searchCollaborator"
-                    placeholder="Collaborator's username">
-                <div class="input-group-append">
-                    <span class="btn btn-sm btn-success m-0 input-group-text md-addon">Invite</span>
-                    <span class="btn btn-sm btn-warning m-0 input-group-text md-addon">Search</span>
-                </div>
-            </div>
-            <div class="grey darken-3 m-0 px-2 pt-2">
-                <div class="row projectCardRow d-flex justify-content-center m-0">
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
-                        </div>
-                    </div>
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
-                        </div>
-                    </div>
-                </div>
-                <div class="row projectCardRow d-flex justify-content-center m-0">
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
-                        </div>
-                    </div>
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
-                        </div>
-                    </div>
-                </div>
-                <div class="row projectCardRow d-flex justify-content-center m-0">
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
-                        </div>
-                    </div>
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
-                        </div>
-                    </div>
-                </div>
-                <div class="row projectCardRow d-flex justify-content-center m-0">
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
-                        </div>
-                    </div>
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See profile
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-center py-3">
-                    <nav aria-label="Page navigation example" class="bg-transparent">
-                        <ul class="pagination pg-blue mb-0">
-                            <li class="page-item ">
-                                <a class="page-link" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link">3</a></li>
-                            <li class="page-item ">
-                                <a class="page-link">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <div class="w-100 h-100 tabContent d-block" id="tabContent5">
-            <div class="content px-5">
-                <h5 class="text-white mt-5">Project title</h5>
-                <h3 class="text-white font-weight-bold mb-5">Origen</h3>
-                <h5 class="text-white">Project description</h5>
-                <div class="md-form mb-5 mt-0">
-                    <textarea id="form7" class="md-textarea form-control text-white p-0" disabled
-                        rows="3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error facere.</textarea>
-                    <label for="form7" class="d-none">Material textarea</label>
-                </div>
-                <div class="projectCreationDetails mb-5 text-muted">
-                    <div class="float-right text-right">
-                        Te invitó <a href="" class="projectCreatedBy">Pepe Fabra Valverde</a>
-                        <br> el <span class="projectCreationDate">04/04/2020</span> como <span
-                            class="projectCreationRole informationText font-weight-bold">colaborador</span>
-                        <div class="informationTextQuote text-white p-3 position-absolute rounded">Lorem ipsum dolor
-                            sit amet
-                            consectetur.
-                        </div>
-                    </div>
-                    <div>Creador por <a href="" class="projectCreatedBy">Pepe Fabra
-                            Valverde</a>
-                        <br> el <span class="projectCreationDate">04/04/2020</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php
+break;
+}
+?>
+
+
+
+
+
     </div>
 </div>
 </div>
