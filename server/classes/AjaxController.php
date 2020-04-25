@@ -44,6 +44,12 @@ class AjaxController
         exit;
     }
 
+    //Function to bookmarkProject
+    public function bookmarkProject()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
+    }
+
     //Function to getProjectsOfUser
     public function getProjectsOfUser()
     {

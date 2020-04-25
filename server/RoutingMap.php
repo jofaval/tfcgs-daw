@@ -8,6 +8,8 @@ $map['projects'] = array('controller' => 'Controller', 'action' => 'projects', '
 $map['project'] = array('controller' => 'Controller', 'action' => 'project', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['404'] = array('controller' => 'Controller', 'action' => 'error404', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getProjectsOfUser'] = array('controller' => 'AjaxController', 'action' => 'getProjectsOfUser', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['bookmarkProject'] = array('controller' => 'AjaxController', 'action' => 'bookmarkProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
+
 $map['signin'] = array('controller' => 'Controller', 'action' => 'signin', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['signup'] = array('controller' => 'Controller', 'action' => 'signup', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['signout'] = array('controller' => 'Controller', 'action' => 'signout', 'access' => Config::$ACCESS_LEVEL_GUEST);
