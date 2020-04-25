@@ -284,6 +284,7 @@ class Controller {
             "hideShared", hideShared
         );
 
+        var noResultsFound = true;
         $(controller.model.workingProjects).each(function () {
             if ((hideBookmarked && (this.bookmarked != 0)) ||
                 (hideCreated && (this.created != 0)) ||
@@ -291,9 +292,16 @@ class Controller {
             ) {
                 return;
             }
+            noResultsFound = false;
 
             this.html = controller.addProject(controller, this);
         });
+
+        if (noResultsFound) {
+            controller.clearContainer(controller);
+            $(".projectsContainer").text("No se han encontrado resultados.");
+        }
+
         console.log(controller.model.workingProjects);
 
         $(".page-item").eq(1).trigger("click");
