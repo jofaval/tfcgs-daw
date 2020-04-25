@@ -8,7 +8,7 @@ var $projectCard = $(`
 <div class="projectCard row col-12 col-sm m-2 bg-white">
     <div
         class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
-        <div class="btn btn-sm btn-primary projectCardBtnView">Go to project</div>
+        <a href="" class="btn btn-sm btn-primary projectCardBtnView">Go to project</a>
         <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
         <h5 class="projectCardTitle m-0 font-weight-bold">Project title</h5>
         <div class="projectCardBookmarkedIcon"></div>
@@ -20,6 +20,17 @@ var $projectCard = $(`
 class Model {
     constructor() {
 
+    }
+
+    loadProjects(whenFinished) {
+        var model = this;
+        $.ajax({
+            url: "/daw/index.php?ctl=getProjectsOfUser",
+            success: function (data) {
+                model.projects = data;
+                whenFinished(data);
+            }
+        });
     }
 }
 
@@ -87,17 +98,13 @@ class Controller {
 
         view.initializeView(mainContainer);
 
-        $.ajax({
-            url: "/daw/index.php?ctl=getProjectsOfUser",
-            success: function (data) {
-                console.log("proyectos", data);
-                $(data).each(function () {
-                    controller.addProject(controller, this);
-                });
-                $(".numberOfProjects").text(data.length);
-            }
+        model.loadProjects(function (projects) {
+            console.log("proyectos", projects);
+            $(projects).each(function () {
+                controller.addProject(controller, this);
+            });
+            $(".numberOfProjects").text(projects.length);
         });
-
 
         var searchBar = $("#projectSearch");
         whenUserDoneTypingInInput(searchBar, "projectSearch", function () {
@@ -146,7 +153,15 @@ class Controller {
         var project = controller.view.visualizeProject(projectRow, json.title, json.description);
         var bookmarkedIcon = project.find(".projectCardBookmarkedIcon");
         bookmarkedIcon.addClass(json.bookmarked != 0 ? "active" : "");
-        bookmarkedIcon.on("click", function () {
+        bookmarkedIcon.on("click", this.bookmarkProject(controller, json, bookmarkedIcon));
+        controller.view.visualizeProjectFlags(project, json.created != 0, json.bookmarked != 0);
+        project.find(".projectCardBtnView").prop("href", `/daw/projects/id/${json.id}/`);
+
+        return project;
+    }
+
+    bookmarkProject(controller, json, bookmarkedIcon) {
+        return function () {
             $.ajax({
                 url: "/daw/index.php?ctl=bookmarkProject",
                 data: {
@@ -158,13 +173,16 @@ class Controller {
                         bookmarkedIcon.toggleClass("active");
                         json.bookmarked = !json.bookmarked;
                     }
-
                     console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
+                    bookmarkedIcon.bind("click", controller.bookmarkProject(controller, json, bookmarkedIcon));
                 },
+                error: function (result) {
+                    sendNotification(`No se ha podido ${bookmarkedIcon.hasClass("active") ? "quitar" : "añadir"} a favoritos`, "bookmarkingProject");
+                    bookmarkedIcon.bind("click", controller.bookmarkProject(controller, json, bookmarkedIcon));
+                }
             });
-
-        });
-        controller.view.visualizeProjectFlags(project, json.created != 0, json.bookmarked != 0);
+            bookmarkedIcon.unbind("click");
+        };
     }
 
     hideProjectsOfType(className, btn) {
@@ -226,6 +244,7 @@ class Controller {
                         if (result !== false) {
                             modal.close();
                             controller.addProject(controller, result);
+                            controller.model(controller, result);
                         }
                     }
                 });
