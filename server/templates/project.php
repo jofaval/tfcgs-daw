@@ -31,6 +31,7 @@ $breadcrumb = [
     "collaborators",
     "details",
 ];?>
+<?php $tabName = $viewParams["tabName"];?>
 
 <?php ob_start()?>
 
@@ -55,7 +56,7 @@ $breadcrumb = [
         </div>
     </div>
     <div class="row tabs shadow w-100 m-0 grey darken-2 text-white">
-        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/overview/" class="tab p-3 active">General</a>
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/overview/" class="tab p-3">General</a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/" class="tab p-3">Tableros</a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/" class="tab p-3">Diario</a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/collaborators/" class="tab p-3">Colaboradores</a>
@@ -63,25 +64,31 @@ $breadcrumb = [
     </div>
     <div class="row grey darken-3 m-0 px-2">
         <?php
-$tabName = $viewParams["tabName"];
+if (in_array($tabName, $tabNames)) {
+    require_once __DIR__ . "/project/$tabName.php";
+}
 switch ($tabName) {
     case "dashboards":
-    case "diary":
-    case "collaborators":
-    case "details":
+        $optionalScripts[] = "js/ProjectDashboardMvc";
         require_once __DIR__ . "/project/$tabName.php";
+        break;
+    case "diary":
+        $optionalScripts[] = "js/ProjectDiaryMvc";
+        require_once __DIR__ . "/project/$tabName.php";
+        break;
+    case "collaborators":
+        $optionalScripts[] = "js/ProjectCollaboratorsMvc";
+        require_once __DIR__ . "/project/$tabName.php";
+        break;
+    case "details":
         break;
     case "overview":
     default:
+        $optionalScripts[] = "js/ProjectOverviewMvc";
         require_once __DIR__ . "/project/overview.php";
         break;
 }
 ?>
-
-
-
-
-
     </div>
 </div>
 </div>
