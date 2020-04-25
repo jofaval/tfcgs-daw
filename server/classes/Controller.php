@@ -42,10 +42,12 @@ class Controller
             "id" => "",
             "secondaryId" => "",
             "elementName" => "Element title",
+            "tabName" => "general",
         ];
 
         if (Utils::exists("id")) {
             $id = Utils::getCleanedData("id");
+            $viewParams["tabName"] = Utils::getCleanedData("tabName");
 
             $project = new Projects();
             $projectData = $project->query()[0];
