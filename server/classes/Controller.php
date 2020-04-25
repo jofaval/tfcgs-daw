@@ -47,7 +47,11 @@ class Controller
 
         if (Utils::exists("id")) {
             $id = Utils::getCleanedData("id");
-            $viewParams["tabName"] = Utils::getCleanedData("tabName");
+            $tabName = Utils::getCleanedData("tabName");
+            if ($tabName == "") {
+                header("Location: ./overview/");
+            }
+            $viewParams["tabName"] = $tabName;
 
             $project = new Projects();
             $projectData = $project->query()[0];
