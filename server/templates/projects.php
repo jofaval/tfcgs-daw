@@ -70,16 +70,16 @@ $breadcrumb = [
         </div>
     </div>
     <div class="grey darken-3 m-0 mx-auto px-2 pt-2">
-        <div class="projectsContainer col-md-10 m-0 mx-auto">
+        <div class="projectsContainer text-white text-center col-md-10 m-0 mx-auto">
         </div>
         <div class="row d-flex justify-content-center py-3">
             <nav aria-label="Page navigation example" class="bg-transparent">
                 <ul class="pagination pg-blue mb-0">
                     <li class="page-item nav-previous">
-                        <a class="page-link" tabindex="-1">Previous</a>
+                        <a class="page-link text-white" tabindex="-1">Previous</a>
                     </li>
                     <li class="page-item nav-next">
-                        <a class="page-link">Next</a>
+                        <a class="page-link text-white">Next</a>
                     </li>
                 </ul>
             </nav>

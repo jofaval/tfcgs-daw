@@ -1,4 +1,4 @@
-var $paginationItem = $(`<li class="page-item"><a class="page-link"></a></li>`);
+var $paginationItem = $(`<li class="page-item"><a class="page-link text-white"></a></li>`);
 var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
 
 var $projectRow = $(`<div class="row projectCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
@@ -9,7 +9,7 @@ var $projectFlagCreated = $(`<div class="projectsBtnCreated btn btn-sm btn-succe
 var $projectFlagShared = $(`<div class="projectsBtnShared btn btn-sm btn-primary">Shared</div>`);
 
 var $projectCard = $(`
-<div class="projectCard row col-12 col-sm m-2 bg-white">
+<div class="projectCard text-dark row col-12 col-sm m-2 bg-white">
     <div
         class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
         <a href="" class="btn btn-sm btn-primary projectCardBtnView">Go to project</a>
@@ -160,9 +160,14 @@ class Controller {
                     newProjectsJSON.push(this);
                 });
             }
-            console.log(newProjectsJSON);
-            controller.model.workingProjects = newProjectsJSON;
-            controller.reload(controller);
+
+            if (newProjectsJSON.length > 0) {
+                controller.model.workingProjects = newProjectsJSON;
+                controller.reload(controller);
+            } else {
+                controller.clearContainer(controller);
+                $(".projectsContainer").text("No se han encontrado resultados.");
+            }
         }, 100);
 
         $(".projectBtnAdd").on("click", function (event) {
@@ -182,8 +187,12 @@ class Controller {
         });
     }
 
-    reload(controller) {
+    clearContainer(controller) {
         $(".projectsContainer").html("");
+    }
+
+    reload(controller) {
+        controller.clearContainer(controller);
         controller.model.paginationIndex = 1;
         var pagination = $(".pagination");
 

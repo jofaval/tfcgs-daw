@@ -55,8 +55,7 @@ main {
     padding-bottom: -.5em !important;
 }
 
-.tab:hover,
-.tab.active {
+.tab:hover, .tab.active {
     border-bottom: .5em solid rgb(21, 103, 255);
 }
 
@@ -79,8 +78,7 @@ main {
     align-self: center;
 }
 
-.recentlyCreated,
-.recentlyInvited {
+.recentlyCreated, .recentlyInvited {
     width: 95%;
 }
 
@@ -90,4 +88,8 @@ main {
 
 #projectDiaryNavigationScheme ul {
     list-style-type: none !important;
+}
+
+.page-link:hover {
+    color: rgb(141, 124, 124) !important;
 }
