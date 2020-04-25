@@ -13,6 +13,19 @@ main {
     cursor: pointer;
 }
 
+.projectCardBookmarkedIcon {
+    margin-left: .5em;
+    width: 1em;
+    height: 1em;
+    background-image: url('/daw/img/components/projects/bookmarked_off.png');
+    background-size: 1em;
+    cursor: pointer;
+}
+
+.projectCardBookmarkedIcon.active {
+    background-image: url('/daw/img/components/projects/bookmarked_on.png') !important;
+}
+
 .action {
     width: 150px;
     height: 150px;

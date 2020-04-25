@@ -95,6 +95,35 @@ class Controller
                          WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16"]);
     }
 
+    public function bookmarkProject()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $bookmarked = Utils::getCleanedData("bookmarked");
+
+        $projectId = Utils::getCleanedData("id_project");
+
+        $projects = $this->getProjectsOfUser();
+
+        $found = false;
+        foreach ($projects as $project) {
+            if ($project["id"] == $projectId) {
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            return false;
+        }
+
+        $bookmarked = Utils::getCleanedData("bookmarked");
+        if ($bookmarked) {
+            return $sqlUtils->delete("bookmarked", ["id_project" => $projectId, "id_client" => "16"]);
+        } else {
+            return $sqlUtils->insert("bookmarked", ["id_project" => $projectId, "id_client" => "16"]);
+        }
+    }
+
     public function error404()
     {
         require __DIR__ . '/../templates/error404.php';

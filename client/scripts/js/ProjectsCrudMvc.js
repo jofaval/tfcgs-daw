@@ -11,7 +11,7 @@ var $projectCard = $(`
         <div class="btn btn-sm btn-primary projectCardBtnView">Go to project</div>
         <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
         <h5 class="projectCardTitle m-0 font-weight-bold">Project title</h5>
-        <img src="" alt="" class="projectCardBookmarkedIcon">
+        <div class="projectCardBookmarkedIcon"></div>
         <div class="projectCardFlags float-right btn-group"></div>
     </div>
     <div class="projectCardDescription text-justify my-2"></div>
@@ -94,8 +94,10 @@ class Controller {
                 $(data).each(function () {
                     controller.addProject(controller, this);
                 });
+                $(".numberOfProjects").text(data.length);
             }
         });
+
 
         var searchBar = $("#projectSearch");
         whenUserDoneTypingInInput(searchBar, "projectSearch", function () {
@@ -142,6 +144,25 @@ class Controller {
         }
 
         var project = controller.view.visualizeProject(projectRow, json.title, json.description);
+        var bookmarkedIcon = project.find(".projectCardBookmarkedIcon");
+        bookmarkedIcon.addClass(json.bookmarked != 0 ? "active" : "");
+        bookmarkedIcon.on("click", function () {
+            $.ajax({
+                url: "/daw/index.php?ctl=bookmarkProject",
+                data: {
+                    "id_project": json.id,
+                    "bookmarked": bookmarkedIcon.hasClass("active"),
+                },
+                success: function (result) {
+                    if (result !== false) {
+                        bookmarkedIcon.toggleClass("active");
+                    }
+
+                    console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
+                },
+            });
+
+        });
         controller.view.visualizeProjectFlags(project, json.created != 0, json.bookmarked != 0);
     }
 
@@ -156,6 +177,15 @@ class Controller {
                     projectCard.removeClass("d-none");
                 }
             }
+            /* if (projectCard.find(`.projectsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
+                if (btn.hasClass("active")) {
+                    projectCard.removeClass("d-none");
+                } else {
+                    projectCard.addClass("d-none");
+                }
+            } else {
+                projectCard.removeClass("d-none");
+            } */
         });
     }
 
