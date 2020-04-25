@@ -83,7 +83,7 @@ $(".projectBtnAdd").on("click", function (event) {
     });
 });
 
-$('.tab').on("click", function () {
+/* $('.tab').on("click", function () {
     var current = $(this);
 
     $(".tabContent.d-block").addClass("d-none")
@@ -95,7 +95,7 @@ $('.tab').on("click", function () {
     $(".tab.active").removeClass("active");
     current.addClass("active");
 });
-$('.tab').eq(0).click();
+$('.tab').eq(0).click(); */
 
 var navigationScheme = $("#projectDiaryNavigationScheme");
 $(".note-editable.card-block").append("<h1>Test 1656</h1>");
