@@ -243,8 +243,8 @@ class Controller {
                         console.log(result);
                         if (result !== false) {
                             modal.close();
-                            controller.addProject(controller, result);
-                            controller.model(controller, result);
+                            controller.addProject(controller, result[0]);
+                            controller.model.projects.push(result[0]);
                         }
                     }
                 });
