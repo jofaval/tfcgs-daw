@@ -26,6 +26,7 @@ class Dashboards implements CRUD
         $params = [
             "title" => $this->title,
             "id_creator" => $this->id_creator,
+            "id_project" => $this->id_project,
         ];
 
         $params["id_creator"] = 16;
@@ -35,8 +36,8 @@ class Dashboards implements CRUD
         if (count($result) == 0) {
             $params["description"] = $this->description;
             $date = new DateTime();
-            $params["creation_date"] = $date->format("Y-m-d");
-            $sqlUtils->insert(Dashboards::$table, $params);
+            $params["creation_date"] = $date->format("Y-m-d H:i:s");
+            $result = $sqlUtils->insert(Dashboards::$table, $params);
             return $sqlUtils->query(Dashboards::$table, $params);
         }
 
@@ -99,6 +100,7 @@ class Dashboards implements CRUD
         $this->title = Utils::getCleanedData("title");
         $this->description = Utils::getCleanedData("description");
         $this->id_creator = Sessions::getInstance()->getSession("userId");
+        $this->id_project = Utils::getCleanedData("id_project");
     }
 
     public function parse()
