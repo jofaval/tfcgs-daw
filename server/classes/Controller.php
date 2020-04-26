@@ -212,7 +212,15 @@ class Controller
 
     public function getCollaboratorsOfProject()
     {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $id_project = Utils::getCleanedData("id_project");
 
+        return $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'collaboratorName', users.username as 'collaboratorUsername',
+        collaborators.starting_date as 'collaborationStartingDate', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
+        FROM `collaborators` LEFT JOIN `permissions` on (collaborators.level = permissions.level)
+            LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id)
+            LEFT JOIN `users` on (clients.id = users.id_client)
+            WHERE collaborators.id_project = :id_project", ["id_project" => $id_project]);
     }
 
     public function error404()
