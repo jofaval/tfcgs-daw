@@ -8,18 +8,14 @@ var $collaboratorFlagBookmarked = $(`<div class="collaboratorsBtnBookmarked btn 
 var $collaboratorFlagCreated = $(`<div class="collaboratorsBtnCreated btn btn-sm btn-success">Created</div>`);
 var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm btn-primary">Shared</div>`);
 
-var $collaboratorCard = $(`
-<div class="collaboratorCard text-dark row col-12 col-sm m-2 bg-white">
-    <div
-        class="row collaboratorCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
-        <a href="" class="btn btn-sm btn-primary collaboratorCardBtnView">View</a>
-        <!--div class="btn btn-sm btn-danger collaboratorCardBtnDisable">Disable collaborator</div-->
-        <h5 class="collaboratorCardTitle m-0 font-weight-bold">Collaborator title</h5>
-        <div class="collaboratorCardBookmarkedIcon"></div>
-        <div class="collaboratorCardFlags float-right btn-group"></div>
+var $collaboratorCard = $(`<div class="collaboratorCard rounded row col-12 col-sm m-2 m-2 bg-white">
+    <img class="collaboratorImg my-2 rounded-pill" src="/daw/img/profile-pic.png" alt="">
+    <div class="collaboratorDetails my-auto col">
+        <h5 class=".collaboratorName">Pepe Fabra Valverde</h5>
+        <p class="collaboratorRole font-weight-bold">Administrator</p>
     </div>
-    <a href="" class="collaboratorReadMore">Read more...</a>
-    <div class="collaboratorCardDescription text-justify my-2"></div>
+    <div class="collaboratorProfileBtn btn btn-sm btn-primary align-self-center float-right">See profile
+    </div>
 </div>`);
 
 class Model {
@@ -133,7 +129,7 @@ class Controller {
         view.initializeView(mainContainer);
 
         model.loadCollaborators(function (collaborators) {
-            console.log("tableros", collaborators);
+            console.log("colaboradores", collaborators);
             controller.reload(controller);
             $(".numberOfCollaborators").text(collaborators.length);
             $(".page-item").eq(1).trigger("click");
@@ -211,25 +207,8 @@ class Controller {
         pagination.html("");
         pagination.append(navigation);
 
-        var collaboratorFilters = $(".collaboratorsBtnFilters");
-        var hideBookmarked = collaboratorFilters.find(".collaboratorsBtnBookmarked").hasClass("active");
-        var hideCreated = collaboratorFilters.find(".collaboratorsBtnCreated").hasClass("active");
-        var hideShared = collaboratorFilters.find(".collaboratorsBtnShared").hasClass("active");
-
-        console.log(
-            "hideBookmarked", hideBookmarked,
-            "hideCreated", hideCreated,
-            "hideShared", hideShared
-        );
-
         var noResultsFound = true;
         $(controller.model.workingCollaborators).each(function () {
-            if ((hideBookmarked && (this.bookmarked != 0)) ||
-                (hideCreated && (this.created != 0)) ||
-                (hideShared && !(this.created != 0))
-            ) {
-                return;
-            }
             noResultsFound = false;
 
             this.html = controller.addCollaborator(controller, this);
