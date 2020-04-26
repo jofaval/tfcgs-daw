@@ -137,24 +137,28 @@ class AjaxController
     //Function to createCollaborators
     public function createCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "id_collaborator"]);
+        $_REQUEST["id_collaborator"] = getClientIdFromUsername();
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "username"]);
     }
 
     //Function to updateCollaborators
     public function updateCollaborators()
     {
+        $_REQUEST["id_collaborator"] = getClientIdFromUsername();
         $this->genericAjaxReturn(__FUNCTION__, ["id_project", "id_collaborator", "starting_date", "level"]);
     }
 
     //Function to queryCollaborators
     public function queryCollaborators()
     {
+        $_REQUEST["id_collaborator"] = getClientIdFromUsername();
         $this->genericAjaxReturn(__FUNCTION__, ["id_project", "id_collaborator", "starting_date"]);
     }
 
     //Function to deleteCollaborators
     public function deleteCollaborators()
     {
+        $_REQUEST["id_collaborator"] = getClientIdFromUsername();
         $this->genericAjaxReturn(__FUNCTION__, ["id_project", "id_collaborator", "starting_date"]);
     }
 

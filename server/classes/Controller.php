@@ -231,6 +231,14 @@ class Controller
         return count($sqlUtils->query("users", ["username" => $username])) > 0;
     }
 
+    public function getClientIdFromUsername()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $username = Utils::getCleanedData("username");
+
+        return $sqlUtils->query("users", ["username" => $username])["id_client"];
+    }
+
     public function error404()
     {
         require __DIR__ . '/../templates/error404.php';
