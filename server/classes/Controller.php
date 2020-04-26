@@ -123,7 +123,7 @@ class Controller
             WHERE `dashboards`.`enabled` = 1 and `projects`.`enabled` = 1 and (projects.id_creator = :id_client or :id_client in
                 (SELECT collaborators.id_collaborator
                      FROM collaborators
-                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project))", ["id_client" => "16", "id_project" => $id_project]);
+                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY dashboards.creation_date", ["id_client" => "16", "id_project" => $id_project]);
     }
 
     public function getProjectDetails()
