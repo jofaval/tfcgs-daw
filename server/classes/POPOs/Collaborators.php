@@ -6,7 +6,7 @@ class Collaborators implements CRUD
 
     //Primary Keys
     private $id_project;
-    private $collaborator_id;
+    private $id_collaborator;
     private $starting_date;
 
     //Table Keys
@@ -20,12 +20,13 @@ class Collaborators implements CRUD
 
         $params = [
             "id_project" => $this->$id_project,
-            "collaborator_id" => $this->$collaborator_id,
-            "starting_date" => $this->$starting_date,
-            "level" => $this->$level,
+            "id_collaborator" => $this->$id_collaborator,
         ];
 
-        return $sqlUtils->insert($params);
+        $date = new DateTime();
+        $params["starting_date"] = $date->format("Y-m-d H:I:S");
+
+        return $sqlUtils->insert($this->$table, $params);
     }
 
     public function update()
@@ -38,7 +39,7 @@ class Collaborators implements CRUD
 
         $identificationParams = [
             "id_project" => $this->$id_project,
-            "collaborator_id" => $this->$collaborator_id,
+            "id_collaborator" => $this->$id_collaborator,
             "starting_date" => $this->$starting_date,
         ];
 
@@ -51,7 +52,7 @@ class Collaborators implements CRUD
 
         $params = [
             "id_project" => $this->$id_project,
-            "collaborator_id" => $this->$collaborator_id,
+            "id_collaborator" => $this->$id_collaborator,
             "starting_date" => $this->$starting_date,
         ];
 
@@ -64,7 +65,7 @@ class Collaborators implements CRUD
 
         $params = [
             "id_project" => $this->$id_project,
-            "collaborator_id" => $this->$collaborator_id,
+            "id_collaborator" => $this->$id_collaborator,
             "starting_date" => $this->$starting_date,
         ];
 
@@ -77,7 +78,7 @@ class Collaborators implements CRUD
 
         $identificationParams = [
             "id_project" => $this->$id_project,
-            "collaborator_id" => $this->$collaborator_id,
+            "id_collaborator" => $this->$id_collaborator,
             "starting_date" => $this->$starting_date,
         ];
 
@@ -86,8 +87,8 @@ class Collaborators implements CRUD
 
     public function fill()
     {
-        $this->$id_project = Utils::getCleanedData("projectId");
-        $this->$collaborator_id = Utils::getCleanedData("collaboratorId");
+        $this->$id_project = Utils::getCleanedData("id_project");
+        $this->$id_collaborator = Utils::getCleanedData("id_collaborator");
         $this->$starting_date = Utils::getCleanedData("startingDate");
         $this->$level = Utils::getCleanedData("level");
     }
@@ -96,7 +97,7 @@ class Collaborators implements CRUD
     {
         return json_encode([
             "projectId" => $this->$id_project,
-            "collaboratorId" => $this->$collaborator_id,
+            "id_collaborator" => $this->$id_collaborator,
             "startingDate" => $this->$starting_date,
             "level" => $this->$level,
         ]);

@@ -131,25 +131,25 @@ class AjaxController
     //Function to createCollaborators
     public function createCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "collaborator_id", "starting_date", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "id_collaborator"]);
     }
 
     //Function to updateCollaborators
     public function updateCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "collaborator_id", "starting_date", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "id_collaborator", "starting_date", "level"]);
     }
 
     //Function to queryCollaborators
     public function queryCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "collaborator_id", "starting_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "id_collaborator", "starting_date"]);
     }
 
     //Function to deleteCollaborators
     public function deleteCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "collaborator_id", "starting_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "id_collaborator", "starting_date"]);
     }
 
     //Function to createGlobalLevel
