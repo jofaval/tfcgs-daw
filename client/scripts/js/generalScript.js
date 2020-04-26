@@ -27,6 +27,13 @@ $(window).on("load", function () {
         }
     });
 
+    $("#backToTop").on("click", function (event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        $("main, body").scrollTop(0);
+    });
+
     vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 });
