@@ -99,12 +99,12 @@ class Controller
 
         return $sqlUtils->complexQuery("SELECT projects.id, projects.title, projects.description,
         projects.id_creator = :id_creator as created,
-        projects.id in (select bookmarked.id_project from bookmarked where bookmarked.id_project = projects.id) as bookmarked
+        projects.id in (select bookmarked.id_project from bookmarked where bookmarked.id_client = :id_creator) as bookmarked
         FROM `projects`
             WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
                 (SELECT collaborators.id_collaborator
                      FROM collaborators
-                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16"]);
+                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16", "id_creator" => "16"]);
     }
 
     public function getProjectDetails()
