@@ -92,6 +92,30 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
+    //Function to createDashboards
+    public function createDashboards()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+    }
+
+    //Function to updateDashboards
+    public function updateDashboards()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+    }
+
+    //Function to queryDashboards
+    public function queryDashboards()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+    }
+
+    //Function to deleteDashboards
+    public function deleteDashboards()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+    }
+
     //Function to createCollaborators
     public function createCollaborators()
     {

@@ -12,6 +12,11 @@ $map['getProjectDetails'] = array('controller' => 'AjaxController', 'action' => 
 $map['getDashboardsOfProject'] = array('controller' => 'AjaxController', 'action' => 'getDashboardsOfProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['bookmarkProject'] = array('controller' => 'AjaxController', 'action' => 'bookmarkProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 
+$map['createDashboards'] = array('controller' => 'AjaxController', 'action' => 'createDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['updateDashboards'] = array('controller' => 'AjaxController', 'action' => 'updateDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['queryDashboards'] = array('controller' => 'AjaxController', 'action' => 'queryDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['deleteDashboards'] = array('controller' => 'AjaxController', 'action' => 'deleteDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);
+
 $map['signin'] = array('controller' => 'Controller', 'action' => 'signin', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['signup'] = array('controller' => 'Controller', 'action' => 'signup', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['signout'] = array('controller' => 'Controller', 'action' => 'signout', 'access' => Config::$ACCESS_LEVEL_GUEST);
