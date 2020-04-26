@@ -107,6 +107,25 @@ class Controller
                          WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16", "id_creator" => "16"]);
     }
 
+    public function getDashboardsOfProject()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $id_project = Utils::getCleanedData("id_project");
+
+        return $sqlUtils->complexQuery("SELECT dashboards.title, dashboards.description, dashboards.creation_date,
+        dashboards.id_creator = :id_client as created,
+        (dashboards.id_project, dashboards.title) in (select bookmarked_dashboards.id_project, bookmarked_dashboards.title
+        from bookmarked_dashboards
+        where bookmarked_dashboards.id_client = :id_client
+        and bookmarked_dashboards.id_project = :id_project
+        and bookmarked_dashboards.title = dashboards.title) as bookmarked
+        FROM `dashboards` LEFT JOIN `projects` on (`dashboards`.`id_project` = `projects`.`id`)
+            WHERE `dashboards`.`enabled` = 1 and `projects`.`enabled` = 1 and (projects.id_creator = :id_client or :id_client in
+                (SELECT collaborators.id_collaborator
+                     FROM collaborators
+                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project))", ["id_client" => "16", "id_project" => $id_project]);
+    }
+
     public function getProjectDetails()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());

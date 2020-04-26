@@ -56,6 +56,12 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["id"], "Controller");
     }
 
+    //Function to getDashboardsOfProject
+    public function getDashboardsOfProject()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
+    }
+
     //Function to getProjectsOfUser
     public function getProjectsOfUser()
     {
