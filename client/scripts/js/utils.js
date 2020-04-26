@@ -88,3 +88,56 @@ function writeInElement(element, phrase, intervalTime = 25) {
         }, intervalTime * phraseIndex);
     }
 }
+
+function getTimeFromThisMoment(date) {
+    var givenDate = date.getTime();
+
+    var now = Date.now();
+
+    // get total seconds between the times
+    var delta = Math.abs(now - givenDate) / 1000;
+
+    // calculate (and subtract) whole days
+    var days = Math.floor(delta / 86400);
+    delta -= days * 86400;
+
+    // calculate (and subtract) whole hours
+    var hours = Math.floor(delta / 3600) % 24;
+    delta -= hours * 3600;
+
+    // calculate (and subtract) whole minutes
+    var minutes = Math.floor(delta / 60) % 60;
+    delta -= minutes * 60;
+
+    // what's left is seconds
+    var seconds = Math.floor(delta % 60); // in theory the modulus is not required
+
+    var finalString = "Hace ";
+    if (days > 0) {
+        if (Math.floor(days / (((365 * 5) * 2) * 10)) > 0) {
+            finalString += `${Math.floor(days / (((365 * 5) * 2) * 10))} siglo(s)`;
+        } else if (Math.floor(days / ((365 * 5) * 2)) > 0) {
+            finalString += `${Math.floor(days / ((365 * 5) * 2))} década(s)`;
+        } else if (Math.floor(days / (365 * 5)) > 0) {
+            finalString += `${Math.floor(days / (365 * 5))} lustro(s)`;
+        } else if (Math.floor(days / 365) > 0) {
+            finalString += `${Math.floor(days / 365)} año(s)`;
+        } else if (Math.floor(days / 30) > 0) {
+            finalString += `${Math.floor(days / 30)} mes(es)`;
+        } else if (Math.floor(days / 7) > 0) {
+            finalString += `${Math.floor(days / 7)} semana(s)`;
+        } else {
+            finalString += `${days} dia(s)`;
+        }
+    } else if (hours > 0) {
+        finalString += `${hours} hora(s)`;
+    } else if (minutes > 0) {
+        finalString += `${minutes} minuto(s)`;
+    } else if (seconds > 0) {
+        //finalString += `${seconds} segundo(s)`;
+        finalString += `unos segundos`;
+    }
+
+    //return [days, hours, minutes, seconds];
+    return finalString;
+}
