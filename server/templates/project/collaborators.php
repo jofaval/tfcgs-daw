@@ -8,7 +8,8 @@
         </div>
     </div>
     <div class="grey darken-3 m-0 px-2 pt-2">
-        <?php
+        <div class="collaboratorsContainer">
+            <!--         <?php
 for ($i = 0; $i < 4; $i++):
 ?>
         <div class="row projectCardRow d-flex justify-content-center m-0">
@@ -32,7 +33,8 @@ for ($i = 0; $i < 4; $i++):
             </div>
         </div>
         <?php
-endfor;?>
+endfor;?> -->
+        </div>
         <div class="row d-flex justify-content-center py-3">
             <nav aria-label="Page navigation example" class="bg-transparent">
                 <ul class="pagination pg-blue mb-0">
