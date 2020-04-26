@@ -74,22 +74,22 @@ if (in_array($tabName, $tabNames)) {
 }
 switch ($tabName) {
     case "dashboards":
-        $optionalScripts[] = "js/ProjectDashboardMvc";
+        $optionalScripts[] = "js/ProjectDashboardMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         break;
     case "diary":
-        $optionalScripts[] = "js/ProjectDiaryMvc";
+        $optionalScripts[] = "js/ProjectDiaryMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         break;
     case "collaborators":
-        $optionalScripts[] = "js/ProjectCollaboratorsMvc";
+        $optionalScripts[] = "js/ProjectCollaboratorsMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         break;
     case "details":
         break;
     case "overview":
     default:
-        $optionalScripts[] = "js/ProjectOverviewMvc";
+        $optionalScripts[] = "js/ProjectOverviewMvc.js";
         require_once __DIR__ . "/project/overview.php";
         break;
 }
