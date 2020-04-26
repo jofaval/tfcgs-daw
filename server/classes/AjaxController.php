@@ -50,6 +50,12 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
     }
 
+    //Function to bookmarkDashboard
+    public function bookmarkDashboard()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"], "Controller");
+    }
+
     //Function to getProjectDetails
     public function getProjectDetails()
     {

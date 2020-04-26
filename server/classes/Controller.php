@@ -170,6 +170,11 @@ class Controller
         }
     }
 
+    public function bookmarkDashboard()
+    {
+
+    }
+
     public function error404()
     {
         require __DIR__ . '/../templates/error404.php';
