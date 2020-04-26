@@ -30,12 +30,22 @@ class Model {
         var model = this;
         $.ajax({
             url: "/daw/index.php?ctl=getDashboardsOfProject",
+            data: {
+                "id_project": model.getProjectId()
+            },
             success: function (dashboards) {
                 model.dashboards = dashboards;
                 model.workingDashboards = dashboards;
                 whenFinished(dashboards);
             }
         });
+    }
+
+    getProjectId() {
+        var URL = window.location.href;
+        var splittedURL = URL.split("/");
+
+        return splittedURL[6];
     }
 }
 
@@ -121,7 +131,7 @@ class Controller {
         view.initializeView(mainContainer);
 
         model.loadDashboards(function (dashboards) {
-            console.log("proyectos", dashboards);
+            console.log("tableros", dashboards);
             controller.reload(controller);
             $(".numberOfDashboards").text(dashboards.length);
             $(".page-item").eq(1).trigger("click");
@@ -424,6 +434,7 @@ class Controller {
                     data: {
                         title: $("#title").val(),
                         description: $("#description").val(),
+                        id_project: controller.model.getProjectId(),
                     },
                     success: function (result) {
                         console.log(result);
