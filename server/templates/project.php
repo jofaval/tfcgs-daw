@@ -32,25 +32,25 @@ $breadcrumb = [
     "details",
 ];?>
 <?php $tabName = $viewParams["tabName"];?>
+<?php $projectData = $viewParams["projectData"];?>
 
 <?php ob_start()?>
 
 <ul id="projectDiaryNavigationScheme" class="position-absolute d-none z-index-overlap bg-light shadow">
 
 </ul>
-<div class=" p-0">
+<div class="w-100 p-0">
     <div class="row py-5 projectHeader m-0">
         <div class="projectImageContainer col-3">
-            <img class="projectImage mx-5" src="../img/profile-pic.png" alt="" width="200">
+            <img class="projectImage mx-5" src="/daw/img/profile-pic.png" alt="" width="200">
         </div>
         <div class="display-none display-sm-block projectDetails text-white col">
-            <h1 class="projectTitle font-weight-bold">Origen</h1>
-            <p class="projectCreatedBy mb-2">creado por <a id="projectCreator" class="font-weight-bold">Pepe Fabra
-                    Valverde</a></p>
-            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio laudantium ipsum
-                sed iusto voluptas est ratione nam sint fugiat, in dolorum adipisci, veritatis aliquam magnam
-                repellendus dolorem, accusamus consequuntur corporis?</p>
-            <a href="" class="">
+            <h1 class="projectTitle font-weight-bold"><?php echo $projectData["projectTitle"]; ?></h1>
+            <p class="projectCreatedBy mb-2">creado por <a href="<?php echo $projectData["projectCreatorUsername"]; ?>"
+                    id="projectCreator"
+                    class="font-weight-bold text-white"><?php echo $projectData["projectCreator"]; ?></a></p>
+            <p class="description"><?php echo $projectData["projectDescription"]; ?></p>
+            <a href="" class=" text-white">
                 Change project information...<span><i class="fa fa-pencil"></i></span>
             </a>
         </div>
