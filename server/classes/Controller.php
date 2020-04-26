@@ -49,7 +49,7 @@ class Controller
         if (Utils::exists("id")) {
             $id = Utils::getCleanedData("id");
             $tabName = Utils::getCleanedData("tabName");
-            if ($tabName == "") {
+            if (!Utils::exists("element") && $tabName == "") {
                 header("Location: ./overview/");
             }
             $viewParams["tabName"] = $tabName;
