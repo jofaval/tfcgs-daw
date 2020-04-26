@@ -13,7 +13,8 @@ main {
     cursor: pointer;
 }
 
-.projectCardBookmarkedIcon {
+.projectCardBookmarkedIcon,
+.dashboardCardBookmarkedIcon {
     margin-left: .5em;
     width: 1em;
     height: 1em;
@@ -22,7 +23,8 @@ main {
     cursor: pointer;
 }
 
-.projectCardBookmarkedIcon.active {
+.projectCardBookmarkedIcon.active,
+.dashboardCardBookmarkedIcon.active {
     background-image: url('/daw/img/components/projects/bookmarked_on.png') !important;
 }
 
@@ -39,7 +41,8 @@ main {
     font-size: 5rem;
 }
 
-.projectCardFlags, .dashboardCardFlags {
+.projectCardFlags,
+.dashboardCardFlags {
     position: absolute;
     right: .5em;
 }
@@ -55,7 +58,8 @@ main {
     padding-bottom: -.5em !important;
 }
 
-.tab:hover, .tab.active {
+.tab:hover,
+.tab.active {
     border-bottom: .5em solid rgb(21, 103, 255);
 }
 
@@ -78,7 +82,8 @@ main {
     align-self: center;
 }
 
-.recentlyCreated, .recentlyInvited {
+.recentlyCreated,
+.recentlyInvited {
     width: 95%;
 }
 
