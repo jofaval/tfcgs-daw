@@ -149,17 +149,6 @@ class Controller {
         var searchBar = $("#dashboardSearch");
         whenUserDoneTypingInInput(searchBar, "dashboardSearch", function () {
             var content = searchBar.val().toLowerCase();
-            /*  $(".dashboardCard").each(function () {
-                 var dashboardCardTitle = $(this).find(".dashboardCardTitle").text().trim().toLowerCase();
-                 var dashboardCardDescription = $(this).find(".dashboardCardDescription").text().trim().toLowerCase();
-                 console.log(dashboardCardTitle, dashboardCardTitle.includes(content));
-
-                 if (content != "" && (!dashboardCardTitle.includes(content) && !dashboardCardDescription.includes(content))) {
-                     $(this).hide();
-                 } else {
-                     $(this).show();
-                 }
-             }); */
             var newDashboardsJSON = [];
             if (content == "") {
                 newDashboardsJSON = controller.model.dashboards;
@@ -187,20 +176,7 @@ class Controller {
             controller.addDashboardBtnEvent(controller, event);
         });
 
-        /* $(".dashboardsBtnBookmarked").on("click", function () {
-            controller.hideDashboardsOfType("bookmarked", $(this));
-        });
-
-        $(".dashboardsBtnCreated").on("click", function () {
-            controller.hideDashboardsOfType("created", $(this));
-        });
-
-        $(".dashboardsBtnShared").on("click", function () {
-            controller.hideDashboardsOfType("shared", $(this));
-        }); */
-
         $(".dashboardsBtnFilters .btn").on("click", function () {
-            //controller.hideDashboardsOfType(controller, $(this));
             $(this).toggleClass("active");
 
             controller.reload(controller);
@@ -219,56 +195,6 @@ class Controller {
                 activePage.trigger("click");
             }
         });
-    }
-
-    hideDashboardsOfType(controller, btn) {
-        btn.toggleClass("active");
-
-        var dashboards = controller.model.workingDashboards;
-
-        var dashboardFilters = $(".dashboardsBtnFilters");
-        var hideBookmarked = dashboardFilters.find(".dashboardsBtnBookmarked").hasClass("active");
-        var hideCreated = dashboardFilters.find(".dashboardsBtnCreated").hasClass("active");
-        var hideShared = dashboardFilters.find(".dashboardsBtnShared").hasClass("active");
-        var newDashboards = [];
-        $(dashboards).each(function () {
-
-            if ((hideBookmarked && (this.bookmarked != 0)) ||
-                (hideCreated && (this.created != 0)) ||
-                (hideShared && !(this.created != 0))
-            ) {
-                console.log(this);
-                return;
-            }
-
-            newDashboards.push(this);
-        });
-        if (newDashboards.length > 0) {
-            controller.model.workingDashboards = newDashboards;
-            controller.reload(controller);
-        } else {
-            controller.clearContainer(controller);
-            $(".dashboardsContainer").text("No se han encontrado resultados.");
-        }
-        /* $(".dashboardCard").each(function () {
-            /* var dashboardCard = $(this);
-            if (dashboardCard.find(`.dashboardsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
-                if (btn.hasClass("active")) {
-                    dashboardCard.addClass("d-none");
-                } else {
-                    dashboardCard.removeClass("d-none");
-                }
-            } */
-        /* if (dashboardCard.find(`.dashboardsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
-            if (btn.hasClass("active")) {
-                dashboardCard.removeClass("d-none");
-            } else {
-                dashboardCard.addClass("d-none");
-            }
-        } else {
-            dashboardCard.removeClass("d-none");
-        }
-    });*/
     }
 
     clearContainer(controller) {
@@ -323,19 +249,12 @@ class Controller {
         var dashboardsPage = container.find(".dashboardsPage").last();
         var dashboardPageRows = dashboardsPage.find(".dashboardCardRow");
 
-        /* console.log(
-            "número páginas", container.find(".dashboardsPage").length,
-            "demasiadas rows por página", dashboardPageRows.length > $("#selectNumberOfRows").val(),
-            "la página está completa", dashboardPageRows.last().find(".dashboardCard").length >= 2
-        ); */
-
         if (container.find(".dashboardsPage").length == 0 ||
             (dashboardPageRows.length >= $("#selectNumberOfRows").val() &&
                 dashboardPageRows.last().find(".dashboardCard").length >= 2)) {
             dashboardsPage = controller.view.visualizeDashboardPage(container);
 
             controller.addPaginationItem(controller);
-            //console.log(dashboardsPage);
         }
 
         return dashboardsPage;
