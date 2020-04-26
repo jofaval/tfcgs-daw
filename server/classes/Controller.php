@@ -236,7 +236,7 @@ class Controller
         $sqlUtils = new SQLUtils(Model::getInstance());
         $username = Utils::getCleanedData("username");
 
-        return $sqlUtils->query("users", ["username" => $username])["id_client"];
+        return $sqlUtils->query("users", ["username" => $username])[0]["id_client"];
     }
 
     public function error404()
