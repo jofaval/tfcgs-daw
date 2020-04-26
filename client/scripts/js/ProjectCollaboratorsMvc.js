@@ -16,7 +16,7 @@ var $collaboratorCard = $(`<div class="collaboratorCard rounded row col-12 col-s
         <p class="collaboratorRole m-0 informationText font-weight-bold">Administrator</p>
         <div class="informationTextQuote collaboratorRoleDescription text-white p-3 position-absolute rounded z-index-overlap"></div>
     </div>
-    <div class="collaboratorProfileBtn btn btn-sm btn-primary  align-self-center float-right">See profile
+    <div class="collaboratorProfileBtn btn btn-sm btn-primary align-self-center float-right">See profile
     </div>
 </div>`);
 
@@ -195,6 +195,47 @@ class Controller {
                 activePage.trigger("click");
             }
         });
+
+        $(".collaboratorBtnInvite").on("click", function (event) {
+            controller.inviteCollaboratorEvent(controller, event);
+        });
+    }
+
+    inviteCollaboratorEvent(controller, event) {
+        var username = $("#searchCollaborator").val();
+
+        $.ajax({
+            url: "/daw/index.php?ctl=doesUsernameExists",
+            data: {
+                username: username,
+            },
+            success: function (result) {
+                console.log(result);
+                if (result) {
+                    $.ajax({
+                        url: "/daw/index.php?ctl=createCollaborators",
+                        data: {
+                            username: username,
+                            id_project: controller.model.projectId,
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result) {
+                                window.location.reload();
+                            } else {
+                                sendNotification("No se ha podido añadir", "projectInviteCollaborator");
+                            }
+                            /* if (result !== false) {
+                                modal.close();
+                                controller.addCollaborator(controller, result[0]);
+                                controller.model.collaborators.push(result[0]);
+                                controller.model.workingCollaborators.push(result[0]);
+                            } */
+                        }
+                    });
+                }
+            }
+        });
     }
 
     clearContainer(controller) {
@@ -286,51 +327,7 @@ class Controller {
     addCollaboratorBtnEvent(controller, event) {
         var event = event || window.event;
 
-        var modal = $.sweetModal({
-            title: 'Create collaborator',
-            content: `<form action="/daw/index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
-                        <div class="md-form">
-                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control">
-                            <label for="title">Title</label>
-                        </div>
-                        <div class="md-form">
-                        <textarea class="md-textarea form-control" placeholder="" id="description" name="description">Test</textarea>
-                        <label for="description">Description</label>
-                        </div>
-                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="createCollaborator" id="createCollaborator" value="Create collaborator">
-                        </div>
-                    </form>`,
-            theme: $.sweetModal.THEME_DARK
-        });
-        modal.params["onOpen"] = function () {
-            $("#formCreateCollaborator").on("submit", function (event) {
-                var event = event || window.event;
-                event.preventDefault();
-
-                $.ajax({
-                    url: "/daw/index.php?ctl=createCollaborators",
-                    data: {
-                        title: $("#title").val(),
-                        description: $("#description").val(),
-                        id_project: controller.model.projectId,
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        if (result !== false) {
-                            modal.close();
-                            controller.addCollaborator(controller, result[0]);
-                            controller.model.collaborators.push(result[0]);
-                            controller.model.workingCollaborators.push(result[0]);
-                        }
-                    }
-                });
-
-            });
-        };
-    }
-
-    //pagination
+    };
 }
 
 const collaboratorsController = new Controller(
