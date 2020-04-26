@@ -1,5 +1,12 @@
 <div class="w-100 h-100 tabContent d-block" id="tabContent4">
+
     <div class="md-form input-group col my-2">
+        <div class="input-group-prepend">
+            <div class="dashboardsCount align-self-center mx-2 text-white">
+                <span class="numberOfCollaborators">0</span>&nbsp;
+                <span class="font-weight-bold">collaborators(s)</span>
+            </div>
+        </div>
         <input type="text" class="form-control pl-0 text-white rounded-0" name="searchCollaborator"
             id="searchCollaborator" placeholder="Collaborator's username">
         <div class="input-group-append">
