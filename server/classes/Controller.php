@@ -60,7 +60,7 @@ class Controller
             if (is_null($projectData)) {
                 header("Location: /daw/projects/");
             }
-            $viewParams["projectData"] = getProjectDetails();
+            $viewParams["projectData"] = $this->getProjectDetails();
 
             /* $sessions = Sessions::getInstance();
             $projectDataFromSession = $sessions->getSession("projectData");

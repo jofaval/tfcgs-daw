@@ -53,7 +53,7 @@ class AjaxController
     //Function to getProjectDetails
     public function getProjectDetails()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["id"], "Controller");
     }
 
     //Function to getProjectsOfUser
