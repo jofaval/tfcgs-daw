@@ -1,13 +1,12 @@
 <div
     class="row dashboardMenu d-flex justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0 grey darken-2">
-    <div class="projectsCount ml-3">
-        <span class="numberOfProjects">15</span>&nbsp;
+    <div class="dashboardsCount ml-3">
+        <span class="numberOfDashboards">15</span>&nbsp;
         <span class="font-weight-bold">dashboard(s)</span>
     </div>
-    <div class="btn-group projectsBtnFilters">
-        <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
-        <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
-        <div class="projectsBtnShared btn btn-sm btn-primary">Shared</div>
+    <div class="btn-group dashboardsBtnFilters">
+        <div class="dashboardsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
+        <div class="dashboardsBtnCreated btn btn-sm btn-success">Created</div>
     </div>
     <div class="row w-auto mx-2">
         Show&nbsp;
@@ -20,9 +19,9 @@
         </select>
         &nbsp;row(s).
     </div>
-    <div class="btn btn-success btn-sm projectBtnAdd">+ Add</div>
+    <div class="btn btn-success btn-sm dashboardBtnAdd">+ Add</div>
     <div class="md-form input-group col my-2">
-        <input type="search" class="form-control text-white pl-0 rounded-0" name="projectSearch" id="projectSearch"
+        <input type="search" class="form-control text-white pl-0 rounded-0" name="dashboardSearch" id="dashboardSearch"
             placeholder="Search...">
         <div class="input-group-append">
             <span class="btn btn-sm btn-primary m-0 input-group-text md-addon">Search</span>
@@ -30,7 +29,7 @@
     </div>
 </div>
 <div class="grey darken-3 m-0 mx-auto px-2 pt-2">
-    <div class="projectsContainer text-white text-center col-md-10 m-0 mx-auto">
+    <div class="dashboardsContainer text-white text-center col-md-10 m-0 mx-auto">
     </div>
     <div class="row d-flex justify-content-center py-3">
         <nav aria-label="Page navigation example" class="bg-transparent">
