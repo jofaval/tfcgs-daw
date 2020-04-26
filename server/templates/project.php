@@ -41,7 +41,7 @@ $breadcrumb = [
 </ul>
 <div class="w-100 p-0">
     <div class="row py-5 projectHeader m-0">
-        <div class="projectImageContainer col-3">
+        <div class="projectImageContainer">
             <img class="projectImage mx-5" src="/daw/img/profile-pic.png" alt="" width="200">
         </div>
         <div class="display-none display-sm-block projectDetails text-white col">
@@ -50,7 +50,7 @@ $breadcrumb = [
                     id="projectCreator"
                     class="font-weight-bold text-white"><?php echo $projectData["projectCreator"]; ?></a></p>
             <p class="description"><?php echo $projectData["projectDescription"]; ?></p>
-            <a href="" class=" text-white">
+            <a href="" class="">
                 Change project information...<span><i class="fa fa-pencil"></i></span>
             </a>
         </div>
