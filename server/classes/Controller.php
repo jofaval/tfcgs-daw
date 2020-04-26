@@ -113,7 +113,7 @@ class Controller
         $id_project = Utils::getCleanedData("id");
 
         return $sqlUtils->complexQuery("SELECT projects.title as 'projectTitle', projects.description as 'projectDescription', CONCAT(clients.name, ' ', clients.surname) as 'projectCreator', users.username as 'projectCreatorUsername', projects.creation_date as 'projectCreationDate',
-        collaborators.starting_date 'collaborationStartingDate', collaborators.id_collaborator as 'collaborator', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
+        collaborators.starting_date as 'collaborationStartingDate', collaborators.id_collaborator as 'collaborator', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
         FROM `projects` LEFT JOIN `collaborators` on (collaborators.id_project = projects.id)
             LEFT JOIN `permissions` on (collaborators.level = permissions.level)
             LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id) or (projects.id_creator = clients.id)
