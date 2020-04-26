@@ -34,6 +34,8 @@ class Projects implements CRUD
 
         if (count($result) == 0) {
             $params["description"] = $this->description;
+            $date = new DateTime();
+            $params["creation_date"] = $date->format("Y-m-d H:i:s");
             $sqlUtils->insert(Projects::$table, $params);
             return $sqlUtils->query(Projects::$table, $params);
         }
