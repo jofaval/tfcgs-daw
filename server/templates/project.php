@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "projects.css"];?>
-<?php $optionalScripts = ["js/ProjectManagementMvc.js"];?>
+<?php $optionalScripts = [/* "js/ProjectManagementMvc.js" */];?>
 <?php $title = $viewParams["title"];?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
@@ -57,15 +57,15 @@ $breadcrumb = [
     </div>
     <div class="row tabs shadow w-100 m-0 grey darken-2 text-white">
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/overview/"
-            class="tab p-3 <?php echo $tabName == "overview" ? "active" : ""; ?>">General</a>
+            class="tab p-3 text-white <?php echo $tabName == "overview" ? "active" : ""; ?>">General</a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
-            class="tab p-3 <?php echo $tabName == "dashboards" ? "active" : ""; ?>">Tableros</a>
+            class="tab p-3 text-white <?php echo $tabName == "dashboards" ? "active" : ""; ?>">Tableros</a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/"
-            class="tab p-3 <?php echo $tabName == "diary" ? "active" : ""; ?>">Diario</a>
+            class="tab p-3 text-white <?php echo $tabName == "diary" ? "active" : ""; ?>">Diario</a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/collaborators/"
-            class="tab p-3 <?php echo $tabName == "collaborators" ? "active" : ""; ?>">Colaboradores</a>
+            class="tab p-3 text-white <?php echo $tabName == "collaborators" ? "active" : ""; ?>">Colaboradores</a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/details/"
-            class="tab p-3 <?php echo $tabName == "details" ? "active" : ""; ?>">Detalles</a>
+            class="tab p-3 text-white <?php echo $tabName == "details" ? "active" : ""; ?>">Detalles</a>
     </div>
     <div class="row grey darken-3 m-0 px-2">
         <?php
