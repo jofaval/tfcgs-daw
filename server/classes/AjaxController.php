@@ -50,6 +50,12 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
     }
 
+    //Function to getProjectDetails
+    public function getProjectDetails()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
+    }
+
     //Function to getProjectsOfUser
     public function getProjectsOfUser()
     {

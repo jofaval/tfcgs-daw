@@ -43,6 +43,7 @@ class Controller
             "secondaryId" => "",
             "elementName" => "Element title",
             "tabName" => "general",
+            "projectData" => "general",
         ];
 
         if (Utils::exists("id")) {
@@ -53,11 +54,13 @@ class Controller
             }
             $viewParams["tabName"] = $tabName;
 
+            $sqlUtils = new SQLUtils(Model::getInstance());
             $project = new Projects();
             $projectData = $project->query()[0];
             if (is_null($projectData)) {
                 header("Location: /daw/projects/");
             }
+            $viewParams["projectData"] = getProjectDetails();
 
             /* $sessions = Sessions::getInstance();
             $projectDataFromSession = $sessions->getSession("projectData");
@@ -102,6 +105,21 @@ class Controller
                 (SELECT collaborators.id_collaborator
                      FROM collaborators
                          WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16"]);
+    }
+
+    public function getProjectDetails()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $id_project = Utils::getCleanedData("id");
+
+        return $sqlUtils->complexQuery("SELECT projects.title as 'projectTitle', projects.description as 'projectDescription', CONCAT(clients.name, ' ', clients.surname) as 'projectCreator', users.username as 'projectCreatorUsername', projects.creation_date as 'projectCreationDate',
+        collaborators.starting_date 'collaborationStartingDate', collaborators.id_collaborator as 'collaborator', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
+        FROM `projects` LEFT JOIN `collaborators` on (collaborators.id_project = projects.id)
+            LEFT JOIN `permissions` on (collaborators.level = permissions.level)
+            LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id) or (projects.id_creator = clients.id)
+            LEFT JOIN `users` on (clients.id = users.id_client)
+            WHERE projects.id = :id_project and (projects.id_creator = :id_creator or
+            (collaborators.id_project = :id_project and collaborators.id_collaborator = :id_creator))", ["id_creator" => "16", "id_project" => $id_project])[0];
     }
 
     public function bookmarkProject()
