@@ -38,7 +38,7 @@ $breadcrumb = [
 <ul id="projectDiaryNavigationScheme" class="position-absolute d-none z-index-overlap bg-light shadow">
 
 </ul>
-<div class="container p-0">
+<div class=" p-0">
     <div class="row py-5 projectHeader m-0">
         <div class="projectImageContainer col-3">
             <img class="projectImage mx-5" src="../img/profile-pic.png" alt="" width="200">

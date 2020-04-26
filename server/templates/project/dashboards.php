@@ -28,8 +28,8 @@
         </div>
     </div>
 </div>
-<div class="grey darken-3 m-0 mx-auto px-2 pt-2">
-    <div class="dashboardsContainer text-white text-center col-md-10 m-0 mx-auto">
+<div class="col-md-10 m-0 mx-auto">
+    <div class="dashboardsContainer text-white text-center">
     </div>
     <div class="row d-flex justify-content-center py-3">
         <nav aria-label="Page navigation example" class="bg-transparent">
