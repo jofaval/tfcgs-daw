@@ -37,7 +37,6 @@ class SQLUtils
             $this->$model->rollback();
         } catch (PDOException $ex) {
             return $ex;
-            return $ex;
             $this->$model->rollback();
         }
 
