@@ -17,6 +17,11 @@ class TaskListItemLists implements CRUD
     //Foreign Keys
     private $order_criteria;
 
+    public function __construct()
+    {
+        $this->fill();
+    }
+
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());

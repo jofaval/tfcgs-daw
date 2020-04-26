@@ -14,6 +14,11 @@ class Collaborators implements CRUD
     //Foreign Keys
     private $level;
 
+    public function __construct()
+    {
+        $this->fill();
+    }
+
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -24,7 +29,6 @@ class Collaborators implements CRUD
         ];
 
         $date = new DateTime();
-        $params["starting_date"] = $date->format("Y-m-d H:I:S");
 
         return $sqlUtils->insert($this->$table, $params);
     }

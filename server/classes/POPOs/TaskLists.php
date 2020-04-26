@@ -15,6 +15,11 @@ class TaskLists implements CRUD
     //Foreign Keys
     private $id_creator;
 
+    public function __construct()
+    {
+        $this->fill();
+    }
+
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());

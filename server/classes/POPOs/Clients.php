@@ -1,102 +1,103 @@
 <?php
 
-class Clients implements CRUD 
+class Clients implements CRUD
 {
-	private $table = "clients";
+    private $table = "clients";
 
-	//Primary Keys
-	private $id;
+    //Primary Keys
+    private $id;
 
-	//Table Keys
-	private $first_name;
-	private $second_name;
-	private $email;
+    //Table Keys
+    private $first_name;
+    private $second_name;
+    private $email;
 
-	//Foreign Keys
+    //Foreign Keys
 
-	public function create()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function __construct()
+    {
+        $this->fill();
+    }
 
-		$params = [
-			"id" => $this->$id,
-			"first_name" => $this->$first_name,
-			"second_name" => $this->$second_name,
-			"email" => $this->$email,
-		];
+    public function create()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		return $sqlUtils->insert($params);
-	}
+        $params = [
+            "id" => $this->$id,
+            "first_name" => $this->$first_name,
+            "second_name" => $this->$second_name,
+            "email" => $this->$email,
+        ];
 
-	public function update()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->insert($params);
+    }
 
-		$toModify = [
-			"first_name" => $this->$first_name,
-			"second_name" => $this->$second_name,
-			"email" => $this->$email,
-		];
+    public function update()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$identificationParams = [
-			"id" => $this->$id,
-		];
+        $toModify = [
+            "first_name" => $this->$first_name,
+            "second_name" => $this->$second_name,
+            "email" => $this->$email,
+        ];
 
-		return $sqlUtils->update($this->$table, $toModify, $identificationParams);
-	}
+        $identificationParams = [
+            "id" => $this->$id,
+        ];
 
-	public function delete()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+    }
 
-		$params = [
-			"id" => $this->$id,
-		];
+    public function delete()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		return $sqlUtils->delete($this->$table, $params);
-	}
+        $params = [
+            "id" => $this->$id,
+        ];
 
-	public function query()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->delete($this->$table, $params);
+    }
 
-		$params = [
-			"id" => $this->$id,
-		];
+    public function query()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		return $sqlUtils->query($this->$table, $params);
-	}
+        $params = [
+            "id" => $this->$id,
+        ];
 
-	public function enable()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->query($this->$table, $params);
+    }
 
-		$identificationParams = [
-			"id" => $this->$id,
-		];
+    public function enable()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
-	}
+        $identificationParams = [
+            "id" => $this->$id,
+        ];
 
+        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+    }
 
-	public function fill()
-	{
-		$this->$id = Utils::getCleanedData("id");
-		$this->$first_name = Utils::getCleanedData("firstName");
-		$this->$second_name = Utils::getCleanedData("secondName");
-		$this->$email = Utils::getCleanedData("email");
-	}
+    public function fill()
+    {
+        $this->$id = Utils::getCleanedData("id");
+        $this->$first_name = Utils::getCleanedData("firstName");
+        $this->$second_name = Utils::getCleanedData("secondName");
+        $this->$email = Utils::getCleanedData("email");
+    }
 
-
-	public function parse()
-	{
-		return json_encode([
-			"id" => $this->$id,
-			"firstName" => $this->$first_name,
-			"secondName" => $this->$second_name,
-			"email" => $this->$email,
-		]);
-	}
-} 
-
-
+    public function parse()
+    {
+        return json_encode([
+            "id" => $this->$id,
+            "firstName" => $this->$first_name,
+            "secondName" => $this->$second_name,
+            "email" => $this->$email,
+        ]);
+    }
+}

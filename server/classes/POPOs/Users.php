@@ -1,102 +1,103 @@
 <?php
 
-class Users implements CRUD 
+class Users implements CRUD
 {
-	private $table = "users";
+    private $table = "users";
 
-	//Primary Keys
-	private $id;
+    //Primary Keys
+    private $id;
 
-	//Table Keys
-	private $username;
-	private $password;
+    //Table Keys
+    private $username;
+    private $password;
 
-	//Foreign Keys
-	private $level;
+    //Foreign Keys
+    private $level;
 
-	public function create()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function __construct()
+    {
+        $this->fill();
+    }
 
-		$params = [
-			"id" => $this->$id,
-			"username" => $this->$username,
-			"password" => $this->$password,
-			"level" => $this->$level,
-		];
+    public function create()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		return $sqlUtils->insert($params);
-	}
+        $params = [
+            "id" => $this->$id,
+            "username" => $this->$username,
+            "password" => $this->$password,
+            "level" => $this->$level,
+        ];
 
-	public function update()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->insert($params);
+    }
 
-		$toModify = [
-			"username" => $this->$username,
-			"password" => $this->$password,
-			"level" => $this->$level,
-		];
+    public function update()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$identificationParams = [
-			"id" => $this->$id,
-		];
+        $toModify = [
+            "username" => $this->$username,
+            "password" => $this->$password,
+            "level" => $this->$level,
+        ];
 
-		return $sqlUtils->update($this->$table, $toModify, $identificationParams);
-	}
+        $identificationParams = [
+            "id" => $this->$id,
+        ];
 
-	public function delete()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+    }
 
-		$params = [
-			"id" => $this->$id,
-		];
+    public function delete()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		return $sqlUtils->delete($this->$table, $params);
-	}
+        $params = [
+            "id" => $this->$id,
+        ];
 
-	public function query()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->delete($this->$table, $params);
+    }
 
-		$params = [
-			"id" => $this->$id,
-		];
+    public function query()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		return $sqlUtils->query($this->$table, $params);
-	}
+        $params = [
+            "id" => $this->$id,
+        ];
 
-	public function enable()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->query($this->$table, $params);
+    }
 
-		$identificationParams = [
-			"id" => $this->$id,
-		];
+    public function enable()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
-	}
+        $identificationParams = [
+            "id" => $this->$id,
+        ];
 
+        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+    }
 
-	public function fill()
-	{
-		$this->$id = Utils::getCleanedData("id");
-		$this->$username = Utils::getCleanedData("username");
-		$this->$password = Utils::getCleanedData("password");
-		$this->$level = Utils::getCleanedData("level");
-	}
+    public function fill()
+    {
+        $this->$id = Utils::getCleanedData("id");
+        $this->$username = Utils::getCleanedData("username");
+        $this->$password = Utils::getCleanedData("password");
+        $this->$level = Utils::getCleanedData("level");
+    }
 
-
-	public function parse()
-	{
-		return json_encode([
-			"id" => $this->$id,
-			"username" => $this->$username,
-			"password" => $this->$password,
-			"level" => $this->$level,
-		]);
-	}
-} 
-
-
+    public function parse()
+    {
+        return json_encode([
+            "id" => $this->$id,
+            "username" => $this->$username,
+            "password" => $this->$password,
+            "level" => $this->$level,
+        ]);
+    }
+}

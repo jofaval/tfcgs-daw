@@ -15,6 +15,11 @@ class ProjectDiary implements CRUD
 
     //Foreign Keys
 
+    public function __construct()
+    {
+        $this->fill();
+    }
+
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
