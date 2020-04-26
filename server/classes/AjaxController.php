@@ -50,6 +50,12 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
     }
 
+    //Function to doesUsernameExists
+    public function doesUsernameExists()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["username"], "Controller");
+    }
+
     //Function to bookmarkDashboard
     public function bookmarkDashboard()
     {

@@ -13,6 +13,7 @@ $map['getDashboardsOfProject'] = array('controller' => 'AjaxController', 'action
 $map['getCollaboratorsOfProject'] = array('controller' => 'AjaxController', 'action' => 'getCollaboratorsOfProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['bookmarkProject'] = array('controller' => 'AjaxController', 'action' => 'bookmarkProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['bookmarkDashboard'] = array('controller' => 'AjaxController', 'action' => 'bookmarkDashboard', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['doesUsernameExists'] = array('controller' => 'AjaxController', 'action' => 'doesUsernameExists', 'access' => Config::$ACCESS_LEVEL_GUEST);
 
 $map['createDashboards'] = array('controller' => 'AjaxController', 'action' => 'createDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['updateDashboards'] = array('controller' => 'AjaxController', 'action' => 'updateDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);

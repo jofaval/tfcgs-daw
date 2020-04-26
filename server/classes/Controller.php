@@ -223,6 +223,14 @@ class Controller
             WHERE collaborators.id_project = :id_project", ["id_project" => $id_project]);
     }
 
+    public function doesUsernameExists()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $username = Utils::getCleanedData("username");
+
+        return count($sqlUtils->query("users", ["username" => $username])) > 0;
+    }
+
     public function error404()
     {
         require __DIR__ . '/../templates/error404.php';
