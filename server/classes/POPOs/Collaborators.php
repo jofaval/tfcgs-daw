@@ -33,7 +33,18 @@ class Collaborators implements CRUD
         $date = new DateTime();
         $params["starting_date"] = $date->format("Y-m-d H:i:s");
 
-        return $sqlUtils->insert($this->table, $params);
+        $result = $sqlUtils->insert($this->table, $params);
+
+        if ($result) {
+            $params = [
+                "id_project" => $this->id_project,
+                "id_collaborator" => $this->id_collaborator,
+                "starting_date" => $this->starting_date,
+            ];
+            return $sqlUtils->query($this->table, $params);
+        }
+
+        return $result;
     }
 
     public function update()
