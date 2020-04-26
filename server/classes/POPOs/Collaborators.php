@@ -29,7 +29,6 @@ class Collaborators implements CRUD
             "level" => '1',
             "enabled" => '1',
         ];
-        return $params;
 
         $date = new DateTime();
         $params["starting_date"] = $date->format("Y-m-d H:i:s");
