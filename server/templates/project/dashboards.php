@@ -9,15 +9,15 @@
         <div class="dashboardsBtnCreated btn btn-sm btn-success">Created</div>
     </div>
     <div class="row w-auto mx-2">
-        Show&nbsp;
-        <select class="custom-select custom-select-sm w-auto" id="selectNumberOfRows">
+        <p class="m-0 align-self-center text-white">Show&nbsp;</p>
+        <select class="custom-select custom-select-sm align-self-center w-auto" id="selectNumberOfRows">
             <option value="1">1</option>
             <option value="2">2</option>
             <option selected value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        &nbsp;row(s).
+        <p class="m-0 align-self-center text-white">&nbsp;row(s).</p>
     </div>
     <div class="btn btn-success btn-sm dashboardBtnAdd">+ Add</div>
     <div class="md-form input-group col my-2">

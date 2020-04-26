@@ -7,6 +7,17 @@
                 <span class="font-weight-bold">collaborators(s)</span>
             </div>
         </div>
+        <div class="row w-auto mx-2">
+            <p class="m-0 align-self-center text-white">Show&nbsp;</p>
+            <select class="custom-select custom-select-sm align-self-center w-auto" id="selectNumberOfRows">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <p class="m-0 align-self-center text-white">&nbsp;row(s).</p>
+        </div>
         <input type="text" class="form-control pl-0 text-white rounded-0" name="searchCollaborator"
             id="searchCollaborator" placeholder="Collaborator's username">
         <div class="input-group-append">
@@ -19,16 +30,11 @@
         <div class="row d-flex justify-content-center py-3">
             <nav aria-label="Page navigation example" class="bg-transparent">
                 <ul class="pagination pg-blue mb-0">
-                    <li class="page-item ">
-                        <a class="page-link" tabindex="-1">Previous</a>
+                    <li class="page-item nav-previous">
+                        <a class="page-link text-white" tabindex="-1">Previous</a>
                     </li>
-                    <li class="page-item"><a class="page-link">1</a></li>
-                    <li class="page-item active">
-                        <a class="page-link">2 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="page-item"><a class="page-link">3</a></li>
-                    <li class="page-item ">
-                        <a class="page-link">Next</a>
+                    <li class="page-item nav-next">
+                        <a class="page-link text-white">Next</a>
                     </li>
                 </ul>
             </nav>
