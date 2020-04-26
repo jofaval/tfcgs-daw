@@ -8,7 +8,7 @@ class TaskLists implements CRUD
     private $id;
 
     //Table Keys
-    private $project_id;
+    private $id_project;
     private $title;
     private $creation_date;
 
@@ -21,7 +21,7 @@ class TaskLists implements CRUD
 
         $params = [
             "id" => $this->$id,
-            "project_id" => $this->$project_id,
+            "id_project" => $this->$id_project,
             "title" => $this->$title,
             "creation_date" => $this->$creation_date,
             "id_creator" => $this->$id_creator,
@@ -35,7 +35,7 @@ class TaskLists implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "project_id" => $this->$project_id,
+            "id_project" => $this->$id_project,
             "title" => $this->$title,
             "creation_date" => $this->$creation_date,
             "id_creator" => $this->$id_creator,
@@ -84,7 +84,7 @@ class TaskLists implements CRUD
     public function fill()
     {
         $this->$id = Utils::getCleanedData("id");
-        $this->$project_id = Utils::getCleanedData("projectId");
+        $this->$id_project = Utils::getCleanedData("projectId");
         $this->$title = Utils::getCleanedData("title");
         $this->$creation_date = Utils::getCleanedData("creationDate");
         $this->$id_creator = Sessions::getInstance()->getSession("userId");
@@ -94,7 +94,7 @@ class TaskLists implements CRUD
     {
         return json_encode([
             "id" => $this->$id,
-            "projectId" => $this->$project_id,
+            "projectId" => $this->$id_project,
             "title" => $this->$title,
             "creationDate" => $this->$creation_date,
             "creatorId" => $this->$id_creator,

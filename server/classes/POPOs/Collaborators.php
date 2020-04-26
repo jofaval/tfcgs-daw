@@ -1,108 +1,104 @@
 <?php
 
-class Collaborators implements CRUD 
+class Collaborators implements CRUD
 {
-	private $table = "collaborators";
+    private $table = "collaborators";
 
-	//Primary Keys
-	private $project_id;
-	private $collaborator_id;
-	private $starting_date;
+    //Primary Keys
+    private $id_project;
+    private $collaborator_id;
+    private $starting_date;
 
-	//Table Keys
+    //Table Keys
 
-	//Foreign Keys
-	private $level;
+    //Foreign Keys
+    private $level;
 
-	public function create()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function create()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"project_id" => $this->$project_id,
-			"collaborator_id" => $this->$collaborator_id,
-			"starting_date" => $this->$starting_date,
-			"level" => $this->$level,
-		];
+        $params = [
+            "id_project" => $this->$id_project,
+            "collaborator_id" => $this->$collaborator_id,
+            "starting_date" => $this->$starting_date,
+            "level" => $this->$level,
+        ];
 
-		return $sqlUtils->insert($params);
-	}
+        return $sqlUtils->insert($params);
+    }
 
-	public function update()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function update()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$toModify = [
-			"level" => $this->$level,
-		];
+        $toModify = [
+            "level" => $this->$level,
+        ];
 
-		$identificationParams = [
-			"project_id" => $this->$project_id,
-			"collaborator_id" => $this->$collaborator_id,
-			"starting_date" => $this->$starting_date,
-		];
+        $identificationParams = [
+            "id_project" => $this->$id_project,
+            "collaborator_id" => $this->$collaborator_id,
+            "starting_date" => $this->$starting_date,
+        ];
 
-		return $sqlUtils->update($this->$table, $toModify, $identificationParams);
-	}
+        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+    }
 
-	public function delete()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function delete()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"project_id" => $this->$project_id,
-			"collaborator_id" => $this->$collaborator_id,
-			"starting_date" => $this->$starting_date,
-		];
+        $params = [
+            "id_project" => $this->$id_project,
+            "collaborator_id" => $this->$collaborator_id,
+            "starting_date" => $this->$starting_date,
+        ];
 
-		return $sqlUtils->delete($this->$table, $params);
-	}
+        return $sqlUtils->delete($this->$table, $params);
+    }
 
-	public function query()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function query()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$params = [
-			"project_id" => $this->$project_id,
-			"collaborator_id" => $this->$collaborator_id,
-			"starting_date" => $this->$starting_date,
-		];
+        $params = [
+            "id_project" => $this->$id_project,
+            "collaborator_id" => $this->$collaborator_id,
+            "starting_date" => $this->$starting_date,
+        ];
 
-		return $sqlUtils->query($this->$table, $params);
-	}
+        return $sqlUtils->query($this->$table, $params);
+    }
 
-	public function enable()
-	{
-		$sqlUtils = new SQLUtils(Model::getInstance());
+    public function enable()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
 
-		$identificationParams = [
-			"project_id" => $this->$project_id,
-			"collaborator_id" => $this->$collaborator_id,
-			"starting_date" => $this->$starting_date,
-		];
+        $identificationParams = [
+            "id_project" => $this->$id_project,
+            "collaborator_id" => $this->$collaborator_id,
+            "starting_date" => $this->$starting_date,
+        ];
 
-		return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
-	}
+        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+    }
 
+    public function fill()
+    {
+        $this->$id_project = Utils::getCleanedData("projectId");
+        $this->$collaborator_id = Utils::getCleanedData("collaboratorId");
+        $this->$starting_date = Utils::getCleanedData("startingDate");
+        $this->$level = Utils::getCleanedData("level");
+    }
 
-	public function fill()
-	{
-		$this->$project_id = Utils::getCleanedData("projectId");
-		$this->$collaborator_id = Utils::getCleanedData("collaboratorId");
-		$this->$starting_date = Utils::getCleanedData("startingDate");
-		$this->$level = Utils::getCleanedData("level");
-	}
-
-
-	public function parse()
-	{
-		return json_encode([
-			"projectId" => $this->$project_id,
-			"collaboratorId" => $this->$collaborator_id,
-			"startingDate" => $this->$starting_date,
-			"level" => $this->$level,
-		]);
-	}
-} 
-
-
+    public function parse()
+    {
+        return json_encode([
+            "projectId" => $this->$id_project,
+            "collaboratorId" => $this->$collaborator_id,
+            "startingDate" => $this->$starting_date,
+            "level" => $this->$level,
+        ]);
+    }
+}

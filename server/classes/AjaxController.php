@@ -131,25 +131,25 @@ class AjaxController
     //Function to createCollaborators
     public function createCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["project_id", "collaborator_id", "starting_date", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "collaborator_id", "starting_date", "level"]);
     }
 
     //Function to updateCollaborators
     public function updateCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["project_id", "collaborator_id", "starting_date", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "collaborator_id", "starting_date", "level"]);
     }
 
     //Function to queryCollaborators
     public function queryCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["project_id", "collaborator_id", "starting_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "collaborator_id", "starting_date"]);
     }
 
     //Function to deleteCollaborators
     public function deleteCollaborators()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["project_id", "collaborator_id", "starting_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "collaborator_id", "starting_date"]);
     }
 
     //Function to createGlobalLevel
@@ -203,25 +203,25 @@ class AjaxController
     //Function to createProjectDiary
     public function createProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "project_id", "id_creator", "content", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project", "id_creator", "content", "creation_date"]);
     }
 
     //Function to updateProjectDiary
     public function updateProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "project_id", "id_creator", "content", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project", "id_creator", "content", "creation_date"]);
     }
 
     //Function to queryProjectDiary
     public function queryProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "project_id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project"]);
     }
 
     //Function to deleteProjectDiary
     public function deleteProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "project_id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project"]);
     }
 
     //Function to createProjects
@@ -299,13 +299,13 @@ class AjaxController
     //Function to createTaskLists
     public function createTaskLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "project_id", "title", "creation_date", "id_creator"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_project", "title", "creation_date", "id_creator"]);
     }
 
     //Function to updateTaskLists
     public function updateTaskLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "project_id", "title", "creation_date", "id_creator"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_project", "title", "creation_date", "id_creator"]);
     }
 
     //Function to queryTaskLists

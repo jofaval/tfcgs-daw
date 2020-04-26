@@ -6,7 +6,7 @@ class ProjectDiary implements CRUD
 
     //Primary Keys
     private $day;
-    private $project_id;
+    private $id_project;
 
     //Table Keys
     private $id_creator;
@@ -21,7 +21,7 @@ class ProjectDiary implements CRUD
 
         $params = [
             "day" => $this->$day,
-            "project_id" => $this->$project_id,
+            "id_project" => $this->$id_project,
             "id_creator" => $this->$id_creator,
             "content" => $this->$content,
             "creation_date" => $this->$creation_date,
@@ -42,7 +42,7 @@ class ProjectDiary implements CRUD
 
         $identificationParams = [
             "day" => $this->$day,
-            "project_id" => $this->$project_id,
+            "id_project" => $this->$id_project,
         ];
 
         return $sqlUtils->update($this->$table, $toModify, $identificationParams);
@@ -54,7 +54,7 @@ class ProjectDiary implements CRUD
 
         $params = [
             "day" => $this->$day,
-            "project_id" => $this->$project_id,
+            "id_project" => $this->$id_project,
         ];
 
         return $sqlUtils->delete($this->$table, $params);
@@ -66,7 +66,7 @@ class ProjectDiary implements CRUD
 
         $params = [
             "day" => $this->$day,
-            "project_id" => $this->$project_id,
+            "id_project" => $this->$id_project,
         ];
 
         return $sqlUtils->query($this->$table, $params);
@@ -78,7 +78,7 @@ class ProjectDiary implements CRUD
 
         $identificationParams = [
             "day" => $this->$day,
-            "project_id" => $this->$project_id,
+            "id_project" => $this->$id_project,
         ];
 
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
@@ -87,7 +87,7 @@ class ProjectDiary implements CRUD
     public function fill()
     {
         $this->$day = Utils::getCleanedData("day");
-        $this->$project_id = Utils::getCleanedData("projectId");
+        $this->$id_project = Utils::getCleanedData("projectId");
         $this->$id_creator = Sessions::getInstance()->getSession("userId");
         $this->$content = Utils::getCleanedData("content");
         $this->$creation_date = Utils::getCleanedData("creationDate");
@@ -97,7 +97,7 @@ class ProjectDiary implements CRUD
     {
         return json_encode([
             "day" => $this->$day,
-            "projectId" => $this->$project_id,
+            "projectId" => $this->$id_project,
             "creatorId" => $this->$id_creator,
             "content" => $this->$content,
             "creationDate" => $this->$creation_date,

@@ -64,9 +64,9 @@ class AjaxController {
 	}
 
 	//Function to createCollaborators
-	static createCollaborators(project_id, collaborator_id, starting_date, level) {
+	static createCollaborators(id_project, collaborator_id, starting_date, level) {
 		AjaxController.genericAjaxRequest("createCollaborators", {
-			"project_id": project_id,
+			"id_project": id_project,
 			"collaborator_id": collaborator_id,
 			"starting_date": starting_date,
 			"level": level,
@@ -74,9 +74,9 @@ class AjaxController {
 	}
 
 	//Function to updateCollaborators
-	static updateCollaborators(project_id, collaborator_id, starting_date, level) {
+	static updateCollaborators(id_project, collaborator_id, starting_date, level) {
 		AjaxController.genericAjaxRequest("updateCollaborators", {
-			"project_id": project_id,
+			"id_project": id_project,
 			"collaborator_id": collaborator_id,
 			"starting_date": starting_date,
 			"level": level,
@@ -84,18 +84,18 @@ class AjaxController {
 	}
 
 	//Function to queryCollaborators
-	static queryCollaborators(project_id, collaborator_id, starting_date) {
+	static queryCollaborators(id_project, collaborator_id, starting_date) {
 		AjaxController.genericAjaxRequest("queryCollaborators", {
-			"project_id": project_id,
+			"id_project": id_project,
 			"collaborator_id": collaborator_id,
 			"starting_date": starting_date,
 		}, success);
 	}
 
 	//Function to deleteCollaborators
-	static deleteCollaborators(project_id, collaborator_id, starting_date) {
+	static deleteCollaborators(id_project, collaborator_id, starting_date) {
 		AjaxController.genericAjaxRequest("deleteCollaborators", {
-			"project_id": project_id,
+			"id_project": id_project,
 			"collaborator_id": collaborator_id,
 			"starting_date": starting_date,
 		}, success);
@@ -166,10 +166,10 @@ class AjaxController {
 	}
 
 	//Function to createProjectDiary
-	static createProjectDiary(day, project_id, id_creator, content, creation_date) {
+	static createProjectDiary(day, id_project, id_creator, content, creation_date) {
 		AjaxController.genericAjaxRequest("createProjectDiary", {
 			"day": day,
-			"project_id": project_id,
+			"id_project": id_project,
 			"id_creator": id_creator,
 			"content": content,
 			"creation_date": creation_date,
@@ -177,10 +177,10 @@ class AjaxController {
 	}
 
 	//Function to updateProjectDiary
-	static updateProjectDiary(day, project_id, id_creator, content, creation_date) {
+	static updateProjectDiary(day, id_project, id_creator, content, creation_date) {
 		AjaxController.genericAjaxRequest("updateProjectDiary", {
 			"day": day,
-			"project_id": project_id,
+			"id_project": id_project,
 			"id_creator": id_creator,
 			"content": content,
 			"creation_date": creation_date,
@@ -188,18 +188,18 @@ class AjaxController {
 	}
 
 	//Function to queryProjectDiary
-	static queryProjectDiary(day, project_id) {
+	static queryProjectDiary(day, id_project) {
 		AjaxController.genericAjaxRequest("queryProjectDiary", {
 			"day": day,
-			"project_id": project_id,
+			"id_project": id_project,
 		}, success);
 	}
 
 	//Function to deleteProjectDiary
-	static deleteProjectDiary(day, project_id) {
+	static deleteProjectDiary(day, id_project) {
 		AjaxController.genericAjaxRequest("deleteProjectDiary", {
 			"day": day,
-			"project_id": project_id,
+			"id_project": id_project,
 		}, success);
 	}
 
@@ -318,10 +318,10 @@ class AjaxController {
 	}
 
 	//Function to createTaskLists
-	static createTaskLists(id, project_id, title, creation_date, id_creator) {
+	static createTaskLists(id, id_project, title, creation_date, id_creator) {
 		AjaxController.genericAjaxRequest("createTaskLists", {
 			"id": id,
-			"project_id": project_id,
+			"id_project": id_project,
 			"title": title,
 			"creation_date": creation_date,
 			"id_creator": id_creator,
@@ -329,10 +329,10 @@ class AjaxController {
 	}
 
 	//Function to updateTaskLists
-	static updateTaskLists(id, project_id, title, creation_date, id_creator) {
+	static updateTaskLists(id, id_project, title, creation_date, id_creator) {
 		AjaxController.genericAjaxRequest("updateTaskLists", {
 			"id": id,
-			"project_id": project_id,
+			"id_project": id_project,
 			"title": title,
 			"creation_date": creation_date,
 			"id_creator": id_creator,
