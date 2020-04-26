@@ -210,6 +210,11 @@ class Controller
         }
     }
 
+    public function getCollaboratorsOfProject()
+    {
+
+    }
+
     public function error404()
     {
         require __DIR__ . '/../templates/error404.php';

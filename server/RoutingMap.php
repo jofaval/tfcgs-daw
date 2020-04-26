@@ -10,6 +10,7 @@ $map['404'] = array('controller' => 'Controller', 'action' => 'error404', 'acces
 $map['getProjectsOfUser'] = array('controller' => 'AjaxController', 'action' => 'getProjectsOfUser', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getProjectDetails'] = array('controller' => 'AjaxController', 'action' => 'getProjectDetails', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getDashboardsOfProject'] = array('controller' => 'AjaxController', 'action' => 'getDashboardsOfProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['getCollaboratorsOfProject'] = array('controller' => 'AjaxController', 'action' => 'getCollaboratorsOfProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['bookmarkProject'] = array('controller' => 'AjaxController', 'action' => 'bookmarkProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['bookmarkDashboard'] = array('controller' => 'AjaxController', 'action' => 'bookmarkDashboard', 'access' => Config::$ACCESS_LEVEL_GUEST);
 
