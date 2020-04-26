@@ -39,7 +39,6 @@ class Collaborators implements CRUD
             $params = [
                 "id_project" => $this->id_project,
                 "id_collaborator" => $this->id_collaborator,
-                "starting_date" => $this->starting_date,
             ];
             return $sqlUtils->query($this->table, $params);
         }
