@@ -11,10 +11,12 @@ var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm b
 var $collaboratorCard = $(`<div class="collaboratorCard rounded row col-12 col-sm m-2 m-2 bg-white">
     <img class="collaboratorImg my-2 rounded-pill" src="/daw/img/profile-pic.png" alt="">
     <div class="collaboratorDetails my-auto col">
-        <h5 class=".collaboratorName">Pepe Fabra Valverde</h5>
-        <p class="collaboratorRole font-weight-bold">Administrator</p>
+        <p class="collaboratorUsername m-0 font-weight-bold">Administrator</p>
+        <h5 class="collaboratorName m-0">Pepe Fabra Valverde</h5>
+        <p class="collaboratorRole m-0 informationText font-weight-bold">Administrator</p>
+        <div class="informationTextQuote collaboratorRoleDescription text-white p-3 position-absolute rounded z-index-overlap"></div>
     </div>
-    <div class="collaboratorProfileBtn btn btn-sm btn-primary align-self-center float-right">See profile
+    <div class="collaboratorProfileBtn btn btn-sm btn-primary  align-self-center float-right">See profile
     </div>
 </div>`);
 
@@ -54,11 +56,13 @@ class View {
 
     initializeView(container) {}
 
-    visualizeCollaborator(container, name, desc = "") {
+    visualizeCollaborator(container, json) {
         var clonedCard = $collaboratorCard.clone();
 
-        clonedCard.find(".collaboratorCardTitle").text(name);
-        clonedCard.find(".collaboratorCardDescription").text(desc);
+        clonedCard.find(".collaboratorName").text(json.collaboratorName);
+        clonedCard.find(".collaboratorUsername").text(json.collaboratorUsername);
+        clonedCard.find(".collaboratorRole").text(json.collaborationRole);
+        clonedCard.find(".collaboratorRoleDescription").text(json.collaborationRoleDescription);
 
         container.append(clonedCard);
 
@@ -142,15 +146,15 @@ class Controller {
             localStorage.setItem("numberOfRowsInCollaborators", selectNumberOfRows.val());
         });
 
-        var searchBar = $("#collaboratorSearch");
-        whenUserDoneTypingInInput(searchBar, "collaboratorSearch", function () {
+        var searchBar = $("#searchCollaborator");
+        whenUserDoneTypingInInput(searchBar, "searchCollaborator", function () {
             var content = searchBar.val().toLowerCase();
             var newCollaboratorsJSON = [];
             if (content == "") {
                 newCollaboratorsJSON = controller.model.collaborators;
             } else {
                 $(controller.model.collaborators).each(function () {
-                    if (content == "" || (!this.title.toLowerCase().includes(content) && !this.description.toLowerCase().includes(content))) {
+                    if (content == "" || (!this.collaboratorUsername.toLowerCase().includes(content) && !this.collaboratorName.toLowerCase().includes(content))) {
                         return;
                     }
 
@@ -269,7 +273,7 @@ class Controller {
         var collaboratorContainer = $(".collaboratorsContainer");
         var collaboratorRow = controller.getCollaboratorRow(controller, collaboratorContainer);
 
-        var collaborator = controller.view.visualizeCollaborator(collaboratorRow, json.title, json.description);
+        var collaborator = controller.view.visualizeCollaborator(collaboratorRow, json);
         controller.view.visualizeCollaboratorFlags(collaborator, json.created != 0);
 
         var url = `/daw/projects/id/${controller.model.projectId}/collaborators/${json.title}`;
