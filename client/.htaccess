@@ -46,6 +46,11 @@ RewriteRule ^projects/id/([^/]+)/tasklist/id/([^/]+)[/]?$ ./index.php?ctl=projec
 RewriteRule ^projects/id/([^/]+)/tasklist[/]?$ ./index.php?ctl=project&id=$1 [L]
 RewriteRule ^projects/id/([^/]+)/tasklist/id[/]?$ ./index.php?ctl=project&id=$1 [L]
 
+#Dashboard
+RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2 [L]
+#Empty params redirection
+RewriteRule ^projects/id/([^/]+)/dashboards/id[/]?$ ./index.php?ctl=project&id=$1 [L]
+
 #Diary
 RewriteRule ^projects/id/([^/]+)/diary[/]?$ ./index.php?ctl=project&id=$1&element=diary [L]
 RewriteRule ^projects/id/([^/]+)/diary/date[/]?$ ./index.php?ctl=project&id=$1&element=diary [L]

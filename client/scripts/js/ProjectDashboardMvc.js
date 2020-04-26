@@ -24,6 +24,7 @@ var $dashboardCard = $(`
 class Model {
     constructor() {
         this.paginationIndex = 1;
+        this.projectId = this.getProjectId();
     }
 
     loadDashboards(whenFinished) {
@@ -31,7 +32,7 @@ class Model {
         $.ajax({
             url: "/daw/index.php?ctl=getDashboardsOfProject",
             data: {
-                "id_project": model.getProjectId()
+                "id_project": model.projectId,
             },
             success: function (dashboards) {
                 model.dashboards = dashboards;
@@ -369,12 +370,14 @@ class Controller {
         var dashboardContainer = $(".dashboardsContainer");
         var dashboardRow = controller.getDashboardRow(controller, dashboardContainer);
 
+        console.log(json);
+
         var dashboard = controller.view.visualizeDashboard(dashboardRow, json.title, json.description);
         var bookmarkedIcon = dashboard.find(".dashboardCardBookmarkedIcon");
         bookmarkedIcon.addClass(json.bookmarked != 0 ? "active" : "");
         bookmarkedIcon.on("click", this.bookmarkDashboard(controller, json, bookmarkedIcon));
         controller.view.visualizeDashboardFlags(dashboard, json.created != 0, json.bookmarked != 0);
-        dashboard.find(".dashboardCardBtnView").prop("href", `/daw/dashboards/id/${json.id}/`);
+        dashboard.find(".dashboardCardBtnView").prop("href", `/daw/projects/id/${controller.model.projectId}/dashboards/${json.title}`);
 
         return dashboard;
     }
@@ -434,7 +437,7 @@ class Controller {
                     data: {
                         title: $("#title").val(),
                         description: $("#description").val(),
-                        id_project: controller.model.getProjectId(),
+                        id_project: controller.model.projectId,
                     },
                     success: function (result) {
                         console.log(result);
