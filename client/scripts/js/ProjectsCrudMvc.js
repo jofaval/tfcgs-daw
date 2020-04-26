@@ -18,6 +18,7 @@ var $projectCard = $(`
         <div class="projectCardBookmarkedIcon"></div>
         <div class="projectCardFlags float-right btn-group"></div>
     </div>
+    <a href="" class="projectReadMore">Read more...</a>
     <div class="projectCardDescription text-justify my-2"></div>
 </div>`);
 
@@ -364,7 +365,10 @@ class Controller {
         bookmarkedIcon.addClass(json.bookmarked != 0 ? "active" : "");
         bookmarkedIcon.on("click", this.bookmarkProject(controller, json, bookmarkedIcon));
         controller.view.visualizeProjectFlags(project, json.created != 0, json.bookmarked != 0);
-        project.find(".projectCardBtnView").prop("href", `/daw/projects/id/${json.id}/`);
+
+        var url = `/daw/projects/id/${json.id}/`;
+        project.find(".projectCardBtnView").prop("href", url);
+        project.find(".projectReadMore").prop("href", url);
 
         return project;
     }

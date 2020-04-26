@@ -47,6 +47,13 @@ main {
     right: .5em;
 }
 
+.dashboardReadMore,
+.projectReadMore {
+    position: absolute;
+    right: .5em;
+    bottom: .5em;
+}
+
 .projectHeader {
     background-image: url("https://i.picsum.photos/id/1060/1920/1080.jpg");
     background-size: cover;

@@ -18,6 +18,7 @@ var $dashboardCard = $(`
         <div class="dashboardCardBookmarkedIcon"></div>
         <div class="dashboardCardFlags float-right btn-group"></div>
     </div>
+    <a href="" class="dashboardReadMore">Read more...</a>
     <div class="dashboardCardDescription text-justify my-2"></div>
 </div>`);
 
@@ -377,7 +378,10 @@ class Controller {
         bookmarkedIcon.addClass(json.bookmarked != 0 ? "active" : "");
         bookmarkedIcon.on("click", this.bookmarkDashboard(controller, json, bookmarkedIcon));
         controller.view.visualizeDashboardFlags(dashboard, json.created != 0, json.bookmarked != 0);
-        dashboard.find(".dashboardCardBtnView").prop("href", `/daw/projects/id/${controller.model.projectId}/dashboards/${json.title}`);
+
+        var url = `/daw/projects/id/${controller.model.projectId}/dashboards/${json.title}`;
+        dashboard.find(".dashboardCardBtnView").prop("href", url);
+        dashboard.find(".dashboardReadMore").prop("href", url);
 
         return dashboard;
     }
