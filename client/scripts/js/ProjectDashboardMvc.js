@@ -387,7 +387,8 @@ class Controller {
             $.ajax({
                 url: "/daw/index.php?ctl=bookmarkDashboard",
                 data: {
-                    "id_dashboard": json.id,
+                    "id_project": json.id_project,
+                    "title": json.title,
                     "bookmarked": json.bookmarked,
                 },
                 success: function (result) {

@@ -112,7 +112,7 @@ class Controller
         $sqlUtils = new SQLUtils(Model::getInstance());
         $id_project = Utils::getCleanedData("id_project");
 
-        return $sqlUtils->complexQuery("SELECT dashboards.title, dashboards.description, dashboards.creation_date,
+        return $sqlUtils->complexQuery("SELECT dashboards.title, dashboards.id_project, dashboards.description, dashboards.creation_date,
         dashboards.id_creator = :id_client as created,
         (dashboards.id_project, dashboards.title) in (select bookmarked_dashboards.id_project, bookmarked_dashboards.title
         from bookmarked_dashboards
@@ -172,7 +172,42 @@ class Controller
 
     public function bookmarkDashboard()
     {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $bookmarked = Utils::getCleanedData("bookmarked");
 
+        $projectId = Utils::getCleanedData("id_project");
+        $title = Utils::getCleanedData("title");
+
+        $dashboards = $this->getDashboardsOfProject();
+        $found = false;
+        //$test = [];
+        foreach ($dashboards as $key => $dashboard) {
+            /* $test[$key] = [
+            "title" => $dashboard["title"] == $title,
+            "title_original" => $title,
+            "title_introducido" => $title,
+            "id_project" => $dashboard["id_project"] == $projectId,
+            "id_project_original" => $dashboard["id_project"],
+            "id_project_introducido" => $projectId,
+            ]; */
+            if ($dashboard["title"] == $title && $dashboard["id_project"] == $projectId) {
+                $found = true;
+                break;
+            }
+        }
+
+        //return $test;
+
+        if (!$found) {
+            return false;
+        }
+
+        $bookmarked = Utils::getCleanedData("bookmarked");
+        if ($bookmarked != 0) {
+            return $sqlUtils->delete("bookmarked_dashboards", ["id_project" => $projectId, "title" => $title, "id_client" => "16"]);
+        } else {
+            return $sqlUtils->insert("bookmarked_dashboards", ["id_project" => $projectId, "title" => $title, "id_client" => "16"]);
+        }
     }
 
     public function error404()
