@@ -31,6 +31,34 @@ class POPOcontroller
         return $popoInstance->delete();
     }
 
+    public function createDashboards()
+    {
+        $popoInstance = new Dashboards();
+
+        return $popoInstance->create();
+    }
+
+    public function updateDashboards()
+    {
+        $popoInstance = new Dashboards();
+
+        return $popoInstance->update();
+    }
+
+    public function queryDashboards()
+    {
+        $popoInstance = new Dashboards();
+
+        return $popoInstance->query();
+    }
+
+    public function deleteDashboards()
+    {
+        $popoInstance = new Dashboards();
+
+        return $popoInstance->delete();
+    }
+
     public function createCollaborators()
     {
         $popoInstance = new Collaborators();
