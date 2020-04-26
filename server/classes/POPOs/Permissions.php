@@ -23,9 +23,9 @@ class Permissions implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "level" => $this->$level,
-            "title" => $this->$title,
-            "description" => $this->$description,
+            "level" => $this->level,
+            "title" => $this->title,
+            "description" => $this->description,
         ];
 
         return $sqlUtils->insert($params);
@@ -36,15 +36,15 @@ class Permissions implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "title" => $this->$title,
-            "description" => $this->$description,
+            "title" => $this->title,
+            "description" => $this->description,
         ];
 
         $identificationParams = [
-            "level" => $this->$level,
+            "level" => $this->level,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -52,10 +52,10 @@ class Permissions implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "level" => $this->$level,
+            "level" => $this->level,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -63,10 +63,10 @@ class Permissions implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "level" => $this->$level,
+            "level" => $this->level,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -74,25 +74,25 @@ class Permissions implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $identificationParams = [
-            "level" => $this->$level,
+            "level" => $this->level,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
     {
-        $this->$level = Utils::getCleanedData("level");
-        $this->$title = Utils::getCleanedData("title");
-        $this->$description = Utils::getCleanedData("description");
+        $this->level = Utils::getCleanedData("level");
+        $this->title = Utils::getCleanedData("title");
+        $this->description = Utils::getCleanedData("description");
     }
 
     public function parse()
     {
         return json_encode([
-            "level" => $this->$level,
-            "title" => $this->$title,
-            "description" => $this->$description,
+            "level" => $this->level,
+            "title" => $this->title,
+            "description" => $this->description,
         ]);
     }
 }

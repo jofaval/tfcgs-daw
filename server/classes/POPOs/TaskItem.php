@@ -24,12 +24,12 @@ public function create()
 $sqlUtils = new SQLUtils(Model::getInstance());
 
 $params = [
-"title" => $this->$title,
-"description" => $this->$description,
-"creation_date" => $this->$creation_date,
-"id_creator" => $this->$id_creator,
-"task_list_id" => $this->$task_list_id,
-"order_criteria" => $this->$order_criteria,
+"title" => $this->title,
+"description" => $this->description,
+"creation_date" => $this->creation_date,
+"id_creator" => $this->id_creator,
+"task_list_id" => $this->task_list_id,
+"order_criteria" => $this->order_criteria,
 ];
 
 return $sqlUtils->insert($params);
@@ -40,15 +40,15 @@ public function update()
 $sqlUtils = new SQLUtils(Model::getInstance());
 
 $toModify = [
-"title" => $this->$title,
-"description" => $this->$description,
+"title" => $this->title,
+"description" => $this->description,
 ];
 
 $identificationParams = [
-"taskId" => $this->$task_id,
+"taskId" => $this->task_id,
 ];
 
-return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+return $sqlUtils->update($this->table, $toModify, $identificationParams);
 }
 
 public function delete()
@@ -56,10 +56,10 @@ public function delete()
 $sqlUtils = new SQLUtils(Model::getInstance());
 
 $params = [
-"taskId" => $this->$task_id,
+"taskId" => $this->task_id,
 ];
 
-return $sqlUtils->delete($this->$table, $params);
+return $sqlUtils->delete($this->table, $params);
 }
 
 public function query()
@@ -67,34 +67,34 @@ public function query()
 $sqlUtils = new SQLUtils(Model::getInstance());
 
 $params = [
-"taskId" => $this->$task_id,
+"taskId" => $this->task_id,
 ];
 
-return $sqlUtils->query($this->$table, $params);
+return $sqlUtils->query($this->table, $params);
 }
 
 public function fill()
 {
-$this->$task_id = Utils::getCleanedData("taskId");
-$this->$title = Utils::getCleanedData("title");
-$this->$description = Utils::getCleanedData("description");
-$this->$creation_date = Utils::getCleanedData("creationDate");
+$this->task_id = Utils::getCleanedData("taskId");
+$this->title = Utils::getCleanedData("title");
+$this->description = Utils::getCleanedData("description");
+$this->creation_date = Utils::getCleanedData("creationDate");
 
-$this->$id_creator = Sessions::getInstance()->getSession("userId");
-$this->$task_list_id = Utils::getCleanedData("taskListId");
-$this->$order_criteria = Utils::getCleanedData("orderCriteria");
+$this->id_creator = Sessions::getInstance()->getSession("userId");
+$this->task_list_id = Utils::getCleanedData("taskListId");
+$this->order_criteria = Utils::getCleanedData("orderCriteria");
 }
 
 public function parse()
 {
 return json_encode([
-"taskId" => $this->$task_id,
-"title" => $this->$title,
-"description" => $this->$description,
-"creationDate" => $this->$creation_date,
-"creatorId" => $this->$id_creator,
-"taskListId" => $this->$task_list_id,
-"orderCriteria" => $this->$order_criteria,
+"taskId" => $this->task_id,
+"title" => $this->title,
+"description" => $this->description,
+"creationDate" => $this->creation_date,
+"creatorId" => $this->id_creator,
+"taskListId" => $this->task_list_id,
+"orderCriteria" => $this->order_criteria,
 ]);
 }
 } */

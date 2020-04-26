@@ -22,8 +22,8 @@ class TaskListsOrderCriteria implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
-            "title" => $this->$title,
+            "id" => $this->id,
+            "title" => $this->title,
         ];
 
         return $sqlUtils->insert($params);
@@ -34,14 +34,14 @@ class TaskListsOrderCriteria implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "title" => $this->$title,
+            "title" => $this->title,
         ];
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -49,10 +49,10 @@ class TaskListsOrderCriteria implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -60,10 +60,10 @@ class TaskListsOrderCriteria implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -71,23 +71,23 @@ class TaskListsOrderCriteria implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
     {
-        $this->$id = Utils::getCleanedData("id");
-        $this->$title = Utils::getCleanedData("title");
+        $this->id = Utils::getCleanedData("id");
+        $this->title = Utils::getCleanedData("title");
     }
 
     public function parse()
     {
         return json_encode([
-            "id" => $this->$id,
-            "title" => $this->$title,
+            "id" => $this->id,
+            "title" => $this->title,
         ]);
     }
 }

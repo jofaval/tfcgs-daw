@@ -27,13 +27,13 @@ class TaskListItemLists implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
-            "task_list_id" => $this->$task_list_id,
-            "id_creator" => $this->$id_creator,
-            "title" => $this->$title,
-            "description" => $this->$description,
-            "creation_date" => $this->$creation_date,
-            "order_criteria" => $this->$order_criteria,
+            "id" => $this->id,
+            "task_list_id" => $this->task_list_id,
+            "id_creator" => $this->id_creator,
+            "title" => $this->title,
+            "description" => $this->description,
+            "creation_date" => $this->creation_date,
+            "order_criteria" => $this->order_criteria,
         ];
 
         return $sqlUtils->insert($params);
@@ -44,19 +44,19 @@ class TaskListItemLists implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "task_list_id" => $this->$task_list_id,
-            "id_creator" => $this->$id_creator,
-            "title" => $this->$title,
-            "description" => $this->$description,
-            "creation_date" => $this->$creation_date,
-            "order_criteria" => $this->$order_criteria,
+            "task_list_id" => $this->task_list_id,
+            "id_creator" => $this->id_creator,
+            "title" => $this->title,
+            "description" => $this->description,
+            "creation_date" => $this->creation_date,
+            "order_criteria" => $this->order_criteria,
         ];
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -64,10 +64,10 @@ class TaskListItemLists implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -75,10 +75,10 @@ class TaskListItemLists implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -86,33 +86,33 @@ class TaskListItemLists implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
     {
-        $this->$id = Utils::getCleanedData("id");
-        $this->$task_list_id = Utils::getCleanedData("taskListId");
-        $this->$id_creator = Sessions::getInstance()->getSession("userId");
-        $this->$title = Utils::getCleanedData("title");
-        $this->$description = Utils::getCleanedData("description");
-        $this->$creation_date = Utils::getCleanedData("creationDate");
-        $this->$order_criteria = Utils::getCleanedData("orderCriteria");
+        $this->id = Utils::getCleanedData("id");
+        $this->task_list_id = Utils::getCleanedData("taskListId");
+        $this->id_creator = Sessions::getInstance()->getSession("userId");
+        $this->title = Utils::getCleanedData("title");
+        $this->description = Utils::getCleanedData("description");
+        $this->creation_date = Utils::getCleanedData("creationDate");
+        $this->order_criteria = Utils::getCleanedData("orderCriteria");
     }
 
     public function parse()
     {
         return json_encode([
-            "id" => $this->$id,
-            "taskListId" => $this->$task_list_id,
-            "creatorId" => $this->$id_creator,
-            "title" => $this->$title,
-            "description" => $this->$description,
-            "creationDate" => $this->$creation_date,
-            "orderCriteria" => $this->$order_criteria,
+            "id" => $this->id,
+            "taskListId" => $this->task_list_id,
+            "creatorId" => $this->id_creator,
+            "title" => $this->title,
+            "description" => $this->description,
+            "creationDate" => $this->creation_date,
+            "orderCriteria" => $this->order_criteria,
         ]);
     }
 }

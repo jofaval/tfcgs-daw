@@ -27,13 +27,13 @@ class TaskListItemListItems implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
-            "task_item_list_id" => $this->$task_item_list_id,
-            "title" => $this->$title,
-            "order" => $this->$order,
-            "description" => $this->$description,
-            "creation_date" => $this->$creation_date,
-            "id_creator" => $this->$id_creator,
+            "id" => $this->id,
+            "task_item_list_id" => $this->task_item_list_id,
+            "title" => $this->title,
+            "order" => $this->order,
+            "description" => $this->description,
+            "creation_date" => $this->creation_date,
+            "id_creator" => $this->id_creator,
         ];
 
         return $sqlUtils->insert($params);
@@ -44,19 +44,19 @@ class TaskListItemListItems implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "task_item_list_id" => $this->$task_item_list_id,
-            "title" => $this->$title,
-            "order" => $this->$order,
-            "description" => $this->$description,
-            "creation_date" => $this->$creation_date,
-            "id_creator" => $this->$id_creator,
+            "task_item_list_id" => $this->task_item_list_id,
+            "title" => $this->title,
+            "order" => $this->order,
+            "description" => $this->description,
+            "creation_date" => $this->creation_date,
+            "id_creator" => $this->id_creator,
         ];
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -64,10 +64,10 @@ class TaskListItemListItems implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -75,10 +75,10 @@ class TaskListItemListItems implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -86,33 +86,33 @@ class TaskListItemListItems implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
     {
-        $this->$id = Utils::getCleanedData("id");
-        $this->$task_item_list_id = Utils::getCleanedData("taskItemListId");
-        $this->$title = Utils::getCleanedData("title");
-        $this->$order = Utils::getCleanedData("order");
-        $this->$description = Utils::getCleanedData("description");
-        $this->$creation_date = Utils::getCleanedData("creationDate");
-        $this->$id_creator = Sessions::getInstance()->getSession("userId");
+        $this->id = Utils::getCleanedData("id");
+        $this->task_item_list_id = Utils::getCleanedData("taskItemListId");
+        $this->title = Utils::getCleanedData("title");
+        $this->order = Utils::getCleanedData("order");
+        $this->description = Utils::getCleanedData("description");
+        $this->creation_date = Utils::getCleanedData("creationDate");
+        $this->id_creator = Sessions::getInstance()->getSession("userId");
     }
 
     public function parse()
     {
         return json_encode([
-            "id" => $this->$id,
-            "taskItemListId" => $this->$task_item_list_id,
-            "title" => $this->$title,
-            "order" => $this->$order,
-            "description" => $this->$description,
-            "creationDate" => $this->$creation_date,
-            "creatorId" => $this->$id_creator,
+            "id" => $this->id,
+            "taskItemListId" => $this->task_item_list_id,
+            "title" => $this->title,
+            "order" => $this->order,
+            "description" => $this->description,
+            "creationDate" => $this->creation_date,
+            "creatorId" => $this->id_creator,
         ]);
     }
 }

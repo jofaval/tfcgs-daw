@@ -24,10 +24,10 @@ class Clients implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
-            "first_name" => $this->$first_name,
-            "second_name" => $this->$second_name,
-            "email" => $this->$email,
+            "id" => $this->id,
+            "first_name" => $this->first_name,
+            "second_name" => $this->second_name,
+            "email" => $this->email,
         ];
 
         return $sqlUtils->insert($params);
@@ -38,16 +38,16 @@ class Clients implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "first_name" => $this->$first_name,
-            "second_name" => $this->$second_name,
-            "email" => $this->$email,
+            "first_name" => $this->first_name,
+            "second_name" => $this->second_name,
+            "email" => $this->email,
         ];
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -55,10 +55,10 @@ class Clients implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -66,10 +66,10 @@ class Clients implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -77,27 +77,27 @@ class Clients implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $identificationParams = [
-            "id" => $this->$id,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
     {
-        $this->$id = Utils::getCleanedData("id");
-        $this->$first_name = Utils::getCleanedData("firstName");
-        $this->$second_name = Utils::getCleanedData("secondName");
-        $this->$email = Utils::getCleanedData("email");
+        $this->id = Utils::getCleanedData("id");
+        $this->first_name = Utils::getCleanedData("firstName");
+        $this->second_name = Utils::getCleanedData("secondName");
+        $this->email = Utils::getCleanedData("email");
     }
 
     public function parse()
     {
         return json_encode([
-            "id" => $this->$id,
-            "firstName" => $this->$first_name,
-            "secondName" => $this->$second_name,
-            "email" => $this->$email,
+            "id" => $this->id,
+            "firstName" => $this->first_name,
+            "secondName" => $this->second_name,
+            "email" => $this->email,
         ]);
     }
 }
