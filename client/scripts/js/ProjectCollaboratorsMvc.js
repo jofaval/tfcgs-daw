@@ -290,45 +290,14 @@ class Controller {
         var collaboratorContainer = $(".collaboratorsContainer");
         var collaboratorRow = controller.getCollaboratorRow(controller, collaboratorContainer);
 
-        console.log(json);
-
         var collaborator = controller.view.visualizeCollaborator(collaboratorRow, json.title, json.description);
-        var bookmarkedIcon = collaborator.find(".collaboratorCardBookmarkedIcon");
-        bookmarkedIcon.addClass(json.bookmarked != 0 ? "active" : "");
-        bookmarkedIcon.on("click", this.bookmarkCollaborator(controller, json, bookmarkedIcon));
-        controller.view.visualizeCollaboratorFlags(collaborator, json.created != 0, json.bookmarked != 0);
+        controller.view.visualizeCollaboratorFlags(collaborator, json.created != 0);
 
         var url = `/daw/projects/id/${controller.model.projectId}/collaborators/${json.title}`;
         collaborator.find(".collaboratorCardBtnView").prop("href", url);
         collaborator.find(".collaboratorReadMore").prop("href", url);
 
         return collaborator;
-    }
-
-    bookmarkCollaborator(controller, json, bookmarkedIcon) {
-        return function () {
-            $.ajax({
-                url: "/daw/index.php?ctl=bookmarkCollaborator",
-                data: {
-                    "id_project": json.id_project,
-                    "title": json.title,
-                    "bookmarked": json.bookmarked,
-                },
-                success: function (result) {
-                    if (result !== false) {
-                        bookmarkedIcon.toggleClass("active");
-                        json.bookmarked = !json.bookmarked;
-                    }
-                    console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
-                    bookmarkedIcon.bind("click", controller.bookmarkCollaborator(controller, json, bookmarkedIcon));
-                },
-                error: function (result) {
-                    sendNotification(`No se ha podido ${bookmarkedIcon.hasClass("active") ? "quitar" : "añadir"} a favoritos`, "bookmarkingCollaborator");
-                    bookmarkedIcon.bind("click", controller.bookmarkCollaborator(controller, json, bookmarkedIcon));
-                }
-            });
-            bookmarkedIcon.unbind("click");
-        };
     }
 
     addCollaboratorBtnEvent(controller, event) {
