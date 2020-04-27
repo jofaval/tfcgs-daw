@@ -10,7 +10,7 @@ pushMenuContainer.prepend($(".pushMenuOverlap"));
 
 $("main").toggleClass("flex-column flex-row");
 
-$("#pushMenuToggleBtn, .pushMenu, .pushMenuOverlap").on("click", function (event) {
+$("#pushMenuToggleBtn, .pushMenu").on("click", function (event) {
     var event = event || window.event;
     event.preventDefault();
     event.stopPropagation();
@@ -28,18 +28,21 @@ $("#pushMenuToggleBtn, .pushMenu, .pushMenuOverlap").on("click", function (event
 
 });
 
+$(".pushMenuOverlap").on("click", function () {
+    if (toggled) {
+        hidePushMenu();
+    }
+});
+
 pushMenuContainer.on("click", function (event) {
     var event = event || window.event;
     event.preventDefault();
-    event.stopPropagation();
+    //event.stopPropagation();
 
     if (toggled) {
-        $("#pushMenuToggleBtn").trigger("click");
+        hidePushMenu();
+        console.log(toggled);
     }
-
-    console.log(toggled);
-
-    toggled = false;
 });
 
 $(".pushMenu a").on("click", function (event) {
@@ -48,20 +51,6 @@ $(".pushMenu a").on("click", function (event) {
 });
 
 $(".pushMenu").trigger("click");
-
-pushMenuContainer.on("click", function (event) {
-    var event = event || window.event;
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (toggled) {
-        $("#pushMenuToggleBtn").trigger("click");
-    }
-
-    console.log(toggled);
-
-    toggled = false;
-});
 
 function hidePushMenu() {
     $(".pushMenuOverlap").stop().animate({

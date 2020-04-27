@@ -7,12 +7,12 @@
     z-index: 9999999999 !important;
 }
 </style>
-<?php $optionalScripts[] = "js/push-menu.js";?>
 <?php $optionalScripts[] = "libs/summernote-bs4.min.js";?>
 <?php $optionalScripts[] = "js/agenda.js";?>
 <?php $optionalCSS[] = "summernote-bs4.min.css";?>
 <?php $optionalCSS[] = "agenda.css";?>
 
+<?php $optionalScripts[] = "js/push-menu.js";?>
 <nav class="pushMenu overflow-auto row h-100 col-md-2 cursor-pointer">
     <div class="content col d-flex h-100 flex-column justify-content-start align-content-start">
         <a class="py-3 ml-3" style="padding-left: 0em" href="#1.">
