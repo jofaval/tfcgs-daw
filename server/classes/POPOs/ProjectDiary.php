@@ -27,12 +27,13 @@ class ProjectDiary implements CRUD
         $params = [
             "day" => $this->day,
             "id_project" => $this->id_project,
-            "id_creator" => $this->id_creator,
             "content" => $this->content,
-            "creation_date" => $this->creation_date,
         ];
+        $date = new DateTime();
+        $params["creation_date"] = $date->format("Y-m-d H:i:s");
+        $params["id_creator"] = "16";
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()

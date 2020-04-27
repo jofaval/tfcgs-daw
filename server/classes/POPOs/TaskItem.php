@@ -32,7 +32,7 @@ $params = [
 "order_criteria" => $this->order_criteria,
 ];
 
-return $sqlUtils->insert($params);
+return $sqlUtils->insert($this->table, s);
 }
 
 public function update()

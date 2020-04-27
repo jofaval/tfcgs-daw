@@ -30,7 +30,7 @@ class Clients implements CRUD
             "email" => $this->email,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, s);
     }
 
     public function update()

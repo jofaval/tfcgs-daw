@@ -30,7 +30,7 @@ class Users implements CRUD
             "level" => $this->level,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, s);
     }
 
     public function update()

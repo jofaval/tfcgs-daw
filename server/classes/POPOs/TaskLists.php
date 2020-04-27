@@ -32,7 +32,7 @@ class TaskLists implements CRUD
             "id_creator" => $this->id_creator,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, s);
     }
 
     public function update()

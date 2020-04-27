@@ -28,7 +28,7 @@ class Permissions implements CRUD
             "description" => $this->description,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, s);
     }
 
     public function update()
