@@ -1,3 +1,32 @@
+<style>
+#content {
+    margin-left: .95em;
+}
+</style>
+<?php $optionalScripts[] = "js/push-menu.js";?>
+<?php $optionalScripts[] = "libs/summernote-bs4.min.js";?>
+<?php $optionalScripts[] = "js/agenda.js";?>
+<?php $optionalCSS[] = "summernote-bs4.min.css";?>
+<?php $optionalCSS[] = "agenda.css";?>
+
+<nav class="pushMenu overflow-auto row h-100 col-md-2 cursor-pointer">
+    <div class="content col d-flex h-100 flex-column justify-content-start align-content-start">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#1.">
+            1. Test 1656
+        </a>
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#2.">
+            2. Test 552
+        </a>
+        <a class="py-3 ml-3" style="padding-left: 0.5em" href="#2.1.">
+            2.1. subtitle
+        </a>
+        <a class="py-3 ml-3" style="padding-left: 1em" href="#2.1.1.">
+            2.1.1. ewgewhweh
+        </a>
+    </div>
+</nav>
+<div class="pushMenuOverlap position-absolute z-index-overlap w-100 h-100"></div>
+
 <div class="w-100 h-100 tabContent d-block" id="tabContent3">
     <div class="mx-auto">
         <button class="btn m-3 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
