@@ -217,13 +217,13 @@ class AjaxController
     //Function to createProjectDiary
     public function createProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project", "id_creator", "content", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project", "content"]);
     }
 
     //Function to updateProjectDiary
     public function updateProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project", "id_creator", "content", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project", "content"]);
     }
 
     //Function to queryProjectDiary
