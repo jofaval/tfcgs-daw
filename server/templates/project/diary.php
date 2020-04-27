@@ -2,6 +2,10 @@
 #content {
     margin-left: .95em;
 }
+
+.z-index-overlap-top {
+    z-index: 9999999999 !important;
+}
 </style>
 <?php $optionalScripts[] = "js/push-menu.js";?>
 <?php $optionalScripts[] = "libs/summernote-bs4.min.js";?>
@@ -40,7 +44,7 @@
             <button class="btn btn-sm btn-primary order-3 text-white mr-auto">&gt;</button>
             <br>
         </div>
-        <div class="mx-sm-5 mb-sm-5">
+        <div class="mx-sm-5 mb-sm-5 summernoteContainer">
             <div id="summernote"></div>
         </div>
     </div>
