@@ -41,9 +41,7 @@ class ProjectDiary implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "id_creator" => $this->id_creator,
             "content" => $this->content,
-            "creation_date" => $this->creation_date,
         ];
 
         $identificationParams = [
