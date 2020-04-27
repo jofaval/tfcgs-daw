@@ -4,6 +4,38 @@ $(".summernoteContainer").on("keypress", function () {
 
 var navigationScheme = $(".pushMenu .content");
 
+$(".note-editable.card-block").append("<h1>Test 1656</h1>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h1>Test 552</h1>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h2>subtitle</h2>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>ewgewhweh</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>trjyuykt</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>weyweywey45yh5r</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h4>jeggwef</h4>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h5>yjk67kj67</h5>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h1>Test 12</h1>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h1>subtitle 2</h1>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h2>subtitle</h2>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>ewgewhweh</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>trjyuykt</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h3>weyweywey45yh5r</h3>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h4>jeggwef</h4>");
+$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
+$(".note-editable.card-block").append("<h1>Test 1564156</h1>");
+
 window.addEventListener('resize', function (event) {
     hidePushMenu();
     //showPushMenu();
@@ -19,9 +51,16 @@ function generateNavigationScheme() {
         "H5": 0,
         "H6": 0,
     };
-    var summernoteContent = $(".note-editable.card-block");
-    var content = $(summernoteContent.html() + "");
-    summernoteContent.html("");
+    var summernoteContentContainer = $(".note-editable.card-block");
+    var summernoteContent = summernoteContentContainer.html();
+    console.log(summernoteContent);
+
+    var content = $(summernoteContent);
+
+    var encodedContent = encodeURI(summernoteContent);
+    var decodedContent = decodeURI(encodedContent);
+    console.log("content", typeof summernoteContent, summernoteContent, "\nencoded", encodedContent, "\ndecoded", decodedContent);
+
     content.each(function () {
         var current = $(this);
         current.find(".level").remove();
@@ -58,7 +97,7 @@ function generateNavigationScheme() {
                 current.prepend(`<span class="level">${trueLevel}</span> `);
             }
         }
-        summernoteContent.append(current);
+        summernoteContentContainer.append(current);
     });
 };
 generateNavigationScheme();
