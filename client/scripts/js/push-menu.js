@@ -58,12 +58,12 @@ function hidePushMenu() {
     }).addClass("click-through");
 
     pushMenuContainer.stop().animate({
-        marginLeft: `0em`,
-    }, 200);
+        marginLeft: `-0.25em`,
+    }, 350);
 
     pushMenu.stop().animate({
         marginLeft: `-${pushMenu.width()/16 + 2}em`,
-    }, 200);
+    }, 350);
     $("#pushMenuToggleBtn").html(!toggled ? "->" : "<-");
 
     //toggled = false;
@@ -76,11 +76,11 @@ function showPushMenu() {
 
     pushMenuContainer.stop().animate({
         marginLeft: `${pushMenu.width()/16 + 2}em`,
-    }, 200);
+    }, 750);
 
     pushMenu.stop().animate({
         marginLeft: "0px",
-    }, 200);
+    }, 750);
 
     //toggled = true;
 }

@@ -18,7 +18,7 @@
 
 <?php $optionalScripts[] = "js/push-menu.js";?>
 <nav class="pushMenu overflow-auto row h-100 col-md-2 position-fixed cursor-pointer z-index-overlap-top">
-    <div class="content col d-flex h-100 flex-column justify-content-start align-content-start">
+    <div class="content col m-0 p-0 d-flex h-100 flex-column justify-content-start align-content-start">
         <a class="py-3 ml-3" style="padding-left: 0em" href="#1.">
             1. Test 1656
         </a>
