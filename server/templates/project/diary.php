@@ -1,10 +1,14 @@
 <style>
 #content {
-    margin-left: .95em;
+    /* margin-left: .95em; */
 }
 
 .z-index-overlap-top {
     z-index: 9999999999 !important;
+}
+
+#pushMenuToggleBtn {
+    bottom: 2.5em;
 }
 </style>
 <?php $optionalScripts[] = "libs/summernote-bs4.min.js";?>
@@ -13,7 +17,7 @@
 <?php $optionalCSS[] = "agenda.css";?>
 
 <?php $optionalScripts[] = "js/push-menu.js";?>
-<nav class="pushMenu overflow-auto row h-100 col-md-2 cursor-pointer">
+<nav class="pushMenu overflow-auto row h-100 col-md-2 position-fixed cursor-pointer z-index-overlap-top">
     <div class="content col d-flex h-100 flex-column justify-content-start align-content-start">
         <a class="py-3 ml-3" style="padding-left: 0em" href="#1.">
             1. Test 1656
@@ -29,13 +33,16 @@
         </a>
     </div>
 </nav>
-<div class="pushMenuOverlap position-absolute z-index-overlap w-100 h-100"></div>
+
+<div id="pushMenuToggleBtn" class="btn btn-primary z-index-overlap-top position-fixed"></div>
+<div class="pushMenuOverlap position-absolute z-index-overlap w-100 h-100">
+</div>
 
 <div class="w-100 h-100 tabContent d-block" id="tabContent3">
     <div class="mx-auto">
-        <div class="form-row d-flex py-4">
-            <button class="btn btn-sm m-3 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
-            <button class="btn btn-sm m-3 btn-primary diaryBtnSave" id="diaryBtnSave">Save</button>
+        <div class="form-row d-flex container mx-auto justify-content-center py-4">
+            <button class="btn btn-sm m-0 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
+            <button class="btn btn-sm m-0 btn-primary diaryBtnSave" id="diaryBtnSave">Save</button>
             <div class="col-sm-3 rounded order-0 order-sm-2 bg-white shadow mx-1">
                 <div class="md-form m-0">
                     <input placeholder="Select a date" type="text" id="datepicker" class="form-control datepicker">
