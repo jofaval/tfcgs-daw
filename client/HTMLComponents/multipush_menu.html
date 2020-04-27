@@ -6,83 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../styles/push-menu.css">
+    <style>
+        /* body {
+            grid-area:
+                "header header"
+                "breadcrum breadcrum"
+                "pushMenu main"
+                "footer footer"
+            ;
+
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto 1fr auto;
+        }
+
+        .pushMenu {
+            grid-area: pushMenu;
+        } */
+        .z-index-overlap-top {
+            z-index: 9999999999 !important;
+        }
+
+        /* #pushMenuToggleBtn {
+            bottom: -5.5em;
+        } */
+    </style>
 </head>
 
 <body>
-    <nav class="pushMenu overflow-auto h-100 d-flex flex-column justify-content-start align-content-start w-25">
-        <a class="p-3" style="padding-left: 0em" href="#1.">
+    <nav class="pushMenu overflow-auto d-flex h-100 flex-column justify-content-start align-content-start w-25">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#1.">
             1. Test 1656
         </a>
-        <a class="p-3" style="padding-left: 0em" href="#2.">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#2.">
             2. Test 552
         </a>
-        <a class="p-3" style="padding-left: 0.5em" href="#2.1.">
+        <a class="py-3 ml-3" style="padding-left: 0.5em" href="#2.1.">
             2.1. subtitle
         </a>
-        <a class="p-3" style="padding-left: 1em" href="#2.1.1.">
+        <a class="py-3 ml-3" style="padding-left: 1em" href="#2.1.1.">
             2.1.1. ewgewhweh
         </a>
-        <a class="p-3" style="padding-left: 1em" href="#2.1.2.">
+        <a class="py-3 ml-3" style="padding-left: 1em" href="#2.1.2.">
             2.1.2. trjyuykt
         </a>
-        <a class="p-3" style="padding-left: 1em" href="#2.1.3.">
+        <a class="py-3 ml-3" style="padding-left: 1em" href="#2.1.3.">
             2.1.3. weyweywey45yh5r
         </a>
-        <a class="p-3" style="padding-left: 1.5em" href="#2.1.3.1.">
+        <a class="py-3 ml-3" style="padding-left: 1.5em" href="#2.1.3.1.">
             2.1.3.1. jeggwef
         </a>
-        <a class="p-3" style="padding-left: 2em" href="#2.1.3.1.1.">
+        <a class="py-3 ml-3" style="padding-left: 2em" href="#2.1.3.1.1.">
             2.1.3.1.1. yjk67kj67
         </a>
-        <a class="p-3" style="padding-left: 0em" href="#3.">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#3.">
             3. Test 12
         </a>
-        <a class="p-3" style="padding-left: 0em" href="#4.">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#4.">
             4. subtitle 2
         </a>
-        <a class="p-3" style="padding-left: 0.5em" href="#4.1.">
+        <a class="py-3 ml-3" style="padding-left: 0.5em" href="#4.1.">
             4.1. subtitle
         </a>
-        <a class="p-3" style="padding-left: 1em" href="#4.1.1.">
+        <a class="py-3 ml-3" style="padding-left: 1em" href="#4.1.1.">
             4.1.1. ewgewhweh
         </a>
-        <a class="p-3" style="padding-left: 1em" href="#4.1.2.">
+        <a class="py-3 ml-3" style="padding-left: 1em" href="#4.1.2.">
             4.1.2. trjyuykt
         </a>
-        <a class="p-3" style="padding-left: 1em" href="#4.1.3.">
+        <a class="py-3 ml-3" style="padding-left: 1em" href="#4.1.3.">
             4.1.3. weyweywey45yh5r
         </a>
-        <a class="p-3" style="padding-left: 1.5em" href="#4.1.3.1.">
+        <a class="py-3 ml-3" style="padding-left: 1.5em" href="#4.1.3.1.">
             4.1.3.1. jeggwef
         </a>
-        <a class="p-3" style="padding-left: 0em" href="#5.">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#5.">
             5. Test 1564156
         </a>
         </a>
-        <a class="p-3" style="padding-left: 0em" href="#5.">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#5.">
             5. Test 1564156
         </a>
         </a>
-        <a class="p-3" style="padding-left: 0em" href="#5.">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#5.">
             5. Test 1564156
         </a>
         </a>
-        <a class="p-3" style="padding-left: 0em" href="#5.">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#5.">
             5. Test 1564156
         </a>
         </a>
-        <a class="p-3" style="padding-left: 0em" href="#5.">
+        <a class="py-3 ml-3" style="padding-left: 0em" href="#5.">
             5. Test 1564156
         </a>
     </nav>
-    <div class="pushMenuOverlap position-absolute z-index-overlap w-100 h-100">
-        <button class="btn btn-primary float-left" id="pushMenuToggleBtn">&lt;-</button>
+    <div class="pushMenuOverlap position-absolute z-index-overlap w-100">
+        <button class="btn btn-primary position-absolute" id="pushMenuToggleBtn">&lt;-</button>
     </div>
     <h1>Test</h1>
 </body>
 <script>
+    $("footer").addClass("z-index-overlap-top");
     var toggled = true;
-    var pushMenuContainer = $("main");
+    var pushMenuContainer = $("#content");
     var pushMenu = $(".pushMenu");
     pushMenuContainer.before(pushMenu);
     pushMenuContainer.prepend($(".pushMenuOverlap"));
