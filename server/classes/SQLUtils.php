@@ -74,15 +74,17 @@ class SQLUtils
 
             $paramKeyNames = [];
             foreach ($toModify as $key => $value) {
-                $paramKeyNames = ":$key=$key";
+                $paramKeyNames[] = "$key=:$key";
             }
 
-            $queryString .= $paramKeyNames . join(", ");
+            $queryString .= join(", ", $paramKeyNames);
             if (count($identificationParams) > 0) {
-                $queryString .= "WHERE ";
+                $queryString .= " WHERE ";
+                $paramKeyNames = [];
                 foreach ($identificationParams as $key => $value) {
-                    $queryString .= ":$key=$key";
+                    $paramKeyNames[] .= "$key=:$key";
                 }
+                $queryString .= join(" and ", $paramKeyNames);
             }
 
             $queryAction = $this->$model->$conexion->prepare($queryString);
