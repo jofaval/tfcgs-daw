@@ -113,7 +113,7 @@ class Collaborators implements CRUD
     public function parse()
     {
         return json_encode([
-            "projectId" => $this->id_project,
+            "id_project" => $this->id_project,
             "id_collaborator" => $this->id_collaborator,
             "startingDate" => $this->starting_date,
             "level" => $this->level,

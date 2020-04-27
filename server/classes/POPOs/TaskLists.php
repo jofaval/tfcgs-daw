@@ -89,7 +89,7 @@ class TaskLists implements CRUD
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
-        $this->id_project = Utils::getCleanedData("projectId");
+        $this->id_project = Utils::getCleanedData("id_project");
         $this->title = Utils::getCleanedData("title");
         $this->creation_date = Utils::getCleanedData("creationDate");
         $this->id_creator = Sessions::getInstance()->getSession("userId");
@@ -99,7 +99,7 @@ class TaskLists implements CRUD
     {
         return json_encode([
             "id" => $this->id,
-            "projectId" => $this->id_project,
+            "id_project" => $this->id_project,
             "title" => $this->title,
             "creationDate" => $this->creation_date,
             "creatorId" => $this->id_creator,

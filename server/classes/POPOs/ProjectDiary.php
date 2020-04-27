@@ -93,7 +93,7 @@ class ProjectDiary implements CRUD
     public function fill()
     {
         $this->day = Utils::getCleanedData("day");
-        $this->id_project = Utils::getCleanedData("projectId");
+        $this->id_project = Utils::getCleanedData("id_project");
         $this->id_creator = Sessions::getInstance()->getSession("userId");
         $this->content = Utils::getCleanedData("content");
         $this->creation_date = Utils::getCleanedData("creationDate");
@@ -103,7 +103,7 @@ class ProjectDiary implements CRUD
     {
         return json_encode([
             "day" => $this->day,
-            "projectId" => $this->id_project,
+            "id_project" => $this->id_project,
             "creatorId" => $this->id_creator,
             "content" => $this->content,
             "creationDate" => $this->creation_date,
