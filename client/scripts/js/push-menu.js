@@ -1,8 +1,8 @@
-$("footer").addClass("z-index-overlap-top");
+$("footer").addClass("z-index-overlap");
 
 var toggled = true;
 
-var pushMenuContainer = $("#content");
+var pushMenuContainer = $("body");
 var pushMenu = $(".pushMenu");
 
 pushMenuContainer.before(pushMenu);
@@ -57,8 +57,12 @@ function hidePushMenu() {
         backgroundColor: "rgba(0, 0, 0, 0)",
     }).addClass("click-through");
 
+    pushMenuContainer.stop().animate({
+        marginLeft: `0em`,
+    }, 200);
+
     pushMenu.stop().animate({
-        marginLeft: `-${pushMenu.width()/16}em`,
+        marginLeft: `-${pushMenu.width()/16 + 2}em`,
     }, 200);
     $("#pushMenuToggleBtn").html(!toggled ? "->" : "<-");
 
@@ -69,6 +73,11 @@ function showPushMenu() {
     $(".pushMenuOverlap").stop().animate({
         backgroundColor: "rgba(0, 0, 0, 0.2)",
     }).removeClass("click-through");
+
+    pushMenuContainer.stop().animate({
+        marginLeft: `${pushMenu.width()/16 + 2}em`,
+    }, 200);
+
     pushMenu.stop().animate({
         marginLeft: "0px",
     }, 200);
