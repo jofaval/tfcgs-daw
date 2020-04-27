@@ -46,8 +46,16 @@
     z-index: 1 !important;
 }
 
+.z-index-overlap-bottom {
+    z-index: 1500000 !important;
+}
+
 .z-index-overlap {
     z-index: 2140000001 !important;
+}
+
+.z-index-overlap-top {
+    z-index: 9999999999 !important;
 }
 
 .text-transparent {
