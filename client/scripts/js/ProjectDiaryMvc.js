@@ -89,7 +89,7 @@ function generateNavigationScheme() {
 
             var trueLevel = getTrueLevel(levels, indentationLevel);
             navigationScheme.append($(
-                `<a style="padding-left: ${indentationLevel * 0.5}em" href="#${trueLevel}">
+                `<a class="py-2" style="padding-left: ${indentationLevel * 0.5}em" href="#${trueLevel}">
                         ${trueLevel} ${newTitle}
                     </a>`));
             current.prop("id", trueLevel);
