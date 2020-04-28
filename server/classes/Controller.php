@@ -138,7 +138,7 @@ class Controller
             WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
                 (SELECT collaborators.id_collaborator
                      FROM collaborators
-                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16", "id_creator" => "16"]);
+                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16"]);
     }
 
     public function getDashboardsOfProject()
