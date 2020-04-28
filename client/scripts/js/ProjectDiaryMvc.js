@@ -1,19 +1,49 @@
 $(".summernoteContainer").on("keypress", function () {
-    generateNavigationScheme();
+    //generateNavigationScheme();
 });
 
-$("#datepicker").val("2020-04-28");
+//$("#datepicker").val("2020-04-28");
 
-$(".projectDiaryBtnNext").on("click", function () {
-    var dateValue = $("#datepicker").val();
-    dateValue = dateValue.split("\/").join("-");
-    console.log(dateValue);
+var startingDate = $("#datepicker").val();
+startingDate = Date.parse(startingDate);
 
-    var url = "/daw/projects/id/7/diary/date/" + dateValue;
-    console.log(url);
+if (isNaN(Date.parse(startingDate))) {
+    startingDate = new Date();
+}
 
-    window.location.href = url;
+function loadDayContent(selectedDate) {
+    $.ajax({
+        url: "/daw/index.php?ctl=queryProjectDiary",
+        data: {
+            day: selectedDate,
+            id_project: 7,
+        },
+        success: function (content) {
+            console.log("result cargarlo", decodeURI(content));
+            loadContent(decodeURI(content))
+        },
+    });
+}
+
+loadDayContent(startingDate);
+
+$(".projectDiaryBtnNext").on("click", function (event) {
+    var event = event || window.event;
+    //event.preventDefault();
+    startingDate.setDate(startingDate.getDate() + 1);
+    loadDayContent(startingDate);
 });
+
+$(".projectDiaryBtnPrev").on("click", function (event) {
+    var event = event || window.event;
+    //event.preventDefault();
+    startingDate.setDate(startingDate.getDate() - 1);
+    loadDayContent(startingDate);
+});
+
+function loadContent(content) {
+    $(".note-editable.card-block").html(content);
+}
 
 $("#diaryBtnSave").on("click", function () {
     var summernoteContentContainer = $(".note-editable.card-block");
@@ -106,7 +136,6 @@ function generateNavigationScheme() {
     };
     var summernoteContentContainer = $(".note-editable.card-block");
     var summernoteContent = summernoteContentContainer.html();
-    console.log(summernoteContent);
 
     var content = $(summernoteContent);
 
