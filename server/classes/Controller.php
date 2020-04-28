@@ -86,7 +86,7 @@ class Controller
                 $element = Utils::getCleanedData("element");
                 $viewParams["secondaryId"] = Utils::getCleanedData("secondaryId");
                 if (in_array($element, Config::$projectElements)) {
-                    //$direction = $element;
+                    $direction = $element;
                 }
             }
 
@@ -118,6 +118,9 @@ class Controller
                             $viewParams["diaryDateNext"] = DateUtils::addDays($date, 1, "Y-m-d");
                         }
                     }
+                    break;
+                case 'tasks':
+                    $direction = $element;
                     break;
             }
 
