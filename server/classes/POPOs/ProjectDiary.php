@@ -76,11 +76,12 @@ class ProjectDiary implements CRUD
         $returnedRow = $sqlUtils->query($this->table, $params)[0];
 
         if (!is_null($returnedRow)) {
-            return [
-                "day" => $returnedRow["day"],
-                "id_creator" => $returnedRow["id_creator"],
-                "content" => $returnedRow["content"],
-            ];
+            /* return [
+            "day" => $returnedRow["day"],
+            "id_creator" => $returnedRow["id_creator"],
+            "content" => $returnedRow["content"],
+            ]; */
+            return $returnedRow["content"];
         }
 
         return false;
