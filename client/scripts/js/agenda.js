@@ -12,7 +12,7 @@ $('#summernote').summernote({
     codeviewFilter: false,
     codeviewIframeFilter: true,
     tabDisable: true,
-    placeholder: 'Write here...',
+    placeholder: '',
     codemirror: { // codemirror options
         theme: 'monokai'
     },
