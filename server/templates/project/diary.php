@@ -44,17 +44,17 @@
             <button class="btn btn-sm m-0 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
             <button class="btn btn-sm m-0 btn-primary diaryBtnSave" id="diaryBtnSave">Save</button>
             <div class="col-sm-3 rounded order-0 order-sm-2 shadow mx-1">
-                <!-- value="<-?php echo $viewParams["diaryDate"] ?>" -->
                 <div class="md-form m-0">
                     <input placeholder="AAAA/MM/DD" type="datepicker" autofocus="true" id="datepicker"
-                        class="form-control datepicker border-0 m-0 text-white">
+                        class="form-control datepicker border-0 m-0 text-white"
+                        value="<?php echo $viewParams["diaryDate"]; ?>">
                     <label for="datepicker">Test</label>
                 </div>
             </div>
 
             <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDatePrev"]; ?>/"
-                class="btn btn-sm btn-primary projectDiaryBtnPrev order-2 order-sm-1 text-white">&lt;</a>
-            <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDateNext"]; ?>/wqfqwgfqwg"
+                class="btn btn-sm btn-primary projectDiaryBtnPrev order-1 text-white">&lt;</a>
+            <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDateNext"]; ?>/"
                 class="btn btn-sm btn-primary projectDiaryBtnNext order-3 text-white">&gt;</a>
             <br>
         </div>
