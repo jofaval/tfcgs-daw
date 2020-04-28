@@ -49,7 +49,8 @@ $('#summernote').summernote({
            } */
     ],
 });
-$('#datepicker').datepicker();
+//$('#datepicker').datepicker();
+$('#datepicker').focus();
 
 $(".note-statusbar").on("touchmove", function (e) {
     var adjustment = (e.touches[0].clientY - 155) - $(this).position().top;
