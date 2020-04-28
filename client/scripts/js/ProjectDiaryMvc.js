@@ -2,6 +2,32 @@ $(".summernoteContainer").on("keypress", function () {
     generateNavigationScheme();
 });
 
+$.ajax({
+    url: "/daw/index.php?ctl=createProjectDiary",
+    data: {
+        day: "2020-04-28",
+        id_project: 7,
+        content: "Hola mundo",
+    },
+    success: function (result) {
+        console.log("result crearlo", result);
+        if (result === false) {
+            $.ajax({
+                url: "/daw/index.php?ctl=updateProjectDiary",
+                data: {
+                    day: "2020-04-28",
+                    id_project: 7,
+                    content: "wegweghwehwehwehwwe",
+                },
+                success: function (result) {
+                    console.log("result modificarlo", result);
+
+                },
+            })
+        }
+    },
+});
+
 var navigationScheme = $(".pushMenu .content");
 
 $(".note-editable.card-block").append("<h1>Test 1656</h1>");
@@ -59,7 +85,7 @@ function generateNavigationScheme() {
 
     var encodedContent = encodeURI(summernoteContent);
     var decodedContent = decodeURI(encodedContent);
-    console.log("content", typeof summernoteContent, summernoteContent, "\nencoded", encodedContent, "\ndecoded", decodedContent);
+    //console.log("content", typeof summernoteContent, summernoteContent, "\nencoded", encodedContent, "\ndecoded", decodedContent);
 
     content.each(function () {
         var current = $(this);
