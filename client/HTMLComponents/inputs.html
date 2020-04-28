@@ -8,7 +8,14 @@
 </head>
 
 <body>
-    <input type="date" name="" id="">
+    <input type="date" name="datepicker" id="datepicker">
 </body>
+<script>
+    $("#datepicker").on("keypress", function (event) {
+        var event = event || window.event;
+        console.log(event.keyCode);
+
+    });
+</script>
 
 </html>
