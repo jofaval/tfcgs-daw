@@ -178,11 +178,18 @@ class Controller
             (collaborators.id_project = :id_project and collaborators.id_collaborator = :id_creator))", ["id_creator" => "16", "id_project" => $id_project])[0];
     }
 
-    public function getElementsOfDashboard()
+    public function getListsOfDashboard()
     {
-        "SELECT *
-        FROM `dashboards` LEFT JOIN `dashboard_list` on (`dashboard_list`.`id_project` = `dashboards`.`id_project` and `dashboard_list`.`dashboard_title` = `dashboards`.`title`)
-            LEFT JOIN `dashboard_item` on (`dashboard_item`.`id_dashboard_list` = `dashboard_list`.`id`)"
+        $queryString = "SELECT id, id_project, title, order_criteria as orderCriteria, creation_date as creationDate
+        FROM `dashboard_list`
+        WHERE  enabled = 1 and dashboard_title='Prueba' and id_project=7";
+    }
+
+    public function getDashboardItemsOfList()
+    {
+        $queryString = "SELECT id, title, description, order, creation_date as creationDate
+        FROM `dashboard_item`
+        WHERE  enabled = 1 and id_dashboard_list=1";
     }
 
     public function bookmarkProject()

@@ -44,6 +44,12 @@ class AjaxController
         exit;
     }
 
+    //Function to getListsOfDashboard
+    public function getListsOfDashboard()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard"], "Controller");
+    }
+
     //Function to bookmarkProject
     public function bookmarkProject()
     {
