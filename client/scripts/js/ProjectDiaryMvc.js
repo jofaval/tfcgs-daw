@@ -12,10 +12,12 @@ if (isNaN(Date.parse(startingDate))) {
 }
 
 function loadDayContent(selectedDate) {
+    var selectedDateString = printDateWithFormat(selectedDate, "Y-m-d");
+    $("#datepicker").val(selectedDateString)
     $.ajax({
         url: "/daw/index.php?ctl=queryProjectDiary",
         data: {
-            day: selectedDate,
+            day: selectedDateString,
             id_project: 7,
         },
         success: function (content) {
@@ -29,16 +31,20 @@ loadDayContent(startingDate);
 
 $(".projectDiaryBtnNext").on("click", function (event) {
     var event = event || window.event;
-    //event.preventDefault();
+    event.preventDefault();
     startingDate.setDate(startingDate.getDate() + 1);
     loadDayContent(startingDate);
+
+    return false;
 });
 
 $(".projectDiaryBtnPrev").on("click", function (event) {
     var event = event || window.event;
-    //event.preventDefault();
+    event.preventDefault();
     startingDate.setDate(startingDate.getDate() - 1);
     loadDayContent(startingDate);
+
+    return false;
 });
 
 function loadContent(content) {
