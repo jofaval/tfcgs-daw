@@ -175,6 +175,11 @@ class Controller
             (collaborators.id_project = :id_project and collaborators.id_collaborator = :id_creator))", ["id_creator" => "16", "id_project" => $id_project])[0];
     }
 
+    public function getElementsOfDashboard()
+    {
+
+    }
+
     public function bookmarkProject()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
