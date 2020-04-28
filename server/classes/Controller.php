@@ -180,7 +180,9 @@ class Controller
 
     public function getElementsOfDashboard()
     {
-
+        "SELECT *
+        FROM `dashboards` LEFT JOIN `dashboard_list` on (`dashboard_list`.`id_project` = `dashboards`.`id_project` and `dashboard_list`.`dashboard_title` = `dashboards`.`title`)
+            LEFT JOIN `dashboard_item` on (`dashboard_item`.`id_dashboard_list` = `dashboard_list`.`id`)"
     }
 
     public function bookmarkProject()
