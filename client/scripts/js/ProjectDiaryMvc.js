@@ -2,6 +2,8 @@ $(".summernoteContainer").on("keypress", function () {
     generateNavigationScheme();
 });
 
+$("#datepicker").val("2020-04-28");
+
 $(".projectDiaryBtnNext").on("click", function () {
     var dateValue = $("#datepicker").val();
     dateValue = dateValue.split("\/").join("-");
@@ -13,30 +15,44 @@ $(".projectDiaryBtnNext").on("click", function () {
     window.location.href = url;
 });
 
-$.ajax({
-    url: "/daw/index.php?ctl=createProjectDiary",
-    data: {
-        day: "2020-04-28",
-        id_project: 7,
-        content: "Hola mundo",
-    },
-    success: function (result) {
-        console.log("result crearlo", result);
-        if (result === false) {
-            $.ajax({
-                url: "/daw/index.php?ctl=updateProjectDiary",
-                data: {
-                    day: "2020-04-28",
-                    id_project: 7,
-                    content: "wegweghwehwehwehwwe",
-                },
-                success: function (result) {
-                    console.log("result modificarlo", result);
+$("#diaryBtnSave").on("click", function () {
+    var summernoteContentContainer = $(".note-editable.card-block");
+    var summernoteContent = summernoteContentContainer.html();
+    //console.log(summernoteContent);
 
-                },
-            })
-        }
-    },
+    var selectedDate = $("#datepicker").val();
+
+    if (isNaN(Date.parse(selectedDate))) {
+        sendNotification("La fecha introducida no es correcta", "diaryDateNotValid");
+        return;
+    }
+
+    var encodedContent = encodeURI(summernoteContent);
+    $.ajax({
+        url: "/daw/index.php?ctl=createProjectDiary",
+        data: {
+            day: selectedDate,
+            id_project: 7,
+            content: encodedContent,
+        },
+        success: function (result) {
+            console.log("result crearlo", result);
+            if (result === false) {
+                $.ajax({
+                    url: "/daw/index.php?ctl=updateProjectDiary",
+                    data: {
+                        day: selectedDate,
+                        id_project: 7,
+                        content: encodedContent,
+                    },
+                    success: function (result) {
+                        console.log("result modificarlo", result);
+
+                    },
+                })
+            }
+        },
+    });
 });
 
 var navigationScheme = $(".pushMenu .content");
