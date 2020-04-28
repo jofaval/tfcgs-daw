@@ -2,6 +2,17 @@ $(".summernoteContainer").on("keypress", function () {
     generateNavigationScheme();
 });
 
+$(".projectDiaryBtnNext").on("click", function () {
+    var dateValue = $("#datepicker").val();
+    dateValue = dateValue.split("\/").join("-");
+    console.log(dateValue);
+
+    var url = "/daw/projects/id/7/diary/date/" + dateValue;
+    console.log(url);
+
+    window.location.href = url;
+});
+
 $.ajax({
     url: "/daw/index.php?ctl=createProjectDiary",
     data: {
