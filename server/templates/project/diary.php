@@ -43,14 +43,19 @@
         <div class="form-row d-flex container mx-auto justify-content-center py-4">
             <button class="btn btn-sm m-0 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
             <button class="btn btn-sm m-0 btn-primary diaryBtnSave" id="diaryBtnSave">Save</button>
-            <div class="col-sm-3 rounded order-0 order-sm-2 bg-white shadow mx-1">
+            <div class="col-sm-3 rounded order-0 order-sm-2 shadow mx-1">
+                <!-- value="<-?php echo $viewParams["diaryDate"] ?>" -->
                 <div class="md-form m-0">
-                    <input placeholder="Select a date" type="date" autofocus="true" id="datepicker"
-                        value="<?php echo $viewParams["diaryDate"] ?>" class="form-control datepicker">
+                    <input placeholder="AAAA/MM/DD" type="datepicker" autofocus="true" id="datepicker"
+                        class="form-control datepicker border-0 m-0 text-white">
+                    <label for="datepicker">Test</label>
                 </div>
             </div>
-            <button class="btn btn-sm btn-primary order-2 order-sm-1 text-white">&lt;</button>
-            <button class="btn btn-sm btn-primary order-3 text-white">&gt;</button>
+
+            <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDatePrev"]; ?>/"
+                class="btn btn-sm btn-primary projectDiaryBtnPrev order-2 order-sm-1 text-white">&lt;</a>
+            <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDateNext"]; ?>/wqfqwgfqwg"
+                class="btn btn-sm btn-primary projectDiaryBtnNext order-3 text-white">&gt;</a>
             <br>
         </div>
         <div class="mx-sm-5 mb-sm-5 summernoteContainer">

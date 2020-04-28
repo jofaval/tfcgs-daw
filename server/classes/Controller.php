@@ -44,10 +44,10 @@ class Controller
             "elementName" => "Element title",
             "tabName" => "general",
             "projectData" => "general",
+            "diaryDate" => "general",
+            "diaryDatePrev" => "general",
+            "diaryDateNext" => "general",
         ];
-
-        $date = new DateTime();
-        $viewParams["diaryDate"] = $date->format("Y/m/d");
 
         if (Utils::exists("id")) {
             $id = Utils::getCleanedData("id");
@@ -92,6 +92,13 @@ class Controller
 
             switch ($tabName) {
                 case 'diary':
+
+                    $date = new DateTime();
+                    $dateInString = $date->format("Y-m-d");
+                    $viewParams["diaryDate"] = $dateInString;
+                    $viewParams["diaryDatePrev"] = DateUtils::substractDays($dateInString, 1, "Y-m-d");
+                    $viewParams["diaryDateNext"] = DateUtils::addDays($dateInString, 1, "Y-m-d");
+
                     if (Utils::exists("date")) {
                         $validation = Validation::getInstance();
 
@@ -107,6 +114,8 @@ class Controller
                         $isDate = $validation->rules($regla, ["date" => $date]);
                         if ($isDate === true) {
                             $viewParams["diaryDate"] = $date;
+                            $viewParams["diaryDatePrev"] = DateUtils::substractDays($date, 1, "Y-m-d");
+                            $viewParams["diaryDateNext"] = DateUtils::addDays($date, 1, "Y-m-d");
                         }
                     }
                     break;
