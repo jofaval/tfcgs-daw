@@ -36,7 +36,7 @@ class SQLUtils
 
             $this->$model->rollback();
         } catch (PDOException $ex) {
-            return $ex;
+            //return $ex;
             $this->$model->rollback();
         }
 
@@ -59,7 +59,7 @@ class SQLUtils
 
             $this->$model->commit();
         } catch (PDOException $ex) {
-            return $ex;
+            //return $ex;
             $this->$model->rollback();
         }
 
@@ -101,7 +101,7 @@ class SQLUtils
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
-            return $ex;
+            //return $ex;
             $this->$model->rollback();
         }
 
@@ -133,7 +133,7 @@ class SQLUtils
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
-            return $ex;
+            //return $ex;
             $this->$model->rollback();
         }
 
@@ -149,7 +149,7 @@ class SQLUtils
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
-            return $ex;
+            //return $ex;
             $this->$model->rollback();
         }
 
@@ -185,7 +185,7 @@ class SQLUtils
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
-            return $ex;
+            //return $ex;
             $this->$model->rollback();
         }
 
