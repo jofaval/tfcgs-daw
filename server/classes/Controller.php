@@ -46,6 +46,9 @@ class Controller
             "projectData" => "general",
         ];
 
+        $date = new DateTime();
+        $viewParams["diaryDate"] = $date->format("Y/m/d");
+
         if (Utils::exists("id")) {
             $id = Utils::getCleanedData("id");
             $tabName = Utils::getCleanedData("tabName");
@@ -83,8 +86,30 @@ class Controller
                 $element = Utils::getCleanedData("element");
                 $viewParams["secondaryId"] = Utils::getCleanedData("secondaryId");
                 if (in_array($element, Config::$projectElements)) {
-                    $direction = $element;
+                    //$direction = $element;
                 }
+            }
+
+            switch ($tabName) {
+                case 'diary':
+                    if (Utils::exists("date")) {
+                        $validation = Validation::getInstance();
+
+                        $date = Utils::getCleanedData("date");
+
+                        $regla = array(
+                            array(
+                                'name' => 'date',
+                                'regla' => 'no-empty,date',
+                            ),
+                        );
+
+                        $isDate = $validation->rules($regla, ["date" => $date]);
+                        if ($isDate === true) {
+                            $viewParams["diaryDate"] = $date;
+                        }
+                    }
+                    break;
             }
 
             require __DIR__ . "/../templates/$direction.php";

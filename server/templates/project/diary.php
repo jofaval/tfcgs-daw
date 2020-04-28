@@ -38,7 +38,6 @@
 <div class="pushMenuOverlap position-absolute z-index-overlap w-100 h-100">
 </div>
 
-<?php $date = new DateTime();?>
 <div class="w-100 h-100 tabContent d-block" id="tabContent3">
     <div class="mx-auto">
         <div class="form-row d-flex container mx-auto justify-content-center py-4">
@@ -46,8 +45,8 @@
             <button class="btn btn-sm m-0 btn-primary diaryBtnSave" id="diaryBtnSave">Save</button>
             <div class="col-sm-3 rounded order-0 order-sm-2 bg-white shadow mx-1">
                 <div class="md-form m-0">
-                    <input placeholder="Select a date" type="text" id="datepicker"
-                        value="<?php echo $date->format("Y/m/d"); ?>" class="form-control datepicker">
+                    <input placeholder="Select a date" type="date" autofocus="true" id="datepicker"
+                        value="<?php echo $viewParams["diaryDate"] ?>" class="form-control datepicker">
                 </div>
             </div>
             <button class="btn btn-sm btn-primary order-2 order-sm-1 text-white">&lt;</button>
