@@ -33,8 +33,6 @@ class SQLUtils
             $queryAction->execute();
             $this->$model->commit();
             return $queryAction->fetchAll(PDO::FETCH_ASSOC);
-
-            $this->$model->rollback();
         } catch (PDOException $ex) {
             //return $ex;
             $this->$model->rollback();

@@ -73,7 +73,17 @@ class ProjectDiary implements CRUD
             "id_project" => $this->id_project,
         ];
 
-        return $sqlUtils->query($this->table, $params);
+        $returnedRow = $sqlUtils->query($this->table, $params)[0];
+
+        if (!is_null($returnedRow)) {
+            return [
+                "day" => $returnedRow["day"],
+                "id_creator" => $returnedRow["id_creator"],
+                "content" => $returnedRow["content"],
+            ];
+        }
+
+        return false;
     }
 
     public function enable()
