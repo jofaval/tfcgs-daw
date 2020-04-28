@@ -12,6 +12,11 @@ class DateUtils
         return date($format, strtotime($date . ' + ' . $days . ' days'));
     }
 
+    public static function substractDays($date, $days, $format = "Y-m-d")
+    {
+        return date($format, strtotime($date . ' - ' . $days . ' days'));
+    }
+
     public static function getAllDatesFromInterval($startingDate, $endingDate)
     {
         $period = new DatePeriod(
