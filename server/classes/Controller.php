@@ -95,17 +95,6 @@ class Controller
             }
             $viewParams["projectData"] = $this->getProjectDetails();
 
-            /* $sessions = Sessions::getInstance();
-            $projectDataFromSession = $sessions->getSession("projectData");
-
-            if ($projectDataFromSession != null) {
-            if ($projectDataFromSession->$id != $id) {
-            $projectDataFromSession = new ProjectData($this, $projectData);
-            }
-            } else {
-            $projectDataFromSession = new ProjectData($this, $projectData);
-            } */
-
             $viewParams["title"] = $projectData["title"];
             $viewParams["id"] = $projectData["id"];
             $viewParams["creation_date"] = $projectData["creation_date"];
