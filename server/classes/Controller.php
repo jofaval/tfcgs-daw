@@ -68,16 +68,18 @@ class Controller
 
             //Comprobar que el tabname, no es nada raro y es uno de los admitidos
             $tabName = Utils::getCleanedData("tabName");
-            $regla = array(
-                array(
-                    'name' => 'id',
-                    'regla' => 'no-empty,numeric',
-                ),
-            );
+            if (Utils::exists("tabName")) {
+                $regla = array(
+                    array(
+                        'name' => 'id',
+                        'regla' => 'no-empty,numeric',
+                    ),
+                );
 
-            $isValid = $validation->rules($regla, ["id" => $id]);
-            if ($isValid !== true || !in_array($tabName, ["overview", "dashboards", "diary", "collaborators", "details"])) {
-                header("Location: /daw/projects/id/$id/");
+                $isValid = $validation->rules($regla, ["id" => $id]);
+                if ($isValid !== true || !in_array($tabName, ["overview", "dashboards", "diary", "collaborators", "details"])) {
+                    header("Location: /daw/projects/id/$id/");
+                }
             }
 
             //Si no tiene ni elemento al que acceder ni pestaña a la que cambiar, fuera
