@@ -12,9 +12,12 @@ class Bookmarked implements CRUD
 
     //Foreign Keys
 
-public function __construct()
-                    {
-                    $this->fill();
+public function __construct()
+
+                    {
+
+                    $this->fill();
+
                     }
     public function create()
     {
@@ -22,7 +25,7 @@ public function __construct()
 
         $params = [
             "id_client" => $this->id_client,
-            "id_project" => $this->id_project,
+            "id$sqlUtils->insert($this->$table, $paraproject,
         ];
 
         return $sqlUtils->insert($params);

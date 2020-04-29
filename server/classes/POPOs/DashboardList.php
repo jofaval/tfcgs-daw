@@ -37,11 +37,9 @@ class DashboardList implements CRUD
             "creation_date" => $this->creation_date,
             "order_criteria" => $this->order_criteria,
             "enabled" => $this->enabled,
-            "id_project" => $this->id_project,
-            "dashboard_title" => $this->$dashboard_title,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->$table, $params);
     }
 
     public function update()

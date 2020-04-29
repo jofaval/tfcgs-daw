@@ -14,9 +14,12 @@ class Roles implements CRUD
 
     //Foreign Keys
 
-public function __construct()
-                    {
-                    $this->fill();
+public function __construct()
+
+                    {
+
+                    $this->fill();
+
                     }
     public function create()
     {
@@ -26,7 +29,7 @@ public function __construct()
             "level" => $this->level,
             "title" => $this->title,
             "description" => $this->description,
-            "enabled" => $this->enabled,
+            "en$sqlUtils->insert($this->$table, $parad,
         ];
 
         return $sqlUtils->insert($params);

@@ -13,9 +13,12 @@ class BookmarkedDashboards implements CRUD
 
     //Foreign Keys
 
-public function __construct()
-                    {
-                    $this->fill();
+public function __construct()
+
+                    {
+
+                    $this->fill();
+
                     }
     public function create()
     {
@@ -24,7 +27,7 @@ public function __construct()
         $params = [
             "id_client" => $this->id_client,
             "id_project" => $this->id_project,
-            "title" => $this->title,
+            "ti$sqlUtils->insert($this->$table, $para
         ];
 
         return $sqlUtils->insert($params);

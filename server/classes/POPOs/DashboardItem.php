@@ -38,7 +38,7 @@ class DashboardItem implements CRUD
             "id_dashboard_list" => $this->id_dashboard_list,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->$table, $params);
     }
 
     public function update()
