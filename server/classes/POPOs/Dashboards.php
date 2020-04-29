@@ -35,8 +35,8 @@ class Dashboards implements CRUD
 
         if (count($result) == 0) {
             $params["description"] = $this->description;
-            $date = new DateTime();
-            $params["creation_date"] = $date->format("Y-m-d H:i:s");
+
+            $params["creation_date"] = DateUtils::getCurrentDateTime();
             $result = $sqlUtils->insert(Dashboards::$table, $params);
             return $sqlUtils->query(Dashboards::$table, $params);
         }

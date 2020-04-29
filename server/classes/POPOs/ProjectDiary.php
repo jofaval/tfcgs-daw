@@ -29,8 +29,8 @@ class ProjectDiary implements CRUD
             "id_project" => $this->id_project,
             "content" => $this->content,
         ];
-        $date = new DateTime();
-        $params["creation_date"] = $date->format("Y-m-d H:i:s");
+
+        $params["creation_date"] = DateUtils::getCurrentDateTime();
         $params["id_creator"] = "16";
 
         return $sqlUtils->insert($this->table, $params);

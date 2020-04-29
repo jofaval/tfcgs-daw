@@ -17,6 +17,12 @@ class DateUtils
         return date($format, strtotime($date . ' - ' . $days . ' days'));
     }
 
+    public static function getCurrentDateTime($format = "Y-m-d H:i:s")
+    {
+        $date = new DateTime();
+        return $date->format($format);
+    }
+
     public static function getAllDatesFromInterval($startingDate, $endingDate)
     {
         $period = new DatePeriod(

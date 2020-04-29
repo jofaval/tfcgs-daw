@@ -30,8 +30,7 @@ class Collaborators implements CRUD
             "enabled" => '1',
         ];
 
-        $date = new DateTime();
-        $params["starting_date"] = $date->format("Y-m-d H:i:s");
+        $params["starting_date"] = DateUtils::getCurrentDateTime();
 
         $result = $sqlUtils->insert($this->table, $params);
 

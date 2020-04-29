@@ -93,8 +93,7 @@ class Controller
             switch ($tabName) {
                 case 'diary':
 
-                    $date = new DateTime();
-                    $dateInString = $date->format("Y-m-d");
+                    $dateInString = DateUtils::getCurrentDateTime();
                     $viewParams["diaryDate"] = $dateInString;
                     $viewParams["diaryDatePrev"] = DateUtils::substractDays($dateInString, 1, "Y-m-d");
                     $viewParams["diaryDateNext"] = DateUtils::addDays($dateInString, 1, "Y-m-d");
