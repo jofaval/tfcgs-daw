@@ -162,10 +162,10 @@ class SQLUtils
 
             $paramKeyNames = [];
             foreach ($params as $key => $value) {
-                $paramKeyNames[] = "`$key`";
+                $paramKeyNames[] = "$key";
             }
 
-            $queryString .= "(" . join(", ", $paramKeyNames) . ")";
+            $queryString .= "(`" . join("`, `", $paramKeyNames) . "`)";
             $queryString .= " VALUES (:" . join(", :", $paramKeyNames) . ")";
 
             $queryAction = $this->$model->$conexion->prepare($queryString);
@@ -183,7 +183,7 @@ class SQLUtils
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
-            //return $ex;
+            return $ex;
             $this->$model->rollback();
         }
 
