@@ -140,111 +140,6 @@ var $dashboardModal = $(`
 </div>
 `);
 
-var taskListJSON = [{
-        "id": 0,
-        "title": "Prueba",
-        "items": [{
-            "id": 0,
-            "order": 0,
-            "title": "TaskList 1 Item 1",
-        }, ],
-    },
-    {
-        "id": 1,
-        "title": "Test",
-        "items": [{
-                "id": 0,
-                "order": 1,
-                "title": `TaskList 2 Item 1
-            TaskList 2 Item 1
-            TaskList 2 Item 1
-            TaskList 2 Item 1
-            TaskList 2 Item 1`,
-            },
-            {
-                "id": 0,
-                "order": 1,
-                "title": `Fill`,
-            },
-            {
-                "id": 0,
-                "order": 1,
-                "title": `Fill`,
-            },
-            {
-                "id": 0,
-                "order": 1,
-                "title": `Fill`,
-            },
-            {
-                "id": 0,
-                "order": 1,
-                "title": `Fill`,
-            },
-            {
-                "id": 0,
-                "order": 1,
-                "title": `Fill`,
-            },
-            {
-                "id": 0,
-                "order": 1,
-                "title": `Fill`,
-            },
-            {
-                "id": 0,
-                "order": 1,
-                "title": `Fill`,
-            },
-            {
-                "id": 0,
-                "order": 1,
-                "title": `Fill`,
-            },
-        ],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    }, {
-        "id": 0,
-        "title": "Empty",
-        "items": [],
-    },
-];
-
 class Model {
     constructor() {
 
@@ -354,17 +249,32 @@ class Controller {
             }
         });
 
-        $(taskListJSON).each(function () {
-            var taskList = controller.createTaskList(controller, this);
+        $.ajax({
+            url: "/daw/index.php?ctl=getListsOfDashboard",
+            data: {
+                id_project: 7,
+                dashboard: "Prueba",
+            },
+            success: function (result) {
+                if (result === false) {
+                    return;
+                }
 
-            var items = this.items;
+                console.log(result);
 
-            if (items.length > 0) {
-                $(items).each(function () {
-                    controller.createTaskItem(controller, taskList, this);
+                $(result).each(function () {
+                    var taskList = controller.createTaskList(controller, this);
+
+                    var items = this.items;
+
+                    if (items.length > 0) {
+                        $(items).each(function () {
+                            controller.createTaskItem(controller, taskList, this);
+                        });
+                    }
                 });
             }
-        });
+        })
 
         controller.moveScrollWithMouse();
     }
