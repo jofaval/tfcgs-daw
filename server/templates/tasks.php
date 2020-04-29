@@ -20,7 +20,7 @@ $breadcrumb = [
     ],
     [
         "name" => $viewParams["title"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/",
+        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
         "active" => false,
     ],
     [
