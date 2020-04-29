@@ -142,7 +142,38 @@ var $dashboardModal = $(`
 
 class Model {
     constructor() {
+        this.projectId = this.getProjectId();
+        this.title = this.getDashboardtitle();
+    }
 
+    loadDashboardContent(whenFinished) {
+        var model = this;
+        $.ajax({
+            url: "/daw/index.php?ctl=getListsOfDashboard",
+            data: {
+                "id_project": model.projectId,
+                "dashboard": model.title,
+            },
+            success: function (dashboardElements) {
+                model.dashboardElements = dashboardElements;
+                model.workingdashboardElements = dashboardElements;
+                whenFinished(dashboardElements);
+            }
+        });
+    }
+
+    getProjectId() {
+        var URL = window.location.href;
+        var splittedURL = URL.split("/");
+
+        return splittedURL[6];
+    }
+
+    getDashboardtitle() {
+        var URL = window.location.href;
+        var splittedURL = URL.split("/");
+
+        return splittedURL[8];
     }
 }
 
@@ -249,32 +280,25 @@ class Controller {
             }
         });
 
-        $.ajax({
-            url: "/daw/index.php?ctl=getListsOfDashboard",
-            data: {
-                id_project: 7,
-                dashboard: "Prueba",
-            },
-            success: function (result) {
-                if (result === false) {
-                    return;
-                }
-
-                console.log(result);
-
-                $(result).each(function () {
-                    var taskList = controller.createTaskList(controller, this);
-
-                    var items = this.items;
-
-                    if (items.length > 0) {
-                        $(items).each(function () {
-                            controller.createTaskItem(controller, taskList, this);
-                        });
-                    }
-                });
+        controller.model.loadDashboardContent(function (dashboardElements) {
+            if (dashboardElements === false) {
+                return;
             }
-        })
+
+            console.log(dashboardElements);
+
+            $(dashboardElements).each(function () {
+                var taskList = controller.createTaskList(controller, this);
+
+                var items = this.items;
+
+                if (items.length > 0) {
+                    $(items).each(function () {
+                        controller.createTaskItem(controller, taskList, this);
+                    });
+                }
+            });
+        });
 
         controller.moveScrollWithMouse();
     }
