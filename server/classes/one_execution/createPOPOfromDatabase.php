@@ -15,6 +15,54 @@ $settings = [
     "overrideAjaxControllerJS" => false,
 ];
 
+function forEachTable($mysqli, &$functionNames, &$filesContent, &$methods, &$methodParams, $table)
+{
+    $content = "";
+
+    //cambio el nombre de la tabla a NomeclaturaCamello
+    $tableAsClass = camelCase($table, true);
+
+    //Recogo la creacion de la tabla
+    $res = $mysqli->query('SHOW CREATE TABLE ' . $table);
+    $TableMLine = $res->fetch_row()[1];
+    $splittedLine = explode("\n", $TableMLine);
+    //Elimino la primera y última línea del Create table (las líneas de "CREATE TABLE tabla (" y ");")
+    unset($splittedLine[0]);
+    unset($splittedLine[count($splittedLine)]);
+
+    //Recogo todos los campos y las claves primarias y ajenas de la tabla
+    $primaryKeys = [];
+    $tableKeys = [];
+    $foreignKeys = [];
+    loadKeys($splittedLine, $tableKeys, $foreignKeys, $primaryKeys);
+    $everyKey = array_merge($primaryKeys, $tableKeys, $foreignKeys);
+
+    //Implemento las funciones CRUD de la tabla para el POPO
+    createFunctionsOfTable($functionNames, $methods, $tableAsClass, $methodParams, $controller, $everyKey, $primaryKeys);
+
+    //Se muestra la información de la tabla
+    if ($settings["showTableLog"]) {
+        showTableLog($table, $splittedLine, $primaryKeys, $tableKeys, $foreignKeys);
+    }
+
+    //Se crea la clase POPO
+    $content .= "<?php\n\nclass " . $tableAsClass . " implements CRUD \n{\n    private \$table = \"$table\";\n\n";
+    //Se recogen las propiedades de la tabla para introducirlas en las clases
+    createClassProperties($content, $primaryKeys, $tableKeys, $foreignKeys);
+    $content .= "\n";
+    //Relleno los campos al inicializar la clase POPO
+    $content .= "\npublic function __construct()
+                    {
+                    \$this->fill();
+                    }";
+    //Creo las respectivas funciones
+    addFunctions($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
+    $content .= "\n} \n\n\n";
+
+    //Añado como archivo a crear el contenido para guardarlo en un archivo con el nombre de la clase
+    $filesContent[$tableAsClass] = $content;
+}
+
 function createPOPOfromDatabase($host, $user, $pass, $name)
 {
     //Me conecto a la base de datos
@@ -40,52 +88,14 @@ function createPOPOfromDatabase($host, $user, $pass, $name)
     //Inicializo la clase de controller
     $controller = "<?php\n\nclass POPOcontroller\n{";
 
-    //Recorro todas las tablas que se han recogido
-    foreach ($target_tables as $table) {
-        $content = "";
-
-        //cambio el nombre de la tabla a NomeclaturaCamello
-        $tableAsClass = camelCase($table, true);
-
-        //Recogo la creacion de la tabla
-        $res = $mysqli->query('SHOW CREATE TABLE ' . $table);
-        $TableMLine = $res->fetch_row()[1];
-        $splittedLine = explode("\n", $TableMLine);
-        //Elimino la primera y última línea del Create table (las líneas de "CREATE TABLE tabla (" y ");")
-        unset($splittedLine[0]);
-        unset($splittedLine[count($splittedLine)]);
-
-        //Recogo todos los campos y las claves primarias y ajenas de la tabla
-        $primaryKeys = [];
-        $tableKeys = [];
-        $foreignKeys = [];
-        loadKeys($splittedLine, $tableKeys, $foreignKeys, $primaryKeys);
-        $everyKey = array_merge($primaryKeys, $tableKeys, $foreignKeys);
-
-        //Implemento las funciones CRUD de la tabla para el POPO
-        createFunctionsOfTable($functionNames, $methods, $tableAsClass, $methodParams, $controller, $everyKey, $primaryKeys);
-
-        //Se muestra la información de la tabla
-        if ($settings["showTableLog"]) {
-            showTableLog($table, $splittedLine, $primaryKeys, $tableKeys, $foreignKeys);
+    //Si se escoge una sola tabla, se carga solo esa tabla
+    if ($settings["onlyOneTable"]) {
+        forEachTable($mysqli, $functionNames, $filesContent, $methods, $methodParams, $settings["tableName"]);
+    } else {
+        //Recorro todas las tablas que se han recogido
+        foreach ($target_tables as $table) {
+            forEachTable($mysqli, $functionNames, $filesContent, $methods, $methodParams, $table);
         }
-
-        //Se crea la clase POPO
-        $content .= "<?php\n\nclass " . $tableAsClass . " implements CRUD \n{\n    private \$table = \"$table\";\n\n";
-        //Se recogen las propiedades de la tabla para introducirlas en las clases
-        createClassProperties($content, $primaryKeys, $tableKeys, $foreignKeys);
-        $content .= "\n";
-        //Relleno los campos al inicializar la clase POPO
-        $content .= "\npublic function __construct()
-                    {
-                    \$this->fill();
-                    }";
-        //Creo las respectivas funciones
-        addFunctions($content, $primaryKeys, $tableKeys, $foreignKeys, $everyKey);
-        $content .= "\n} \n\n\n";
-
-        //Añado como archivo a crear el contenido para guardarlo en un archivo con el nombre de la clase
-        $filesContent[$tableAsClass] = $content;
     }
 
     //Se crea/sobreescribe el controlador de AJAX para PHP
