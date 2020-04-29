@@ -19,7 +19,7 @@ class SQLUtils
             if (count($params) > 0) {
                 $queryString .= " WHERE ";
                 foreach ($params as $key => $value) {
-                    $queryParams[] = "$key=:$key";
+                    $queryParams[] = "`$key`=:$key";
                 }
                 $queryString .= join(" and ", $queryParams);
             }
@@ -72,7 +72,7 @@ class SQLUtils
 
             $paramKeyNames = [];
             foreach ($toModify as $key => $value) {
-                $paramKeyNames[] = "$key=:$key";
+                $paramKeyNames[] = "`$key`=:$key";
             }
 
             $queryString .= join(", ", $paramKeyNames);
@@ -80,7 +80,7 @@ class SQLUtils
                 $queryString .= " WHERE ";
                 $paramKeyNames = [];
                 foreach ($identificationParams as $key => $value) {
-                    $paramKeyNames[] .= "$key=:$key";
+                    $paramKeyNames[] .= "`$key`=:$key";
                 }
                 $queryString .= join(" and ", $paramKeyNames);
             }
@@ -116,7 +116,7 @@ class SQLUtils
             if (count($identificationParams) > 0) {
                 $queryString .= " WHERE ";
                 foreach ($identificationParams as $key => $value) {
-                    $queryParams[] = "$key=:$key";
+                    $queryParams[] = "`$key`=:$key";
                 }
                 $queryString .= join(" and ", $queryParams);
             }
@@ -162,7 +162,7 @@ class SQLUtils
 
             $paramKeyNames = [];
             foreach ($params as $key => $value) {
-                $paramKeyNames[] = $key;
+                $paramKeyNames[] = "`$key`";
             }
 
             $queryString .= "(" . join(", ", $paramKeyNames) . ")";
