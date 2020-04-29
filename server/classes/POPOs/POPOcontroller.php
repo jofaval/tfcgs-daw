@@ -338,4 +338,172 @@ class POPOcontroller
 
         return $popoInstance->delete();
     }
+
+    public function createBookmarked()
+    {
+        $popoInstance = new Bookmarked();
+
+        $popoInstance->create();
+    }
+
+    public function updateBookmarked()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->update();
+    }
+
+    public function queryBookmarked()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->query();
+    }
+
+    public function deleteBookmarked()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->delete();
+    }
+
+    public function createBookmarkedDashboards()
+    {
+        $popoInstance = new BookmarkedDashboards();
+
+        $popoInstance->create();
+    }
+
+    public function updateBookmarkedDashboards()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->update();
+    }
+
+    public function queryBookmarkedDashboards()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->query();
+    }
+
+    public function deleteBookmarkedDashboards()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->delete();
+    }
+
+    public function createDashboardItem()
+    {
+        $popoInstance = new DashboardItem();
+
+        $popoInstance->create();
+    }
+
+    public function updateDashboardItem()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->update();
+    }
+
+    public function queryDashboardItem()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->query();
+    }
+
+    public function deleteDashboardItem()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->delete();
+    }
+
+    public function createDashboardList()
+    {
+        $popoInstance = new DashboardList();
+
+        $popoInstance->create();
+    }
+
+    public function updateDashboardList()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->update();
+    }
+
+    public function queryDashboardList()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->query();
+    }
+
+    public function deleteDashboardList()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->delete();
+    }
+
+    public function createDashboardListOrderCriteria()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->create();
+    }
+
+    public function updateDashboardListOrderCriteria()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->update();
+    }
+
+    public function queryDashboardListOrderCriteria()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->query();
+    }
+
+    public function deleteDashboardListOrderCriteria()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->delete();
+    }
+
+    public function createRoles()
+    {
+        $popoInstance = new Roles();
+
+        $popoInstance->create();
+    }
+
+    public function updateRoles()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->update();
+    }
+
+    public function queryRoles()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->query();
+    }
+
+    public function deleteRoles()
+    {
+        $popoInstance = new DashboardListOrderCriteria();
+
+        $popoInstance->delete();
+    }
 }

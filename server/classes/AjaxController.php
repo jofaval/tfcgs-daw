@@ -387,4 +387,149 @@ class AjaxController
     {
         $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
+
+    //Function to createBookmarked
+    public function createBookmarked()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project"]);
+    }
+
+    //Function to updateBookmarked
+    public function updateBookmarked()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project"]);
+    }
+
+    //Function to queryBookmarked
+    public function queryBookmarked()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project"]);
+    }
+
+    //Function to deleteBookmarked
+    public function deleteBookmarked()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project"]);
+    }
+
+    //Function to createBookmarkedDashboards
+    public function createBookmarkedDashboards()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+    }
+
+    //Function to updateBookmarkedDashboards
+    public function updateBookmarkedDashboards()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+    }
+
+    //Function to queryBookmarkedDashboards
+    public function queryBookmarkedDashboards()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+    }
+
+    //Function to deleteBookmarkedDashboards
+    public function deleteBookmarkedDashboards()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+    }
+
+    //Function to createDashboardItem
+    public function createDashboardItem()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title", "id_dashboard_list"]);
+    }
+
+    //Function to updateDashboardItem
+    public function updateDashboardItem()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title", "id_dashboard_list"]);
+    }
+
+    //Function to queryDashboardItem
+    public function queryDashboardItem()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title", "id_dashboard_list"]);
+    }
+
+    //Function to deleteDashboardItem
+    public function deleteDashboardItem()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title", "id_dashboard_list"]);
+    }
+
+    //Function to createDashboardList
+    public function createDashboardList()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title"]);
+    }
+
+    //Function to updateDashboardList
+    public function updateDashboardList()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title"]);
+    }
+
+    //Function to queryDashboardList
+    public function queryDashboardList()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title"]);
+    }
+
+    //Function to deleteDashboardList
+    public function deleteDashboardList()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title"]);
+    }
+
+    //Function to createDashboardListOrderCriteria
+    public function createDashboardListOrderCriteria()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+    }
+
+    //Function to updateDashboardListOrderCriteria
+    public function updateDashboardListOrderCriteria()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+    }
+
+    //Function to queryDashboardListOrderCriteria
+    public function queryDashboardListOrderCriteria()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+    }
+
+    //Function to deleteDashboardListOrderCriteria
+    public function deleteDashboardListOrderCriteria()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+    }
+
+    //Function to createRoles
+    public function createRoles()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+    }
+
+    //Function to updateRoles
+    public function updateRoles()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+    }
+
+    //Function to queryRoles
+    public function queryRoles()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+    }
+
+    //Function to deleteRoles
+    public function deleteRoles()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+    }
+
 }
