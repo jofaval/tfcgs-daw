@@ -1,6 +1,6 @@
 <?php
 
-class DashboardList implements CRUD 
+class DashboardList implements CRUD
 {
     private $table = "dashboard_list";
 
@@ -8,8 +8,6 @@ class DashboardList implements CRUD
     private $id;
 
     //Table Keys
-    private $id_project;
-    private $dashboard_title;
     private $id_creator;
     private $title;
     private $creation_date;
@@ -17,13 +15,15 @@ class DashboardList implements CRUD
     private $enabled;
 
     //Foreign Keys
-    private $id_project`;
-    private $ `dashboard_title;
+    private $id_project;
+    private $dashboard_title;
 
-public function __construct()
-                    {
-                    $this->fill();
-                    }
+    public function __construct()
+    {
+
+        $this->fill();
+
+    }
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -37,8 +37,8 @@ public function __construct()
             "creation_date" => $this->creation_date,
             "order_criteria" => $this->order_criteria,
             "enabled" => $this->enabled,
-            "id_project`" => $this->id_project`,
-            " `dashboard_title" => $this-> `dashboard_title,
+            "id_project" => $this->id_project,
+            "dashboard_title" => $this->$dashboard_title,
         ];
 
         return $sqlUtils->insert($params);
@@ -56,8 +56,8 @@ public function __construct()
             "creation_date" => $this->creation_date,
             "order_criteria" => $this->order_criteria,
             "enabled" => $this->enabled,
-            "id_project`" => $this->id_project`,
-            " `dashboard_title" => $this-> `dashboard_title,
+            "id_project" => $this->id_project,
+            "dashboard_title" => $this->$dashboard_title,
         ];
 
         $identificationParams = [
@@ -100,7 +100,6 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
@@ -111,10 +110,9 @@ public function __construct()
         $this->creation_date = Utils::getCleanedData("creationDate");
         $this->order_criteria = Utils::getCleanedData("orderCriteria");
         $this->enabled = Utils::getCleanedData("enabled");
-        $this->id_project` = Utils::getCleanedData("idProject`");
-        $this-> `dashboard_title = Utils::getCleanedData("`dashboardTitle");
+        $this->id_project = Utils::getCleanedData("idProject");
+        $this->$dashboard_title = Utils::getCleanedData("dashboardTitle");
     }
-
 
     public function parse()
     {
@@ -127,10 +125,8 @@ public function __construct()
             "creationDate" => $this->creation_date,
             "orderCriteria" => $this->order_criteria,
             "enabled" => $this->enabled,
-            "idProject`" => $this->id_project`,
-            "`dashboardTitle" => $this-> `dashboard_title,
+            "idProject" => $this->id_project,
+            "dashboardTitle" => $this->$dashboard_title,
         ]);
     }
-} 
-
-
+}
