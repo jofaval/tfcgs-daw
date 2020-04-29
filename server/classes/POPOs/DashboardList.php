@@ -105,7 +105,7 @@ class DashboardList implements CRUD
         $this->id = Utils::getCleanedData("id");
         $this->id_project = Utils::getCleanedData("idProject");
         $this->dashboard_title = Utils::getCleanedData("dashboardTitle");
-        $this->id_creator = Utils::getCleanedData("idCreator");
+        $this->id_creator = Sessions::getInstance()->getSession("userId");
         $this->title = Utils::getCleanedData("title");
         $this->creation_date = Utils::getCleanedData("creationDate");
         $this->order_criteria = Utils::getCleanedData("orderCriteria");

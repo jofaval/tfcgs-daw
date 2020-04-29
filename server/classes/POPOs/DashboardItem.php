@@ -1,6 +1,6 @@
 <?php
 
-class DashboardItem implements CRUD 
+class DashboardItem implements CRUD
 {
     private $table = "dashboard_item";
 
@@ -18,10 +18,11 @@ class DashboardItem implements CRUD
     //Foreign Keys
     private $id_dashboard_list;
 
-public function __construct()
-                    {
-                    $this->fill();
-                    }
+    public function __construct()
+    {
+        $this->fill();
+    }
+
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -94,11 +95,10 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
-        $this->id_creator = Utils::getCleanedData("idCreator");
+        $this->id_creator = Sessions::getInstance()->getSession("userId");
         $this->title = Utils::getCleanedData("title");
         $this->order = Utils::getCleanedData("order");
         $this->description = Utils::getCleanedData("description");
@@ -106,7 +106,6 @@ public function __construct()
         $this->enabled = Utils::getCleanedData("enabled");
         $this->id_dashboard_list = Utils::getCleanedData("idDashboardList");
     }
-
 
     public function parse()
     {
@@ -121,6 +120,4 @@ public function __construct()
             "idDashboardList" => $this->id_dashboard_list,
         ]);
     }
-} 
-
-
+}
