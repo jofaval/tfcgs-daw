@@ -1,6 +1,6 @@
 <?php
 
-class BookmarkedDashboards implements CRUD 
+class BookmarkedDashboards implements CRUD
 {
     private $table = "bookmarked_dashboards";
 
@@ -13,13 +13,11 @@ class BookmarkedDashboards implements CRUD
 
     //Foreign Keys
 
-public function __construct()
+    public function __construct()
+    {
+        $this->fill();
+    }
 
-                    {
-
-                    $this->fill();
-
-                    }
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -27,10 +25,10 @@ public function __construct()
         $params = [
             "id_client" => $this->id_client,
             "id_project" => $this->id_project,
-            "ti$sqlUtils->insert($this->$table, $para
+            "title" => $this->title,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->$table, $params);
     }
 
     public function update()
@@ -88,14 +86,12 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id_client = Utils::getCleanedData("idClient");
         $this->id_project = Utils::getCleanedData("idProject");
         $this->title = Utils::getCleanedData("title");
     }
-
 
     public function parse()
     {
@@ -105,6 +101,4 @@ public function __construct()
             "title" => $this->title,
         ]);
     }
-} 
-
-
+}

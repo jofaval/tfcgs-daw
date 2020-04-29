@@ -1,6 +1,6 @@
 <?php
 
-class DashboardListOrderCriteria implements CRUD 
+class DashboardListOrderCriteria implements CRUD
 {
     private $table = "dashboard_list_order_criteria";
 
@@ -14,13 +14,11 @@ class DashboardListOrderCriteria implements CRUD
 
     //Foreign Keys
 
-public function __construct()
+    public function __construct()
+    {
+        $this->fill();
+    }
 
-                    {
-
-                    $this->fill();
-
-                    }
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -29,10 +27,10 @@ public function __construct()
             "id" => $this->id,
             "title" => $this->title,
             "description" => $this->description,
-            "en$sqlUtils->insert($this->$table, $parad,
+            "enabled" => $this->enabled,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->$table, $params);
     }
 
     public function update()
@@ -85,7 +83,6 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
@@ -93,7 +90,6 @@ public function __construct()
         $this->description = Utils::getCleanedData("description");
         $this->enabled = Utils::getCleanedData("enabled");
     }
-
 
     public function parse()
     {
@@ -104,6 +100,4 @@ public function __construct()
             "enabled" => $this->enabled,
         ]);
     }
-} 
-
-
+}
