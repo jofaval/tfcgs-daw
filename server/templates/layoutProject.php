@@ -76,11 +76,13 @@
     </main>
 
     <?php if ($showFooter): ?>
-    <footer class="footer py-3 bg-light d-none d-sm-block">
+    <div></div>
+    <footer class="footer py-3 bg-light z-index-overlap d-none d-sm-block">
         <div class="container text-align-right">
-            <span class="text-dark">- created by <a class="font-weight-bold text-dark" href="user@email.org">User</a>
-                &copy; in <span id="creationDate"><?php echo $viewParams["creationDate"]; ?></span>
-                -</span>
+            <span class="text-dark">Creador por <a href="<?php echo $projectData["projectCreatorUsername"]; ?>"
+                    class="projectCreatedBy text-dark font-weight-bold"><?php echo $projectData["projectCreator"]; ?></a>
+                el <span
+                    class="projectCreationDate text-dark font-weight-bold"><?php echo date("d-m-Y", strtotime($projectData["projectCreationDate"])); ?></span>
         </div>
     </footer>
     <?php endif;?>
