@@ -296,19 +296,6 @@ class Controller {
             var event = event || window.event;
             var newPosition = event.pageX;
             if (mousedown) {
-                /* //clearTimeout(scrollID);
-                //scrollID = setTimeout(() => {
-                main.get(0).scrollHeight;
-                var operationResult = (originalPosition - event.pageX);
-                console.log(1, operationResult);
-                operationResult = ((operationResult * 100) / main.get(0).scrollWidth);
-                console.log(2, operationResult);
-
-                main.scrollLeft(main.scrollLeft() + (operationResult));
-                //}, 5); */
-                /* var operationResult = ((event.pageX - originalPosition) * 100) / (vw - originalPosition);
-                console.log(operationResult);
-                operationResult = ((operationResult * 100) / main.get(0).scrollWidth); */
                 clearTimeout(scrollID);
                 scrollID = setTimeout(() => {
                     main.scrollLeft(main.scrollLeft() + (originalPosition - newPosition));
@@ -342,11 +329,11 @@ class Controller {
     }
 
     onTaskListCreation(taskList) {
-
+        console.log(taskList);
     }
 
     onTaskListItemCreation(taskList, taskItem) {
-
+        console.log(taskList, taskItem);
     }
 
     onTaskItemMoved(movedData) {
@@ -359,15 +346,9 @@ class Controller {
         var controllerView = controller.view;
         var taskList = controllerView.visualizeTaskList(taskListData.id, taskListData.title);
 
-        /* controller.createTaskItem(controller, taskList, {
-            "id": -1,
-            "order": -1,
-            "title": "",
-        }).addClass("sr-only"); */
-
         taskList.find(".taskListInputBtn").on("click", function () {
             var event = event || window.event;
-            controller.taskListItemCreation(event, controller, taskList);
+            controller.taskListItemCreation(event, controller, taskList, taskListData);
         });
 
         taskList.find(".taskListInput").on("keypress", function (event) {
@@ -391,46 +372,10 @@ class Controller {
             }
         });
 
-        /* console.log(taskList);
-
-        var taskListElement = taskList.find(".taskList");
-        taskListElement.prop("draggable", true);
-        taskListElement.on("dragstart", function (e) {
-            var e = e || window.event;
-            //controller.view.addGhostImage(e, $(this), this, "");
-            $referenceTaskList.show();
-            console.log("Empieza");
-            $referenceTaskList.find(".taskList").height(taskList.find(".taskList").height());
-            taskList.hide();
-        });
-        taskList.on("drop", function () {
-            console.log("Se suelta");
-        }).on("dragover", function () {
-            var index = $(this).index();
-            console.log("encima", index);
-
-            if (index > 0) {
-                $(this).after($referenceTaskList);
-            } else {
-                $(this).before($referenceTaskList);
-            }
-        }).on("dragend", function () {
-            console.log("fin");
-            taskList.show();
-            $referenceTaskList.hide();
-            $referenceTaskList.before(taskList);
-        });
-
-        $("#taskListInputCreation").on("dragover", function () {
-            console.log("encima");
-            $(this).before($referenceTaskList);
-        }); */
-
-
         return taskList;
     }
 
-    taskListItemCreation(event, controller, taskList) {
+    taskListItemCreation(event, controller, taskList, taskListData) {
         var taskListInput = taskList.find(".taskListInput");
 
         var taskListItemValue = taskListInput.val();
@@ -446,7 +391,6 @@ class Controller {
         };
 
         var taskItem = controller.createTaskItem(controller, taskList, returnedValue);
-        controller.view.scrollTo(taskItem);
         controller.onTaskListItemCreation(taskList, returnedValue);
         taskListInput.val("");
     }
