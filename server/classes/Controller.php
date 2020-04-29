@@ -50,13 +50,17 @@ class Controller
         ];
 
         if (Utils::exists("id")) {
+            //Coger la ID y comprobar las redirecciones
             $id = Utils::getCleanedData("id");
             $tabName = Utils::getCleanedData("tabName");
+
+            //Si no tiene ni elemento al que acceder ni pestaña a la que cambiar, fuera
             if (!Utils::exists("element") && $tabName == "") {
                 header("Location: ./overview/");
             }
             $viewParams["tabName"] = $tabName;
 
+            //Conseguir los datos del proyecto
             $sqlUtils = new SQLUtils(Model::getInstance());
             $project = new Projects();
             $projectData = $project->query()[0];
@@ -82,11 +86,16 @@ class Controller
 
             $direction = "project";
 
+            //Si tiene elemento
             if (Utils::exists("element")) {
                 $element = Utils::getCleanedData("element");
                 $viewParams["secondaryId"] = Utils::getCleanedData("secondaryId");
+
+                //Si el elemento que se ha introducido es uno de los aceptados
                 if (in_array($element, Config::$projectElements)) {
                     $direction = $element;
+
+                    //Acciones especiales para los elementos de un proyecto
                     switch ($element) {
                         case 'tasks':
                             $sqlUtils = new SQLUtils(Model::getInstance());
@@ -104,13 +113,14 @@ class Controller
                 }
             }
 
+            //Acciones especiales para los tabs
             switch ($tabName) {
                 case 'diary':
+                    //Preparar la fecha actual
                     $dateInString = DateUtils::getCurrentDateTime();
                     $viewParams["diaryDate"] = $dateInString;
-                    $viewParams["diaryDatePrev"] = DateUtils::substractDays($dateInString, 1, "Y-m-d");
-                    $viewParams["diaryDateNext"] = DateUtils::addDays($dateInString, 1, "Y-m-d");
 
+                    //Si se pasa una, trabajar con esa
                     if (Utils::exists("date")) {
                         $validation = Validation::getInstance();
 
@@ -126,10 +136,11 @@ class Controller
                         $isDate = $validation->rules($regla, ["date" => $date]);
                         if ($isDate === true) {
                             $viewParams["diaryDate"] = $date;
-                            $viewParams["diaryDatePrev"] = DateUtils::substractDays($date, 1, "Y-m-d");
-                            $viewParams["diaryDateNext"] = DateUtils::addDays($date, 1, "Y-m-d");
                         }
                     }
+
+                    $viewParams["diaryDatePrev"] = DateUtils::substractDays($viewParams["diaryDate"], 1, "Y-m-d");
+                    $viewParams["diaryDateNext"] = DateUtils::addDays($viewParams["diaryDate"], 1, "Y-m-d");
                     break;
             }
 
