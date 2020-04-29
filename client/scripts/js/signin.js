@@ -124,3 +124,24 @@ $("#changeForm").on("click", function () {
     isInLogin = !isInLogin;
 });
 $("#changeForm").trigger("click");
+
+var credentials = localStorage.getItem("signin-credentials");
+if (credentials != null) {
+    var credentialsJSON = JSON.parse(credentials);
+    $("#rememberCredentials").prop("checked", true);
+    $("#registerForm #username").val(credentialsJSON.username);
+    $("#registerForm #password").val(credentialsJSON.password);
+    $("#registerForm #password").focus();
+    $("#registerForm #username").focus();
+}
+
+$("#registerForm").on("submit", function () {
+    if ($("#rememberCredentials").is(":checked")) {
+        localStorage.setItem("signin-credentials", JSON.stringify({
+            username: $("#username").val(),
+            password: $("#password").val(),
+        }));
+    } else {
+        localStorage.removeItem("signin-credentials");
+    }
+})

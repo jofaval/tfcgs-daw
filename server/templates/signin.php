@@ -30,6 +30,10 @@
                 </a>
             </div>
         </div>
+        <div class="custom-control w-100 text-left custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="rememberCredentials">
+            <label class="custom-control-label" for="rememberCredentials">Recordar combinación</label>
+        </div>
         <div class="md-form w-75">
             <input type="submit" class="btn btn-primary w-100" value="Sign in" id="signin" name="signin" required>
         </div>
