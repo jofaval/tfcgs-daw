@@ -36,8 +36,8 @@ $(".pushMenuOverlap").on("click", function () {
 
 pushMenuContainer.on("click", function (event) {
     var event = event || window.event;
-    event.preventDefault();
-    event.stopPropagation();
+    //event.preventDefault();
+    //event.stopPropagation();
 
     if (toggled) {
         hidePushMenu();
