@@ -31,7 +31,7 @@ class DashboardList implements CRUD
         $params = [
             "id_project" => $this->id_project,
             "dashboard_title" => $this->dashboard_title,
-            "id_creator" => $this->id_creator,
+            "id_creator" => "16",
             "title" => $this->title,
             "creation_date" => DateUtils::getCurrentDateTime(),
             "order_criteria" => "1",
@@ -100,15 +100,13 @@ class DashboardList implements CRUD
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
-        $this->id_project = Utils::getCleanedData("idProject");
-        $this->dashboard_title = Utils::getCleanedData("dashboardTitle");
+        $this->id_project = Utils::getCleanedData("id_project");
+        $this->dashboard_title = Utils::getCleanedData("dashboard_title");
         $this->id_creator = Sessions::getInstance()->getSession("userId");
         $this->title = Utils::getCleanedData("title");
-        $this->creation_date = Utils::getCleanedData("creationDate");
-        $this->order_criteria = Utils::getCleanedData("orderCriteria");
+        $this->creation_date = Utils::getCleanedData("creation_date");
+        $this->order_criteria = Utils::getCleanedData("order_criteria");
         $this->enabled = Utils::getCleanedData("enabled");
-        $this->id_project = Utils::getCleanedData("idProject");
-        $this->$dashboard_title = Utils::getCleanedData("dashboardTitle");
     }
 
     public function parse()
