@@ -439,25 +439,25 @@ class AjaxController
     //Function to createDashboardItem
     public function createDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title", "id_dashboard_list"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["title", "id_dashboard_list"]);
     }
 
     //Function to updateDashboardItem
     public function updateDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title", "id_dashboard_list"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["title", "id_dashboard_list"]);
     }
 
     //Function to queryDashboardItem
     public function queryDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title", "id_dashboard_list"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["title", "id_dashboard_list"]);
     }
 
     //Function to deleteDashboardItem
     public function deleteDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title", "id_dashboard_list"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["title", "id_dashboard_list"]);
     }
 
     //Function to createDashboardList
