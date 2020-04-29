@@ -87,12 +87,25 @@ class Controller
                 $viewParams["secondaryId"] = Utils::getCleanedData("secondaryId");
                 if (in_array($element, Config::$projectElements)) {
                     $direction = $element;
+                    switch ($element) {
+                        case 'tasks':
+                            $sqlUtils = new SQLUtils(Model::getInstance());
+                            $dashboard_title = Utils::getCleanedData("secondaryId");
+
+                            $dashboardQueryData = $sqlUtils->complexQuery("SELECT title FROM dashboards WHERE id_project=:id_project and title=:title", ["title" => $dashboard_title, "id_project" => $id]);
+
+                            if ($dashboardQueryData === false || count($dashboardQueryData) == 0) {
+                                header("Location: /daw/projects/id/$id/dashboards/");
+                            }
+
+                            $direction = $element;
+                            break;
+                    }
                 }
             }
 
             switch ($tabName) {
                 case 'diary':
-
                     $dateInString = DateUtils::getCurrentDateTime();
                     $viewParams["diaryDate"] = $dateInString;
                     $viewParams["diaryDatePrev"] = DateUtils::substractDays($dateInString, 1, "Y-m-d");
@@ -117,9 +130,6 @@ class Controller
                             $viewParams["diaryDateNext"] = DateUtils::addDays($date, 1, "Y-m-d");
                         }
                     }
-                    break;
-                case 'tasks':
-                    $direction = $element;
                     break;
             }
 
