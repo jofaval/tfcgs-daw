@@ -162,6 +162,27 @@ class Model {
         });
     }
 
+    addDashboardList(title, whenFinished) {
+        var model = this;
+        $.ajax({
+            url: "/daw/index.php?ctl=createDashboardList",
+            data: {
+                "id_project": model.projectId,
+                "dashboard_title": model.title,
+                "title": title,
+            },
+            success: function (dashboardElements) {
+                model.dashboardElements.push(dashboardElements);
+                model.workingdashboardElements.push(dashboardElements);
+                whenFinished(dashboardElements);
+            }
+        });
+    }
+
+    addDashboardItem(whenFinished) {
+
+    }
+
     getProjectId() {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
@@ -329,7 +350,7 @@ class Controller {
     }
 
     taskListInputCreationEvent(event, controller) {
-        var taskListAddContainer = $("#taskListInputCreation");
+        //var taskListAddContainer = $("#taskListInputCreation");
         var taskListAddInput = $("#taskListInputCreation").find(".taskListInput");
 
         var newTaskListTitle = taskListAddInput.val();
@@ -337,23 +358,25 @@ class Controller {
             sendNotification("Task list title must have at least 3 characters", "taskListTitleTooShort");
             return;
         }
+        controller.onTaskListCreation(controller, returnedValue, function (result) {
 
-        var returnedValue = {
-            "id": 0,
-            "title": newTaskListTitle,
-            "items": [],
-        };
-        //ajax here
-        var taskList = controller.createTaskList(controller, returnedValue);
-        controller.onTaskListCreation(returnedValue);
+            if (result !== false) {
+                var taskList = controller.createTaskList(controller, result);
+                //controller.view.scrollTo(taskListAddContainer);
 
-        controller.view.scrollTo(taskListAddContainer);
-
-        taskListAddInput.val("");
+                taskListAddInput.val("");
+            } else {
+                sendNotification("No se ha podido crear", "dashboardListTitleTooShort");
+                return;
+            }
+        });
     }
 
-    onTaskListCreation(taskList) {
-        console.log(taskList);
+    onTaskListCreation(controller, taskList, whenFinished) {
+        console.log(taskList, controller);
+        controller.model.addDashboardList(taskList.title, function (result) {
+            whenFinished(result);
+        });
     }
 
     onTaskListItemCreation(taskList, taskItem) {
