@@ -180,16 +180,31 @@ class Controller
 
     public function getListsOfDashboard()
     {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $id_project = Utils::getCleanedData("id_project");
+        $dashboard_title = Utils::getCleanedData("dashboard");
+
         $queryString = "SELECT id, id_project, title, order_criteria as orderCriteria, creation_date as creationDate
         FROM `dashboard_list`
-        WHERE  enabled = 1 and dashboard_title='Prueba' and id_project=7";
+        WHERE enabled = 1 and id_project = :id_project and dashboard_title = :dashboard_title";
+
+        $lists = $sqlUtils->complexQuery($queryString, ["id_project" => $id_project, "dashboard_title" => $dashboard_title]);
+        foreach ($lists as $key => $list) {
+            $items = $this->getDashboardItemsOfList($list["id"]);
+            $lists[$key]["items"] = $items;
+        }
+
+        return $lists;
     }
 
-    public function getDashboardItemsOfList()
+    public function getDashboardItemsOfList($id_dashboard_list)
     {
-        $queryString = "SELECT id, title, description, order, creation_date as creationDate
+        $sqlUtils = new SQLUtils(Model::getInstance());
+
+        $queryString = "SELECT id, title, description, `order`, creation_date as creationDate
         FROM `dashboard_item`
-        WHERE  enabled = 1 and id_dashboard_list=1";
+        WHERE  enabled = 1 and id_dashboard_list=:id_dashboard_list";
+        return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list]);
     }
 
     public function bookmarkProject()
