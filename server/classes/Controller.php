@@ -52,7 +52,33 @@ class Controller
         if (Utils::exists("id")) {
             //Coger la ID y comprobar las redirecciones
             $id = Utils::getCleanedData("id");
+
+            $validation = Validation::getInstance();
+            $regla = array(
+                array(
+                    'name' => 'id',
+                    'regla' => 'no-empty,numeric',
+                ),
+            );
+
+            $isValid = $validation->rules($regla, ["id" => $id]);
+            if ($isValid !== true) {
+                header("Location: /daw/projects/");
+            }
+
+            //Comprobar que el tabname, no es nada raro y es uno de los admitidos
             $tabName = Utils::getCleanedData("tabName");
+            $regla = array(
+                array(
+                    'name' => 'id',
+                    'regla' => 'no-empty,numeric',
+                ),
+            );
+
+            $isValid = $validation->rules($regla, ["id" => $id]);
+            if ($isValid !== true || !in_array($tabName, ["overview", "dashboards", "diary", "collaborators", "details"])) {
+                header("Location: /daw/projects/id/$id/");
+            }
 
             //Si no tiene ni elemento al que acceder ni pestaña a la que cambiar, fuera
             if (!Utils::exists("element") && $tabName == "") {
@@ -122,8 +148,6 @@ class Controller
 
                     //Si se pasa una, trabajar con esa
                     if (Utils::exists("date")) {
-                        $validation = Validation::getInstance();
-
                         $date = Utils::getCleanedData("date");
 
                         $regla = array(
