@@ -28,13 +28,12 @@ class DashboardItem implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->id,
-            "id_creator" => $this->id_creator,
+            "id_creator" => "16",
             "title" => $this->title,
-            "order" => $this->order,
+            "order" => "0",
             "description" => $this->description,
-            "creation_date" => $this->creation_date,
-            "enabled" => $this->enabled,
+            "creation_date" => DateUtils::getCurrentDateTime(),
+            "enabled" => "1",
             "id_dashboard_list" => $this->id_dashboard_list,
         ];
 
@@ -102,9 +101,9 @@ class DashboardItem implements CRUD
         $this->title = Utils::getCleanedData("title");
         $this->order = Utils::getCleanedData("order");
         $this->description = Utils::getCleanedData("description");
-        $this->creation_date = Utils::getCleanedData("creationDate");
+        $this->creation_date = Utils::getCleanedData("creation_date");
         $this->enabled = Utils::getCleanedData("enabled");
-        $this->id_dashboard_list = Utils::getCleanedData("idDashboardList");
+        $this->id_dashboard_list = Utils::getCleanedData("id_dashboard_list");
     }
 
     public function parse()
