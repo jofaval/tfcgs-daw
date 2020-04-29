@@ -12,7 +12,7 @@ $("main").toggleClass("flex-column flex-row");
 
 $("#pushMenuToggleBtn, .pushMenu").on("click", function (event) {
     var event = event || window.event;
-    event.preventDefault();
+    //event.preventDefault();
     event.stopPropagation();
 
     showPushMenu();
@@ -37,7 +37,7 @@ $(".pushMenuOverlap").on("click", function () {
 pushMenuContainer.on("click", function (event) {
     var event = event || window.event;
     event.preventDefault();
-    //event.stopPropagation();
+    event.stopPropagation();
 
     if (toggled) {
         hidePushMenu();
