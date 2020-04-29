@@ -28,7 +28,7 @@ class BookmarkedDashboards implements CRUD
             "title" => $this->title,
         ];
 
-        return $sqlUtils->insert($this->$table, $params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()
@@ -44,7 +44,7 @@ class BookmarkedDashboards implements CRUD
             "title" => $this->title,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -57,7 +57,7 @@ class BookmarkedDashboards implements CRUD
             "title" => $this->title,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -70,7 +70,7 @@ class BookmarkedDashboards implements CRUD
             "title" => $this->title,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -83,7 +83,7 @@ class BookmarkedDashboards implements CRUD
             "title" => $this->title,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()

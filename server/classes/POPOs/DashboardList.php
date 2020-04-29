@@ -29,17 +29,16 @@ class DashboardList implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->id,
             "id_project" => $this->id_project,
             "dashboard_title" => $this->dashboard_title,
             "id_creator" => $this->id_creator,
             "title" => $this->title,
-            "creation_date" => $this->creation_date,
-            "order_criteria" => $this->order_criteria,
-            "enabled" => $this->enabled,
+            "creation_date" => DateUtils::getCurrentDateTime(),
+            "order_criteria" => "1",
+            "enabled" => "1",
         ];
 
-        return $sqlUtils->insert($this->$table, $params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()
@@ -62,7 +61,7 @@ class DashboardList implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -73,7 +72,7 @@ class DashboardList implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -84,7 +83,7 @@ class DashboardList implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -95,7 +94,7 @@ class DashboardList implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()

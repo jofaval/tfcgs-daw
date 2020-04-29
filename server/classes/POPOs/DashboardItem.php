@@ -38,7 +38,7 @@ class DashboardItem implements CRUD
             "id_dashboard_list" => $this->id_dashboard_list,
         ];
 
-        return $sqlUtils->insert($this->$table, $params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()
@@ -59,7 +59,7 @@ class DashboardItem implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -70,7 +70,7 @@ class DashboardItem implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -81,7 +81,7 @@ class DashboardItem implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -92,7 +92,7 @@ class DashboardItem implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
