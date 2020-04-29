@@ -173,7 +173,7 @@ class Model {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
 
-        return splittedURL[8];
+        return decodeURI(splittedURL[8]);
     }
 }
 
