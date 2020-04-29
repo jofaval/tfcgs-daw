@@ -28,12 +28,13 @@ class DashboardList implements CRUD
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
+        $currentTime = DateUtils::getCurrentDateTime();
         $params = [
             "id_project" => $this->id_project,
             "dashboard_title" => $this->dashboard_title,
             "id_creator" => "16",
             "title" => $this->title,
-            "creation_date" => DateUtils::getCurrentDateTime(),
+            "creation_date" => $currentTime,
             "order_criteria" => "1",
             "enabled" => "1",
         ];
@@ -44,10 +45,18 @@ class DashboardList implements CRUD
             $params = [
                 "id_project" => $this->id_project,
                 "dashboard_title" => $this->dashboard_title,
-                "creation_date" => DateUtils::getCurrentDateTime(),
+                "creation_date" => $currentTime,
                 "title" => $this->title,
             ];
-            return $sqlUtils->query($this->table, $params);
+            $array = $sqlUtils->query($this->table, $params)[0];
+
+            return [
+                "id" => $array["id"],
+                "id_project" => $array["id_project"],
+                "dashboard_title" => $array["dashboard_title"],
+                "title" => $array["title"],
+                "order_criteria" => $array["order_criteria"],
+            ];
         }
 
         return false;

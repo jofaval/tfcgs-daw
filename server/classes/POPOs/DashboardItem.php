@@ -27,12 +27,13 @@ class DashboardItem implements CRUD
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
+        $currentTime = DateUtils::getCurrentDateTime();
         $params = [
             "id_creator" => "16",
             "title" => $this->title,
             "order" => "0",
             "description" => $this->description,
-            "creation_date" => DateUtils::getCurrentDateTime(),
+            "creation_date" => $currentTime,
             "enabled" => "1",
             "id_dashboard_list" => $this->id_dashboard_list,
         ];
@@ -42,10 +43,18 @@ class DashboardItem implements CRUD
         if ($result) {
             $params = [
                 "id_dashboard_list" => $this->id_dashboard_list,
-                "creation_date" => DateUtils::getCurrentDateTime(),
+                "creation_date" => $currentTime,
                 "title" => $this->title,
             ];
-            return $sqlUtils->query($this->table, $params);
+            $array = $sqlUtils->query($this->table, $params)[0];
+
+            return [
+                "id" => $array["id"],
+                "id_dashboard_list" => $array["id_dashboard_list"],
+                "title" => $array["title"],
+                "order" => $array["order"],
+                "description" => $array["description"],
+            ];
         }
 
         return false;
