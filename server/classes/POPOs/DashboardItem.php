@@ -37,7 +37,18 @@ class DashboardItem implements CRUD
             "id_dashboard_list" => $this->id_dashboard_list,
         ];
 
-        return $sqlUtils->insert($this->table, $params);
+        $result = $sqlUtils->insert($this->table, $params);
+
+        if ($result) {
+            $params = [
+                "id_dashboard_list" => $this->id_dashboard_list,
+                "creation_date" => DateUtils::getCurrentDateTime(),
+                "title" => $this->title,
+            ];
+            return $sqlUtils->query($this->table, $params);
+        }
+
+        return false;
     }
 
     public function update()
@@ -66,7 +77,7 @@ class DashboardItem implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->id,
+            "id_dashboard_list" => $this->id_dashboard_list,
         ];
 
         return $sqlUtils->delete($this->table, $params);
