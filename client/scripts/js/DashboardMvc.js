@@ -53,6 +53,7 @@ var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference c
                         </div>
 
                     </div>`);
+
 var $dashboardModal = $(`
 <div>
     <div class="col text-left">
@@ -71,53 +72,10 @@ var $dashboardModal = $(`
                     <input type="text" class="form-control text-white" id="comment">
                     <label for="comment" class="">Comment</label>
                     <div class="input-group-append">
-                        <span class="input-group-text md-addon btn btn-sm btn-primary">Comment</span>
+                        <span class="input-group-text dashboardModalCommentBtn md-addon btn btn-sm btn-primary">Comment</span>
                     </div>
                 </div>
-                <div class="dashboardCommentsContainer">
-                    <div class="w-100 dashboardComment my-2">
-                        <img src="../img/profile-pic.png" width="50"
-                            class="dashboardCommentUserImg rounded-pill float-left mr-2" />
-                        <div class="row dashboardCommentInformation mb-2">
-                            <div class="dashboardCommentUsername text-white mr-2">Test</div>
-                            <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
-                        </div>
-                        <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
-                        <div class="row dashboardCommentActions text-white ml-2 mt-2">
-                            <a href="" class="dashboardCommentAction">Edit</a>
-                            &nbsp;-&nbsp;
-                            <a href="" class="dashboardCommentAction">Delete</a>
-                        </div>
-                    </div>
-                    <div class="w-100 dashboardComment my-2">
-                        <img src="../img/profile-pic.png" width="50"
-                            class="dashboardCommentUserImg rounded-pill float-left mr-2" />
-                        <div class="row dashboardCommentInformation mb-2">
-                            <div class="dashboardCommentUsername text-white mr-2">Test</div>
-                            <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
-                        </div>
-                        <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
-                        <div class="row dashboardCommentActions text-white ml-2 mt-2">
-                            <a href="" class="dashboardCommentAction">Edit</a>
-                            &nbsp;-&nbsp;
-                            <a href="" class="dashboardCommentAction">Delete</a>
-                        </div>
-                    </div>
-                    <div class="w-100 dashboardComment my-2">
-                        <img src="../img/profile-pic.png" width="50"
-                            class="dashboardCommentUserImg rounded-pill float-left mr-2" />
-                        <div class="row dashboardCommentInformation mb-2">
-                            <div class="dashboardCommentUsername text-white mr-2">Test</div>
-                            <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
-                        </div>
-                        <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
-                        <div class="row dashboardCommentActions text-white ml-2 mt-2">
-                            <a href="" class="dashboardCommentAction">Edit</a>
-                            &nbsp;-&nbsp;
-                            <a href="" class="dashboardCommentAction">Delete</a>
-                        </div>
-                    </div>
-                </div>
+                <div class="dashboardCommentsContainer"></div>
             </div>
             <div class="col-sm-4">
                 <div class="dasbhoardModalActions d-flex flex-column">
@@ -145,6 +103,23 @@ var $dashboardModal = $(`
                 </div>
             </div>
         </div>
+    </div>
+</div>
+`);
+var $dashboardModalComment = $(`
+<div class="w-100 dashboardComment my-2">
+    <img src="/daw/img/profile-pic.png" width="50"
+        class="dashboardCommentUserImg rounded-pill float-left mr-2" />
+    <div class="row dashboardCommentInformation mb-2">
+        <div class="dashboardCommentUsername text-white mr-2">Test</div>
+        <div class="dashboardCommentName text-white mr-2">Test</div>
+        <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
+    </div>
+    <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
+    <div class="row dashboardCommentActions text-white ml-2 mt-2">
+        <a href="" class="dashboardCommentAction">Edit</a>
+        &nbsp;-&nbsp;
+        <a href="" class="dashboardCommentAction">Delete</a>
     </div>
 </div>
 `);
@@ -315,6 +290,18 @@ class View {
         $(element).get(0).scrollIntoView({
             behavior: "smooth"
         });
+    }
+
+    visualizeModalComment(container, commentData) {
+        var clonedComment = $dashboardModalComment.clone();
+
+        clonedComment.find(".dashboardCommentName").text(commentData.commentCreatorName);
+        clonedComment.find(".dashboardCommentUsername").text(commentData.commentCreatorUsername);
+        clonedComment.find(".dashboardCommentTime").text(getTimeFromThisMoment(new Date(Date.parse(commentData.commentDate))));
+        clonedComment.find(".dashboardCommentContent").text(commentData.comment);
+        container.prepend(clonedComment);
+
+        return clonedComment;
     }
 }
 
@@ -613,6 +600,23 @@ class Controller {
                 $(".dashboardModalTitle").text(taskItemData.title);
                 $("#description.md-textarea").html(`${taskItemData.description}`);
 
+                $(".dashboardModalCommentBtn").on("click", function () {
+                    $.ajax({
+                        url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
+                        data: {
+                            "id_dashboard_item": taskItemData.id,
+                        },
+                        success: function (result) {
+                            var commentsContainer = $(".dashboardCommentsContainer");
+                            $(result).each(function () {
+                                console.log(this);
+
+                                controller.view.visualizeModalComment(commentsContainer, this);
+                            });
+                        }
+                    })
+                });
+
                 //comments
                 $.ajax({
                     url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
@@ -620,13 +624,14 @@ class Controller {
                         "id_dashboard_item": taskItemData.id,
                     },
                     success: function (result) {
+                        var commentsContainer = $(".dashboardCommentsContainer");
                         $(result).each(function () {
                             console.log(this);
 
-                            getTimeFromThisMoment(new Date());
+                            controller.view.visualizeModalComment(commentsContainer, this);
                         });
                     }
-                })
+                });
             }
         });
 
