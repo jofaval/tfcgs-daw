@@ -35,10 +35,10 @@ var $taskListItem = $(`
 <div class="taskListItem card mb-2" draggable="true" draggable="true">
     <div class="taskListItemBody hide-on-blur text-white hide card-body px-2 py-1">
         <p class="card-text taskListItemTitle m-0">project description.</p>
-        <a class="position-absolute dashboardBtnEdit btn btn-sm elementToHide right-0 m-0 top-0 text-white align-self-center">
+        <a class="position-absolute dashboardBtnEdit p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-white align-self-center">
             <i class="fa fa-times"></i>
         </a>
-        <a class="position-absolute dashboardBtnClose btn btn-sm elementToHide right-0 m-0 top-0 text-white align-self-center">
+        <a class="position-absolute dashboardBtnClose p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-white align-self-center">
             <i class="fa fa-times"></i>
         </a>
     </div>
@@ -525,8 +525,21 @@ class Controller {
 
         taskItem.find(".dashboardBtnClose").on("click", function (event) {
             var event = event || window.event;
-            console.log(taskItemData);
+            event.stopPropagation();
 
+            console.log(taskItemData.id_dashboard_list);
+
+            var confirmationModal = $.sweetModal.confirm('¿Borrar elemento de la lista?', `Confimar esta acción y borrar <b>"${taskItemData.title}"</b>`, function () {
+                sendNotification(`"${taskItemData.title}" borrado con éxito`, "taskItemCouldBeDeleted");
+            }, function () {
+
+            });
+
+            confirmationModal.params["onOpen"] = function () {
+                var buttons = $(".sweet-modal-buttons .button");
+                buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
+                buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
+            };
         })
 
         taskItem.on("click", function (event) {
