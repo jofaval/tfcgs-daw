@@ -56,7 +56,7 @@ var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference c
 var $dashboardModal = $(`
 <div>
     <div class="col text-left">
-        <h3 class="dashboardModalTitle" contenteditable="true"><span class="fa fa-eye"></span>Task title</h3>
+    <span class="float-left my-auto align-self-center fa fa-eye h1"></span><h3 class="dashboardModalTitle" contenteditable="true">Task title</h3>
         <small class="dashboardModalListNameContainer text-muted">in list <a href=""
                 class="dashboardModalListName">list</a></small>
         <div class="row">
@@ -603,12 +603,16 @@ class Controller {
         taskItem.on("click", function (event) {
             var event = event || window.event;
 
-            $.sweetModal({
+            var modal = $.sweetModal({
                 content: $dashboardModal.html(),
                 theme: $.sweetModal.THEME_DARK
             });
 
-
+            modal.params["onOpen"] = function () {
+                console.log(taskItemData);
+                $(".dashboardModalTitle").text(taskItemData.title);
+                $("#description.md-textarea").html(`<p>${taskItemData.description}</p>`);
+            }
         });
 
         return taskItem;
