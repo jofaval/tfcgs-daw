@@ -7,6 +7,7 @@ $map['notuseragent'] = array('controller' => 'Controller', 'action' => 'notusera
 $map['projects'] = array('controller' => 'Controller', 'action' => 'projects', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['project'] = array('controller' => 'Controller', 'action' => 'project', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['404'] = array('controller' => 'Controller', 'action' => 'error404', 'access' => Config::$ACCESS_LEVEL_GUEST);
+
 $map['getProjectsOfUser'] = array('controller' => 'AjaxController', 'action' => 'getProjectsOfUser', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getProjectDetails'] = array('controller' => 'AjaxController', 'action' => 'getProjectDetails', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getDashboardsOfProject'] = array('controller' => 'AjaxController', 'action' => 'getDashboardsOfProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
@@ -15,6 +16,7 @@ $map['bookmarkProject'] = array('controller' => 'AjaxController', 'action' => 'b
 $map['bookmarkDashboard'] = array('controller' => 'AjaxController', 'action' => 'bookmarkDashboard', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['doesUsernameExists'] = array('controller' => 'AjaxController', 'action' => 'doesUsernameExists', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getListsOfDashboard'] = array('controller' => 'AjaxController', 'action' => 'getListsOfDashboard', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['getCommentsOfDashboardItem'] = array('controller' => 'AjaxController', 'action' => 'getCommentsOfDashboardItem', 'access' => Config::$ACCESS_LEVEL_GUEST);
 
 $map['createDashboards'] = array('controller' => 'AjaxController', 'action' => 'createDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['updateDashboards'] = array('controller' => 'AjaxController', 'action' => 'updateDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);

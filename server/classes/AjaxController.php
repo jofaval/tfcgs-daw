@@ -45,6 +45,12 @@ class AjaxController
     }
 
     //Function to getListsOfDashboard
+    public function getCommentsOfDashboardItem()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item"], "Controller");
+    }
+
+    //Function to getListsOfDashboard
     public function getListsOfDashboard()
     {
         $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard"], "Controller");
