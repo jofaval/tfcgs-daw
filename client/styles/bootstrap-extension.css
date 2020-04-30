@@ -83,42 +83,46 @@
 }
 
 .justify-text-left {
-    text-align: justify;
-    text-align-last: left;
+    text-align: justify !important;
+    text-align-last: left !important;
 }
 
 .justify-text-center {
-    text-align: justify;
-    text-align-last: center;
+    text-align: justify !important;
+    text-align-last: center !important;
 }
 
 .justify-text-right {
-    text-align: justify;
-    text-align-last: right;
+    text-align: justify !important;
+    text-align-last: right !important;
 }
 
 .text-uppercase {
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
 
 .text-lowercase {
-    text-transform: lowercase;
+    text-transform: lowercase !important;
 }
 
 .text-capitalize {
-    text-transform: capitalize;
+    text-transform: capitalize !important;
 }
 
 .cursor-default {
-    cursor: default;
+    cursor: default !important;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .cursor-grabbing {
-    cursor: grabbing;
+    cursor: grabbing !important;
+}
+
+.hide-on-hover {
+    display: unset !important;
 }
 
 .special-container {
