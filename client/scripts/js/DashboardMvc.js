@@ -33,8 +33,14 @@ var $referenceTaskList = $(`
 
 var $taskListItem = $(`
 <div class="taskListItem card mb-2" draggable="true" draggable="true">
-    <div class="taskListItemBody text-white card-body px-2 py-1">
-        <p class="card-text taskListItemTitle">project description.</p>
+    <div class="taskListItemBody hide-on-blur text-white hide card-body px-2 py-1">
+        <p class="card-text taskListItemTitle m-0">project description.</p>
+        <a class="position-absolute dashboardBtnEdit btn btn-sm elementToHide right-0 m-0 top-0 text-white align-self-center">
+            <i class="fa fa-times"></i>
+        </a>
+        <a class="position-absolute dashboardBtnClose btn btn-sm elementToHide right-0 m-0 top-0 text-white align-self-center">
+            <i class="fa fa-times"></i>
+        </a>
     </div>
 </div>`);
 
@@ -516,6 +522,12 @@ class Controller {
                 "taskItem": taskItem,
             });
         });
+
+        taskItem.find(".dashboardBtnClose").on("click", function (event) {
+            var event = event || window.event;
+            console.log(taskItemData);
+
+        })
 
         taskItem.on("click", function (event) {
             var event = event || window.event;
