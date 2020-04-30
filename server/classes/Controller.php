@@ -236,7 +236,7 @@ class Controller
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
-        $queryString = "SELECT id, title, description, `order`, creation_date as creationDate
+        $queryString = "SELECT id, title, description, `order`, creation_date as creationDate, id_dashboard_list
         FROM `dashboard_item`
         WHERE  enabled = 1 and id_dashboard_list=:id_dashboard_list";
         return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list]);
