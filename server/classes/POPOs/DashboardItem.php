@@ -86,7 +86,7 @@ class DashboardItem implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id_dashboard_list" => $this->id_dashboard_list,
+            "id" => $this->id,
         ];
 
         return $sqlUtils->delete($this->table, $params);

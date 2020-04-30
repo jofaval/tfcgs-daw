@@ -200,6 +200,18 @@ class Model {
         });
     }
 
+    deleteDashboardItem(id, whenFinished) {
+        $.ajax({
+            url: "/daw/index.php?ctl=deleteDashboardItem",
+            data: {
+                "id": id,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
     getProjectId() {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
@@ -530,7 +542,12 @@ class Controller {
             console.log(taskItemData.id_dashboard_list);
 
             var confirmationModal = $.sweetModal.confirm('¿Borrar elemento de la lista?', `Confimar esta acción y borrar <b>"${taskItemData.title}"</b>`, function () {
-                sendNotification(`"${taskItemData.title}" borrado con éxito`, "taskItemCouldBeDeleted");
+                controller.model.deleteDashboardItem(taskItemData.id, function (result) {
+                    if (result === true) {
+                        sendNotification(`"${taskItemData.title}" ha sido borrado con éxito`, "taskItemCouldBeDeleted");
+                        taskItem.remove();
+                    }
+                })
             }, function () {
 
             });
