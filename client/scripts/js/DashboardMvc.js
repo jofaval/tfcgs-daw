@@ -179,8 +179,19 @@ class Model {
         });
     }
 
-    addDashboardItem(whenFinished) {
-
+    addDashboardItem(id_dashboard_list, title, whenFinished) {
+        $.ajax({
+            url: "/daw/index.php?ctl=createDashboardItem",
+            data: {
+                "id_dashboard_list": id_dashboard_list,
+                "title": title,
+            },
+            success: function (dashboardItem) {
+                /* model.dashboardElements.push(dashboardElements);
+                model.workingdashboardElements.push(dashboardElements); */
+                whenFinished(dashboardItem);
+            }
+        });
     }
 
     getProjectId() {
@@ -358,29 +369,25 @@ class Controller {
             sendNotification("Task list title must have at least 3 characters", "taskListTitleTooShort");
             return;
         }
-        controller.onTaskListCreation(controller, returnedValue, function (result) {
-
+        controller.onTaskListCreation(controller, newTaskListTitle, function (result) {
             if (result !== false) {
                 var taskList = controller.createTaskList(controller, result);
                 //controller.view.scrollTo(taskListAddContainer);
 
                 taskListAddInput.val("");
+                sendNotification("Se ha añadido la lista \"" + newTaskListTitle + "\"", "dashboardListCouldBeCreated");
             } else {
-                sendNotification("No se ha podido crear", "dashboardListTitleTooShort");
+                sendNotification("No se ha podido crear la lista \"" + newTaskListTitle + "\"", "dashboardListCouldNotBeCreated");
                 return;
             }
         });
     }
 
-    onTaskListCreation(controller, taskList, whenFinished) {
-        console.log(taskList, controller);
-        controller.model.addDashboardList(taskList.title, function (result) {
+    onTaskListCreation(controller, newTaskListTitle, whenFinished) {
+        console.log(newTaskListTitle, controller);
+        controller.model.addDashboardList(newTaskListTitle, function (result) {
             whenFinished(result);
         });
-    }
-
-    onTaskListItemCreation(taskList, taskItem) {
-        console.log(taskList, taskItem);
     }
 
     onTaskItemMoved(movedData) {
@@ -401,7 +408,7 @@ class Controller {
         taskList.find(".taskListInput").on("keypress", function (event) {
             var event = event || window.event;
             if (event.keyCode == 13) {
-                controller.taskListItemCreation(event, controller, taskList);
+                controller.taskListItemCreation(event, controller, taskList, taskListData);
             }
         });
 
@@ -431,16 +438,28 @@ class Controller {
             return;
         }
 
-        var returnedValue = {
-            "id": 0,
-            "order": 0,
-            "title": taskListItemValue,
-        };
+        console.log(taskList);
 
-        var taskItem = controller.createTaskItem(controller, taskList, returnedValue);
-        controller.onTaskListItemCreation(taskList, returnedValue);
-        taskListInput.val("");
+        controller.onTaskListItemCreation(controller, taskListData, taskListItemValue, function (result) {
+            if (result !== false) {
+                var taskItem = controller.createTaskItem(controller, taskList, result);
+
+                taskListInput.val("");
+                sendNotification("Se ha añadido el item \"" + taskListItemValue + "\"", "dashboardListCouldBeCreated");
+            } else {
+                sendNotification("No se ha podido crear el item \"" + taskListItemValue + "\"", "dashboardListCouldNotBeCreated");
+                return;
+            }
+        });
+
     }
+
+    onTaskListItemCreation(controller, taskListData, title, whenFinished) {
+        controller.model.addDashboardItem(taskListData.id, title, function (dashboardItem) {
+            whenFinished(dashboardItem);
+        });
+    }
+
 
     createTaskItem(controller, taskList, taskItemData) {
         var controllerView = controller.view;
