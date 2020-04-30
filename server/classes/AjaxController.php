@@ -481,7 +481,7 @@ class AjaxController
     //Function to deleteDashboardList
     public function deleteDashboardList()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to createDashboardListOrderCriteria

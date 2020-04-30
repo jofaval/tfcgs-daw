@@ -6,7 +6,10 @@ var $taskList = $(`
         <div class="taskListProperties d-none">
             <span class="taskListId"></span>
         </div>
-        <section class="taskListTitle text-left p-2">
+        <section class="taskListTitle hide-on-blur text-left p-2">
+            <a class="float-right dashboardListBtnClose p-1 btn btn-sm elementToHide m-1 text-white align-self-center">
+                <i class="fa fa-times"></i>
+            </a>
             <p class="mb-0 ml-3 taskListTitleText text-white">Titulo 1</p>
         </section>
         <div class="taskListItemsContainer px-2 pt-2 mb-3 " ondragover="event.preventDefault()">
@@ -152,6 +155,20 @@ class Model {
         this.title = this.getDashboardtitle();
     }
 
+    getProjectId() {
+        var URL = window.location.href;
+        var splittedURL = URL.split("/");
+
+        return splittedURL[6];
+    }
+
+    getDashboardtitle() {
+        var URL = window.location.href;
+        var splittedURL = URL.split("/");
+
+        return decodeURI(splittedURL[8]);
+    }
+
     loadDashboardContent(whenFinished) {
         var model = this;
         $.ajax({
@@ -212,18 +229,16 @@ class Model {
         });
     }
 
-    getProjectId() {
-        var URL = window.location.href;
-        var splittedURL = URL.split("/");
-
-        return splittedURL[6];
-    }
-
-    getDashboardtitle() {
-        var URL = window.location.href;
-        var splittedURL = URL.split("/");
-
-        return decodeURI(splittedURL[8]);
+    deleteDashboardList(id, whenFinished) {
+        $.ajax({
+            url: "/daw/index.php?ctl=deleteDashboardList",
+            data: {
+                "id": id,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
     }
 }
 
@@ -444,6 +459,30 @@ class Controller {
             }
         });
 
+        taskList.find(".dashboardListBtnClose").on("click", function (event) {
+            var event = event || window.event;
+            event.stopPropagation();
+
+            var confirmationModal = $.sweetModal.confirm('¿Borrar la lista?', `Confimar esta acción y borrar <b>"${taskListData.title}"</b>`, function () {
+                controller.model.deleteDashboardList(taskListData.id, function (result) {
+                    if (result === true) {
+                        sendNotification(`"${taskListData.title}" ha sido borrado con éxito`, "taskListCouldBeDeleted");
+                        taskList.remove();
+                    } else {
+                        sendNotification(`"${taskListData.title}" no se ha podido borrar`, "taskListCouldNotBeDeleted");
+                    }
+                })
+            }, function () {
+
+            });
+
+            confirmationModal.params["onOpen"] = function () {
+                var buttons = $(".sweet-modal-buttons .button");
+                buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
+                buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
+            };
+        })
+
         return taskList;
     }
 
@@ -546,6 +585,8 @@ class Controller {
                     if (result === true) {
                         sendNotification(`"${taskItemData.title}" ha sido borrado con éxito`, "taskItemCouldBeDeleted");
                         taskItem.remove();
+                    } else {
+                        sendNotification(`"${taskItemData.title}" no se ha podido borrar`, "taskItemCouldNotBeDeleted");
                     }
                 })
             }, function () {
