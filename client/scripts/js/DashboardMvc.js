@@ -602,17 +602,13 @@ class Controller {
 
                 $(".dashboardModalCommentBtn").on("click", function () {
                     $.ajax({
-                        url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
+                        url: "/daw/index.php?ctl=createDashboardItemComments",
                         data: {
                             "id_dashboard_item": taskItemData.id,
+                            "comment": $("#comment").val(),
                         },
                         success: function (result) {
-                            var commentsContainer = $(".dashboardCommentsContainer");
-                            $(result).each(function () {
-                                console.log(this);
-
-                                controller.view.visualizeModalComment(commentsContainer, this);
-                            });
+                            console.log(result);
                         }
                     })
                 });
