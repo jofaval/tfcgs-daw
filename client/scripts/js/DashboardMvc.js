@@ -57,17 +57,17 @@ var $referenceTaskListItem = $(`<div class="taskListItem taskListItemReference c
 var $dashboardModal = $(`
 <div>
     <div class="col text-left">
-    <span class="float-left my-auto align-self-center fa fa-eye h1"></span><h3 class="dashboardModalTitle" contenteditable="true">Task title</h3>
+    <span class="float-left my-auto mr-2 align-self-center fa fa-pencil h3" style="font-size: 1.75rem !important;"></span><h3 class="dashboardModalTitle" contenteditable="true">Task title</h3>
         <small class="dashboardModalListNameContainer text-muted">in list <a href=""
                 class="dashboardModalListName">list</a></small>
         <div class="row">
             <div class="col-sm-8">
-                <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-eye"></span>Description</h4>
+                <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-align-justify mr-2"></span>Description</h4>
                 <div class="md-form">
                     <textarea id="description" class="md-textarea form-control text-white" rows="3"></textarea>
                     <label for="description">Description</label>
                 </div>
-                <h4 class="dashboardModalCommentsTitle"><span class="fa fa-eye"></span>Comments</h4>
+                <h4 class="dashboardModalCommentsTitle"><span class="fa fa-comments mr-2"></span>Comments</h4>
                 <div class="md-form input-group mb-4">
                     <input type="text" class="form-control text-white" id="comment">
                     <label for="comment" class="">Comment</label>
