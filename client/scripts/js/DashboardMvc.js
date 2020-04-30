@@ -611,7 +611,22 @@ class Controller {
             modal.params["onOpen"] = function () {
                 console.log(taskItemData);
                 $(".dashboardModalTitle").text(taskItemData.title);
-                $("#description.md-textarea").html(`<p>${taskItemData.description}</p>`);
+                $("#description.md-textarea").html(`${taskItemData.description}`);
+
+                //comments
+                $.ajax({
+                    url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
+                    data: {
+                        "id_dashboard_item": taskItemData.id,
+                    },
+                    success: function (result) {
+                        $(result).each(function () {
+                            console.log(this);
+
+                            getTimeFromThisMoment(new Date());
+                        });
+                    }
+                })
             }
         });
 
