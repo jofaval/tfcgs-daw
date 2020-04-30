@@ -23,6 +23,11 @@ $map['updateDashboards'] = array('controller' => 'AjaxController', 'action' => '
 $map['queryDashboards'] = array('controller' => 'AjaxController', 'action' => 'queryDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['deleteDashboards'] = array('controller' => 'AjaxController', 'action' => 'deleteDashboards', 'access' => Config::$ACCESS_LEVEL_GUEST);
 
+$map['createDashboardItemComments'] = array('controller' => 'AjaxController', 'action' => 'createDashboardItemComments', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['updateDashboardItemComments'] = array('controller' => 'AjaxController', 'action' => 'updateDashboardItemComments', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['queryDashboardItemComments'] = array('controller' => 'AjaxController', 'action' => 'queryDashboardItemComments', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['deleteDashboardItemComments'] = array('controller' => 'AjaxController', 'action' => 'deleteDashboardItemComments', 'access' => Config::$ACCESS_LEVEL_GUEST);
+
 $map['signin'] = array('controller' => 'Controller', 'action' => 'signin', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['signup'] = array('controller' => 'Controller', 'action' => 'signup', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['signout'] = array('controller' => 'Controller', 'action' => 'signout', 'access' => Config::$ACCESS_LEVEL_GUEST);
