@@ -168,3 +168,103 @@
         margin: inherit 7.5em;
     }
 }
+
+.right-0 {
+    right: 0em !important;
+}
+
+.right-1 {
+    right: 1em !important;
+}
+
+.right-2 {
+    right: 2em !important;
+}
+
+.right-3 {
+    right: 3em !important;
+}
+
+.right-4 {
+    right: 4em !important;
+}
+
+.left-5 {
+    left: 5em !important;
+}
+
+.left-0 {
+    left: 0em !important;
+}
+
+.left-1 {
+    left: 1em !important;
+}
+
+.left-2 {
+    left: 2em !important;
+}
+
+.left-3 {
+    left: 3em !important;
+}
+
+.left-4 {
+    left: 4em !important;
+}
+
+.left-5 {
+    left: 5em !important;
+}
+
+.left-5 {
+    left: 5em !important;
+}
+
+.top-0 {
+    top: 0em !important;
+}
+
+.top-1 {
+    top: 1em !important;
+}
+
+.top-2 {
+    top: 2em !important;
+}
+
+.top-3 {
+    top: 3em !important;
+}
+
+.top-4 {
+    top: 4em !important;
+}
+
+.top-5 {
+    top: 5em !important;
+}
+
+.bottom-0 {
+    bottom: 0em !important;
+}
+
+.bottom-1 {
+    bottom: 1em !important;
+}
+
+.bottom-2 {
+    bottom: 2em !important;
+}
+
+.bottom-3 {
+    bottom: 3em !important;
+}
+
+.bottom-4 {
+    bottom: 4em !important;
+}
+
+.bottom-5 {
+    bottom: 5em !important;
+}
