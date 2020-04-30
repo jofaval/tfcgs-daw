@@ -408,9 +408,9 @@ class Controller {
                 //controller.view.scrollTo(taskListAddContainer);
 
                 taskListAddInput.val("");
-                sendNotification("Se ha añadido la lista \"" + newTaskListTitle + "\"", "dashboardListCouldBeCreated");
+                sendNotification("Se ha añadido la lista \"" + newTaskListTitle + "\"", "dashboardListCouldBeCreated" + newTaskListTitle);
             } else {
-                sendNotification("No se ha podido crear la lista \"" + newTaskListTitle + "\"", "dashboardListCouldNotBeCreated");
+                sendNotification("No se ha podido crear la lista \"" + newTaskListTitle + "\"", "dashboardListCouldNotBeCreated" + newTaskListTitle);
                 return;
             }
         });
@@ -502,9 +502,9 @@ class Controller {
                 var taskItem = controller.createTaskItem(controller, taskList, result);
 
                 taskListInput.val("");
-                sendNotification("Se ha añadido el item \"" + taskListItemValue + "\"", "dashboardListCouldBeCreated");
+                sendNotification("Se ha añadido el item \"" + taskListItemValue + "\"", "dashboardItemCouldBeCreated" + taskListItemValue);
             } else {
-                sendNotification("No se ha podido crear el item \"" + taskListItemValue + "\"", "dashboardListCouldNotBeCreated");
+                sendNotification("No se ha podido crear el item \"" + taskListItemValue + "\"", "dashboardItemCouldNotBeCreated" + taskListItemValue);
                 return;
             }
         });
