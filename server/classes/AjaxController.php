@@ -541,7 +541,7 @@ class AjaxController
     //Function to createDashboardItemComments
     public function createDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "creation_date", "comment"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "comment"]);
     }
 
     //Function to updateDashboardItemComments

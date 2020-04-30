@@ -506,4 +506,32 @@ class POPOcontroller
 
         return $popoInstance->delete();
     }
+
+    public function createDashboardItemComments()
+    {
+        $popoInstance = new DashboardItemComments();
+
+        return $popoInstance->create();
+    }
+
+    public function updateDashboardItemComments()
+    {
+        $popoInstance = new DashboardItemComments();
+
+        return $popoInstance->update();
+    }
+
+    public function queryDashboardItemComments()
+    {
+        $popoInstance = new DashboardItemComments();
+
+        return $popoInstance->query();
+    }
+
+    public function deleteDashboardItemComments()
+    {
+        $popoInstance = new DashboardItemComments();
+
+        return $popoInstance->delete();
+    }
 }
