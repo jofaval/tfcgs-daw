@@ -121,8 +121,20 @@
     cursor: grabbing !important;
 }
 
-.hide-on-hover {
-    display: unset !important;
+.hide-on-hover .elementToHide {
+    display: block !important;
+}
+
+.hide-on-hover:hover .elementToHide {
+    display: none !important;
+}
+
+.hide-on-blur .elementToHide {
+    display: none !important;
+}
+
+.hide-on-blur:hover .elementToHide {
+    display: block !important;
 }
 
 .special-container {
