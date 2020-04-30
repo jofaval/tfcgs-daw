@@ -348,21 +348,21 @@ class POPOcontroller
 
     public function updateBookmarked()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new Bookmarked();
 
         return $popoInstance->update();
     }
 
     public function queryBookmarked()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new Bookmarked();
 
         return $popoInstance->query();
     }
 
     public function deleteBookmarked()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new Bookmarked();
 
         return $popoInstance->delete();
     }
@@ -376,21 +376,21 @@ class POPOcontroller
 
     public function updateBookmarkedDashboards()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new BookmarkedDashboards();
 
         return $popoInstance->update();
     }
 
     public function queryBookmarkedDashboards()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new BookmarkedDashboards();
 
         return $popoInstance->query();
     }
 
     public function deleteBookmarkedDashboards()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new BookmarkedDashboards();
 
         return $popoInstance->delete();
     }
@@ -404,21 +404,21 @@ class POPOcontroller
 
     public function updateDashboardItem()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new DashboardItem();
 
         return $popoInstance->update();
     }
 
     public function queryDashboardItem()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new DashboardItem();
 
         return $popoInstance->query();
     }
 
     public function deleteDashboardItem()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new DashboardItem();
 
         return $popoInstance->delete();
     }
@@ -432,21 +432,21 @@ class POPOcontroller
 
     public function updateDashboardList()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new DashboardList();
 
         return $popoInstance->update();
     }
 
     public function queryDashboardList()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new DashboardList();
 
         return $popoInstance->query();
     }
 
     public function deleteDashboardList()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new DashboardList();
 
         return $popoInstance->delete();
     }
@@ -488,21 +488,21 @@ class POPOcontroller
 
     public function updateRoles()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new Roles();
 
         return $popoInstance->update();
     }
 
     public function queryRoles()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new Roles();
 
         return $popoInstance->query();
     }
 
     public function deleteRoles()
     {
-        $popoInstance = new DashboardListOrderCriteria();
+        $popoInstance = new Roles();
 
         return $popoInstance->delete();
     }

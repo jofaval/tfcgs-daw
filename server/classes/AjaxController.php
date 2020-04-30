@@ -457,7 +457,7 @@ class AjaxController
     //Function to deleteDashboardItem
     public function deleteDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["title", "id_dashboard_list"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to createDashboardList
