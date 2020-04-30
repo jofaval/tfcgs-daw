@@ -18,7 +18,7 @@ var $projectCard = $(`
         <div class="projectCardBookmarkedIcon"></div>
         <div class="projectCardFlags float-right btn-group"></div>
     </div>
-    <a href="" class="projectReadMore">Read more...</a>
+    <a href="" class="projectReadMore p-2 bg-white">Read more...</a>
     <div class="projectCardDescription text-justify my-2"></div>
 </div>`);
 
