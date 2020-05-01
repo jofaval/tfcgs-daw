@@ -35,7 +35,6 @@ class DashboardItemComments implements CRUD
         ];
 
         $result = $sqlUtils->insert($this->table, $params);
-        return $result;
 
         if ($result) {
             /* $params = [
