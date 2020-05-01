@@ -672,100 +672,114 @@ class Controller {
             });
 
             modal.params["onOpen"] = function () {
-                console.log(taskItemData);
-                $(".dashboardModalTitle").text(taskItemData.title);
-                $("#description.md-textarea").html(`${taskItemData.description}`);
-
-                var commentsContainer = $(".dashboardCommentsContainer");
-                $(".dashboardModalCommentBtn").on("click", function () {
-                    $.ajax({
-                        url: "/daw/index.php?ctl=createDashboardItemComments",
-                        data: {
-                            "id_dashboard_item": taskItemData.id,
-                            "comment": $("#comment").val(),
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result !== false) {
-                                controller.createComment(controller, result, commentsContainer);
-                            } else {
-                                sendNotification("No se ha podido añadir el comentario", "dashboardModalCommentNotAdded");
-                            }
-                        }
-                    })
-                });
-
-                //comments
-                $.ajax({
-                    url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
-                    data: {
-                        "id_dashboard_item": taskItemData.id,
-                    },
-                    success: function (result) {
-                        if (result !== false) {
-                            commentsContainer.html("");
-                            $(result).each(function () {
-                                var commentJSON = this;
-                                console.log(commentJSON);
-
-                                controller.createComment(controller, commentJSON, commentsContainer);
-                            });
-                        }
-                    }
-                });
+                controller.onOpenDashboardModal(taskItemData, controller);
             }
         });
 
         return taskItem;
     }
 
+    onOpenDashboardModal(taskItemData, controller) {
+        console.log(taskItemData);
+        $(".dashboardModalTitle").text(taskItemData.title);
+        $("#description.md-textarea").html(`${taskItemData.description}`);
+        var commentsContainer = $(".dashboardCommentsContainer");
+        $(".dashboardModalCommentBtn").on("click", function () {
+            $.ajax({
+                url: "/daw/index.php?ctl=createDashboardItemComments",
+                data: {
+                    "id_dashboard_item": taskItemData.id,
+                    "comment": $("#comment").val(),
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result !== false) {
+                        controller.createComment(controller, result, commentsContainer);
+                    } else {
+                        sendNotification("No se ha podido añadir el comentario", "dashboardModalCommentNotAdded");
+                    }
+                }
+            });
+        });
+        //comments
+        $.ajax({
+            url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
+            data: {
+                "id_dashboard_item": taskItemData.id,
+            },
+            success: function (result) {
+                if (result !== false) {
+                    commentsContainer.html("");
+                    $(result).each(function () {
+                        var commentJSON = this;
+                        console.log(commentJSON);
+                        controller.createComment(controller, commentJSON, commentsContainer);
+                    });
+                }
+            }
+        });
+        $("#comment").on("keypress", function (event) {
+            console.log(event.keyCode);
+            if (event.keyCode == 13) {
+                controller.createComment(controller, commentJSON, container);
+                $(this).val("");
+            }
+        });
+    }
+
     createComment(controller, commentJSON, container) {
         var clonedComment = controller.view.visualizeModalComment(container, commentJSON);
 
         clonedComment.find(".dashboardCommentDelete").on("click", function (event) {
-            var event = event || window.event;
-            event.preventDefault();
-            var creationDate = clonedComment.find(".originalDate").text().trim();
-
-
-            var confirmationModal = $.sweetModal.confirm('¿Borrar el comentario?', `Esta acción no tiene marcha atrás`, function () {
-                $.ajax({
-                    url: "/daw/index.php?ctl=deleteDashboardItemComments",
-                    data: {
-                        "id": commentJSON.id,
-                    },
-                    success: function (result) {
-                        console.log(commentJSON.id);
-
-                        if (result !== false) {
-                            clonedComment.remove();
-                            var successAlert = $.sweetModal({
-                                content: `El comentario se ha borrado con éxito`,
-                                icon: $.sweetModal.ICON_SUCCESS,
-                                theme: $.sweetModal.THEME_DARK,
-                            });
-                        } else {
-                            var errorAlert = $.sweetModal({
-                                content: `No se ha podido borrar el comentario`,
-                                icon: $.sweetModal.ICON_ERROR,
-                                theme: $.sweetModal.THEME_DARK,
-                            });
-                            //sendNotification("No se ha podido borrar el comentario", "dashboardCommentCouldNotBeDeleted");
-                        }
-                    }
-                });
-            }, function () {
-
-            });
-
-            confirmationModal.params["onOpen"] = function () {
-                var buttons = $(".sweet-modal-buttons .button");
-                buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
-                buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
-            };
-
-            return false;
+            controller.deleteCommentEvent(controller, event, commentJSON, clonedComment);
         });
+
+        return clonedComment;
+    }
+
+    deleteCommentEvent(controller, event, commentJSON, clonedComment) {
+        var event = event || window.event;
+        event.preventDefault();
+        var creationDate = clonedComment.find(".originalDate").text().trim();
+
+
+        var confirmationModal = $.sweetModal.confirm('¿Borrar el comentario?', `Esta acción no tiene marcha atrás`, function () {
+            $.ajax({
+                url: "/daw/index.php?ctl=deleteDashboardItemComments",
+                data: {
+                    "id": commentJSON.id,
+                },
+                success: function (result) {
+                    console.log(commentJSON.id);
+
+                    if (result !== false) {
+                        clonedComment.remove();
+                        var successAlert = $.sweetModal({
+                            content: `El comentario se ha borrado con éxito`,
+                            icon: $.sweetModal.ICON_SUCCESS,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                    } else {
+                        var errorAlert = $.sweetModal({
+                            content: `No se ha podido borrar el comentario`,
+                            icon: $.sweetModal.ICON_ERROR,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                        //sendNotification("No se ha podido borrar el comentario", "dashboardCommentCouldNotBeDeleted");
+                    }
+                }
+            });
+        }, function () {
+
+        });
+
+        confirmationModal.params["onOpen"] = function () {
+            var buttons = $(".sweet-modal-buttons .button");
+            buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
+            buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
+        };
+
+        return false;
     }
 
     parseTaskListToJSON() {
