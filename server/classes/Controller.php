@@ -573,41 +573,67 @@ class Controller
         require __DIR__ . '/../templates/signin.php';
     }
 
-    public function getEventsFromMonth()
+    public function generateImage($text)
     {
-        $model = Model::getInstance();
-        $validation = Validation::getInstance();
+        header("Content-type: image/png");
 
-        $regla = array(
-            array(
-                'name' => 'month',
-                'regla' => 'no-empty,numeric',
-            ),
-            array(
-                'name' => 'year',
-                'regla' => 'no-empty,numeric',
-            ),
+        $width = 400;
+        $height = 400;
+
+        $im = imagecreate($width, $height);
+
+        $minRGB = 75;
+        $maxRGB = 150;
+
+        $arrayOfColors = [
+            [192, 44, 3],
+            [195, 98, 0],
+            [192, 186, 3],
+            [143, 190, 2],
+            [2, 247, 113],
+            [0, 191, 195],
+            [0, 115, 195],
+            [144, 0, 195],
+            [194, 0, 195],
+            [195, 0, 153],
+        ];
+
+        $selectedColor = $arrayOfColors[rand(0, count($arrayOfColors) - 1)];
+
+        $bgColor = imagecolorallocate($im,
+            $selectedColor[0],
+            $selectedColor[1],
+            $selectedColor[2]
+            /* rand($minRGB, $maxRGB) - rand(0, $minRGB / 2),
+        rand($minRGB, $maxRGB) - rand(0, $minRGB / 2),
+        rand($minRGB, $maxRGB) - rand(0, $minRGB / 2) */
         );
-        $validation = $validation->rules($regla, $_REQUEST);
 
-        if ($validation === true) {
-            return $model->getEventsFromMonth(Utils::getCleanedData("month"), Utils::getCleanedData("year"));
-        }
+        $textColor = imagecolorallocate($im,
+            235,
+            235,
+            235
+        );
 
-        return false;
+        $font = 'C:\\Windows\\Fonts\\Montserrat-Bold_0.otf';
+        $fontSize = $width / 2;
+
+        $textBox = imagettfbbox($fontSize, 0, $font, $text);
+
+        $textWidth = $textBox[2] - $textBox[0];
+        $textHeight = $textBox[7] - $textBox[1];
+
+        $x = ($width / 2) - ($textWidth / 2);
+        $y = ($height / 2) - ($textHeight / 2);
+
+        imagettftext($im, $fontSize, 0, $x, $y + 1, $textColor, $font, $text);
+
+        imagepng($im);
+        imagedestroy($im);
     }
 
     public function test()
     {
-        /* $model = Model::getInstance();
-        $sessions = Sessions::getInstance(); */
-
-        echo "test";
-
-        //return Cryptography::blowfishCrypt("test", "test");
-        //return count($model->query("SELECT * FROM `schedules`", $params));
-        //return $model->cudOperation("INSERT INTO `schedules` (`orderId`, `startHour`, `endHour`, `year`) VALUES ('7', '9:45', '10:40', '2019')", $params);
-        //return $_REQUEST["year"];
-        //return $model->getTeachers();
+        $this->generateImage("P");
     }
 }
