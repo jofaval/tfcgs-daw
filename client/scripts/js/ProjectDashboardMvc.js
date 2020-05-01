@@ -338,11 +338,11 @@ class Controller {
             title: 'Create dashboard',
             content: `<form action="/daw/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
-                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control">
+                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
                             <label for="title">Title</label>
                         </div>
                         <div class="md-form">
-                        <textarea class="md-textarea form-control" placeholder="" id="description" name="description">Test</textarea>
+                        <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
                         <label for="description">Description</label>
                         </div>
                         <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
