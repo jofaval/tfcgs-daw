@@ -168,7 +168,7 @@ class Controller {
                 controller.reload(controller);
             } else {
                 controller.clearContainer(controller);
-                $(".dashboardsContainer").text("No se han encontrado resultados.");
+                $(".dashboardsContainer").text(controller.model.project.length > 0 ? "No se han encontrado resultados." : "No hay tableros");
             }
         }, 100);
 
@@ -237,7 +237,7 @@ class Controller {
 
         if (noResultsFound) {
             controller.clearContainer(controller);
-            $(".dashboardsContainer").text("No se han encontrado resultados.");
+            $(".dashboardsContainer").text(controller.model.project.length > 0 ? "No se han encontrado resultados." : "No hay tableros");
         }
 
         console.log(controller.model.workingDashboards);

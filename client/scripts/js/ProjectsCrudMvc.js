@@ -168,7 +168,8 @@ class Controller {
                 controller.reload(controller);
             } else {
                 controller.clearContainer(controller);
-                $(".projectsContainer").text("No se han encontrado resultados.");
+                $(".projectsContainer").text(controller.model.project.length > 0 ? "No se han encontrado resultados." : "No hay proyectos");
+
             }
         }, 100);
 
@@ -237,7 +238,7 @@ class Controller {
             controller.reload(controller);
         } else {
             controller.clearContainer(controller);
-            $(".projectsContainer").text("No se han encontrado resultados.");
+            $(".projectsContainer").text(controller.model.project.length > 0 ? "No se han encontrado resultados." : "No hay proyectos");
         }
         /* $(".projectCard").each(function () {
             /* var projectCard = $(this);
@@ -300,7 +301,9 @@ class Controller {
 
         if (noResultsFound) {
             controller.clearContainer(controller);
-            $(".projectsContainer").text("No se han encontrado resultados.");
+
+
+            $(".projectsContainer").text(controller.model.project.length > 0 ? "No se han encontrado resultados." : "No hay proyectos");
         }
 
         console.log(controller.model.workingProjects);
