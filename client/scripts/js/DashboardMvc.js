@@ -313,11 +313,11 @@ class View {
         clonedComment.find(".dashboardCommentUsername").text(commentData.commentCreatorUsername);
         var commentDate = commentData.commentDate;
         var commentTimeHTML = clonedComment.find(".dashboardCommentTime");
-        commentTimeHTML.text(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
+        commentTimeHTML.text(getTimeFromThisMoment(commentDate));
         commentTimeHTML.append(`<span class="originalDate d-none">${commentDate}</span>`);
         setInterval(() => {
-            //console.log(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
-            commentTimeHTML.text(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
+            //console.log(getTimeFromThisMoment(commentDate));
+            commentTimeHTML.text(getTimeFromThisMoment(commentDate));
         }, 3 * 1000);
 
         clonedComment.find(".dashboardCommentContent").text(commentData.comment);

@@ -89,7 +89,10 @@ function writeInElement(element, phrase, intervalTime = 25) {
     }
 }
 
-function getTimeFromThisMoment(date) {
+function getTimeFromThisMoment(date, parseFromString = true) {
+    if (parseFromString) {
+        date = new Date(Date.parse(date));
+    }
     var givenDate = date.getTime();
 
     var now = Date.now();
