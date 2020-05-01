@@ -541,25 +541,25 @@ class AjaxController
     //Function to createDashboardItemComments
     public function createDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "comment"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "comment"]);
     }
 
     //Function to updateDashboardItemComments
     public function updateDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "creation_date", "comment"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "comment"]);
     }
 
     //Function to queryDashboardItemComments
     public function queryDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to deleteDashboardItemComments
     public function deleteDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
 }

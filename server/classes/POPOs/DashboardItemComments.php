@@ -5,11 +5,12 @@ class DashboardItemComments implements CRUD
     private $table = "dashboard_item_comments";
 
     //Primary Keys
+    private $id;
+
+    //Table Keys
     private $id_dashboard_item;
     private $id_creator;
     private $creation_date;
-
-    //Table Keys
     private $comment;
     private $enabled;
 
@@ -63,12 +64,10 @@ class DashboardItemComments implements CRUD
         ];
 
         $identificationParams = [
-            "id_dashboard_item" => $this->id_dashboard_item,
-            "id_creator" => $this->id_creator,
-            "creation_date" => $this->creation_date,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -76,12 +75,10 @@ class DashboardItemComments implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id_dashboard_item" => $this->id_dashboard_item,
-            "id_creator" => $this->id_creator,
-            "creation_date" => $this->creation_date,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -89,12 +86,10 @@ class DashboardItemComments implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id_dashboard_item" => $this->id_dashboard_item,
-            "id_creator" => $this->id_creator,
-            "creation_date" => $this->creation_date,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -102,16 +97,15 @@ class DashboardItemComments implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $identificationParams = [
-            "id_dashboard_item" => $this->id_dashboard_item,
-            "id_creator" => $this->id_creator,
-            "creation_date" => $this->creation_date,
+            "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
     {
+        $this->id = Utils::getCleanedData("id");
         $this->id_dashboard_item = Utils::getCleanedData("id_dashboard_item");
         $this->id_creator = Sessions::getInstance()->getSession("userId");
         $this->creation_date = Utils::getCleanedData("creation_date");
@@ -122,6 +116,7 @@ class DashboardItemComments implements CRUD
     public function parse()
     {
         return json_encode([
+            "id" => $this->id,
             "id_dashboard_item" => $this->id_dashboard_item,
             "id_creator" => $this->id_creator,
             "creation_date" => $this->creation_date,
