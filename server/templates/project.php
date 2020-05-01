@@ -34,6 +34,9 @@ $breadcrumb = [
 <?php $tabName = $viewParams["tabName"];?>
 <?php $projectData = $viewParams["projectData"];?>
 
+<?php $sessions = Sessions::getInstance();?>
+<?php $username = $sessions->getSession("username");?>
+
 <?php ob_start()?>
 
 <ul id="projectDiaryNavigationScheme" class="position-absolute d-none z-index-overlap bg-light shadow">
@@ -42,7 +45,8 @@ $breadcrumb = [
 <div class="w-100 p-0">
     <div class="row py-5 projectHeader m-0">
         <div class="projectImageContainer">
-            <img class="projectImage mx-5" src="/daw/img/profile-pic.png" alt="" width="200">
+            <img class="projectImage mx-5" src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
+                alt="" width="200">
         </div>
         <div class="display-none display-sm-block projectDetails text-white col">
             <h1 class="projectTitle font-weight-bold"><?php echo $projectData["projectTitle"]; ?></h1>

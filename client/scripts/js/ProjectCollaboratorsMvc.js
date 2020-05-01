@@ -60,7 +60,10 @@ class View {
         var clonedCard = $collaboratorCard.clone();
 
         clonedCard.find(".collaboratorName").text(json.collaboratorName);
-        clonedCard.find(".collaboratorUsername").text(json.collaboratorUsername);
+        var username = json.collaboratorUsername;
+        clonedCard.find(".collaboratorUsername").text(username);
+        clonedCard.find(".collaboratorImg").prop("src", `/daw/img/users/${username}/${username}.png`);
+
         clonedCard.find(".collaboratorRole").text(json.collaborationRole);
         clonedCard.find(".collaboratorRoleDescription").text(json.collaborationRoleDescription);
 

@@ -108,7 +108,7 @@ var $dashboardModal = $(`
 `);
 var $dashboardModalComment = $(`
 <div class="w-100 dashboardComment my-2">
-    <img src="/daw/img/profile-pic.png" width="50"
+    <img src="/daw/img/default.png" width="50"
         class="dashboardCommentUserImg rounded-pill float-left mr-2" />
     <div class="row dashboardCommentInformation mb-2">
         <div class="dashboardCommentUsername text-white mr-2">Test</div>
@@ -325,7 +325,10 @@ class View {
         var clonedComment = $dashboardModalComment.clone();
 
         clonedComment.find(".dashboardCommentName").text(commentData.commentCreatorName);
+        var commentUsername = commentData.commentCreatorUsername;
         clonedComment.find(".dashboardCommentUsername").text(commentData.commentCreatorUsername);
+        clonedComment.find(".dashboardCommentUserImg").prop("src", `/daw/img/users/${commentUsername}/${commentUsername}.png`);
+
         var commentDate = commentData.commentDate;
         var commentTimeHTML = clonedComment.find(".dashboardCommentTime");
         commentTimeHTML.text(getTimeFromThisMoment(commentDate));
