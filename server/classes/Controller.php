@@ -332,7 +332,7 @@ class Controller
         $id_dashboard_item = Utils::getCleanedData("id_dashboard_item");
 
         return $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'commentCreatorName', users.username as 'commentCreatorUsername',
-        dashboard_item_comments.creation_date as 'commentDate', dashboard_item_comments.comment
+        dashboard_item_comments.creation_date as 'commentDate', dashboard_item_comments.comment, dashboard_item_comments.id
         FROM `dashboard_item_comments` LEFT JOIN `clients` on (dashboard_item_comments.id_creator = clients.id)
             LEFT JOIN `users` on (clients.id = users.id_client)
             WHERE dashboard_item_comments.id_dashboard_item = :id_dashboard_item", ["id_dashboard_item" => $id_dashboard_item]);
