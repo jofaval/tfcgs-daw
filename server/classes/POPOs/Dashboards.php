@@ -66,7 +66,9 @@ class Dashboards implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->id,
+            "title" => $this->title,
+            "id_project" => $this->id_project,
+
         ];
 
         return $sqlUtils->delete(Dashboards::$table, $params);
@@ -77,7 +79,8 @@ class Dashboards implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->id,
+            "title" => $this->title,
+            "id_project" => $this->id_project,
         ];
 
         return $sqlUtils->query(Dashboards::$table, $params);
@@ -88,7 +91,8 @@ class Dashboards implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $identificationParams = [
-            "id" => $this->id,
+            "title" => $this->title,
+            "id_project" => $this->id_project,
         ];
 
         return $sqlUtils->enable(Dashboards::$table, Utils::getCleanedData("enable"), $identificationParams);
