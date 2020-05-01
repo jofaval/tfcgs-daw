@@ -317,7 +317,7 @@ class View {
         //commentTimeHTML.append(`<span class="originalDate d-none">${commentDate}</span>`);
 
         setInterval(() => {
-            console.log(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
+            //console.log(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
             commentTimeHTML.text(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
         }, 3 * 1000);
 
@@ -655,6 +655,7 @@ class Controller {
                 $(".dashboardModalTitle").text(taskItemData.title);
                 $("#description.md-textarea").html(`${taskItemData.description}`);
 
+                var commentsContainer = $(".dashboardCommentsContainer");
                 $(".dashboardModalCommentBtn").on("click", function () {
                     $.ajax({
                         url: "/daw/index.php?ctl=createDashboardItemComments",
@@ -664,6 +665,11 @@ class Controller {
                         },
                         success: function (result) {
                             console.log(result);
+                            if (result !== false) {
+                                controller.view.visualizeModalComment(commentsContainer, result);
+                            } else {
+                                sendNotification("No se ha podido añadir el comentario", "dashboardModalCommentNotAdded");
+                            }
                         }
                     })
                 });
@@ -675,12 +681,14 @@ class Controller {
                         "id_dashboard_item": taskItemData.id,
                     },
                     success: function (result) {
-                        var commentsContainer = $(".dashboardCommentsContainer");
-                        $(result).each(function () {
-                            console.log(this);
+                        if (result !== false) {
+                            commentsContainer.html("");
+                            $(result).each(function () {
+                                console.log(this);
 
-                            controller.view.visualizeModalComment(commentsContainer, this);
-                        });
+                                controller.view.visualizeModalComment(commentsContainer, this);
+                            });
+                        }
                     }
                 });
             }

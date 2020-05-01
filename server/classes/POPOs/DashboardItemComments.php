@@ -35,19 +35,19 @@ class DashboardItemComments implements CRUD
 
         $result = $sqlUtils->insert($this->table, $params);
 
-        return $result;
         if ($result) {
-            $params = [
-                "id_dashboard_item" => $id_dashboard_item,
-                "creation_date" => $currentTime,
+            /* $params = [
+            "id_dashboard_item" => $id_dashboard_item,
+            "creation_date" => $currentTime,
             ];
-            $array = $sqlUtils->query($this->table, $params)[0];
+            $array = $sqlUtils->query($this->table, $params)[0]; */
 
-            return [
-                "id_dashboard_item" => $array["id_dashboard_item"],
-                "creation_date" => $array["creation_date"],
-                "comment" => $array["comment"],
-            ];
+            return $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'commentCreatorName', users.username as 'commentCreatorUsername',
+                dashboard_item_comments.creation_date as 'commentDate', dashboard_item_comments.comment
+                FROM `dashboard_item_comments` LEFT JOIN `clients` on (dashboard_item_comments.id_creator = clients.id)
+                LEFT JOIN `users` on (clients.id = users.id_client)
+                WHERE dashboard_item_comments.id_dashboard_item = :id_dashboard_item and dashboard_item_comments.creation_date = :creation_date",
+                ["id_dashboard_item" => $this->id_dashboard_item, "creation_date" => $currentTime])[0];
         }
 
         return false;
