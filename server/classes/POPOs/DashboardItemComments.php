@@ -78,7 +78,7 @@ class DashboardItemComments implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->table, $params)->rowCount > 0;
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
