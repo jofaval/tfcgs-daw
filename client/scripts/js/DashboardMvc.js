@@ -693,8 +693,15 @@ class Controller {
 
         return taskItem;
     }
+
     onOpenDashboardModal(taskItemData, controller) {
         console.log(taskItemData);
+
+        var inputs = $("input, textarea");
+        inputs.focus();
+        inputs.first().focus();
+        console.log(inputs);
+
         $(".dashboardModalTitle").text(taskItemData.title);
         $("#description.md-textarea").html(`${taskItemData.description}`);
         var commentsContainer = $(".dashboardCommentsContainer");
