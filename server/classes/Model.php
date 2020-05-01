@@ -103,8 +103,10 @@ class Model extends PDO
                     "id_client" => $clientId,
                 ];
 
-                $userQueryString = 'INSERT Into `users` (`id_client`, `username`, `password`, `role`)
-                Values (:id_client, :username, :password, 1)';
+                $userImagePath = "/daw/img/users/$username/$username.png";
+
+                $userQueryString = 'INSERT Into `users` (`id_client`, `username`, `password`, `role`, `image`)
+                Values (:id_client, :username, :password, 1, $userImagePath)';
                 $user = $this->cudOperation($userQueryString, $params);
 
                 echo "test";

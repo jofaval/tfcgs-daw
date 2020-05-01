@@ -542,22 +542,34 @@ class Controller
             );
             $validations = $validation->rules($regla, $_REQUEST);
 
-            $viewParams["signupFirstName"] = Utils::getCleanedData("firstName");
-            $viewParams["signupSecondName"] = Utils::getCleanedData("secondName");
-            $viewParams["signupUsername"] = Utils::getCleanedData("username");
-            $viewParams["signupPassword"] = Utils::getCleanedData("password");
-            $viewParams["signupEmail"] = Utils::getCleanedData("email");
+            $firstName = Utils::getCleanedData("firstName");
+            $secondName = Utils::getCleanedData("secondName");
+            $email = Utils::getCleanedData("email");
+            $username = Utils::getCleanedData("username");
+            $password = Utils::getCleanedData("password");
+
+            $viewParams["signupFirstName"] = $firstName;
+            $viewParams["signupSecondName"] = $secondName;
+            $viewParams["signupUsername"] = $username;
+            $viewParams["signupPassword"] = $password;
+            $viewParams["signupEmail"] = $email;
 
             if ($validations === true) {
                 $success = $model->signup(
-                    Utils::getCleanedData("firstName"),
-                    Utils::getCleanedData("secondName"),
-                    Utils::getCleanedData("email"),
-                    Utils::getCleanedData("username"),
-                    Utils::getCleanedData("password"),
+                    $firstName,
+                    $secondName,
+                    $email,
+                    $username,
+                    $password
                 );
 
                 if ($success) {
+                    if (!file_exists("/daw/img/users/$username/")) {
+                        mkdir("/daw/img/users/$username/");
+                    }
+
+                    $userImagePath = "/daw/img/users/$username/$username.png";
+                    $this->generateImage($firstName, $userImagePath);
                     header("Location: /daw/signin/");
                 }
                 $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
@@ -575,6 +587,7 @@ class Controller
 
     public function generateImage($text, $savePath)
     {
+        $text = strtoupper($text[0]);
         header("Content-type: image/png");
 
         $width = 400;
