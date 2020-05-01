@@ -32,7 +32,7 @@ class DashboardList implements CRUD
         $params = [
             "id_project" => $this->id_project,
             "dashboard_title" => $this->dashboard_title,
-            "id_creator" => "16",
+            "id_creator" => Sessions::getInstance()->getSession("userId"),
             "title" => $this->title,
             "creation_date" => $currentTime,
             "order_criteria" => "1",

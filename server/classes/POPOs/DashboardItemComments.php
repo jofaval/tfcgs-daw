@@ -28,13 +28,14 @@ class DashboardItemComments implements CRUD
         $currentTime = DateUtils::getCurrentDateTime();
         $params = [
             "id_dashboard_item" => $this->id_dashboard_item,
-            "id_creator" => "16",
+            "id_creator" => Sessions::getInstance()->getSession("userId"),
             "creation_date" => $currentTime,
             "comment" => $this->comment,
             "enabled" => "1",
         ];
 
         $result = $sqlUtils->insert($this->table, $params);
+        return $result;
 
         if ($result) {
             /* $params = [

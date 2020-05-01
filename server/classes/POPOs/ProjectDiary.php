@@ -31,7 +31,7 @@ class ProjectDiary implements CRUD
         ];
 
         $params["creation_date"] = DateUtils::getCurrentDateTime();
-        $params["id_creator"] = "16";
+        $params["id_creator"] = Sessions::getInstance()->getSession("userId");
 
         return $sqlUtils->insert($this->table, $params);
     }

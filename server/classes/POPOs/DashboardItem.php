@@ -29,7 +29,7 @@ class DashboardItem implements CRUD
 
         $currentTime = DateUtils::getCurrentDateTime();
         $params = [
-            "id_creator" => "16",
+            "id_creator" => Sessions::getInstance()->getSession("userId"),
             "title" => $this->title,
             "order" => "0",
             "description" => $this->description,
