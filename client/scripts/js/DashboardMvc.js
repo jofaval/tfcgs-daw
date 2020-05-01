@@ -229,6 +229,21 @@ class Model {
             }
         });
     }
+
+    createComment(id, comment, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=createDashboardItemComments",
+            data: {
+                "id_dashboard_item": id,
+                "comment": comment,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
 }
 
 class View {
@@ -678,28 +693,13 @@ class Controller {
 
         return taskItem;
     }
-
     onOpenDashboardModal(taskItemData, controller) {
         console.log(taskItemData);
         $(".dashboardModalTitle").text(taskItemData.title);
         $("#description.md-textarea").html(`${taskItemData.description}`);
         var commentsContainer = $(".dashboardCommentsContainer");
         $(".dashboardModalCommentBtn").on("click", function () {
-            $.ajax({
-                url: "/daw/index.php?ctl=createDashboardItemComments",
-                data: {
-                    "id_dashboard_item": taskItemData.id,
-                    "comment": $("#comment").val(),
-                },
-                success: function (result) {
-                    console.log(result);
-                    if (result !== false) {
-                        controller.createComment(controller, result, commentsContainer);
-                    } else {
-                        sendNotification("No se ha podido añadir el comentario", "dashboardModalCommentNotAdded");
-                    }
-                }
-            });
+            controller.createModalCommentEvent(taskItemData, controller, commentsContainer);
         });
         //comments
         $.ajax({
@@ -721,10 +721,22 @@ class Controller {
         $("#comment").on("keypress", function (event) {
             console.log(event.keyCode);
             if (event.keyCode == 13) {
-                controller.createComment(controller, commentJSON, container);
-                $(this).val("");
+                controller.createModalCommentEvent(taskItemData, controller, commentsContainer)
             }
         });
+    }
+
+    createModalCommentEvent(taskItemData, controller, commentsContainer) {
+        var commentInput = $("#comment");
+        controller.model.createComment(taskItemData.id, commentInput.val(), function (result) {
+            console.log(result);
+            if (result !== false) {
+                controller.createComment(controller, result, commentsContainer);
+            } else {
+                sendNotification("No se ha podido añadir el comentario", "dashboardModalCommentNotAdded");
+            }
+        });
+        commentInput.val("");
     }
 
     createComment(controller, commentJSON, container) {
