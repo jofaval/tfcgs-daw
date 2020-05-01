@@ -573,7 +573,7 @@ class Controller
         require __DIR__ . '/../templates/signin.php';
     }
 
-    public function generateImage($text)
+    public function generateImage($text, $savePath)
     {
         header("Content-type: image/png");
 
@@ -588,8 +588,8 @@ class Controller
         $arrayOfColors = [
             [192, 44, 3],
             [195, 98, 0],
-            [192, 186, 3],
-            [143, 190, 2],
+            [192, 146, 3],
+            [143, 150, 2],
             [2, 247, 113],
             [0, 191, 195],
             [0, 115, 195],
@@ -629,11 +629,13 @@ class Controller
         imagettftext($im, $fontSize, 0, $x, $y + 1, $textColor, $font, $text);
 
         imagepng($im);
+        imagepng($im, $savePath, 0, null);
         imagedestroy($im);
     }
 
     public function test()
     {
-        $this->generateImage("P");
+        $this->generateImage("E", "C:\\Users\\PAS\\Desktop\\jofaval5.png");
+        //mkdir(__DIR__ . "/../../client/img/users/pepe");
     }
 }
