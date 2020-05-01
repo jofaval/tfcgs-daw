@@ -564,11 +564,11 @@ class Controller
                 );
 
                 if ($success) {
-                    if (!file_exists("/daw/img/users/$username/")) {
-                        mkdir("/daw/img/users/$username/");
+                    if (!file_exists(__DIR__ . "/../../client/img/users/$username/")) {
+                        mkdir(__DIR__ . "/../../client/img/users/$username/");
                     }
 
-                    $userImagePath = "/daw/img/users/$username/$username.png";
+                    $userImagePath = __DIR__ . "/../../client/img/users/$username/$username.png";
                     $this->generateImage($firstName, $userImagePath);
                     header("Location: /daw/signin/");
                 }
@@ -582,7 +582,7 @@ class Controller
                 </div>";
             }
         }
-        require __DIR__ . '/../templates/signin.php';
+        //require __DIR__ . '/../templates/signin.php';
     }
 
     public function generateImage($text, $savePath)
@@ -604,7 +604,7 @@ class Controller
             [192, 146, 3],
             [143, 150, 2],
             [2, 247, 113],
-            [0, 191, 195],
+            [0, 121, 125],
             [0, 115, 195],
             [144, 0, 195],
             [194, 0, 195],

@@ -97,16 +97,16 @@ class Model extends PDO
                     WHERE `email`=:email';
                 $clientId = $this->query($queryString, ["email" => $email])[0]["id"];
 
+                //$userImagePath = "/daw/img/users/$username/$username.png";
                 $params = [
                     "username" => $username,
                     "password" => Cryptography::blowfishCrypt($password, $username),
                     "id_client" => $clientId,
+                    //"imgPath" => $userImagePath,
                 ];
 
-                $userImagePath = "/daw/img/users/$username/$username.png";
-
-                $userQueryString = 'INSERT Into `users` (`id_client`, `username`, `password`, `role`, `image`)
-                Values (:id_client, :username, :password, 1, $userImagePath)';
+                $userQueryString = 'INSERT Into `users` (`id_client`, `username`, `password`, `role`)
+                Values (:id_client, :username, :password, 1)';
                 $user = $this->cudOperation($userQueryString, $params);
 
                 echo "test";
@@ -122,10 +122,10 @@ class Model extends PDO
             //echo "Ya existe ese cliente";
             $this->$conexion->rollBack();
         } catch (\Throwable $th) {
-            /*  echo "<pre>";
+            echo "<pre>";
             var_dump($th);
             echo "</pre>";
-            echo "Ha surgido un error"; */
+            echo "Ha surgido un error";
             $this->$conexion->rollBack();
         }
 
