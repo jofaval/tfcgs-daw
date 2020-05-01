@@ -44,7 +44,7 @@ class DashboardItemComments implements CRUD
             $array = $sqlUtils->query($this->table, $params)[0]; */
 
             return $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'commentCreatorName', users.username as 'commentCreatorUsername',
-                dashboard_item_comments.creation_date as 'commentDate', dashboard_item_comments.comment
+                dashboard_item_comments.creation_date as 'commentDate', dashboard_item_comments.comment, dashboard_item_comments.id
                 FROM `dashboard_item_comments` LEFT JOIN `clients` on (dashboard_item_comments.id_creator = clients.id)
                 LEFT JOIN `users` on (clients.id = users.id_client)
                 WHERE dashboard_item_comments.id_dashboard_item = :id_dashboard_item and dashboard_item_comments.creation_date = :creation_date",
@@ -78,7 +78,7 @@ class DashboardItemComments implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->table, $params);
+        return $sqlUtils->delete($this->table, $params)->rowCount > 0;
     }
 
     public function query()
