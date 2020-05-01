@@ -117,9 +117,9 @@ var $dashboardModalComment = $(`
     </div>
     <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
     <div class="row dashboardCommentActions text-white ml-2 mt-2">
-        <a href="" class="dashboardCommentAction">Edit</a>
+        <a href="" class="dashboardCommentAction dashboardCommentEdit">Edit</a>
         &nbsp;-&nbsp;
-        <a href="" class="dashboardCommentAction">Delete</a>
+        <a href="" class="dashboardCommentAction dashboardCommentDelete">Delete</a>
     </div>
 </div>
 `);
@@ -314,8 +314,7 @@ class View {
         var commentDate = commentData.commentDate;
         var commentTimeHTML = clonedComment.find(".dashboardCommentTime");
         commentTimeHTML.text(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
-        //commentTimeHTML.append(`<span class="originalDate d-none">${commentDate}</span>`);
-
+        commentTimeHTML.append(`<span class="originalDate d-none">${commentDate}</span>`);
         setInterval(() => {
             //console.log(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
             commentTimeHTML.text(getTimeFromThisMoment(new Date(Date.parse(commentDate))));
@@ -508,10 +507,21 @@ class Controller {
             var confirmationModal = $.sweetModal.confirm('¿Borrar la lista?', `Confimar esta acción y borrar <b>"${taskListData.title}"</b>`, function () {
                 controller.model.deleteDashboardList(taskListData.id, function (result) {
                     if (result === true) {
-                        sendNotification(`"${taskListData.title}" ha sido borrado con éxito`, "taskListCouldBeDeleted");
+
+                        var successAlert = $.sweetModal({
+                            content: `"${taskListData.title}" ha sido borrado con éxito`,
+                            icon: $.sweetModal.ICON_SUCCESS,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                        //sendNotification(`"${taskListData.title}" ha sido borrado con éxito`, "taskListCouldBeDeleted");
                         taskList.remove();
                     } else {
-                        sendNotification(`"${taskListData.title}" no se ha podido borrar`, "taskListCouldNotBeDeleted");
+                        var errorAlert = $.sweetModal({
+                            content: `"${taskListData.title}" no se ha podido borrar`,
+                            icon: $.sweetModal.ICON_ERROR,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                        //sendNotification(`"${taskListData.title}" no se ha podido borrar`, "taskListCouldNotBeDeleted");
                     }
                 })
             }, function () {
@@ -625,10 +635,21 @@ class Controller {
             var confirmationModal = $.sweetModal.confirm('¿Borrar elemento de la lista?', `Confimar esta acción y borrar <b>"${taskItemData.title}"</b>`, function () {
                 controller.model.deleteDashboardItem(taskItemData.id, function (result) {
                     if (result === true) {
-                        sendNotification(`"${taskItemData.title}" ha sido borrado con éxito`, "taskItemCouldBeDeleted");
+
+                        var successAlert = $.sweetModal({
+                            content: `"${taskListData.title}" ha sido borrado con éxito`,
+                            icon: $.sweetModal.ICON_SUCCESS,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                        //sendNotification(`"${taskItemData.title}" ha sido borrado con éxito`, "taskItemCouldBeDeleted");
                         taskItem.remove();
                     } else {
-                        sendNotification(`"${taskItemData.title}" no se ha podido borrar`, "taskItemCouldNotBeDeleted");
+                        var errorAlert = $.sweetModal({
+                            content: `"${taskItemData.title}" no se ha podido borrar`,
+                            icon: $.sweetModal.ICON_ERROR,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                        //sendNotification(`"${taskItemData.title}" no se ha podido borrar`, "taskItemCouldNotBeDeleted");
                     }
                 })
             }, function () {
@@ -666,7 +687,7 @@ class Controller {
                         success: function (result) {
                             console.log(result);
                             if (result !== false) {
-                                controller.view.visualizeModalComment(commentsContainer, result);
+                                controller.createComment(controller, result, commentsContainer);
                             } else {
                                 sendNotification("No se ha podido añadir el comentario", "dashboardModalCommentNotAdded");
                             }
@@ -684,9 +705,10 @@ class Controller {
                         if (result !== false) {
                             commentsContainer.html("");
                             $(result).each(function () {
-                                console.log(this);
+                                var commentJSON = this;
+                                console.log(commentJSON);
 
-                                controller.view.visualizeModalComment(commentsContainer, this);
+                                controller.createComment(controller, commentJSON, commentsContainer);
                             });
                         }
                     }
@@ -695,6 +717,55 @@ class Controller {
         });
 
         return taskItem;
+    }
+
+    createComment(controller, commentJSON, container) {
+        var clonedComment = controller.view.visualizeModalComment(container, commentJSON);
+
+        clonedComment.find(".dashboardCommentDelete").on("click", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+            var creationDate = clonedComment.find(".originalDate").text().trim();
+
+
+            var confirmationModal = $.sweetModal.confirm('¿Borrar el comentario?', `Esta acción no tiene marcha atrás`, function () {
+                $.ajax({
+                    url: "/daw/index.php?ctl=deleteDashboardItemComments",
+                    data: {
+                        "id": commentJSON.id,
+                    },
+                    success: function (result) {
+                        console.log(commentJSON.id);
+
+                        if (result !== false) {
+                            clonedComment.remove();
+                            var successAlert = $.sweetModal({
+                                content: `El comentario se ha borrado con éxito`,
+                                icon: $.sweetModal.ICON_SUCCESS,
+                                theme: $.sweetModal.THEME_DARK,
+                            });
+                        } else {
+                            var errorAlert = $.sweetModal({
+                                content: `No se ha podido borrar el comentario`,
+                                icon: $.sweetModal.ICON_ERROR,
+                                theme: $.sweetModal.THEME_DARK,
+                            });
+                            //sendNotification("No se ha podido borrar el comentario", "dashboardCommentCouldNotBeDeleted");
+                        }
+                    }
+                });
+            }, function () {
+
+            });
+
+            confirmationModal.params["onOpen"] = function () {
+                var buttons = $(".sweet-modal-buttons .button");
+                buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
+                buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
+            };
+
+            return false;
+        });
     }
 
     parseTaskListToJSON() {
