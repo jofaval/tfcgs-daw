@@ -129,7 +129,7 @@ class SQLUtils
 
             $result = $queryAction->execute();
             $this->$model->commit();
-            return $result;
+            return $queryAction->rowCount() > 0;
         } catch (PDOException $ex) {
             //return $ex;
             $this->$model->rollback();
