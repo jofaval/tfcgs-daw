@@ -47,6 +47,7 @@ class Controller
             "diaryDate" => "general",
             "diaryDatePrev" => "general",
             "diaryDateNext" => "general",
+            "dashboardTitle" => "Title",
         ];
 
         if (Utils::exists("id")) {
@@ -117,6 +118,7 @@ class Controller
                         case 'tasks':
                             $sqlUtils = new SQLUtils(Model::getInstance());
                             $dashboard_title = Utils::getCleanedData("secondaryId");
+                            $viewParams["dashboardTitle"] = $dashboard_title;
 
                             $dashboardQueryData = $sqlUtils->complexQuery("SELECT title FROM dashboards WHERE id_project=:id_project and title=:title", ["title" => $dashboard_title, "id_project" => $id]);
 
