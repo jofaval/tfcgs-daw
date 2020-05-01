@@ -419,6 +419,8 @@ class Controller {
             theme: $.sweetModal.THEME_DARK
         });
         modal.params["onOpen"] = function () {
+            $("#description").focus();
+            $("#title").focus();
             $("#formCreateProject").on("submit", function (event) {
                 var event = event || window.event;
                 event.preventDefault();
