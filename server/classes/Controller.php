@@ -178,7 +178,7 @@ class Controller
             WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
                 (SELECT collaborators.id_collaborator
                      FROM collaborators
-                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => "16"]);
+                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => Sessions::getInstance()->getSession("userId")]);
     }
 
     public function getDashboardsOfProject()
@@ -197,7 +197,7 @@ class Controller
             WHERE `dashboards`.`enabled` = 1 and `projects`.`enabled` = 1 and (projects.id_creator = :id_client or :id_client in
                 (SELECT collaborators.id_collaborator
                      FROM collaborators
-                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY dashboards.creation_date", ["id_client" => "16", "id_project" => $id_project]);
+                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY dashboards.creation_date", ["id_client" => Sessions::getInstance()->getSession("userId"), "id_project" => $id_project]);
     }
 
     public function getProjectDetails()
@@ -212,7 +212,7 @@ class Controller
             LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id) or (projects.id_creator = clients.id)
             LEFT JOIN `users` on (clients.id = users.id_client)
             WHERE projects.id = :id_project and (projects.id_creator = :id_creator or
-            (collaborators.id_project = :id_project and collaborators.id_collaborator = :id_creator))", ["id_creator" => "16", "id_project" => $id_project])[0];
+            (collaborators.id_project = :id_project and collaborators.id_collaborator = :id_creator))", ["id_creator" => Sessions::getInstance()->getSession("userId"), "id_project" => $id_project])[0];
     }
 
     public function getListsOfDashboard()
@@ -267,9 +267,9 @@ class Controller
 
         $bookmarked = Utils::getCleanedData("bookmarked");
         if ($bookmarked) {
-            return $sqlUtils->delete("bookmarked", ["id_project" => $projectId, "id_client" => "16"]);
+            return $sqlUtils->delete("bookmarked", ["id_project" => $projectId, "id_client" => Sessions::getInstance()->getSession("userId")]);
         } else {
-            return $sqlUtils->insert("bookmarked", ["id_project" => $projectId, "id_client" => "16"]);
+            return $sqlUtils->insert("bookmarked", ["id_project" => $projectId, "id_client" => Sessions::getInstance()->getSession("userId")]);
         }
     }
 
@@ -307,9 +307,9 @@ class Controller
 
         $bookmarked = Utils::getCleanedData("bookmarked");
         if ($bookmarked != 0) {
-            return $sqlUtils->delete("bookmarked_dashboards", ["id_project" => $projectId, "title" => $title, "id_client" => "16"]);
+            return $sqlUtils->delete("bookmarked_dashboards", ["id_project" => $projectId, "title" => $title, "id_client" => Sessions::getInstance()->getSession("userId")]);
         } else {
-            return $sqlUtils->insert("bookmarked_dashboards", ["id_project" => $projectId, "title" => $title, "id_client" => "16"]);
+            return $sqlUtils->insert("bookmarked_dashboards", ["id_project" => $projectId, "title" => $title, "id_client" => Sessions::getInstance()->getSession("userId")]);
         }
     }
 
@@ -490,8 +490,8 @@ class Controller
             $signin = $model->signin($username, $password);
             if ($signin) {
                 $sessions->setSession("username", $username);
-                $sessions->setSession("access", $signin[0]["level"]);
-                $sessions->setSession("userId", $signin[0]["id"]);
+                $sessions->setSession("access", $signin[0]["role"]);
+                $sessions->setSession("userId", $signin[0]["id_client"]);
                 $sessions->setSession("time", time() + Config::$inactivityTime);
                 return true;
             }
@@ -635,7 +635,6 @@ class Controller
 
     public function test()
     {
-        $this->generateImage("E", "C:\\Users\\PAS\\Desktop\\jofaval5.png");
-        //mkdir(__DIR__ . "/../../client/img/users/pepe");
+        require_once __DIR__ . "/one_execution/test.php";
     }
 }
