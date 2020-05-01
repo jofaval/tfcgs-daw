@@ -68,7 +68,6 @@ class Dashboards implements CRUD
         $params = [
             "title" => $this->title,
             "id_project" => $this->id_project,
-
         ];
 
         return $sqlUtils->delete(Dashboards::$table, $params);

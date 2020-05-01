@@ -127,7 +127,7 @@ var $dashboardModalComment = $(`
 class Model {
     constructor() {
         this.projectId = this.getProjectId();
-        this.title = this.getDashboardtitle();
+        this.title = this.getDashboardtitle().trim();
     }
 
     getProjectId() {
@@ -209,6 +209,20 @@ class Model {
             url: "/daw/index.php?ctl=deleteDashboardList",
             data: {
                 "id": id,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    deleteDashboard(whenFinished) {
+        var model = this;
+        $.ajax({
+            url: "/daw/index.php?ctl=deleteDashboards",
+            data: {
+                "id_project": model.projectId,
+                "title": model.title,
             },
             success: function (result) {
                 whenFinished(result);
@@ -362,6 +376,38 @@ class Controller {
         });
 
         controller.moveScrollWithMouse();
+
+        $(".dashboardBtnDelete").on("click", function () {
+            var confirmationModal = $.sweetModal.confirm('¿Borrar el tablero?', `Confimar esta acción y borrar <b>"${controller.model.title}"</b>`, function () {
+                controller.model.deleteDashboard(function (result) {
+                    console.log(result);
+                    if (result === true) {
+                        var successAlert = $.sweetModal({
+                            content: `Se ha borrado el tablero <b>"${controller.model.title}"</b>`,
+                            icon: $.sweetModal.ICON_SUCCESS,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                        successAlert.params["onClose"] = function () {
+                            window.location.reload();
+                        }
+                    } else {
+                        var errorAlert = $.sweetModal({
+                            content: `No se ha podido borrar el tablero <b>"${controller.model.title}"</b>`,
+                            icon: $.sweetModal.ICON_ERROR,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                    }
+                })
+            }, function () {
+
+            });
+
+            confirmationModal.params["onOpen"] = function () {
+                var buttons = $(".sweet-modal-buttons .button");
+                buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
+                buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
+            };
+        });
     }
 
     moveScrollWithMouse(increment = 5) {

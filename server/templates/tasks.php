@@ -33,11 +33,12 @@ $breadcrumb = [
 
 <?php ob_start()?>
 
-<div class="row dashboardTopBar m-2 d-flex justify-content-space-between">
+<div class="row dashboardTopBar m-2 d-flex justify-content-space-around">
     <div class="dashboardTitleContainer align-self-center rounded grey darken-4 p-2 px-3">
         <div class="dashboardTitle align-self-center text-white"><?php echo $viewParams["dashboardTitle"]; ?></div>
     </div>
-    <div class="md-form input-group col col-md-4 my-2">
+    <div class="btn btn-sm btn-danger dashboardBtnDelete align-self-center">Delete dashboard</div>
+    <div class="md-form input-group col col-md-4 my-2 m-0 p-0">
         <input type="search" class="form-control text-white grey darken-4 pl-2 rounded-0" name="dashboardSearch"
             id="dashboardSearch" placeholder="Search...">
         <div class="input-group-append">
