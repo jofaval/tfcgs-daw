@@ -34,7 +34,7 @@ class Validation
     public function rules($rule = array(), $data)
     {
         if (!is_array($rule)) {
-            $this->mensaje = "the rules must be in arrangement format";
+            $this->mensaje = "las reglas deben estar ordenadas";
             return $this;
         }
         foreach ($rule as $key => $rules) {
@@ -45,7 +45,7 @@ class Validation
                         foreach ($reglas as $clave => $valores) {
                             $validator = $this->_getInflectedName($valores);
                             if (!is_callable(array($this, $validator))) {
-                                throw new BadMethodCallException("Didn't found the method $valores");
+                                throw new BadMethodCallException("No se ha encontrado el método $valores");
                             }
                             $respuesta = $this->$validator($rules['name'], $valor);
                         }
@@ -54,7 +54,7 @@ class Validation
                 }
             } else {
 
-                $this->mensaje[$rules['name']] = "The field {$rules['name']} is not inside a validartion rule nor in the form";
+                $this->mensaje[$rules['name']] = "El campo {$rules['name']} no se ha encontrado.";
             }
         }
         if (!empty($this->mensaje)) {
