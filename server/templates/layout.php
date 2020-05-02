@@ -78,10 +78,8 @@
     <section class="w-100 breadcrumbContainer" aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 rounded-0">
             <?php foreach ($breadcrumb as $elem): ?>
-            <li class="breadcrumb-item"><a class="<?php if ($elem["active"]) {
-    echo "text-muted";
-}
-?>" href="<?php echo $elem["link"]; ?>"><?php echo $elem["name"]; ?></a></li>
+            <li class="breadcrumb-item"><a class="<?php echo $elem["active"] ? "text-muted" : ""; ?>"
+                    href="<?php echo $elem["link"]; ?>"><?php echo $elem["name"]; ?></a></li>
             <?php endforeach;?>
         </ol>
     </section>
