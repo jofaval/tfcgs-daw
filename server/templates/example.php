@@ -8,11 +8,11 @@
 <?php
 $breadcrumb = [
     ["name" => "Home",
-        "link" => "index.php?ctl=calendar",
+        "link" => "/daw/index.php?ctl=calendar",
         "active" => false,
     ],
-    ["name" => "Teachers",
-        "link" => "index.php?ctl=admin",
+    ["name" => "Example",
+        "link" => "/daw/index.php?ctl=admin",
         "active" => false,
     ],
 ];
