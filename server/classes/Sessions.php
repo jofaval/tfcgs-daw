@@ -5,6 +5,7 @@ class Sessions
 
     public static $instance = null;
 
+    //Devuelve la instancia del singleton
     public static function getInstance()
     {
         if (self::$instance == null) {
@@ -15,11 +16,13 @@ class Sessions
         return self::$instance;
     }
 
+    //Se ejecuta cuando se instancia
     public function __construct()
     {
 
     }
 
+    //Al instanciarse a través del singleton se ejecuta
     private function initSession()
     {
         session_start();
@@ -29,6 +32,7 @@ class Sessions
         $this->regenerateSession();
     }
 
+    //Comprueba si el navegador de la sesión y del cliente es el mismo
     public function isUserAgentTheSame()
     {
         if ($this->doesSessionExist("userAgent")) {
@@ -38,6 +42,7 @@ class Sessions
         return true;
     }
 
+    //Regenera el id de sesión
     private function regenerateSession()
     {
 
@@ -60,6 +65,7 @@ class Sessions
         }
     }
 
+    //Inicializa los valores de sesión si no tienen valor
     public function initializeValues()
     {
         $this->ifNotExistSetSession("access", 0);
@@ -68,6 +74,7 @@ class Sessions
         $this->ifNotExistSetSession("time", "default.png");
     }
 
+    //Si no existe la sesión se crea con el valor que se indica
     public function ifNotExistSetSession($name, $value)
     {
         if (!$this->doesSessionExist($name)) {
@@ -75,11 +82,13 @@ class Sessions
         }
     }
 
+    //Devuelve el ID de sesión
     public function getSessionID()
     {
         return session_id();
     }
 
+    //Devuelve una entrada de la sesión si existe
     public function getSession($name)
     {
         if ($this->doesSessionExist($name)) {
@@ -89,11 +98,13 @@ class Sessions
         return "";
     }
 
+    //Inserta un valor a una entrada de la sesión
     public function setSession($name, $value)
     {
         $_SESSION[$name] = $value;
     }
 
+    //Borra una sesión
     public function deleteSession($name = '')
     {
         if (!empty($name)) {
@@ -106,11 +117,13 @@ class Sessions
         }
     }
 
+    //Comprueba si existe la sesión que se crea cuando un usuario se loguea
     public function isUserLogged()
     {
         return $this->doesSessionExist("username");
     }
 
+    //Comprueba si la sesion existe
     public function doesSessionExist($name)
     {
         return isset($_SESSION[$name]);
