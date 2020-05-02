@@ -31,7 +31,9 @@ class AjaxController
                 throw new Error("$elem doesn't exist");
             }
         }
-    }public function returnError($message = "")
+    }
+
+    public function returnError($message = "")
     {
         $object = [
             "error" => true,
@@ -44,7 +46,7 @@ class AjaxController
         exit;
     }
 
-    //Function to getListsOfDashboard
+    //Function to getCommentsOfDashboardItem
     public function getCommentsOfDashboardItem()
     {
         $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item"], "Controller");
