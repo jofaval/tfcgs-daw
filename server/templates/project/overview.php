@@ -34,14 +34,14 @@
                             tablero</div>
                     </a>
                     <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
-                        class="action cursor-pointer blue m-2">
+                        class="action cursor-pointer blue m-2" id="actionViewDashboard">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-eye"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Ver tablero</div>
                     </a>
                     <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
-                        class="action cursor-pointer blue m-2">
+                        class="action cursor-pointer blue m-2" id="actionDashboardTasks">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-tasks"></i>
                         </div>
@@ -53,14 +53,14 @@
                 <h4 class="actionsTitle text-white">Diario</h4>
                 <div class="actionsButton d-flex justify-content-space-between flex-wrap">
                     <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDate"]; ?>"
-                        class="action cursor-pointer green m-2">
+                        class="action cursor-pointer green m-2" id="actionTodayDiary">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-calendar-check-o"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Ver diario de hoy</div>
                     </a>
                     <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/"
-                        class="action cursor-pointer green m-2">
+                        class="action cursor-pointer green m-2" id="actionDiary">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-calendar"></i>
                         </div>
