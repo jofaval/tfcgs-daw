@@ -98,7 +98,11 @@ class Controller
             }
             $viewParams["projectData"] = $this->getProjectDetails();
 
-            $viewParams["title"] = $projectData["title"];
+            $title = $projectData["title"];
+            if (strlen($title) > 10) {
+                $title = substr($title, 0, 10);
+            }
+            $viewParams["title"] = $title;
             $viewParams["id"] = $projectData["id"];
             $viewParams["creation_date"] = $projectData["creation_date"];
 

@@ -81,6 +81,7 @@ $breadcrumb = [
     </div>
     <div class="row grey darken-3 m-0 px-2">
         <?php
+$titleName = "General";
 if (in_array($tabName, $tabNames)) {
     require_once __DIR__ . "/project/$tabName.php";
 }
@@ -88,16 +89,20 @@ switch ($tabName) {
     case "dashboards":
         $optionalScripts[] = "js/ProjectDashboardMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
+        $titleName = "Tableros";
         break;
     case "diary":
         $optionalScripts[] = "js/ProjectDiaryMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
+        $titleName = "Tablón de anuncios";
         break;
     case "collaborators":
         $optionalScripts[] = "js/ProjectCollaboratorsMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
+        $titleName = "Colaboradores";
         break;
     case "details":
+        $titleName = "Detalles";
         break;
     case "overview":
     default:
@@ -105,6 +110,7 @@ switch ($tabName) {
         require_once __DIR__ . "/project/overview.php";
         break;
 }
+$title .= " - " . $titleName;
 ?>
     </div>
 </div>
