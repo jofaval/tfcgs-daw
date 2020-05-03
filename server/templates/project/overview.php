@@ -18,7 +18,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
             <div class="actionsGroup">
                 <h4 class="actionsTitle text-white">Tablero</h4>
                 <div class="actionsButton d-flex justify-content-space-between flex-wrap">
@@ -90,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-md-6 mx-3 mx-sm-0">
             <div class="row">
                 <h4 class="h4 text-white">Creado recientemente</h4>
                 <div class="recentlyCreated">
@@ -118,7 +120,7 @@
             <br>
             <div class="row">
                 <h4 class="h4 text-white">Invitados recientemente</h4>
-                <div class="recentlyInvited">
+                <div class="recentlyInvited collaboratorsContainer">
                     <div class="projectCollaboratorCard rounded row col m-2 bg-white">
                         <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
                         <div class="projectCollaboratorDetails my-auto col">
