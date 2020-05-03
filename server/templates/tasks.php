@@ -1,7 +1,7 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "tasks.css"];?>
 <?php $optionalScripts = ["js/DashboardMvc.js"];?>
-<?php $title = "ProjectName - TaskName - Task";?>
+<?php $title = $viewParams["title"] . " | Tablero - " . $viewParams["dashboardTitle"];?>
 <?php $mainClasses = "h-100";?>
 <?php $showFooter = false;?>
 <?php $showHeader = false;?>
