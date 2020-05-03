@@ -218,6 +218,10 @@ class Controller {
         $("#actionRemoveCollaborator").on("click", function (event) {
             controller.removeCollaboratorEvent(controller, event);
         });
+
+        $("#actionViewDashboard").on("click", function (event) {
+            controller.viewDashboard(controller, event);
+        });
     }
 
     addDashboardBtnEvent(controller, event) {
@@ -258,11 +262,8 @@ class Controller {
                     success: function (result) {
                         console.log(result);
                         if (result !== false) {
+                            redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/`);
                             modal.close();
-                            var a = document.createElement("a");
-                            document.body.appendChild(a);
-                            a.href = `/daw/projects/id/${controller.model.projectId}/dashboards/`;
-                            a.click();
                         }
                     }
                 });
@@ -338,7 +339,7 @@ class Controller {
         event.preventDefault();
 
         var modal = $.sweetModal({
-            title: 'Invitar colaborador/a',
+            title: 'Eliminar colaborador/a',
             content: `<form action="/daw/index.php?ctl=deleteCollaborators" id="formremoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
                             <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
@@ -387,6 +388,41 @@ class Controller {
                     }
                 });
 
+            });
+        };
+
+        return false;
+    }
+
+    viewDashboard(controller, event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        var modal = $.sweetModal({
+            title: 'Ver tablero',
+            content: `<form action="/daw/index.php?ctl=viewDashboard" id="viewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+                        <div class="md-form">
+                            <input type="text" placeholder="" id="dashboardName" name="dashboardName" value="" class="form-control text-white">
+                            <label for="dashboardName">Dashboard Name</label>
+                        </div>
+                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                <input class="btn btn-primary w-100" type="submit" name="viewDashboard" id="viewDashboard" value="Ver tablero">
+                        </div>
+                    </form>`,
+            theme: $.sweetModal.THEME_DARK
+        });
+
+        var dashboardName = $("#dashboardName").val();
+
+        modal.params["onOpen"] = function () {
+            $("#dashboardName").focus();
+            $("#formremoveCollaborator").on("submit", function (event) {
+                var event = event || window.event;
+                event.preventDefault();
+
+                redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/${dashboardName}`);
+
+                return false;
             });
         };
 
