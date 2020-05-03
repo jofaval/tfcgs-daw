@@ -100,7 +100,7 @@
             </div>
         </div>
         <div class="col-md-6 mx-3 mx-sm-0">
-            <div class="row">
+            <div class="row text-white">
                 <h4 class="h4 text-white">Creado recientemente</h4>
                 <div class="recentlyCreated">
                     <div class="card w-100">
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <br>
-            <div class="row">
+            <div class="row text-white">
                 <h4 class="h4 text-white">Invitados recientemente</h4>
                 <div class="recentlyInvited collaboratorsContainer">
                     <div class="projectCollaboratorCard rounded row col m-2 bg-white">
