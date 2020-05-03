@@ -25,70 +25,72 @@
             <div class="actionsGroup">
                 <h4 class="actionsTitle text-white">Tablero</h4>
                 <div class="actionsButton d-flex justify-content-space-between flex-wrap">
-                    <div class="action cursor-pointer blue m-2">
+                    <a href="" class="action cursor-pointer blue m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Añadir tablero</div>
-                    </div>
-                    <div class="action cursor-pointer blue m-2">
+                    </a>
+                    <a href="" class="action cursor-pointer blue m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-eye"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Ver tablero</div>
-                    </div>
-                    <div class="action cursor-pointer blue m-2">
+                    </a>
+                    <a href="" class="action cursor-pointer blue m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-tasks"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Ver tareas asignadas</div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="actionsGroup">
                 <h4 class="actionsTitle text-white">Diario</h4>
                 <div class="actionsButton d-flex justify-content-space-between flex-wrap">
-                    <div class="action cursor-pointer green m-2">
+                    <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDate"]; ?>"
+                        class="action cursor-pointer green m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-calendar-check-o"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Ver diario de hoy</div>
-                    </div>
-                    <div class="action cursor-pointer green m-2">
+                    </a>
+                    <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/"
+                        class="action cursor-pointer green m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-calendar"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Ir a selección de fecha</div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="actionsGroup">
                 <h4 class="actionsTitle text-white">Proyecto</h4>
                 <div class="actionsButton d-flex justify-content-space-between flex-wrap">
-                    <div class="action cursor-pointer red m-2">
+                    <a href="" class="action cursor-pointer red m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-user-plus"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Añadir colaborador</div>
-                    </div>
-                    <div class="action cursor-pointer red m-2">
+                    </a>
+                    <a href="" class="action cursor-pointer red m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-user-times"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Eliminar colaborador</div>
-                    </div>
-                    <div class="action cursor-pointer red m-2">
+                    </a>
+                    <a href="" class="action cursor-pointer red m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-user-secret"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Cambiar rol</div>
-                    </div>
-                    <div class="action cursor-pointer red m-2">
+                    </a>
+                    <a href="" class="action cursor-pointer red m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-times"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Eliminar proyecto</div>
-                    </div>
+                    </a>
 
                 </div>
             </div>

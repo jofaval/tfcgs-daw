@@ -44,7 +44,7 @@ class Controller
             "elementName" => "Element title",
             "tabName" => "general",
             "projectData" => "general",
-            "diaryDate" => "general",
+            "diaryDate" => DateUtils::getCurrentDateTime("Y-m-d"),
             "diaryDatePrev" => "general",
             "diaryDateNext" => "general",
             "dashboardTitle" => "Title",
