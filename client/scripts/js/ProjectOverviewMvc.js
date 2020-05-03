@@ -32,6 +32,7 @@ class Model {
             url: "/daw/index.php?ctl=getCollaboratorsOfProject",
             data: {
                 "id_project": model.projectId,
+                "limit": 4,
             },
             success: function (collaborators) {
                 model.collaborators = collaborators;
