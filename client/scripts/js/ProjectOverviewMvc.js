@@ -211,7 +211,7 @@ class Controller {
             };
         });
 
-        $(".collaboratorBtnInvite").on("click", function (event) {
+        $("#actionAddColaborator").on("click", function (event) {
             controller.inviteCollaboratorEvent(controller, event);
         });
 
@@ -272,40 +272,63 @@ class Controller {
     }
 
     inviteCollaboratorEvent(controller, event) {
-        var username = $("#searchCollaborator").val();
+        var event = event || window.event;
+        event.preventDefault();
 
-        $.ajax({
-            url: "/daw/index.php?ctl=doesUsernameExists",
-            data: {
-                username: username,
-            },
-            success: function (result) {
-                console.log(result);
-                if (result) {
-                    $.ajax({
-                        url: "/daw/index.php?ctl=createCollaborators",
-                        data: {
-                            username: username,
-                            id_project: controller.model.projectId,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result) {
-                                window.location.reload();
-                            } else {
-                                sendNotification("No se ha podido añadir", "projectInviteCollaborator");
-                            }
-                            /* if (result !== false) {
-                                modal.close();
-                                controller.addCollaborator(controller, result[0]);
-                                controller.model.collaborators.push(result[0]);
-                                controller.model.workingCollaborators.push(result[0]);
-                            } */
-                        }
-                    });
-                }
-            }
+        var modal = $.sweetModal({
+            title: 'Invitar colaborador/a',
+            content: `<form action="/daw/index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+                        <div class="md-form">
+                            <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                <input class="btn btn-primary w-100" type="submit" name="createCollaborators" id="createCollaborators" value="Invitar colaborador/a">
+                        </div>
+                    </form>`,
+            theme: $.sweetModal.THEME_DARK
         });
+
+
+
+        modal.params["onOpen"] = function () {
+            $("#username").focus();
+            $("#formCreateCollaborator").on("submit", function (event) {
+                var event = event || window.event;
+                event.preventDefault();
+
+                var username = $("#username").val();
+                $.ajax({
+                    url: "/daw/index.php?ctl=doesUsernameExists",
+                    data: {
+                        username: username,
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result) {
+                            $.ajax({
+                                url: "/daw/index.php?ctl=createCollaborators",
+                                data: {
+                                    username: username,
+                                    id_project: controller.model.projectId,
+                                },
+                                success: function (result) {
+                                    console.log(result);
+                                    if (result) {
+                                        window.location.reload();
+                                    } else {
+                                        sendNotification("No se ha podido añadir", "projectInviteCollaborator");
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+            });
+        };
+
+        return false;
     }
 
     clearContainer(controller) {
