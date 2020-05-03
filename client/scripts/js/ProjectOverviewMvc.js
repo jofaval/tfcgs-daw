@@ -211,11 +211,13 @@ class Controller {
             };
         });
 
-        $("#actionAddColaborator").on("click", function (event) {
+        $("#actionAddCollaborator").on("click", function (event) {
             controller.inviteCollaboratorEvent(controller, event);
         });
 
-
+        $("#actionRemoveCollaborator").on("click", function (event) {
+            controller.removeCollaboratorEvent(controller, event);
+        });
     }
 
     addDashboardBtnEvent(controller, event) {
@@ -308,6 +310,66 @@ class Controller {
                         if (result) {
                             $.ajax({
                                 url: "/daw/index.php?ctl=createCollaborators",
+                                data: {
+                                    username: username,
+                                    id_project: controller.model.projectId,
+                                },
+                                success: function (result) {
+                                    console.log(result);
+                                    if (result) {
+                                        window.location.reload();
+                                    } else {
+                                        sendNotification("No se ha podido añadir", "projectInviteCollaborator");
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+            });
+        };
+
+        return false;
+    }
+
+    removeCollaboratorEvent(controller, event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        var modal = $.sweetModal({
+            title: 'Invitar colaborador/a',
+            content: `<form action="/daw/index.php?ctl=deleteCollaborators" id="formremoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+                        <div class="md-form">
+                            <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Eliminar colaborador/a">
+                        </div>
+                    </form>`,
+            theme: $.sweetModal.THEME_DARK
+        });
+
+
+
+        modal.params["onOpen"] = function () {
+            $("#username").focus();
+            $("#formremoveCollaborator").on("submit", function (event) {
+                var event = event || window.event;
+                event.preventDefault();
+
+                var username = $("#username").val();
+                $.ajax({
+                    url: "/daw/index.php?ctl=doesUsernameExists",
+                    data: {
+                        username: username,
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result) {
+                            $.ajax({
+                                url: "/daw/index.php?ctl=deleteCollaborators",
                                 data: {
                                     username: username,
                                     id_project: controller.model.projectId,

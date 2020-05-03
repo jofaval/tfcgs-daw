@@ -177,7 +177,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["id_collaborator"] = $controller->getClientIdFromUsername($_REQUEST["username"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "username", "starting_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "username"]);
     }
 
     //Function to createGlobalLevel

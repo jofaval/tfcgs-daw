@@ -63,7 +63,6 @@ class Collaborators implements CRUD
         $identificationParams = [
             "id_project" => $this->id_project,
             "id_collaborator" => $this->id_collaborator,
-            "starting_date" => $this->starting_date,
         ];
 
         return $sqlUtils->update($this->table, $toModify, $identificationParams);
@@ -76,7 +75,6 @@ class Collaborators implements CRUD
         $params = [
             "id_project" => $this->id_project,
             "id_collaborator" => $this->id_collaborator,
-            "starting_date" => $this->starting_date,
         ];
 
         return $sqlUtils->delete($this->table, $params);
@@ -89,7 +87,6 @@ class Collaborators implements CRUD
         $params = [
             "id_project" => $this->id_project,
             "id_collaborator" => $this->id_collaborator,
-            "starting_date" => $this->starting_date,
         ];
 
         return $sqlUtils->query($this->table, $params);

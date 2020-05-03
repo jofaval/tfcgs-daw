@@ -71,13 +71,13 @@
             <div class="actionsGroup">
                 <h4 class="actionsTitle text-white">Proyecto</h4>
                 <div class="actionsButton d-flex justify-content-space-between flex-wrap">
-                    <a href="" id="actionAddColaborator" class="action cursor-pointer red m-2">
+                    <a href="" id="actionAddCollaborator" class="action cursor-pointer red m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-user-plus"></i>
                         </div>
                         <div class="actionTitle h-25 text-center text-white bg-dark">Añadir colaborador</div>
                     </a>
-                    <a href="" class="action cursor-pointer red m-2">
+                    <a href="" id="actionRemoveCollaborator" class="action cursor-pointer red m-2">
                         <div class="actionIcon h-75 text-white p-3">
                             <i class="fa fa-user-times"></i>
                         </div>
