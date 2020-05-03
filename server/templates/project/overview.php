@@ -102,7 +102,7 @@
         <div class="col-md-6 mx-3 mx-sm-0">
             <div class="row text-white">
                 <h4 class="h4 text-white">Creado recientemente</h4>
-                <div class="recentlyCreated">
+                <div class="recentlyCreated text-dark">
                     <div class="card w-100">
                         <div class="card-body p-0">
                             <p class="card-text my-auto d-inline">Test</p>
@@ -127,7 +127,7 @@
             <br>
             <div class="row text-white">
                 <h4 class="h4 text-white">Invitados recientemente</h4>
-                <div class="recentlyInvited collaboratorsContainer">
+                <div class="recentlyInvited text-dark collaboratorsContainer">
                     <div class="projectCollaboratorCard rounded row col m-2 bg-white">
                         <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
                         <div class="projectCollaboratorDetails my-auto col">
