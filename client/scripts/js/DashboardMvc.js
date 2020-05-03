@@ -655,7 +655,7 @@ class Controller {
                     if (result === true) {
 
                         var successAlert = $.sweetModal({
-                            content: `"${taskListData.title}" ha sido borrado con éxito`,
+                            content: `"${taskItemData.title}" ha sido borrado con éxito`,
                             icon: $.sweetModal.ICON_SUCCESS,
                             theme: $.sweetModal.THEME_DARK,
                         });
