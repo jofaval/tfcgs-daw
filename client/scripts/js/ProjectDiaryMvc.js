@@ -21,6 +21,9 @@ function loadDayContent(selectedDate) {
             id_project: 7,
         },
         success: function (content) {
+            if (content == false) {
+                content = "Vacío.";
+            }
             console.log("result cargarlo", decodeURI(content));
             loadContent(decodeURI(content))
         },
@@ -82,10 +85,15 @@ $("#diaryBtnSave").on("click", function () {
                         content: encodedContent,
                     },
                     success: function (result) {
-                        console.log("result modificarlo", result);
-
+                        if (result !== false) {
+                            console.log("result modificarlo", result);
+                        } else {
+                            sendNotification("Se ha guardado con éxito.", "diarySavedWithSuccess");
+                        }
                     },
                 })
+            } else {
+                sendNotification("Se ha guardado con éxito.", "diarySavedWithSuccess");
             }
         },
     });
