@@ -89,6 +89,13 @@ function writeInElement(element, phrase, intervalTime = 25) {
     }
 }
 
+function redirectTo(url) {
+    var a = document.createElement("a");
+    document.body.appendChild(a);
+    a.href = url;
+    a.click();
+}
+
 function getTimeFromThisMoment(date, parseFromString = true) {
     if (parseFromString) {
         date = new Date(Date.parse(date));
