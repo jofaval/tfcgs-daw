@@ -370,7 +370,6 @@ class Controller {
                         if (result !== false) {
                             modal.close();
                             controller.addDashboard(controller, result[0]);
-                            controller.model.dashboards.push(result[0]);
                             controller.model.workingDashboards.push(result[0]);
                             controller.reload(controller);
                         }
