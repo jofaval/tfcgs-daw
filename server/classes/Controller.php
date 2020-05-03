@@ -198,10 +198,11 @@ class Controller
         and bookmarked_dashboards.id_project = :id_project
         and bookmarked_dashboards.title = dashboards.title) as bookmarked
         FROM `dashboards` LEFT JOIN `projects` on (`dashboards`.`id_project` = `projects`.`id`)
-            WHERE `dashboards`.`enabled` = 1 and `projects`.`enabled` = 1 and (projects.id_creator = :id_client or :id_client in
+            WHERE `dashboards`.`enabled` = 1 and `projects`.`enabled` = 1 and projects.id = :id_project and (projects.id_creator = :id_client or :id_client in
                 (SELECT collaborators.id_collaborator
                      FROM collaborators
-                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY dashboards.creation_date", ["id_client" => Sessions::getInstance()->getSession("userId"), "id_project" => $id_project]);
+                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY dashboards.creation_date",
+            ["id_client" => Sessions::getInstance()->getSession("userId"), "id_project" => (string) $id_project]);
     }
 
     public function getProjectDetails()

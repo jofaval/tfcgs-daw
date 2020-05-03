@@ -29,8 +29,6 @@ class Dashboards implements CRUD
             "id_project" => $this->id_project,
         ];
 
-        $params["id_creator"] = 16;
-
         $result = $sqlUtils->query(Dashboards::$table, $params);
 
         if (count($result) == 0) {
