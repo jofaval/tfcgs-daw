@@ -20,11 +20,15 @@ $breadcrumb = [
 ];
 ?>
 
+<?php $sessions = Sessions::getInstance();?>
+<?php $username = $sessions->getSession("username");?>
+
 <?php ob_start()?>
 <div class=" p-0">
     <div class="row py-5 m-0 projectHeader">
         <div class="projectImageContainer">
-            <img class="projectImage mx-5" src="../img/profile-pic.png" alt="" width="200">
+            <img class="projectImage mx-5" src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
+                alt="" width="200">
         </div>
         <div class="display-none display-sm-block projectDetails text-white col">
             <h1 class="projectTitle font-weight-bold">Origen</h1>
