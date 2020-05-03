@@ -149,31 +149,10 @@ class Controller {
             localStorage.setItem("numberOfRowsInCollaborators", selectNumberOfRows.val());
         });
 
-        var searchBar = $("#searchCollaborator");
-        whenUserDoneTypingInInput(searchBar, "searchCollaborator", function () {
-            var content = searchBar.val().toLowerCase();
-            var newCollaboratorsJSON = [];
-            if (content == "") {
-                newCollaboratorsJSON = controller.model.collaborators;
-            } else {
-                $(controller.model.collaborators).each(function () {
-                    if (content == "" || (!this.collaboratorUsername.toLowerCase().includes(content) && !this.collaboratorName.toLowerCase().includes(content))) {
-                        return;
-                    }
-
-                    newCollaboratorsJSON.push(this);
-                });
-            }
-
-            if (newCollaboratorsJSON.length > 0) {
-                controller.model.workingCollaborators = newCollaboratorsJSON;
-                controller.model.filterCollaborators = newCollaboratorsJSON;
-                controller.reload(controller);
-            } else {
-                controller.clearContainer(controller);
-                $(".collaboratorsContainer").text("No se han encontrado resultados.");
-            }
-        }, 100);
+        var activeTime = $(".activeTime");
+        var activeTimeDate = $(".activeTime").html().trim();
+        activeTime.html(getTimeFromThisMoment(activeTimeDate));
+        activeTime.append(`<span class="originalDate d-none">${activeTimeDate}</span>`);
 
         $(".collaboratorBtnAdd").on("click", function (event) {
             controller.addCollaboratorBtnEvent(controller, event);
