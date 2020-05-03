@@ -28,12 +28,12 @@
                 id="searchCollaborator" placeholder="Collaborator's username">
             <div class="input-group-append">
                 <span class="btn btn-sm collaboratorBtnInvite btn-success m-0 input-group-text md-addon">
-                    <span class="d-none d-sm-inline-block">Invite</span>
-                    <span><i class="fa fa-user-plus"></i></span>
+                    <span class="d-none d-sm-inline-block">Invite&nbsp;</span>
+                    <span><i class="fa fa-user-plus fa-2x"></i></span>
                 </span>
                 <span class="btn btn-sm collaboratorBtnSearch btn-warning m-0 input-group-text md-addon">
-                    <span class="d-none d-sm-inline-block">Search</span>
-                    <span><i class="fa fa-search"></i></span>
+                    <span class="d-none d-sm-inline-block">Search&nbsp;</span>
+                    <span><i class="fa fa-search fa-2x"></i></span>
                 </span>
             </div>
         </div>

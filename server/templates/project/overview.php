@@ -3,14 +3,14 @@
         <div class="collaborators mx-2">
             <span id="numberOfCollaborators">24</span>
             <span class="font-weight-bold">
-                <a class=""><i class="fa fa-user"></i></a>
+                <a class=""><i class="fa fa-lg fa-user"></i></a>
                 <span class="d-none d-sm-inline-block">colaborador(s)</span>
             </span>
         </div>
         <div class="dashboards mx-2">
             <span id="numberOfDashboards">24</span>
             <span class="font-weight-bold">
-                <a class=""><i class="fa fa-columns"></i></a>
+                <a class=""><i class="fa fa-lg fa-columns"></i></a>
                 <span class="d-none d-sm-inline-block">tablero(s)</span>
             </span>
         </div>
