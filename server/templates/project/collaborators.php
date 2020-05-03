@@ -23,11 +23,19 @@
             </select>
             <p class="m-0 align-self-center text-white">&nbsp;row(s).</p>
         </div>
-        <input type="text" class="form-control pl-0 text-white rounded-0" name="searchCollaborator"
-            id="searchCollaborator" placeholder="Collaborator's username">
-        <div class="input-group-append">
-            <span class="btn btn-sm collaboratorBtnInvite btn-success m-0 input-group-text md-addon">Invite</span>
-            <span class="btn btn-sm collaboratorBtnSearch btn-warning m-0 input-group-text md-addon">Search</span>
+        <div class="md-form input-group col-12 col-sm my-2">
+            <input type="text" class="form-control pl-0 col-12 col-sm text-white rounded-0" name="searchCollaborator"
+                id="searchCollaborator" placeholder="Collaborator's username">
+            <div class="input-group-append">
+                <span class="btn btn-sm collaboratorBtnInvite btn-success m-0 input-group-text md-addon">
+                    <span class="d-none d-sm-inline-block">Invite</span>
+                    <span><i class="fa fa-user-plus"></i></span>
+                </span>
+                <span class="btn btn-sm collaboratorBtnSearch btn-warning m-0 input-group-text md-addon">
+                    <span class="d-none d-sm-inline-block">Search</span>
+                    <span><i class="fa fa-search"></i></span>
+                </span>
+            </div>
         </div>
     </div>
     <div class="grey darken-3 m-0 px-2 pt-2">
