@@ -400,7 +400,7 @@ class Controller {
 
         var modal = $.sweetModal({
             title: 'Ver tablero',
-            content: `<form action="/daw/index.php?ctl=viewDashboard" id="viewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            content: `<form action="/daw/index.php?ctl=viewDashboard" id="formViewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
                             <input type="text" placeholder="" id="dashboardName" name="dashboardName" value="" class="form-control text-white">
                             <label for="dashboardName">Dashboard Name</label>
@@ -412,15 +412,16 @@ class Controller {
             theme: $.sweetModal.THEME_DARK
         });
 
-        var dashboardName = $("#dashboardName").val();
 
         modal.params["onOpen"] = function () {
             $("#dashboardName").focus();
-            $("#formremoveCollaborator").on("submit", function (event) {
+            $("#formViewDashboard").on("submit", function (event) {
                 var event = event || window.event;
                 event.preventDefault();
 
-                redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/${dashboardName}`);
+                var dashboardName = $("#dashboardName").val();
+
+                redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/${dashboardName}/`);
 
                 return false;
             });
