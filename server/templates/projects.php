@@ -56,11 +56,16 @@ $breadcrumb = [
         <div class="row w-auto mx-2">
             <p class="m-0 align-self-center text-white">Show&nbsp;</p>
             <select class="custom-select custom-select-sm align-self-center w-auto" id="selectNumberOfRows">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option selected value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1" class="d-block d-sm-none">2</option>
+                <option value="1" class="d-none d-sm-block">1</option>
+                <option value="2" class="d-block d-sm-none">4</option>
+                <option value="2" class="d-none d-sm-block">2</option>
+                <option value="3" class="d-block d-sm-none">6</option>
+                <option value="3" class="d-none d-sm-block" selected>3</option>
+                <option value="4" class="d-block d-sm-none">8</option>
+                <option value="4" class="d-none d-sm-block">4</option>
+                <option value="5" class="d-block d-sm-none">10</option>
+                <option value="5" class="d-none d-sm-block">5</option>
             </select>
             <p class="m-0 align-self-center text-white">&nbsp;row(s).</p>
         </div>
