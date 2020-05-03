@@ -48,10 +48,15 @@ class SQLUtils
             $queryAction = $this->$model->$conexion->prepare($queryString);
 
             foreach ($params as $key => $value) {
-                $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
+                if (is_int($value)) {
+                    $queryAction->bindValue(":$key", $value, PDO::PARAM_INT);
+                } else {
+                    $queryAction->bindValue(":$key", $value, PDO::PARAM_STR);
+                }
             }
 
-            if ($queryAction->execute()) {
+            $result = $queryAction->execute();
+            if ($result) {
                 return $queryAction->fetchAll(PDO::FETCH_ASSOC);
             }
 
