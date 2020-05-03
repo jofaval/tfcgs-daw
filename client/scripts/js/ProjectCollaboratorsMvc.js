@@ -225,7 +225,7 @@ class Controller {
                             console.log(result);
                             if (result) {
                                 controller.model.collaborators.push(result);
-                                window.location.reload();
+                                controller.reload(controller);
                             } else {
                                 sendNotification("No se ha podido añadir", "projectInviteCollaborator");
                             }

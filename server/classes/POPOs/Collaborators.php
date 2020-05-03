@@ -22,6 +22,7 @@ class Collaborators implements CRUD
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
+        $controller = new Controller();
 
         $params = [
             "id_project" => $this->id_project,
@@ -39,7 +40,13 @@ class Collaborators implements CRUD
                 "id_project" => $this->id_project,
                 "id_collaborator" => $this->id_collaborator,
             ];
-            return $sqlUtils->query($this->table, $params);
+
+            return $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'collaboratorName', users.username as 'collaboratorUsername',
+            collaborators.starting_date as 'collaborationStartingDate', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
+            FROM `collaborators` LEFT JOIN `permissions` on (collaborators.level = permissions.level)
+                LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id)
+                LEFT JOIN `users` on (clients.id = users.id_client)
+                WHERE collaborators.id_project = :id_project and collaborators.id_collaborator = :id_collaborator", $params)[0];
         }
 
         return $result;
