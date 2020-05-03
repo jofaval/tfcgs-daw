@@ -3,7 +3,7 @@ RewriteEngine On
 
 #Improved SEO rules
 AddDefaultCharset UTF-8
-DefaultLanguage en-us
+DefaultLanguage es-ES
 
 Header set X-Robots-Tag "noindex, noarchive, nosnippet"
 Header set Cache-Control "max-age=300, public"
