@@ -42,6 +42,19 @@ class Model {
         });
     }
 
+    deleteProject(whenFinished) {
+        var model = this;
+        $.ajax({
+            url: "/daw/index.php?ctl=deleteProjects",
+            data: {
+                "id": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
     getProjectId() {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
@@ -155,33 +168,50 @@ class Controller {
         activeTime.html(getTimeFromThisMoment(activeTimeDate));
         activeTime.append(`<span class="originalDate d-none">${activeTimeDate}</span>`);
 
-        $(".collaboratorBtnAdd").on("click", function (event) {
+        $("#actionAddColaborator").on("click", function (event) {
             controller.addCollaboratorBtnEvent(controller, event);
         });
 
-        $(".collaboratorsBtnFilters .btn").on("click", function () {
-            $(this).toggleClass("active");
+        $("#actionDeleteProject").on("click", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
 
-            controller.reload(controller);
-        });
+            var confirmationModal = $.sweetModal.confirm('¿Borrar el proyecto?', `Confimar esta acción y borrar <b>"${controller.model.projectId}"</b>`, function () {
+                controller.model.deleteProject(function (result) {
+                    console.log(result);
+                    if (result === true) {
+                        var successAlert = $.sweetModal({
+                            content: `Se ha borrado el proyecto <b>"${controller.model.projectId}"</b>`,
+                            icon: $.sweetModal.ICON_SUCCESS,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                        successAlert.params["onClose"] = function () {
+                            window.location.reload();
+                        }
+                    } else {
+                        var errorAlert = $.sweetModal({
+                            content: `No se ha podido borrar el proyecto <b>"${controller.model.projectId}"</b>`,
+                            icon: $.sweetModal.ICON_ERROR,
+                            theme: $.sweetModal.THEME_DARK,
+                        });
+                    }
+                })
+            }, function () {
 
-        $(".page-item.nav-previous .page-link").on("click", function () {
-            var activePage = $(this).parent().siblings(".active").prev();
-            if (!activePage.hasClass("nav-previous")) {
-                activePage.trigger("click");
-            }
-        });
+            });
 
-        $(".page-item.nav-next .page-link").on("click", function () {
-            var activePage = $(this).parent().siblings(".active").next();
-            if (!activePage.hasClass("nav-next")) {
-                activePage.trigger("click");
-            }
+            confirmationModal.params["onOpen"] = function () {
+                var buttons = $(".sweet-modal-buttons .button");
+                buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
+                buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
+            };
         });
 
         $(".collaboratorBtnInvite").on("click", function (event) {
             controller.inviteCollaboratorEvent(controller, event);
         });
+
+
     }
 
     inviteCollaboratorEvent(controller, event) {
