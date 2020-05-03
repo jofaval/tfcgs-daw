@@ -2,19 +2,20 @@
     <div class="w-100 display-none display-sm-block p-2 text-white d-flex justify-content-start">
         <div class="collaborators mx-2">
             <span id="numberOfCollaborators">24</span>
-            <span class="font-weight-bold">colaborador(s)</span>
+            <span class="font-weight-bold">
+                <a class=""><i class="fa fa-user"></i></a>
+                <span class="d-none d-sm-inline-block">colaborador(s)</span>
+            </span>
         </div>
         <div class="dashboards mx-2">
             <span id="numberOfDashboards">24</span>
-            <span class="font-weight-bold">tablero(s)</span>
+            <span class="font-weight-bold">
+                <a class=""><i class="fa fa-columns"></i></a>
+                <span class="d-none d-sm-inline-block">tablero(s)</span>
+            </span>
         </div>
         <div class="activeTime mx-2">
-            <span id="numberOfDashboards">5</span>
-            <span class="font-weight-bold">año(s)</span>,&nbsp;
-            <span id="numberOfDashboards">2</span>
-            <span class="font-weight-bold">mes(es)</span>&nbsp;y&nbsp;
-            <span id="numberOfDashboards">15</span>
-            <span class="font-weight-bold">día(s)</span>
+            <?php echo $projectData["projectCreationDate"]; ?>
         </div>
     </div>
     <div class="row">
