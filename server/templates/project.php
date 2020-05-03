@@ -61,15 +61,21 @@ $breadcrumb = [
     </div>
     <div class="row tabs shadow w-100 m-0 grey darken-2 text-white">
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/overview/"
-            class="tab p-3 text-white <?php echo $tabName == "overview" ? "active" : ""; ?>">General</a>
+            class="tab p-3 text-white <?php echo $tabName == "overview" ? "active" : ""; ?>"><span class=""><i
+                    class="fa fa-eye"></i></span>&nbsp;<span class="d-none d-sm-inline-block">General</span></a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
-            class="tab p-3 text-white <?php echo $tabName == "dashboards" ? "active" : ""; ?>">Tableros</a>
+            class="tab p-3 text-white <?php echo $tabName == "dashboards" ? "active" : ""; ?>"><span class=""><i
+                    class="fa fa-columns"></i></span>&nbsp;<span class="d-none d-sm-inline-block">Tableros</span></a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/"
-            class="tab p-3 text-white <?php echo $tabName == "diary" ? "active" : ""; ?>">Diario</a>
+            class="tab p-3 text-white <?php echo $tabName == "diary" ? "active" : ""; ?>"><span class=""><i
+                    class="fa fa-book"></i></span>&nbsp;<span class="d-none d-sm-inline-block">Diario</span></a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/collaborators/"
-            class="tab p-3 text-white <?php echo $tabName == "collaborators" ? "active" : ""; ?>">Colaboradores</a>
+            class="tab p-3 text-white <?php echo $tabName == "collaborators" ? "active" : ""; ?>"><span class=""><i
+                    class="fa fa-user"></i></span>&nbsp;<span class="d-none d-sm-inline-block">Colaboradores</span></a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/details/"
-            class="tab p-3 text-white <?php echo $tabName == "details" ? "active" : ""; ?>">Detalles</a>
+            class="tab p-3 text-white <?php echo $tabName == "details" ? "active" : ""; ?>"><span class=""><i
+                    class="fa fa-info-circle"></i></span>&nbsp;<span
+                class="d-none d-sm-inline-block">Detalles</span></a>
     </div>
     <div class="row grey darken-3 m-0 px-2">
         <?php
