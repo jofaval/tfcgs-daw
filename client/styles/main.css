@@ -116,7 +116,7 @@ main {
     }
 }
 
-@media handheld and (orientation: landscape) {
+@media (max-width: 856px) and (orientation: landscape) {
     nav.navbar, .breadcrumbContainer, .footer {
         display: none !important;
     }
