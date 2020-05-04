@@ -22,82 +22,48 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="actionsGroup">
-                <h4 class="actionsTitle text-white">Tablero</h4>
-                <div class="actionsButton d-flex justify-content-space-between flex-wrap">
-                    <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
-                        class="action cursor-pointer blue m-2" id="actionAddDashboard">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-plus"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Añadir
-                            tablero</div>
-                    </a>
-                    <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
-                        class="action cursor-pointer blue m-2" id="actionViewDashboard">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-eye"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Ver tablero</div>
-                    </a>
-                    <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
-                        class="action cursor-pointer blue m-2" id="actionDashboardTasks">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-tasks"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Ver tareas asignadas</div>
-                    </a>
-                </div>
-            </div>
-            <div class="actionsGroup">
-                <h4 class="actionsTitle text-white">Diario</h4>
-                <div class="actionsButton d-flex justify-content-space-between flex-wrap">
-                    <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDate"]; ?>"
-                        class="action cursor-pointer green m-2" id="actionTodayDiary">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-calendar-check-o"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Ver diario de hoy</div>
-                    </a>
-                    <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/"
-                        class="action cursor-pointer green m-2" id="actionDiary">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Ir a selección de fecha</div>
-                    </a>
-                </div>
-            </div>
-            <div class="actionsGroup">
-                <h4 class="actionsTitle text-white">Proyecto</h4>
-                <div class="actionsButton d-flex justify-content-space-between flex-wrap">
-                    <a href="" id="actionAddCollaborator" class="action cursor-pointer red m-2">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-user-plus"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Añadir colaborador</div>
-                    </a>
-                    <a href="" id="actionRemoveCollaborator" class="action cursor-pointer red m-2">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-user-times"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Eliminar colaborador</div>
-                    </a>
-                    <!-- <a href="" class="action cursor-pointer red m-2">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-user-secret"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Cambiar rol</div>
-                    </a> -->
-                    <a href="" id="actionDeleteProject" class="action cursor-pointer red m-2">
-                        <div class="actionIcon h-75 text-white p-3">
-                            <i class="fa fa-times"></i>
-                        </div>
-                        <div class="actionTitle h-25 text-center text-white bg-dark">Eliminar proyecto</div>
-                    </a>
+            <?php $actionGroups = [
+    "Tablero" => [
+        ["name" => "Añadir tablero", "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/", "icon" => "plus", "id" => "AddDashboard", "color" => "blue"],
+        ["name" => "Ver tablero", "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/", "icon" => "eye", "id" => "ViewDashboard", "color" => "blue"],
+        ["name" => "Ver tareas asignadas", "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/", "icon" => "tasks", "id" => "DashboardTasks", "color" => "blue"],
+    ],
+    "Diario" => [
+        ["name" => "Ver diario de hoy", "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/", "icon" => "calendar-check-o", "id" => "TodayDiary", "color" => "green"],
+        ["name" => "Ir a selección de fecha", "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/", "icon" => "calendar", "id" => "Diary", "color" => "green"],
+    ],
+    "Proyecto" => [
+        ["name" => "Añadir colaborador", "link" => "", "icon" => "user-plus", "id" => "AddCollaborator", "color" => "red"],
+        ["name" => "Eliminar colaborador", "link" => "", "icon" => "user-times", "id" => "RemoveCollaborator", "color" => "red"],
+        /* ["name" => "Cambiar rol colaborador", "link" => "", "icon" => "user-secret", "id" => "ChangeRoleCollaborator", "color" => "red"], */
+        ["name" => "Eliminar proyecto", "link" => "", "icon" => "times", "id" => "DeleteProject", "color" => "red"],
+    ],
+];
 
+foreach ($actionGroups as $actionGroupTitle => $actionGroup) {
+    ?> <div class="actionsGroup">
+                <h4 class="actionsTitle text-white"><?php echo $actionGroupTitle; ?></h4>
+                <div class="actionsButton d-flex justify-content-space-between flex-wrap">
+                    <?php
+foreach ($actionGroup as $action) {
+        ?>
+                    <a href="<?php echo $action["link"]; ?>"
+                        class="action cursor-pointer <?php echo $action["color"]; ?> m-2"
+                        id="action<?php echo $action["id"]; ?>">
+                        <div class="actionIcon h-75 text-white p-3">
+                            <i class="fa fa-<?php echo $action["icon"]; ?>"></i>
+                        </div>
+                        <div class="actionTitle h-25 text-center d-flex justify-content-center text-white bg-dark">
+                            <p class="align-self-center fixed-line-spacing mb-0"><?php echo $action["name"]; ?></p>
+                        </div>
+                    </a>
+                    <?php
+}
+    ?>
                 </div>
-            </div>
+            </div> <?php
+}
+?>
         </div>
         <div class="col-md-6 mx-3 mx-sm-0">
             <div class="row text-white">
