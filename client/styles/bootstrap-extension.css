@@ -292,3 +292,7 @@
 .h6 {
     font-size: 1rem !important;
 }
+
+.fixed-line-spacing {
+    line-height: 1em !important;
+}
