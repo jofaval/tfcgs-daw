@@ -663,6 +663,77 @@ class Controller
         imagedestroy($im);
     }
 
+    public function generateSitemap()
+    {
+        header("Content-type: application/xml");
+        echo "<xml version='1.0' encoding='UTF-8'>";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+        $sqlUtils = new SQLUtils(Model::getInstance());
+
+        $projects = $sqlUtils->query("projects");
+        $projectPages = [
+            "overview",
+            "dashboards",
+            "diary",
+            "collaborators",
+            "details",
+        ];
+
+        foreach ($projects as $project) {
+            $projectId = $project["id"];
+            echo "<url>";
+            $url = "http://localhost.com/daw/projects/id/$projectId/";
+            echo "<loc>" . $this->encodeURI($url) . "</loc>";
+            echo "<lastmod>" . $project["creation_date"] . "</lastmod>";
+            echo "<changefreq>never</changefreq>";
+            echo "<priority>0.5</priority>";
+            echo "</url>";
+            foreach ($projectPages as $projectPage) {
+                echo "<url>";
+                $url = "http://localhost.com/daw/projects/id/$projectId/$projectPage/";
+                echo "<loc>" . $this->encodeURI($url) . "</loc>";
+                echo "<lastmod>" . $project["creation_date"] . "</lastmod>";
+                echo "<changefreq>never</changefreq>";
+                echo "<priority>0.5</priority>";
+                echo "</url>";
+            }
+
+            $dashboards = $sqlUtils->query("dashboards", ["id_project" => $projectId]);
+            foreach ($dashboards as $dashboard) {
+                $dashboardTitle = $dashboard["title"];
+                echo "<url>";
+                $url = "http://localhost.com/daw/projects/id/$projectId/dashboards/$dashboardTitle/";
+                echo "<loc>" . $this->encodeURI($url) . "</loc>";
+                echo "<lastmod>" . $dashboard["creation_date"] . "</lastmod>";
+                echo "<changefreq>never</changefreq>";
+                echo "<priority>0.5</priority>";
+                echo "</url>";
+            }
+        }
+
+        echo '</urlset>';
+    }
+
+    public function encodeURI($url)
+    {
+        // http://php.net/manual/en/function.rawurlencode.php
+        // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/encodeURI
+        $unescaped = array(
+            '%2D' => '-', '%5F' => '_', '%2E' => '.', '%21' => '!', '%7E' => '~',
+            '%2A' => '*', '%27' => "'", '%28' => '(', '%29' => ')',
+        );
+        $reserved = array(
+            '%3B' => ';', '%2C' => ',', '%2F' => '/', '%3F' => '?', '%3A' => ':',
+            '%40' => '@', '%26' => '&', '%3D' => '=', '%2B' => '+', '%24' => '$',
+        );
+        $score = array(
+            '%23' => '#',
+        );
+        return strtr(rawurlencode($url), array_merge($reserved, $unescaped, $score));
+
+    }
+
     public function test()
     {
         require_once __DIR__ . "/one_execution/test.php";
