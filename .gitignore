@@ -34,3 +34,4 @@ composer.lock
 .VSCodeCounter/*
 testing.txt
 client/testAjax.html
+*sitemap*
