@@ -666,8 +666,8 @@ class Controller
     public function generateSitemap()
     {
         header("Content-type: application/xml");
-        echo "<xml version='1.0' encoding='UTF-8'>";
-        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        $sitemapXMLContent = "<?xml version='1.0' encoding='UTF-8'?" . ">";
+        $sitemapXMLContent .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
         $sqlUtils = new SQLUtils(Model::getInstance());
 
@@ -682,42 +682,46 @@ class Controller
 
         foreach ($projects as $project) {
             $projectId = $project["id"];
-            echo "<url>";
+            $sitemapXMLContent .= "<url>";
             $url = "http://localhost.com/daw/projects/id/$projectId/";
-            echo "<loc>" . $this->encodeURI($url) . "</loc>";
-            echo "<lastmod>" . $project["creation_date"] . "</lastmod>";
-            echo "<changefreq>never</changefreq>";
-            echo "<priority>0.5</priority>";
-            echo "</url>";
+            $sitemapXMLContent .= "<loc>" . $this->encodeURI($url) . "</loc>";
+            $sitemapXMLContent .= "<lastmod>" . $project["creation_date"] . "</lastmod>";
+            $sitemapXMLContent .= "<changefreq>never</changefreq>";
+            $sitemapXMLContent .= "<priority>0.5</priority>";
+            $sitemapXMLContent .= "</url>";
             foreach ($projectPages as $projectPage) {
-                echo "<url>";
+                $sitemapXMLContent .= "<url>";
                 $url = "http://localhost.com/daw/projects/id/$projectId/$projectPage/";
-                echo "<loc>" . $this->encodeURI($url) . "</loc>";
-                echo "<lastmod>" . $project["creation_date"] . "</lastmod>";
-                echo "<changefreq>never</changefreq>";
-                echo "<priority>0.5</priority>";
-                echo "</url>";
+                $sitemapXMLContent .= "<loc>" . $this->encodeURI($url) . "</loc>";
+                $sitemapXMLContent .= "<lastmod>" . $project["creation_date"] . "</lastmod>";
+                $sitemapXMLContent .= "<changefreq>never</changefreq>";
+                $sitemapXMLContent .= "<priority>0.5</priority>";
+                $sitemapXMLContent .= "</url>";
             }
 
             $dashboards = $sqlUtils->query("dashboards", ["id_project" => $projectId]);
             foreach ($dashboards as $dashboard) {
                 $dashboardTitle = $dashboard["title"];
-                echo "<url>";
+                $sitemapXMLContent .= "<url>";
                 $url = "http://localhost.com/daw/projects/id/$projectId/dashboards/$dashboardTitle/";
-                echo "<loc>" . $this->encodeURI($url) . "</loc>";
-                echo "<lastmod>" . $dashboard["creation_date"] . "</lastmod>";
-                echo "<changefreq>never</changefreq>";
-                echo "<priority>0.5</priority>";
-                echo "</url>";
+                $sitemapXMLContent .= "<loc>" . $this->encodeURI($url) . "</loc>";
+                $sitemapXMLContent .= "<lastmod>" . $dashboard["creation_date"] . "</lastmod>";
+                $sitemapXMLContent .= "<changefreq>never</changefreq>";
+                $sitemapXMLContent .= "<priority>0.5</priority>";
+                $sitemapXMLContent .= "</url>";
             }
         }
 
-        echo '</urlset>';
+        $sitemapXMLContent .= '</urlset>';
+
+        echo $sitemapXMLContent;
+
+        file_put_contents(__DIR__ . "/../../client/sitemap.xml", $sitemapXMLContent);
     }
 
     public function encodeURI($url)
     {
-        // http://php.net/manual/en/function.rawurlencode.php
+// http://php.net/manual/en/function.rawurlencode.php
         // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/encodeURI
         $unescaped = array(
             '%2D' => '-', '%5F' => '_', '%2E' => '.', '%21' => '!', '%7E' => '~',
