@@ -97,39 +97,7 @@ foreach ($actionGroup as $action) {
             <br>
             <div class="row text-white">
                 <h4 class="h4 text-white">Invitados recientemente</h4>
-                <div class="recentlyInvited text-dark collaboratorsContainer">
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See
-                            profile
-                        </div>
-                    </div>
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See
-                            profile
-                        </div>
-                    </div>
-                    <div class="projectCollaboratorCard rounded row col m-2 bg-white">
-                        <img class="projectCollaboratorImg my-2 rounded-pill" src="../img/profile-pic.png" alt="">
-                        <div class="projectCollaboratorDetails my-auto col">
-                            <h5 class=".projectCollaboratorName">Pepe Fabra Valverde</h5>
-                            <p class="projectCollaboratorRole font-weight-bold">Administrator</p>
-                        </div>
-                        <div class="projectCollaboratorProfileBtn btn btn-sm btn-primary float-right">See
-                            profile
-                        </div>
-                    </div>
-                    <span class="btn btn-primary w-100">Ver todos</span>
-                </div>
+                <div class="recentlyInvited text-dark collaboratorsContainer"></div>
             </div>
         </div>
     </div>
