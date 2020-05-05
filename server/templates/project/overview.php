@@ -29,13 +29,17 @@
         ["name" => "Ver tareas asignadas", "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/", "icon" => "tasks", "id" => "DashboardTasks", "color" => "blue"],
     ],
     "Diario" => [
-        ["name" => "Ver diario de hoy", "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/", "icon" => "calendar-check-o", "id" => "TodayDiary", "color" => "green"],
+        ["name" => "Ver diario de hoy", "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/date/" . $viewParams["diaryDate"] . "/",
+            "icon" => "calendar-check-o", "id" => "TodayDiary", "color" => "green"],
         ["name" => "Ir a selección de fecha", "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/", "icon" => "calendar", "id" => "Diary", "color" => "green"],
     ],
     "Proyecto" => [
-        ["name" => "Añadir colaborador", "link" => "", "icon" => "user-plus", "id" => "AddCollaborator", "color" => "red"],
-        ["name" => "Eliminar colaborador", "link" => "", "icon" => "user-times", "id" => "RemoveCollaborator", "color" => "red"],
-        ["name" => "Cambiar rol colaborador", "link" => "", "icon" => "user-secret", "id" => "ChangeRoleCollaborator", "color" => "red"],
+        ["name" => "Añadir colaborador", "link" => "", "icon" => "user-plus", "id" => "AddCollaborator", "color" =>
+            "red"],
+        ["name" => "Eliminar colaborador", "link" => "", "icon" => "user-times", "id" => "RemoveCollaborator",
+            "color" => "red"],
+        ["name" => "Cambiar rol colaborador", "link" => "", "icon" => "user-secret", "id" =>
+            "ChangeRoleCollaborator", "color" => "red"],
         ["name" => "Eliminar proyecto", "link" => "", "icon" => "times", "id" => "DeleteProject", "color" => "red"],
     ],
 ];
