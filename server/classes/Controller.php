@@ -690,16 +690,36 @@ class Controller
     {
         if (Utils::exists("addRoute")) {
             $routeName = Utils::getCleanedData("routeName");
-            $isView = Utils::getCleanedData("isView");
+            $isView = Utils::exists("isView");
 
-            echo "<pre>";
-            var_dump($isView);
-            echo "</pre>";
+            $route = "\n//$routeName";
+            $route .= "\n\$map['$routeName'] = array('controller' => 'Controller', 'action' => '$routeName', 'access' => Config::\$ACCESS_LEVEL_GUEST);";
 
-            header("Location: /daw/" . $isView ? "test" : "");
+            $controllerFunction = "\n\tpublic function $routeName() \n\t{\n";
+
+            if ($isView) {
+                $templateContent = file_get_contents(__DIR__ . "/../templates/example.php");
+                file_put_contents(
+                    __DIR__ . "/../templates/$routeName.php",
+                    $templateContent
+                );
+
+                $controllerFunction .= "\n\t\t" . 'require_once __DIR__ . "/../templates/' . $routeName . '.php";';
+            }
+
+            $controllerFunction .= "\n\t}
+            ";
+
+            $fileWritter = fopen(__DIR__ . "/Controller.php", "a+");
+            fwrite($fileWritter, $controllerFunction);
+            fclose($fileWritter);
+
+            $fileWritter = fopen(__DIR__ . "/../RoutingMap.php", "a+");
+            fwrite($fileWritter, $route);
+            fclose($fileWritter);
         }
 
-        //require_once __DIR__ . "/../templates/newRoute.php";
+        require_once __DIR__ . "/../templates/newRoute.php";
     }
 
     public function test()

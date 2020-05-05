@@ -8,22 +8,10 @@
 <?php
 $breadcrumb = [
     [
-        "name" => "Home",
+        "name" => "Vuelta a la principal",
         "link" => "/daw/",
-        "active" => false,
+        "active" => true,
         "icon" => "home",
-    ],
-    [
-        "name" => "Your projects",
-        "link" => "/daw/projects/",
-        "active" => false,
-        "icon" => "folder",
-    ],
-    [
-        "name" => $viewParams["title"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/",
-        "active" => false,
-        "icon" => "clipboard",
     ],
 ];
 ?>
@@ -31,7 +19,7 @@ $breadcrumb = [
 <?php ob_start()?>
 
 <!--form>(.md-form>.form-control+label)+input:submit.btn.btn-primary{Añadir ruta}-->
-<form action="/daw/index.php?ctl=addNewRoute"
+<form action="/daw/index.php?ctl=addNewRoute" method="POST"
     class="p-5 m-auto bg-white d-flex align-items-center justify-content-center flex-column">
     <h1>Añadir ruta</h1>
     <div class="md-form">
@@ -39,12 +27,12 @@ $breadcrumb = [
         <label for="routeName">Nombre de la ruta</label>
     </div>
     <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="isView">
+        <input type="checkbox" class="custom-control-input" name="isView" id="isView">
         <label class="custom-control-label" for="isView">Es una vista</label>
     </div>
-    <input type="submit" value="Añadir ruta" class="btn btn-primary">
+    <input type="submit" value="Añadir ruta" name="addRoute" class="btn btn-primary">
 </form>
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once 'layoutProject.php'?>
+<?php include_once 'layout.php'?>
