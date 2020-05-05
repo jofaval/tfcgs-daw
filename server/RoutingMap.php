@@ -7,6 +7,7 @@ $map['notuseragent'] = array('controller' => 'Controller', 'action' => 'notusera
 $map['projects'] = array('controller' => 'Controller', 'action' => 'projects', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['project'] = array('controller' => 'Controller', 'action' => 'project', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['404'] = array('controller' => 'Controller', 'action' => 'error404', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['addNewRoute'] = array('controller' => 'Controller', 'action' => 'addNewRoute', 'access' => Config::$ACCESS_LEVEL_GUEST);
 
 $map['getProjectsOfUser'] = array('controller' => 'AjaxController', 'action' => 'getProjectsOfUser', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getProjectDetails'] = array('controller' => 'AjaxController', 'action' => 'getProjectDetails', 'access' => Config::$ACCESS_LEVEL_GUEST);

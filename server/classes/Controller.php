@@ -686,6 +686,11 @@ class Controller
 
     }
 
+    public function addNewRoute()
+    {
+        require_once __DIR__ . "/../templates/newRoute.php";
+    }
+
     public function test()
     {
         require_once __DIR__ . "/one_execution/test.php";
