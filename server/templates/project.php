@@ -11,16 +11,19 @@ $breadcrumb = [
         "name" => "Home",
         "link" => "/daw/",
         "active" => false,
+        "icon" => "home",
     ],
     [
         "name" => "Your projects",
         "link" => "/daw/projects/",
         "active" => false,
+        "icon" => "folder",
     ],
     [
         "name" => $viewParams["title"],
         "link" => "/daw/projects/id/" . $viewParams["id"] . "/",
-        "active" => true,
+        "active" => false,
+        "icon" => "clipboard",
     ],
 ];
 ?>
@@ -72,7 +75,7 @@ $breadcrumb = [
                     class="fa fa-2x fa-book"></i></span>&nbsp;<span class="d-none d-sm-inline-block">Diario</span></a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/collaborators/"
             class="tab p-3 text-white <?php echo $tabName == "collaborators" ? "active" : ""; ?>"><span class=""><i
-                    class="fa fa-2x fa-user"></i></span>&nbsp;<span
+                    class="fa fa-2x fa-users"></i></span>&nbsp;<span
                 class="d-none d-sm-inline-block">Colaboradores</span></a>
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/details/"
             class="tab p-3 text-white <?php echo $tabName == "details" ? "active" : ""; ?>"><span class=""><i
@@ -82,6 +85,7 @@ $breadcrumb = [
     <div class="row grey darken-3 m-0 px-2">
         <?php
 $titleName = "General";
+$icon = "cogs";
 if (in_array($tabName, $tabNames)) {
     require_once __DIR__ . "/project/$tabName.php";
 }
@@ -90,19 +94,23 @@ switch ($tabName) {
         $optionalScripts[] = "js/ProjectDashboardMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         $titleName = "Tableros";
+        $icon = "columns";
         break;
     case "diary":
         $optionalScripts[] = "js/ProjectDiaryMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         $titleName = "Tablón de anuncios";
+        $icon = "book";
         break;
     case "collaborators":
         $optionalScripts[] = "js/ProjectCollaboratorsMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         $titleName = "Colaboradores";
+        $icon = "users";
         break;
     case "details":
         $titleName = "Detalles";
+        $icon = "info-circle";
         break;
     case "overview":
     default:
@@ -111,6 +119,12 @@ switch ($tabName) {
         break;
 }
 $title .= " - " . $titleName;
+$breadcrumb[] = [
+    "name" => strtoupper($titleName[0]) . strtolower(substr($titleName, 1)),
+    "link" => "/daw/projects/id/" . $viewParams["id"] . "/$tabName/",
+    "active" => true,
+    "icon" => $icon,
+];
 ?>
     </div>
 </div>

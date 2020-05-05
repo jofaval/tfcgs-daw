@@ -11,6 +11,7 @@
         "name" => "Go back to admin panel",
         "link" => "/daw/admin/",
         "active" => false,
+        "icon" => "home",
     ],
 ];?>
 

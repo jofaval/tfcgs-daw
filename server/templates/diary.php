@@ -12,21 +12,25 @@ $breadcrumb = [
         "name" => "Home",
         "link" => "/daw/",
         "active" => false,
+        "icon" => "home",
     ],
     [
         "name" => "Your projects",
         "link" => "/daw/projects/",
         "active" => false,
+        "icon" => "folder",
     ],
     [
         "name" => $viewParams["title"],
         "link" => "./project/id/" . $viewParams["id"] . "/",
         "active" => false,
+        "icon" => "clipboard",
     ],
     [
         "name" => $viewParams["elementName"],
         "link" => "./project/id/name/diary/",
         "active" => true,
+        "icon" => "book",
     ],
 ];
 ?>

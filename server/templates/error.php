@@ -11,6 +11,7 @@
         "name" => "Go back home",
         "link" => "/daw/projects/",
         "active" => false,
+        "icon" => "home",
     ],
 ];?>
 

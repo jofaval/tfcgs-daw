@@ -9,13 +9,14 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "../index.php",
+        "link" => "/daw/",
         "active" => false,
     ],
     [
         "name" => "Projects",
-        "link" => "",
+        "link" => "/daw/projects",
         "active" => true,
+        "icon" => "folder",
     ],
 ];
 ?>
