@@ -297,6 +297,7 @@ class Controller
 
     public function doesUsernameExists()
     {
+        $sqlUtils = new SQLUtils(Model::getInstance());
         $username = Utils::getCleanedData("username");
 
         return count($sqlUtils->query("users", ["username" => $username])) > 0;
@@ -304,6 +305,7 @@ class Controller
 
     public function doesEmailExists()
     {
+        $sqlUtils = new SQLUtils(Model::getInstance());
         $email = Utils::getCleanedData("email");
 
         return count($sqlUtils->query("clients", ["email" => $email])) > 0;
@@ -311,9 +313,16 @@ class Controller
 
     public function getClientIdFromUsername($username)
     {
+        $sqlUtils = new SQLUtils(Model::getInstance());
         $username = Utils::getCleanedData("username");
 
         return $sqlUtils->query("users", ["username" => $username])[0]["id_client"];
+    }
+
+    public function getProjectCollaborationRoles()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        return $sqlUtils->query("permissions");
     }
 
     public function error404()
