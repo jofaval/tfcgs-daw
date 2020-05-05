@@ -35,7 +35,7 @@
     "Proyecto" => [
         ["name" => "Añadir colaborador", "link" => "", "icon" => "user-plus", "id" => "AddCollaborator", "color" => "red"],
         ["name" => "Eliminar colaborador", "link" => "", "icon" => "user-times", "id" => "RemoveCollaborator", "color" => "red"],
-        /* ["name" => "Cambiar rol colaborador", "link" => "", "icon" => "user-secret", "id" => "ChangeRoleCollaborator", "color" => "red"], */
+        ["name" => "Cambiar rol colaborador", "link" => "", "icon" => "user-secret", "id" => "ChangeRoleCollaborator", "color" => "red"],
         ["name" => "Eliminar proyecto", "link" => "", "icon" => "times", "id" => "DeleteProject", "color" => "red"],
     ],
 ];
