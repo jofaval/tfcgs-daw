@@ -296,3 +296,27 @@
 .fixed-line-spacing {
     line-height: 1em !important;
 }
+
+.text-overflow-ellipsis {
+    text-overflow: ellipsis !important;
+}
+
+.max-text-10 {
+    max-width: 10ch !important;
+}
+
+.max-text-20 {
+    max-width: 20ch !important;
+}
+
+.max-text-30 {
+    max-width: 30ch !important;
+}
+
+.max-text-40 {
+    max-width: 40ch !important;
+}
+
+.max-text-50 {
+    max-width: 50ch !important;
+}
