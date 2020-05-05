@@ -173,64 +173,31 @@ class Controller
 
     public function getProjectsOfUser()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
+        $userId = Sessions::getInstance()->getSession("userId");
 
-        return $sqlUtils->complexQuery("SELECT projects.id, projects.title, projects.description,
-        projects.id_creator = :id_creator as created,
-        projects.id in (select bookmarked.id_project from bookmarked where bookmarked.id_client = :id_creator) as bookmarked
-        FROM `projects`
-            WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
-                (SELECT collaborators.id_collaborator
-                     FROM collaborators
-                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => Sessions::getInstance()->getSession("userId")]);
+        return Model::getInstance()->getProjectsOfUser();
     }
 
     public function getDashboardsOfProject()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
         $id_project = Utils::getCleanedData("id_project");
 
-        return $sqlUtils->complexQuery("SELECT dashboards.title, dashboards.id_project, dashboards.description, dashboards.creation_date,
-        dashboards.id_creator = :id_client as created,
-        (dashboards.id_project, dashboards.title) in (select bookmarked_dashboards.id_project, bookmarked_dashboards.title
-        from bookmarked_dashboards
-        where bookmarked_dashboards.id_client = :id_client
-        and bookmarked_dashboards.id_project = :id_project
-        and bookmarked_dashboards.title = dashboards.title) as bookmarked
-        FROM `dashboards` LEFT JOIN `projects` on (`dashboards`.`id_project` = `projects`.`id`)
-            WHERE `dashboards`.`enabled` = 1 and `projects`.`enabled` = 1 and projects.id = :id_project and (projects.id_creator = :id_client or :id_client in
-                (SELECT collaborators.id_collaborator
-                     FROM collaborators
-                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY dashboards.creation_date",
-            ["id_client" => Sessions::getInstance()->getSession("userId"), "id_project" => (string) $id_project]);
+        return Model::getInstance()->getDashboardsOfProject($id_project);
     }
 
     public function getProjectDetails()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
         $id_project = Utils::getCleanedData("id");
 
-        return $sqlUtils->complexQuery("SELECT projects.title as 'projectTitle', projects.description as 'projectDescription', CONCAT(clients.name, ' ', clients.surname) as 'projectCreator', users.username as 'projectCreatorUsername', projects.creation_date as 'projectCreationDate',
-        collaborators.starting_date as 'collaborationStartingDate', collaborators.id_collaborator as 'collaborator', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
-        FROM `projects` LEFT JOIN `collaborators` on (collaborators.id_project = projects.id)
-            LEFT JOIN `permissions` on (collaborators.level = permissions.level)
-            LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id) or (projects.id_creator = clients.id)
-            LEFT JOIN `users` on (clients.id = users.id_client)
-            WHERE projects.id = :id_project and (projects.id_creator = :id_creator or
-            (collaborators.id_project = :id_project and collaborators.id_collaborator = :id_creator))", ["id_creator" => Sessions::getInstance()->getSession("userId"), "id_project" => $id_project])[0];
+        return Model::getInstance()->getProjectDetails($id);
     }
 
     public function getListsOfDashboard()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
         $id_project = Utils::getCleanedData("id_project");
         $dashboard_title = Utils::getCleanedData("dashboard");
 
-        $queryString = "SELECT id, id_project, title, order_criteria as orderCriteria, creation_date as creationDate
-        FROM `dashboard_list`
-        WHERE enabled = 1 and id_project = :id_project and dashboard_title = :dashboard_title";
-
-        $lists = $sqlUtils->complexQuery($queryString, ["id_project" => $id_project, "dashboard_title" => $dashboard_title]);
+        $lists = Model::getInstance()->getListsOfDashboard($id_project, $dashboard_title);
         foreach ($lists as $key => $list) {
             $items = $this->getDashboardItemsOfList($list["id"]);
             $lists[$key]["items"] = $items;
@@ -241,12 +208,7 @@ class Controller
 
     public function getDashboardItemsOfList($id_dashboard_list)
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
-
-        $queryString = "SELECT id, title, description, `order`, creation_date as creationDate, id_dashboard_list
-        FROM `dashboard_item`
-        WHERE  enabled = 1 and id_dashboard_list=:id_dashboard_list";
-        return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list]);
+        return Model::getInstance()->getDashboardItemsOfList($id_dashboard_list);
     }
 
     public function bookmarkProject()
@@ -320,39 +282,17 @@ class Controller
 
     public function getCollaboratorsOfProject()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
         $id_project = Utils::getCleanedData("id_project");
+        $limit = Utils::getCleanedData("limit");
 
-        $params = [
-            "id_project" => $id_project,
-        ];
-
-        $queryString = "SELECT CONCAT(clients.name, ' ', clients.surname) as 'collaboratorName', users.username as 'collaboratorUsername',
-        collaborators.starting_date as 'collaborationStartingDate', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
-        FROM `collaborators` LEFT JOIN `permissions` on (collaborators.level = permissions.level)
-            LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id)
-            LEFT JOIN `users` on (clients.id = users.id_client)
-            WHERE collaborators.id_project = :id_project";
-
-        if (Utils::exists("limit")) {
-            $limit = (int) Utils::getCleanedData("limit");
-            $params["limit"] = $limit;
-            $queryString .= "    LIMIT :limit";
-        }
-
-        return $sqlUtils->complexQuery($queryString, $params);
+        return Model::getInstance()->getCollaboratorsOfProject($id_project, $limit);
     }
 
     public function getCommentsOfDashboardItem()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
         $id_dashboard_item = Utils::getCleanedData("id_dashboard_item");
 
-        return $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'commentCreatorName', users.username as 'commentCreatorUsername',
-        dashboard_item_comments.creation_date as 'commentDate', dashboard_item_comments.comment, dashboard_item_comments.id
-        FROM `dashboard_item_comments` LEFT JOIN `clients` on (dashboard_item_comments.id_creator = clients.id)
-            LEFT JOIN `users` on (clients.id = users.id_client)
-            WHERE dashboard_item_comments.id_dashboard_item = :id_dashboard_item", ["id_dashboard_item" => $id_dashboard_item]);
+        return Model::getInstance()->getCommentsOfDashboardItem($id_dashboard_item);
     }
 
     public function doesUsernameExists()

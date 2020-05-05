@@ -150,4 +150,108 @@ class Model extends PDO
 
         return $this->query("SELECT * FROM `schedules` WHERE orderId=:orderId", $params);
     }
+
+    public function getCommentsOfDashboardItem($id_dashboard_item)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        return $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'commentCreatorName', users.username as 'commentCreatorUsername',
+        dashboard_item_comments.creation_date as 'commentDate', dashboard_item_comments.comment, dashboard_item_comments.id
+        FROM `dashboard_item_comments` LEFT JOIN `clients` on (dashboard_item_comments.id_creator = clients.id)
+            LEFT JOIN `users` on (clients.id = users.id_client)
+            WHERE dashboard_item_comments.id_dashboard_item = :id_dashboard_item", ["id_dashboard_item" => $id_dashboard_item]);
+    }
+
+    public function getProjectsOfUser($userId)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        return $sqlUtils->complexQuery("SELECT projects.id, projects.title, projects.description,
+        projects.id_creator = :id_creator as created,
+        projects.id in (select bookmarked.id_project from bookmarked where bookmarked.id_client = :id_creator) as bookmarked
+        FROM `projects`
+            WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
+                (SELECT collaborators.id_collaborator
+                     FROM collaborators
+                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => $userId]);
+    }
+
+    public function getProjectDetails($id_project)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        return $sqlUtils->complexQuery("SELECT projects.id, projects.title, projects.description,
+        projects.id_creator = :id_creator as created,
+        projects.id in (select bookmarked.id_project from bookmarked where bookmarked.id_client = :id_creator) as bookmarked
+        FROM `projects`
+            WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
+                (SELECT collaborators.id_collaborator
+                     FROM collaborators
+                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => Sessions::getInstance()->getSession("userId")]);
+    }
+
+    public function getDashboardsOfProject($id_project)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        return $sqlUtils->complexQuery("SELECT dashboards.title, dashboards.id_project, dashboards.description, dashboards.creation_date,
+        dashboards.id_creator = :id_client as created,
+        (dashboards.id_project, dashboards.title) in (select bookmarked_dashboards.id_project, bookmarked_dashboards.title
+        from bookmarked_dashboards
+        where bookmarked_dashboards.id_client = :id_client
+        and bookmarked_dashboards.id_project = :id_project
+        and bookmarked_dashboards.title = dashboards.title) as bookmarked
+        FROM `dashboards` LEFT JOIN `projects` on (`dashboards`.`id_project` = `projects`.`id`)
+            WHERE `dashboards`.`enabled` = 1 and `projects`.`enabled` = 1 and projects.id = :id_project and (projects.id_creator = :id_client or :id_client in
+                (SELECT collaborators.id_collaborator
+                     FROM collaborators
+                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY dashboards.creation_date",
+            ["id_client" => Sessions::getInstance()->getSession("userId"), "id_project" => (string) $id_project]);
+    }
+
+    public function getCollaboratorsOfProject($id_project, $limit)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $params = [
+            "id_project" => $id_project,
+        ];
+
+        $queryString = "SELECT CONCAT(clients.name, ' ', clients.surname) as 'collaboratorName', users.username as 'collaboratorUsername',
+        collaborators.starting_date as 'collaborationStartingDate', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
+        FROM `collaborators` LEFT JOIN `permissions` on (collaborators.level = permissions.level)
+            LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id)
+            LEFT JOIN `users` on (clients.id = users.id_client)
+            WHERE collaborators.id_project = :id_project";
+
+        if ($limit != "") {
+            $limit = (int) $limit;
+            $params["limit"] = $limit;
+            $queryString .= "    LIMIT :limit";
+        }
+
+        return $sqlUtils->complexQuery($queryString, $params);
+    }
+
+    public function getDashboardItemsOfList($id_dashboard_list)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $queryString = "SELECT id, title, description, `order`, creation_date as creationDate, id_dashboard_list
+        FROM `dashboard_item`
+        WHERE  enabled = 1 and id_dashboard_list=:id_dashboard_list";
+
+        return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list]);
+    }
+
+    public function getListsOfDashboard($id_project, $dashboard_title)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $queryString = "SELECT id, id_project, title, order_criteria as orderCriteria, creation_date as creationDate
+        FROM `dashboard_list`
+        WHERE enabled = 1 and id_project = :id_project and dashboard_title = :dashboard_title";
+
+        return $sqlUtils->complexQuery($queryString, ["id_project" => $id_project, "dashboard_title" => $dashboard_title]);
+    }
 }
