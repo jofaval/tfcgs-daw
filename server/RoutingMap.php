@@ -15,6 +15,7 @@ $map['getCollaboratorsOfProject'] = array('controller' => 'AjaxController', 'act
 $map['bookmarkProject'] = array('controller' => 'AjaxController', 'action' => 'bookmarkProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['bookmarkDashboard'] = array('controller' => 'AjaxController', 'action' => 'bookmarkDashboard', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['doesUsernameExists'] = array('controller' => 'AjaxController', 'action' => 'doesUsernameExists', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['doesEmailExists'] = array('controller' => 'AjaxController', 'action' => 'doesEmailExists', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getListsOfDashboard'] = array('controller' => 'AjaxController', 'action' => 'getListsOfDashboard', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getCommentsOfDashboardItem'] = array('controller' => 'AjaxController', 'action' => 'getCommentsOfDashboardItem', 'access' => Config::$ACCESS_LEVEL_GUEST);
 

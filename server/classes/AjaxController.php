@@ -70,6 +70,12 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["username"], "Controller");
     }
 
+    //Function to doesEmailExists
+    public function doesEmailExists()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["email"], "Controller");
+    }
+
     //Function to bookmarkDashboard
     public function bookmarkDashboard()
     {

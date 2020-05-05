@@ -363,6 +363,14 @@ class Controller
         return count($sqlUtils->query("users", ["username" => $username])) > 0;
     }
 
+    public function doesEmailExists()
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+        $email = Utils::getCleanedData("email");
+
+        return count($sqlUtils->query("clients", ["email" => $email])) > 0;
+    }
+
     public function getClientIdFromUsername($username)
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
