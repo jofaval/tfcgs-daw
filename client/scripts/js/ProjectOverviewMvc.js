@@ -93,8 +93,8 @@ class Model {
                 $.ajax({
                     url: "/daw/index.php?ctl=createCollaborators",
                     data: {
-                        username: username,
-                        id_project: model.projectId,
+                        "username": username,
+                        "id_project": model.projectId,
                     },
                     success: function (result) {
                         model.collaborators.push(result);
@@ -114,8 +114,8 @@ class Model {
                 $.ajax({
                     url: "/daw/index.php?ctl=deleteCollaborators",
                     data: {
-                        username: username,
-                        id_project: model.projectId,
+                        "username": username,
+                        "id_project": model.projectId,
                     },
                     success: function (result) {
                         whenFinished(result);
@@ -125,28 +125,23 @@ class Model {
         });
     }
 
-    changeCollaboratorRoleEvent(username, whenFinished) {
+    changeCollaboratorRoleEvent(username, role, whenFinished) {
         var model = this;
 
-        $.ajax({
-            url: "/daw/index.php?ctl=doesUsernameExists",
-            data: {
-                "username": username,
-            },
-            success: function (result) {
-                console.log(result);
-                if (result) {
-                    $.ajax({
-                        url: "/daw/index.php?ctl=deleteCollaborators",
-                        data: {
-                            username: username,
-                            id_project: model.projectId,
-                        },
-                        success: function (result) {
-                            whenFinished(result);
-                        }
-                    });
-                }
+        model.doesUsernameExist(username, function (result) {
+            console.log(result);
+            if (result) {
+                $.ajax({
+                    url: "/daw/index.php?ctl=updateCollaborators",
+                    data: {
+                        "username": username,
+                        "id_project": model.projectId,
+                        "level": role,
+                    },
+                    success: function (result) {
+                        whenFinished(result);
+                    }
+                });
             }
         });
     }
