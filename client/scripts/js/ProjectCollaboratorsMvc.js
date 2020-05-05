@@ -41,6 +41,32 @@ class Model {
         });
     }
 
+    inviteCollaborator(username, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=doesUsernameExists",
+            data: {
+                username: username,
+            },
+            success: function (result) {
+                console.log(result);
+                if (result) {
+                    $.ajax({
+                        url: "/daw/index.php?ctl=createCollaborators",
+                        data: {
+                            username: username,
+                            id_project: model.projectId,
+                        },
+                        success: function (result) {
+                            whenFinished(result);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
     getProjectId() {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
@@ -207,37 +233,13 @@ class Controller {
     inviteCollaboratorEvent(controller, event) {
         var username = $("#searchCollaborator").val();
 
-        $.ajax({
-            url: "/daw/index.php?ctl=doesUsernameExists",
-            data: {
-                username: username,
-            },
-            success: function (result) {
-                console.log(result);
-                if (result) {
-                    $.ajax({
-                        url: "/daw/index.php?ctl=createCollaborators",
-                        data: {
-                            username: username,
-                            id_project: controller.model.projectId,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result) {
-                                controller.model.collaborators.push(result);
-                                controller.reload(controller);
-                            } else {
-                                sendNotification("No se ha podido añadir", "projectInviteCollaborator");
-                            }
-                            /* if (result !== false) {
-                                modal.close();
-                                controller.addCollaborator(controller, result[0]);
-                                controller.model.collaborators.push(result[0]);
-                                controller.model.workingCollaborators.push(result[0]);
-                            } */
-                        }
-                    });
-                }
+        controller.model.inviteCollaborator(username, function () {
+            console.log(result);
+            if (result) {
+                controller.model.collaborators.push(result);
+                controller.reload(controller);
+            } else {
+                sendNotification("No se ha podido añadir", "projectInviteCollaborator");
             }
         });
     }
