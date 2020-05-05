@@ -223,18 +223,10 @@ class Controller {
             console.log("colaboradores", collaborators);
             controller.reload(controller);
             $(".numberOfCollaborators").text(collaborators.length);
-            $(".page-item").eq(1).trigger("click");
-        });
-
-        var selectNumberOfRows = $("#selectNumberOfRows");
-        selectNumberOfRows.val(localStorage.getItem("numberOfRowsInCollaborators") || 3);
-        selectNumberOfRows.on("change", function () {
-            controller.reload(controller);
-            localStorage.setItem("numberOfRowsInCollaborators", selectNumberOfRows.val());
         });
 
         var activeTime = $(".activeTime");
-        var activeTimeDate = $(".activeTime").html().trim();
+        var activeTimeDate = activeTime.html().trim();
         activeTime.html(getTimeFromThisMoment(activeTimeDate));
         activeTime.append(`<span class="originalDate d-none">${activeTimeDate}</span>`);
 
@@ -247,38 +239,7 @@ class Controller {
         });
 
         $("#actionDeleteProject").on("click", function (event) {
-            var event = event || window.event;
-            event.preventDefault();
-
-            var confirmationModal = $.sweetModal.confirm('¿Borrar el proyecto?', `Confimar esta acción y borrar <b>"${controller.model.projectId}"</b>`, function () {
-                controller.model.deleteProject(function (result) {
-                    console.log(result);
-                    if (result === true) {
-                        var successAlert = $.sweetModal({
-                            content: `Se ha borrado el proyecto <b>"${controller.model.projectId}"</b>`,
-                            icon: $.sweetModal.ICON_SUCCESS,
-                            theme: $.sweetModal.THEME_DARK,
-                        });
-                        successAlert.params["onClose"] = function () {
-                            window.location.reload();
-                        }
-                    } else {
-                        var errorAlert = $.sweetModal({
-                            content: `No se ha podido borrar el proyecto <b>"${controller.model.projectId}"</b>`,
-                            icon: $.sweetModal.ICON_ERROR,
-                            theme: $.sweetModal.THEME_DARK,
-                        });
-                    }
-                })
-            }, function () {
-
-            });
-
-            confirmationModal.params["onOpen"] = function () {
-                var buttons = $(".sweet-modal-buttons .button");
-                buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
-                buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
-            };
+            controller.deleteProject(controller, event);
         });
 
         $("#actionAddCollaborator").on("click", function (event) {
@@ -292,6 +253,45 @@ class Controller {
         $("#actionViewDashboard").on("click", function (event) {
             controller.viewDashboard(controller, event);
         });
+
+        $("#actionChangeRoleCollaborator").on("click", function (event) {
+            controller.changeCollaboratorRoleEvent(controller, event);
+        });
+    }
+
+    deleteProject(controller, event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        var confirmationModal = $.sweetModal.confirm('¿Borrar el proyecto?', `Confimar esta acción y borrar <b>"${controller.model.projectId}"</b>`, function () {
+            controller.model.deleteProject(function (result) {
+                console.log(result);
+                if (result === true) {
+                    var successAlert = $.sweetModal({
+                        content: `Se ha borrado el proyecto <b>"${controller.model.projectId}"</b>`,
+                        icon: $.sweetModal.ICON_SUCCESS,
+                        theme: $.sweetModal.THEME_DARK,
+                    });
+                    successAlert.params["onClose"] = function () {
+                        window.location.reload();
+                    }
+                } else {
+                    var errorAlert = $.sweetModal({
+                        content: `No se ha podido borrar el proyecto <b>"${controller.model.projectId}"</b>`,
+                        icon: $.sweetModal.ICON_ERROR,
+                        theme: $.sweetModal.THEME_DARK,
+                    });
+                }
+            })
+        }, function () {
+
+        });
+
+        confirmationModal.params["onOpen"] = function () {
+            var buttons = $(".sweet-modal-buttons .button");
+            buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
+            buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
+        };
     }
 
     addDashboardBtnEvent(controller, event) {
@@ -455,6 +455,50 @@ class Controller {
         return false;
     }
 
+    changeCollaboratorRoleEvent(controller, event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        var modal = $.sweetModal({
+            title: 'Eliminar colaborador/a',
+            content: `<form action="/daw/index.php?ctl=deleteCollaborators" id="formremoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+                        <div class="md-form">
+                            <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
+                            <label for="username">Username</label>
+                        </div>
+                        <select class="browser-default custom-select" name="role" id="role"></select>
+                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Eliminar colaborador/a">
+                        </div>
+                    </form>`,
+            theme: $.sweetModal.THEME_DARK
+        });
+
+        modal.params["onOpen"] = function () {
+            $("#username").focus();
+            $("#formremoveCollaborator").on("submit", function (event) {
+                var event = event || window.event;
+                event.preventDefault();
+
+                var username = $("#username").val();
+                var role = $("#role").val();
+
+                controller.model.changeCollaboratorRole(username, role, function (result) {
+                    console.log(result);
+                    if (result) {
+                        window.location.reload();
+                        sendNotification("Se ha cambiado correctamente", "projectChangeCollaboratorRoleSuccess");
+                    } else {
+                        sendNotification("No se ha podido cambiar", "projectChangeCollaboratorRoleError");
+                    }
+                });
+
+            });
+        };
+
+        return false;
+    }
+
     clearContainer(controller) {
         $(".collaboratorsContainer").html("");
     }
@@ -482,8 +526,6 @@ class Controller {
         }
 
         console.log(controller.model.workingCollaborators);
-
-        $(".page-item").eq(1).trigger("click");
     }
 
     getCollaboratorPage(controller, container) {
@@ -494,24 +536,9 @@ class Controller {
             (collaboratorPageRows.length >= $("#selectNumberOfRows").val() &&
                 collaboratorPageRows.last().find(".collaboratorCard").length >= 2)) {
             collaboratorsPage = controller.view.visualizeCollaboratorPage(container);
-
-            controller.addPaginationItem(controller);
         }
 
         return collaboratorsPage;
-    }
-
-    addPaginationItem(controller) {
-        var paginationItem = controller.view.visualizePaginationItem(controller.model.paginationIndex);
-        controller.model.paginationIndex++;
-
-        paginationItem.on("click", function () {
-            $(this).addClass('active').siblings().removeClass('active');
-            $(this).find(".page-link").append($currentPaginationItem);
-            var collaboratorPages = $(".collaboratorsPage");
-            collaboratorPages.hide();
-            collaboratorPages.eq(parseInt($(this).text()) - 1).show();
-        });
     }
 
     getCollaboratorRow(controller, container) {
@@ -540,11 +567,6 @@ class Controller {
 
         return collaborator;
     }
-
-    addCollaboratorBtnEvent(controller, event) {
-        var event = event || window.event;
-
-    };
 }
 
 const collaboratorsController = new Controller(
