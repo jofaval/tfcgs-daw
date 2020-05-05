@@ -3,32 +3,7 @@
 <?php $sessions = Sessions::getInstance();?>
 <?php $username = $sessions->getSession("username");?>
 
-<head>
-    <title>Origen - <?php echo $title; ?></title>
-    <link rel="shortcut icon" href="/daw/img/branding/favicon-16x16.png" type="image/x-icon">
-    <link rel="shortcut icon" href="/daw/img/branding/favicon-32x32.png" type="image/x-icon">
-    <link rel="shortcut icon" href="/daw/img/branding/favicon-96x96.png" type="image/x-icon">
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <style>
-    /*Avoid flashing the user with white background*/
-    html,
-    body {
-        background: #1f1f22 !important;
-    }
-    </style>
-    <?php foreach (Config::$mvc_vis_css as $css_link): ?>
-    <link rel="stylesheet" type="text/css" href="/daw/styles/<?php echo $css_link ?>" />
-    <?php endforeach;?>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <?php foreach ($optionalCSS as $css_link): ?>
-    <link rel="stylesheet" type="text/css" href="/daw/styles/<?php echo $css_link ?>" />
-    <?php endforeach;?>
-    <link rel="stylesheet" type="text/css" href="/daw/styles/grid.php?
-    showHeader=<?php echo $showHeader ? "1" : "0"; ?>&showBreadcrumb=<?php echo $showBreadcrumb ? "1" : "0"; ?>
-    &showFooter=<?php echo $showFooter ? "1" : "0"; ?>">
-</head>
+<?php require_once __DIR__ . "/components/head.php"?>
 
 <body class="text-light overflow-hidden">
     <noscript class="position-absolute w-100 h-100 d-flex justify-content-center align-items-center" id="noScript">
@@ -73,9 +48,7 @@
         </div>
     </nav>
     <?php endif;?>
-    <?php if ($showBreadcrumb):
-    require_once __DIR__ . "/components/breadcrum.php";
-endif;?>
+    <?php if ($showBreadcrumb): require_once __DIR__ . "/components/breadcrum.php";endif;?>
     <main role="main"
         class="w-100 h-100 d-flex flex-column justify-content-start overflow-auto <?php echo $mainClasses; ?>">
         <div id="content" class="w-100 h-100 d-flex">
