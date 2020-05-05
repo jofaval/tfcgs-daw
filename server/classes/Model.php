@@ -222,7 +222,8 @@ class Model extends PDO
         FROM `collaborators` LEFT JOIN `permissions` on (collaborators.level = permissions.level)
             LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id)
             LEFT JOIN `users` on (clients.id = users.id_client)
-            WHERE collaborators.id_project = :id_project";
+            WHERE collaborators.id_project = :id_project
+            ORDER BY collaborators.starting_date DESC";
 
         if ($limit != "") {
             $limit = (int) $limit;
