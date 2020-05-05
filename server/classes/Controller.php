@@ -599,7 +599,7 @@ class Controller
                 </div>";
             }
         }
-        //require __DIR__ . '/../templates/signin.php';
+        require __DIR__ . '/../templates/signin.php';
     }
 
     public function generateImage($text, $savePath)
