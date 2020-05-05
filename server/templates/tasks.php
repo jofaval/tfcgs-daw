@@ -22,9 +22,15 @@ $breadcrumb = [
     ],
     [
         "name" => $viewParams["title"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+        "link" => "/daw/projects/id/" . $viewParams["id"] . "/",
         "active" => false,
         "icon" => "clipboard",
+    ],
+    [
+        "name" => "Tableros",
+        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+        "active" => false,
+        "icon" => "columns",
     ],
     [
         "name" => $viewParams["dashboardTitle"],
