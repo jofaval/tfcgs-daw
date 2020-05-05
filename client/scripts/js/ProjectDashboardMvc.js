@@ -30,6 +30,7 @@ class Model {
 
     loadDashboards(whenFinished) {
         var model = this;
+
         $.ajax({
             url: "/daw/index.php?ctl=getDashboardsOfProject",
             data: {
@@ -39,6 +40,41 @@ class Model {
                 model.dashboards = dashboards;
                 model.workingDashboards = dashboards;
                 whenFinished(dashboards);
+            }
+        });
+    }
+
+    createDashboard(title, description, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=createDashboards",
+            data: {
+                "title": title,
+                "description": description,
+                "id_project": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    bookmarkDashboard(json, whenFinished, ifErrorThen) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=bookmarkDashboard",
+            data: {
+                "id_project": model.projectId,
+                "title": json.title,
+                "bookmarked": json.bookmarked,
+            },
+            success: function (result) {
+                whenFinished(result);
+            },
+            error: function (result) {
+                ifErrorThen(result);
             }
         });
     }
@@ -307,25 +343,16 @@ class Controller {
 
     bookmarkDashboard(controller, json, bookmarkedIcon) {
         return function () {
-            $.ajax({
-                url: "/daw/index.php?ctl=bookmarkDashboard",
-                data: {
-                    "id_project": json.id_project,
-                    "title": json.title,
-                    "bookmarked": json.bookmarked,
-                },
-                success: function (result) {
-                    if (result !== false) {
-                        bookmarkedIcon.toggleClass("active");
-                        json.bookmarked = !json.bookmarked;
-                    }
-                    console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
-                    bookmarkedIcon.bind("click", controller.bookmarkDashboard(controller, json, bookmarkedIcon));
-                },
-                error: function (result) {
-                    sendNotification(`No se ha podido ${bookmarkedIcon.hasClass("active") ? "quitar" : "añadir"} a favoritos`, "bookmarkingDashboard");
-                    bookmarkedIcon.bind("click", controller.bookmarkDashboard(controller, json, bookmarkedIcon));
+            bookmarkDashboard(json, function () {
+                if (result !== false) {
+                    bookmarkedIcon.toggleClass("active");
+                    json.bookmarked = !json.bookmarked;
                 }
+                console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
+                bookmarkedIcon.bind("click", controller.bookmarkDashboard(controller, json, bookmarkedIcon));
+            }, function () {
+                sendNotification(`No se ha podido ${bookmarkedIcon.hasClass("active") ? "quitar" : "añadir"} a favoritos`, "bookmarkingDashboard");
+                bookmarkedIcon.bind("click", controller.bookmarkDashboard(controller, json, bookmarkedIcon));
             });
             bookmarkedIcon.unbind("click");
         };
@@ -345,6 +372,7 @@ class Controller {
                         <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
                         <label for="description">Description</label>
                         </div>
+                        <input type="hidden" name="id_project" value="${controller.model.projectId}" >
                         <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                                 <input class="btn btn-primary w-100" type="submit" name="createDashboard" id="createDashboard" value="Create dashboard">
                         </div>
@@ -358,21 +386,13 @@ class Controller {
                 var event = event || window.event;
                 event.preventDefault();
 
-                $.ajax({
-                    url: "/daw/index.php?ctl=createDashboards",
-                    data: {
-                        title: $("#title").val(),
-                        description: $("#description").val(),
-                        id_project: controller.model.projectId,
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        if (result !== false) {
-                            modal.close();
-                            controller.addDashboard(controller, result[0]);
-                            controller.model.workingDashboards.push(result[0]);
-                            controller.reload(controller);
-                        }
+                createDashboard($("#title").val(), $("#description").val(), function (result) {
+                    console.log(result);
+                    if (result !== false) {
+                        modal.close();
+                        controller.addDashboard(controller, result[0]);
+                        controller.model.workingDashboards.push(result[0]);
+                        controller.reload(controller);
                     }
                 });
 
