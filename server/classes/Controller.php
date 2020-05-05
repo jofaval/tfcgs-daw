@@ -175,7 +175,7 @@ class Controller
     {
         $userId = Sessions::getInstance()->getSession("userId");
 
-        return Model::getInstance()->getProjectsOfUser();
+        return Model::getInstance()->getProjectsOfUser($userId);
     }
 
     public function getDashboardsOfProject()
@@ -688,7 +688,18 @@ class Controller
 
     public function addNewRoute()
     {
-        require_once __DIR__ . "/../templates/newRoute.php";
+        if (Utils::exists("addRoute")) {
+            $routeName = Utils::getCleanedData("routeName");
+            $isView = Utils::getCleanedData("isView");
+
+            echo "<pre>";
+            var_dump($isView);
+            echo "</pre>";
+
+            header("Location: /daw/" . $isView ? "test" : "");
+        }
+
+        //require_once __DIR__ . "/../templates/newRoute.php";
     }
 
     public function test()
