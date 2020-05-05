@@ -144,4 +144,56 @@ $("#registerForm").on("submit", function () {
     } else {
         localStorage.removeItem("signin-credentials");
     }
-})
+});
+
+var signupUsername = $("#loginForm #username");
+var signupUsernameParent = signupUsername.parent();
+
+var usernameExists = $(`<small id="usernameExist" class="font-weigh-bold float-right text-danger">El usuario existe</small>`)
+whenUserDoneTypingInInput(signupUsername, "loginFormUsername", doesUsernameExist, 25);
+doesUsernameExist();
+
+function doesUsernameExist() {
+    $.ajax({
+        url: "/daw/index.php?ctl=doesUsernameExists",
+        data: {
+            "username": signupUsername.val(),
+        },
+        success: function (result) {
+            console.log(result);
+            if (result === true) {
+                if (signupUsernameParent.find("#usernameExist").length == 0) {
+                    signupUsernameParent.append(usernameExists);
+                }
+            } else {
+                signupUsernameParent.find("#usernameExist").remove();
+            }
+        }
+    });
+}
+
+var signupEmail = $("#email");
+var signupEmailParent = signupEmail.parent();
+
+var emailExists = $(`<small id="emailExist" class="font-weigh-bold float-right text-danger">El email existe</small>`)
+whenUserDoneTypingInInput(signupEmail, "loginFormUsername", doesEmailExist, 25);
+doesEmailExist();
+
+function doesEmailExist() {
+    $.ajax({
+        url: "/daw/index.php?ctl=doesEmailExists",
+        data: {
+            "email": signupEmail.val(),
+        },
+        success: function (result) {
+            console.log(result);
+            if (result === true) {
+                if (signupEmailParent.find("#emailExist").length == 0) {
+                    signupEmailParent.append(emailExists);
+                }
+            } else {
+                signupEmailParent.find("#emailExist").remove();
+            }
+        }
+    });
+}
