@@ -198,6 +198,25 @@ class Controller
         $id_project = Utils::getCleanedData("id_project");
         $dashboard_title = Utils::getCleanedData("dashboard");
 
+        $validation = Validation::getInstance();
+
+        $rules = [
+            [
+                "name" => "id_project",
+                "rules" => "no-empty,numeric",
+            ],
+            [
+                "name" => "dashboard",
+                "rules" => "no-empty,text",
+            ],
+        ];
+
+        $isValid = $validation->rules($rules, $_REQUEST);
+
+        if ($isValid !== true) {
+            return false;
+        }
+
         $lists = Model::getInstance()->getListsOfDashboard($id_project, $dashboard_title);
         foreach ($lists as $key => $list) {
             $items = $this->getDashboardItemsOfList($list["id"]);
