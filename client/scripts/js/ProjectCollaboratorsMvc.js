@@ -232,16 +232,30 @@ class Controller {
     }
 
     inviteCollaboratorEvent(controller, event) {
-        var username = $("#searchCollaborator").val();
+        var event = event || window.event;
+        event.preventDefault();
 
-        controller.model.inviteCollaborator(username, function () {
-            console.log(result);
-            if (result) {
-                controller.reload(controller);
-            } else {
-                sendNotification("No se ha podido añadir", "projectInviteCollaborator");
-            }
-        });
+        modal.params["onOpen"] = function () {
+            $("#searchCollaborator").focus();
+            $("#formCreateCollaborator").on("submit", function (event) {
+                var event = event || window.event;
+                event.preventDefault();
+
+                var username = $("#searchCollaborator").val();
+
+                controller.model.inviteCollaborator(username, function () {
+                    console.log(result);
+                    if (result) {
+                        controller.reload(controller);
+                    } else {
+                        sendNotification("No se ha podido añadir", "projectInviteCollaborator");
+                    }
+                });
+
+            });
+        };
+
+        return false;
     }
 
     clearContainer(controller) {
