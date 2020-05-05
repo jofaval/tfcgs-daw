@@ -1,5 +1,5 @@
 <!--Page configuration-->
-<?php $optionalCSS = ["floating-label.css", "inputs.css", "projects.css"];?>
+<?php $optionalCSS = ["floating-label.css", "inputs.css", "projects.css", "project.css"];?>
 <?php $optionalScripts = [/* "js/ProjectManagementMvc.js" */];?>
 <?php $title = $viewParams["title"];?>
 <?php $showFooter = true;?>
