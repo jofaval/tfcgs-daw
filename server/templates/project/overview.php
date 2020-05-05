@@ -21,7 +21,7 @@
     <div class="row">
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-8">
             <?php $actionGroups = [
     "Tablero" => [
         ["name" => "Añadir tablero", "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/", "icon" => "plus", "id" => "AddDashboard", "color" => "blue"],
@@ -69,7 +69,7 @@ foreach ($actionGroup as $action) {
 }
 ?>
         </div>
-        <div class="col-md-6 mx-3 mx-sm-0">
+        <div class="col-sm-4 mx-3 mx-sm-0">
             <div class="row text-white">
                 <h4 class="h4 text-white">Creado recientemente</h4>
                 <div class="recentlyCreated text-dark">
