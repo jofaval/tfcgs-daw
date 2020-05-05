@@ -529,9 +529,9 @@ class Controller {
 
                 controller.model.changeCollaboratorRole(username, role, function (result) {
                     console.log(result);
-                    if (result) {
-                        window.location.reload();
+                    if (result !== false) {
                         sendNotification("Se ha cambiado correctamente", "projectChangeCollaboratorRoleSuccess");
+                        modal.close();
                     } else {
                         sendNotification("No se ha podido cambiar", "projectChangeCollaboratorRoleError");
                     }
