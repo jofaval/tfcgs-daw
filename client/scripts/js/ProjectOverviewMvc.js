@@ -55,6 +55,76 @@ class Model {
         });
     }
 
+    createDashboard(title, description, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=createDashboards",
+            data: {
+                "title": title,
+                "description": description,
+                "id_project": model.projectId,
+            },
+            success: function (result) {
+                model.workingDashboards.push(result[0]);
+                whenFinished(result);
+            }
+        });
+    }
+
+    inviteCollaborator(username, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=doesUsernameExists",
+            data: {
+                "username": username,
+            },
+            success: function (result) {
+                console.log(result);
+                if (result) {
+                    $.ajax({
+                        url: "/daw/index.php?ctl=createCollaborators",
+                        data: {
+                            username: username,
+                            id_project: model.projectId,
+                        },
+                        success: function (result) {
+                            model.collaborators.push(result);
+                            whenFinished(result);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    removeCollaborator(username, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=doesUsernameExists",
+            data: {
+                "username": username,
+            },
+            success: function (result) {
+                console.log(result);
+                if (result) {
+                    $.ajax({
+                        url: "/daw/index.php?ctl=deleteCollaborators",
+                        data: {
+                            username: username,
+                            id_project: model.projectId,
+                        },
+                        success: function (result) {
+                            whenFinished(result);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
     getProjectId() {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
@@ -252,19 +322,12 @@ class Controller {
                 var event = event || window.event;
                 event.preventDefault();
 
-                $.ajax({
-                    url: "/daw/index.php?ctl=createDashboards",
-                    data: {
-                        title: $("#title").val(),
-                        description: $("#description").val(),
-                        id_project: controller.model.projectId,
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        if (result !== false) {
-                            redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/`);
-                            modal.close();
-                        }
+                controller.model.createDashboard($("#title").val(), $("#description").val(), function (result) {
+                    console.log(result);
+                    if (result !== false) {
+                        modal.close();
+                        controller.addDashboard(controller, result[0]);
+                        controller.reload(controller);
                     }
                 });
 
@@ -292,8 +355,6 @@ class Controller {
             theme: $.sweetModal.THEME_DARK
         });
 
-
-
         modal.params["onOpen"] = function () {
             $("#username").focus();
             $("#formCreateCollaborator").on("submit", function (event) {
@@ -301,30 +362,13 @@ class Controller {
                 event.preventDefault();
 
                 var username = $("#username").val();
-                $.ajax({
-                    url: "/daw/index.php?ctl=doesUsernameExists",
-                    data: {
-                        username: username,
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        if (result) {
-                            $.ajax({
-                                url: "/daw/index.php?ctl=createCollaborators",
-                                data: {
-                                    username: username,
-                                    id_project: controller.model.projectId,
-                                },
-                                success: function (result) {
-                                    console.log(result);
-                                    if (result) {
-                                        window.location.reload();
-                                    } else {
-                                        sendNotification("No se ha podido añadir", "projectInviteCollaborator");
-                                    }
-                                }
-                            });
-                        }
+
+                controller.model.inviteCollaborator(username, function () {
+                    console.log(result);
+                    if (result) {
+                        controller.reload(controller);
+                    } else {
+                        sendNotification("No se ha podido añadir", "projectInviteCollaborator");
                     }
                 });
 
@@ -352,8 +396,6 @@ class Controller {
             theme: $.sweetModal.THEME_DARK
         });
 
-
-
         modal.params["onOpen"] = function () {
             $("#username").focus();
             $("#formremoveCollaborator").on("submit", function (event) {
@@ -361,30 +403,13 @@ class Controller {
                 event.preventDefault();
 
                 var username = $("#username").val();
-                $.ajax({
-                    url: "/daw/index.php?ctl=doesUsernameExists",
-                    data: {
-                        username: username,
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        if (result) {
-                            $.ajax({
-                                url: "/daw/index.php?ctl=deleteCollaborators",
-                                data: {
-                                    username: username,
-                                    id_project: controller.model.projectId,
-                                },
-                                success: function (result) {
-                                    console.log(result);
-                                    if (result) {
-                                        window.location.reload();
-                                    } else {
-                                        sendNotification("No se ha podido añadir", "projectInviteCollaborator");
-                                    }
-                                }
-                            });
-                        }
+
+                controller.model.removeCollaborator(username, function (result) {
+                    console.log(result);
+                    if (result) {
+                        window.location.reload();
+                    } else {
+                        sendNotification("No se ha podido eliminar", "projectInviteCollaborator");
                     }
                 });
 
