@@ -59,6 +59,7 @@ class Model {
                             id_project: model.projectId,
                         },
                         success: function (result) {
+                            model.collaborators.push(result);
                             whenFinished(result);
                         }
                     });
@@ -236,7 +237,6 @@ class Controller {
         controller.model.inviteCollaborator(username, function () {
             console.log(result);
             if (result) {
-                controller.model.collaborators.push(result);
                 controller.reload(controller);
             } else {
                 sendNotification("No se ha podido añadir", "projectInviteCollaborator");

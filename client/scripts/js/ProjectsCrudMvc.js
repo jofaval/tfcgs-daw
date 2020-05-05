@@ -50,6 +50,7 @@ class Model {
                 "id_project": model.projectId,
             },
             success: function (result) {
+                model.workingProjects.push(result[0]);
                 whenFinished(result);
             }
         });
@@ -455,12 +456,11 @@ class Controller {
                 var event = event || window.event;
                 event.preventDefault();
 
-                createProject($("#title").val(), $("#description").val(), function (result) {
+                controller.model.createProject($("#title").val(), $("#description").val(), function (result) {
                     console.log(result);
                     if (result !== false) {
                         modal.close();
                         controller.addProject(controller, result[0]);
-                        controller.model.workingProjects.push(result[0]);
                         controller.reload(controller);
                     }
                 });

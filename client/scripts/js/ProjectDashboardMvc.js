@@ -55,6 +55,7 @@ class Model {
                 "id_project": model.projectId,
             },
             success: function (result) {
+                model.workingDashboards.push(result[0]);
                 whenFinished(result);
             }
         });
@@ -386,12 +387,11 @@ class Controller {
                 var event = event || window.event;
                 event.preventDefault();
 
-                createDashboard($("#title").val(), $("#description").val(), function (result) {
+                controller.model.createDashboard($("#title").val(), $("#description").val(), function (result) {
                     console.log(result);
                     if (result !== false) {
                         modal.close();
                         controller.addDashboard(controller, result[0]);
-                        controller.model.workingDashboards.push(result[0]);
                         controller.reload(controller);
                     }
                 });
