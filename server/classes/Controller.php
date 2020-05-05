@@ -297,7 +297,6 @@ class Controller
 
     public function doesUsernameExists()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
         $username = Utils::getCleanedData("username");
 
         return count($sqlUtils->query("users", ["username" => $username])) > 0;
@@ -305,7 +304,6 @@ class Controller
 
     public function doesEmailExists()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
         $email = Utils::getCleanedData("email");
 
         return count($sqlUtils->query("clients", ["email" => $email])) > 0;
@@ -313,8 +311,7 @@ class Controller
 
     public function getClientIdFromUsername($username)
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
-        //$username = Utils::getCleanedData("username");
+        $username = Utils::getCleanedData("username");
 
         return $sqlUtils->query("users", ["username" => $username])[0]["id_client"];
     }
@@ -669,7 +666,7 @@ class Controller
 
     public function encodeURI($url)
     {
-// http://php.net/manual/en/function.rawurlencode.php
+        // http://php.net/manual/en/function.rawurlencode.php
         // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/encodeURI
         $unescaped = array(
             '%2D' => '-', '%5F' => '_', '%2E' => '.', '%21' => '!', '%7E' => '~',
