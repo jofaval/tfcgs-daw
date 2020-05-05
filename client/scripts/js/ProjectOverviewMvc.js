@@ -125,7 +125,7 @@ class Model {
         });
     }
 
-    changeCollaboratorRoleEvent(username, role, whenFinished) {
+    changeCollaboratorRole(username, role, whenFinished) {
         var model = this;
 
         model.doesUsernameExist(username, function (result) {
@@ -146,9 +146,7 @@ class Model {
         });
     }
 
-    getProjectCollaborationRoles(username, role, whenFinished) {
-        var model = this;
-
+    getProjectCollaborationRoles(whenFinished) {
         $.ajax({
             url: "/daw/index.php?ctl=getProjectCollaborationRoles",
             success: function (result) {
@@ -492,15 +490,15 @@ class Controller {
         event.preventDefault();
 
         var modal = $.sweetModal({
-            title: 'Eliminar colaborador/a',
+            title: 'Cambiar rol',
             content: `<form action="/daw/index.php?ctl=deleteCollaborators" id="formChangeCollaboratorRole" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
                             <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
                             <label for="username">Username</label>
                         </div>
-                        <select class="browser-default custom-select" name="role" id="role"></select>
+                        <select class="browser-default mb-3 custom-select" name="role" id="role"></select>
                         <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Eliminar colaborador/a">
+                                <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Cambiar rol">
                         </div>
                     </form>`,
             theme: $.sweetModal.THEME_DARK
@@ -508,6 +506,20 @@ class Controller {
 
         modal.params["onOpen"] = function () {
             $("#username").focus();
+
+            controller.model.getProjectCollaborationRoles(function (result) {
+                if (result !== false) {
+                    console.log(result);
+                    $(result).each(function () {
+                        var jsonData = this;
+                        var option = $(`
+                        <option title="${jsonData.description}" value="${jsonData.level}">${jsonData.title}</option>
+                        `)
+                        $("#role").append(option);
+                    });
+                }
+            });
+
             $("#formChangeCollaboratorRole").on("submit", function (event) {
                 var event = event || window.event;
                 event.preventDefault();
@@ -601,7 +613,7 @@ class Controller {
     }
 }
 
-const collaboratorsController = new Controller(
+const overviewController = new Controller(
     new Model(),
     new View()
 );
