@@ -322,6 +322,7 @@ class Controller
     public function getProjectCollaborationRoles()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
+
         return $sqlUtils->query("permissions");
     }
 

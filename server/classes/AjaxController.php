@@ -46,6 +46,12 @@ class AjaxController
         exit;
     }
 
+    //Function to getProjectCollaborationRoles
+    public function getProjectCollaborationRoles()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, [], "Controller");
+    }
+
     //Function to getCommentsOfDashboardItem
     public function getCommentsOfDashboardItem()
     {

@@ -203,3 +203,5 @@ $map['updateRoles'] = array('controller' => 'AjaxController', 'action' => 'updat
 $map['queryRoles'] = array('controller' => 'AjaxController', 'action' => 'queryRoles', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de deleteRoles
 $map['deleteRoles'] = array('controller' => 'AjaxController', 'action' => 'deleteRoles', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//Ruta de getProjectCollaborationRoles
+$map['getProjectCollaborationRoles'] = array('controller' => 'AjaxController', 'action' => 'getProjectCollaborationRoles', 'access' => Config::$ACCESS_LEVEL_GUEST);
