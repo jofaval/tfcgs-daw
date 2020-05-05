@@ -38,6 +38,41 @@ class Model {
             }
         });
     }
+
+    createProject(title, description, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=createProjects",
+            data: {
+                "title": title,
+                "description": description,
+                "id_project": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    bookmarkProject(json, whenFinished, ifErrorThen) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=bookmarkProject",
+            data: {
+                "id_project": model.projectId,
+                "title": json.title,
+                "bookmarked": json.bookmarked,
+            },
+            success: function (result) {
+                whenFinished(result);
+            },
+            error: function (result) {
+                ifErrorThen(result);
+            }
+        });
+    }
 }
 
 class View {
@@ -378,24 +413,16 @@ class Controller {
 
     bookmarkProject(controller, json, bookmarkedIcon) {
         return function () {
-            $.ajax({
-                url: "/daw/index.php?ctl=bookmarkProject",
-                data: {
-                    "id_project": json.id,
-                    "bookmarked": json.bookmarked,
-                },
-                success: function (result) {
-                    if (result !== false) {
-                        bookmarkedIcon.toggleClass("active");
-                        json.bookmarked = !json.bookmarked;
-                    }
-                    console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
-                    bookmarkedIcon.bind("click", controller.bookmarkProject(controller, json, bookmarkedIcon));
-                },
-                error: function (result) {
-                    sendNotification(`No se ha podido ${bookmarkedIcon.hasClass("active") ? "quitar" : "añadir"} a favoritos`, "bookmarkingProject");
-                    bookmarkedIcon.bind("click", controller.bookmarkProject(controller, json, bookmarkedIcon));
+            bookmarkProject(json, function () {
+                if (result !== false) {
+                    bookmarkedIcon.toggleClass("active");
+                    json.bookmarked = !json.bookmarked;
                 }
+                console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
+                bookmarkedIcon.bind("click", controller.bookmarkProject(controller, json, bookmarkedIcon));
+            }, function () {
+                sendNotification(`No se ha podido ${bookmarkedIcon.hasClass("active") ? "quitar" : "añadir"} a favoritos`, "bookmarkingProject");
+                bookmarkedIcon.bind("click", controller.bookmarkProject(controller, json, bookmarkedIcon));
             });
             bookmarkedIcon.unbind("click");
         };
@@ -428,19 +455,13 @@ class Controller {
                 var event = event || window.event;
                 event.preventDefault();
 
-                $.ajax({
-                    url: "/daw/index.php?ctl=createProjects",
-                    data: {
-                        title: $("#title").val(),
-                        description: $("#description").val(),
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        if (result !== false) {
-                            modal.close();
-                            controller.addProject(controller, result[0]);
-                            controller.model.workingProjects.push(result[0]);
-                        }
+                createProject($("#title").val(), $("#description").val(), function (result) {
+                    console.log(result);
+                    if (result !== false) {
+                        modal.close();
+                        controller.addProject(controller, result[0]);
+                        controller.model.workingProjects.push(result[0]);
+                        controller.reload(controller);
                     }
                 });
 
