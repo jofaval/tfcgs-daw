@@ -146,6 +146,17 @@ class Model {
         });
     }
 
+    getProjectCollaborationRoles(username, role, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=getProjectCollaborationRoles",
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
     getProjectId() {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
