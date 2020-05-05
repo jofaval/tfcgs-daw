@@ -176,18 +176,17 @@ class Model extends PDO
                          WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => $userId]);
     }
 
-    public function getProjectDetails($id_project)
+    public function getProjectDetails($id_project, $userId)
     {
         $sqlUtils = new SQLUtils($this);
 
-        return $sqlUtils->complexQuery("SELECT projects.id, projects.title, projects.description,
-        projects.id_creator = :id_creator as created,
-        projects.id in (select bookmarked.id_project from bookmarked where bookmarked.id_client = :id_creator) as bookmarked
-        FROM `projects`
-            WHERE `enabled` = 1 and (projects.id_creator = :id_creator or :id_creator in
-                (SELECT collaborators.id_collaborator
-                     FROM collaborators
-                         WHERE `enabled` = 1 and collaborators.id_project = projects.id))", ["id_creator" => Sessions::getInstance()->getSession("userId")]);
+        return $sqlUtils->complexQuery("SELECT projects.title as 'projectTitle', projects.description as 'projectDescription', CONCAT(clients.name, ' ', clients.surname) as 'projectCreator', users.username as 'projectCreatorUsername', projects.creation_date as 'projectCreationDate',
+        collaborators.starting_date as 'collaborationStartingDate', collaborators.id_collaborator as 'collaborator', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
+        FROM `projects` LEFT JOIN `collaborators` on (collaborators.id_project = projects.id)
+            LEFT JOIN `permissions` on (collaborators.level = permissions.level)
+            LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id) or (projects.id_creator = clients.id)
+            LEFT JOIN `users` on (clients.id = users.id_client)
+            WHERE projects.id = :id_project ", [/* "id_creator" => $userId,  */"id_project" => $id_project])[0];
     }
 
     public function getDashboardsOfProject($id_project)

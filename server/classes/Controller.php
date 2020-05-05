@@ -188,8 +188,9 @@ class Controller
     public function getProjectDetails()
     {
         $id_project = Utils::getCleanedData("id");
+        $userId = Sessions::getInstance()->getSession("userId");
 
-        return Model::getInstance()->getProjectDetails($id);
+        return Model::getInstance()->getProjectDetails($id_project, $userId);
     }
 
     public function getListsOfDashboard()
