@@ -57,19 +57,9 @@
         </div>
     </nav>
     <?php endif;?>
-    <?php if ($showBreadcrumb): ?>
-    <section class="w-100 breadcrumbContainer" aria-label="breadcrumb">
-        <ol class="breadcrumb mb-0 rounded-0">
-            <?php foreach ($breadcrumb as $elem): ?>
-            <li class="breadcrumb-item"><a class="<?php echo $elem["active"] ? "text-muted" : ""; ?>"
-                    href="<?php echo $elem["link"]; ?>">
-                    <span><i class="fa fa-<?php echo $elem["icon"]; ?>"></i></span>
-                    <span class=""><?php echo $elem["name"]; ?></span>
-                </a></li>
-            <?php endforeach;?>
-        </ol>
-    </section>
-    <?php endif;?>
+    <?php if ($showBreadcrumb):
+    require_once __DIR__ . "/components/breadcrum.php";
+endif;?>
     <main role="main" class="w-100 d-flex flex-column justify-content-start overflow-auto <?php echo $mainClasses; ?>">
         <div id="content" class="w-100 w-100 d-flex">
             <?php echo $contenido ?>
