@@ -72,34 +72,60 @@ class Model {
         });
     }
 
-    inviteCollaborator(username, whenFinished) {
-        var model = this;
-
+    doesUsernameExist(username, whenFinished) {
         $.ajax({
             url: "/daw/index.php?ctl=doesUsernameExists",
             data: {
                 "username": username,
             },
             success: function (result) {
-                console.log(result);
-                if (result) {
-                    $.ajax({
-                        url: "/daw/index.php?ctl=createCollaborators",
-                        data: {
-                            username: username,
-                            id_project: model.projectId,
-                        },
-                        success: function (result) {
-                            model.collaborators.push(result);
-                            whenFinished(result);
-                        }
-                    });
-                }
+                whenFinished(result);
+            }
+        });
+    }
+
+    inviteCollaborator(username, whenFinished) {
+        var model = this;
+
+        model.doesUsernameExist(username, function (result) {
+            console.log(result);
+            if (result) {
+                $.ajax({
+                    url: "/daw/index.php?ctl=createCollaborators",
+                    data: {
+                        username: username,
+                        id_project: model.projectId,
+                    },
+                    success: function (result) {
+                        model.collaborators.push(result);
+                        whenFinished(result);
+                    }
+                });
             }
         });
     }
 
     removeCollaborator(username, whenFinished) {
+        var model = this;
+
+        model.doesUsernameExist(username, function (result) {
+            console.log(result);
+            if (result) {
+                $.ajax({
+                    url: "/daw/index.php?ctl=deleteCollaborators",
+                    data: {
+                        username: username,
+                        id_project: model.projectId,
+                    },
+                    success: function (result) {
+                        whenFinished(result);
+                    }
+                });
+            }
+        });
+    }
+
+    changeCollaboratorRoleEvent(username, whenFinished) {
         var model = this;
 
         $.ajax({
@@ -461,7 +487,7 @@ class Controller {
 
         var modal = $.sweetModal({
             title: 'Eliminar colaborador/a',
-            content: `<form action="/daw/index.php?ctl=deleteCollaborators" id="formremoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+            content: `<form action="/daw/index.php?ctl=deleteCollaborators" id="formChangeCollaboratorRole" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
                             <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
                             <label for="username">Username</label>
@@ -476,7 +502,7 @@ class Controller {
 
         modal.params["onOpen"] = function () {
             $("#username").focus();
-            $("#formremoveCollaborator").on("submit", function (event) {
+            $("#formChangeCollaboratorRole").on("submit", function (event) {
                 var event = event || window.event;
                 event.preventDefault();
 
