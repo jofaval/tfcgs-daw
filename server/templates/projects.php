@@ -11,6 +11,7 @@ $breadcrumb = [
         "name" => "Home",
         "link" => "/daw/",
         "active" => false,
+        "icon" => "home",
     ],
     [
         "name" => "Projects",
