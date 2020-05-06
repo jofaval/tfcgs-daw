@@ -222,7 +222,7 @@ class Controller {
 
         controller.model.saveContent(summernoteContent, function (result) {
             console.log("result crearlo", result);
-            if (result === false) {
+            if (result !== true) {
                 controller.model.modifyContent(summernoteContent, function (result) {
                     if (result !== false) {
                         console.log("result modificarlo", result);
