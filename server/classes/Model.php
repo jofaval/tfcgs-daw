@@ -283,4 +283,19 @@ class Model extends PDO
             "id" => $clientId,
         ]);
     }
+
+    public function updatePassword($clientId, $password)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $username = $sqlUtils->query("users", [
+            "id_client" => $clientId,
+        ])[0]["username"];
+
+        return $sqlUtils->update("users", [
+            "password" => Cryptography::blowfishCrypt($password, $username),
+        ], [
+            "id_client" => $clientId,
+        ]);
+    }
 }

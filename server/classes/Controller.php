@@ -48,6 +48,8 @@ class Controller
             $clientId = $this->getClientIdFromUsername($username);
         }
 
+        $result = true;
+
         if ($userId == $clientId) {
             if (Utils::exists("updateProfile")) {
                 $name = Utils::getCleanedData("name");
@@ -56,7 +58,24 @@ class Controller
                 $biography = Utils::getCleanedData("biography");
 
                 $result = Model::getInstance()->updateProfile($clientId, $name, $surname, $email, $biography);
+            } else if (Utils::exists("updatePassword")) {
+                $password = Utils::getCleanedData("password");
+                $repeatPassword = Utils::getCleanedData("repeatPassword");
+
+                if ($password == $repeatPassword) {
+                    $result = Model::getInstance()->updatePassword($clientId, $password);
+                } else {
+                    $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>Error: Las contraseñas no coinciden.</p>\n
+                </div>";
+                }
             }
+        }
+
+        if ($result === false) {
+            $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+        <p class='m-0'>Ha surgido un error.</p>\n
+        </div>";
         }
 
         $viewParams["profile"] = Model::getInstance()->getProfileInformation(
