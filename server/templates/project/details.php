@@ -12,7 +12,7 @@
         <div class="projectCreationDetails mb-5 text-muted">
             <?php if (!is_null($projectData["collaborator"])): ?>
             <div class="float-right text-right">
-                Te invitó <a href="<?php echo $projectData["collaborator"]; ?>"
+                Te invitó <a href="/daw/profile/<?php echo $projectData["collaborator"]; ?>"
                     class="projectCreatedBy"><?php echo $projectData["collaborator"]; ?></a>
                 <br> el <span
                     class="projectCreationDate"><?php echo $projectData["collaborationStartingDate"]; ?></span> como
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <?php endif;?>
-            <div>Creador por <a href="<?php echo $projectData["projectCreatorUsername"]; ?>"
+            <div>Creador por <a href="/daw/profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
                     class="projectCreatedBy"><?php echo $projectData["projectCreator"]; ?></a>
                 <br> el <span class="projectCreationDate"><?php echo $projectData["projectCreationDate"]; ?></span>
             </div>

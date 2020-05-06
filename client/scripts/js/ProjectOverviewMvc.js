@@ -16,8 +16,8 @@ var $collaboratorCard = $(`<div class="collaboratorCard rounded row col-12 col-s
         <p class="collaboratorRole m-0 informationText font-weight-bold">Administrator</p>
         <div class="informationTextQuote collaboratorRoleDescription text-white p-3 position-absolute rounded z-index-overlap"></div>
     </div>
-    <div class="collaboratorProfileBtn btn btn-sm btn-primary align-self-center float-right">See profile
-    </div>
+    <a href="" class="collaboratorProfileBtn btn btn-sm btn-primary align-self-center float-right">See profile
+    </a>
 </div>`);
 
 class Model {
@@ -177,6 +177,7 @@ class View {
         var username = json.collaboratorUsername;
         clonedCard.find(".collaboratorUsername").text(username);
         clonedCard.find(".collaboratorImg").prop("src", `/daw/img/users/${username}/${username}.png`);
+        clonedCard.find(".collaboratorProfileBtn").prop("href", `/daw/profile/${username}/`);
 
         clonedCard.find(".collaboratorRole").text(json.collaborationRole);
         clonedCard.find(".collaboratorRoleDescription").text(json.collaborationRoleDescription);
