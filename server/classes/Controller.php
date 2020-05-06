@@ -87,6 +87,23 @@ class Controller
                     header("Pragma: no-cache");
                     clearstatcache(true);
                 }
+            } else if (Utils::exists("updateBackgroundImage")) {
+                $username = $this->getUsernameFromClientId($clientId);
+                $errors = [];
+                $bgImage = FileUtils::validateFile("bgImage", __DIR__ . "/../../client/img/users/$username/", "bg-$username", $errors);
+
+                if ($bgImage === false) {
+                    $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>No se ha subido la imagen.</p>\n
+                </div>";
+                } else {
+                    header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+                    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+                    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+                    header("Cache-Control: post-check=0, pre-check=0", false);
+                    header("Pragma: no-cache");
+                    clearstatcache(true);
+                }
             }
         }
 

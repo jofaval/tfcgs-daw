@@ -28,6 +28,11 @@ $breadcrumb = [
 <?php ob_start()?>
 <div class="w-100 p-0">
     <div class="row py-5 m-0 projectHeader pr-sm-5">
+        <style>
+        .projectHeader {
+            background-image: url("/daw/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png") !important;
+        }
+        </style>
         <div class="projectImageContainer mx-auto mx-sm-0">
             <img class="projectImage mx-sm-5" src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
                 alt="" width="200">
