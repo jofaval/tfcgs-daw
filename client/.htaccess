@@ -55,5 +55,6 @@ RewriteRule ^projects/id/([^/]+)/dashboards/id[/]?$ ./index.php?ctl=project&id=$
 RewriteRule ^projects/id/([^/]+)/diary[/]?$ ./index.php?ctl=project&id=$1&tabName=diary [L]
 RewriteRule ^projects/id/([^/]+)/diary/date[/]?$ ./index.php?ctl=project&id=$1&tabName=diary [L]
 RewriteRule ^projects/id/([^/]+)/diary/date/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=diary&date=$2 [L]
-	public function profile() 
-	{
+
+#Profile
+RewriteRule ^profile[/]?$ ./index.php?ctl=profile [L]
