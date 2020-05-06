@@ -70,10 +70,27 @@ class Controller
                 <p class='m-0'>Error: Las contraseñas no coinciden.</p>\n
                 </div>";
                 }
+            } else if (Utils::exists("updateProfileImage")) {
+                $username = $this->getUsernameFromClientId($clientId);
+                $errors = [];
+                $profileImage = FileUtils::validateFile("profileImage", __DIR__ . "/../../client/img/users/$username/", $username, $errors);
+
+                if ($profileImage === false) {
+                    $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>No se ha subido la imagen.</p>\n
+                </div>";
+                } else {
+                    header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+                    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+                    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+                    header("Cache-Control: post-check=0, pre-check=0", false);
+                    header("Pragma: no-cache");
+                    clearstatcache(true);
+                }
             }
         }
 
-        if ($result === false) {
+        if ($result === false && !isset($viewParams["error"])) {
             $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
         <p class='m-0'>Ha surgido un error.</p>\n
         </div>";
@@ -395,6 +412,13 @@ class Controller
         $username = Utils::getCleanedData("username");
 
         return $sqlUtils->query("users", ["username" => $username])[0]["id_client"];
+    }
+
+    public function getUsernameFromClientId($clientId)
+    {
+        $sqlUtils = new SQLUtils(Model::getInstance());
+
+        return $sqlUtils->query("users", ["id_client" => $clientId])[0]["username"];
     }
 
     public function getProjectCollaborationRoles()

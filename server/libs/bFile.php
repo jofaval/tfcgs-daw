@@ -45,7 +45,7 @@ class FileUtils
 
             //jpge
             if (!in_array($_FILES[$fileName]['type'], Config::$mvc_img_exts)) {
-                $errors[] = 'Error: No se puede mover el fichero a su destino';
+                $errors[] = 'Error: El fichero no es un tipo admitido';
                 $final_file_name = false;
             } else { // Si el formato es el esperado lo guardaremos definitivamente
                 /*
@@ -54,14 +54,14 @@ class FileUtils
                  */
                 $nombre = $_FILES[$fileName]['name'];
                 $explodedNombre = $nombre . explode(".");
-                $nombre = "$username.$explodedNombre[1]";
-                if (is_file($path . $nombre) === true) {
-                    // Añadimos el tiempo para asegurarnos que el nombre es único
-                    $idUnico = time();
-                    $nombre = $path . $idUnico . '_' . $nombre;
-                } else {
-                    $nombre = $path . $nombre;
-                }
+                $nombre = "$username.png";
+                /* if (is_file($path . $nombre) === true) {
+                // Añadimos el tiempo para asegurarnos que el nombre es único
+                $idUnico = time();
+                $nombre = $path . $idUnico . '_' . $nombre;
+                } else { */
+                $nombre = $path . $nombre;
+                //}
                 // Movemos el fichero a su nueva ubicación
                 if (move_uploaded_file($_FILES[$fileName]['tmp_name'], $nombre)) {
                     // Muestro la imagen.
