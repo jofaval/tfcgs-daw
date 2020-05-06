@@ -180,13 +180,28 @@ class Model extends PDO
     {
         $sqlUtils = new SQLUtils($this);
 
-        return $sqlUtils->complexQuery("SELECT projects.title as 'projectTitle', projects.description as 'projectDescription', CONCAT(clients.name, ' ', clients.surname) as 'projectCreator', users.username as 'projectCreatorUsername', projects.creation_date as 'projectCreationDate',
-        collaborators.starting_date as 'collaborationStartingDate', collaborators.id_collaborator as 'collaborator', permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
-        FROM `projects` LEFT JOIN `collaborators` on (collaborators.id_project = projects.id)
+        $projectDetails = $sqlUtils->complexQuery("SELECT projects.title as 'projectTitle', projects.description as 'projectDescription',
+        CONCAT(clients.name, ' ', clients.surname) as 'projectCreator', users.username as 'projectCreatorUsername', projects.creation_date as 'projectCreationDate'
+        FROM `projects` LEFT JOIN `collaborators` on (projects.id = collaborators.id_project)
             LEFT JOIN `permissions` on (collaborators.level = permissions.level)
             LEFT JOIN `clients` on (collaborators.id_collaborator = clients.id) or (projects.id_creator = clients.id)
             LEFT JOIN `users` on (clients.id = users.id_client)
-            WHERE projects.id = :id_project ", [/* "id_creator" => $userId,  */"id_project" => $id_project])[0];
+            WHERE projects.id = :id_project", [/* "id_creator" => $userId,  */"id_project" => $id_project])[0];
+
+        $collaboratorDetails = $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'collaboratorName', users.username as 'collaboratorUsername',
+        collaborators.starting_date as 'collaborationStartingDate', collaborators.id_collaborator as 'collaborator', collaborators.invited_by as 'collaboratorInvitedBy',
+            permissions.title as 'collaborationRole', permissions.description as 'collaborationRoleDescription'
+            FROM `clients` LEFT JOIN `users` on (clients.id = users.id_client)
+            LEFT JOIN `collaborators` on (collaborators.id_collaborator = clients.id)
+            LEFT JOIN `projects` on (collaborators.id_project = projects.id)
+            LEFT JOIN `permissions` on (collaborators.level = permissions.level)
+            WHERE clients.id = :id_creator and projects.id = :id_project", ["id_creator" => $userId, "id_project" => $id_project])[0];
+
+        $userDetails = $sqlUtils->complexQuery("SELECT CONCAT(clients.name, ' ', clients.surname) as 'collaboratorInviteName', users.username as 'collaboratorInviteUsername'
+            FROM `clients` LEFT JOIN `users` on (clients.id = users.id_client)
+            WHERE clients.id = :id_creator", ["id_creator" => $collaboratorDetails["collaboratorInvitedBy"]])[0];
+
+        return array_merge($projectDetails, $collaboratorDetails, $userDetails);
     }
 
     public function getDashboardsOfProject($id_project)
