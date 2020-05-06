@@ -65,28 +65,30 @@ $breadcrumb = [
                     </div>
                     <?php endif;?>
                     <div class="card-body card-body-cascade text-center mt-3">
-                        <form class="">
+                        <form class="" action="/daw/index.php?ctl=profile" method="POST">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="text" disabled="<?php echo $viewParams["editable"]; ?>" id="form2"
-                                            class="form-control validate"
+                                        <input type="text"
+                                            <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?>
+                                            name="username" id="username" class="form-control validate"
                                             value="<?php echo $viewParams["profile"]["username"]; ?>">
-                                        <label for="form2" data-error="wrong" data-success="right">Username</label>
+                                        <label for="username" data-error="wrong" data-success="right">Username</label>
                                     </div>
                                 </div>
                                 <!-- <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="password" id="form1" class="form-control validate" value="<?php echo $viewParams["profile"]["password"]; ?>">
-                                        <label for="form1" data-error="wrong" data-success="right">Password</label>
+                                        <input type="password" name="password" id="password" class="form-control validate" value="<?php /* echo $viewParams["profile"]["password"]; */?>">
+                                        <label for="password" data-error="wrong" data-success="right">Password</label>
                                     </div>
                                 </div> -->
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="text" disabled="<?php echo $viewParams["editable"]; ?>" id="form77"
-                                            class="form-control validate"
+                                        <input type="text"
+                                            <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?>
+                                            name="website" id="website" class="form-control validate"
                                             value="<?php echo $viewParams["profile"]["website"]; ?>">
-                                        <label for="form77" data-error="wrong" data-success="right">Website
+                                        <label for="website" data-error="wrong" data-success="right">Website
                                             Address</label>
                                     </div>
                                 </div>
@@ -94,38 +96,42 @@ $breadcrumb = [
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="text" disabled="<?php echo $viewParams["editable"]; ?>" id="form81"
-                                            class="form-control validate"
+                                        <input type="text"
+                                            <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="name"
+                                            id="name" class="form-control validate"
                                             value="<?php echo $viewParams["profile"]["name"]; ?>">
-                                        <label for="form81" data-error="wrong" data-success="right">First name</label>
+                                        <label for="name" data-error="wrong" data-success="right">First name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="text" disabled="<?php echo $viewParams["editable"]; ?>" id="form82"
-                                            class="form-control validate"
+                                        <input type="text"
+                                            <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?>
+                                            name="surname" id="surname" class="form-control validate"
                                             value="<?php echo $viewParams["profile"]["surname"]; ?>">
-                                        <label for="form82" data-error="wrong" data-success="right">Last name</label>
+                                        <label for="surname" data-error="wrong" data-success="right">Last name</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md">
                                     <div class="md-form mb-0">
-                                        <input type="email" disabled="<?php echo $viewParams["editable"]; ?>"
-                                            id="form76" class="form-control validate"
+                                        <input type="email"
+                                            <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?>
+                                            name="email" id="email" class="form-control validate"
                                             value="<?php echo $viewParams["profile"]["email"]; ?>">
-                                        <label for="form76">Email address</label>
+                                        <label for="email">Email address</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="md-form mb-0">
-                                        <textarea type="text" disabled="<?php echo $viewParams["editable"]; ?>"
-                                            id="form78" class="md-textarea form-control"
+                                        <textarea type="text"
+                                            <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?>
+                                            name="biography" id="biography" class="md-textarea form-control"
                                             rows="3"><?php echo $viewParams["profile"]["biography"]; ?></textarea>
-                                        <label for="form78">About me</label>
+                                        <label for="biography">About me</label>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +139,8 @@ $breadcrumb = [
                             <div class="row">
                                 <div class="col-md-12 text-center my-4">
                                     <span class="waves-input-wrapper waves-effect waves-light"><input type="submit"
-                                            value="Update Account" class="btn btn-primary btn-rounded"></span>
+                                            value="Update Account" name="updateProfile" id="updateProfile"
+                                            class="btn btn-primary btn-rounded"></span>
                                 </div>
                             </div>
                             <?php endif;?>
