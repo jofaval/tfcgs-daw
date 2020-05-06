@@ -1,11 +1,11 @@
 <?php
 $header = [
-    "Origen" => [
-        "link" => "/daw/",
-        "active" => $title == "Home",
-        "icon" => "home",
-        "access" => 0,
-    ],
+    /* "Origen" => [
+    "link" => "/daw/",
+    "active" => $title == "Home",
+    "icon" => "home",
+    "access" => 0,
+    ], */
     "Perfil" => [
         "link" => "/daw/profile/",
         "active" => $title == "Perfil",
@@ -43,6 +43,12 @@ $header = [
     <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
         style="transition: all 0.2s ease-in-out 0s;">
         <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
+            <li class="nav-item " style="transition: all 0.2s ease-in-out 0s;">
+                <a class="nav-link btn btn-sm h6 btn-primary shadow-none text-capitalize text-white" href="/daw/"
+                    style="transition: all 0.2s ease-in-out 0s;">
+                    <span><i class="fa fa-home"></i></span>
+                    Origen</a>
+            </li>
             <?php $access = Sessions::getInstance()->getSession("access");?>
             <?php foreach ($header as $headerTitle => $headerParams): ?>
             <?php if ($access >= $headerParams["access"]): ?>
