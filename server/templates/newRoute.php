@@ -30,6 +30,10 @@ $breadcrumb = [
         <input type="checkbox" class="custom-control-input" name="isView" id="isView">
         <label class="custom-control-label" for="isView">Es una vista</label>
     </div>
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" name="friendlyURL" id="friendlyURL">
+        <label class="custom-control-label" for="friendlyURL">Añadir enlace amigable</label>
+    </div>
     <input type="submit" value="Añadir ruta" name="addRoute" class="btn btn-primary">
 </form>
 

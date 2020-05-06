@@ -723,11 +723,12 @@ class Controller
         if (Utils::exists("addRoute")) {
             $routeName = Utils::getCleanedData("routeName");
             $isView = Utils::exists("isView");
+            $friendlyURL = Utils::exists("friendlyURL");
 
             $route = "\n//$routeName";
             $route .= "\n\$map['$routeName'] = array('controller' => 'Controller', 'action' => '$routeName', 'access' => Config::\$ACCESS_LEVEL_GUEST);";
 
-            $controllerFunction = "\n\tpublic function $routeName() \n\t{\n";
+            $controllerFunction = "\n\tpublic function $routeName() \n\t{";
 
             if ($isView) {
                 $templateContent = file_get_contents(__DIR__ . "/../templates/example.php");
@@ -737,6 +738,14 @@ class Controller
                 );
 
                 $controllerFunction .= "\n\t\t" . 'require_once __DIR__ . "/../templates/' . $routeName . '.php";';
+            }
+
+            if ($friendlyURL) {
+                $htaccessRoute = "\n#$routeName\nRewriteRule ^" . $routeName . "[/]?$ ./index.php?ctl=$routeName[L]";
+
+                $fileWritter = fopen(__DIR__ . "/../../client/.htaccess", "a+");
+                fwrite($fileWritter, $htaccessRoute);
+                fclose($fileWritter);
             }
 
             $controllerFunction .= "\n\t}
