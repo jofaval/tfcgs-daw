@@ -10,6 +10,11 @@ pushMenuContainer.prepend($(".pushMenuOverlap"));
 
 $("main").toggleClass("flex-column flex-row");
 
+window.addEventListener('resize', function (event) {
+    hidePushMenu();
+    //showPushMenu();
+});
+
 $("#pushMenuToggleBtn, .pushMenu").on("click", function (event) {
     var event = event || window.event;
     //event.preventDefault();
