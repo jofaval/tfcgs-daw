@@ -24,17 +24,22 @@ class ProjectDiaryModification implements CRUD
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
+        $currentTime = DateUtils::getCurrentDateTime();
         $params = [
             "day" => $this->day,
             "id_project" => $this->id_project,
             "id_creator" => $this->id_creator,
-            "modification_date" => $this->modification_date,
-            "enabled" => $this->enabled,
-            "day" => $this->day,
-            "id_project" => $this->id_project,
+            "modification_date" => $currentTime,
+            "enabled" => "1",
         ];
 
-        return $sqlUtils->insert($params);
+        $result = $sqlUtils->insert($this->table, $params);
+        if ($result) {
+            //return $sqlUtils->query($this->table, $params)[0];
+            return true;
+        }
+
+        return false;
     }
 
     public function update()
@@ -43,8 +48,6 @@ class ProjectDiaryModification implements CRUD
 
         $toModify = [
             "enabled" => $this->enabled,
-            "day" => $this->day,
-            "id_project" => $this->id_project,
         ];
 
         $identificationParams = [

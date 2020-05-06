@@ -49,7 +49,14 @@ class ProjectDiary implements CRUD
             "id_project" => $this->id_project,
         ];
 
-        return $sqlUtils->update($this->table, $toModify, $identificationParams);
+        $result = $sqlUtils->update($this->table, $toModify, $identificationParams);
+        if ($result) {
+            $projectDiaryModification = new ProjectDiaryModification();
+
+            $projectDiaryModification->create();
+        }
+
+        return $result;
     }
 
     public function delete()
