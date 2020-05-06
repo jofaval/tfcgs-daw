@@ -58,7 +58,8 @@ $breadcrumb = [
                             cuenta</button> -->
                         <a href="/daw/signout/" class="btn btn-danger btn-rounded waves-effect waves-light">
                             <span><i class="fa fa-sign-out"></i></span> Cerrar sesión</a>
-                        <a href="/daw/signout/" class="btn btn-primary btn-rounded waves-effect waves-light"><span><i
+                        <a href="/daw/profile/<?php echo Sessions::getInstance()->getSession("username"); ?>/"
+                            class="btn btn-primary btn-rounded waves-effect waves-light"><span><i
                                     class="fa fa-eye"></i></span> Ver
                             público</a>
                     </div>
@@ -68,7 +69,7 @@ $breadcrumb = [
 
             <div class="col-lg-8 mb-4">
                 <?php if (!$viewParams["editable"]): ?>
-                <img class="profileBackgroundImage w-100" height="300"
+                <img class="profileBackgroundImage w-100 d-none d-sm-block" height="300"
                     src="/daw/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png" alt="">
                 <?php endif;?>
                 <div class="card card-cascade narrower shadow-none">
