@@ -65,7 +65,7 @@ $breadcrumb = [
                     </div>
                     <?php endif;?>
                     <div class="card-body card-body-cascade text-center mt-3">
-                        <form class="" action="/daw/index.php?ctl=profile" method="POST">
+                        <form class="" action="/daw/profile/" method="POST">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
