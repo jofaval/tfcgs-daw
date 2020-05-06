@@ -1,175 +1,183 @@
-$(".summernoteContainer").on("keypress", function () {
-    //generateNavigationScheme();
-});
-
-//$("#datepicker").val("2020-04-28");
-
-var startingDate = $("#datepicker").val();
-startingDate = Date.parse(startingDate);
-
-if (isNaN(Date.parse(startingDate))) {
-    startingDate = new Date();
-}
-
-function loadDayContent(selectedDate) {
-    var selectedDateString = printDateWithFormat(selectedDate, "Y-m-d");
-    $("#datepicker").val(selectedDateString)
-    $.ajax({
-        url: "/daw/index.php?ctl=queryProjectDiary",
-        data: {
-            day: selectedDateString,
-            id_project: 7,
-        },
-        success: function (content) {
-            if (content == false) {
-                content = "Vacío.";
-            }
-            console.log("result cargarlo", decodeURI(content));
-            loadContent(decodeURI(content))
-        },
-    });
-}
-
-loadDayContent(startingDate);
-
-$(".projectDiaryBtnNext").on("click", function (event) {
-    var event = event || window.event;
-    event.preventDefault();
-    startingDate.setDate(startingDate.getDate() + 1);
-    loadDayContent(startingDate);
-
-    return false;
-});
-
-$(".projectDiaryBtnPrev").on("click", function (event) {
-    var event = event || window.event;
-    event.preventDefault();
-    startingDate.setDate(startingDate.getDate() - 1);
-    loadDayContent(startingDate);
-
-    return false;
-});
-
-function loadContent(content) {
-    $(".note-editable.card-block").html(content);
-}
-
-$("#diaryBtnSave").on("click", function () {
-    var summernoteContentContainer = $(".note-editable.card-block");
-    var summernoteContent = summernoteContentContainer.html();
-    //console.log(summernoteContent);
-
-    var selectedDate = $("#datepicker").val();
-
-    if (isNaN(Date.parse(selectedDate))) {
-        sendNotification("La fecha introducida no es correcta", "diaryDateNotValid");
-        return;
+class Model {
+    constructor() {
+        this.paginationIndex = 1;
+        this.projectId = this.getProjectId();
     }
 
-    var encodedContent = encodeURI(summernoteContent);
-    $.ajax({
-        url: "/daw/index.php?ctl=createProjectDiary",
-        data: {
-            day: selectedDate,
-            id_project: 7,
-            content: encodedContent,
-        },
-        success: function (result) {
-            console.log("result crearlo", result);
+    loadContent(whenFinished) {
+        var model = this;
+
+        var dateInString = printDateWithFormat(model.currentDate, "Y-m-d");
+        $.ajax({
+            url: "/daw/index.php?ctl=queryProjectDiary",
+            data: {
+                "day": dateInString,
+                "id_project": model.projectId,
+            },
+            success: function (content) {
+                whenFinished(decodeURI(content));
+            },
+        });
+    }
+
+    getProjectId() {
+        var URL = window.location.href;
+        var splittedURL = URL.split("/");
+
+        return splittedURL[6];
+    }
+
+    saveContent(content, whenFinished) {
+        var model = this;
+
+        content = encodeURI(content);
+        $.ajax({
+            url: "/daw/index.php?ctl=createProjectDiary",
+            data: {
+                "day": model.currentDate,
+                "id_project": model.projectId,
+                "content": content,
+            },
+            success: function (result) {
+                whenFinished(result);
+            },
+        });
+    }
+
+    modifyContent(content, whenFinished) {
+        var model = this;
+
+        content = encodeURI(content);
+        $.ajax({
+            url: "/daw/index.php?ctl=updateProjectDiary",
+            data: {
+                "day": model.currentDate,
+                "id_project": model.projectId,
+                "content": content,
+            },
+            success: function (result) {
+                whenFinished(result);
+            },
+        })
+    }
+}
+
+class View {
+    constructor() {
+
+    }
+
+    initializeView(container) {}
+
+    visualizeContent(container, content) {
+        container.html(content);
+
+        return container;
+    }
+
+    hideComponent(component) {
+        //component.fadeOut();
+        component.hide();
+    }
+
+    showComponent(component) {
+        //component.fadeIn();
+        component.show();
+    }
+}
+
+class Controller {
+    constructor(model, view) {
+        this.model = model;
+        this.view = view;
+
+        var controller = this;
+
+        var date = $("#datepicker").val();
+
+        if (isNaN(Date.parse(date))) {
+            date = new Date();
+        } else {
+            date = new Date(Date.parse(date));
+        }
+
+        controller.model.currentDate = date;
+
+        controller.loadDateContent(controller);
+
+        $(".collaboratorBtnAdd").on("click", function (event) {
+            controller.testFunction(controller, event);
+        });
+
+        $(".projectDiaryBtnPrev").on("click", function (event) {
+            var result = controller.setDateToPrev(controller, event);
             if (result === false) {
-                $.ajax({
-                    url: "/daw/index.php?ctl=updateProjectDiary",
-                    data: {
-                        day: selectedDate,
-                        id_project: 7,
-                        content: encodedContent,
-                    },
-                    success: function (result) {
-                        if (result !== false) {
-                            console.log("result modificarlo", result);
-                        } else {
-                            sendNotification("Se ha guardado con éxito.", "diarySavedWithSuccess");
-                        }
-                    },
-                })
-            } else {
-                sendNotification("Se ha guardado con éxito.", "diarySavedWithSuccess");
+                return false;
             }
-        },
-    });
-});
+        });
 
-var navigationScheme = $(".pushMenu .content");
+        $(".projectDiaryBtnNext").on("click", function (event) {
+            var result = controller.setDateToNext(controller, event);
+            if (result === false) {
+                return false;
+            }
+        });
 
-$(".note-editable.card-block").append("<h1>Test 1656</h1>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h1>Test 552</h1>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h2>subtitle</h2>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h3>ewgewhweh</h3>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h3>trjyuykt</h3>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h3>weyweywey45yh5r</h3>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h4>jeggwef</h4>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h5>yjk67kj67</h5>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h1>Test 12</h1>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h1>subtitle 2</h1>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h2>subtitle</h2>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h3>ewgewhweh</h3>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h3>trjyuykt</h3>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h3>weyweywey45yh5r</h3>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h4>jeggwef</h4>");
-$(".note-editable.card-block").append("<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>");
-$(".note-editable.card-block").append("<h1>Test 1564156</h1>");
+        $("#diaryBtnSave").on("click", function () {
+            controller.saveContent(controller);
+        });
 
-window.addEventListener('resize', function (event) {
-    hidePushMenu();
-    //showPushMenu();
-});
+        $("#datepicker").on("change", function (event) {
+            controller.inputDateFormatCheck(controller, $(this), event);
+        });
 
-function generateNavigationScheme() {
-    navigationScheme.html("");
-    var levels = {
-        "H1": 0,
-        "H2": 0,
-        "H3": 0,
-        "H4": 0,
-        "H5": 0,
-        "H6": 0,
-    };
-    var summernoteContentContainer = $(".note-editable.card-block");
-    var summernoteContent = summernoteContentContainer.html();
+        $("#navigationSchemeBtn").on("click", function () {
+            controller.generateNavigationScheme(controller);
+        });
+    }
 
-    var content = $(summernoteContent);
+    generateNavigationScheme(controller) {
+        var navigationScheme = $(".pushMenu .content");
 
-    var encodedContent = encodeURI(summernoteContent);
-    var decodedContent = decodeURI(encodedContent);
-    //console.log("content", typeof summernoteContent, summernoteContent, "\nencoded", encodedContent, "\ndecoded", decodedContent);
+        navigationScheme.html("");
+        var levels = {
+            "H1": 0,
+            "H2": 0,
+            "H3": 0,
+            "H4": 0,
+            "H5": 0,
+            "H6": 0,
+        };
+        var summernoteContentContainer = $(".note-editable.card-block");
+        var summernoteContent = summernoteContentContainer.html();
 
-    content.each(function () {
+        var content = $(summernoteContent);
+
+        var encodedContent = encodeURI(summernoteContent);
+        var decodedContent = decodeURI(encodedContent);
+        console.log(
+            "content type", typeof summernoteContent,
+            "\ncontent", summernoteContent,
+            "\nencoded", encodedContent,
+            "\ndecoded", decodedContent
+        );
+
+        content.each(function () {
+            controller.eachNavigationElementProcessing(levels, controller, navigationScheme, summernoteContentContainer);
+        });
+        summernoteContentContainer.html("")
+    }
+
+    eachNavigationElementProcessing(levels, controller, navigationScheme, summernoteContentContainer) {
         var current = $(this);
         current.find(".level").remove();
         var indentationLevel = -1;
         var tagName = current.get(0).tagName;
         levels[tagName]++;
         if (current.is("h1, h2, h3, h4, h5, h6")) {
-
             indentationLevel += parseInt(tagName.replace("H", ""));
-            levels
+            levels;
         }
-
-
         var title = current.text().trim();
         if (indentationLevel != -1) {
             var tagNameToResetIndex = indentationLevel + 2;
@@ -177,35 +185,111 @@ function generateNavigationScheme() {
                 levels["H" + tagNameToResetIndex] = 0;
                 tagNameToResetIndex++;
             }
-
             var newTitle = title;
             if (newTitle.length > 15) {
                 newTitle = newTitle.substring(0, 14);
             }
-
-            var trueLevel = getTrueLevel(levels, indentationLevel);
-            navigationScheme.append($(
-                `<a class="py-2 navigationElement" style="padding-left: ${indentationLevel * 0.5}em" href="#${trueLevel}">
-                        ${trueLevel} ${newTitle}
-                    </a>`));
+            var trueLevel = controller.getTrueLevel(levels, indentationLevel);
+            navigationScheme.append($(`<a class="py-2 navigationElement" style="padding-left: ${indentationLevel * 0.5}em" href="#${trueLevel}">
+                            ${trueLevel} ${newTitle}
+                        </a>`));
             current.prop("id", trueLevel);
             if (current.find(".level").length == 0) {
                 current.prepend(`<span class="level">${trueLevel}</span> `);
             }
         }
         summernoteContentContainer.append(current);
-    });
-};
-generateNavigationScheme();
-
-function getTrueLevel(levels, indentationLevel) {
-    indentationLevel++;
-    var string = "";
-
-    while (indentationLevel >= 1) {
-        string = `${levels["H" + indentationLevel]}.${string}`;
-        indentationLevel--;
     }
 
-    return string;
+    inputDateFormatCheck(controller, inputDate, event) {
+        var inputDateValue = inputDate.val();
+
+        var inputDateInTimeStamp = Date.parse(inputDateValue);
+        if (isNaN(inputDateInTimeStamp)) {
+            sendNotification("La fecha introducida no es correcta", "diaryDateNotValid");
+            inputDate.addClass("not-valid");
+            return;
+        }
+
+        inputDate.removeClass("not-valid");
+    }
+
+    saveContent(controller) {
+        var summernoteContentContainer = $(".note-editable.card-block");
+        var summernoteContent = summernoteContentContainer.html();
+
+        controller.model.saveContent(summernoteContent, function (result) {
+            console.log("result crearlo", result);
+            if (result === false) {
+                controller.model.modifyContent(summernoteContent, function (result) {
+                    if (result !== false) {
+                        console.log("result modificarlo", result);
+                    } else {
+                        sendNotification("Se ha guardado con éxito.", "diarySavedWithSuccess");
+                    }
+                });
+            } else {
+                sendNotification("Se ha guardado con éxito.", "diarySavedWithSuccess");
+            }
+        });
+    }
+
+    setDateToPrev(controller, event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        controller.modifyDate(controller, -1);
+
+        return false;
+    }
+
+    setDateToNext(controller, event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        controller.modifyDate(controller, 1);
+
+        return false;
+    }
+
+    modifyDate(controller, increment) {
+        var workingDate = controller.model.currentDate;
+        workingDate.setDate(workingDate.getDate() + (increment));
+
+        controller.loadDateContent(controller);
+        controller.model.currentDate = workingDate;
+
+        var dateInFormat = printDateWithFormat(workingDate, "Y-m-d");
+
+        $("#datepicker").val(dateInFormat);
+
+        window.history.pushState('page2', document.title, `/daw/projects/id/${controller.model.projectId}/diary/date/${dateInFormat}/`);
+    }
+
+    loadDateContent(controller) {
+        controller.model.loadContent(function (content) {
+            if (content == false) {
+                content = "";
+            }
+            console.log("result cargarlo", decodeURI(content));
+            controller.view.visualizeContent($(".note-editable.card-block"), decodeURI(content))
+        });
+    }
+
+    getTrueLevel(levels, indentationLevel) {
+        indentationLevel++;
+        var string = "";
+
+        while (indentationLevel >= 1) {
+            string = `${levels["H" + indentationLevel]}.${string}`;
+            indentationLevel--;
+        }
+
+        return string;
+    }
 }
+
+const controller = new Controller(
+    new Model(),
+    new View()
+);
