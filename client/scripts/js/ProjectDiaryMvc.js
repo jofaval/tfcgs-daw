@@ -136,6 +136,10 @@ class Controller {
         $("#navigationSchemeBtn").on("click", function () {
             controller.generateNavigationScheme(controller);
         });
+
+        whenUserDoneTypingInInput($(".note-editable.card-block"), "summernoteContent", function () {
+            controller.generateNavigationScheme(controller);
+        }, 2.5 * 1000);
     }
 
     generateNavigationScheme(controller) {
@@ -152,6 +156,7 @@ class Controller {
         };
         var summernoteContentContainer = $(".note-editable.card-block");
         var summernoteContent = summernoteContentContainer.html();
+        summernoteContentContainer.html("")
 
         var content = $(summernoteContent);
 
@@ -165,13 +170,12 @@ class Controller {
         );
 
         content.each(function () {
-            controller.eachNavigationElementProcessing(levels, controller, navigationScheme, summernoteContentContainer);
+            var current = $(this);
+            controller.eachNavigationElementProcessing(current, levels, controller, navigationScheme, summernoteContentContainer);
         });
-        summernoteContentContainer.html("")
     }
 
-    eachNavigationElementProcessing(levels, controller, navigationScheme, summernoteContentContainer) {
-        var current = $(this);
+    eachNavigationElementProcessing(current, levels, controller, navigationScheme, summernoteContentContainer) {
         current.find(".level").remove();
         var indentationLevel = -1;
         var tagName = current.get(0).tagName;
@@ -224,10 +228,11 @@ class Controller {
             console.log("result crearlo", result);
             if (result !== true) {
                 controller.model.modifyContent(summernoteContent, function (result) {
+                    console.log("result modificarlo", result);
                     if (result !== false) {
-                        console.log("result modificarlo", result);
-                    } else {
                         sendNotification("Se ha guardado con éxito.", "diarySavedWithSuccess");
+                    } else {
+                        sendNotification("No se ha podido guardar.", "diarySavedWithFail");
                     }
                 });
             } else {
@@ -275,6 +280,7 @@ class Controller {
             }
             console.log("result cargarlo", decodeURI(content));
             controller.view.visualizeContent($(".note-editable.card-block"), decodeURI(content))
+            controller.generateNavigationScheme(controller);
         });
     }
 
