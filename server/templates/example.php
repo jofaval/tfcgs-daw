@@ -7,13 +7,15 @@
 <?php $showBreadcrumb = true;?>
 <?php
 $breadcrumb = [
-    ["name" => "Home",
-        "link" => "/daw/index.php?ctl=calendar",
+    [
+        "name" => "Home",
+        "link" => "/daw/",
         "active" => false,
     ],
-    ["name" => "Example",
-        "link" => "/daw/index.php?ctl=admin",
-        "active" => false,
+    [
+        "name" => "Example",
+        "link" => "/daw/example/",
+        "active" => true,
     ],
 ];
 ?>
