@@ -12,26 +12,9 @@
                 <br>Sentimos las molestias</h1>
         </div>
     </noscript>
-    <?php if ($showHeader): ?>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-wrap" style="transition: all 0.2s ease-in-out 0s;">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08"
-            aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation"
-            style="transition: all 0.2s ease-in-out 0s;">
-            <span class="navbar-toggler-icon" style="transition: all 0.2s ease-in-out 0s;"></span>
-        </button>
-
-        <img class="navbar-brand rounded-circle mr-2" width="45"
-            src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
-        <small class="text-muted"><span class="font-weight-bold"><?php echo $username ?></span>
-            <br>
-            <?php echo $sessions->getSession("roleName"); ?>
-        </small>
-        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
-            style="transition: all 0.2s ease-in-out 0s;">
-            <h1 class="text-dark"><?php echo $viewParams["title"]; ?></h1>
-        </div>
-    </nav>
-    <?php endif;?>
+    <?php if ($showHeader):
+    require_once __DIR__ . "/components/header.php";
+endif;?>
     <?php if ($showBreadcrumb): require_once __DIR__ . "/components/breadcrum.php";endif;?>
     <main role="main" class="w-100 d-flex flex-column justify-content-start overflow-auto <?php echo $mainClasses; ?>">
         <div id="content" class="w-100 w-100 d-flex">
