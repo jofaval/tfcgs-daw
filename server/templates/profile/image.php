@@ -1,5 +1,5 @@
 <div class="card-body card-body-cascade text-center mt-3">
-    <form class="" action="/daw/profile/change-image/" method="POST">
+    <form class="" action="/daw/profile/change-image/" method="POST" enctype="multipart/form-data">
         <h1 class="text-left">Imagen de perfil</h1>
         <div class="row">
             <div class="col-md-6 mx-auto">
@@ -8,7 +8,7 @@
                         <span class="input-group-text" id="profileImage">Elegir una imagen</span>
                     </div>
                     <div class="custom-file text-left">
-                        <input type="file" class="custom-file-input" name="profileImage" id="profileImage"
+                        <input type="file" required="" class="custom-file-input" name="profileImage" id="profileImage"
                             aria-describedby="profileImage" accept=".gif,.jpg,.jpeg,.png">
                         <label class="custom-file-label" for="profileImage">image.png</label>
                     </div>
@@ -25,7 +25,7 @@
         </div>
         <?php endif;?>
     </form>
-    <form class="" action="/daw/profile/change-image/" method="POST">
+    <form class="" action="/daw/profile/change-image/" method="POST" enctype="multipart/form-data">
         <h1 class="text-left">Imagen de fondo</h1>
         <div class="row">
             <div class="col-md-6 mx-auto">
@@ -34,7 +34,7 @@
                         <span class="input-group-text" id="bgImageCaption">Elegir una imagen</span>
                     </div>
                     <div class="custom-file text-left">
-                        <input type="file" class="custom-file-input" name="bgImage" id="bgImage"
+                        <input type="file" required="" class="custom-file-input" name="bgImage" id="bgImage"
                             aria-describedby="bgImageCaption" accept=".gif,.jpg,.jpeg,.png">
                         <label class="custom-file-label" for="bgImage">image.png</label>
                     </div>
