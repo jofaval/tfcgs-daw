@@ -74,6 +74,10 @@ function printDateWithFormat(givenDate, format = "d/m/Y") {
     format = format = format.toLowerCase();
     format = format.replace("d", minNumberOfDigits(givenDate.getDate()));
     format = format.replace("m", minNumberOfDigits(givenDate.getMonth() + 1));
+
+    format = format.replace("h", minNumberOfDigits(givenDate.getHours() + 1));
+    format = format.replace("i", minNumberOfDigits(givenDate.getMinutes() + 1));
+    format = format.replace("s", minNumberOfDigits(givenDate.getSeconds() + 1));
     return format;
 }
 
