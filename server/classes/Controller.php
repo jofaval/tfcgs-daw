@@ -34,15 +34,26 @@ class Controller
 
     public function profile()
     {
-        $viewParams = [];
+        $viewParams = [
+            "editable" => false,
+        ];
 
         $username = Utils::getCleanedData("username");
+        $clientId = Sessions::getInstance()->getSession("userId");
+
+        if ($username == "") {
+            $viewParams["editable"] = true;
+        } else {
+            $clientId = $this->getClientIdFromUsername($username);
+        }
 
         $viewParams["profile"] = Model::getInstance()->getProfileInformation(
-            $this->getClientIdFromUsername($username)
+            $clientId
         );
 
-        $viewParams["editable"] = $username == "";
+        if (is_null($viewParams["profile"])) {
+            header("Location: /daw/profile/");
+        }
 
         require_once __DIR__ . "/../templates/profile.php";
     }
