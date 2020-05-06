@@ -27,14 +27,15 @@ class Model {
         return splittedURL[6];
     }
 
-    saveContent(content, whenFinished) {
+    saveContent(content, whenFinished, ifError) {
         var model = this;
 
         content = encodeURI(content);
+        var dateInString = printDateWithFormat(model.currentDate, "Y-m-d");
         $.ajax({
             url: "/daw/index.php?ctl=createProjectDiary",
             data: {
-                "day": model.currentDate,
+                "day": dateInString,
                 "id_project": model.projectId,
                 "content": content,
             },
@@ -48,10 +49,11 @@ class Model {
         var model = this;
 
         content = encodeURI(content);
+        var dateInString = printDateWithFormat(model.currentDate, "Y-m-d");
         $.ajax({
             url: "/daw/index.php?ctl=updateProjectDiary",
             data: {
-                "day": model.currentDate,
+                "day": dateInString,
                 "id_project": model.projectId,
                 "content": content,
             },
