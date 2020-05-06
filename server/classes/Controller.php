@@ -42,6 +42,8 @@ class Controller
             $this->getClientIdFromUsername($username)
         );
 
+        $viewParams["editable"] = $username == "";
+
         require_once __DIR__ . "/../templates/profile.php";
     }
 
