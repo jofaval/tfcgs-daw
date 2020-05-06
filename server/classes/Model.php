@@ -254,4 +254,19 @@ class Model extends PDO
 
         return $sqlUtils->complexQuery($queryString, ["id_project" => $id_project, "dashboard_title" => $dashboard_title]);
     }
+
+    public function getProfileInformation($clientId)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $queryString = "SELECT users.username,
+        clients.name, clients.surname, clients.email, clients.website, clients.biography
+        FROM clients JOIN users ON (clients.id = users.id_client)
+        LEFT JOIN roles on (users.role = roles.level)
+            WHERE clients.id = :id_client";
+
+        return $sqlUtils->complexQuery($queryString, [
+            "id_client" => $clientId,
+        ])[0];
+    }
 }

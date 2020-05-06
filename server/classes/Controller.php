@@ -34,6 +34,14 @@ class Controller
 
     public function profile()
     {
+        $viewParams = [];
+
+        $username = Utils::getCleanedData("username");
+
+        $viewParams["profile"] = Model::getInstance()->getProfileInformation(
+            $this->getClientIdFromUsername($username)
+        );
+
         require_once __DIR__ . "/../templates/profile.php";
     }
 

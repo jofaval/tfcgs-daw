@@ -41,55 +41,64 @@ $breadcrumb = [
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
             <div class="col-lg-8 mb-4">
                 <div class="card card-cascade narrower shadow-none">
                     <div class="view view-cascade bg-primary lighten-3 shadow mx-3">
                         <h5 class="mb-0 font-weight-bold text-center p-3 text-white">Edit Account</h5>
                     </div>
                     <div class="card-body card-body-cascade text-center mt-3">
-                        <form class="AVAST_PAM_nonloginform">
+                        <form class="">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="text" id="form1" class="form-control validate" value="Company, inc"
-                                            disabled="">
-                                        <label for="form1" data-error="wrong" data-success="right"
-                                            class="active">Company</label>
+                                        <input type="text" id="form2" class="form-control validate"
+                                            value="<?php echo $viewParams["profile"]["username"]; ?>">
+                                        <label for="form2" data-error="wrong" data-success="right">Username</label>
                                     </div>
                                 </div>
+                                <!-- <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <input type="password" id="form1" class="form-control validate" value="<?php echo $viewParams["profile"]["password"]; ?>">
+                                        <label for="form1" data-error="wrong" data-success="right">Password</label>
+                                    </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="text" id="form2" class="form-control validate">
-                                        <label for="form2" data-error="wrong" data-success="right">Username</label>
+                                        <input type="text" id="form77" class="form-control validate"
+                                            value="<?php echo $viewParams["profile"]["website"]; ?>">
+                                        <label for="form77" data-error="wrong" data-success="right">Website
+                                            Address</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="text" id="form81" class="form-control validate">
+                                        <input type="text" id="form81" class="form-control validate"
+                                            value="<?php echo $viewParams["profile"]["name"]; ?>">
                                         <label for="form81" data-error="wrong" data-success="right">First name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input type="text" id="form82" class="form-control validate">
+                                        <input type="text" id="form82" class="form-control validate"
+                                            value="<?php echo $viewParams["profile"]["surname"]; ?>">
                                         <label for="form82" data-error="wrong" data-success="right">Last name</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md">
                                     <div class="md-form mb-0">
-                                        <input type="email" id="form76" class="form-control validate">
+                                        <input type="email" id="form76" class="form-control validate"
+                                            value="<?php echo $viewParams["profile"]["email"]; ?>">
                                         <label for="form76">Email address</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="md-form mb-0">
-                                        <input type="text" id="form77" class="form-control validate">
-                                        <label for="form77" data-error="wrong" data-success="right">Website
-                                            Address</label>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +106,7 @@ $breadcrumb = [
                                 <div class="col-md-12">
                                     <div class="md-form mb-0">
                                         <textarea type="text" id="form78" class="md-textarea form-control"
-                                            rows="3"></textarea>
+                                            rows="3"><?php echo $viewParams["profile"]["biography"]; ?></textarea>
                                         <label for="form78">About me</label>
                                     </div>
                                 </div>
@@ -114,7 +123,6 @@ $breadcrumb = [
             </div>
         </div>
     </section>
-
 </div>
 
 <?php $contenido = ob_get_clean()?>
