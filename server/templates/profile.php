@@ -41,8 +41,9 @@ $breadcrumb = [
                             width="200" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
                         <?php if ($viewParams["editable"]): ?>
                         <div class="row flex-center">
-                            <button class="btn btn-primary btn-rounded btn-sm waves-effect waves-light">Subir
-                                foto</button><br>
+                            <a href="/daw/profile/change-image/"
+                                class="btn btn-primary btn-rounded btn-sm waves-effect waves-light">Subir
+                                foto</a><br>
                             <button class="btn btn-danger btn-rounded btn-sm waves-effect waves-light">Eliminar</button>
                         </div>
                         <?php endif;?>
@@ -76,7 +77,9 @@ $breadcrumb = [
     case 'pass':
         require_once __DIR__ . "/profile/pass.php";
         break;
-
+    case 'image':
+        require_once __DIR__ . "/profile/image.php";
+        break;
     default:
         require_once __DIR__ . "/profile/general.php";
         break;
