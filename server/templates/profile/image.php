@@ -5,12 +5,12 @@
             <div class="col-md-6 mx-auto">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Elegir una imagen</span>
+                        <span class="input-group-text" id="profileImage">Elegir una imagen</span>
                     </div>
                     <div class="custom-file text-left">
-                        <input type="file" class="custom-file-input" name="image" id="image"
-                            aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="image">image.png</label>
+                        <input type="file" class="custom-file-input" name="profileImage" id="profileImage"
+                            aria-describedby="profileImage" accept=".gif,.jpg,.jpeg,.png">
+                        <label class="custom-file-label" for="profileImage">image.png</label>
                     </div>
                 </div>
             </div>
@@ -31,12 +31,12 @@
             <div class="col-md-6 mx-auto">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Elegir una imagen</span>
+                        <span class="input-group-text" id="bgImageCaption">Elegir una imagen</span>
                     </div>
                     <div class="custom-file text-left">
-                        <input type="file" class="custom-file-input" name="image" id="image"
-                            aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="image">image.png</label>
+                        <input type="file" class="custom-file-input" name="bgImage" id="bgImage"
+                            aria-describedby="bgImageCaption" accept=".gif,.jpg,.jpeg,.png">
+                        <label class="custom-file-label" for="bgImage">image.png</label>
                     </div>
                 </div>
             </div>
