@@ -29,20 +29,29 @@
         <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
             style="transition: all 0.2s ease-in-out 0s;">
             <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
-                <li class="nav-item active" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link" href="/daw/projects/" style="transition: all 0.2s ease-in-out 0s;">Origen<span
-                            class="sr-only" style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
+                <li class="nav-item d-flex active" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link align-self-center" href="/daw/projects/"
+                        style="transition: all 0.2s ease-in-out 0s;">Origen<span class="sr-only"
+                            style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
                 </li>
-                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link selected" href="/daw/projects/"
-                        style="transition: all 0.2s ease-in-out 0s;">Projects</a>
+                <li class="nav-item d-flex" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link align-self-center selected" href="/daw/profile/"
+                        style="transition: all 0.2s ease-in-out 0s;">Perfil</a>
                 </li>
-                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link selected" href="/daw/admin/"
+                <li class="nav-item d-flex" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link align-self-center selected" href="/daw/projects/"
+                        style="transition: all 0.2s ease-in-out 0s;">Proyectos</a>
+                </li>
+                <?php if (Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN): ?>
+                <li class="nav-item d-flex" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link align-self-center selected" href="/daw/admin/"
                         style="transition: all 0.2s ease-in-out 0s;">Admin</a>
                 </li>
-                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
-                    <a class="nav-link" href="/daw/signout/" style="transition: all 0.2s ease-in-out 0s;">Signout</a>
+                <?php endif;?>
+                <li class="nav-item " style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link btn btn-sm h6 btn-danger shadow-none text-capitalize text-white"
+                        href="/daw/signout/" style="transition: all 0.2s ease-in-out 0s;">Cerrar
+                        sesión</a>
                 </li>
             </ul>
         </div>
