@@ -11,11 +11,13 @@ $breadcrumb = [
         "name" => "Home",
         "link" => "/daw/",
         "active" => false,
+        "icon" => "home",
     ],
     [
         "name" => "Profile",
         "link" => "/daw/profile/",
-        "active" => false,
+        "active" => true,
+        "icon" => "user",
     ],
 ];
 ?>
@@ -33,8 +35,8 @@ $breadcrumb = [
                     </div>
                     <?php endif;?>
                     <div class="card-body card-body-cascade text-center">
-                        <img src="/daw/img/users/jofaval2/jofaval2.png" width="200" alt="User Photo"
-                            class="z-depth-1 mb-3 mx-auto">
+                        <img src="/daw/img/users/<?php echo $viewParams["profile"]["username"]; ?>/<?php echo $viewParams["profile"]["username"]; ?>.png"
+                            width="200" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
                         <?php if ($viewParams["editable"]): ?>
                         <div class="row flex-center">
                             <button class="btn btn-primary btn-rounded btn-sm waves-effect waves-light">Upload New
@@ -44,6 +46,16 @@ $breadcrumb = [
                         <?php endif;?>
                     </div>
                 </div>
+                <?php if ($viewParams["editable"]): ?>
+                <div class="card card-cascade my-3 narrower shadow-none">
+                    <div class="row flex-center my-3">
+                        <button class="btn btn-danger btn-rounded waves-effect waves-light">Deshabilitar
+                            cuenta</button>
+                        <button class="btn btn-danger btn-rounded waves-effect waves-light">Cerrar
+                            sesión</button>
+                    </div>
+                </div>
+                <?php endif;?>
             </div>
             <div class="col-lg-8 mb-4">
                 <div class="card card-cascade narrower shadow-none">
