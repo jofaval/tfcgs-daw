@@ -43,7 +43,7 @@
 ];
 
 foreach ($actionGroups as $actionGroupTitle => $actionGroup) {
-    ?> <div class="actionsGroup">
+    ?> <div class="actionsGroup my-3">
                 <h4 class="actionsTitle text-white"><?php echo $actionGroupTitle; ?></h4>
                 <div class="actionsButton d-flex justify-content-space-between flex-wrap">
                     <?php
@@ -68,7 +68,7 @@ foreach ($actionGroup as $action) {
 ?>
         </div>
         <div class="col-sm p-0 mx-3 mx-sm-0">
-            <div class="row text-white">
+            <div class="row text-white p-0 m-0">
                 <h4 class="h4 text-white">Creado recientemente</h4>
                 <div class="recentlyCreated text-dark">
                     <div class="card w-100">
@@ -93,7 +93,7 @@ foreach ($actionGroup as $action) {
                 </div>
             </div>
             <br>
-            <div class="row text-white">
+            <div class="row text-white p-0 m-0">
                 <h4 class="h4 text-white">Invitados recientemente</h4>
                 <div class="recentlyInvited text-dark collaboratorsContainer"></div>
             </div>
