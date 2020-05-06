@@ -3,16 +3,16 @@
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="md-form mb-0">
-                    <input type="password" required name="password" id="password" class="form-control validate">
-                    <label for="password" data-error="wrong" data-success="right">Contraseña</label>
+                    <input type="password" required name="oldPassword" id="oldPassword" class="form-control validate">
+                    <label for="oldPassword" data-error="wrong" data-success="right">Contraseña anterior</label>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="md-form mb-0">
-                    <input type="password" required name="oldPassword" id="oldPassword" class="form-control validate">
-                    <label for="oldPassword" data-error="wrong" data-success="right">Contraseña anterior</label>
+                    <input type="password" required name="password" id="password" class="form-control validate">
+                    <label for="password" data-error="wrong" data-success="right">Contraseña</label>
                 </div>
             </div>
         </div>
