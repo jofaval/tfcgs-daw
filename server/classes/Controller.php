@@ -24,6 +24,12 @@ class Controller
 
     public function projects()
     {
+        $clientId = Sessions::getInstance()->getSession("userId");
+
+        $viewParams["profile"] = Model::getInstance()->getProfileInformation(
+            $clientId
+        );
+
         require __DIR__ . '/../templates/projects.php';
     }
 

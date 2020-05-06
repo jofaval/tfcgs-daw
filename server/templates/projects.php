@@ -38,14 +38,14 @@ $breadcrumb = [
                 alt="" width="200">
         </div>
         <div class="d-none d-sm-block projectDetails bg-dark text-white col">
-            <h1 class="projectTitle font-weight-bold">Origen</h1>
-            <p class="projectCreatedBy mb-2">creado por <a id="projectCreator" class="font-weight-bold">Pepe Fabra
-                    Valverde</a></p>
-            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio laudantium ipsum
-                sed iusto voluptas est ratione nam sint fugiat, in dolorum adipisci, veritatis aliquam magnam
-                repellendus dolorem, accusamus consequuntur corporis?</p>
-            <a href="" class="">
-                Change project information...<span><i class="fa fa-pencil"></i></span>
+            <h1 class="projectTitle font-weight-bold">
+                <?php echo $viewParams["profile"]["name"] . " " . $viewParams["profile"]["surname"]; ?></h1>
+            <p class="projectCreatedBy mb-2"><a id="projectCreator"
+                    href="http://<?php echo $viewParams["profile"]["website"]; ?>"
+                    class="text-white"><?php echo $viewParams["profile"]["website"]; ?></a></p>
+            <p class="description"><?php echo $viewParams["profile"]["biography"]; ?></p>
+            <a href="/daw/profile/<?php echo $username; ?>/" class="text-white">Ver perfil&nbsp;<span><i
+                        class="fa fa-pencil"></i></span>
             </a>
         </div>
     </div>
