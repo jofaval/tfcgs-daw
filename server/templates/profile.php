@@ -88,6 +88,10 @@ $breadcrumb = [
     </section>
 </div>
 
+<?php if (isset($viewParams["error"])) {
+    echo $viewParams["error"];
+}?>
+
 <?php $contenido = ob_get_clean()?>
 
 <?php include_once 'layout.php'?>

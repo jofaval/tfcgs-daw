@@ -1,9 +1,9 @@
 <div class="card-body card-body-cascade text-center mt-3">
-    <form class="" action="/daw/profile/" method="POST">
+    <form class="" action="/daw/profile/change-pass/" method="POST">
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="md-form mb-0">
-                    <input type="password" name="password" id="password" class="form-control validate">
+                    <input type="password" required name="password" id="password" class="form-control validate">
                     <label for="password" data-error="wrong" data-success="right">Contraseña</label>
                 </div>
             </div>
@@ -11,7 +11,8 @@
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="md-form mb-0">
-                    <input type="password" name="repeatPassword" id="repeatPassword" class="form-control validate">
+                    <input type="password" required name="repeatPassword" id="repeatPassword"
+                        class="form-control validate">
                     <label for="repeatPassword" data-error="wrong" data-success="right">Repetir Contraseña</label>
                 </div>
             </div>
