@@ -86,6 +86,12 @@ class View {
         //component.fadeIn();
         component.show();
     }
+
+    scrollTo(element) {
+        $(element).get(0).scrollIntoView({
+            behavior: "smooth"
+        });
+    }
 }
 
 class Controller {
@@ -172,6 +178,28 @@ class Controller {
         content.each(function () {
             var current = $(this);
             controller.eachNavigationElementProcessing(current, levels, controller, navigationScheme, summernoteContentContainer);
+        });
+
+        controller.generateNavigationSchemeEvents(controller);
+    }
+
+    generateNavigationSchemeEvents(controller) {
+        $(".pushMenu .content a").on("click", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
+            console.log("test");
+
+            var aElement = $(this);
+            var elementHref = aElement.prop("href");
+            elementHref = elementHref.substring(elementHref.lastIndexOf("/") + 1);
+            elementHref = elementHref.split(".").join("\\.");
+            var elementScrollTarget = $(elementHref);
+
+            controller.view.scrollTo(elementScrollTarget);
+            hidePushMenu();
+
+            return false;
         });
     }
 
