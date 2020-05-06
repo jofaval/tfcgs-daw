@@ -102,12 +102,12 @@ class ProjectDiaryModification implements CRUD
     public function fill()
     {
         $this->day = Utils::getCleanedData("day");
-        $this->id_project = Utils::getCleanedData("idProject");
-        $this->id_creator = Utils::getCleanedData("idCreator");
-        $this->modification_date = Utils::getCleanedData("modificationDate");
+        $this->id_project = Utils::getCleanedData("id_project");
+        $this->id_creator = Sessions::getInstance()->getSession("userId");
+        $this->modification_date = Utils::getCleanedData("modification_date");
         $this->enabled = Utils::getCleanedData("enabled");
         $this->day = Utils::getCleanedData("day");
-        $this->id_project = Utils::getCleanedData("`idProject");
+        $this->id_project = Utils::getCleanedData("id_project");
     }
 
     public function parse()

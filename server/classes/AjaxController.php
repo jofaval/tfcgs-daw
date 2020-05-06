@@ -576,4 +576,27 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
+    //Function to createProjectDiaryModification
+    public function createProjectDiaryModification()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
+    }
+
+    //Function to updateProjectDiaryModification
+    public function updateProjectDiaryModification()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
+    }
+
+    //Function to queryProjectDiaryModification
+    public function queryProjectDiaryModification()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
+    }
+
+    //Function to deleteProjectDiaryModification
+    public function deleteProjectDiaryModification()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
+    }
 }

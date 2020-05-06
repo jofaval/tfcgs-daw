@@ -534,4 +534,32 @@ class POPOcontroller
 
         return $popoInstance->delete();
     }
+
+    public function createProjectDiaryModification()
+    {
+        $popoInstance = new ProjectDiaryModification();
+
+        return $popoInstance->create();
+    }
+
+    public function updateProjectDiaryModification()
+    {
+        $popoInstance = new ProjectDiaryModification();
+
+        return $popoInstance->update();
+    }
+
+    public function queryProjectDiaryModification()
+    {
+        $popoInstance = new ProjectDiaryModification();
+
+        return $popoInstance->query();
+    }
+
+    public function deleteProjectDiaryModification()
+    {
+        $popoInstance = new ProjectDiaryModification();
+
+        return $popoInstance->delete();
+    }
 }

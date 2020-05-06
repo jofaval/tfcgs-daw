@@ -205,3 +205,11 @@ $map['queryRoles'] = array('controller' => 'AjaxController', 'action' => 'queryR
 $map['deleteRoles'] = array('controller' => 'AjaxController', 'action' => 'deleteRoles', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de getProjectCollaborationRoles
 $map['getProjectCollaborationRoles'] = array('controller' => 'AjaxController', 'action' => 'getProjectCollaborationRoles', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//Ruta de createProjectDiaryModification
+$map['createProjectDiaryModification'] = array('controller' => 'AjaxController', 'action' => 'createProjectDiaryModification', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//Ruta de updateProjectDiaryModification
+$map['updateProjectDiaryModification'] = array('controller' => 'AjaxController', 'action' => 'updateProjectDiaryModification', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//Ruta de queryProjectDiaryModification
+$map['queryProjectDiaryModification'] = array('controller' => 'AjaxController', 'action' => 'queryProjectDiaryModification', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//Ruta de deleteProjectDiaryModification
+$map['deleteProjectDiaryModification'] = array('controller' => 'AjaxController', 'action' => 'deleteProjectDiaryModification', 'access' => Config::$ACCESS_LEVEL_GUEST);
