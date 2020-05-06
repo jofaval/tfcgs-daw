@@ -284,13 +284,19 @@ class Model extends PDO
         ]);
     }
 
-    public function updatePassword($clientId, $password)
+    public function updatePassword($clientId, $password, $oldPassword)
     {
         $sqlUtils = new SQLUtils($this);
 
-        $username = $sqlUtils->query("users", [
+        $currentUserRow = $sqlUtils->query("users", [
             "id_client" => $clientId,
-        ])[0]["username"];
+        ])[0];
+
+        $username = $currentUserRow["username"];
+
+        if ($currentUserRow["password"] != Cryptography::blowfishCrypt($oldPassword, $username)) {
+            return false;
+        }
 
         return $sqlUtils->update("users", [
             "password" => Cryptography::blowfishCrypt($password, $username),

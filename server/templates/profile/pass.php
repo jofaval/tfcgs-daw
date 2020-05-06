@@ -11,6 +11,14 @@
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="md-form mb-0">
+                    <input type="password" required name="oldPassword" id="oldPassword" class="form-control validate">
+                    <label for="oldPassword" data-error="wrong" data-success="right">Contraseña anterior</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="md-form mb-0">
                     <input type="password" required name="repeatPassword" id="repeatPassword"
                         class="form-control validate">
                     <label for="repeatPassword" data-error="wrong" data-success="right">Repetir Contraseña</label>

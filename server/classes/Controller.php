@@ -59,11 +59,12 @@ class Controller
 
                 $result = Model::getInstance()->updateProfile($clientId, $name, $surname, $email, $biography);
             } else if (Utils::exists("updatePassword")) {
+                $oldPassword = Utils::getCleanedData("oldPassword");
                 $password = Utils::getCleanedData("password");
                 $repeatPassword = Utils::getCleanedData("repeatPassword");
 
                 if ($password == $repeatPassword) {
-                    $result = Model::getInstance()->updatePassword($clientId, $password);
+                    $result = Model::getInstance()->updatePassword($clientId, $password, $oldPassword);
                 } else {
                     $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
                 <p class='m-0'>Error: Las contraseñas no coinciden.</p>\n
