@@ -32,6 +32,11 @@ class Controller
         require __DIR__ . '/../classes/one_execution/ExportDatabase-backup.php';
     }
 
+    public function profile()
+    {
+        require_once __DIR__ . "/../templates/profile.php";
+    }
+
     public function project()
     {
         $id = 0;

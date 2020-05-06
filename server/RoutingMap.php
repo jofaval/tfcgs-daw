@@ -213,3 +213,5 @@ $map['updateProjectDiaryModification'] = array('controller' => 'AjaxController',
 $map['queryProjectDiaryModification'] = array('controller' => 'AjaxController', 'action' => 'queryProjectDiaryModification', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de deleteProjectDiaryModification
 $map['deleteProjectDiaryModification'] = array('controller' => 'AjaxController', 'action' => 'deleteProjectDiaryModification', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//profile
+$map['profile'] = array('controller' => 'Controller', 'action' => 'profile', 'access' => Config::$ACCESS_LEVEL_GUEST);
