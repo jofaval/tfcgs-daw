@@ -70,7 +70,7 @@ $breadcrumb = [
                     <div class="btn-group m-0 p-0 w-100">
                         <a href="/daw/profile/" class="btn btn-info shadow-none">Cambiar datos generales</a>
                         <a href="/daw/profile/change-pass/" class="btn btn-info shadow-none">Cambiar contraseña</a>
-                        <a href="" class="btn btn-info shadow-none">Cambiar imagen</a>
+                        <a href="/daw/profile/change-image/" class="btn btn-info shadow-none">Cambiar imagen</a>
                     </div>
                     <?php endif;?>
                     <?php switch ($tabName) {
