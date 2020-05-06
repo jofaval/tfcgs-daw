@@ -58,3 +58,4 @@ RewriteRule ^projects/id/([^/]+)/diary/date/([^/]+)[/]?$ ./index.php?ctl=project
 
 #Profile
 RewriteRule ^profile[/]?$ ./index.php?ctl=profile [L]
+RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]
