@@ -739,7 +739,7 @@ class Controller
         imagettftext($im, $fontSize, 0, $x, $y + 1, $textColor, $font, $text);
 
         imagepng($im);
-        imagepng($im, $savePath, 0, null);
+        imagepng($im, $savePath, 9, null);
         imagedestroy($im);
     }
 
@@ -861,6 +861,29 @@ class Controller
         }
 
         require_once __DIR__ . "/../templates/newRoute.php";
+    }
+
+    public function resizeImage($imageSrc, $targetWidth, $targetHeight)
+    {
+        header('Content-Type: image/png');
+
+        list($ancho, $alto) = getimagesize($imageSrc);
+
+        $thumb = imagecreatetruecolor($targetWidth, $targetHeight);
+        $origen = imagecreatefrompng($imageSrc);
+
+        imagecopyresampled(
+            $thumb, $origen,
+            0, 0,
+            0, 0,
+            $targetWidth, $targetHeight,
+            $ancho, $alto,
+        );
+
+        imagepng($thumb);
+        imagepng($thumb, $imageSrc, 9, null);
+        imagedestroy($im);
+
     }
 
     public function test()
