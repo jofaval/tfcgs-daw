@@ -46,12 +46,12 @@ $breadcrumb = [
 
 </ul>
 <div class="w-100 p-0">
-    <div class="row py-5 projectHeader m-0">
+    <div class="row py-5 projectHeader m-0 pr-sm-5">
         <div class="projectImageContainer">
             <img class="projectImage mx-5" src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
                 alt="" width="200">
         </div>
-        <div class="display-none display-sm-block projectDetails text-white col">
+        <div class="display-none display-sm-block projectDetails bg-dark text-white col">
             <h1 class="projectTitle font-weight-bold"><?php echo $projectData["projectTitle"]; ?></h1>
             <p class="projectCreatedBy mb-2">creado por <a href="<?php echo $projectData["projectCreatorUsername"]; ?>"
                     id="projectCreator"
