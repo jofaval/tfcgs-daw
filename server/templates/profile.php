@@ -1,18 +1,20 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["style.css"];?>
 <?php $optionalScripts = ["js/script.js"];?>
-<?php $title = "Example";?>
+<?php $title = "Perfil";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
 <?php
 $breadcrumb = [
-    ["name" => "Home",
-        "link" => "/daw/index.php?ctl=calendar",
+    [
+        "name" => "Home",
+        "link" => "/daw/",
         "active" => false,
     ],
-    ["name" => "Example",
-        "link" => "/daw/index.php?ctl=admin",
+    [
+        "name" => "Profile",
+        "link" => "/daw/profile/",
         "active" => false,
     ],
 ];
@@ -24,12 +26,12 @@ $breadcrumb = [
     <section class="section">
         <div class="row">
             <div class="col-lg-4 mb-4">
-                <div class="card card-cascade narrower">
+                <div class="card card-cascade narrower shadow-none">
                     <div class="view view-cascade bg-primary lighten-3 shadow mx-3">
                         <h5 class="mb-0 font-weight-bold text-center p-3 text-white">Edit Photo</h5>
                     </div>
-                    <div class="card-body card-body-cascade text-center mt-3">
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="User Photo"
+                    <div class="card-body card-body-cascade text-center">
+                        <img src="/daw/img/users/jofaval2/jofaval2.png" width="200" alt="User Photo"
                             class="z-depth-1 mb-3 mx-auto">
                         <div class="row flex-center">
                             <button class="btn btn-primary btn-rounded btn-sm waves-effect waves-light">Upload New
@@ -40,7 +42,7 @@ $breadcrumb = [
                 </div>
             </div>
             <div class="col-lg-8 mb-4">
-                <div class="card card-cascade narrower">
+                <div class="card card-cascade narrower shadow-none">
                     <div class="view view-cascade bg-primary lighten-3 shadow mx-3">
                         <h5 class="mb-0 font-weight-bold text-center p-3 text-white">Edit Account</h5>
                     </div>
