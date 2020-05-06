@@ -62,6 +62,10 @@ $breadcrumb = [
             </div>
 
             <div class="col-lg-8 mb-4">
+                <?php if (!$viewParams["editable"]): ?>
+                <img class="profileBackgroundImage w-100" height="300"
+                    src="/daw/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png" alt="">
+                <?php endif;?>
                 <div class="card card-cascade narrower shadow-none">
                     <?php if ($viewParams["editable"]): ?>
                     <div class="view view-cascade bg-primary lighten-3 shadow mx-3">
