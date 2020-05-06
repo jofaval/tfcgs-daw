@@ -86,7 +86,7 @@ class Controller
                 <p class='m-0'>No se ha subido la imagen.</p>\n
                 </div>";
                 } else {
-                    resizeImage($profileImage,
+                    $this->resizeImage($profileImage,
                         400, 400);
                     header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
                     header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
@@ -105,7 +105,7 @@ class Controller
                 <p class='m-0'>No se ha subido la imagen.</p>\n
                 </div>";
                 } else {
-                    resizeImage($bgImage,
+                    $this->resizeImage($bgImage,
                         1750, 400);
                     header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
                     header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
