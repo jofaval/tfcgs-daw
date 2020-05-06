@@ -40,13 +40,22 @@ $breadcrumb = [
         <div class="d-none d-sm-block projectDetails bg-dark text-white col">
             <h1 class="projectTitle font-weight-bold">
                 <?php echo $viewParams["profile"]["name"] . " " . $viewParams["profile"]["surname"]; ?></h1>
+
             <p class="projectCreatedBy mb-2"><a id="projectCreator"
                     href="http://<?php echo $viewParams["profile"]["website"]; ?>"
                     class="text-white"><?php echo $viewParams["profile"]["website"]; ?></a></p>
-            <p class="description"><?php echo $viewParams["profile"]["biography"]; ?></p>
-            <a href="/daw/profile/<?php echo $username; ?>/" class="text-white">Ver perfil&nbsp;<span><i
-                        class="fa fa-pencil"></i></span>
-            </a>
+
+            <div class="md-form m-0 p-0">
+                <textarea id="description" disabled="true"
+                    class="md-textarea text-white form-control m-0 p-0 description"
+                    rows="3"><?php echo $viewParams["profile"]["biography"]; ?></textarea>
+            </div>
+
+            <a href="/daw/profile/<?php echo $username; ?>/" class="text-white">
+                <span><i class="fa fa-eye"></i></span>&nbsp;Ver perfil</a>
+            &nbsp;
+            <a href="/daw/profile/" class="text-white">
+                <span><i class="fa fa-pencil"></i></span>&nbsp;Editar perfil </a>
         </div>
     </div>
     <div
