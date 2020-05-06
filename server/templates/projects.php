@@ -26,13 +26,13 @@ $breadcrumb = [
 <?php $username = $sessions->getSession("username");?>
 
 <?php ob_start()?>
-<div class=" p-0">
+<div class="w-100 p-0">
     <div class="row py-5 m-0 projectHeader pr-sm-5">
         <div class="projectImageContainer mx-auto mx-sm-0">
             <img class="projectImage mx-sm-5" src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
                 alt="" width="200">
         </div>
-        <div class="display-none display-sm-block projectDetails bg-dark text-white col">
+        <div class="d-none d-sm-block projectDetails bg-dark text-white col">
             <h1 class="projectTitle font-weight-bold">Origen</h1>
             <p class="projectCreatedBy mb-2">creado por <a id="projectCreator" class="font-weight-bold">Pepe Fabra
                     Valverde</a></p>
