@@ -67,7 +67,7 @@ $breadcrumb = [
                     <div class="view view-cascade bg-primary lighten-3 shadow mx-3">
                         <h5 class="mb-0 font-weight-bold text-center p-3 text-white">Editar Cuenta</h5>
                     </div>
-                    <div class="row btn-group m-0 p-0 w-100">
+                    <div class="btn-group m-0 p-0 w-100">
                         <a href="/daw/profile/" class="btn btn-info shadow-none">Cambiar datos generales</a>
                         <a href="/daw/profile/change-pass/" class="btn btn-info shadow-none">Cambiar contraseña</a>
                         <a href="" class="btn btn-info shadow-none">Cambiar imagen</a>
