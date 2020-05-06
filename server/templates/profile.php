@@ -42,9 +42,11 @@ $breadcrumb = [
                         <?php if ($viewParams["editable"]): ?>
                         <div class="row flex-center">
                             <a href="/daw/profile/change-image/"
-                                class="btn btn-primary btn-rounded btn-sm waves-effect waves-light">Subir
+                                class="btn btn-primary btn-rounded btn-sm waves-effect waves-light"><span><i
+                                        class="fa fa-upload"></i></span> Subir
                                 foto</a><br>
-                            <button class="btn btn-danger btn-rounded btn-sm waves-effect waves-light">Eliminar</button>
+                            <button class="btn btn-danger btn-rounded btn-sm waves-effect waves-light"><span><i
+                                        class="fa fa-trash"></i></span> Eliminar</button>
                         </div>
                         <?php endif;?>
                     </div>
@@ -54,8 +56,11 @@ $breadcrumb = [
                     <div class="row flex-center my-3">
                         <!-- <button class="btn btn-danger btn-rounded waves-effect waves-light">Deshabilitar
                             cuenta</button> -->
-                        <a href="/daw/signout/" class="btn btn-danger btn-rounded waves-effect waves-light">Cerrar
-                            sesión</a>
+                        <a href="/daw/signout/" class="btn btn-danger btn-rounded waves-effect waves-light">
+                            <span><i class="fa fa-sign-out"></i></span> Cerrar sesión</a>
+                        <a href="/daw/signout/" class="btn btn-primary btn-rounded waves-effect waves-light"><span><i
+                                    class="fa fa-eye"></i></span> Ver
+                            público</a>
                     </div>
                 </div>
                 <?php endif;?>
