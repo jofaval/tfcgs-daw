@@ -39,12 +39,24 @@ class Controller
         ];
 
         $username = Utils::getCleanedData("username");
-        $clientId = Sessions::getInstance()->getSession("userId");
+        $userId = Sessions::getInstance()->getSession("userId");
+        $clientId = $userId;
 
         if ($username == "") {
             $viewParams["editable"] = true;
         } else {
             $clientId = $this->getClientIdFromUsername($username);
+        }
+
+        if ($userId == $clientId) {
+            if (Utils::exists("updateProfile")) {
+                $name = Utils::getCleanedData("name");
+                $surname = Utils::getCleanedData("surname");
+                $email = Utils::getCleanedData("email");
+                $biography = Utils::getCleanedData("biography");
+
+                $result = Model::getInstance()->updateProfile($clientId, $name, $surname, $email, $biography);
+            }
         }
 
         $viewParams["profile"] = Model::getInstance()->getProfileInformation(
