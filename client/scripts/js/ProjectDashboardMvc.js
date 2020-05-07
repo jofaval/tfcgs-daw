@@ -14,12 +14,12 @@ var $dashboardCard = $(`
         class="row dashboardCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
         <a href="" class="btn btn-sm btn-primary dashboardCardBtnView">View</a>
         <!--div class="btn btn-sm btn-danger dashboardCardBtnDisable">Disable dashboard</div-->
-        <h5 class="dashboardCardTitle m-0 font-weight-bold">Dashboard title</h5>
+        <h5 class="dashboardCardTitle max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Dashboard title</h5>
         <div class="dashboardCardBookmarkedIcon"></div>
         <div class="dashboardCardFlags float-right btn-group"></div>
     </div>
     <a href="" class="dashboardReadMore">Read more...</a>
-    <div class="dashboardCardDescription text-justify my-2"></div>
+    <div class="dashboardCardDescription max-text-20 text-overflow-ellipsis overflow-hidden text-justify my-2"></div>
 </div>`);
 
 class Model {

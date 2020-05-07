@@ -14,12 +14,12 @@ var $projectCard = $(`
         class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
         <a href="" class="btn btn-sm btn-primary projectCardBtnView">View</a>
         <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
-        <h5 class="projectCardTitle m-0 font-weight-bold">Project title</h5>
+        <h5 class="projectCardTitle max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Project title</h5>
         <div class="projectCardBookmarkedIcon"></div>
         <div class="projectCardFlags float-right btn-group"></div>
     </div>
     <a href="" class="projectReadMore p-2 bg-white">Read more...</a>
-    <div class="projectCardDescription text-justify my-2"></div>
+    <div class="projectCardDescription max-text-20 text-overflow-ellipsis overflow-hidden text-justify my-2"></div>
 </div>`);
 
 class Model {
