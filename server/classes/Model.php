@@ -340,4 +340,24 @@ class Model extends PDO
             "id" => $id,
         ]);
     }
+
+    public function getProjectNumbers($id_project)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $finalArray = [];
+
+        $numberOfDashboards = $sqlUtils->complexQuery("SELECT COUNT(title) as 'numberOfDashboards' FROM dashboards
+        WHERE id_project = :id_project", ["id_project" => $id_project]);
+
+        $finalArray = array_merge($finalArray, $numberOfDashboards);
+
+        $numberOfCollaborators = $sqlUtils->complexQuery("SELECT COUNT(id_project) as 'numberOfCollaborators' FROM collaborators
+        WHERE id_project = :id_project
+        ", ["id_project" => $id_project]);
+
+        $finalArray = array_merge($finalArray, $numberOfCollaborators);
+
+        return $finalArray;
+    }
 }
