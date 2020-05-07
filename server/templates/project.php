@@ -53,8 +53,8 @@ $breadcrumb = [
     </style>
     <div class="row py-5 projectHeader m-0 pr-sm-5">
         <div class="projectImageContainer mx-auto mx-sm-0">
-            <img class="projectImage mx-sm-5" src="/daw/img/projects/<?php echo $viewParams["id"]; ?>/profile.png"
-                alt="" width="200">
+            <img class="projectImage mx-sm-5 shadow"
+                src="/daw/img/projects/<?php echo $viewParams["id"]; ?>/profile.png" alt="" width="200" height="200">
         </div>
         <div class="d-none d-sm-block projectDetails bg-dark rounded text-white col">
             <h1 class="projectTitle font-weight-bold"><?php echo $projectData["projectTitle"]; ?></h1>

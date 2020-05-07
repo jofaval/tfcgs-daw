@@ -33,9 +33,9 @@ $breadcrumb = [
             background-image: url("/daw/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png") !important;
         }
         </style>
-        <div class="projectImageContainer mx-auto mx-sm-0">
+        <div class="projectImageContainer mx-auto shadow mx-sm-0">
             <img class="projectImage mx-sm-5" src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
-                alt="" width="200">
+                alt="" width="200" height="200">
         </div>
         <div class="d-none d-sm-block projectDetails bg-dark rounded text-white col">
             <h1 class="projectTitle font-weight-bold">
