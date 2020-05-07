@@ -38,7 +38,7 @@ class Validation
             return $this;
         }
         foreach ($rule as $key => $rules) {
-            $reglas = explode(',', $rules['regla']);
+            $reglas = explode(',', $rules['rules']);
             if (array_key_exists($rules['name'], $data)) {
                 foreach ($data as $indice => $valor) {
                     if ($indice === $rules['name']) {
