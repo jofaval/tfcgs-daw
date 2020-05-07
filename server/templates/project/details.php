@@ -1,26 +1,29 @@
 <?php $projectData = $viewParams["projectData"];?>
+<?php $canEdit = Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN;?>
 <div class="w-100 h-100 tabContent container p-0 d-block" id="tabContent5">
     <div class="content px-5">
-        <form action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/">
+        <form method="POST" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/">
             <div class="text-white mt-5 h5">Project title</div>
             <div class="md-form mb-5">
-                <input class="form-control text-white font-weight-bold h3" disabled="" name="projectTitle"
-                    id="projectTitle" value="<?php echo $projectData["projectTitle"]; ?>" />
+                <input class="form-control text-white font-weight-bold h3" <?php echo !$canEdit ? 'disabled=""' : ''; ?>
+                    name="projectTitle" id="projectTitle" value="<?php echo $projectData["projectTitle"]; ?>" />
                 <label for="projectTitle"></label>
             </div>
             <div class="text-white h5">Project description</div>
             <div class="md-form mb-5 mt-0">
-                <textarea id="form7" class="md-textarea form-control text-white p-0" disabled
+                <textarea id="projectDescription" name="projectDescription"
+                    class="md-textarea form-control text-white p-0" <?php echo !$canEdit ? 'disabled=""' : ''; ?>
                     rows="3"><?php echo $projectData["projectDescription"]; ?></textarea>
-                <label for="form7" class="d-none">Material textarea</label>
+                <label for="projectDescription" class="d-none">Material textarea</label>
             </div>
-            <?php if (Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN): ?>
+            <?php if ($canEdit): ?>
             <div class="row mx-auto flex-center">
-                <button class="btn btn-primary" name="changeProjectDetails" type="submit">Cambiar detalles</button>
+                <button class="btn btn-primary" name="changeProjectDetails" value="true" type="submit">Cambiar
+                    detalles</button>
             </div>
             <?php endif;?>
         </form>
-        <?php if (Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN): ?>
+        <?php if ($canEdit): ?>
         <form class="" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/" method="POST"
             enctype="multipart/form-data">
             <h1 class="text-left text-white">Imagen de perfil</h1>

@@ -328,4 +328,16 @@ class Model extends PDO
             "id_client" => $clientId,
         ]);
     }
+
+    public function updateProjectDetails($id, $title, $description)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        return $sqlUtils->update("projects", [
+            "title" => $title,
+            "description" => $description,
+        ], [
+            "id" => $id,
+        ]);
+    }
 }

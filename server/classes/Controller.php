@@ -164,7 +164,18 @@ class Controller
                 ),
             );
 
-            if (Utils::exists("changeProjectProfileImage")) {
+            if (Utils::exists("changeProjectDetails")) {
+                $title = Utils::getCleanedData("projectTitle");
+                $description = Utils::getCleanedData("projectDescription");
+
+                $result = Model::getInstance()->updateProjectDetails($id, $title, $description);
+
+                if ($result === false) {
+                    $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>No se ha subido la imagen.</p>\n
+                </div>";
+                }
+            } else if (Utils::exists("changeProjectProfileImage")) {
                 $errors = [];
                 $profileImage = FileUtils::validateFile("profileImage", __DIR__ . "/../../client/img/projects/$id/", "profile", $errors);
 
