@@ -22,32 +22,104 @@
         <div class="col-sm p-0">
             <?php $actionGroups = [
     "Tablero" => [
-        ["name" => "Añadir tablero", "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/", "icon" => "plus", "id" => "AddDashboard", "color" => "blue"],
-        ["name" => "Ver tablero", "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/", "icon" => "eye", "id" => "ViewDashboard", "color" => "blue"],
-        ["name" => "Ver tareas asignadas", "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/", "icon" => "tasks", "id" => "DashboardTasks", "color" => "blue"],
+        "access" => Config::$ACCESS_LEVEL_GUEST,
+        "actions" => [
+            [
+                "name" => "Añadir tablero",
+                "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+                "icon" => "plus",
+                "id" => "AddDashboard",
+                "color" => "blue",
+                "access" => Config::$ACCESS_LEVEL_ADMIN,
+            ],
+            [
+                "name" => "Ver tablero",
+                "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+                "icon" => "eye",
+                "id" => "ViewDashboard",
+                "color" => "blue",
+                "access" => Config::$ACCESS_LEVEL_GUEST,
+            ],
+            [
+                "name" => "Ver tareas asignadas",
+                "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+                "icon" => "tasks",
+                "id" => "DashboardTasks",
+                "color" => "blue",
+                "access" => Config::$ACCESS_LEVEL_GUEST,
+            ]],
     ],
     "Diario" => [
-        ["name" => "Ver diario de hoy", "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/date/" . $viewParams["diaryDate"] . "/",
-            "icon" => "calendar-check-o", "id" => "TodayDiary", "color" => "green"],
-        ["name" => "Ir a selección de fecha", "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/", "icon" => "calendar", "id" => "Diary", "color" => "green"],
+        "access" => Config::$ACCESS_LEVEL_GUEST,
+        "actions" => [
+            [
+                "name" => "Ver diario de hoy",
+                "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/date/" . $viewParams["diaryDate"] . "/",
+                "icon" => "calendar-check-o",
+                "id" => "TodayDiary",
+                "color" => "green",
+                "access" => Config::$ACCESS_LEVEL_GUEST,
+            ],
+            [
+                "name" => "Ir a selección de fecha",
+                "link" => "/daw/projects/id/" . $viewParams["id"] . "/diary/",
+                "icon" => "calendar",
+                "id" => "Diary",
+                "color" => "green",
+                "access" => Config::$ACCESS_LEVEL_GUEST,
+            ]],
     ],
     "Proyecto" => [
-        ["name" => "Añadir colaborador", "link" => "", "icon" => "user-plus", "id" => "AddCollaborator", "color" =>
-            "red"],
-        ["name" => "Eliminar colaborador", "link" => "", "icon" => "user-times", "id" => "RemoveCollaborator",
-            "color" => "red"],
-        ["name" => "Cambiar rol colaborador", "link" => "", "icon" => "user-secret", "id" =>
-            "ChangeRoleCollaborator", "color" => "red"],
-        ["name" => "Eliminar proyecto", "link" => "", "icon" => "times", "id" => "DeleteProject", "color" => "red"],
-    ],
+        "access" => Config::$ACCESS_LEVEL_ADMIN,
+        "actions" => [
+            [
+                "name" => "Añadir colaborador",
+                "link" => "",
+                "icon" => "user-plus",
+                "id" => "AddCollaborator",
+                "color" =>
+                "red",
+                "access" => Config::$ACCESS_LEVEL_USER,
+            ],
+            [
+                "name" => "Eliminar colaborador",
+                "link" => "",
+                "icon" => "user-times",
+                "id" => "RemoveCollaborator",
+                "color" => "red",
+                "access" => Config::$ACCESS_LEVEL_ADMIN,
+            ],
+            [
+                "name" => "Cambiar rol colaborador",
+                "link" => "",
+                "icon" => "user-secret",
+                "id" =>
+                "ChangeRoleCollaborator",
+                "color" => "red",
+                "access" => Config::$ACCESS_LEVEL_ADMIN,
+            ],
+            [
+                "name" => "Eliminar proyecto",
+                "link" => "",
+                "icon" => "times",
+                "id" => "DeleteProject",
+                "color" => "red",
+                "access" => Config::$ACCESS_LEVEL_ADMIN,
+            ],
+        ]],
 ];
 
-foreach ($actionGroups as $actionGroupTitle => $actionGroup) {
+$userAccessLevel = Sessions::getInstance()->getSession("access");
+
+foreach ($actionGroups as $actionGroupTitle => $actionGroupDetails):
+    if ($userAccessLevel < $actionGroupDetails["access"]): continue;endif;
     ?> <div class="actionsGroup my-3">
                 <h4 class="actionsTitle text-white"><?php echo $actionGroupTitle; ?></h4>
                 <div class="actionsButton d-flex justify-content-space-between flex-wrap">
                     <?php
-foreach ($actionGroup as $action) {
+    $actionGroup = $actionGroupDetails["actions"];
+    foreach ($actionGroup as $action):
+        if ($userAccessLevel >= $action["access"]):
         ?>
                     <a href="<?php echo $action["link"]; ?>"
                         class="action cursor-pointer <?php echo $action["color"]; ?> m-2"
@@ -60,11 +132,12 @@ foreach ($actionGroup as $action) {
                         </div>
                     </a>
                     <?php
-}
-    ?>
+    endif;
+endforeach;
+?>
                 </div>
             </div> <?php
-}
+endforeach;
 ?>
         </div>
         <div class="col-sm p-0 mx-3 mx-sm-0">
