@@ -164,6 +164,48 @@ class Controller
                 ),
             );
 
+            if (Utils::exists("changeProjectProfileImage")) {
+                $errors = [];
+                $profileImage = FileUtils::validateFile("profileImage", __DIR__ . "/../../client/img/projects/$id/", "profile", $errors);
+
+                if ($profileImage === false) {
+                    $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>No se ha subido la imagen.</p>\n
+                </div>";
+                } else {
+                    $this->resizeImage($profileImage,
+                        400, 400);
+                    header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+                    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+                    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+                    header("Cache-Control: post-check=0, pre-check=0", false);
+                    header("Pragma: no-cache");
+                    clearstatcache(true);
+                }
+            } else if (Utils::exists("changeProjectBGImage")) {
+                $errors = [];
+                $bgImage = FileUtils::validateFile("bgImage", __DIR__ . "/../../client/img/projects/$id/", "bg", $errors);
+
+                var_dump($bgImage);
+
+                return $bgImage;
+
+                if ($bgImage === false) {
+                    $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>No se ha subido la imagen.</p>\n
+                </div>";
+                } else {
+                    $this->resizeImage($profileImage,
+                        400, 400);
+                    header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+                    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+                    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+                    header("Cache-Control: post-check=0, pre-check=0", false);
+                    header("Pragma: no-cache");
+                    clearstatcache(true);
+                }
+            }
+
             $isValid = $validation->rules($regla, ["id" => $id]);
             if ($isValid !== true) {
                 header("Location: /daw/projects/");

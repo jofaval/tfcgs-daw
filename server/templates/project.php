@@ -48,7 +48,7 @@ $breadcrumb = [
 <div class="w-100 p-0">
     <style>
     .projectHeader {
-        background-image: url("/daw/img/projects/<?php echo $viewParams["id"]; ?>/profile.png") !important;
+        background-image: url("/daw/img/projects/<?php echo $viewParams["id"]; ?>/bg.png") !important;
     }
     </style>
     <div class="row py-5 projectHeader m-0 pr-sm-5">

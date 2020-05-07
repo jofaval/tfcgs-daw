@@ -23,7 +23,7 @@
         <?php if (Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN): ?>
         <form class="" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/" method="POST"
             enctype="multipart/form-data">
-            <h1 class="text-left text-white">Imagen de fondo</h1>
+            <h1 class="text-left text-white">Imagen de perfil</h1>
             <div class="row">
                 <div class="col-md-6 mx-auto">
                     <div class="input-group">
@@ -39,7 +39,9 @@
                 </div>
             </div>
             <div class="row mx-auto flex-center">
-                <button class="btn btn-primary" name="changeProjectProfileImage" type="submit">Cambiar imagen</button>
+                <button class="btn btn-primary" name="changeProjectProfileImage" type="submit"><span><i
+                            class="fa fa-upload"></i></span> Cambiar imagen de
+                    perfil</button>
             </div>
         </form>
         <form class="" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/" method="POST"
@@ -60,7 +62,9 @@
                 </div>
             </div>
             <div class="row mx-auto flex-center">
-                <button class="btn btn-primary" name="changeProjectBGImage" type="submit">Cambiar imagen</button>
+                <button class="btn btn-primary" name="changeProjectBGImage" type="submit"><span><i
+                            class="fa fa-upload"></i></span> Cambiar imagen de
+                    fondo</button>
             </div>
         </form>
         <?php endif;?>
