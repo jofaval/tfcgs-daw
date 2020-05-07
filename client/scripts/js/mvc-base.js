@@ -4,7 +4,7 @@ var $collaboratorCard = $(`<div class="collaboratorCard rounded row col-12 col-s
         <p class="collaboratorUsername m-0 font-weight-bold">Administrator</p>
         <h5 class="collaboratorName m-0">Pepe Fabra Valverde</h5>
         <p class="collaboratorRole m-0 informationText font-weight-bold">Administrator</p>
-        <div class="informationTextQuote collaboratorRoleDescription text-white p-3 position-absolute rounded z-index-overlap"></div>
+        <div class="informationTextQuote text-left collaboratorRoleDescription text-white p-3 position-absolute rounded z-index-overlap"></div>
     </div>
     <div class="collaboratorProfileBtn btn btn-sm btn-primary align-self-center float-right">See profile
     </div>

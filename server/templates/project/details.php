@@ -18,7 +18,7 @@
                     class="projectCreationDate"><?php echo $projectData["collaborationStartingDate"]; ?></span> como
                 <span
                     class="projectCreationRole informationText font-weight-bold"><?php echo $projectData["collaborationRole"]; ?></span>
-                <div class="informationTextQuote text-white p-3 position-absolute rounded">
+                <div class="informationTextQuote text-left text-white p-3 position-absolute rounded">
                     <?php echo $projectData["collaborationRoleDescription"]; ?>
                 </div>
             </div>
