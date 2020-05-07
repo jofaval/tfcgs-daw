@@ -53,6 +53,7 @@ class Controller
         } else {
             $clientId = $this->getClientIdFromUsername($username);
         }
+        $username = $this->getUsernameFromClientId($clientId);
 
         $result = true;
 
@@ -77,7 +78,6 @@ class Controller
                 </div>";
                 }
             } else if (Utils::exists("updateProfileImage")) {
-                $username = $this->getUsernameFromClientId($clientId);
                 $errors = [];
                 $profileImage = FileUtils::validateFile("profileImage", __DIR__ . "/../../client/img/users/$username/", $username, $errors);
 

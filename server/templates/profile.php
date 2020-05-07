@@ -58,7 +58,7 @@ $breadcrumb = [
                             cuenta</button> -->
                         <a href="/daw/signout/" class="btn btn-danger btn-rounded waves-effect waves-light">
                             <span><i class="fa fa-sign-out"></i></span> Cerrar sesión</a>
-                        <a href="/daw/profile/<?php echo Sessions::getInstance()->getSession("username"); ?>/"
+                        <a href="/daw/profile/<?php echo $username ?>/"
                             class="btn btn-primary btn-rounded waves-effect waves-light"><span><i
                                     class="fa fa-eye"></i></span> Ver
                             público</a>
