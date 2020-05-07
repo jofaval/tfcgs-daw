@@ -367,6 +367,9 @@ class Controller
             $errors = [];
 
             $bgImage = FileUtils::validateFile("bgImage", $this->img_path . "/projects/$id/dashboards/$dashboard_title/", "bg", $errors);
+            if ($bgImage !== false) {
+                $this->resizeImage($bgImage, 1920, 1080);
+            }
         }
 
         return "tasks/change-image";
@@ -982,10 +985,30 @@ class Controller
     {
         header('Content-Type: image/png');
 
+        $mime = mime_content_type($imageSrc);
         list($ancho, $alto) = getimagesize($imageSrc);
 
         $thumb = imagecreatetruecolor($targetWidth, $targetHeight);
-        $origen = imagecreatefrompng($imageSrc);
+
+        $origen = null;
+        switch ($mime) {
+            case 'image/png':
+                $origen = imagecreatefrompng($imageSrc);
+                break;
+            case 'image/jpeg':
+                $origen = imagecreatefromjpeg($imageSrc);
+                break;
+            case 'image/jpg':
+                $origen = imagecreatefromjpg($imageSrc);
+                break;
+            case 'image/gif':
+                $origen = imagecreatefromgif($imageSrc);
+                break;
+        }
+
+        if (is_null($origen)) {
+            return;
+        }
 
         imagecopyresampled(
             $thumb, $origen,
@@ -999,6 +1022,7 @@ class Controller
         imagepng($thumb, $imageSrc, 9, null);
         imagedestroy($im);
 
+        header("Location: ./");
     }
 
     public function test()
