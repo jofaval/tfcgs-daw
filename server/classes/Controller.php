@@ -538,7 +538,7 @@ class Controller
     public function getClientIdFromUsername($username)
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
-        $username = Utils::getCleanedData("username");
+        //$username = Utils::getCleanedData("username");
 
         return $sqlUtils->query("users", ["username" => $username])[0]["id_client"];
     }
