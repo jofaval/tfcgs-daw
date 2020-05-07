@@ -1,6 +1,6 @@
 <?php
 
-class DashboardsItemAssignation implements CRUD 
+class DashboardsItemAssignation implements CRUD
 {
     private $table = "dashboards_item_assignation";
 
@@ -17,25 +17,37 @@ class DashboardsItemAssignation implements CRUD
     //Foreign Keys
     private $assigned_to;
 
-public function __construct()
-                    {
-                    $this->fill();
-                    }
+    public function __construct()
+    {
+        $this->fill();
+    }
+
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
+        $creationTime = DateUtils::getCurrentDateTime();
         $params = [
-            "id" => $this->id,
             "id_dashboard_item" => $this->id_dashboard_item,
             "assigned_by" => $this->assigned_by,
             "start_date" => $this->start_date,
             "end_date" => $this->end_date,
-            "creation_date" => $this->creation_date,
+            "creation_date" => $creationTime,
             "assigned_to" => $this->assigned_to,
         ];
 
-        return $sqlUtils->insert($params);
+        $result = $sqlUtils->insert($this->table, $params);
+
+        if ($result) {
+            return $sqlUtils->query($this->table, [
+                "id_dashboard_item" => $this->id_dashboard_item,
+                "assigned_by" => $this->assigned_by,
+                "creation_date" => $creationTime,
+                "assigned_to" => $this->assigned_to,
+            ])[0];
+        }
+
+        return $result;
     }
 
     public function update()
@@ -91,18 +103,16 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
-        $this->id_dashboard_item = Utils::getCleanedData("idDashboardItem");
-        $this->assigned_by = Utils::getCleanedData("assignedBy");
-        $this->start_date = Utils::getCleanedData("startDate");
-        $this->end_date = Utils::getCleanedData("endDate");
-        $this->creation_date = Utils::getCleanedData("creationDate");
-        $this->assigned_to = Utils::getCleanedData("assignedTo");
+        $this->id_dashboard_item = Utils::getCleanedData("id_dashboard_item");
+        $this->assigned_by = Sessions::getInstance()->getSession("userId");
+        $this->start_date = Utils::getCleanedData("start_date");
+        $this->end_date = Utils::getCleanedData("end_date");
+        $this->creation_date = Utils::getCleanedData("creation_date");
+        $this->assigned_to = Utils::getCleanedData("assigned_to");
     }
-
 
     public function parse()
     {
@@ -116,6 +126,4 @@ public function __construct()
             "assignedTo" => $this->assigned_to,
         ]);
     }
-} 
-
-
+}

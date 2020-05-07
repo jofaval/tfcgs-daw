@@ -603,24 +603,32 @@ class AjaxController
     //Function to createDashboardsItemAssignation
     public function createDashboardsItemAssignation()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_dashboard_item", "start_date", "end_date", "creation_date", "assigned_to"]);
+        $controller = new Controller();
+        $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "start_date", "end_date", "assigned_to"]);
     }
 
     //Function to updateDashboardsItemAssignation
     public function updateDashboardsItemAssignation()
     {
+        $controller = new Controller();
+        $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
         $this->genericAjaxReturn(__FUNCTION__, ["id", "id_dashboard_item", "start_date", "end_date", "creation_date", "assigned_to"]);
     }
 
     //Function to queryDashboardsItemAssignation
     public function queryDashboardsItemAssignation()
     {
+        $controller = new Controller();
+        $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
         $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to deleteDashboardsItemAssignation
     public function deleteDashboardsItemAssignation()
     {
+        $controller = new Controller();
+        $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
         $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 }
