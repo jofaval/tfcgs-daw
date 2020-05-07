@@ -1,14 +1,19 @@
+<?php
+$modelInstance = Model::getInstance();
+$projectNumbers = $modelInstance->getProjectNumbers($viewParams["id"]);
+?>
+
 <div class="w-100 h-100 tabContent container-fluid p-0 p-sm-3 d-block" id="tabContent1">
     <div class="w-100 display-none display-sm-block p-2 text-white d-flex justify-content-start">
         <div class="collaborators mx-2">
-            <span id="numberOfCollaborators">24</span>
+            <span id="numberOfCollaborators"><?php echo $projectNumbers["numberOfCollaborators"]; ?></span>
             <span class="font-weight-bold">
-                <a class=""><i class="fa fa-lg fa-user"></i></a>
-                <span class="d-none d-sm-inline-block">colaborador(s)</span>
+                <a class=""><i class="fa fa-lg fa-users"></i></a>
+                <span class="d-none d-sm-inline-block">colaborador(es)</span>
             </span>
         </div>
         <div class="dashboards mx-2">
-            <span id="numberOfDashboards">24</span>
+            <span id="numberOfDashboards"><?php echo $projectNumbers["numberOfDashboards"]; ?></span>
             <span class="font-weight-bold">
                 <a class=""><i class="fa fa-lg fa-columns"></i></a>
                 <span class="d-none d-sm-inline-block">tablero(s)</span>

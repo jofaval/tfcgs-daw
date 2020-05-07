@@ -348,13 +348,13 @@ class Model extends PDO
         $finalArray = [];
 
         $numberOfDashboards = $sqlUtils->complexQuery("SELECT COUNT(title) as 'numberOfDashboards' FROM dashboards
-        WHERE id_project = :id_project", ["id_project" => $id_project]);
+        WHERE id_project = :id_project", ["id_project" => $id_project])[0];
 
         $finalArray = array_merge($finalArray, $numberOfDashboards);
 
         $numberOfCollaborators = $sqlUtils->complexQuery("SELECT COUNT(id_project) as 'numberOfCollaborators' FROM collaborators
         WHERE id_project = :id_project
-        ", ["id_project" => $id_project]);
+        ", ["id_project" => $id_project])[0];
 
         $finalArray = array_merge($finalArray, $numberOfCollaborators);
 
