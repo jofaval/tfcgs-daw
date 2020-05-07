@@ -303,25 +303,35 @@
 
 .max-text-10 {
     max-width: 10ch !important;
+    min-width: 2.5ch !important;
     max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
 }
 
 .max-text-20 {
     max-width: 20ch !important;
+    min-width: 2.5ch !important;
     max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
 }
 
 .max-text-30 {
     max-width: 30ch !important;
+    min-width: 2.5ch !important;
     max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
 }
 
 .max-text-40 {
     max-width: 40ch !important;
+    min-width: 2.5ch !important;
     max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
 }
 
 .max-text-50 {
     max-width: 50ch !important;
+    min-width: 2.5ch !important;
     max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
 }
