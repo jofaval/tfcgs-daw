@@ -430,7 +430,7 @@ class Controller {
     moveScrollWithMouse(increment = 5) {
         var originalPosition;
         var scrollID = 0;
-        var main = $("main");
+        var main = $(".listContainer");
         main.on("mousedown", function (event) {
             var event = event || window.event;
             mousedown = true;
