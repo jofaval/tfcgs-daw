@@ -1,4 +1,4 @@
-var $taskListsContainer = $(`<div class="d-flex justify-content-start mx-1 mx-sm-1 listContainer"></div>`);
+var $taskListsContainer = $(`<div class="d-flex overflow-scroll w-100 h-100 justify-content-start mx-1 mx-sm-1 listContainer"></div>`);
 
 var $taskList = $(`
 <div class="taskListContainer mx-1">
@@ -254,7 +254,7 @@ class View {
     initializeView(parent) {
         parent.append($taskListsContainer);
 
-        $("#content").addClass("pt-2");
+        $("#content").addClass("pt-2 h-100");
         this.visualizeTaskListCreation($taskListsContainer);
     }
 
