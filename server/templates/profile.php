@@ -45,8 +45,12 @@ $breadcrumb = [
                                 class="btn btn-primary btn-rounded btn-sm waves-effect waves-light"><span><i
                                         class="fa fa-upload"></i></span> Subir
                                 foto</a><br>
-                            <button class="btn btn-danger btn-rounded btn-sm waves-effect waves-light"><span><i
-                                        class="fa fa-trash"></i></span> Eliminar</button>
+                            <a href="/daw/profile/reset-profile-image/"
+                                class="btn btn-danger btn-rounded btn-sm waves-effect waves-light"><span><i
+                                        class="fa fa-trash"></i></span> Eliminar imagen de perfil</a>
+                            <a href="/daw/profile/reset-background-image/"
+                                class="btn btn-danger btn-rounded btn-sm waves-effect waves-light"><span><i
+                                        class="fa fa-trash"></i></span> Eliminar imagen de fondo</a>
                         </div>
                         <?php endif;?>
                     </div>
@@ -66,7 +70,6 @@ $breadcrumb = [
                 </div>
                 <?php endif;?>
             </div>
-
             <div class="col-lg-8 mb-4">
                 <form action="/daw/profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
                     <div class="input-group md-form form-sm form-2 pl-0">
