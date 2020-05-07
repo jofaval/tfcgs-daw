@@ -32,7 +32,7 @@ class Model {
             url: "/daw/index.php?ctl=getCollaboratorsOfProject",
             data: {
                 "id_project": model.projectId,
-                "limit": 4,
+                "limit": 3,
             },
             success: function (collaborators) {
                 model.collaborators = collaborators;
@@ -589,7 +589,7 @@ class Controller {
     getCollaboratorRow(controller, container) {
         var collaboratorPage = controller.getCollaboratorPage(controller, container);
         var collaboratorRow = collaboratorPage.find(".collaboratorCardRow ");
-        if (collaboratorPage.find(".collaboratorCardRow").length == 0 || (collaboratorRow.last().find(".collaboratorCard").length >= 2)) {
+        if (collaboratorPage.find(".collaboratorCardRow").length == 0 || (collaboratorRow.last().find(".collaboratorCard").length >= 1)) {
             collaboratorRow = controller.view.visualizeCollaboratorRow(collaboratorPage);
             //console.log(collaboratorRow);
         } else {
