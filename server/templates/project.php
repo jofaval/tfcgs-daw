@@ -56,13 +56,19 @@ $breadcrumb = [
             <img class="projectImage mx-sm-5" src="/daw/img/projects/<?php echo $viewParams["id"]; ?>/profile.png"
                 alt="" width="200">
         </div>
-        <div class="d-none d-sm-block projectDetails bg-dark text-white col">
+        <div class="d-none d-sm-block projectDetails bg-dark rounded text-white col">
             <h1 class="projectTitle font-weight-bold"><?php echo $projectData["projectTitle"]; ?></h1>
-            <p class="projectCreatedBy mb-2">creado por <a href="<?php echo $projectData["projectCreatorUsername"]; ?>"
-                    id="projectCreator"
+            <p class="projectCreatedBy mb-2">creado por <a
+                    href="/daw/profile/<?php echo $projectData["projectCreatorUsername"]; ?>/" id="projectCreator"
                     class="font-weight-bold text-white"><?php echo $projectData["projectCreator"]; ?></a></p>
-            <p class="description"><?php echo $projectData["projectDescription"]; ?></p>
-            <a href="" class="">
+
+            <div class="md-form m-0 p-0">
+                <textarea id="description" disabled="true"
+                    class="md-textarea text-white form-control m-0 p-0 description"
+                    rows="3"><?php echo $projectData["projectDescription"]; ?></textarea>
+            </div>
+
+            <a href="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/" class="">
                 Change project information...<span><i class="fa fa-pencil"></i></span>
             </a>
         </div>
