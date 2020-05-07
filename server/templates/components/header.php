@@ -34,12 +34,14 @@ $header = [
         <span class="navbar-toggler-icon" style="transition: all 0.2s ease-in-out 0s;"></span>
     </button>
 
-    <img class="navbar-brand rounded-circle mr-2" width="45"
-        src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png<?php /* echo $sessions->getSession("userImg"); */?>">
-    <small class="text-muted"><span class="font-weight-bold"><?php echo $username ?></span>
-        <br>
-        <?php echo $sessions->getSession("roleName"); ?>
-    </small>
+    <a href="/daw/profile/">
+        <img class="navbar-brand rounded-circle mr-2" width="45"
+            src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
+        <small class="text-muted"><span class="font-weight-bold"><?php echo $username ?></span>
+            <br>
+            <?php echo $sessions->getSession("roleName"); ?>
+        </small>
+    </a>
     <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
         style="transition: all 0.2s ease-in-out 0s;">
         <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
