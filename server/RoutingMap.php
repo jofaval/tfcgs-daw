@@ -215,3 +215,7 @@ $map['queryProjectDiaryModification'] = array('controller' => 'AjaxController', 
 $map['deleteProjectDiaryModification'] = array('controller' => 'AjaxController', 'action' => 'deleteProjectDiaryModification', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //profile
 $map['profile'] = array('controller' => 'Controller', 'action' => 'profile', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['createDashboardsItemAssignation'] = array('controller' => 'AjaxController', 'action' => 'createDashboardsItemAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['updateDashboardsItemAssignation'] = array('controller' => 'AjaxController', 'action' => 'updateDashboardsItemAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['queryDashboardsItemAssignation'] = array('controller' => 'AjaxController', 'action' => 'queryDashboardsItemAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
+$map['deleteDashboardsItemAssignation'] = array('controller' => 'AjaxController', 'action' => 'deleteDashboardsItemAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);

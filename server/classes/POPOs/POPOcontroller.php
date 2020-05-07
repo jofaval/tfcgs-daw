@@ -562,4 +562,32 @@ class POPOcontroller
 
         return $popoInstance->delete();
     }
+
+    public function createDashboardsItemAssignation()
+    {
+        $popoInstance = new DashboardsItemAssignation();
+
+        return $popoInstance->create();
+    }
+
+    public function updateDashboardsItemAssignation()
+    {
+        $popoInstance = new DashboardsItemAssignation();
+
+        return $popoInstance->update();
+    }
+
+    public function queryDashboardsItemAssignation()
+    {
+        $popoInstance = new DashboardsItemAssignation();
+
+        return $popoInstance->query();
+    }
+
+    public function deleteDashboardsItemAssignation()
+    {
+        $popoInstance = new DashboardsItemAssignation();
+
+        return $popoInstance->delete();
+    }
 }

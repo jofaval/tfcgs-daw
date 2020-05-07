@@ -599,4 +599,28 @@ class AjaxController
     {
         $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
     }
+
+    //Function to createDashboardsItemAssignation
+    public function createDashboardsItemAssignation()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_dashboard_item", "start_date", "end_date", "creation_date", "assigned_to"]);
+    }
+
+    //Function to updateDashboardsItemAssignation
+    public function updateDashboardsItemAssignation()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_dashboard_item", "start_date", "end_date", "creation_date", "assigned_to"]);
+    }
+
+    //Function to queryDashboardsItemAssignation
+    public function queryDashboardsItemAssignation()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+    }
+
+    //Function to deleteDashboardsItemAssignation
+    public function deleteDashboardsItemAssignation()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+    }
 }
