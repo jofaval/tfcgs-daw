@@ -60,4 +60,6 @@ RewriteRule ^projects/id/([^/]+)/diary/date/([^/]+)[/]?$ ./index.php?ctl=project
 RewriteRule ^profile[/]?$ ./index.php?ctl=profile [L]
 RewriteRule ^profile/change-pass[/]?$ ./index.php?ctl=profile&tabName=pass [L]
 RewriteRule ^profile/change-image[/]?$ ./index.php?ctl=profile&tabName=image [L]
+RewriteRule ^profile/reset-profile-image[/]?$ ./index.php?ctl=profile&reset=profileImage [L]
+RewriteRule ^profile/reset-background-image[/]?$ ./index.php?ctl=profile&reset=bgImage [L]
 RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]

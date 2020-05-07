@@ -63,6 +63,27 @@ class Controller
         $result = true;
 
         if ($userId == $clientId) {
+
+            if (Utils::exists("reset")) {
+                $reset = Utils::getCleanedData("reset");
+                switch ($reset) {
+                    case 'profileImage':
+                        $randomImage = $this->img_path . "/projects/templates/profile-" . rand(1, 6) . ".png";
+                        $finalPath = $this->img_path . "/users/$username/$username.png";
+
+                        FileUtils::copy($randomImage, $finalPath);
+                        break;
+                    case 'bgImage':
+                        $randomImage = $this->img_path . "/projects/templates/bg-" . rand(1, 6) . ".png";
+                        $finalPath = $this->img_path . "/users/$username/bg-$username.png";
+
+                        FileUtils::copy($randomImage, $finalPath);
+                        break;
+                }
+
+                header("Location: /daw/profile/");
+            }
+
             if (Utils::exists("updateProfile")) {
                 $name = Utils::getCleanedData("name");
                 $surname = Utils::getCleanedData("surname");
