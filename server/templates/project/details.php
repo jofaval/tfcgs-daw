@@ -12,8 +12,8 @@
         <div class="projectCreationDetails mb-5 text-muted">
             <?php if (!is_null($projectData["collaborator"])): ?>
             <div class="float-right text-right">
-                Te invitó <a href="/daw/profile/<?php echo $projectData["collaborator"]; ?>"
-                    class="projectCreatedBy"><?php echo $projectData["collaborator"]; ?></a>
+                Te invitó <a href="/daw/profile/<?php echo $projectData["collaboratorInviteUsername"]; ?>/"
+                    class="projectCreatedBy"><?php echo $projectData["collaboratorInviteName"]; ?></a>
                 <br> el <span
                     class="projectCreationDate"><?php echo $projectData["collaborationStartingDate"]; ?></span> como
                 <span
