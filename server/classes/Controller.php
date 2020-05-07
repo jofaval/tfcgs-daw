@@ -756,6 +756,11 @@ class Controller
 
                         $userImagePath = __DIR__ . $this->img_path . "/users/$username/$username.png";
                         $this->generateImage($firstName, $userImagePath);
+
+                        $randomImage = $this->img_path . "/projects/templates/bg-" . rand(1, 6) . ".png";
+                        $finalPath = $this->img_path . "/users/$username/bg-$username.png";
+
+                        FileUtils::copy($randomImage, $finalPath);
                         header("Location: /daw/signin/");
                     }
                     $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
