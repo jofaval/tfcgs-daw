@@ -9,6 +9,7 @@ class Config
     public static $mvc_img_exts = ["image/png", "image/jpg", "image/jpeg", "image/gif"];
     public static $mvc_vis_css = [];
     public static $mvc_vis_scripts = [];
+    public static $banned_usernames = [];
     public static $emailSender = "contact@sender.org";
     public static $emailMsgLineLength = 70;
     public static $ACCESS_LEVEL_GUEST = 0;
