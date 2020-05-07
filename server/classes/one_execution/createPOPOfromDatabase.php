@@ -7,7 +7,7 @@ $mysqlPassword = "";
 $mysqlHostName = "localhost";
 $DbName = "origen";
 
-$settings = [
+$GLOBALS["settings"] = [
     "showTableLog" => false,
     "overrideRouteMap" => false,
     "overrideAccess" => false,
@@ -41,7 +41,7 @@ function forEachTable($mysqli, &$functionNames, &$filesContent, &$methods, &$met
     createFunctionsOfTable($functionNames, $methods, $tableAsClass, $methodParams, $controller, $everyKey, $primaryKeys);
 
     //Se muestra la información de la tabla
-    if ($settings["showTableLog"]) {
+    if ($GLOBALS["settings"]["showTableLog"]) {
         showTableLog($table, $splittedLine, $primaryKeys, $tableKeys, $foreignKeys);
     }
 
@@ -89,8 +89,8 @@ function createPOPOfromDatabase($host, $user, $pass, $name)
     $controller = "<?php\n\nclass POPOcontroller\n{";
 
     //Si se escoge una sola tabla, se carga solo esa tabla
-    if ($settings["onlyOneTable"]) {
-        forEachTable($mysqli, $functionNames, $filesContent, $methods, $methodParams, $settings["tableName"]);
+    if ($GLOBALS["settings"]["onlyOneTable"]) {
+        forEachTable($mysqli, $functionNames, $filesContent, $methods, $methodParams, $GLOBALS["settings"]["tableName"]);
     } else {
         //Recorro todas las tablas que se han recogido
         foreach ($target_tables as $table) {
@@ -99,12 +99,12 @@ function createPOPOfromDatabase($host, $user, $pass, $name)
     }
 
     //Se crea/sobreescribe el controlador de AJAX para PHP
-    if ($settings["overrideAjaxControllerPHP"]) {
+    if ($GLOBALS["settings"]["overrideAjaxControllerPHP"]) {
         createPHPajaxController($methods, $methodParams);
     }
 
     //Se crea/sobreescribe el controlador de AJAX para JS
-    if ($settings["overrideAjaxControllerJS"]) {
+    if ($GLOBALS["settings"]["overrideAjaxControllerJS"]) {
         createJSajaxController($methods, $methodParams);
     }
 
@@ -274,7 +274,7 @@ function writeToFile($file, $fileContent)
 //Crea las rutas del mapeo y niveles de acceso
 function mapRoutes($methods)
 {
-    if ($settings["overrideRouteMap"]) {
+    if ($GLOBALS["settings"]["overrideRouteMap"]) {
         $mapFile = "<?php\n\n\$map = [";
         $controllerMethods = get_class_methods('Controller');
         foreach ($controllerMethods as $method) {
@@ -287,7 +287,7 @@ function mapRoutes($methods)
         writeToFile("/../../RoutingMap.php", $mapFile);
     }
 
-    if ($settings["overrideAccess"]) {
+    if ($GLOBALS["settings"]["overrideAccess"]) {
         $everyRoute = array_merge($controllerMethods, $methods);
         $accessFile = "<?php\n";
         foreach ($everyRoute as $value) {

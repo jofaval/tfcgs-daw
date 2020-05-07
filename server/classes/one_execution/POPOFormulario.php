@@ -94,13 +94,13 @@ while ($row = $queryDatabases->fetch_row()) {
             <?php
 if (isset($_REQUEST["createPopo"])) {
     $DbName = $_REQUEST["dbName"];
-    $settings["showTableLog"] = isset($_REQUEST["showTableInfo"]);
-    $settings["overrideRouteMap"] = isset($_REQUEST["overrideRouteMap"]);
-    $settings["overrideAccess"] = isset($_REQUEST["overrideAccess"]);
-    $settings["overrideAjaxControllerPHP"] = isset($_REQUEST["overrideAjaxControllerPHP"]);
-    $settings["overrideAjaxControllerJS"] = isset($_REQUEST["overrideAjaxControllerJS"]);
-    $settings["onlyOneTable"] = isset($_REQUEST["onlyOneTable"]);
-    $settings["tableName"] = $_REQUEST["tableName"];
+    $GLOBALS["settings"]["showTableLog"] = isset($_REQUEST["showTableInfo"]);
+    $GLOBALS["settings"]["overrideRouteMap"] = isset($_REQUEST["overrideRouteMap"]);
+    $GLOBALS["settings"]["overrideAccess"] = isset($_REQUEST["overrideAccess"]);
+    $GLOBALS["settings"]["overrideAjaxControllerPHP"] = isset($_REQUEST["overrideAjaxControllerPHP"]);
+    $GLOBALS["settings"]["overrideAjaxControllerJS"] = isset($_REQUEST["overrideAjaxControllerJS"]);
+    $GLOBALS["settings"]["onlyOneTable"] = isset($_REQUEST["onlyOneTable"]);
+    $GLOBALS["settings"]["tableName"] = $_REQUEST["tableName"];
     createPOPOfromDatabase($mysqlHostName, $mysqlUserName, $mysqlPassword, $DbName);
 }
 ?>
