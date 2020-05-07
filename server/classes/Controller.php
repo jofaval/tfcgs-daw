@@ -361,8 +361,14 @@ class Controller
         }
     }
 
-    public function changeDashboardBgImage($element)
+    public function changeDashboardBgImage($element, $id, $dashboard_title)
     {
+        if (Utils::exists("updateBackgroundImage")) {
+            $errors = [];
+
+            $bgImage = FileUtils::validateFile("bgImage", $this->img_path . "/projects/$id/dashboards/$dashboard_title/", "bg", $errors);
+        }
+
         return "tasks/change-image";
     }
 
