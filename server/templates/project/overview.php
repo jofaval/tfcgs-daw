@@ -1,4 +1,4 @@
-<div class="w-100 h-100 tabContent container-fluid p-sm-5 d-block" id="tabContent1">
+<div class="w-100 h-100 tabContent container-fluid p-0 p-sm-3 d-block" id="tabContent1">
     <div class="w-100 display-none display-sm-block p-2 text-white d-flex justify-content-start">
         <div class="collaborators mx-2">
             <span id="numberOfCollaborators">24</span>
