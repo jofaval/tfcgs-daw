@@ -163,9 +163,13 @@ function doesUsernameExist() {
             console.log(result);
             if (result === true) {
                 if (signupUsernameParent.find("#usernameExist").length == 0) {
+                    signupUsernameParent.removeClass("validate-green");
+                    signupUsernameParent.addClass("validate-red");
                     signupUsernameParent.append(usernameExists);
                 }
             } else {
+                signupUsernameParent.addClass("validate-green");
+                signupUsernameParent.removeClass("validate-red");
                 signupUsernameParent.find("#usernameExist").remove();
             }
         }
@@ -189,9 +193,13 @@ function doesEmailExist() {
             console.log(result);
             if (result === true) {
                 if (signupEmailParent.find("#emailExist").length == 0) {
+                    signupEmailParent.removeClass("validate-green");
+                    signupEmailParent.addClass("validate-red");
                     signupEmailParent.append(emailExists);
                 }
             } else {
+                signupEmailParent.addClass("validate-green");
+                signupEmailParent.removeClass("validate-red");
                 signupEmailParent.find("#emailExist").remove();
             }
         }
