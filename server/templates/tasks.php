@@ -43,6 +43,12 @@ $breadcrumb = [
 
 <?php ob_start()?>
 
+<style>
+main {
+    background-image: url('/daw/img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png') !important;
+}
+</style>
+
 <div class="row dashboardTopBar m-2 d-flex justify-content-space-around">
     <div class="dashboardTitleContainer align-self-center rounded grey darken-4 p-2 px-3">
         <div class="dashboardTitle align-self-center text-white"><?php echo $viewParams["dashboardTitle"]; ?></div>
