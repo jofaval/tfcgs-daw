@@ -567,7 +567,7 @@ class Controller {
 
         if (noResultsFound) {
             controller.clearContainer(controller);
-            $(".collaboratorsContainer").text("No se han encontrado resultados.");
+            $(".collaboratorsContainer").append("<span class='text-center text-white'>No se han encontrado resultados.</span>");
         }
 
         console.log(controller.model.workingCollaborators);
