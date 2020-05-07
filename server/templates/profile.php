@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["style.css"];?>
-<?php $optionalScripts = ["js/script.js"];?>
+<?php $optionalScripts = ["js/profile.js"];?>
 <?php $title = "Perfil";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
@@ -68,7 +68,7 @@ $breadcrumb = [
             </div>
 
             <div class="col-lg-8 mb-4">
-                <form action="/daw/profile/" class="p-3 bg-white rounded shadow">
+                <form action="/daw/profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
                     <div class="input-group md-form form-sm form-2 pl-0">
                         <input class="form-control my-0 py-1" type="text" id="username" name="username"
                             placeholder="Search" aria-label="Search">
@@ -78,11 +78,6 @@ $breadcrumb = [
                         </div>
                     </div>
                 </form>
-                <script>
-                $("#username").on("click", function() {
-
-                });
-                </script>
                 <?php if (!$viewParams["editable"]): ?>
                 <img class="profileBackgroundImage w-100 d-none d-sm-block" height="300"
                     src="/daw/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png" alt="">
