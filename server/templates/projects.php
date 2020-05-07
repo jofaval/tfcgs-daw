@@ -37,7 +37,7 @@ $breadcrumb = [
             <img class="projectImage mx-sm-5" src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
                 alt="" width="200">
         </div>
-        <div class="d-none d-sm-block projectDetails bg-dark text-white col">
+        <div class="d-none d-sm-block projectDetails bg-dark rounded text-white col">
             <h1 class="projectTitle font-weight-bold">
                 <?php echo $viewParams["profile"]["name"] . " " . $viewParams["profile"]["surname"]; ?></h1>
 
