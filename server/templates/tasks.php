@@ -53,8 +53,21 @@ main {
     <div class="dashboardTitleContainer align-self-center rounded grey darken-4 p-2 px-3">
         <div class="dashboardTitle align-self-center text-white"><?php echo $viewParams["dashboardTitle"]; ?></div>
     </div>
+    <button class="btn btn-dark align-self-center btn-sm m-0 mx-2 dropdown-toggle p-2" type="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="fa fa-ellipsis-v"></div>
+    </button>
+
+    <div class="dropdown-menu">
+        <a class="dropdown-item"
+            href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
+            imagen</a>
+        <div class="dropdown-divider"></div>
+    </div>
+    <?php if (Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN): ?>
     <div class="btn btn-sm btn-danger dashboardBtnDelete align-self-center">Delete dashboard</div>
-    <div class="md-form input-group col col-md-4 my-2 m-0 p-0">
+    <?php endif;?>
+    <div class="md-form input-group col-md-4 my-2 m-0 p-0">
         <input type="search" class="form-control text-white grey darken-4 pl-2 rounded-0" name="dashboardSearch"
             id="dashboardSearch" placeholder="Search...">
         <div class="input-group-append">
