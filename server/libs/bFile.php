@@ -75,4 +75,9 @@ class FileUtils
 
         return $final_file_name;
     }
+
+    public static function copy($source, $target)
+    {
+        copy($source, $target);
+    }
 }

@@ -36,7 +36,21 @@ class Projects implements CRUD
             $params["description"] = $this->description;
             $params["creation_date"] = DateUtils::getCurrentDateTime();
             $sqlUtils->insert(Projects::$table, $params);
-            return $sqlUtils->query(Projects::$table, $params);
+            $queryResult = $sqlUtils->query(Projects::$table, $params);
+
+            mkdir(__DIR__ . "/../../../client/img/projects/" . $queryResult[0]["id"]);
+
+            $randomImage = __DIR__ . "/../../../client/img/projects/templates/bg-" . rand(1, 6) . ".png";
+            $finalPath = __DIR__ . "/../../../client/img/projects/" . $queryResult[0]["id"] . "/bg.png";
+
+            FileUtils::copy($randomImage, $finalPath);
+
+            $randomImage = __DIR__ . "/../../../client/img/projects/templates/profile-" . rand(1, 6) . ".png";
+            $finalPath = __DIR__ . "/../../../client/img/projects/" . $queryResult[0]["id"] . "/profile.png";
+
+            FileUtils::copy($randomImage, $finalPath);
+
+            return $queryResult;
         }
 
         return false;
