@@ -63,7 +63,7 @@ $breadcrumb = [
                     class="font-weight-bold text-white"><?php echo $projectData["projectCreator"]; ?></a></p>
 
             <div class="md-form m-0 p-0">
-                <textarea id="description" disabled="true"
+                <textarea id="projectDescription" disabled="true"
                     class="md-textarea text-white form-control m-0 p-0 description"
                     rows="3"><?php echo $projectData["projectDescription"]; ?></textarea>
             </div>

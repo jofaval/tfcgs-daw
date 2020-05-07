@@ -46,7 +46,7 @@ $breadcrumb = [
                     class="text-white"><?php echo $viewParams["profile"]["website"]; ?></a></p>
 
             <div class="md-form m-0 p-0">
-                <textarea id="description" disabled="true"
+                <textarea id="projectDescription" disabled="true"
                     class="md-textarea text-white form-control m-0 p-0 description"
                     rows="3"><?php echo $viewParams["profile"]["biography"]; ?></textarea>
             </div>
