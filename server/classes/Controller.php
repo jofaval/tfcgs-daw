@@ -186,9 +186,14 @@ class Controller
             $regla = array(
                 array(
                     'name' => 'id',
-                    'regla' => 'no-empty,numeric',
+                    'rules' => 'no-empty,numeric',
                 ),
             );
+
+            $isValid = $validation->rules($regla, $_REQUEST);
+            if ($isValid !== true) {
+                header("Location: /daw/projects/");
+            }
 
             if (Utils::exists("changeProjectDetails")) {
                 $title = Utils::getCleanedData("projectTitle");
@@ -241,11 +246,6 @@ class Controller
                     header("Pragma: no-cache");
                     clearstatcache(true);
                 }
-            }
-
-            $isValid = $validation->rules($regla, ["id" => $id]);
-            if ($isValid !== true) {
-                header("Location: /daw/projects/");
             }
 
             //Comprobar que el tabname, no es nada raro y es uno de los admitidos
@@ -381,22 +381,22 @@ class Controller
 
         $validation = Validation::getInstance();
 
-        $rules = [
-            [
+        $rules = array(
+            array(
                 "name" => "id_project",
                 "rules" => "no-empty,numeric",
-            ],
-            [
+            ),
+            array(
                 "name" => "dashboard",
                 "rules" => "no-empty,text",
-            ],
-        ];
+            ),
+        );
 
         $isValid = $validation->rules($rules, $_REQUEST);
 
         if ($isValid !== true) {
             return false;
-        }
+        };
 
         $lists = Model::getInstance()->getListsOfDashboard($id_project, $dashboard_title);
         foreach ($lists as $key => $list) {
