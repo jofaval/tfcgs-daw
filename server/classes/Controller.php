@@ -310,8 +310,17 @@ class Controller
                             if ($dashboardQueryData === false || count($dashboardQueryData) == 0) {
                                 header("Location: /daw/projects/id/$id/dashboards/");
                             }
-
                             $direction = $element;
+
+                            if (Utils::exists("view")) {
+                                $view = Utils::getCleanedData("view");
+                                switch ($view) {
+                                    case 'changeImage':
+                                        $direction = $this->changeDashboardBgImage($element, $id, $dashboard_title);
+                                        break;
+                                }
+                            }
+
                             break;
                     }
                 }
@@ -350,6 +359,11 @@ class Controller
         } else {
             header("Location: /daw/projects/");
         }
+    }
+
+    public function changeDashboardBgImage($element)
+    {
+        return "tasks/change-image";
     }
 
     public function getProjectsOfUser()
