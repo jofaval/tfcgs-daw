@@ -42,3 +42,11 @@ main {
     background-size: cover;
     background-blend-mode: multiply;
 }
+
+.tabs {
+    background: #3a4c58 !important;
+}
+
+.tabContentContainer {
+    background: #222f38 !important;
+}

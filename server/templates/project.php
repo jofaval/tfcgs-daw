@@ -73,7 +73,7 @@ $breadcrumb = [
             </a>
         </div>
     </div>
-    <div class="row tabs shadow w-100 m-0 grey darken-2 text-white">
+    <div class="row tabs shadow w-100 m-0 text-white">
         <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/overview/"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "overview" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-cogs"></i></span>&nbsp;<span
@@ -95,7 +95,7 @@ $breadcrumb = [
                 class=""><i class="fa fa-2x fa-info-circle"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Detalles</span></a>
     </div>
-    <div class="row grey darken-3 m-0 px-2">
+    <div class="row tabContentContainer m-0 px-2">
         <?php
 $titleName = "General";
 $icon = "cogs";

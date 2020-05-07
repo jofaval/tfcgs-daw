@@ -59,7 +59,7 @@ $breadcrumb = [
         </div>
     </div>
     <div
-        class="row tabs d-flex text-white justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0 grey darken-2">
+        class="row tabs d-flex text-white justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0 tabs">
         <div class="projectsCount ml-3">
             <span class="numberOfProjects">15</span>&nbsp;
             <span class="font-weight-bold">project(s)</span>
@@ -97,7 +97,7 @@ $breadcrumb = [
             </div>
         </div>
     </div>
-    <div class="grey darken-3 m-0 mx-auto px-2 pt-2">
+    <div class="tabContentContainer m-0 mx-auto px-2 pt-2">
         <div class="projectsContainer text-white text-center col-md-10 m-0 mx-auto">
         </div>
         <div class="row d-flex justify-content-center py-3">
