@@ -335,7 +335,7 @@ class Controller {
         bookmarkedIcon.on("click", this.bookmarkDashboard(controller, json, bookmarkedIcon));
         controller.view.visualizeDashboardFlags(dashboard, json.created != 0, json.bookmarked != 0);
 
-        var url = `/daw/projects/id/${controller.model.projectId}/dashboards/${json.title}`;
+        var url = `/daw/projects/id/${controller.model.projectId}/dashboards/${json.title}/`;
         dashboard.find(".dashboardCardBtnView").prop("href", url);
         dashboard.find(".dashboardReadMore").prop("href", url);
 
