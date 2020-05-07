@@ -2,6 +2,11 @@
 
 class Controller
 {
+    public function __construct()
+    {
+        $this->img_path = __DIR__ . "/../../client/img";
+    }
+
     public function error()
     {
         require __DIR__ . '/../templates/error.php';
@@ -79,7 +84,7 @@ class Controller
                 }
             } else if (Utils::exists("updateProfileImage")) {
                 $errors = [];
-                $profileImage = FileUtils::validateFile("profileImage", __DIR__ . "/../../client/img/users/$username/", $username, $errors);
+                $profileImage = FileUtils::validateFile("profileImage", $this->img_path . "/users/$username/", $username, $errors);
 
                 if ($profileImage === false) {
                     $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
@@ -98,7 +103,7 @@ class Controller
             } else if (Utils::exists("updateBackgroundImage")) {
                 $username = $this->getUsernameFromClientId($clientId);
                 $errors = [];
-                $bgImage = FileUtils::validateFile("bgImage", __DIR__ . "/../../client/img/users/$username/", "bg-$username", $errors);
+                $bgImage = FileUtils::validateFile("bgImage", $this->img_path . "/users/$username/", "bg-$username", $errors);
 
                 if ($bgImage === false) {
                     $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
@@ -177,7 +182,7 @@ class Controller
                 }
             } else if (Utils::exists("changeProjectProfileImage")) {
                 $errors = [];
-                $profileImage = FileUtils::validateFile("profileImage", __DIR__ . "/../../client/img/projects/$id/", "profile", $errors);
+                $profileImage = FileUtils::validateFile("profileImage", $this->img_path . "/projects/$id/", "profile", $errors);
 
                 if ($profileImage === false) {
                     $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
@@ -195,7 +200,7 @@ class Controller
                 }
             } else if (Utils::exists("changeProjectBGImage")) {
                 $errors = [];
-                $bgImage = FileUtils::validateFile("bgImage", __DIR__ . "/../../client/img/projects/$id/", "bg", $errors);
+                $bgImage = FileUtils::validateFile("bgImage", $this->img_path . "/projects/$id/", "bg", $errors);
 
                 var_dump($bgImage);
 
@@ -708,32 +713,39 @@ class Controller
             $viewParams["signupPassword"] = $password;
             $viewParams["signupEmail"] = $email;
 
-            if ($validations === true) {
-                $success = $model->signup(
-                    $firstName,
-                    $secondName,
-                    $email,
-                    $username,
-                    $password
-                );
-
-                if ($success) {
-                    if (!file_exists(__DIR__ . "/../../client/img/users/$username/")) {
-                        mkdir(__DIR__ . "/../../client/img/users/$username/");
-                    }
-
-                    $userImagePath = __DIR__ . "/../../client/img/users/$username/$username.png";
-                    $this->generateImage($firstName, $userImagePath);
-                    header("Location: /daw/signin/");
-                }
-                $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
-                <p class='m-0'>Error: We couldn't sign you up.</p>\n
-                </div>";
-            } else {
+            if (in_array($username, Config::$banned_usernames)) {
                 $viewParams = array_merge($viewParams, $validation->mensaje);
                 $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>Nombre de usuario no válido.</p>\n
+                </div>";
+            } else {
+                if ($validations === true) {
+                    $success = $model->signup(
+                        $firstName,
+                        $secondName,
+                        $email,
+                        $username,
+                        $password
+                    );
+
+                    if ($success) {
+                        if (!file_exists(__DIR__ . $this->img_path . "/users/$username/")) {
+                            mkdir(__DIR__ . $this->img_path . "/users/$username/");
+                        }
+
+                        $userImagePath = __DIR__ . $this->img_path . "/users/$username/$username.png";
+                        $this->generateImage($firstName, $userImagePath);
+                        header("Location: /daw/signin/");
+                    }
+                    $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
+                <p class='m-0'>Error: We couldn't sign you up.</p>\n
+                </div>";
+                } else {
+                    $viewParams = array_merge($viewParams, $validation->mensaje);
+                    $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
                 <p class='m-0'>Error: There's validation errors.</p>\n
                 </div>";
+                }
             }
         }
         require __DIR__ . '/../templates/signin.php';
