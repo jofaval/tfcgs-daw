@@ -254,7 +254,7 @@ class Controller
                 $regla = array(
                     array(
                         'name' => 'id',
-                        'regla' => 'no-empty,numeric',
+                        'rules' => 'no-empty,numeric',
                     ),
                 );
 
