@@ -430,6 +430,7 @@ class Controller
                 $itemAssignationData = $modelInstance->getAssignationDataFromItem($item["id"], Sessions::getInstance()->getSession("userId"));
 
                 $items[$itemKey]["assigned"] = $itemAssignationData !== false && !is_null($itemAssignationData);
+                $items[$itemKey]["finished"] = $itemAssignationData["finished"];
                 $items[$itemKey]["start_date"] = $itemAssignationData["start_date"];
                 $items[$itemKey]["end_date"] = $itemAssignationData["end_date"];
                 $items[$itemKey]["assigned_by"] = $this->getUsernameFromClientId($itemAssignationData["assigned_by"]);

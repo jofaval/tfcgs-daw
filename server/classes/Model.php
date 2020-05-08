@@ -365,7 +365,7 @@ class Model extends PDO
     {
         $sqlUtils = new SQLUtils($this);
 
-        return $sqlUtils->complexQuery("SELECT id_dashboard_item, assigned_by, assigned_to, start_date, end_date
+        return $sqlUtils->complexQuery("SELECT id_dashboard_item, finished, assigned_by, assigned_to, start_date, end_date
         FROM dashboards_item_assignation
         WHERE id_dashboard_item = :id_dashboard_item and assigned_to = :assigned_to
         ", ["id_dashboard_item" => $id_dashboard_item, "assigned_to" => $userId])[0];
