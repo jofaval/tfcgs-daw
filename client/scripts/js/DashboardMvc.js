@@ -804,42 +804,7 @@ class Controller {
         console.log(inputs);
 
         if (taskItemData.assigned === true) {
-            console.log("FUNCIONA", taskItemData);
-
-            console.log($dashboardAssignationContainer);
-            $dashboardAssignationContainer.html("");
-            $dashboardAssignationContainer.append($dashboardAssignationFinishedStateInput);
-            var assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
-            assignationItem.removeClass("ml-auto");
-            var assignationCheckbox = $dashboardAssignationFinishedStateInput.find(":checkbox");
-            assignationCheckbox.prop("checked", taskItemData.finished != 0);
-
-            assignationCheckbox.unbind("change");
-            assignationCheckbox.on("change", function () {
-                console.log("AQUI", assignationCheckbox.is(":checked"));
-
-                var checkboxValue = assignationCheckbox.is(":checked");
-                controller.model.setAssignationFinishState(taskItemData.assignation_id, checkboxValue, function (result) {
-                    console.log(result);
-
-                    if (result !== false) {
-                        taskItemData.finished = checkboxValue;
-                        sendNotification("Se ha cambiado el estado", "changeFinishStatusSuccess");
-                        taskItem.find(".dashboardAssignation").remove();
-                        controller.view.visualizeDashboardAssignation(taskItem, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
-                        assignationItem.remove();
-                        assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
-                        assignationItem.removeClass("ml-auto");
-                    } else {
-                        sendNotification("No se ha podido cambiar el estado", "changeFinishStatusFail");
-                    }
-                });
-            });
-
-            console.log("test", assignationCheckbox);
-
-
-            $(".dashboardModalDescriptionTitle").after($dashboardAssignationContainer);
+            this.dashboardModalAssignedTask(taskItemData, controller, taskItem);
         }
 
         $(".dashboardModalTitle").text(taskItemData.title);
@@ -865,12 +830,49 @@ class Controller {
                 }
             }
         });
+
+        $(".dashboardModalTitle").on("blur keyup paste input", function () {
+            console.log("evento input");
+        });
+
         $("#comment").on("keypress", function (event) {
             console.log(event.keyCode);
             if (event.keyCode == 13) {
                 controller.createModalCommentEvent(taskItemData, controller, commentsContainer)
             }
         });
+    }
+
+    dashboardModalAssignedTask(taskItemData, controller, taskItem) {
+        console.log("FUNCIONA", taskItemData);
+        console.log($dashboardAssignationContainer);
+        $dashboardAssignationContainer.html("");
+        $dashboardAssignationContainer.append($dashboardAssignationFinishedStateInput);
+        var assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+        assignationItem.removeClass("ml-auto");
+        var assignationCheckbox = $dashboardAssignationFinishedStateInput.find(":checkbox");
+        assignationCheckbox.prop("checked", taskItemData.finished != 0);
+        assignationCheckbox.unbind("change");
+        assignationCheckbox.on("change", function () {
+            console.log("AQUI", assignationCheckbox.is(":checked"));
+            var checkboxValue = assignationCheckbox.is(":checked");
+            controller.model.setAssignationFinishState(taskItemData.assignation_id, checkboxValue, function (result) {
+                console.log(result);
+                if (result !== false) {
+                    taskItemData.finished = checkboxValue;
+                    sendNotification("Se ha cambiado el estado", "changeFinishStatusSuccess");
+                    taskItem.find(".dashboardAssignation").remove();
+                    controller.view.visualizeDashboardAssignation(taskItem, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+                    assignationItem.remove();
+                    assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+                    assignationItem.removeClass("ml-auto");
+                } else {
+                    sendNotification("No se ha podido cambiar el estado", "changeFinishStatusFail");
+                }
+            });
+        });
+        console.log("test", assignationCheckbox);
+        $(".dashboardModalDescriptionTitle").after($dashboardAssignationContainer);
     }
 
     createModalCommentEvent(taskItemData, controller, commentsContainer) {
