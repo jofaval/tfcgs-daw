@@ -102,6 +102,12 @@ main {
     right: 2em;
 }
 
+@media screen and (max-width: 800px) {
+    #backToTop {
+        bottom: calc(20vh + 2em);
+    }
+}
+
 .scrollOnTop #backToTop {
     bottom: -20em;
 }
