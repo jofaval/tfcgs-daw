@@ -261,18 +261,21 @@ class Controller {
         activeTime.html(new DateUtils(activeTimeDate).getTimeFromThisMoment());
         activeTime.append(`<span class="originalDate d-none">${activeTimeDate}</span>`);
 
-        $("#actionAddColaborator").on("click", function (event) {
-            controller.addCollaboratorBtnEvent(controller, event);
-        });
-
+        //Tablero
         $("#actionAddDashboard").on("click", function (event) {
             controller.addDashboardBtnEvent(controller, event);
         });
 
-        $("#actionDeleteProject").on("click", function (event) {
-            controller.deleteProject(controller, event);
+        $("#actionViewDashboard").on("click", function (event) {
+            controller.viewDashboard(controller, event);
         });
 
+        //Diario
+        $("#actionDiary").on("click", function (event) {
+            controller.addDashboardBtnEvent(controller, event);
+        });
+
+        //Proyecto
         $("#actionAddCollaborator").on("click", function (event) {
             controller.inviteCollaboratorEvent(controller, event);
         });
@@ -281,12 +284,12 @@ class Controller {
             controller.removeCollaboratorEvent(controller, event);
         });
 
-        $("#actionViewDashboard").on("click", function (event) {
-            controller.viewDashboard(controller, event);
-        });
-
         $("#actionChangeRoleCollaborator").on("click", function (event) {
             controller.changeCollaboratorRoleEvent(controller, event);
+        });
+
+        $("#actionDeleteProject").on("click", function (event) {
+            controller.deleteProject(controller, event);
         });
     }
 
