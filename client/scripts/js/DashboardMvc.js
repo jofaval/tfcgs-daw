@@ -126,7 +126,7 @@ var $dashboardModalComment = $(`
 
 var $dashboardAssignationContainer = $(`<div class="dashboardAssignationContainer row"></div>`);
 var $dashboardAssignationFinishedStateInput = $(`
-<div class="custom-control w-auto text-right ml-2 custom-checkbox">
+<div class="custom-control w-auto text-right ml-auto custom-checkbox">
     <input type="checkbox" class="custom-control-input" name="finished" id="finished">
     <label class="custom-control-label" for="finished">Terminado</label>
 </div>
@@ -268,6 +268,21 @@ class Model {
             url: "/daw/index.php?ctl=deleteDashboardItemComments",
             data: {
                 "id": commentJSON.id,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    setAssignationFinishState(id, newState, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            data: {
+                "id": id,
+                "finished": newState ? 1 : 0,
             },
             success: function (result) {
                 whenFinished(result);
@@ -738,7 +753,7 @@ class Controller {
                 "title": "",
                 "content": $dashboardModal.html(),
                 "onOpen": function () {
-                    controller.onOpenDashboardModal(taskItemData, controller);
+                    controller.onOpenDashboardModal(taskItemData, taskItem, controller);
                 },
                 "onClose": function () {
                     controller.view.scrollTo(taskItem);
@@ -749,7 +764,7 @@ class Controller {
         return taskItem;
     }
 
-    onOpenDashboardModal(taskItemData, controller) {
+    onOpenDashboardModal(taskItemData, taskItem, controller) {
         console.log(taskItemData);
 
         var inputs = $("input, textarea");
@@ -761,10 +776,38 @@ class Controller {
             console.log("FUNCIONA", taskItemData);
 
             console.log($dashboardAssignationContainer);
-            $dashboardAssignationContainer.append($dashboardAssignationFinishedStateInput.clone());
+            $dashboardAssignationContainer.html("");
+            $dashboardAssignationContainer.append($dashboardAssignationFinishedStateInput);
             var assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
             assignationItem.removeClass("ml-auto");
-            $dashboardAssignationFinishedStateInput.find(":checkbox").val(taskItemData.finished !== 0);
+            var assignationCheckbox = $dashboardAssignationFinishedStateInput.find(":checkbox");
+            assignationCheckbox.prop("checked", taskItemData.finished != 0);
+
+            assignationCheckbox.unbind("change");
+            assignationCheckbox.on("change", function () {
+                console.log("AQUI", assignationCheckbox.is(":checked"));
+
+                var checkboxValue = assignationCheckbox.is(":checked");
+                controller.model.setAssignationFinishState(taskItemData.assignation_id, checkboxValue, function (result) {
+                    console.log(result);
+
+                    if (result !== false) {
+                        taskItemData.finished = checkboxValue;
+                        sendNotification("Se ha cambiado el estado", "changeFinishStatusSuccess");
+                        taskItem.find(".dashboardAssignation").remove();
+                        controller.view.visualizeDashboardAssignation(taskItem, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+                        assignationItem.remove();
+                        assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+                        assignationItem.removeClass("ml-auto");
+                    } else {
+                        sendNotification("No se ha podido cambiar el estado", "changeFinishStatusFail");
+                    }
+                });
+            });
+
+            console.log("test", assignationCheckbox);
+
+
             $(".dashboardModalDescriptionTitle").after($dashboardAssignationContainer);
         }
 
