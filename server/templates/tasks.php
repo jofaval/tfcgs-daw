@@ -59,13 +59,13 @@ main {
     </button>
 
     <div class="dropdown-menu">
-        <a class="dropdown-item"
-            href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
-            imagen</a>
         <a class="dropdown-item" id="downloadJSONcontent"
             href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /json/">Descargar
             contenido</a>
         <div class="dropdown-divider"></div>
+        <a class="dropdown-item"
+            href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
+            imagen</a>
     </div>
     <?php if (Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN): ?>
     <div class="btn btn-sm btn-danger dashboardBtnDelete align-self-center">Borrar tablero</div>
