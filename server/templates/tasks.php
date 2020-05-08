@@ -62,16 +62,20 @@ main {
         <a class="dropdown-item"
             href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
             imagen</a>
+        <a class="dropdown-item" id="downloadJSONcontent"
+            href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /json/">Descargar
+            contenido</a>
         <div class="dropdown-divider"></div>
     </div>
     <?php if (Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN): ?>
-    <div class="btn btn-sm btn-danger dashboardBtnDelete align-self-center">Delete dashboard</div>
+    <div class="btn btn-sm btn-danger dashboardBtnDelete align-self-center">Borrar tablero</div>
     <?php endif;?>
     <div class="md-form input-group col-md-4 my-2 m-0 p-0">
         <input type="search" class="form-control text-white grey darken-4 pl-2 rounded-0" name="dashboardSearch"
             id="dashboardSearch" placeholder="Search...">
         <div class="input-group-append">
-            <span class="btn btn-sm btn-primary m-0 input-group-text md-addon">Search</span>
+            <span class="btn btn-sm btn-primary m-0 input-group-text md-addon"><span><i
+                        class="fa fa-search"></i></span>Search</span>
         </div>
     </div>
 </div>

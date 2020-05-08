@@ -341,6 +341,9 @@ class Controller
                                     case 'changeImage':
                                         $direction = $this->changeDashboardBgImage($element, $id, $dashboard_title);
                                         break;
+                                    case 'json':
+                                        $direction = $this->downloadDashboardJSON($element, $id, $dashboard_title);
+                                        break;
                                 }
                             }
 
@@ -388,6 +391,16 @@ class Controller
         } else {
             header("Location: /daw/projects/");
         }
+    }
+
+    public function downloadDashboardJSON($element, $id, $dashboard_title)
+    {
+        $ajaxController = new AjaxController();
+
+        $_REQUEST["id_project"] = $id;
+        $_REQUEST["dashboard"] = $dashboard_title;
+
+        $ajaxController->getListsOfDashboard();
     }
 
     public function changeDashboardBgImage($element, $id, $dashboard_title)
