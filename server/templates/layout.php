@@ -18,18 +18,7 @@
         <a href="#content" id="backToTop"
             class="z-index-overlap position-absolute p-3 bg-light rounded cursor-pointer">↑</a>
     </main>
-
-    <?php if ($showFooter): ?>
-    <footer class="footer py-3 bg-light d-none d-sm-block">
-        <div class="container text-align-right">
-            <span class="text-dark">- Developed by <a class="font-weight-bold text-dark"
-                    href="/daw/profile/jofaval2/">Pepe
-                    Fabra Valverde</a>
-                &copy; <span id="currentYear"></span>
-                -</span>
-        </div>
-    </footer>
-    <?php endif;?>
+    <?php if ($showFooter): require_once __DIR__ . "/components/footer.php";endif;?>
 </body>
 
 <?php foreach (Config::$mvc_vis_scripts as $script_link): ?>
