@@ -22,6 +22,19 @@ $breadcrumb = [
 ];
 ?>
 
+<?php
+if (!$viewParams["editable"]) {
+    $breadcrumb[count($breadcrumb) - 1]["active"] = false;
+    $breadcrumb[] = [
+        "name" => $viewParams["profile"]["username"],
+        "link" => "/daw/profile/" . $viewParams["profile"]["username"] . "/",
+        "active" => true,
+        "icon" => "user",
+    ];
+    $title .= " de " . $viewParams["profile"]["username"];
+}
+?>
+
 <?php ob_start()?>
 
 <?php $tabName = Utils::getCleanedData("tabName");?>
