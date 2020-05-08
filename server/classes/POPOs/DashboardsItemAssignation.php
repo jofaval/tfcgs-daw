@@ -55,19 +55,14 @@ class DashboardsItemAssignation implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "id_dashboard_item" => $this->id_dashboard_item,
-            "assigned_by" => $this->assigned_by,
-            "start_date" => $this->start_date,
-            "end_date" => $this->end_date,
-            "creation_date" => $this->creation_date,
-            "assigned_to" => $this->assigned_to,
+            "finished" => $this->finished,
         ];
 
         $identificationParams = [
             "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->$table, $toModify, $identificationParams);
+        return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 
     public function delete()
@@ -78,7 +73,7 @@ class DashboardsItemAssignation implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->delete($this->$table, $params);
+        return $sqlUtils->delete($this->table, $params);
     }
 
     public function query()
@@ -89,7 +84,7 @@ class DashboardsItemAssignation implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->query($this->$table, $params);
+        return $sqlUtils->query($this->table, $params);
     }
 
     public function enable()
@@ -100,7 +95,7 @@ class DashboardsItemAssignation implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
     public function fill()
@@ -112,6 +107,7 @@ class DashboardsItemAssignation implements CRUD
         $this->end_date = Utils::getCleanedData("end_date");
         $this->creation_date = Utils::getCleanedData("creation_date");
         $this->assigned_to = Utils::getCleanedData("assigned_to");
+        $this->finished = Utils::getCleanedData("finished");
     }
 
     public function parse()
@@ -124,6 +120,7 @@ class DashboardsItemAssignation implements CRUD
             "endDate" => $this->end_date,
             "creationDate" => $this->creation_date,
             "assignedTo" => $this->assigned_to,
+            "finished" => $this->finished,
         ]);
     }
 }

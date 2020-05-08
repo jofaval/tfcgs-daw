@@ -619,7 +619,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "finished"]);
     }
 
     //Function to queryDashboardsItemAssignation
