@@ -47,7 +47,17 @@ class DateUtils {
     }
 
     dateBetweenInterval(from, to) {
-        return this.dateToCheck.getTime() <= to.getTime() && this.dateToCheck.getTime() >= from.getTime();
+        return this.date.getTime() <= to.getTime() && this.date.getTime() >= from.getTime();
+    }
+
+    compareTo(dateToCompare) {
+        if (this.dateToCheck.getTime() > dateToCompare.getTime()) {
+            return 1;
+        } else if (dateToCompare.getTime() > this.dateToCheck.getTime()) {
+            return -1;
+        }
+
+        return 0;
     }
 
     printDateStylish() {
