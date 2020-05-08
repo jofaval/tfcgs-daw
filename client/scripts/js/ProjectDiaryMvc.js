@@ -7,7 +7,7 @@ class Model {
     loadContent(whenFinished) {
         var model = this;
 
-        var dateInString = printDateWithFormat(model.currentDate, "Y-m-d");
+        var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
             url: "/daw/index.php?ctl=queryProjectDiary",
             data: {
@@ -31,7 +31,7 @@ class Model {
         var model = this;
 
         content = encodeURI(content);
-        var dateInString = printDateWithFormat(model.currentDate, "Y-m-d");
+        var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
             url: "/daw/index.php?ctl=createProjectDiary",
             data: {
@@ -49,7 +49,7 @@ class Model {
         var model = this;
 
         content = encodeURI(content);
-        var dateInString = printDateWithFormat(model.currentDate, "Y-m-d");
+        var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
             url: "/daw/index.php?ctl=updateProjectDiary",
             data: {
@@ -294,7 +294,7 @@ class Controller {
         controller.loadDateContent(controller);
         controller.model.currentDate = workingDate;
 
-        var dateInFormat = printDateWithFormat(workingDate, "Y-m-d");
+        var dateInFormat = new DateUtils(workingDate).printDateWithFormat("Y-m-d");
 
         $("#datepicker").val(dateInFormat);
 

@@ -303,12 +303,12 @@ class View {
         var startDateInDate = stringToDate(start_date);
         var endDateInDate = stringToDate(end_date);
         clonedAssignation.find(".startDate").text(
-            printDateStylish(startDateInDate)
+            new DateUtils(startDateInDate).printDateStylish()
         );
         clonedAssignation.find(".endDate").text(
-            printDateStylish(endDateInDate)
+            new DateUtils(endDateInDate).printDateStylish()
         );
-        clonedAssignation.addClass(dateBetweenInterval(new Date(), startDateInDate, endDateInDate) ? "green" : "red");
+        clonedAssignation.addClass(new DateUtils(new Date()).dateBetweenInterval(startDateInDate, endDateInDate) ? "green" : "red");
         taskItem.find(".taskListItemTitle").after(clonedAssignation);
 
         return clonedAssignation;
@@ -363,11 +363,11 @@ class View {
 
         var commentDate = commentData.commentDate;
         var commentTimeHTML = clonedComment.find(".dashboardCommentTime");
-        commentTimeHTML.text(getTimeFromThisMoment(commentDate));
+        commentTimeHTML.text(new DateUtils(commentDate).getTimeFromThisMoment());
         commentTimeHTML.append(`<span class="originalDate d-none">${commentDate}</span>`);
         setInterval(() => {
             //console.log(getTimeFromThisMoment(commentDate));
-            commentTimeHTML.text(getTimeFromThisMoment(commentDate));
+            commentTimeHTML.text(new DateUtils(commentDate).getTimeFromThisMoment());
         }, 3 * 1000);
 
         clonedComment.find(".dashboardCommentContent").text(commentData.comment);

@@ -26,7 +26,7 @@ class View {
         var date = ViewUtils.addInput(form, "diaryDate", "date")
             .find("input").addClass("text-white");
         ViewUtils.addSubmit(form, "Go to date", "date");
-        $("#diaryDate").val(printDateWithFormat(new Date(), "Y-m-d"));
+        $("#diaryDate").val(new DateUtils(new Date()).printDateWithFormat("Y-m-d"));
     }
 
     hideComponent(component) {

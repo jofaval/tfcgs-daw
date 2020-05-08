@@ -258,7 +258,7 @@ class Controller {
 
         var activeTime = $(".activeTime");
         var activeTimeDate = activeTime.html().trim();
-        activeTime.html(getTimeFromThisMoment(activeTimeDate));
+        activeTime.html(new DateUtils(activeTimeDate).getTimeFromThisMoment());
         activeTime.append(`<span class="originalDate d-none">${activeTimeDate}</span>`);
 
         $("#actionAddColaborator").on("click", function (event) {

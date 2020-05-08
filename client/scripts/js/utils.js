@@ -5,27 +5,6 @@ function minNumberOfDigits(number, numberOfDigits = 2) {
     });
 }
 
-//get all dates from a week given a date
-function getWeekFromDate(dayDate) {
-    var weekDates = [];
-    var dayInNumber = dayDate.getDay();
-    var startingNumber = 1;
-    if (dayInNumber >= 1) {
-        startingNumber = 0 - dayInNumber;
-    }
-
-    var currentDateInFor = new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate());
-
-    currentDateInFor.setDate(currentDateInFor.getDate() + (startingNumber));
-    for (var index = 0; index < 7; index++) {
-        currentDateInFor.setDate(currentDateInFor.getDate() + 1);
-        weekDates.push(new Date(currentDateInFor.getTime()));
-        startingNumber++;
-    }
-
-    return weekDates;
-}
-
 var notifications = {
 
 };
@@ -66,45 +45,7 @@ function sendNotification(message = "An error occurred", id = "empty", title = "
     }
 }
 
-function stringToDate(date) {
-    var timestamp = Date.parse(date);
-
-    if (!isNaN(timestamp)) {
-        return new Date(timestamp);
-    }
-
-    return false;
-}
-
-function dateBetweenInterval(dateToCheck, from, to) {
-    return dateToCheck.getTime() <= to.getTime() && dateToCheck.getTime() >= from.getTime();
-}
-
-$("#currentYear").html(printDateWithFormat(new Date(), "Y"));
-
-//print date with certain fromat
-function printDateWithFormat(givenDate, format = "d/m/Y") {
-    format = format.replace("y", givenDate.getYear());
-    format = format.replace("Y", givenDate.getFullYear());
-    format = format = format.toLowerCase();
-    format = format.replace("d", minNumberOfDigits(givenDate.getDate()));
-    format = format.replace("m", minNumberOfDigits(givenDate.getMonth() + 1));
-
-    format = format.replace("h", minNumberOfDigits(givenDate.getHours() + 1));
-    format = format.replace("i", minNumberOfDigits(givenDate.getMinutes() + 1));
-    format = format.replace("s", minNumberOfDigits(givenDate.getSeconds() + 1));
-    return format;
-}
-
-const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-];
-
-function printDateStylish(givenDate) {
-    var monthName = monthNames[givenDate.getMonth()];
-    monthName = monthName.substring(0, 3).toLowerCase();
-    return `${givenDate.getDate()} de ${monthName}.`;
-}
+$("#currentYear").html(new DateUtils(new Date()).printDateWithFormat("Y"));
 
 function writeInElement(element, phrase, intervalTime = 25) {
     phrase = phrase.replace(/\ +/, " ");
@@ -123,60 +64,4 @@ function redirectTo(url) {
     document.body.appendChild(a);
     a.href = url;
     a.click();
-}
-
-function getTimeFromThisMoment(date, parseFromString = true) {
-    if (parseFromString) {
-        date = new Date(Date.parse(date));
-    }
-    var givenDate = date.getTime();
-
-    var now = Date.now();
-
-    // get total seconds between the times
-    var delta = Math.abs(now - givenDate) / 1000;
-
-    // calculate (and subtract) whole days
-    var days = Math.floor(delta / 86400);
-    delta -= days * 86400;
-
-    // calculate (and subtract) whole hours
-    var hours = Math.floor(delta / 3600) % 24;
-    delta -= hours * 3600;
-
-    // calculate (and subtract) whole minutes
-    var minutes = Math.floor(delta / 60) % 60;
-    delta -= minutes * 60;
-
-    // what's left is seconds
-    var seconds = Math.floor(delta % 60); // in theory the modulus is not required
-
-    var finalString = "Hace ";
-    if (days > 0) {
-        if (Math.floor(days / (((365 * 5) * 2) * 10)) > 0) {
-            finalString += `${Math.floor(days / (((365 * 5) * 2) * 10))} siglo(s)`;
-        } else if (Math.floor(days / ((365 * 5) * 2)) > 0) {
-            finalString += `${Math.floor(days / ((365 * 5) * 2))} década(s)`;
-        } else if (Math.floor(days / (365 * 5)) > 0) {
-            finalString += `${Math.floor(days / (365 * 5))} lustro(s)`;
-        } else if (Math.floor(days / 365) > 0) {
-            finalString += `${Math.floor(days / 365)} año(s)`;
-        } else if (Math.floor(days / 30) > 0) {
-            finalString += `${Math.floor(days / 30)} mes(es)`;
-        } else if (Math.floor(days / 7) > 0) {
-            finalString += `${Math.floor(days / 7)} semana(s)`;
-        } else {
-            finalString += `${days} dia(s)`;
-        }
-    } else if (hours > 0) {
-        finalString += `${hours} hora(s)`;
-    } else if (minutes > 0) {
-        finalString += `${minutes} minuto(s)`;
-    } else if (seconds > 0) {
-        //finalString += `${seconds} segundo(s)`;
-        finalString += `unos segundos`;
-    }
-
-    //return [days, hours, minutes, seconds];
-    return finalString;
 }
