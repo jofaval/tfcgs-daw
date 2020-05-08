@@ -4,6 +4,7 @@ test.php
 css/*
 client/test.sql
 client/testAjax.html
+client/test.json
 *.jpg
 *.jpeg
 *.png
@@ -33,5 +34,4 @@ composer.lock
 .vscode/*
 .VSCodeCounter/*
 testing.txt
-client/testAjax.html
 *sitemap*
