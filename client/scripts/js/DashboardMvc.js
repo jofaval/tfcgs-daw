@@ -529,10 +529,10 @@ class Controller {
             var event = event || window.event;
             var newPosition = event.pageX;
             if (mousedown) {
-                clearTimeout(scrollID);
-                scrollID = setTimeout(() => {
-                    main.scrollLeft(main.scrollLeft() + (originalPosition - newPosition));
-                }, 5);
+                //clearTimeout(scrollID);
+                //scrollID = setTimeout(() => {
+                main.scrollLeft(main.scrollLeft() + (originalPosition - newPosition) * 0.5);
+                //}, 5);
             }
         });
     }
