@@ -26,20 +26,21 @@ class Modal {
     */
     static modal(settings) {
         Modal.addDefaultValuesToSettings(settings);
-        console.log(settings);
+        //console.log(settings);
 
         var modal = $.sweetModal({
             "title": settings["title"],
             "content": settings["content"],
             "theme": THEME
         });
+        settings["onOpen"](modal);
 
         modal.params["onOpen"] = function () {
             settings["onOpen"](modal);
         };
 
         modal.params["onClose"] = function () {
-            settings["onOpen"](modal);
+            settings["onClose"](modal);
         };
 
         return modal;
@@ -82,7 +83,7 @@ class Modal {
         };
 
         confirm.params["onClose"] = function () {
-            settings["onOpen"](confirm);
+            settings["onClose"](confirm);
         };
 
         return confirm;
