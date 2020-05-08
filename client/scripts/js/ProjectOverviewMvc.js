@@ -294,76 +294,73 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        var confirmationModal = $.sweetModal.confirm('¿Borrar el proyecto?', `Confimar esta acción y borrar <b>"${controller.model.projectId}"</b>`, function () {
-            controller.model.deleteProject(function (result) {
-                console.log(result);
-                if (result === true) {
-                    var successAlert = $.sweetModal({
-                        content: `Se ha borrado el proyecto <b>"${controller.model.projectId}"</b>`,
-                        icon: $.sweetModal.ICON_SUCCESS,
-                        theme: $.sweetModal.THEME_DARK,
-                    });
-                    successAlert.params["onClose"] = function () {
-                        window.location.reload();
+
+        var confirmationModal = Modal.confirmationModal({
+            title: "¿Borrar el proyecto?",
+            body: `Confimar esta acción y borrar <b>"${controller.model.projectId}"</b>`,
+            onAccept: function () {
+                controller.model.deleteProject(function (result) {
+                    console.log(result);
+                    if (result === true) {
+                        Modal.specialAlert({
+                            title: `Se ha borrado el proyecto <b>"${controller.model.projectId}"</b>`,
+                            error: false,
+                            onClose: function () {
+                                window.location.reload();
+                            },
+                        });
+                    } else {
+                        Modal.specialAlert({
+                            title: `No se ha podido borrar el proyecto <b>"${controller.model.projectId}"</b>`,
+                            error: true,
+                        });
                     }
-                } else {
-                    var errorAlert = $.sweetModal({
-                        content: `No se ha podido borrar el proyecto <b>"${controller.model.projectId}"</b>`,
-                        icon: $.sweetModal.ICON_ERROR,
-                        theme: $.sweetModal.THEME_DARK,
-                    });
-                }
-            })
-        }, function () {
-
+                })
+            },
         });
-
-        confirmationModal.params["onOpen"] = function () {
-            var buttons = $(".sweet-modal-buttons .button");
-            buttons.eq(0).text("Cancelar").removeClass("redB bordered").addClass("greenB");
-            buttons.eq(1).text("Borrar").removeClass("greenB").addClass("redB");
-        };
     }
 
     addDashboardBtnEvent(controller, event) {
         var event = event || window.event;
         event.preventDefault();
 
-        var modal = $.sweetModal({
-            title: 'Create dashboard',
-            content: `<form action="/daw/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
-                        <div class="md-form">
-                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
-                            <label for="title">Title</label>
-                        </div>
-                        <div class="md-form">
-                        <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
-                        <label for="description">Description</label>
-                        </div>
-                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="createDashboard" id="createDashboard" value="Create dashboard">
-                        </div>
-                    </form>`,
-            theme: $.sweetModal.THEME_DARK
-        });
-        modal.params["onOpen"] = function () {
-            $("#description").focus();
-            $("#title").focus();
-            $("#formCreateDashboard").on("submit", function (event) {
-                var event = event || window.event;
-                event.preventDefault();
+        Modal.modal({
+            "title": "Crear tablero",
+            "content": `<form action="/daw/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            <div class="md-form">
+                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
+                <label for="title">Título</label>
+            </div>
+            <div class="md-form">
+            <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
+            <label for="description">Descripción</label>
+            </div>
+            <input type="hidden" name="id_project" value="${controller.model.projectId}" >
+            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                    <input class="btn btn-primary w-100" type="submit" name="createDashboard" id="createDashboard" value="Create dashboard">
+            </div>
+        </form>`,
+            "onOpen": function () {
+                $("#description").focus();
+                $("#title").focus();
+                $("#formCreateDashboard").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
 
-                controller.model.createDashboard($("#title").val(), $("#description").val(), function (result) {
-                    console.log(result);
-                    if (result !== false) {
-                        modal.close();
-                        controller.addDashboard(controller, result[0]);
-                        controller.reload(controller);
-                    }
+                    var title = $("#title").val();
+                    controller.model.createDashboard(title, $("#description").val(), function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            modal.close();
+                            controller.addDashboard(controller, result[0]);
+                            controller.reload(controller);
+                            window.location.href = `/daw/projects/id/${controller.model.projectId}/dashboards/${title}/`;
+                        }
+                    });
+
                 });
-
-            });
-        };
+            },
+        });
 
         return false;
     }
@@ -372,39 +369,37 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        var modal = $.sweetModal({
-            title: 'Invitar colaborador/a',
-            content: `<form action="/daw/index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
-                        <div class="md-form">
-                            <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
-                            <label for="username">Username</label>
-                        </div>
-                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="createCollaborators" id="createCollaborators" value="Invitar colaborador/a">
-                        </div>
-                    </form>`,
-            theme: $.sweetModal.THEME_DARK
-        });
+        Modal.modal({
+            "title": "Invitar colaborador/a",
+            "content": `<form action="/daw/index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+                            <div class="md-form">
+                                <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                    <input class="btn btn-primary w-100" type="submit" name="createCollaborators" id="createCollaborators" value="Invitar colaborador/a">
+                            </div>
+                        </form>`,
+            "onOpen": function () {
+                $("#username").focus();
+                $("#formCreateCollaborator").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
 
-        modal.params["onOpen"] = function () {
-            $("#username").focus();
-            $("#formCreateCollaborator").on("submit", function (event) {
-                var event = event || window.event;
-                event.preventDefault();
+                    var username = $("#username").val();
 
-                var username = $("#username").val();
+                    controller.model.inviteCollaborator(username, function () {
+                        console.log(result);
+                        if (result) {
+                            controller.reload(controller);
+                        } else {
+                            sendNotification("No se ha podido añadir", "projectInviteCollaborator");
+                        }
+                    });
 
-                controller.model.inviteCollaborator(username, function () {
-                    console.log(result);
-                    if (result) {
-                        controller.reload(controller);
-                    } else {
-                        sendNotification("No se ha podido añadir", "projectInviteCollaborator");
-                    }
                 });
-
-            });
-        };
+            },
+        });
 
         return false;
     }
@@ -413,39 +408,37 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        var modal = $.sweetModal({
-            title: 'Eliminar colaborador/a',
-            content: `<form action="/daw/index.php?ctl=deleteCollaborators" id="formremoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
-                        <div class="md-form">
-                            <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
-                            <label for="username">Username</label>
-                        </div>
-                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Eliminar colaborador/a">
-                        </div>
-                    </form>`,
-            theme: $.sweetModal.THEME_DARK
-        });
+        Modal.modal({
+            "title": "Eliminar colaborador/a",
+            "content": `<form action="/daw/index.php?ctl=deleteCollaborators" id="formRemoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+                            <div class="md-form">
+                                <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                    <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Eliminar colaborador/a">
+                            </div>
+                        </form>`,
+            "onOpen": function () {
+                $("#username").focus();
+                $("#formRemoveCollaborator").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
 
-        modal.params["onOpen"] = function () {
-            $("#username").focus();
-            $("#formremoveCollaborator").on("submit", function (event) {
-                var event = event || window.event;
-                event.preventDefault();
+                    var username = $("#username").val();
 
-                var username = $("#username").val();
+                    controller.model.inviteCollaborator(username, function () {
+                        console.log(result);
+                        if (result) {
+                            controller.reload(controller);
+                        } else {
+                            sendNotification("No se ha podido eliminar", "projectInviteCollaborator");
+                        }
+                    });
 
-                controller.model.removeCollaborator(username, function (result) {
-                    console.log(result);
-                    if (result) {
-                        window.location.reload();
-                    } else {
-                        sendNotification("No se ha podido eliminar", "projectInviteCollaborator");
-                    }
                 });
-
-            });
-        };
+            },
+        });
 
         return false;
     }
@@ -454,34 +447,31 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        var modal = $.sweetModal({
-            title: 'Ver tablero',
-            content: `<form action="/daw/index.php?ctl=viewDashboard" id="formViewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
-                        <div class="md-form">
-                            <input type="text" placeholder="" id="dashboardName" name="dashboardName" value="" class="form-control text-white">
-                            <label for="dashboardName">Dashboard Name</label>
-                        </div>
-                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="viewDashboard" id="viewDashboard" value="Ver tablero">
-                        </div>
-                    </form>`,
-            theme: $.sweetModal.THEME_DARK
+        Modal.modal({
+            "title": "Ver tablero",
+            "content": `<form action="/daw/index.php?ctl=viewDashboard" id="formViewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+                            <div class="md-form">
+                                <input type="text" placeholder="" id="dashboardName" name="dashboardName" value="" class="form-control text-white">
+                                <label for="dashboardName">Nombre del tablero</label>
+                            </div>
+                            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                    <input class="btn btn-primary w-100" type="submit" name="viewDashboard" id="viewDashboard" value="Ver tablero">
+                            </div>
+                        </form>`,
+            "onOpen": function () {
+                $("#dashboardName").focus();
+                $("#formViewDashboard").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+
+                    var dashboardName = $("#dashboardName").val();
+
+                    redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/${dashboardName}/`);
+
+                    return false;
+                });
+            },
         });
-
-
-        modal.params["onOpen"] = function () {
-            $("#dashboardName").focus();
-            $("#formViewDashboard").on("submit", function (event) {
-                var event = event || window.event;
-                event.preventDefault();
-
-                var dashboardName = $("#dashboardName").val();
-
-                redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/${dashboardName}/`);
-
-                return false;
-            });
-        };
 
         return false;
     }
@@ -490,56 +480,54 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        var modal = $.sweetModal({
-            title: 'Cambiar rol',
-            content: `<form action="/daw/index.php?ctl=deleteCollaborators" id="formChangeCollaboratorRole" class="col-sm-10  p-3 mx-auto" method="POST">
-                        <div class="md-form">
-                            <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
-                            <label for="username">Username</label>
-                        </div>
-                        <select class="browser-default mb-3 custom-select" name="role" id="role"></select>
-                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Cambiar rol">
-                        </div>
-                    </form>`,
-            theme: $.sweetModal.THEME_DARK
-        });
+        Modal.modal({
+            "title": "Cambiar rol",
+            "content": `<form action="/daw/index.php?ctl=updateCollaborators" id="formChangeCollaboratorRole" class="col-sm-10  p-3 mx-auto" method="POST">
+                            <div class="md-form">
+                                <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
+                                <label for="username">Username</label>
+                            </div>
+                            <select class="browser-default mb-3 custom-select" name="role" id="role"></select>
+                            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                    <input class="btn btn-primary w-100" type="submit" name="updateCollaborators" id="updateCollaborators" value="Cambiar rol">
+                            </div>
+                        </form>`,
+            "onOpen": function () {
+                $("#username").focus();
 
-        modal.params["onOpen"] = function () {
-            $("#username").focus();
-
-            controller.model.getProjectCollaborationRoles(function (result) {
-                if (result !== false) {
-                    console.log(result);
-                    $(result).each(function () {
-                        var jsonData = this;
-                        var option = $(`
-                        <option title="${jsonData.description}" value="${jsonData.level}">${jsonData.title}</option>
-                        `)
-                        $("#role").append(option);
-                    });
-                }
-            });
-
-            $("#formChangeCollaboratorRole").on("submit", function (event) {
-                var event = event || window.event;
-                event.preventDefault();
-
-                var username = $("#username").val();
-                var role = $("#role").val();
-
-                controller.model.changeCollaboratorRole(username, role, function (result) {
-                    console.log(result);
+                controller.model.getProjectCollaborationRoles(function (result) {
                     if (result !== false) {
-                        sendNotification("Se ha cambiado correctamente", "projectChangeCollaboratorRoleSuccess");
-                        modal.close();
-                    } else {
-                        sendNotification("No se ha podido cambiar", "projectChangeCollaboratorRoleError");
+                        console.log(result);
+                        $(result).each(function () {
+                            var jsonData = this;
+                            var option = $(`
+                            <option title="${jsonData.description}" value="${jsonData.level}">${jsonData.title}</option>
+                            `)
+                            $("#role").append(option);
+                        });
                     }
                 });
 
-            });
-        };
+                $("#formChangeCollaboratorRole").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+
+                    var username = $("#username").val();
+                    var role = $("#role").val();
+
+                    controller.model.changeCollaboratorRole(username, role, function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            sendNotification("Se ha cambiado correctamente", "projectChangeCollaboratorRoleSuccess");
+                            modal.close();
+                        } else {
+                            sendNotification("No se ha podido cambiar", "projectChangeCollaboratorRoleError");
+                        }
+                    });
+
+                });
+            },
+        });
 
         return false;
     }
