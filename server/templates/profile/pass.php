@@ -1,3 +1,14 @@
+<?php if ($viewParams["editable"]): ?>
+<?php $breadcrumb[count($breadcrumb) - 1]["active"] = false;?>
+<?php $breadcrumb[] = [
+    "name" => "Contraseña",
+    "link" => "/daw/profile/change-pass/",
+    "active" => true,
+    "icon" => "key",
+];?>
+<?php $title .= " - Contraseña";?>
+<?php endif;?>
+
 <div class="card-body card-body-cascade text-center mt-3">
     <form class="" action="/daw/profile/change-pass/" method="POST">
         <div class="row">
