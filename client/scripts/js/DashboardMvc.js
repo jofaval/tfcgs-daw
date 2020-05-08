@@ -124,6 +124,15 @@ var $dashboardModalComment = $(`
 </div>
 `);
 
+var $dashboardAssignation = $(`
+<div class="col-sm dashboardAssignation ml-auto text-right py-1 m-1 rounded">
+    <span><i class="fa fa-clock-o"></i></span>
+    <span class="startDate h6"></span>
+    <span class=" h6">&nbsp;-&nbsp;</span>
+    <span class="endDate h6"></span>
+</div>
+`);
+
 class Model {
     constructor() {
         this.projectId = this.getProjectId();
@@ -273,25 +282,46 @@ class View {
         return taskListInput;
     }
 
-    visualizeTaskList(id, title, items = []) {
+    visualizeTaskList(json, items = []) {
         var clonedTaskList = $taskList.clone();
 
-        console.log(id, title, items);
+        console.log(json.id, json.title, items);
 
         var view = this;
 
-        clonedTaskList.find(".taskListId").text(id);
-        clonedTaskList.find(".taskListTitleText").text(title);
+        clonedTaskList.find(".taskListId").text(json.id);
+        clonedTaskList.find(".taskListTitleText").text(json.title);
 
         $("#taskListInputCreation").before(clonedTaskList);
 
         return clonedTaskList;
     }
 
-    visualizeTaskListItem(taskList, id, title) {
+    visualizeDashboardAssignation(taskItem, start_date, end_date) {
+        var clonedAssignation = $dashboardAssignation.clone();
+
+        var startDateInDate = stringToDate(start_date);
+        var endDateInDate = stringToDate(end_date);
+        clonedAssignation.find(".startDate").text(
+            printDateStylish(startDateInDate)
+        );
+        clonedAssignation.find(".endDate").text(
+            printDateStylish(endDateInDate)
+        );
+        clonedAssignation.addClass(dateBetweenInterval(new Date(), startDateInDate, endDateInDate) ? "green" : "red");
+        taskItem.find(".taskListItemTitle").after(clonedAssignation);
+
+        return clonedAssignation;
+    }
+
+    visualizeTaskListItem(taskList, json) {
         var clonedTaskListItem = $taskListItem.clone();
 
-        clonedTaskListItem.find(".taskListItemTitle").text(title);
+        clonedTaskListItem.find(".taskListItemTitle").text(json.title);
+        if (json.assigned !== false) {
+
+            this.visualizeDashboardAssignation(clonedTaskListItem, json.start_date, json.end_date);
+        }
         taskList.find(".taskListItemsContainer").append(clonedTaskListItem);
 
         return clonedTaskListItem;
@@ -492,7 +522,7 @@ class Controller {
 
     createTaskList(controller, taskListData) {
         var controllerView = controller.view;
-        var taskList = controllerView.visualizeTaskList(taskListData.id, taskListData.title);
+        var taskList = controllerView.visualizeTaskList(taskListData);
 
         taskList.find(".taskListInputBtn").on("click", function () {
             var event = event || window.event;
@@ -592,7 +622,7 @@ class Controller {
 
     createTaskItem(controller, taskList, taskItemData) {
         var controllerView = controller.view;
-        var taskItem = controllerView.visualizeTaskListItem(taskList, taskItemData.id, taskItemData.title);
+        var taskItem = controllerView.visualizeTaskListItem(taskList, taskItemData);
 
         var draggingTaskItem = taskItem;
 
