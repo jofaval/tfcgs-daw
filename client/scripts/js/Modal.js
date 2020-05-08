@@ -1,8 +1,8 @@
 class Modal {
 
-    THEME = $.sweetModal.THEME_DARK;
     LIGHT_THEME = $.sweetModal.THEME_MIXED;
     DARK_THEME = $.sweetModal.THEME_DARK;
+    THEME = LIGHT_THEME;
 
     /* 
     settings = {
