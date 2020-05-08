@@ -387,12 +387,14 @@ class Controller {
                 var event = event || window.event;
                 event.preventDefault();
 
+                var title = $("#title").val();
                 controller.model.createDashboard($("#title").val(), $("#description").val(), function (result) {
                     console.log(result);
                     if (result !== false) {
                         modal.close();
                         controller.addDashboard(controller, result[0]);
                         controller.reload(controller);
+                        window.location.href = `/daw/projects/id/${controller.model.projectId}/dashboards/${title}/`;
                     }
                 });
 

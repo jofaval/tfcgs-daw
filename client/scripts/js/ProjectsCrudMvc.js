@@ -462,6 +462,7 @@ class Controller {
                         modal.close();
                         controller.addProject(controller, result[0]);
                         controller.reload(controller);
+                        window.location.href = `/daw/projects/id/${result[0]["id"]}/`;
                     }
                 });
 
