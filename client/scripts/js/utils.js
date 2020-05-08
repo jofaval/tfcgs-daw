@@ -31,6 +31,10 @@ function sendNotification(message = "An error occurred", id = "empty", title = "
                 notifications[id]["audio"].play(); */
 
                 notification.onclick = function () {
+                    var modal = Modal.modal({
+                        "title": title,
+                        "content": message,
+                    })
                     console.log("hola");
                 };
 
