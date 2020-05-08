@@ -170,7 +170,7 @@ class Controller {
         $('#summernote').summernote({
             lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
             disableDragAndDrop: true,
-            height: 150,
+            height: 400,
             codeviewFilter: false,
             codeviewIframeFilter: true,
             tabDisable: true,
