@@ -38,7 +38,7 @@
 <div class="pushMenuOverlap position-absolute z-index-overlap w-100 h-100">
 </div>
 
-<div class="w-100 h-100 tabContent d-block" id="tabContent3">
+<div class="w-100 h-100 tabContent container p-0 d-block" id="tabContent3">
     <div class="mx-auto">
         <div class="form-row d-flex container mx-auto justify-content-center py-4">
             <button class="btn btn-sm m-0 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
@@ -48,7 +48,7 @@
                     <input placeholder="AAAA/MM/DD" type="datepicker" autofocus="true" id="datepicker"
                         class="form-control datepicker border-0 m-0 text-white"
                         value="<?php echo $viewParams["diaryDate"]; ?>">
-                    <label for="datepicker">Test</label>
+                    <label for="datepicker">Fecha</label>
                 </div>
             </div>
 
