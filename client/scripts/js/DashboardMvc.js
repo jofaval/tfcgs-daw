@@ -125,7 +125,7 @@ var $dashboardModalComment = $(`
 `);
 
 var $dashboardAssignation = $(`
-<div class="col-sm dashboardAssignation small ml-auto text-right py-1 m-1 rounded">
+<div class="w-auto float-right dashboardAssignation small ml-auto text-right p-1 m-1 rounded">
     <span><i class="fa fa-clock-o"></i></span>
     <span class="startDate"></span>
     <span class="">&nbsp;-&nbsp;</span>
