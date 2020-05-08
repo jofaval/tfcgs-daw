@@ -76,6 +76,10 @@ function stringToDate(date) {
     return false;
 }
 
+function dateBetweenInterval(dateToCheck, from, to) {
+    return dateToCheck.getTime() <= to.getTime() && dateToCheck.getTime() >= from.getTime();
+}
+
 $("#currentYear").html(printDateWithFormat(new Date(), "Y"));
 
 //print date with certain fromat
