@@ -15,8 +15,7 @@
         <div id="content" class="w-100 h-100 d-flex">
             <?php echo $contenido ?>
         </div>
-        <a href="#content" id="backToTop"
-            class="z-index-overlap position-absolute p-3 bg-light rounded cursor-pointer">↑</a>
+        <?php require_once __DIR__ . "/components/backToTop.php";?>
     </main>
     <?php if ($showFooter): require_once __DIR__ . "/components/footer.php";endif;?>
 </body>
