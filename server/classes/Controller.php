@@ -162,12 +162,12 @@ class Controller
 
     public function getAssignedDashboardItems()
     {
-        $id_dashboard_item = Utils::getCleanedData("id_dashboard_item");
+        $id_project = Utils::getCleanedData("id_project");
 
         $validation = Validation::getInstance();
         $regla = array(
             array(
-                'name' => 'id_dashboard_item',
+                'name' => 'id_project',
                 'rules' => 'no-empty,numeric',
             ),
         );
@@ -180,7 +180,7 @@ class Controller
 
         $userId = Sessions::getInstance()->getSession("userId");
 
-        return Model::getInstance()->getAssignedDashboardItems($id_dashboard_item, $userId);
+        return Model::getInstance()->getAssignedDashboardItems($id_project, $userId);
     }
 
     public function project()

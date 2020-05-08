@@ -371,13 +371,20 @@ class Model extends PDO
         ", ["id_dashboard_item" => $id_dashboard_item, "assigned_to" => $userId])[0];
     }
 
-    public function getAssignedDashboardItems($id_dashboard_item, $userId)
+    public function getAssignedDashboardItems($id_project, $userId)
     {
         $sqlUtils = new SQLUtils($this);
 
         return $sqlUtils->complexQuery("SELECT id_dashboard_item, finished, assigned_by, assigned_to, start_date, end_date
         FROM dashboards_item_assignation
-        WHERE id_dashboard_item = :id_dashboard_item and assigned_to = :assigned_to ORDER BY end_date ASC LIMIT 3
-        ", ["id_dashboard_item" => $id_dashboard_item, "assigned_to" => $userId]);
+        WHERE assigned_to = :assigned_to
+        and id_dashboard_item in (
+            SELECT dashboard_item.id FROM dashboard_item
+            	WHERE dashboard_item.id_dashboard_list IN
+            (SELECT dashboard_list.id FROM dashboard_list
+            	WHERE dashboard_list.id_project = :id_project)
+        )
+        ORDER BY end_date ASC LIMIT 3
+        ", ["id_project" => $id_project, "assigned_to" => $userId]);
     }
 }
