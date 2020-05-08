@@ -1,7 +1,7 @@
 <?php $projectData = $viewParams["projectData"];?>
 <?php $canEdit = Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN;?>
 <div class="w-100 h-100 tabContent container p-0 d-block" id="tabContent5">
-    <div class="content px-5">
+    <div class="content px-2 px-sm-5">
         <form method="POST" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/">
             <div class="text-white mt-5 h5">Project title</div>
             <div class="md-form mb-5">
