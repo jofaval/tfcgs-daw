@@ -410,6 +410,7 @@ class Controller {
                         console.log(result);
                         if (result) {
                             controller.reload(controller);
+                            controller.modifyNumberOfCollaborators(controller);
                             sendNotification("Se ha añadido con éxito", "projectInviteCollaboratorSuccess");
                             modal.close();
                         } else {
@@ -422,6 +423,10 @@ class Controller {
         });
 
         return false;
+    }
+
+    modifyNumberOfCollaborators(controller) {
+        $("#numberOfCollaborators").text(controller.model.collaborators.length);
     }
 
     removeCollaboratorEvent(controller, event) {
@@ -452,6 +457,7 @@ class Controller {
                         if (result) {
                             controller.model.findCollaborator(function (key, collaborator) {
                                 delete controller.model.collaborators[key];
+                                controller.modifyNumberOfCollaborators(controller);
                             });
                             controller.clearContainer(controller);
                             controller.reload(controller);
