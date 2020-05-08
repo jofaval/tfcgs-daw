@@ -424,6 +424,15 @@ class Controller
         $lists = Model::getInstance()->getListsOfDashboard($id_project, $dashboard_title);
         foreach ($lists as $key => $list) {
             $items = $this->getDashboardItemsOfList($list["id"]);
+
+            foreach ($items as $item) {
+                $itemAssignationData = Model::getInstance()->getAssignationDataFromItem($item["id"], Sessions::getInstance()->getSession("userId"));
+                $item["assigned"] = $itemAssignationData !== false && !is_null($itemAssignationData);
+                $item["start_date"] = $itemAssignationData !== false && !is_null($itemAssignationData);
+                $item["end_date"] = $itemAssignationData !== false && !is_null($itemAssignationData);
+                $item["assigned_by"] = $this->getUsernameFromClientId($itemAssignationData !== false && !is_null($itemAssignationData));
+            }
+
             $lists[$key]["items"] = $items;
         }
 
