@@ -69,6 +69,24 @@ class SQLUtils
         return false;
     }
 
+    public function getLastRowFromTable($table, $fieldName)
+    {
+        try {
+            $this->$model->beginTransaction();
+            $queryString = "SELECT from $table ORDER BY $fieldName DESC LIMIT 1";
+
+            $result = $this->complexQuery($queryString);
+
+            $this->$model->commit();
+            return $result;
+        } catch (PDOException $ex) {
+            //return $ex;
+            $this->$model->rollback();
+        }
+
+        return false;
+    }
+
     public function update($table, $toModify, $identificationParams = [])
     {
         try {
