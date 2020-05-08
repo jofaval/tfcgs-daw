@@ -432,42 +432,41 @@ class Controller {
     addProjectBtnEvent(controller, event) {
         var event = event || window.event;
 
-        var modal = $.sweetModal({
-            title: 'Create project',
-            content: `<form action="/daw/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
+        Modal.modal({
+            "title": "Crear proyecto",
+            "content": `<form action="/daw/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
                             <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
-                            <label for="title">Title</label>
+                            <label for="title">Título</label>
                         </div>
                         <div class="md-form">
                         <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
-                        <label for="description">Description</label>
+                        <label for="description">Descripción</label>
                         </div>
                         <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                                 <input class="btn btn-primary w-100" type="submit" name="createProject" id="createProject" value="Create project">
                         </div>
                     </form>`,
-            theme: $.sweetModal.THEME_DARK
-        });
-        modal.params["onOpen"] = function () {
-            $("#description").focus();
-            $("#title").focus();
-            $("#formCreateProject").on("submit", function (event) {
-                var event = event || window.event;
-                event.preventDefault();
+            "onOpen": function () {
+                $("#description").focus();
+                $("#title").focus();
+                $("#formCreateProject").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
 
-                controller.model.createProject($("#title").val(), $("#description").val(), function (result) {
-                    console.log(result);
-                    if (result !== false) {
-                        modal.close();
-                        controller.addProject(controller, result[0]);
-                        controller.reload(controller);
-                        window.location.href = `/daw/projects/id/${result[0]["id"]}/`;
-                    }
+                    controller.model.createProject($("#title").val(), $("#description").val(), function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            modal.close();
+                            controller.addProject(controller, result[0]);
+                            controller.reload(controller);
+                            window.location.href = `/daw/projects/id/${result[0]["id"]}/`;
+                        }
+                    });
+
                 });
-
-            });
-        };
+            },
+        });
     }
 
     //pagination
