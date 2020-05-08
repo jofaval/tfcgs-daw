@@ -51,9 +51,9 @@ class DateUtils {
     }
 
     compareTo(dateToCompare) {
-        if (this.dateToCheck.getTime() > dateToCompare.getTime()) {
+        if (this.date.getTime() > dateToCompare.getTime()) {
             return 1;
-        } else if (dateToCompare.getTime() > this.dateToCheck.getTime()) {
+        } else if (dateToCompare.getTime() > this.date.getTime()) {
             return -1;
         }
 
@@ -131,5 +131,9 @@ class DateUtils {
 
         //return [days, hours, minutes, seconds];
         return finalString;
+    }
+
+    static getCurrentDateTime() {
+        return new Date();
     }
 }
