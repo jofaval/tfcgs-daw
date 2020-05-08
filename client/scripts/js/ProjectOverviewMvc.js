@@ -272,7 +272,7 @@ class Controller {
 
         //Diario
         $("#actionDiary").on("click", function (event) {
-            controller.addDashboardBtnEvent(controller, event);
+            controller.viewDiary(controller, event);
         });
 
         //Proyecto
@@ -470,6 +470,39 @@ class Controller {
                     var dashboardName = $("#dashboardName").val();
 
                     redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/${dashboardName}/`);
+
+                    return false;
+                });
+            },
+        });
+
+        return false;
+    }
+
+    viewDiary(controller, event) {
+        var event = event || window.event;
+        event.preventDefault();
+
+        Modal.modal({
+            "title": "Ver diario",
+            "content": `<form action="/daw/projects/id/${controller.model.projectId}/diary/" id="formViewDiary" class="col-sm-10  p-3 mx-auto" method="POST">
+                            <div class="md-form">
+                                <input type="date" placeholder="" id="diaryDate" name="diaryDate" value="" class="form-control text-white">
+                                <label for="diaryDate">Fecha</label>
+                            </div>
+                            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                    <input class="btn btn-primary w-100" type="submit" name="viewDiary" id="viewDiary" value="Ver diario">
+                            </div>
+                        </form>`,
+            "onOpen": function () {
+                $("#diaryDate").focus();
+                $("#formViewDiary").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+
+                    var diaryDate = $("#diaryDate").val();
+
+                    redirectTo(`/daw/projects/id/${controller.model.projectId}/diary/date/${diaryDate}/`);
 
                     return false;
                 });
