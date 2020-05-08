@@ -398,17 +398,17 @@ function camelCase($string = "", $firstLetterCapital = false)
     $explodedString = preg_split("/[\ \_\-]/", $string);
 
     foreach ($explodedString as $key => $value) {
-        $value = strtolower($value);
-        $value[0] = strtoupper($value[0]);
+        $value = mb_strtolower($value);
+        $value[0] = mb_strtoupper($value[0]);
         $explodedString[$key] = $value;
     }
 
     $parsedString = join("", $explodedString);
 
     if ($firstLetterCapital) {
-        $parsedString[0] = strtoupper($parsedString[0]);
+        $parsedString[0] = mb_strtoupper($parsedString[0]);
     } else {
-        $parsedString[0] = strtolower($parsedString[0]);
+        $parsedString[0] = mb_strtolower($parsedString[0]);
     }
 
     return $parsedString;

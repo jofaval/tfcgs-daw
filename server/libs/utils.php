@@ -7,11 +7,11 @@ class Utils
         if ($everyWord) {
             $explodedString = preg_split("/\s/", $string);
             foreach ($explodedString as $key => $value) {
-                $explodedString[$key][0] = strtoupper($value[0]);
+                $explodedString[$key][0] = mb_strtoupper($value[0]);
             }
             $string = implode(" ", $explodedString);
         } else {
-            $string[0] = strtoupper($string[0]);
+            $string[0] = mb_strtoupper($string[0]);
         }
 
         return $string;

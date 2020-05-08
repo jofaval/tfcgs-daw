@@ -133,7 +133,7 @@ switch ($tabName) {
 }
 $title .= " - " . $titleName;
 $breadcrumb[] = [
-    "name" => strtoupper($titleName[0]) . strtolower(substr($titleName, 1)),
+    "name" => mb_strtoupper($titleName[0]) . mb_strtolower(mb_substr($titleName, 1)),
     "link" => "/daw/projects/id/" . $viewParams["id"] . "/$tabName/",
     "active" => true,
     "icon" => $icon,

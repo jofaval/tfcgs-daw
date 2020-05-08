@@ -1,3 +1,5 @@
+<?php header('Content-Type: text/html; charset=utf-8');?>
+
 <head>
     <title>Origen - <?php echo $title; ?></title>
     <link rel="shortcut icon" href="/daw/img/branding/favicon-16x16.png" type="image/x-icon">

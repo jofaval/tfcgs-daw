@@ -820,7 +820,7 @@ class Controller
 
     public function generateImage($text, $savePath)
     {
-        $text = strtoupper($text[0]);
+        $text = mb_strtoupper($text[0]);
         header("Content-type: image/png");
 
         $width = 400;
