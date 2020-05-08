@@ -19,19 +19,7 @@ endif;?>
         <a href="#content" id="backToTop"
             class="z-index-overlap position-absolute p-3 bg-light rounded cursor-pointer">↑</a>
     </main>
-
-    <?php if ($showFooter): ?>
-    <div></div>
-    <footer class="footer py-3 bg-light z-index-overlap d-none d-sm-block">
-        <div class="container text-align-right">
-            <span class="text-dark">Creador por <a
-                    href="/daw/profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
-                    class="projectCreatedBy text-dark font-weight-bold"><?php echo $projectData["projectCreator"]; ?></a>
-                el <span
-                    class="projectCreationDate text-dark font-weight-bold"><?php echo date("d-m-Y", strtotime($projectData["projectCreationDate"])); ?></span>
-        </div>
-    </footer>
-    <?php endif;?>
+    <?php if ($showFooter): require_once __DIR__ . "/components/footerProject.php";endif;?>
     <?php require_once __DIR__ . "/components/loader.php";?>
 </body>
 
