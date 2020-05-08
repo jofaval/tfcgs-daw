@@ -155,6 +155,21 @@ class Model {
         });
     }
 
+    findCollaborator(whenFound) {
+        var model = this;
+
+        for (const collaboratorKey in model.collaborators) {
+            if (model.collaborators.hasOwnProperty(collaboratorKey)) {
+                var currentCollaborator = model.collaborators[collaboratorKey];
+                if (currentCollaborator.collaboratorUsername == username) {
+                    whenFound(collaboratorKey, currentCollaborator);
+                    break;
+                }
+
+            }
+        }
+    }
+
     getProjectId() {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
@@ -372,7 +387,7 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        Modal.modal({
+        var modal = Modal.modal({
             "title": "Invitar colaborador/a",
             "content": `<form action="/daw/index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
@@ -391,10 +406,12 @@ class Controller {
 
                     var username = $("#username").val();
 
-                    controller.model.inviteCollaborator(username, function () {
+                    controller.model.inviteCollaborator(username, function (result) {
                         console.log(result);
                         if (result) {
                             controller.reload(controller);
+                            sendNotification("Se ha añadido con éxito", "projectInviteCollaboratorSuccess");
+                            modal.close();
                         } else {
                             sendNotification("No se ha podido añadir", "projectInviteCollaborator");
                         }
@@ -411,7 +428,7 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        Modal.modal({
+        var modal = Modal.modal({
             "title": "Eliminar colaborador/a",
             "content": `<form action="/daw/index.php?ctl=deleteCollaborators" id="formRemoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
@@ -430,10 +447,16 @@ class Controller {
 
                     var username = $("#username").val();
 
-                    controller.model.removeCollaborator(username, function () {
+                    controller.model.removeCollaborator(username, function (result) {
                         console.log(result);
                         if (result) {
+                            controller.model.findCollaborator(function (key, collaborator) {
+                                delete controller.model.collaborators[key];
+                            });
+                            controller.clearContainer(controller);
                             controller.reload(controller);
+                            sendNotification("Se ha eliminado con éxito", "projectRemoveCollaboratorSuccess");
+                            modal.close();
                         } else {
                             sendNotification("No se ha podido eliminar", "projectRemoveCollaborator");
                         }
@@ -516,7 +539,7 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        Modal.modal({
+        var modal = Modal.modal({
             "title": "Cambiar rol",
             "content": `<form action="/daw/index.php?ctl=updateCollaborators" id="formChangeCollaboratorRole" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
@@ -550,10 +573,16 @@ class Controller {
 
                     var username = $("#username").val();
                     var role = $("#role").val();
+                    var selectedOption = $("#role option:selected");
 
                     controller.model.changeCollaboratorRole(username, role, function (result) {
                         console.log(result);
                         if (result !== false) {
+                            controller.model.findCollaborator(function (key, collaborator) {
+                                controller.model.collaborators[key].collaborationRole = selectedOption.text();
+                                controller.model.collaborators[key].collaborationRoleDescription = selectedOption.prop("title");
+                            });
+                            controller.reload(controller);
                             sendNotification("Se ha cambiado correctamente", "projectChangeCollaboratorRoleSuccess");
                             modal.close();
                         } else {
@@ -569,7 +598,7 @@ class Controller {
     }
 
     clearContainer(controller) {
-        $(".collaboratorsContainer").html("");
+        $(".recentlyInvited").html("");
     }
 
     reload(controller) {
