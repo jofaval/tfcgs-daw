@@ -7,7 +7,7 @@ class DateUtils {
         this.date = date;
 
         if (convert) {
-            if (!stringToDate()) {
+            if (!this.stringToDate()) {
                 return false;
             }
         }
