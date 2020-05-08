@@ -330,7 +330,7 @@ class Controller
             switch ($tabName) {
                 case 'diary':
                     //Preparar la fecha actual
-                    $dateInString = DateUtils::getCurrentDateTime();
+                    $dateInString = DateUtils::getCurrentDateTime("Y-m-d");
                     $viewParams["diaryDate"] = $dateInString;
 
                     //Si se pasa una, trabajar con esa
