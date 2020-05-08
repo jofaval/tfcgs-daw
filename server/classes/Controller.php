@@ -401,6 +401,7 @@ class Controller
     {
         $id_project = Utils::getCleanedData("id_project");
         $dashboard_title = Utils::getCleanedData("dashboard");
+        $modelInstance = Model::getInstance();
 
         $validation = Validation::getInstance();
 
@@ -421,19 +422,20 @@ class Controller
             return false;
         };
 
-        $lists = Model::getInstance()->getListsOfDashboard($id_project, $dashboard_title);
-        foreach ($lists as $key => $list) {
+        $lists = $modelInstance->getListsOfDashboard($id_project, $dashboard_title);
+        foreach ($lists as $listKey => $list) {
             $items = $this->getDashboardItemsOfList($list["id"]);
 
-            foreach ($items as $item) {
-                $itemAssignationData = Model::getInstance()->getAssignationDataFromItem($item["id"], Sessions::getInstance()->getSession("userId"));
-                $item["assigned"] = $itemAssignationData !== false && !is_null($itemAssignationData);
-                $item["start_date"] = $itemAssignationData !== false && !is_null($itemAssignationData);
-                $item["end_date"] = $itemAssignationData !== false && !is_null($itemAssignationData);
-                $item["assigned_by"] = $this->getUsernameFromClientId($itemAssignationData !== false && !is_null($itemAssignationData));
+            foreach ($items as $itemKey => $item) {
+                $itemAssignationData = $modelInstance->getAssignationDataFromItem($item["id"], Sessions::getInstance()->getSession("userId"));
+
+                $items[$itemKey]["assigned"] = $itemAssignationData !== false && !is_null($itemAssignationData);
+                $items[$itemKey]["start_date"] = $itemAssignationData["start_date"];
+                $items[$itemKey]["end_date"] = $itemAssignationData["end_date"];
+                $items[$itemKey]["assigned_by"] = $this->getUsernameFromClientId($itemAssignationData["assigned_by"]);
             }
 
-            $lists[$key]["items"] = $items;
+            $lists[$listKey]["items"] = $items;
         }
 
         return $lists;
