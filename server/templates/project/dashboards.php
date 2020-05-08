@@ -1,5 +1,5 @@
 <div
-    class="row dashboardMenu d-flex justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0 grey darken-2">
+    class="row dashboardMenu d-flex justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0 tabs">
     <div class="dashboardsCount ml-3 text-white">
         <span class="numberOfDashboards">15</span>&nbsp;
         <span class="font-weight-bold">dashboard(s)</span>
