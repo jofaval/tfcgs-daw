@@ -619,7 +619,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "assigned_to", "start_date", "end_date", "creation_date", "assigned_to"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to queryDashboardsItemAssignation
@@ -627,7 +627,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "assigned_to"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to deleteDashboardsItemAssignation
@@ -635,6 +635,6 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "assigned_to"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 }

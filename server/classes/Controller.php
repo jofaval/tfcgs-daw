@@ -475,6 +475,7 @@ class Controller
                 $items[$itemKey]["finished"] = $itemAssignationData["finished"];
                 $items[$itemKey]["start_date"] = $itemAssignationData["start_date"];
                 $items[$itemKey]["end_date"] = $itemAssignationData["end_date"];
+                $items[$itemKey]["assignation_id"] = $itemAssignationData["id"];
                 $items[$itemKey]["assigned_by"] = $this->getUsernameFromClientId($itemAssignationData["assigned_by"]);
             }
 
