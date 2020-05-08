@@ -25,6 +25,7 @@ class Modal {
     }
     */
     static modal(settings) {
+        Modal.addDefaultValuesToSettings(settings);
         console.log(settings);
 
         var modal = $.sweetModal({
@@ -55,6 +56,7 @@ class Modal {
     }
     */
     static confirmationModal(settings) {
+        Modal.addDefaultValuesToSettings(settings);
         var confirm = $.confirm({
             "title": settings["title"],
             "message": settings["body"],
@@ -88,7 +90,7 @@ class Modal {
 
     /* 
     settings = {
-        title: "test",
+        message: "test",
         error: true,
         onOpen: function () {},
         onAccept: function () {},
@@ -98,8 +100,9 @@ class Modal {
     }
     */
     static specialAlert(settings) {
+        Modal.addDefaultValuesToSettings(settings);
         var alert = $.sweetModal({
-            "content": settings["title"],
+            "content": settings["message"],
             "icon": settings["error"] ? $.sweetModal.ICON_ERROR : $.sweetModal.ICON_SUCCESS,
             "theme": THEME,
         });
@@ -111,5 +114,18 @@ class Modal {
         }
 
         return modal;
+    }
+
+    static addDefaultValuesToSettings(settings) {
+        Modal.ifUndefinedAddEmptyFunction(settings, "onOpen")
+        Modal.ifUndefinedAddEmptyFunction(settings, "onAccept")
+        Modal.ifUndefinedAddEmptyFunction(settings, "onCancel")
+        Modal.ifUndefinedAddEmptyFunction(settings, "onClose")
+    }
+
+    static ifUndefinedAddEmptyFunction(array, name) {
+        if (array[name] == undefined) {
+            array[name] = function () {};
+        }
     }
 }
