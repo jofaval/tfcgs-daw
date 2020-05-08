@@ -10,7 +10,7 @@ DARK_THEME = [
     "dark-overlay",
     "dark-modal",
 ];
-THEME = MIXED_THEME;
+THEME = DARK_THEME;
 
 class Modal {
 
@@ -106,10 +106,10 @@ class Modal {
             "icon": settings["error"] ? $.sweetModal.ICON_ERROR : $.sweetModal.ICON_SUCCESS,
             "theme": THEME,
         });
-        successAlert.params["onOpen"] = function () {
+        alert.params["onOpen"] = function () {
             settings["onOpen"](alert);
         }
-        successAlert.params["onClose"] = function () {
+        alert.params["onClose"] = function () {
             settings["onClose"](alert);
         }
 
