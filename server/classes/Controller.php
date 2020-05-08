@@ -160,6 +160,29 @@ class Controller
         require_once __DIR__ . "/../templates/profile.php";
     }
 
+    public function getAssignedDashboardItems()
+    {
+        $id_dashboard_item = Utils::getCleanedData("id_dashboard_item");
+
+        $validation = Validation::getInstance();
+        $regla = array(
+            array(
+                'name' => 'id_dashboard_item',
+                'rules' => 'no-empty,numeric',
+            ),
+        );
+
+        $isValid = $validation->rules($regla, $_REQUEST);
+
+        if ($isValid !== true) {
+            return false;
+        }
+
+        $userId = Sessions::getInstance()->getSession("userId");
+
+        return Model::getInstance()->getAssignedDashboardItems($id_dashboard_item, $userId);
+    }
+
     public function project()
     {
         $id = 0;

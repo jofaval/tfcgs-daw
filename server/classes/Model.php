@@ -370,4 +370,14 @@ class Model extends PDO
         WHERE id_dashboard_item = :id_dashboard_item and assigned_to = :assigned_to
         ", ["id_dashboard_item" => $id_dashboard_item, "assigned_to" => $userId])[0];
     }
+
+    public function getAssignedDashboardItems($id_dashboard_item, $userId)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        return $sqlUtils->complexQuery("SELECT id_dashboard_item, finished, assigned_by, assigned_to, start_date, end_date
+        FROM dashboards_item_assignation
+        WHERE id_dashboard_item = :id_dashboard_item and assigned_to = :assigned_to ORDER BY end_date ASC LIMIT 3
+        ", ["id_dashboard_item" => $id_dashboard_item, "assigned_to" => $userId]);
+    }
 }

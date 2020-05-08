@@ -52,6 +52,12 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, [], "Controller");
     }
 
+    //Function to getAssignedDashboardItems
+    public function getAssignedDashboardItems()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item"], "Controller");
+    }
+
     //Function to getCommentsOfDashboardItem
     public function getCommentsOfDashboardItem()
     {
