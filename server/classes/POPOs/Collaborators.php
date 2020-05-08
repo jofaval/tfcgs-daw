@@ -8,6 +8,7 @@ class Collaborators implements CRUD
     private $id_project;
     private $id_collaborator;
     private $starting_date;
+    private $invited_by;
 
     //Table Keys
 
@@ -27,6 +28,7 @@ class Collaborators implements CRUD
         $params = [
             "id_project" => $this->id_project,
             "id_collaborator" => $this->id_collaborator,
+            "invited_by" => $this->invited_by,
             "level" => '1',
             "enabled" => '1',
         ];
@@ -109,7 +111,8 @@ class Collaborators implements CRUD
     {
         $this->id_project = Utils::getCleanedData("id_project");
         $this->id_collaborator = Utils::getCleanedData("id_collaborator");
-        $this->starting_date = Utils::getCleanedData("startingDate");
+        $this->starting_date = Utils::getCleanedData("starting_date");
+        $this->invited_by = Sessions::getInstance()->getSession("userId");
         $this->level = Utils::getCleanedData("level");
     }
 
