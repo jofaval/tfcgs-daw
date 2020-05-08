@@ -362,7 +362,7 @@ class Controller {
     addDashboardBtnEvent(controller, event) {
         var event = event || window.event;
 
-        Modal.modal({
+        var modal = Modal.modal({
             "title": "Crear tablero",
             "content": `<form action="/daw/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
             <div class="md-form">
@@ -396,6 +396,7 @@ class Controller {
                         }
                     });
 
+                    return false;
                 });
             },
         });
