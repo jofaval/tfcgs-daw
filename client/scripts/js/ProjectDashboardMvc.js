@@ -375,7 +375,7 @@ class Controller {
             </div>
             <input type="hidden" name="id_project" value="${controller.model.projectId}" >
             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                    <input class="btn btn-primary w-100" type="submit" name="createDashboard" id="createDashboard" value="Create dashboard">
+                    <input class="btn btn-primary w-100" type="submit" name="createDashboard" id="createDashboard" value="Crear dashboard">
             </div>
         </form>`,
             "onOpen": function () {

@@ -444,7 +444,7 @@ class Controller {
                         <label for="description">Descripción</label>
                         </div>
                         <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="createProject" id="createProject" value="Create project">
+                                <input class="btn btn-primary w-100" type="submit" name="createProject" id="createProject" value="Crear project">
                         </div>
                     </form>`,
             "onOpen": function () {
