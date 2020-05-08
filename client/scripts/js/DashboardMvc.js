@@ -125,11 +125,11 @@ var $dashboardModalComment = $(`
 `);
 
 var $dashboardAssignation = $(`
-<div class="col-sm dashboardAssignation ml-auto text-right py-1 m-1 rounded">
+<div class="col-sm dashboardAssignation small ml-auto text-right py-1 m-1 rounded">
     <span><i class="fa fa-clock-o"></i></span>
-    <span class="startDate h6"></span>
-    <span class=" h6">&nbsp;-&nbsp;</span>
-    <span class="endDate h6"></span>
+    <span class="startDate"></span>
+    <span class="">&nbsp;-&nbsp;</span>
+    <span class="endDate"></span>
 </div>
 `);
 
@@ -297,18 +297,30 @@ class View {
         return clonedTaskList;
     }
 
-    visualizeDashboardAssignation(taskItem, start_date, end_date) {
+    visualizeDashboardAssignation(taskItem, start_date, end_date, finished) {
         var clonedAssignation = $dashboardAssignation.clone();
 
-        var startDateInDate = stringToDate(start_date);
-        var endDateInDate = stringToDate(end_date);
+        var startDateInDate = new DateUtils(start_date).date;
+        var endDateInDate = new DateUtils(end_date).date;
         clonedAssignation.find(".startDate").text(
-            new DateUtils(startDateInDate).printDateStylish()
+            new DateUtils(start_date).printDateStylish()
         );
         clonedAssignation.find(".endDate").text(
-            new DateUtils(endDateInDate).printDateStylish()
+            new DateUtils(end_date).printDateStylish()
         );
-        clonedAssignation.addClass(new DateUtils(new Date()).dateBetweenInterval(startDateInDate, endDateInDate) ? "green" : "red");
+
+        var className = "inTime";
+
+        var currentDate = DateUtils.getCurrentDateTime();
+
+        if (finished != 0) {
+            className = "green";
+        } else if (new DateUtils(currentDate).compareTo(startDateInDate) == -1 ||
+            new DateUtils(currentDate).compareTo(endDateInDate) == 1) {
+            className = "red";
+        }
+
+        clonedAssignation.addClass(className);
         taskItem.find(".taskListItemTitle").after(clonedAssignation);
 
         return clonedAssignation;
@@ -320,7 +332,7 @@ class View {
         clonedTaskListItem.find(".taskListItemTitle").text(json.title);
         if (json.assigned !== false) {
 
-            this.visualizeDashboardAssignation(clonedTaskListItem, json.start_date, json.end_date);
+            this.visualizeDashboardAssignation(clonedTaskListItem, json.start_date, json.end_date, json.finished);
         }
         taskList.find(".taskListItemsContainer").append(clonedTaskListItem);
 
