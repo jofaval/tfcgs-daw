@@ -387,4 +387,13 @@ class Model extends PDO
         ORDER BY end_date ASC LIMIT 3
         ", ["id_project" => $id_project, "assigned_to" => $userId]);
     }
+
+    public function getOrderNumberOfList($id_dashboard_list)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        return $sqlUtils->complexQuery("SELECT COUNT(*) as 'currentOrder' FROM dashboard_item
+            	WHERE dashboard_item.id_dashboard_list = :id_dashboard_list
+        ORDER BY `order` ASC", ["id_dashboard_list" => $id_dashboard_list])[0]["currentOrder"];
+    }
 }
