@@ -347,7 +347,9 @@ class View {
 
     scrollTo(element) {
         $(element).get(0).scrollIntoView({
-            behavior: "smooth"
+            behavior: "smooth",
+            block: 'nearest',
+            inline: 'start'
         });
     }
 
@@ -715,6 +717,7 @@ class Controller {
 
         taskItem.on("click", function (event) {
             var event = event || window.event;
+            event.stopPropagation();
 
             var modal = $.sweetModal({
                 content: $dashboardModal.html(),
@@ -723,6 +726,10 @@ class Controller {
 
             modal.params["onOpen"] = function () {
                 controller.onOpenDashboardModal(taskItemData, controller);
+            }
+
+            modal.params["onClose"] = function () {
+                controller.view.scrollTo(taskItem);
             }
         });
 
