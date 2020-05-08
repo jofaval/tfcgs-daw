@@ -340,7 +340,7 @@ class Controller
                         $regla = array(
                             array(
                                 'name' => 'date',
-                                'regla' => 'no-empty,date',
+                                'rules' => 'no-empty,date',
                             ),
                         );
 
@@ -736,23 +736,23 @@ class Controller
             $regla = array(
                 array(
                     'name' => 'firstName',
-                    'regla' => 'no-empty,text',
+                    'rules' => 'no-empty,text',
                 ),
                 array(
                     'name' => 'secondName',
-                    'regla' => 'no-empty,text',
+                    'rules' => 'no-empty,text',
                 ),
                 array(
                     'name' => 'email',
-                    'regla' => 'no-empty,email',
+                    'rules' => 'no-empty,email',
                 ),
                 array(
                     'name' => 'username',
-                    'regla' => 'no-empty,username',
+                    'rules' => 'no-empty,username',
                 ),
                 array(
                     'name' => 'password',
-                    'regla' => 'no-empty,password',
+                    'rules' => 'no-empty,password',
                 ),
             );
             $validations = $validation->rules($regla, $_REQUEST);
