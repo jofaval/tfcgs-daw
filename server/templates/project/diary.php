@@ -12,7 +12,7 @@
 }
 </style>
 <?php $optionalScripts[] = "libs/summernote-bs4.min.js";?>
-<?php $optionalScripts[] = "js/agenda.js";?>
+<?php $optionalScripts[] = "";?>
 <?php $optionalCSS[] = "summernote-bs4.min.css";?>
 <?php $optionalCSS[] = "agenda.css";?>
 
