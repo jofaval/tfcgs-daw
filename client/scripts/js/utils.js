@@ -96,6 +96,16 @@ function printDateWithFormat(givenDate, format = "d/m/Y") {
     return format;
 }
 
+const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+];
+
+function printDateStylish(givenDate) {
+    var monthName = monthNames[givenDate.getMonth()];
+    monthName = monthName.substring(0, 3).toLowerCase();
+    return `${givenDate.getDate()} de ${monthName}.`;
+}
+
 function writeInElement(element, phrase, intervalTime = 25) {
     phrase = phrase.replace(/\ +/, " ");
     var phraseLen = phrase.length;
