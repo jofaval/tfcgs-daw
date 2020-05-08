@@ -36,11 +36,7 @@ endif;?>
         </div>
     </footer>
     <?php endif;?>
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-    </div>
+    <?php require_once __DIR__ . "/components/loader.php";?>
 </body>
 
 <?php foreach (Config::$mvc_vis_scripts as $script_link): ?>
