@@ -2,7 +2,7 @@
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "tasks.css"];?>
 <?php $optionalScripts = ["js/DashboardMvc.js"];?>
 <?php $title = $viewParams["title"] . " | Tablero - " . $viewParams["dashboardTitle"];?>
-<?php $mainClasses = "h-100";?>
+<?php $mainClasses = "h-100 overflow-hidden";?>
 <?php $showFooter = false;?>
 <?php $showHeader = false;?>
 <?php $showBreadcrumb = true;?>
