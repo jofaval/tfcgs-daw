@@ -143,6 +143,8 @@ class Controller {
             controller.generateNavigationScheme(controller);
         });
 
+        controller.loadDateContent(controller);
+
         whenUserDoneTypingInInput($(".note-editable.card-block"), "summernoteContent", function () {
             controller.generateNavigationScheme(controller);
         }, 2.5 * 1000);
