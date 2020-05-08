@@ -362,44 +362,45 @@ class Controller {
     addDashboardBtnEvent(controller, event) {
         var event = event || window.event;
 
-        var modal = $.sweetModal({
-            title: 'Create dashboard',
-            content: `<form action="/daw/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
-                        <div class="md-form">
-                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
-                            <label for="title">Title</label>
-                        </div>
-                        <div class="md-form">
-                        <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
-                        <label for="description">Description</label>
-                        </div>
-                        <input type="hidden" name="id_project" value="${controller.model.projectId}" >
-                        <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                                <input class="btn btn-primary w-100" type="submit" name="createDashboard" id="createDashboard" value="Create dashboard">
-                        </div>
-                    </form>`,
-            theme: $.sweetModal.THEME_DARK
-        });
-        modal.params["onOpen"] = function () {
-            $("#description").focus();
-            $("#title").focus();
-            $("#formCreateDashboard").on("submit", function (event) {
-                var event = event || window.event;
-                event.preventDefault();
+        Modal.modal({
+            "title": "Crear tablero",
+            "content": `<form action="/daw/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            <div class="md-form">
+                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
+                <label for="title">Título</label>
+            </div>
+            <div class="md-form">
+            <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
+            <label for="description">Descripción</label>
+            </div>
+            <input type="hidden" name="id_project" value="${controller.model.projectId}" >
+            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                    <input class="btn btn-primary w-100" type="submit" name="createDashboard" id="createDashboard" value="Create dashboard">
+            </div>
+        </form>`,
+            "onOpen": function () {
+                $("#description").focus();
+                $("#title").focus();
+                $("#formCreateDashboard").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
 
-                var title = $("#title").val();
-                controller.model.createDashboard($("#title").val(), $("#description").val(), function (result) {
-                    console.log(result);
-                    if (result !== false) {
-                        modal.close();
-                        controller.addDashboard(controller, result[0]);
-                        controller.reload(controller);
-                        window.location.href = `/daw/projects/id/${controller.model.projectId}/dashboards/${title}/`;
-                    }
+                    var title = $("#title").val();
+                    controller.model.createDashboard(title, $("#description").val(), function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            modal.close();
+                            controller.addDashboard(controller, result[0]);
+                            controller.reload(controller);
+                            window.location.href = `/daw/projects/id/${controller.model.projectId}/dashboards/${title}/`;
+                        }
+                    });
+
                 });
+            },
+        });
 
-            });
-        };
+        modal.params["onOpen"] = function () {};
     }
 
     //pagination
