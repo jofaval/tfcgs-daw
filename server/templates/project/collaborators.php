@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="grey darken-3 m-0 px-2 pt-2">
+    <div class="m-0 px-2 pt-2">
         <div class="collaboratorsContainer"></div>
         <div class="row d-flex justify-content-center py-3">
             <nav aria-label="Page navigation example" class="bg-transparent">
