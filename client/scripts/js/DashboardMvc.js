@@ -391,6 +391,7 @@ class View {
             }).addClass(addClass)
         );
         e.dataTransfer.setDragImage(crt, currentWidth, currentHeight);
+        return crt;
     }
 
     scrollTo(element) {
@@ -426,9 +427,13 @@ class View {
 }
 
 var startingTaskListParent = null;
+var startingTaskListData = null;
 var startingIndex = 0;
 var endingTaskListParent = null;
+var endingTaskListData = null;
 var endingIndex = 0;
+var taskItemMovedData = 0;
+
 var mousedown = false;
 
 class Controller {
@@ -563,6 +568,21 @@ class Controller {
     }
 
     onTaskItemMoved(movedData) {
+        console.log(movedData);
+
+        $.ajax({
+            url: "/daw/index.php?ctl=updateDashboardItem",
+            data: {
+                order: movedData["endingIndex"],
+                id_dashboard_list: movedData["endingTaskList"]["id"],
+                id: movedData["taskItem"]["id"],
+            },
+            success: function (result) {
+                console.log(result);
+            }
+        });
+
+
         if (movedData.startingTaskList != movedData.endingTaskList) {
 
         }
@@ -589,6 +609,8 @@ class Controller {
                 var itemsContainer = taskList.find(".taskListItemsContainer");
                 $referenceTaskListItem.show();
 
+                endingTaskListData = taskListData;
+
                 var totalTaskListItems = itemsContainer.children(".taskListItem").length;
 
                 if (totalTaskListItems == 0) {
@@ -596,6 +618,17 @@ class Controller {
                     itemsContainer.append($referenceTaskListItem);
                 }
             }
+        }).on("dragend", function () {
+            console.log("se llama", taskListData);
+            startingTaskListData = taskListData;
+
+            controller.onTaskItemMoved({
+                "startingTaskList": startingTaskListData,
+                "startingIndex": startingIndex,
+                "endingTaskList": endingTaskListData,
+                "endingIndex": endingIndex,
+                "taskItem": taskItemMovedData,
+            });
         });
 
         taskList.find(".dashboardListBtnClose").on("click", function (event) {
@@ -659,7 +692,6 @@ class Controller {
         });
     }
 
-
     createTaskItem(controller, taskList, taskItemData) {
         var controllerView = controller.view;
         var taskItem = controllerView.visualizeTaskListItem(taskList, taskItemData);
@@ -668,16 +700,19 @@ class Controller {
 
         taskItem.prop("draggable", true);
 
+        var ghostImage = null;
+
         taskItem.on("dragstart", function (event) {
             mousedown = false;
 
             var event = event.originalEvent || window.event;
             var currentTaskItem = $(this);
 
-            controllerView.addGhostImage(event, currentTaskItem, this);
+            ghostImage = controllerView.addGhostImage(event, currentTaskItem, this);
 
             startingIndex = currentTaskItem.index();
             draggingTaskItem = currentTaskItem;
+            taskItemMovedData = taskItemData;
             startingTaskListParent = currentTaskItem.parents(".taskList");
             $referenceTaskListItem.find(".taskListItemTitle").html(draggingTaskItem.text());
             console.log("Empieza");
@@ -705,15 +740,11 @@ class Controller {
             endingTaskListParent = $referenceTaskListItem.parents(".taskList");
             endingIndex += $referenceTaskListItem.index();
 
-            $referenceTaskListItem.before(taskItem);
+            if (ghostImage != null) {
+                ghostImage.remove();
+            }
 
-            controller.onTaskItemMoved({
-                "startingTaskList": startingTaskListParent,
-                "startingIndex": startingIndex,
-                "endingTaskList": endingTaskListParent,
-                "endingIndex": endingIndex,
-                "taskItem": taskItem,
-            });
+            $referenceTaskListItem.before(taskItem);
         });
 
         taskItem.find(".dashboardBtnClose").on("click", function (event) {
