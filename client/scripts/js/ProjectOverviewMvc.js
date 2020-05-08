@@ -66,7 +66,6 @@ class Model {
                 "id_project": model.projectId,
             },
             success: function (result) {
-                model.workingDashboards.push(result[0]);
                 whenFinished(result);
             }
         });
@@ -342,7 +341,7 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        Modal.modal({
+        var modal = Modal.modal({
             "title": "Crear tablero",
             "content": `<form action="/daw/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
             <div class="md-form">
@@ -370,9 +369,10 @@ class Controller {
                         console.log(result);
                         if (result !== false) {
                             modal.close();
-                            controller.addDashboard(controller, result[0]);
                             controller.reload(controller);
                             window.location.href = `/daw/projects/id/${controller.model.projectId}/dashboards/${title}/`;
+                        } else {
+                            sendNotification("No se ha podido crear el tablero", "dashboardCreationFail");
                         }
                     });
 
@@ -479,7 +479,7 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        Modal.modal({
+        var modal = Modal.modal({
             "title": "Ver tablero",
             "content": `<form action="/daw/index.php?ctl=viewDashboard" id="formViewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
@@ -512,7 +512,7 @@ class Controller {
         var event = event || window.event;
         event.preventDefault();
 
-        Modal.modal({
+        var modal = Modal.modal({
             "title": "Ver diario",
             "content": `<form action="/daw/projects/id/${controller.model.projectId}/diary/" id="formViewDiary" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
@@ -570,6 +570,8 @@ class Controller {
                             `)
                             $("#role").append(option);
                         });
+                    } else {
+                        sendNotification("No se ha podido cambiar el rol", "changeCollaboratorRoleFail");
                     }
                 });
 
