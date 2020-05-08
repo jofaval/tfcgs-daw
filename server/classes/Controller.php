@@ -337,6 +337,10 @@ class Controller
                     if (Utils::exists("date")) {
                         $date = Utils::getCleanedData("date");
 
+                        if ($date == "") {
+                            header("Location: /daw/projects/id/$id/diary/");
+                        }
+
                         $regla = array(
                             array(
                                 'name' => 'date',
@@ -347,6 +351,8 @@ class Controller
                         $isDate = $validation->rules($regla, ["date" => $date]);
                         if ($isDate === true) {
                             $viewParams["diaryDate"] = $date;
+                        } else {
+                            header("Location: /daw/projects/id/$id/diary/");
                         }
                     }
 
