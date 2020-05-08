@@ -65,12 +65,7 @@ class DashboardItem implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "id_creator" => $this->id_creator,
-            "title" => $this->title,
             "order" => $this->order,
-            "description" => $this->description,
-            "creation_date" => $this->creation_date,
-            "enabled" => $this->enabled,
             "id_dashboard_list" => $this->id_dashboard_list,
         ];
 

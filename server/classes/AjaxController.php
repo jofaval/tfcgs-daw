@@ -471,13 +471,13 @@ class AjaxController
     //Function to updateDashboardItem
     public function updateDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["title", "id_dashboard_list"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_dashboard_list"]);
     }
 
     //Function to queryDashboardItem
     public function queryDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["title", "id_dashboard_list"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to deleteDashboardItem
