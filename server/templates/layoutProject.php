@@ -3,7 +3,7 @@
 <?php $sessions = Sessions::getInstance();?>
 <?php $username = $sessions->getSession("username");?>
 
-<?php require_once __DIR__ . "/components/head.php"?>
+<?php require_once __DIR__ . "/components/headProject.php"?>
 
 <body class="text-light overflow-hidden">
     <?php require_once __DIR__ . "/components/loader.php";?>
