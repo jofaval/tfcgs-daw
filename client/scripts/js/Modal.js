@@ -36,7 +36,7 @@ class Modal {
         settings["onOpen"](modal);
 
         modal.params["onOpen"] = function () {
-            settings["onOpen"](modal);
+            //settings["onOpen"](modal);
         };
 
         modal.params["onClose"] = function () {
