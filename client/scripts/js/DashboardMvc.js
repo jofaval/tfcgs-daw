@@ -124,8 +124,15 @@ var $dashboardModalComment = $(`
 </div>
 `);
 
+var $dashboardAssignationContainer = $(`<div class="dashboardAssignationContainer row"></div>`);
+var $dashboardAssignationFinishedStateInput = $(`
+<div class="custom-control w-auto text-right ml-2 custom-checkbox">
+    <input type="checkbox" class="custom-control-input" name="finished" id="finished">
+    <label class="custom-control-label" for="finished">Terminado</label>
+</div>
+`);
 var $dashboardAssignation = $(`
-<div class="w-auto float-right dashboardAssignation small ml-auto text-right p-1 m-1 rounded">
+<div class="w-auto dashboardAssignation text-white small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
     <span><i class="fa fa-clock-o"></i></span>
     <span class="startDate"></span>
     <span class="">&nbsp;-&nbsp;</span>
@@ -335,7 +342,7 @@ class View {
         }
 
         clonedAssignation.addClass(className);
-        taskItem.find(".taskListItemTitle").after(clonedAssignation);
+        taskItem.append(clonedAssignation);
 
         return clonedAssignation;
     }
@@ -749,6 +756,17 @@ class Controller {
         inputs.focus();
         inputs.first().focus();
         console.log(inputs);
+
+        if (taskItemData.assigned === true) {
+            console.log("FUNCIONA", taskItemData);
+
+            console.log($dashboardAssignationContainer);
+            $dashboardAssignationContainer.append($dashboardAssignationFinishedStateInput.clone());
+            var assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+            assignationItem.removeClass("ml-auto");
+            $dashboardAssignationFinishedStateInput.find(":checkbox").val(taskItemData.finished !== 0);
+            $(".dashboardModalDescriptionTitle").after($dashboardAssignationContainer);
+        }
 
         $(".dashboardModalTitle").text(taskItemData.title);
         $("#description.md-textarea").html(`${taskItemData.description}`);
