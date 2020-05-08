@@ -384,10 +384,12 @@ class Controller {
 
                 var items = this.items;
 
-                if (items.length > 0) {
-                    $(items).each(function () {
-                        controller.createTaskItem(controller, taskList, this);
-                    });
+                if (items != undefined) {
+                    if (items.length > 0) {
+                        $(items).each(function () {
+                            controller.createTaskItem(controller, taskList, this);
+                        });
+                    }
                 }
             });
         });
