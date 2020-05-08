@@ -66,6 +66,16 @@ function sendNotification(message = "An error occurred", id = "empty", title = "
     }
 }
 
+function stringToDate(date) {
+    var timestamp = Date.parse(date);
+
+    if (!isNaN(timestamp)) {
+        return new Date(timestamp);
+    }
+
+    return false;
+}
+
 $("#currentYear").html(printDateWithFormat(new Date(), "Y"));
 
 //print date with certain fromat
