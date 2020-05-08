@@ -97,8 +97,8 @@ class SQLUtils
             foreach ($toModify as $key => $value) {
                 $paramKeyNames[] = "`$key`=:$key";
             }
-
             $queryString .= join(", ", $paramKeyNames);
+
             if (count($identificationParams) > 0) {
                 $queryString .= " WHERE ";
                 $paramKeyNames = [];
