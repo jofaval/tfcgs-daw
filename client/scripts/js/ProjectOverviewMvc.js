@@ -430,12 +430,12 @@ class Controller {
 
                     var username = $("#username").val();
 
-                    controller.model.inviteCollaborator(username, function () {
+                    controller.model.removeCollaborator(username, function () {
                         console.log(result);
                         if (result) {
                             controller.reload(controller);
                         } else {
-                            sendNotification("No se ha podido eliminar", "projectInviteCollaborator");
+                            sendNotification("No se ha podido eliminar", "projectRemoveCollaborator");
                         }
                     });
 
