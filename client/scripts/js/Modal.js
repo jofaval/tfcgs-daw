@@ -1,47 +1,82 @@
 class Modal {
-    //Modal with form
-    static genericModalWithForm(formName, readonly = false, whenLoaded = null) {
-        $("<div id='test'></div>").load("../server/templates/forms/form" + formName + ".html", {}, function () {
-            var content = $(this);
 
-            var modalContent = $.sweetModal({
-                title: formName,
-                content: content.html(),
-                theme: $.sweetModal.THEME_DARK
-            });
+    THEME = $.sweetModal.THEME_DARK;
+    LIGHT_THEME = $.sweetModal.THEME_MIXED;
+    DARK_THEME = $.sweetModal.THEME_DARK;
 
-            whenLoaded(modalContent);
-
-            if (readonly) {
-                modalContent.content.find("form *[type=submit]").remove();
-                modalContent.content.find("form input").attr("readonly", true);
-            }
+    /* 
+    settings = {
+        title: "test",
+        content: "test",
+        onOpen: function () {},
+        onAccept: function () {},
+        onCancel: function () {},
+        onClose: function () {},
+    }
+    */
+    static modal(settings) {
+        var modal = $.sweetModal({
+            title: settings.title,
+            content: settings.content,
+            theme: $.sweetModal.THEME_DARK
         });
+
+        modal.params["onOpen"] = function () {
+            settings.onOpen(modal);
+        };
+
+        modal.params["onClose"] = function () {
+            settings.onOpen(modal);
+        };
     }
 
-    //Modal with error message
-    static modalError(message) {
-        $.sweetModal({
-            content: message,
-            icon: $.sweetModal.ICON_ERROR
+    /* 
+    settings = {
+        title: "test",
+        body: "test",
+        onOpen: function () {},
+        onAccept: function () {},
+        onCancel: function () {},
+        onClose: function () {},
+    }
+    */
+    static confirmationModal(settings) {
+        var modal = $.sweetModal.confirm(settings.title, settings.title, function () {
+            settings.onAccept(modal);
+        }, function () {
+            settings.onCancel(modal);
         });
+
+        modal.params["onOpen"] = function () {
+            settings.onOpen(modal);
+        };
+
+        modal.params["onClose"] = function () {
+            settings.onOpen(modal);
+        };
     }
 
-    //Modal with confirmation
-    static confirmModal(actionAfterConfirm, buttonText = "Remove", title = "Are you sure?") {
-        $.sweetModal({
-            title: title,
+    /* 
+    settings = {
+        title: "test",
+        error: true,
+        onOpen: function () {},
+        onAccept: function () {},
+        onCancel: function () {},
+        onClose: function () {},
+    }
+    */
+    static specialAlert(settings) {
+        var alert = $.sweetModal({
+            content: settings.title,
+            icon: settings.error ? $.sweetModal.ICON_ERROR : $.sweetModal.ICON_SUCCESS,
             theme: $.sweetModal.THEME_DARK,
-            buttons: [{
-                label: buttonText,
-                classes: 'redB',
-                action: function () {
-                    actionAfterConfirm();
-                }
-            }, {
-                label: 'Cancel',
-                classes: 'button greenB bordered flat'
-            }]
         });
+        successAlert.params["onOpen"] = function () {
+            settings.onOpen(alert);
+        }
+        successAlert.params["onClose"] = function () {
+            settings.onClose(alert);
+        }
     }
 }
