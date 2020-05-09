@@ -12,9 +12,12 @@ class UserSearchInput {
                 Buscar
                 </span>
                 </div>
-            <div class="searchUserResult top-3 w-auto bg-white shadow rounded flex-column position-absolute p-3"></div>
+            <div class="searchUserResult top-3 w-auto z-index-overlap-top bg-white shadow rounded flex-column position-absolute p-3"></div>
         </div>
         `);
+
+        userSearchClass.whenBtnSearchClicked = function () {};
+        userSearchClass.whenUserCardClicked = function () {};
 
         userSearchClass.usernameCard = $(`
         <div class="usernameCard small my-1 cursor-pointer">
@@ -24,8 +27,8 @@ class UserSearchInput {
 
         container.append(userSearchClass.htmlContent);
 
-        userSearchClass.htmlContent.find("#searchUser")
-            .focus().val("jofaval");
+        /* userSearchClass.htmlContent.find("#searchUser")
+            .focus().val("jofaval"); */
 
         userSearchClass.resultContainer = userSearchClass.htmlContent.find(".searchUserResult");
         userSearchClass.resultContainer.addClass("d-none");
@@ -39,13 +42,16 @@ class UserSearchInput {
 
         userSearchClass.input = userSearchClass.htmlContent.find("input");
         whenUserDoneTypingInInput(userSearchClass.input, "searchUserInputInterval", function () {
+            userSearchClass.currentUsername = userSearchClass.input.val();
             userSearchClass.whenUserKeyPressSearch(userSearchClass, userSearchClass.input, userSearchClass.resultContainer);
         }, 50);
 
         userSearchClass.htmlContent.find("#btnSearch").on("click", function (event) {
             var usernameToSearch = userSearchClass.input.val();
+            userSearchClass.currentUsername = usernameToSearch;
             userSearchClass.getUsersLike(usernameToSearch, function (result) {
                 userSearchClass.whenUserSearchFinished(result, userSearchClass, userSearchClass.resultContainer);
+                userSearchClass.whenBtnSearchClicked(event);
             });
         });
     }
@@ -71,7 +77,11 @@ class UserSearchInput {
             console.log(result);
             userSearchClass.usernames = result;
             container.html("");
-            userSearchClass.showResults(userSearchClass);
+            if (result.length > 0) {
+                userSearchClass.showResults(userSearchClass);
+            } else {
+                userSearchClass.hideResults(userSearchClass);
+            }
             result.forEach(usernameData => {
                 userSearchClass.loadUser(userSearchClass, container, usernameData.username);
             });
@@ -101,6 +111,7 @@ class UserSearchInput {
         usernameCardClone.find(".username").text(`${username}`);
         usernameCardClone.on("click", function () {
             userSearchClass.input.val(username);
+            userSearchClass.whenUserCardClicked(username);
         });
         console.log(container);
 

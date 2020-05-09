@@ -19,3 +19,31 @@ $("#searchUserProfileForm").on("submit", function (event) {
 
     return false;
 });
+
+var userSearch = new UserSearchInput($(".searchUserProfileContainer"));
+
+function goToProfile(username) {
+    $.ajax({
+        url: "/daw/index.php?ctl=doesUsernameExists",
+        data: {
+            "username": username,
+        },
+        success: function (exist) {
+            if (exist !== false) {
+                userSearch.input.val("");
+                window.location.href = `/daw/profile/${username}/`;
+            } else {
+                sendNotification("No se ha encontrado ese usuario", "usernameDoesNotExist")
+            }
+        }
+    });
+}
+
+userSearch.whenBtnSearchClicked = function () {
+    var username = userSearch.currentUsername;
+    goToProfile(username);
+}
+
+userSearch.whenUserCardClicked = function (usernameClicked) {
+    goToProfile(usernameClicked);
+}

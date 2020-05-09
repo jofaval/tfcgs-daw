@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["style.css"];?>
-<?php $optionalScripts = ["js/profile.js"];?>
+<?php $optionalScripts = ["webcomponents/UserSearchInput.js", "js/profile.js"];?>
 <?php $title = "Perfil";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
@@ -85,16 +85,18 @@ if (!$viewParams["editable"]) {
                 <?php endif;?>
             </div>
             <div class="col-lg-8 mb-4">
-                <form action="/daw/profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
-                    <div class="input-group md-form form-sm form-2 pl-0">
-                        <input class="form-control my-0 py-1" type="text" id="username" name="username"
-                            placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="input-group-text btn btn-sm btn-primary m-0" id="basic-text1"><i
-                                    class="fa fa-search text-white" aria-hidden="true"></i>&nbsp;Buscar</button>
+                <div class="searchUserProfileContainer p-3 bg-white rounded shadow">
+                    <!-- <form action="/daw/profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
+                        <div class="input-group md-form form-sm form-2 pl-0">
+                            <input class="form-control my-0 py-1" type="text" id="username" name="username"
+                                placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="input-group-text btn btn-sm btn-primary m-0" id="basic-text1"><i
+                                        class="fa fa-search text-white" aria-hidden="true"></i>&nbsp;Buscar</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form> -->
+                </div>
                 <?php if (!$viewParams["editable"]): ?>
                 <img class="profileBackgroundImage w-100 d-none d-sm-block" height="300"
                     src="/daw/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png" alt="">
