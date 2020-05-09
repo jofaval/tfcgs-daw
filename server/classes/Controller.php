@@ -997,6 +997,7 @@ class Controller
             $routeName = Utils::getCleanedData("routeName");
             $isView = Utils::exists("isView");
             $friendlyURL = Utils::exists("friendlyURL");
+            $addToModel = Utils::exists("addToModel");
 
             $route = "\n//$routeName";
             $route .= "\n\$map['$routeName'] = array('controller' => 'Controller', 'action' => '$routeName', 'access' => Config::\$ACCESS_LEVEL_GUEST);";
@@ -1018,6 +1019,21 @@ class Controller
 
                 $fileWritter = fopen(__DIR__ . "/../../client/.htaccess", "a+");
                 fwrite($fileWritter, $htaccessRoute);
+                fclose($fileWritter);
+            }
+
+            if ($addToModel) {
+                $modelFunction = $controllerFunction;
+
+                $modelFunction .= "\n\t\t\$sqlUtils = new SQLUtils(\$this);\n\n\t\t\$queryString = \"SELECT * FROM tabla\";\n\t\treturn \$sqlUtils->complexQuery(\$queryString,[]);";
+
+                $modelFunction .= "\n\t}
+                ";
+
+                $controllerFunction .= "\n\t\treturn Model::getInstance()->$routeName();";
+
+                $fileWritter = fopen(__DIR__ . "/Model.php", "a+");
+                fwrite($fileWritter, $modelFunction);
                 fclose($fileWritter);
             }
 
