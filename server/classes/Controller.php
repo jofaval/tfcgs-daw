@@ -877,11 +877,11 @@ class Controller
                     );
 
                     if ($success) {
-                        if (!file_exists(__DIR__ . $this->img_path . "/users/$username/")) {
-                            mkdir(__DIR__ . $this->img_path . "/users/$username/");
+                        if (!file_exists($this->img_path . "/users/$username/")) {
+                            mkdir($this->img_path . "/users/$username/");
                         }
 
-                        $userImagePath = __DIR__ . $this->img_path . "/users/$username/$username.png";
+                        $userImagePath = $this->img_path . "/users/$username/$username.png";
                         $this->generateImage($firstName, $userImagePath);
 
                         $randomImage = $this->img_path . "/projects/templates/bg-" . rand(1, 6) . ".png";
