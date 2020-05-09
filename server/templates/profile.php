@@ -85,7 +85,7 @@ if (!$viewParams["editable"]) {
                 <?php endif;?>
             </div>
             <div class="col-lg-8 mb-4">
-                <div class="searchUserProfileContainer p-3 bg-white rounded shadow">
+                <div class="searchUserProfileContainer col-sm-4 my-sm-3 ml-auto px-3 py-1 bg-white rounded shadow">
                     <!-- <form action="/daw/profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
                         <div class="input-group md-form form-sm form-2 pl-0">
                             <input class="form-control my-0 py-1" type="text" id="username" name="username"
