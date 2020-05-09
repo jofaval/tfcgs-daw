@@ -80,7 +80,8 @@ class DashboardsItemAssignation implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->id,
+            "id_dashboard_item" => $this->id_dashboard_item,
+            "assigned_to" => $this->assigned_to,
         ];
 
         return $sqlUtils->delete($this->table, $params);
