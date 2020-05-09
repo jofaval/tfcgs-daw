@@ -64,7 +64,7 @@ class Modal {
             "theme": THEME,
             "buttons": {
                 "Cancelar": {
-                    "class": "greenB",
+                    "class": "greenB text-dark",
                     "action": function () {
                         settings["onCancel"](confirm);
                     }
