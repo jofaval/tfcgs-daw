@@ -83,8 +83,8 @@ var $dashboardModal = $(`
             <div class="col-sm-4">
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
-                    <div id="dashboardModalActionAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Vencimiento</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="dashboardModalActionAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Asignar</div>
+                    <divv id="dashboardModalActionRemoveAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Quitar asignación</div>
                     <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                     <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                     <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
@@ -879,6 +879,10 @@ class Controller {
             controller.dashboardAssignationModalEvent(controller, taskItemData);
         });
 
+        $("#dashboardModalActionRemoveAssignation").on("click", function (event) {
+            controller.removeDashboardAssignationModalEvent(controller, taskItemData);
+        });
+
         $(".dashboardModalBtnSaveChanges").on("click", function (event) {
             var event = event || window.event;
             var currentBtn = $(this);
@@ -983,6 +987,47 @@ class Controller {
                                 modal.close();
                             } else {
                                 sendNotification("No se ha podido asignar", "assignateTaskFail");
+                            }
+                        }
+                    });
+                    return false;
+                });
+            },
+        });
+    }
+
+    removeDashboardAssignationModalEvent(controller, taskItemData) {
+        var modal = Modal.modal({
+            "title": "Asignar tarea",
+            "content": `<form action="/daw/index.php?ctl=deleteDashboardItemAssignation" id="formRemoveAssignation" class="col-sm-10  p-3 mx-auto" method="POST">
+                            <div class="form-row userSearchContainer"></div>
+                            <input type="hidden" name="id_project" value="${controller.model.projectId}" >
+                            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                <input class="btn btn-primary w-100" type="submit" name="removeAssignation" id="removeAssignation" value="Quitar asignación">
+                            </div>
+                        </form>`,
+            "onOpen": function () {
+                var userSearch = new UserSearchInput($(".userSearchContainer"));
+                userSearch.input.addClass("text-white");
+                $("#formRemoveAssignation").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+
+                    var username = userSearch.input.val();
+
+                    $.ajax({
+                        url: "/daw/index.php?ctl=deleteDashboardsItemAssignation",
+                        data: {
+                            "id_dashboard_item": taskItemData.id,
+                            "assigned_to": username,
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result !== false) {
+                                sendNotification("Se ha quitado la asignación", "removeAssignationTaskSuccess");
+                                modal.close();
+                            } else {
+                                sendNotification("No se ha quitar la asignación", "removeAssignationTaskFail");
                             }
                         }
                     });
