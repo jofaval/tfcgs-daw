@@ -65,6 +65,7 @@ class DashboardItem implements CRUD
     {
         $modelInstance = Model::getInstance();
         $sqlUtils = new SQLUtils($modelInstance);
+        $moveForward = (bool) Utils::getCleanedData("moveForward");
 
         $id_dashboard_list = $this->id_dashboard_list;
         $toModify = [
@@ -76,9 +77,15 @@ class DashboardItem implements CRUD
             "id" => $this->id,
         ];
 
-        $modelInstance->reorganizeOrderInDashboardList($this->query()[0]["id_dashboard_list"]);
+        $oldDashboardListId = $this->query()[0]["id_dashboard_list"];
+        if ($oldDashboardListId != $id_dashboard_list) {
+            $modelInstance->reorganizeOrderInDashboardList($oldDashboardListId);
+        }
         $modelInstance->reorganizeOrderInDashboardList($id_dashboard_list);
-        $modelInstance->updateOrderInDashboardList($id_dashboard_list, $order);
+        if (!$moveForward) {
+            return $order;
+            $modelInstance->updateOrderInDashboardList($id_dashboard_list, $order);
+        }
 
         $result = $sqlUtils->update($this->table, $toModify, $identificationParams);
 

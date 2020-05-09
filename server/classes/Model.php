@@ -263,7 +263,8 @@ class Model extends PDO
 
         $queryString = "SELECT id, title, description, `order`, creation_date as creationDate, id_dashboard_list
         FROM `dashboard_item`
-        WHERE  enabled = 1 and id_dashboard_list=:id_dashboard_list";
+        WHERE  enabled = 1 and id_dashboard_list=:id_dashboard_list
+        ORDER BY `order` ASC";
 
         return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list]);
     }
@@ -415,7 +416,8 @@ class Model extends PDO
 
         $queryString = "SET @row_number = 0;
         UPDATE dashboard_item SET `order` = (@row_number:=@row_number + 1)
-        WHERE id_dashboard_list = :id_dashboard_list";
+        WHERE id_dashboard_list = :id_dashboard_list
+        ORDER BY `order` ASC";
 
         return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list]);
     }
