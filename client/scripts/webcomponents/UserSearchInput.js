@@ -16,11 +16,13 @@ class UserSearchInput {
         </div>
         `);
 
+        userSearchClass.selectedUsernameCardClasses = "selected grey lighten-3";
+
         userSearchClass.whenBtnSearchClicked = function () {};
         userSearchClass.whenUserCardClicked = function () {};
 
         userSearchClass.usernameCard = $(`
-        <div class="usernameCard p my-1 text-dark cursor-pointer">
+        <div class="usernameCard p my-1 p-1 text-dark cursor-pointer">
             <img src="" width="25" height="25" alt="" class="usernameProfileImg rounded-circle">
             @<span class="font-weight-bold username"></span>
         </div>`);
@@ -41,7 +43,45 @@ class UserSearchInput {
         }); */
 
         userSearchClass.input = userSearchClass.htmlContent.find("input");
-        whenUserDoneTypingInInput(userSearchClass.input, "searchUserInputInterval", function () {
+        userSearchClass.input.on("keydown", function (event) {
+            var event = event || window.event;
+            var keyPressCode = event.keyCode;
+            console.log(event.keyCode);
+
+            var selected = userSearchClass.resultContainer
+                .find(".selected");
+
+            var newSelected = null;
+
+            switch (keyPressCode) {
+                case 40:
+                    newSelected = selected.next();
+                    break;
+                case 38:
+                    newSelected = selected.prev();
+                    break;
+                case 13:
+                    selected.trigger("click");
+                    return;
+                    break;
+
+                default:
+                    return;
+                    break;
+            }
+
+            if (newSelected != null && newSelected.length == 1) {
+                selected.removeClass(userSearchClass.selectedUsernameCardClasses);
+                newSelected.addClass(userSearchClass.selectedUsernameCardClasses);
+            }
+        })
+        whenUserDoneTypingInInput(userSearchClass.input, "searchUserInputInterval", function (event) {
+            var keyCode = event.keyCode;
+
+            if ([38, 40, 13].includes(keyCode)) {
+                return;
+            }
+
             userSearchClass.currentUsername = userSearchClass.input.val();
             userSearchClass.whenUserKeyPressSearch(userSearchClass, userSearchClass.input, userSearchClass.resultContainer);
         }, 50);
@@ -74,7 +114,7 @@ class UserSearchInput {
 
     whenUserSearchFinished(result, userSearchClass, container) {
         if (result !== false) {
-            console.log(result);
+            //console.log(result);
             userSearchClass.usernames = result;
             container.html("");
             if (result.length > 0) {
@@ -89,6 +129,8 @@ class UserSearchInput {
                 userSearchClass.hideResults(userSearchClass);
                 $(window).off("click");
             });
+
+            userSearchClass.resultContainer.children().eq(0).addClass(userSearchClass.selectedUsernameCardClasses);
         }
     }
 
@@ -114,7 +156,7 @@ class UserSearchInput {
             userSearchClass.whenUserCardClicked(username);
             userSearchClass.hideResults(userSearchClass);
         });
-        console.log(container);
+        //console.log(container);
 
         container.append(usernameCardClone);
 
