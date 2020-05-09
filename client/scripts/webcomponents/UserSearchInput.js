@@ -17,9 +17,9 @@ class UserSearchInput {
         `);
 
         userSearchClass.usernameCard = $(`
-        <div class="usernameCard">
-            <img src="" alt="" class="usernameProfileImg">
-            <span class="font-weight-bold username"></span>
+        <div class="usernameCard small my-1 cursor-pointer">
+            <img src="" width="25" height="25" alt="" class="usernameProfileImg rounded-circle">
+            @<span class="font-weight-bold username"></span>
         </div>`);
 
         container.append(userSearchClass.htmlContent);
@@ -97,8 +97,8 @@ class UserSearchInput {
     loadUser(userSearchClass, container, username) {
         var usernameCardClone = userSearchClass.usernameCard.clone();
 
-        usernameCardClone.find(".usernameProfileImg").prop("src", `/daw/profile/users/${username}/${username}.png`);
-        usernameCardClone.find(".username").text(`@${username}`);
+        usernameCardClone.find(".usernameProfileImg").prop("src", `/daw/img/users/${username}/${username}.png`);
+        usernameCardClone.find(".username").text(`${username}`);
         usernameCardClone.on("click", function () {
             userSearchClass.input.val(username);
         });
