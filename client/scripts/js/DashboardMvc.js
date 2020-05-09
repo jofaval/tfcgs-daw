@@ -591,10 +591,10 @@ class Controller {
         $.ajax({
             url: "/daw/index.php?ctl=updateDashboardItem",
             data: {
-                order: newOrder,
-                id_dashboard_list: taskListID,
-                id: movedData["taskItem"]["id"],
-                moveForward: movedData["endingIndex"] > movedData["startingIndex"],
+                "order": newOrder,
+                "id_dashboard_list": taskListID,
+                "id": movedData["taskItem"]["id"],
+                "moveForward": movedData["endingIndex"] > movedData["startingIndex"] ? 1 : 0,
             },
             success: function (result) {
                 console.log("mover de lista", result);
