@@ -84,7 +84,7 @@ var $dashboardModal = $(`
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
                     <div id="dashboardModalActionAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Asignar</div>
-                    <divv id="dashboardModalActionRemoveAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Quitar asignación</div>
+                    <div id="dashboardModalActionRemoveAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Quitar asignación</div>
                     <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                     <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                     <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
