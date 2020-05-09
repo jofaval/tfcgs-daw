@@ -876,7 +876,7 @@ class Controller {
         });
 
         $("#dashboardModalActionAssignation").on("click", function (event) {
-            controller.dashboardAssignationModalEvent(controller);
+            controller.dashboardAssignationModalEvent(controller, taskItemData);
         });
 
         $(".dashboardModalBtnSaveChanges").on("click", function (event) {
@@ -919,20 +919,20 @@ class Controller {
         });
     }
 
-    dashboardAssignationModalEvent(controller) {
-        Modal.modal({
+    dashboardAssignationModalEvent(controller, taskItemData) {
+        var modal = Modal.modal({
             "title": "Asignar tarea",
             "content": `<form action="/daw/index.php?ctl=createDashboardItemAssignation" id="formAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row">
                                 <div class="md-form input-group col-sm">
-                                    <input type="date" name="startDate" id="startDate" class="form-control" aria-describedby="startDateTime">
+                                    <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
                                     <label for="startDate">Fecha inicio</label>
                                     <div class="input-group-append">
                                         <input type="time" name="startDateTime" id="startDateTime">
                                     </div>
                                 </div>
                                 <div class="md-form input-group col-sm">
-                                    <input type="date" name="endDate" id="endDate" class="form-control" aria-describedby="endDateTime">
+                                    <input type="text" name="endDate" id="endDate" class="form-control text-white" aria-describedby="endDateTime">
                                     <label for="endDate">Fecha límite</label>
                                     <div class="input-group-append">
                                         <input type="time" name="endDateTime" id="endDateTime">
@@ -946,13 +946,17 @@ class Controller {
                             </div>
                         </form>`,
             "onOpen": function () {
-                var endDate = $("#endDate");
-                endDate.focus();
-                endDate.val(new DateUtils(new Date(), false).printDateWithFormat("Y-m-d"));
 
                 var startDate = $("#startDate");
                 startDate.focus();
-                startDate.val(new DateUtils(new Date(), false).printDateWithFormat("Y-m-d"));
+                startDate.val(new DateUtils(new Date(), false).printDateWithFormat("Y-m-d h:i:s"));
+
+                var newDate = new Date();
+                newDate.setDate(newDate.getDate() + 20);
+
+                var endDate = $("#endDate");
+                endDate.focus();
+                endDate.val(new DateUtils(newDate, false).printDateWithFormat("Y-m-d h:i:s"));
 
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
                 userSearch.input.addClass("text-white");
@@ -960,17 +964,26 @@ class Controller {
                     var event = event || window.event;
                     event.preventDefault();
 
-                    var endDateVal = endDate.val();
                     var startDateVal = startDate.val();
+                    var endDateVal = endDate.val();
                     var username = userSearch.input.val();
 
-                    controller.model.createDashboard(title, $("#description").val(), function (result) {
-                        console.log(result);
-                        if (result !== false) {
-                            modal.close();
-                            controller.addDashboard(controller, result[0]);
-                            controller.reload(controller);
-                            window.location.href = `/daw/projects/id/${controller.model.projectId}/dashboards/${title}/`;
+                    $.ajax({
+                        url: "/daw/index.php?ctl=createDashboardsItemAssignation",
+                        data: {
+                            "id_dashboard_item": taskItemData.id,
+                            "start_date": startDateVal,
+                            "end_date": endDateVal,
+                            "assigned_to": username,
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result !== false) {
+                                sendNotification("Se ha asignato con éxito", "assignateTaskSuccess");
+                                modal.close();
+                            } else {
+                                sendNotification("No se ha podido asignar", "assignateTaskFail");
+                            }
                         }
                     });
                     return false;
