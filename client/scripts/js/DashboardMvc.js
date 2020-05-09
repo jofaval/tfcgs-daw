@@ -869,11 +869,33 @@ class Controller {
                 $(".dashboardModalSaveChanges").hide();
             }
         });
-        $(".dashboardModalBtnSaveChanges").unbind("click").on("click", function (event) {
+        $(".dashboardModalBtnSaveChanges").on("click", function (event) {
             var event = event || window.event;
+            var currentBtn = $(this);
 
-            $(".dashboardModalSaveChanges").hide();
+            var title = $(".dashboardModalTitle").text();
+            var description = $("#dashboardModalDescription").val();
+            $.ajax({
+                url: "/daw/index.php?ctl=updateDashboardItem",
+                data: {
+                    "id": taskItemData.id,
+                    "title": title,
+                    "description": description,
+                },
+                success: function (result) {
+                    console.log("modificar Detalles", result);
 
+                    if (result !== false) {
+                        console.log(taskItemData);
+
+                        taskItemData.title = title;
+                        taskItemData.description = description;
+                        $(".dashboardModalSaveChanges").hide();
+                    } else {
+                        sendNotification("No se han podido cambiar los detalles", "changeTaskItemDetailsFail");
+                    }
+                }
+            })
         });
 
         $("#comment").on("keypress", function (event) {
