@@ -639,6 +639,24 @@ class Controller
         return false;
     }
 
+    public function searchUsers()
+    {
+        $username = Utils::getCleanedData("username");
+
+        $validation = Validation::getInstance();
+
+        $rules = [
+            [
+                "name" => "username",
+                "rules" => "no-empty,username",
+            ],
+        ];
+
+        $isValid = $validation->rule($rules, $_REQUEST);
+
+        return Model::getInstance()->searchUsers($username);
+    }
+
     public function error404()
     {
         require __DIR__ . '/../templates/error404.php';

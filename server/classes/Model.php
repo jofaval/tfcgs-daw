@@ -421,4 +421,12 @@ class Model extends PDO
 
         return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list]);
     }
+
+    public function searchUsers()
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $queryString = "SELECT * FROM tabla";
+        return $sqlUtils->complexQuery($queryString, []);
+    }
 }
