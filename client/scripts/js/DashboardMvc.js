@@ -63,9 +63,12 @@ var $dashboardModal = $(`
         <div class="row">
             <div class="col-sm-8">
                 <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-align-justify mr-2"></span>Description</h4>
-                <div class="md-form">
-                    <textarea id="description" class="md-textarea form-control text-white" rows="3"></textarea>
-                    <label for="description">Description</label>
+                <div class="md-form my-0">
+                    <textarea id="dashboardModalDescription" class="md-textarea form-control text-white" rows="3"></textarea>
+                    <label for="dashboardModalDescription">Descripción</label>
+                </div>
+                <div class="row dashboardModalSaveChanges">
+                <button class="btn mx-auto btn-sm btn-primary dashboardModalBtnSaveChanges">Guardar cambios</button>
                 </div>
                 <h4 class="dashboardModalCommentsTitle"><span class="fa fa-comments mr-2"></span>Comments</h4>
                 <div class="md-form input-group mb-4">
@@ -831,6 +834,7 @@ class Controller {
         }
 
         $(".dashboardModalTitle").text(taskItemData.title);
+        $("#dashboardModalDescription").text(taskItemData.description);
         $("#description.md-textarea").html(`${taskItemData.description}`);
         var commentsContainer = $(".dashboardCommentsContainer");
         $(".dashboardModalCommentBtn").on("click", function () {
@@ -854,8 +858,22 @@ class Controller {
             }
         });
 
-        $(".dashboardModalTitle").on("blur keyup paste input", function () {
-            console.log("evento input");
+        $(".dashboardModalSaveChanges").hide();
+        $(".dashboardModalTitle, #dashboardModalDescription").on("keyup input blur paste", function () {
+            console.log("evento input", $(".dashboardModalTitle").text(), taskItemData.title != $(".dashboardModalTitle").text() ||
+                taskItemData.description != $("#dashboardModalDescription").val());
+            if (taskItemData.title != $(".dashboardModalTitle").text() ||
+                taskItemData.description != $("#dashboardModalDescription").val()) {
+                $(".dashboardModalSaveChanges").show();
+            } else {
+                $(".dashboardModalSaveChanges").hide();
+            }
+        });
+        $(".dashboardModalBtnSaveChanges").unbind("click").on("click", function (event) {
+            var event = event || window.event;
+
+            $(".dashboardModalSaveChanges").hide();
+
         });
 
         $("#comment").on("keypress", function (event) {
@@ -895,7 +913,7 @@ class Controller {
             });
         });
         console.log("test", assignationCheckbox);
-        $(".dashboardModalDescriptionTitle").after($dashboardAssignationContainer);
+        $("#dashboardModalDescription").after($dashboardAssignationContainer);
     }
 
     createModalCommentEvent(taskItemData, controller, commentsContainer) {
