@@ -330,6 +330,7 @@ class View {
 
         clonedTaskList.find(".taskListId").text(json.id);
         clonedTaskList.find(".taskListTitleText").text(json.title);
+        json["html"] = clonedTaskList;
 
         $("#taskListInputCreation").before(clonedTaskList);
 
@@ -369,10 +370,12 @@ class View {
         var clonedTaskListItem = $taskListItem.clone();
 
         clonedTaskListItem.find(".taskListItemTitle").text(json.title);
-        if (json.assigned !== false) {
 
+        if (json.assigned !== false) {
             this.visualizeDashboardAssignation(clonedTaskListItem, json.start_date, json.end_date, json.finished);
         }
+
+        json["html"] = clonedTaskListItem;
         taskList.find(".taskListItemsContainer").append(clonedTaskListItem);
 
         return clonedTaskListItem;
@@ -741,6 +744,7 @@ class Controller {
                 "content": $dashboardModal.html(),
                 "onOpen": function () {
                     controller.onOpenDashboardModal(taskItemData, taskItem, controller);
+                    controller.view.scrollTo(taskItem);
                 },
                 "onClose": function () {
                     controller.view.scrollTo(taskItem);
@@ -890,6 +894,7 @@ class Controller {
 
                         taskItemData.title = title;
                         taskItemData.description = description;
+                        taskItemData.html.find(".taskListItemTitle").text(taskItemData.title);
                         $(".dashboardModalSaveChanges").hide();
                     } else {
                         sendNotification("No se han podido cambiar los detalles", "changeTaskItemDetailsFail");
