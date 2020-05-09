@@ -612,6 +612,33 @@ class Controller
         return $sqlUtils->query("permissions");
     }
 
+    public function updateOrderInDashboardList()
+    {
+        $id_dashboard_list = Utils::getCleanedData("id_dashboard_list");
+        $order = Utils::getCleanedData("order");
+
+        $validation = Validation::getInstance();
+
+        $rules = [
+            [
+                "name" => "id_dashboard_list",
+                "rules" => "no-empty,numeric",
+            ],
+            [
+                "name" => "order",
+                "rules" => "no-empty,numeric",
+            ],
+        ];
+
+        $isValid = $validation->rules($rules, $_REQUEST);
+
+        if ($isValid === true) {
+            return Model::getInstance()->updateOrderInDashboardList($id_dashboard_list, $order);
+        }
+
+        return false;
+    }
+
     public function error404()
     {
         require __DIR__ . '/../templates/error404.php';

@@ -396,4 +396,14 @@ class Model extends PDO
             	WHERE dashboard_item.id_dashboard_list = :id_dashboard_list
         ORDER BY `order` ASC", ["id_dashboard_list" => $id_dashboard_list])[0]["currentOrder"];
     }
+
+    public function updateOrderInDashboardList($id_dashboard_list, $order)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $queryString = "UPDATE FROM dashboard_item
+        WHERE id_dashboard_list";
+
+        return $sqlUtils->complexQuery($queryString, []);
+    }
 }

@@ -220,3 +220,5 @@ $map['updateDashboardsItemAssignation'] = array('controller' => 'AjaxController'
 $map['queryDashboardsItemAssignation'] = array('controller' => 'AjaxController', 'action' => 'queryDashboardsItemAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['deleteDashboardsItemAssignation'] = array('controller' => 'AjaxController', 'action' => 'deleteDashboardsItemAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
 $map['getAssignedDashboardItems'] = array('controller' => 'AjaxController', 'action' => 'getAssignedDashboardItems', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//updateOrderInDashboardList
+$map['updateOrderInDashboardList'] = array('controller' => 'AjaxController', 'action' => 'updateOrderInDashboardList', 'access' => Config::$ACCESS_LEVEL_GUEST);

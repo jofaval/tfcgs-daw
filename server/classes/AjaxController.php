@@ -16,7 +16,7 @@ class AjaxController
                 $this->returnError();
             }
         } catch (Throwable $th) {
-            if (Config::$developmentMode) {
+            if (Config::$developmentMode !== 0) {
                 $this->returnError($th->getMessage());
             } else {
                 $this->returnError();
@@ -44,6 +44,12 @@ class AjaxController
         $json = json_encode($object);
         echo $json;
         exit;
+    }
+
+    //Function to updateOrderInDashboardList
+    public function updateOrderInDashboardList()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_list", "order"], "Controller");
     }
 
     //Function to getProjectCollaborationRoles
