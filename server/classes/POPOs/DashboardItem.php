@@ -65,42 +65,53 @@ class DashboardItem implements CRUD
     {
         $modelInstance = Model::getInstance();
         $sqlUtils = new SQLUtils($modelInstance);
-        $moveForward = Utils::getCleanedData("moveForward") != 0;
 
-        $id_dashboard_list = $this->id_dashboard_list;
-        $order = $this->order;
-        $toModify = [
-            "order" => $order,
-            "id_dashboard_list" => $id_dashboard_list,
-        ];
+        $isMovingItem = !Utils::exists("title");
+        if ($isMovingItem) {
+            $moveForward = Utils::getCleanedData("moveForward") != 0;
+
+            $id_dashboard_list = $this->id_dashboard_list;
+            $order = $this->order;
+            $toModify = [
+                "order" => $order,
+                "id_dashboard_list" => $id_dashboard_list,
+            ];
+            $modelInstance->reorganizeOrderInDashboardList($id_dashboard_list);
+            if (!$moveForward) {
+                $modelInstance->updateOrderInDashboardList($id_dashboard_list, $order);
+            } else {
+                $toModify["order"] = $order + 1;
+            }
+            $oldDashboardListId = $this->query()[0]["id_dashboard_list"];
+        } else {
+            $toModify = [
+                "title" => $this->title,
+                "description" => $this->description,
+            ];
+        }
 
         $identificationParams = [
             "id" => $this->id,
         ];
-        $modelInstance->reorganizeOrderInDashboardList($id_dashboard_list);
-        if (!$moveForward) {
-            $modelInstance->updateOrderInDashboardList($id_dashboard_list, $order);
-        } else {
-            $toModify["order"] = $order + 1;
-        }
-        $oldDashboardListId = $this->query()[0]["id_dashboard_list"];
 
         $result = $sqlUtils->update($this->table, $toModify, $identificationParams);
 
         if ($result) {
-            $modelInstance->reorganizeOrderInDashboardList($id_dashboard_list);
+            if ($isMovingItem) {
+                $modelInstance->reorganizeOrderInDashboardList($id_dashboard_list);
 
-            if ($oldDashboardListId != $id_dashboard_list) {
-                $modelInstance->reorganizeOrderInDashboardList($oldDashboardListId);
+                if ($oldDashboardListId != $id_dashboard_list) {
+                    $modelInstance->reorganizeOrderInDashboardList($oldDashboardListId);
+                }
             }
         }
 
-        return [
-            "result" => $result,
-            "moveForward" => $moveForward,
-            "order" => $this->order,
-            "id_dashboard_list" => $id_dashboard_list,
-        ];
+        /* return [
+        "result" => $result,
+        "moveForward" => $moveForward,
+        "order" => $this->order,
+        "id_dashboard_list" => $id_dashboard_list,
+        ]; */
 
         return $result;
     }
