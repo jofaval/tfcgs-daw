@@ -55,6 +55,11 @@ class UserSearchInput {
         userSearchClass.resultContainer.addClass("d-flex");
     }
 
+    hideResults(userSearchClass) {
+        userSearchClass.resultContainer.addClass("d-none");
+        userSearchClass.resultContainer.removeClass("d-flex");
+    }
+
     whenUserKeyPressSearch(userSearchClass, input, container) {
         userSearchClass.getUsersLike(input.val(), function (result) {
             userSearchClass.whenUserSearchFinished(result, userSearchClass, container);
@@ -69,6 +74,10 @@ class UserSearchInput {
             userSearchClass.showResults(userSearchClass);
             result.forEach(usernameData => {
                 userSearchClass.loadUser(userSearchClass, container, usernameData.username);
+            });
+            $(window).on("click", function () {
+                userSearchClass.hideResults(userSearchClass);
+                $(window).off("click");
             });
         }
     }
