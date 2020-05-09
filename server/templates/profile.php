@@ -5,6 +5,7 @@
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
+<?php $currentPage = "Perfil";?>
 <?php
 $breadcrumb = [
     [

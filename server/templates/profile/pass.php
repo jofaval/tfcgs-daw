@@ -7,6 +7,7 @@
     "icon" => "key",
 ];?>
 <?php $title .= " - Contraseña";?>
+<?php $currentPage = "Perfil";?>
 <?php endif;?>
 
 <div class="card-body card-body-cascade text-center mt-3">

@@ -1,10 +1,11 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "projects.css"];?>
 <?php $optionalScripts = ["js/ProjectsCrudMvc.js"];?>
-<?php $title = "Projects";?>
+<?php $title = "Proyectos";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
+<?php $currentPage = "Proyectos";?>
 <?php
 $breadcrumb = [
     [

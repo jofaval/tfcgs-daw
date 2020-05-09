@@ -8,19 +8,19 @@ $header = [
     ], */
     "Perfil" => [
         "link" => "/daw/profile/",
-        "active" => $title == "Perfil",
+        "active" => $currentPage == "Perfil",
         "icon" => "user",
         "access" => 0,
     ],
     "Proyectos" => [
         "link" => "/daw/projects/",
-        "active" => $title == "Projects",
+        "active" => $currentPage == "Proyectos",
         "icon" => "folder",
         "access" => 0,
     ],
     "Admin" => [
         "link" => "/daw/admin/",
-        "active" => $title == "Admin",
+        "active" => $currentPage == "Admin",
         "icon" => "cogs",
         "access" => Config::$ACCESS_LEVEL_ADMIN,
     ],
