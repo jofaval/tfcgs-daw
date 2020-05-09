@@ -477,7 +477,11 @@ class AjaxController
     //Function to updateDashboardItem
     public function updateDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_dashboard_list"]);
+        $requiredParams = ["id", "id_dashboard_list", "order"];
+        if (Utils::exists("title")) {
+            $requiredParams = ["id", "title", "description"];
+        }
+        $this->genericAjaxReturn(__FUNCTION__, $requiredParams);
     }
 
     //Function to queryDashboardItem
