@@ -115,7 +115,7 @@ class Modal {
             settings["onClose"](alert);
         }
 
-        return modal;
+        return alert;
     }
 
     static addDefaultValuesToSettings(settings) {
