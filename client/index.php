@@ -15,7 +15,7 @@ function requireAllFromDir($dir = null)
 require_once __DIR__ . '/../server/classes/Config.php';
 error_reporting(Config::$developmentMode);
 
-if (Config::$developmentMode == 0) {
+if (Config::$allowConsoleOutput == 0) {
     echo "<script>console.log = function() {}</script>";
     echo "<script>console.error = function() {}</script>";
 }

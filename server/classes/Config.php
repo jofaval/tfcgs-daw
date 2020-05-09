@@ -31,5 +31,7 @@ class Config
         "diary",
     ];
     public static $developmentMode = 1;
+    public static $allowConsoleOutput = 1;
+    public static $allowExternalResources = 1;
     public static $inactivityTime = 15 * 60;
 }
