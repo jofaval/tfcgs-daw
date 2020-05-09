@@ -20,7 +20,7 @@ class UserSearchInput {
         userSearchClass.whenUserCardClicked = function () {};
 
         userSearchClass.usernameCard = $(`
-        <div class="usernameCard p my-1 cursor-pointer">
+        <div class="usernameCard p my-1 text-dark cursor-pointer">
             <img src="" width="25" height="25" alt="" class="usernameProfileImg rounded-circle">
             @<span class="font-weight-bold username"></span>
         </div>`);
@@ -112,6 +112,7 @@ class UserSearchInput {
         usernameCardClone.on("click", function () {
             userSearchClass.input.val(username);
             userSearchClass.whenUserCardClicked(username);
+            userSearchClass.hideResults(userSearchClass);
         });
         console.log(container);
 
