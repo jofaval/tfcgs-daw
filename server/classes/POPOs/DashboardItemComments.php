@@ -60,7 +60,6 @@ class DashboardItemComments implements CRUD
 
         $toModify = [
             "comment" => $this->comment,
-            "enabled" => $this->enabled,
         ];
 
         $identificationParams = [

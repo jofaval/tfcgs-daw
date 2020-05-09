@@ -111,6 +111,7 @@ var $dashboardModal = $(`
 `);
 var $dashboardModalComment = $(`
 <div class="w-100 dashboardComment my-2">
+    <button class="btn btn-primary btn-sm align-self-center float-right btnEditComment">Cambiar</button>
     <img src="/daw/img/default.png" width="50"
         class="dashboardCommentUserImg rounded-pill float-left mr-2" />
     <div class="row dashboardCommentInformation mb-2">
@@ -118,7 +119,7 @@ var $dashboardModalComment = $(`
         <div class="dashboardCommentName text-white mr-2">Test</div>
         <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
     </div>
-    <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light">Test</span>
+    <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light" contenteditable="true">Test</span>
     <div class="row dashboardCommentActions text-white ml-2 mt-2">
         <a href="" class="dashboardCommentAction dashboardCommentEdit">Edit</a>
         &nbsp;-&nbsp;
@@ -270,7 +271,7 @@ class Model {
         $.ajax({
             url: "/daw/index.php?ctl=deleteDashboardItemComments",
             data: {
-                "id": commentJSON.id,
+                "id": id,
             },
             success: function (result) {
                 whenFinished(result);
@@ -425,7 +426,7 @@ class View {
             commentTimeHTML.text(new DateUtils(commentDate).getTimeFromThisMoment());
         }, 3 * 1000);
 
-        clonedComment.find(".dashboardCommentContent").text(commentData.comment);
+        clonedComment.find(".dashboardCommentContent").html(decodeURI(commentData.comment));
         container.prepend(clonedComment);
 
         return clonedComment;
@@ -963,6 +964,37 @@ class Controller {
             controller.deleteCommentEvent(controller, event, commentJSON, clonedComment);
         });
 
+        var btnEditComment = clonedComment.find(".btnEditComment");
+        btnEditComment.hide();
+        clonedComment.find(".dashboardCommentEdit").on("click", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
+            btnEditComment.show();
+
+            return false;
+        });
+
+        btnEditComment.on("click", function () {
+            var commentContent = encodeURI(clonedComment.find(".dashboardCommentContent").html());
+
+            $.ajax({
+                url: "/daw/index.php?ctl=updateDashboardItemComments",
+                data: {
+                    "id": commentJSON.id,
+                    "comment": commentContent,
+                },
+                success: function (result) {
+                    console.log("cambiar comentario", commentJSON.id, result);
+                    if (result !== false) {
+                        btnEditComment.hide();
+                    } else {
+
+                    }
+                }
+            });
+        });
+
         return clonedComment;
     }
 
@@ -975,7 +1007,7 @@ class Controller {
             title: "¿Borrar el comentario?",
             body: `Esta acción no tiene marcha atrás`,
             onAccept: function () {
-                controller.model.deleteDashboardItem(taskItemData.id, function (result) {
+                controller.model.deleteDashboardItemComments(commentJSON.id, function (result) {
                     console.log(result);
                     if (result === true) {
                         clonedComment.remove();
