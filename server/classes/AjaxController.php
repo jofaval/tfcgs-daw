@@ -47,6 +47,12 @@ class AjaxController
     }
 
     //Function to updateOrderInDashboardList
+    public function searchUsers()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["username"], "Controller");
+    }
+
+    //Function to updateOrderInDashboardList
     public function updateOrderInDashboardList()
     {
         $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_list", "order"], "Controller");

@@ -652,7 +652,11 @@ class Controller
             ],
         ];
 
-        $isValid = $validation->rule($rules, $_REQUEST);
+        $isValid = $validation->rules($rules, $_REQUEST);
+
+        if (!$isValid === true) {
+            return false;
+        }
 
         return Model::getInstance()->searchUsers($username);
     }
