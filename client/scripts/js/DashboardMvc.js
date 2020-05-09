@@ -719,78 +719,14 @@ class Controller {
 
         var ghostImage = null;
 
-        taskItem.on("dragstart", function (event) {
-            mousedown = false;
-
-            var event = event.originalEvent || window.event;
-            var currentTaskItem = $(this);
-
-            ghostImage = controllerView.addGhostImage(event, currentTaskItem, this);
-
-            startingIndex = currentTaskItem.index() + 1;
-            draggingTaskItem = currentTaskItem;
-            taskItemMovedData = taskItemData;
-            startingTaskListParent = currentTaskItem.parents(".taskList");
-            $referenceTaskListItem.find(".taskListItemTitle").html(draggingTaskItem.text());
-            console.log("Empieza");
-        }).on("drop", function () {
-            console.log("Se suelta");
-        }).on("dragover", function () {
-            var currentTaskItem = $(this);
-
-            $referenceTaskListItem.show();
-
-            var index = currentTaskItem.index();
-            if (index == 0) {
-                currentTaskItem.before($referenceTaskListItem);
-                endingIndex = 0;
-            } else {
-                if (index > 1) {
-                    endingIndex = -1;
-                }
-                currentTaskItem.after($referenceTaskListItem);
-            }
-        }).on("dragend", function () {
-            var currentTaskItem = $(this);
-            currentTaskItem.removeClass("dragging");
-            $referenceTaskListItem.hide();
-            endingTaskListParent = $referenceTaskListItem.parents(".taskList");
-            endingIndex += $referenceTaskListItem.index();
-
-            if (ghostImage != null) {
-                ghostImage.remove();
-            }
-
-            $referenceTaskListItem.before(taskItem);
-        });
+        ({
+            ghostImage,
+            draggingTaskItem
+        } = controller.addTaskItemDragginEvents(taskItem, ghostImage, controllerView, draggingTaskItem, taskItemData));
 
         taskItem.find(".dashboardBtnClose").on("click", function (event) {
             var event = event || window.event;
-            event.stopPropagation();
-
-            console.log(taskItemData.id_dashboard_list);
-
-            var confirmationModal = Modal.confirmationModal({
-                title: "¿Borrar elemento de la lista?",
-                body: `Confimar esta acción y borrar <b>"${taskItemData.title}"</b>`,
-                onAccept: function () {
-                    controller.model.deleteDashboardItem(taskItemData.id, function (result) {
-                        console.log(result);
-                        if (result === true) {
-                            taskItem.remove();
-                            Modal.specialAlert({
-                                title: `"${taskItemData.title}" ha sido borrado con éxito`,
-                                error: false,
-                            });
-                        } else {
-                            Modal.specialAlert({
-                                title: `"${taskItemData.title}" no se ha podido borrar`,
-                                error: true,
-                            });
-                        }
-                    })
-                },
-            });
+            controller.addTaskItemRemoveEvent(event, taskItemData, controller, taskItem);
         })
 
         taskItem.on("click", function (event) {
@@ -810,6 +746,76 @@ class Controller {
         });
 
         return taskItem;
+    }
+
+    addTaskItemRemoveEvent(event, taskItemData, controller, taskItem) {
+        event.stopPropagation();
+        console.log(taskItemData.id_dashboard_list);
+        var confirmationModal = Modal.confirmationModal({
+            title: "¿Borrar elemento de la lista?",
+            body: `Confimar esta acción y borrar <b>"${taskItemData.title}"</b>`,
+            onAccept: function () {
+                controller.model.deleteDashboardItem(taskItemData.id, function (result) {
+                    console.log(result);
+                    if (result === true) {
+                        taskItem.remove();
+                        Modal.specialAlert({
+                            title: `"${taskItemData.title}" ha sido borrado con éxito`,
+                            error: false,
+                        });
+                    } else {
+                        Modal.specialAlert({
+                            title: `"${taskItemData.title}" no se ha podido borrar`,
+                            error: true,
+                        });
+                    }
+                });
+            },
+        });
+    }
+
+    addTaskItemDragginEvents(taskItem, ghostImage, controllerView, draggingTaskItem, taskItemData) {
+        taskItem.on("dragstart", function (event) {
+            mousedown = false;
+            var event = event.originalEvent || window.event;
+            var currentTaskItem = $(this);
+            ghostImage = controllerView.addGhostImage(event, currentTaskItem, this);
+            startingIndex = currentTaskItem.index() + 1;
+            draggingTaskItem = currentTaskItem;
+            taskItemMovedData = taskItemData;
+            startingTaskListParent = currentTaskItem.parents(".taskList");
+            $referenceTaskListItem.find(".taskListItemTitle").html(draggingTaskItem.text());
+            console.log("Empieza");
+        }).on("drop", function () {
+            console.log("Se suelta");
+        }).on("dragover", function () {
+            var currentTaskItem = $(this);
+            $referenceTaskListItem.show();
+            var index = currentTaskItem.index();
+            if (index == 0) {
+                currentTaskItem.before($referenceTaskListItem);
+                endingIndex = 0;
+            } else {
+                if (index > 1) {
+                    endingIndex = -1;
+                }
+                currentTaskItem.after($referenceTaskListItem);
+            }
+        }).on("dragend", function () {
+            var currentTaskItem = $(this);
+            currentTaskItem.removeClass("dragging");
+            $referenceTaskListItem.hide();
+            endingTaskListParent = $referenceTaskListItem.parents(".taskList");
+            endingIndex += $referenceTaskListItem.index();
+            if (ghostImage != null) {
+                ghostImage.remove();
+            }
+            $referenceTaskListItem.before(taskItem);
+        });
+        return {
+            ghostImage,
+            draggingTaskItem
+        };
     }
 
     onOpenDashboardModal(taskItemData, taskItem, controller) {
