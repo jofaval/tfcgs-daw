@@ -57,6 +57,7 @@ class SQLUtils
 
             $result = $queryAction->execute();
             if ($result && strpos(mb_strtolower($queryString), 'select') !== false) {
+                $this->$model->commit();
                 return $queryAction->fetchAll(PDO::FETCH_ASSOC);
             }
 
