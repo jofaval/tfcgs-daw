@@ -34,6 +34,7 @@ class Modal {
             "theme": THEME
         });
         settings["onOpen"](modal);
+        $(".sweet-modal-content").addClass("h-100 p-0 p-sm-5 overflow-auto");
 
         modal.params["onOpen"] = function () {
             //settings["onOpen"](modal);
