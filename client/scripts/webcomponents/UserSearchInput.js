@@ -3,7 +3,9 @@ class UserSearchInput {
         var userSearchClass = this;
         userSearchClass.htmlContent = $(`
         <div class="md-form input-group mb-4">
-            <input type="text" class="form-control" name="searchUser" id="searchUser" placeholder="" aria-describedby="btnSearch">
+            <input type="text" class="form-control" autocomplete="off"
+            name="searchUser" id="searchUser" placeholder=""
+            aria-describedby="btnSearch">
             <label for="searchUser">Usuario</label>
             <div class="input-group-append">
                 <span class="input-group-text md-addon btn btn-sm btn-primary" id="btnSearch">
@@ -43,7 +45,7 @@ class UserSearchInput {
         }); */
 
         userSearchClass.input = userSearchClass.htmlContent.find("input");
-        userSearchClass.input.on("keydown", function (event) {
+        userSearchClass.input.on("keyup", function (event) {
             var event = event || window.event;
             var keyPressCode = event.keyCode;
             console.log(event.keyCode);
@@ -60,7 +62,12 @@ class UserSearchInput {
                 case 38:
                     newSelected = selected.prev();
                     break;
+                case 32:
+                    var serachVal = userSearchClass.input.val();
+                    userSearchClass.input.val(serachVal.substr(0, serachVal.length - 2));
                 case 13:
+                case 18:
+                case 9:
                     selected.trigger("click");
                     return;
                     break;
@@ -78,7 +85,7 @@ class UserSearchInput {
         whenUserDoneTypingInInput(userSearchClass.input, "searchUserInputInterval", function (event) {
             var keyCode = event.keyCode;
 
-            if ([38, 40, 13].includes(keyCode)) {
+            if ([38, 40, 13, 32, 18, 9].includes(keyCode)) {
                 return;
             }
 
