@@ -1040,33 +1040,48 @@ class Controller {
     dashboardModalAssignedTask(taskItemData, controller, taskItem) {
         console.log("FUNCIONA", taskItemData);
         console.log($dashboardAssignationContainer);
+
         $dashboardAssignationContainer.html("");
         $dashboardAssignationContainer.append($dashboardAssignationFinishedStateInput);
-        var assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+        $dashboardAssignationFinishedStateInput.addClass("mr-auto align-self-center");
+
+        var assignationItem = controller.view.visualizeDashboardAssignation(
+            $dashboardAssignationContainer,
+            taskItemData.start_date,
+            taskItemData.end_date,
+            taskItemData.finished
+        );
         assignationItem.removeClass("ml-auto");
+
         var assignationCheckbox = $dashboardAssignationFinishedStateInput.find(":checkbox");
         assignationCheckbox.prop("checked", taskItemData.finished != 0);
         assignationCheckbox.unbind("change");
         assignationCheckbox.on("change", function () {
-            console.log("AQUI", assignationCheckbox.is(":checked"));
-            var checkboxValue = assignationCheckbox.is(":checked");
-            controller.model.setAssignationFinishState(taskItemData.assignation_id, checkboxValue, function (result) {
-                console.log(result);
-                if (result !== false) {
-                    taskItemData.finished = checkboxValue;
-                    sendNotification("Se ha cambiado el estado", "changeFinishStatusSuccess");
-                    taskItem.find(".dashboardAssignation").remove();
-                    controller.view.visualizeDashboardAssignation(taskItem, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
-                    assignationItem.remove();
-                    assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
-                    assignationItem.removeClass("ml-auto");
-                } else {
-                    sendNotification("No se ha podido cambiar el estado", "changeFinishStatusFail");
-                }
-            });
+            assignationItem = this.dashboardAssignationModalCheckboxEvent(assignationCheckbox, controller, taskItemData, taskItem, assignationItem);
         });
+
         console.log("test", assignationCheckbox);
         $("#dashboardModalDescription").after($dashboardAssignationContainer);
+    }
+
+    dashboardAssignationModalCheckboxEvent(assignationCheckbox, controller, taskItemData, taskItem, assignationItem) {
+        console.log("AQUI", assignationCheckbox.is(":checked"));
+        var checkboxValue = assignationCheckbox.is(":checked");
+        controller.model.setAssignationFinishState(taskItemData.assignation_id, checkboxValue, function (result) {
+            console.log(result);
+            if (result !== false) {
+                taskItemData.finished = checkboxValue;
+                sendNotification("Se ha cambiado el estado", "changeFinishStatusSuccess");
+                taskItem.find(".dashboardAssignation").remove();
+                controller.view.visualizeDashboardAssignation(taskItem, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+                assignationItem.remove();
+                assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
+                assignationItem.removeClass("ml-auto");
+            } else {
+                sendNotification("No se ha podido cambiar el estado", "changeFinishStatusFail");
+            }
+        });
+        return assignationItem;
     }
 
     createModalCommentEvent(taskItemData, controller, commentsContainer) {
