@@ -56,11 +56,12 @@ class SQLUtils
             }
 
             $result = $queryAction->execute();
-            if ($result) {
+            if ($result && strpos(mb_strtolower($queryString), 'select') !== false) {
                 return $queryAction->fetchAll(PDO::FETCH_ASSOC);
             }
 
             $this->$model->commit();
+            return $result;
         } catch (PDOException $ex) {
             //return $ex;
             $this->$model->rollback();
