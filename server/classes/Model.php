@@ -426,9 +426,8 @@ class Model extends PDO
     {
         $sqlUtils = new SQLUtils($this);
 
-        $queryString = "SELECT username
-        FROM users
-        WHERE username like :username";
-        return $sqlUtils->complexQuery($queryString, ["username" => $username]);
+        $queryString = "SELECT username FROM users
+        WHERE username like :username LIMIT 5";
+        return $sqlUtils->complexQuery($queryString, ["username" => "%$username%"]);
     }
 }
