@@ -570,17 +570,31 @@ class Controller {
     onTaskItemMoved(movedData) {
         console.log(movedData);
 
+        var newOrder = movedData["endingIndex"] + 1;
+        var taskListID = movedData["endingTaskList"]["id"];
+
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardItem",
+            //rearrange order
+            url: "/daw/index.php?ctl=updateOrderInDashboardList",
             data: {
-                order: movedData["endingIndex"],
-                id_dashboard_list: movedData["endingTaskList"]["id"],
-                id: movedData["taskItem"]["id"],
+                order: newOrder,
+                id_dashboard_list: taskListID,
             },
             success: function (result) {
-                console.log(result);
+                console.log("updatedOrder", result);
+                $.ajax({
+                    url: "/daw/index.php?ctl=updateDashboardItem",
+                    data: {
+                        order: newOrder,
+                        id_dashboard_list: taskListID,
+                        id: movedData["taskItem"]["id"],
+                    },
+                    success: function (result) {
+                        console.log("mover de lista", result);
+                    }
+                });
             }
-        });
+        })
 
 
         if (movedData.startingTaskList != movedData.endingTaskList) {

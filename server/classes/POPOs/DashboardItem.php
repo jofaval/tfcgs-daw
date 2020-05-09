@@ -28,10 +28,11 @@ class DashboardItem implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $currentTime = DateUtils::getCurrentDateTime();
+        $id_dashboard_list = $this->id_dashboard_list;
         $params = [
             "id_creator" => Sessions::getInstance()->getSession("userId"),
             "title" => $this->title,
-            "order" => "0",
+            "order" => Model::getInstance()->getOrderNumberOfList($id_dashboard_list),
             "description" => $this->description,
             "creation_date" => $currentTime,
             "enabled" => "1",
@@ -62,18 +63,30 @@ class DashboardItem implements CRUD
 
     public function update()
     {
-        $sqlUtils = new SQLUtils(Model::getInstance());
+        $modelInstance = Model::getInstance();
+        $sqlUtils = new SQLUtils($modelInstance);
 
+        $id_dashboard_list = $this->id_dashboard_list;
         $toModify = [
             "order" => $this->order,
-            "id_dashboard_list" => $this->id_dashboard_list,
+            "id_dashboard_list" => $id_dashboard_list,
         ];
 
         $identificationParams = [
             "id" => $this->id,
         ];
 
-        return $sqlUtils->update($this->table, $toModify, $identificationParams);
+        $modelInstance->reorganizeOrderInDashboardList($this->query()[0]["id_dashboard_list"]);
+        $modelInstance->reorganizeOrderInDashboardList($id_dashboard_list);
+        $modelInstance->updateOrderInDashboardList($id_dashboard_list, $order);
+
+        $result = $sqlUtils->update($this->table, $toModify, $identificationParams);
+
+        if ($result) {
+            $modelInstance->reorganizeOrderInDashboardList($id_dashboard_list);
+        }
+
+        return $result;
     }
 
     public function delete()
