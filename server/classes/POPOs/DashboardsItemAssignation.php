@@ -26,10 +26,19 @@ class DashboardsItemAssignation implements CRUD
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
+        if (count($sqlUtils->query($this->table, [
+            "id_dashboard_item" => $this->id_dashboard_item,
+            "assigned_by" => $this->assigned_by,
+            "assigned_to" => $this->assigned_to,
+        ])) > 0) {
+            return false;
+        }
+
         $creationTime = DateUtils::getCurrentDateTime();
         $params = [
             "id_dashboard_item" => $this->id_dashboard_item,
             "assigned_by" => $this->assigned_by,
+            "finished" => "0",
             "start_date" => $this->start_date,
             "end_date" => $this->end_date,
             "creation_date" => $creationTime,
@@ -38,13 +47,14 @@ class DashboardsItemAssignation implements CRUD
 
         $result = $sqlUtils->insert($this->table, $params);
 
+        return $result;
+
         if ($result) {
             return $sqlUtils->query($this->table, [
                 "id_dashboard_item" => $this->id_dashboard_item,
                 "assigned_by" => $this->assigned_by,
-                "creation_date" => $creationTime,
                 "assigned_to" => $this->assigned_to,
-            ])[0];
+            ]);
         }
 
         return $result;
