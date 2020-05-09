@@ -405,9 +405,9 @@ class Model extends PDO
         $queryString = "UPDATE dashboard_item
         SET `order` = (`order`+1)
         WHERE id_dashboard_list = :id_dashboard_list
-        and `order`>= :newOrder";
+        and `order`>= :order";
 
-        return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list, "newOrder" => $order]);
+        return $sqlUtils->complexQuery($queryString, ["id_dashboard_list" => $id_dashboard_list, "order" => $order]);
     }
 
     public function reorganizeOrderInDashboardList($id_dashboard_list)
