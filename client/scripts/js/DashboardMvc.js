@@ -82,7 +82,7 @@ var $dashboardModal = $(`
             </div>
             <div class="col-sm-4">
                 <div class="dashboardModalActions d-flex flex-column">
-                    <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
+                    <div class="dashboardModalActionsTitle text-uppercase">Del equipo</div>
                     <div id="dashboardModalActionAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Asignar</div>
                     <div id="dashboardModalActionRemoveAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Quitar asignación</div>
                     <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
@@ -91,9 +91,8 @@ var $dashboardModal = $(`
                     <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                 </div>
                 <div class="dashboardModalActions d-flex flex-column">
-                    <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div class="dashboardModalActionsTitle text-uppercase">Del tablero</div>
+                    <div id="dashboardModalActionRemoveDashboardItem" class="dashboardModalAction text-white btn btn-sm btn-danger">Eliminar elemento</div>
                 </div>
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
@@ -372,7 +371,7 @@ class View {
 
         clonedTaskListItem.find(".taskListItemTitle").text(json.title);
 
-        if (json.assigned !== false) {
+        if (json.assigned === true) {
             this.visualizeDashboardAssignation(clonedTaskListItem, json.start_date, json.end_date, json.finished);
         }
 
@@ -743,8 +742,9 @@ class Controller {
             Modal.modal({
                 "title": "",
                 "content": $dashboardModal.html(),
-                "onOpen": function () {
-                    controller.onOpenDashboardModal(taskItemData, taskItem, controller);
+                "onOpen": function (modal) {
+
+                    controller.onOpenDashboardModal(modal, taskItemData, taskItem, controller);
                     controller.view.scrollTo(taskItem);
                 },
                 "onClose": function () {
@@ -756,7 +756,7 @@ class Controller {
         return taskItem;
     }
 
-    addTaskItemRemoveEvent(event, taskItemData, controller, taskItem) {
+    addTaskItemRemoveEvent(event, taskItemData, controller, taskItem, whenFinished) {
         event.stopPropagation();
         console.log(taskItemData.id_dashboard_list);
         var confirmationModal = Modal.confirmationModal({
@@ -767,10 +767,11 @@ class Controller {
                     console.log(result);
                     if (result === true) {
                         taskItem.remove();
-                        Modal.specialAlert({
+                        var modalSuccess = Modal.specialAlert({
                             title: `"${taskItemData.title}" ha sido borrado con éxito`,
                             error: false,
                         });
+                        whenFinished();
                     } else {
                         Modal.specialAlert({
                             title: `"${taskItemData.title}" no se ha podido borrar`,
@@ -826,7 +827,7 @@ class Controller {
         };
     }
 
-    onOpenDashboardModal(taskItemData, taskItem, controller) {
+    onOpenDashboardModal(modal, taskItemData, taskItem, controller) {
         console.log(taskItemData);
 
         var inputs = $("input, textarea");
@@ -877,6 +878,12 @@ class Controller {
 
         $("#dashboardModalActionAssignation").on("click", function (event) {
             controller.dashboardAssignationModalEvent(controller, taskItemData);
+        });
+
+        $("#dashboardModalActionRemoveDashboardItem").on("click", function (event) {
+            controller.addTaskItemRemoveEvent(event, taskItemData, controller, taskItem, function () {
+                modal.close();
+            });
         });
 
         $("#dashboardModalActionRemoveAssignation").on("click", function (event) {
