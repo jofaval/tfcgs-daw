@@ -81,28 +81,28 @@ var $dashboardModal = $(`
                 <div class="dashboardCommentsContainer"></div>
             </div>
             <div class="col-sm-4">
-                <div class="dasbhoardModalActions d-flex flex-column">
-                    <div class="dasbhoardModalActionsTitle text-uppercase">Action title</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                <div class="dashboardModalActions d-flex flex-column">
+                    <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
+                    <div id="dashboardModalActionAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Vencimiento</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                 </div>
-                <div class="dasbhoardModalActions d-flex flex-column">
-                    <div class="dasbhoardModalActionsTitle text-uppercase">Action title</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                <div class="dashboardModalActions d-flex flex-column">
+                    <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                 </div>
-                <div class="dasbhoardModalActions d-flex flex-column">
-                    <div class="dasbhoardModalActionsTitle text-uppercase">Action title</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
-                    <div class="dasbhoardModalAction btn btn-sm btn-default">action</div>
+                <div class="dashboardModalActions d-flex flex-column">
+                    <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                 </div>
             </div>
         </div>
@@ -874,34 +874,16 @@ class Controller {
                 $(".dashboardModalSaveChanges").hide();
             }
         });
+
+        $("#dashboardModalActionAssignation").on("click", function (event) {
+            controller.dashboardAssignationModalEvent(controller);
+        });
+
         $(".dashboardModalBtnSaveChanges").on("click", function (event) {
             var event = event || window.event;
             var currentBtn = $(this);
 
-            var title = $(".dashboardModalTitle").text();
-            var description = $("#dashboardModalDescription").val();
-            $.ajax({
-                url: "/daw/index.php?ctl=updateDashboardItem",
-                data: {
-                    "id": taskItemData.id,
-                    "title": title,
-                    "description": description,
-                },
-                success: function (result) {
-                    console.log("modificar Detalles", result);
-
-                    if (result !== false) {
-                        console.log(taskItemData);
-
-                        taskItemData.title = title;
-                        taskItemData.description = description;
-                        taskItemData.html.find(".taskListItemTitle").text(taskItemData.title);
-                        $(".dashboardModalSaveChanges").hide();
-                    } else {
-                        sendNotification("No se han podido cambiar los detalles", "changeTaskItemDetailsFail");
-                    }
-                }
-            })
+            controller.dashboardSaveChangesEvent(taskItemData);
         });
 
         $("#comment").on("keypress", function (event) {
@@ -909,6 +891,91 @@ class Controller {
             if (event.keyCode == 13) {
                 controller.createModalCommentEvent(taskItemData, controller, commentsContainer)
             }
+        });
+    }
+
+    dashboardSaveChangesEvent(taskItemData) {
+        var title = $(".dashboardModalTitle").text();
+        var description = $("#dashboardModalDescription").val();
+        $.ajax({
+            url: "/daw/index.php?ctl=updateDashboardItem",
+            data: {
+                "id": taskItemData.id,
+                "title": title,
+                "description": description,
+            },
+            success: function (result) {
+                console.log("modificar Detalles", result);
+                if (result !== false) {
+                    console.log(taskItemData);
+                    taskItemData.title = title;
+                    taskItemData.description = description;
+                    taskItemData.html.find(".taskListItemTitle").text(taskItemData.title);
+                    $(".dashboardModalSaveChanges").hide();
+                } else {
+                    sendNotification("No se han podido cambiar los detalles", "changeTaskItemDetailsFail");
+                }
+            }
+        });
+    }
+
+    dashboardAssignationModalEvent(controller) {
+        Modal.modal({
+            "title": "Asignar tarea",
+            "content": `<form action="/daw/index.php?ctl=createDashboardItemAssignation" id="formAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+                            <div class="form-row">
+                                <div class="md-form input-group col-sm">
+                                    <input type="date" name="startDate" id="startDate" class="form-control" aria-describedby="startDateTime">
+                                    <label for="startDate">Fecha inicio</label>
+                                    <div class="input-group-append">
+                                        <input type="time" name="startDateTime" id="startDateTime">
+                                    </div>
+                                </div>
+                                <div class="md-form input-group col-sm">
+                                    <input type="date" name="endDate" id="endDate" class="form-control" aria-describedby="endDateTime">
+                                    <label for="endDate">Fecha límite</label>
+                                    <div class="input-group-append">
+                                        <input type="time" name="endDateTime" id="endDateTime">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row userSearchContainer"></div>
+                            <input type="hidden" name="id_project" value="${controller.model.projectId}" >
+                            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                <input class="btn btn-primary w-100" type="submit" name="createDashboard" id="createDashboard" value="Asginar tarea">
+                            </div>
+                        </form>`,
+            "onOpen": function () {
+                var endDate = $("#endDate");
+                endDate.focus();
+                endDate.val(new DateUtils(new Date(), false).printDateWithFormat("Y-m-d"));
+
+                var startDate = $("#startDate");
+                startDate.focus();
+                startDate.val(new DateUtils(new Date(), false).printDateWithFormat("Y-m-d"));
+
+                var userSearch = new UserSearchInput($(".userSearchContainer"));
+                userSearch.input.addClass("text-white");
+                $("#formAssignDashboard").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+
+                    var endDateVal = endDate.val();
+                    var startDateVal = startDate.val();
+                    var username = userSearch.input.val();
+
+                    controller.model.createDashboard(title, $("#description").val(), function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            modal.close();
+                            controller.addDashboard(controller, result[0]);
+                            controller.reload(controller);
+                            window.location.href = `/daw/projects/id/${controller.model.projectId}/dashboards/${title}/`;
+                        }
+                    });
+                    return false;
+                });
+            },
         });
     }
 
