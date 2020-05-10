@@ -3,8 +3,8 @@ class TimeFromMoment {
         var instance = this;
         instance.htmlContent = $(`
         <div class="timeOutContainer row">
-            <p class="timeOutDate"></p>
-            <p class="timeOutOriginal ml-2 text-muted"></p>
+            <p class="timeOutDate mb-0"></p>
+            <p class="timeOutOriginal mb-0 ml-2 text-muted"></p>
         </div>
         `);
 
