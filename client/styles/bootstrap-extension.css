@@ -379,3 +379,7 @@
     -webkit-box-shadow: 0 1px 0 0 #23c931 !important;
     box-shadow: 0 1px 0 0 #23c931 !important;
 }
+
+.position-unset {
+    position: unset !important;
+}
