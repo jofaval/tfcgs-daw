@@ -909,16 +909,13 @@ class Controller {
                             "title": `Detalles de ${taskItemData.title}`,
                             "content": `<div class="row">
                             <p>Creado por <a href="/daw/profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
-                            <p class="dashboardItemCreationDate ml-auto"></p>
-                            <p class="dashboardItemCreationDateOriginal ml-2 text-muted"></p>
+                            <div class="dashboardItemCreationDate ml-auto mr-2"></div>
                         </div>`,
                             "onOpen": function (modal) {
                                 var creationDateContainer = $(".dashboardItemCreationDate");
                                 var originalDate = result.creation_date;
-                                $(".dashboardItemCreationDateOriginal").text(`Fecha completa: ${originalDate}`);
-                                creationDateContainer.text(
-                                    new DateUtils(originalDate).getTimeFromThisMoment()
-                                );
+                                var timeFromMoment = new TimeFromMoment(creationDateContainer, originalDate)
+                                timeFromMoment.delete(timeFromMoment);
                             }
                         });
                     } else {
