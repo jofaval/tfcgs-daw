@@ -63,7 +63,7 @@ $breadcrumb = [
     <div
         class="row tabs d-flex text-white justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0 tabs">
         <div class="projectsCount ml-3">
-            <span class="numberOfProjects">15</span>&nbsp;
+            <span class="numberOfProjects">0</span>&nbsp;
             <span class="font-weight-bold">project(s)</span>
         </div>
         <div class="btn-group projectsBtnFilters">
