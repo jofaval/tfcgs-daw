@@ -1072,21 +1072,6 @@ class Controller
                 fclose($fileWritter);
             }
 
-            if ($addToModel) {
-                $modelFunction = $controllerFunction;
-
-                $modelFunction .= "\n\t\t\$sqlUtils = new SQLUtils(\$this);\n\n\t\t\$queryString = \"SELECT * FROM tabla\";\n\t\treturn \$sqlUtils->complexQuery(\$queryString,[]);";
-
-                $modelFunction .= "\n\t}
-                ";
-
-                $controllerFunction .= "\n\t\treturn Model::getInstance()->$routeName();";
-
-                $fileWritter = fopen(__DIR__ . "/Model.php", "a+");
-                fwrite($fileWritter, $modelFunction);
-                fclose($fileWritter);
-            }
-
             if ($addToAjax) {
                 $ajaxFunction = "\n\n\t//Function to $routeName\n" . $controllerFunction;
 
@@ -1099,6 +1084,21 @@ class Controller
 
                 $fileWritter = fopen(__DIR__ . "/AjaxController.php", "a+");
                 fwrite($fileWritter, $ajaxFunction);
+                fclose($fileWritter);
+            }
+
+            if ($addToModel) {
+                $modelFunction = $controllerFunction;
+
+                $modelFunction .= "\n\t\t\$sqlUtils = new SQLUtils(\$this);\n\n\t\t\$queryString = \"SELECT * FROM tabla\";\n\t\treturn \$sqlUtils->complexQuery(\$queryString,[]);";
+
+                $modelFunction .= "\n\t}
+                ";
+
+                $controllerFunction .= "\n\t\treturn Model::getInstance()->$routeName();";
+
+                $fileWritter = fopen(__DIR__ . "/Model.php", "a+");
+                fwrite($fileWritter, $modelFunction);
                 fclose($fileWritter);
             }
 
