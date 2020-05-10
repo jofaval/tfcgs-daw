@@ -1080,8 +1080,6 @@ class Controller
                 $ajaxFunction .= "\n\t}
                 ";
 
-                $controllerFunction .= "\n\t\treturn Model::getInstance()->$routeName();";
-
                 $fileWritter = fopen(__DIR__ . "/AjaxController.php", "a+");
                 fwrite($fileWritter, $ajaxFunction);
                 fclose($fileWritter);
