@@ -502,6 +502,12 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
+    //Function to disableDashboardItem
+    public function disableDashboardItem()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+    }
+
     //Function to createDashboardList
     public function createDashboardList()
     {

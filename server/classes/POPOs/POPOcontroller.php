@@ -423,6 +423,13 @@ class POPOcontroller
         return $popoInstance->delete();
     }
 
+    public function disableDashboardItem()
+    {
+        $popoInstance = new DashboardItem();
+
+        return $popoInstance->enable();
+    }
+
     public function createDashboardList()
     {
         $popoInstance = new DashboardList();

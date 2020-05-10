@@ -179,6 +179,8 @@ $map['updateDashboardItem'] = array('controller' => 'AjaxController', 'action' =
 $map['queryDashboardItem'] = array('controller' => 'AjaxController', 'action' => 'queryDashboardItem', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de deleteDashboardItem
 $map['deleteDashboardItem'] = array('controller' => 'AjaxController', 'action' => 'deleteDashboardItem', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//Ruta de disableDashboardItem
+$map['disableDashboardItem'] = array('controller' => 'AjaxController', 'action' => 'disableDashboardItem', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de createDashboardList
 $map['createDashboardList'] = array('controller' => 'AjaxController', 'action' => 'createDashboardList', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de updateDashboardList
