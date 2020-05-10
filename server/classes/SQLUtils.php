@@ -168,7 +168,7 @@ class SQLUtils
         try {
             $this->$model->beginTransaction();
 
-            $result = update($table, ["enabled" => $enable], $identificationParams);
+            $result = $this->update($table, ["enabled" => $enable], $identificationParams);
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
