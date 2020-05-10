@@ -431,12 +431,15 @@ class Model extends PDO
         return $sqlUtils->complexQuery($queryString, ["username" => "%$username%"]);
     }
 
-    public function getDashboardItemDetails()
+    public function getDashboardItemDetails($id)
     {
         $sqlUtils = new SQLUtils($this);
 
-        $queryString = "SELECT * FROM tabla";
-        return $sqlUtils->complexQuery($queryString, []);
+        $queryString = "SELECT creation_date, username, CONCAT(clients.name, ' ', clients.surname) as 'fullname'
+        FROM dashboard_item LEFT JOIN users on (dashboard_item.id_creator=users.id_client)
+        LEFT JOIN clients on (users.id_client = clients.id)
+        WHERE dashboard_item.id = :id";
+        return $sqlUtils->complexQuery($queryString, ["id" => $id]);
     }
 
 }

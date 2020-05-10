@@ -664,7 +664,6 @@ class AjaxController
 
     public function getDashboardItemDetails()
     {
-        return Model::getInstance()->getDashboardItemDetails();
         $this->genericAjaxReturn(__FUNCTION__, ["id"], "Controller");
     }
 

@@ -1168,7 +1168,24 @@ class Controller
 
     public function getDashboardItemDetails()
     {
-        return Model::getInstance()->getDashboardItemDetails();
-    }
+        return false;
+        $id = Utils::getCleanedData("id");
 
+        $validation = Validation::getInstance();
+
+        $rules = array(
+            array(
+                "name" => "id",
+                "rules" => "no-empty,numeric",
+            ),
+        );
+
+        $isValid = $validation->rules($rules, $_REQUEST);
+
+        if ($isValid !== true) {
+            return false;
+        };
+
+        return Model::getInstance()->getDashboardItemDetails($id);
+    }
 }
