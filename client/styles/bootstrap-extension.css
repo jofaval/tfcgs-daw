@@ -368,6 +368,38 @@
     max-height: 40rem;
 }
 
+.min-height-5 {
+    min-height: 5rem;
+}
+
+.min-height-10 {
+    min-height: 10rem;
+}
+
+.min-height-15 {
+    min-height: 15rem;
+}
+
+.min-height-20 {
+    min-height: 20rem;
+}
+
+.min-height-25 {
+    min-height: 25rem;
+}
+
+.min-height-30 {
+    min-height: 30rem;
+}
+
+.min-height-35 {
+    min-height: 35rem;
+}
+
+.min-height-40 {
+    min-height: 40rem;
+}
+
 .md-form.validate-red input:not([type]):focus:not([readonly]), .md-form.validate-red input[type="text"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="password"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="email"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="url"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="time"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="date"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="datetime"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="tel"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="number"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="search"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="search-md"]:focus:not([readonly]), .md-form.validate-red textarea.md-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #f44242 !important;
     -webkit-box-shadow: 0 1px 0 0 #f44242 !important;
