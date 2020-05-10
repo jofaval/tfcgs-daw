@@ -1011,7 +1011,9 @@ class Controller {
                             }
                         });
                     });
-                    selectDashboardList.children().first().trigger("click");
+                    selectDashboardList.val(taskItemData.id_dashboard_list);
+                    selectDashboardList.find("option:selected").trigger("click");
+                    selectOrder.val(taskItemData.order);
 
                     $("#formMoveDashboardList").on("submit", function (event) {
                         var event = event || window.event;
