@@ -966,6 +966,91 @@ class Controller {
             });
         });
 
+        $("#dashboardModalActionMoveTask").on("click", function (event) {
+            console.log("test");
+
+            var modal = Modal.modal({
+                "title": "Mover tarea de lista",
+                "content": `
+                    <form action="/daw/index.php?ctl=updateDashboardItem" id="formMoveDashboardList" method="POST">
+                        <div class="form-row mb-2">
+                            <div class="col-sm">
+                                <label for="id_dashboard_list">Lista de tareas</label>
+                                <select class="browser-default border-0 bg-dark text-light custom-select" name="id_dashboard_list" id="id_dashboard_list">
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <label for="order">Orden</label>
+                                <select class="browser-default border-0 bg-dark text-light custom-select" name="order" id="order">
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id_project" value="${controller.model.projectId}">
+                        <input type="hidden" name="id" value="${taskItemData.id}">
+                        <div class="row flex-center">
+                            <button class="btn btn-primary mx-auto" name="moveDashboardItemToList" id="moveDashboardItemToList">Mover
+                                tarea</button>
+                        </div>
+                    </form>
+            `,
+                "onOpen": function (modal) {
+                    var selectDashboardList = $("#id_dashboard_list");
+                    var selectOrder = $("#order");
+                    var elements = controller.model.dashboardElements;
+                    $(elements).each(function () {
+                        var newOption = $(`<option value="${this.id}">${this.title}</option>`);
+                        selectDashboardList.append(newOption);
+
+                        var itemsLen = this.items.length;
+                        newOption.on("click", function () {
+                            selectOrder.html("");
+
+                            selectOrder.append($(`<option value="0">1</option>`));
+                            for (let orderIndex = 1; orderIndex <= itemsLen; orderIndex++) {
+                                selectOrder.append($(`<option value="${orderIndex}">${orderIndex + 1}</option>`));
+                            }
+                        });
+                    });
+                    selectDashboardList.children().first().trigger("click");
+
+                    $("#formMoveDashboardList").on("submit", function (event) {
+                        var event = event || window.event;
+                        event.preventDefault();
+
+                        var id_dashboard_list = selectDashboardList.find("option:selected").val();
+                        var order = $("#order option:selected").val();
+
+                        var movingForward = order == 0;
+                        if (taskItemData.id_dashboard_list == id_dashboard_list) {
+                            movingForward = taskItemData.order > order
+                        }
+
+                        $.ajax({
+                            url: "/daw/index.php?ctl=updateDashboardItem",
+                            data: {
+                                "id": taskItemData.id,
+                                "id_dashboard_list": id_dashboard_list,
+                                "order": order,
+                                "movingForward": movingForward ? 1 : 0,
+                            },
+                            success: function (result) {
+                                console.log(result);
+                                if (result !== false) {
+                                    sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
+                                } else {
+                                    sendNotification("No se ha podido cambiar de lista", "changeTaskListFail");
+                                }
+                            }
+                        })
+                    });
+                    controller.view.scrollTo(taskItem);
+                },
+                "onClose": function () {
+                    controller.view.scrollTo(taskItem);
+                },
+            });
+        })
+
         $(".dashboardModalBtnSaveChanges").on("click", function (event) {
             var event = event || window.event;
             var currentBtn = $(this);
