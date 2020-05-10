@@ -896,6 +896,38 @@ class Controller {
             controller.removeDashboardAssignationModalEvent(controller, taskItemData);
         });
 
+        $("#dashboardModalActionDetails").on("click", function (event) {
+            $.ajax({
+                url: "/daw/index.php?&ctl=getDashboardItemDetails",
+                data: {
+                    "id": taskItemData.id,
+                },
+                success: function (result) {
+                    console.log("details", result);
+                    if (result !== false) {
+                        Modal.modal({
+                            "title": `Detalles de ${taskItemData.title}`,
+                            "content": `<div class="row">
+                            <p>Creado por <a href="/daw/profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
+                            <p class="dashboardItemCreationDate ml-auto"></p>
+                            <p class="dashboardItemCreationDateOriginal ml-2 text-muted"></p>
+                        </div>`,
+                            "onOpen": function (modal) {
+                                var creationDateContainer = $(".dashboardItemCreationDate");
+                                var originalDate = result.creation_date;
+                                $(".dashboardItemCreationDateOriginal").text(`Fecha completa: ${originalDate}`);
+                                creationDateContainer.text(
+                                    new DateUtils(originalDate).getTimeFromThisMoment()
+                                );
+                            }
+                        });
+                    } else {
+                        sendNotification("No se han podido extraer los detalles", "dashboardItemDetailsFail");
+                    }
+                }
+            })
+        });
+
         if (taskItemData.enabled != 0) {
             $("#dashboardModalActionDisableDashboardItem").show();
             $("#dashboardModalActionEnableDashboardItem").hide();
