@@ -1165,4 +1165,10 @@ class Controller
     {
         require_once __DIR__ . "/one_execution/test.php";
     }
+
+    public function getDashboardItemDetails()
+    {
+        return Model::getInstance()->getDashboardItemDetails();
+    }
+
 }

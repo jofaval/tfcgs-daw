@@ -659,4 +659,13 @@ class AjaxController
         $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
         $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "assigned_to"]);
     }
+
+    //Function to getDashboardItemDetails
+
+    public function getDashboardItemDetails()
+    {
+        return Model::getInstance()->getDashboardItemDetails();
+        $this->genericAjaxReturn(__FUNCTION__, ["id"], "Controller");
+    }
+
 }

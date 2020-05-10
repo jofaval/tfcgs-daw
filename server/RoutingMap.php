@@ -226,3 +226,5 @@ $map['getAssignedDashboardItems'] = array('controller' => 'AjaxController', 'act
 $map['updateOrderInDashboardList'] = array('controller' => 'AjaxController', 'action' => 'updateOrderInDashboardList', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //searchUsers
 $map['searchUsers'] = array('controller' => 'AjaxController', 'action' => 'searchUsers', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//getDashboardItemDetails
+$map['getDashboardItemDetails'] = array('controller' => 'AjaxController', 'action' => 'getDashboardItemDetails', 'access' => Config::$ACCESS_LEVEL_GUEST);

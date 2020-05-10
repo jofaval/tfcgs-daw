@@ -430,4 +430,13 @@ class Model extends PDO
         WHERE username like :username LIMIT 5";
         return $sqlUtils->complexQuery($queryString, ["username" => "%$username%"]);
     }
+
+    public function getDashboardItemDetails()
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $queryString = "SELECT * FROM tabla";
+        return $sqlUtils->complexQuery($queryString, []);
+    }
+
 }
