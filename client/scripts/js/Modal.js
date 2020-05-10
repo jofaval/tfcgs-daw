@@ -34,7 +34,14 @@ class Modal {
             "theme": THEME
         });
         settings["onOpen"](modal);
-        $(".sweet-modal-content").addClass("h-100 p-0 p-sm-5 overflow-auto");
+        $(".sweet-modal-content").addClass("h-100 p-0 p-sm-5 m-auto");
+        $(".sweet-modal-box.alert").css({
+            "top": "0", //35%
+            "marginTop": "0",
+            "position": "unset",
+            "maxHeight": "75vh",
+        }).addClass("m-auto");
+        $(".sweet-modal-overlay").addClass("d-flex justify-content-center justify-items-center align-content-center align-items-center");
 
         modal.params["onOpen"] = function () {
             //settings["onOpen"](modal);
