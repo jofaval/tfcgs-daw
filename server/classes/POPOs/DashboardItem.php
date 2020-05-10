@@ -122,6 +122,7 @@ class DashboardItem implements CRUD
 
         $params = [
             "id" => $this->id,
+            "enabled" => false,
         ];
 
         return $sqlUtils->delete($this->table, $params);
