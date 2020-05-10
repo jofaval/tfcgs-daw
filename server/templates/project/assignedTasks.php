@@ -5,6 +5,7 @@
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
+<?php $currentPage = "Proyectos";?>
 <?php
 $breadcrumb = [
     [
@@ -80,6 +81,128 @@ $breadcrumb = [
                 class="align-self-center d-none d-sm-inline-block">Detalles</span></a>
     </div>
     <div class="row tabContentContainer m-0 px-2">
+        <div class="w-100 h-100 tabContent container-fluid text-white p-0 p-sm-3 d-block">
+            <div class="row">
+                <div class="col-sm d-flex flex-column">
+                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                        <div class="accordionContainer">
+                            <div class="card-header bg-dark" role="tab" id="headingTwo1">
+                                <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                                    href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        Asignadas <i class="fa fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+                                data-parent="#accordionEx1">
+                                <div class="card-body max-height-20 overflow-y-auto">
+                                    content
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm d-flex flex-column">
+                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                        <div class="accordionContainer">
+                            <div class="card-header bg-dark" role="tab" id="headingTwo1">
+                                <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                                    href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        Asignadas <i class="fa fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+                                data-parent="#accordionEx1">
+                                <div class="card-body max-height-20 overflow-y-auto">
+                                    content
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm d-flex flex-column">
+                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                        <div class="accordionContainer">
+                            <div class="card-header bg-dark" role="tab" id="headingTwo1">
+                                <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                                    href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        Asignadas <i class="fa fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+                                data-parent="#accordionEx1">
+                                <div class="card-body max-height-20 overflow-y-auto">
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                    content
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm d-flex flex-column">
+                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                        <div class="accordionContainer">
+                            <div class="card-header bg-dark" role="tab" id="headingTwo1">
+                                <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                                    href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        Asignadas <i class="fa fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+                                data-parent="#accordionEx1">
+                                <div class="card-body max-height-20 overflow-y-auto">
+                                    content
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

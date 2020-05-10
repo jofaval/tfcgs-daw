@@ -47,7 +47,7 @@ $projectNumbers = $modelInstance->getProjectNumbers($viewParams["id"]);
             ],
             [
                 "name" => "Ver tareas asignadas",
-                "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+                "link" => "/daw/projects/id/" . $viewParams["id"] . "/overview/assigned-tasks/",
                 "icon" => "tasks",
                 "id" => "DashboardTasks",
                 "color" => "blue",
