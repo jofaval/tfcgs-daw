@@ -40,7 +40,7 @@ class Modal {
             "marginTop": "0",
             "position": "unset",
             "maxHeight": "75vh",
-        }).addClass("m-auto");
+        }).addClass("m-auto overflow-auto");
         $(".sweet-modal-overlay").addClass("d-flex justify-content-center justify-items-center align-content-center align-items-center");
 
         modal.params["onOpen"] = function () {
