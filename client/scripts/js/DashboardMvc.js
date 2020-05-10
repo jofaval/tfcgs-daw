@@ -85,9 +85,12 @@ var $dashboardModal = $(`
                     <div class="dashboardModalActionsTitle text-uppercase">Del equipo</div>
                     <div id="dashboardModalActionAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Asignar</div>
                     <div id="dashboardModalActionRemoveAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Quitar asignación</div>
+                    <div id="dashboardModalActionMoveTask" class="dashboardModalAction text-dark btn btn-sm btn-default">Mover</div>
+                    <div id="dashboardModalActionDetails" class="dashboardModalAction text-dark btn btn-sm btn-default">Ver detalles</div>
                 </div>
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Del tablero</div>
+                    <div id="dashboardModalActionEnableDashboardItem" class="dashboardModalAction text-dark btn btn-sm btn-success">Habilitar tarea</div>
                     <div id="dashboardModalActionDisableDashboardItem" class="dashboardModalAction text-light btn btn-sm btn-danger">Deshabilitar tarea</div>
                     <div id="dashboardModalActionRemoveDashboardItem" class="dashboardModalAction text-light btn btn-sm btn-danger">Eliminar tarea</div>
                 </div>
@@ -211,12 +214,12 @@ class Model {
         });
     }
 
-    disableDashboardItem(id, whenFinished) {
+    enableDashboardItem(id, enable, whenFinished) {
         $.ajax({
             url: "/daw/index.php?ctl=disableDashboardItem",
             data: {
                 "id": id,
-                "enabled": false ? 1 : 0,
+                "enabled": enable ? 1 : 0,
             },
             success: function (result) {
                 whenFinished(result);
@@ -834,6 +837,7 @@ class Controller {
         var inputs = $("input, textarea");
         inputs.focus();
         inputs.first().focus();
+        inputs.first().blur();
         console.log(inputs);
 
         if (taskItemData.assigned === true) {
@@ -841,7 +845,8 @@ class Controller {
         }
 
         $(".dashboardModalTitle").text(taskItemData.title);
-        $("#dashboardModalDescription").text(taskItemData.description);
+        $("#dashboardModalDescription").text(taskItemData.description)
+            .focus().blur();
         $("#description.md-textarea").html(`${taskItemData.description}`);
         var commentsContainer = $(".dashboardCommentsContainer");
         $(".dashboardModalCommentBtn").on("click", function () {
@@ -891,9 +896,44 @@ class Controller {
             controller.removeDashboardAssignationModalEvent(controller, taskItemData);
         });
 
+        if (taskItemData.enabled != 0) {
+            $("#dashboardModalActionDisableDashboardItem").show();
+            $("#dashboardModalActionEnableDashboardItem").hide();
+            taskItem.remove();
+        } else {
+            $("#dashboardModalActionDisableDashboardItem").hide();
+            $("#dashboardModalActionEnableDashboardItem").show();
+        }
+
         $("#dashboardModalActionDisableDashboardItem").on("click", function (event) {
             controller.dashboardModalActionDisableDashboardItemEvent(event, taskItemData, controller, taskItem, function () {
-                modal.close();
+                //modal.close();
+
+                console.log("segundo", taskItemData.enabled);
+
+                if (taskItemData.enabled != 0) {
+                    $("#dashboardModalActionDisableDashboardItem").show();
+                    $("#dashboardModalActionEnableDashboardItem").hide();
+                    taskItem.remove();
+                } else {
+                    $("#dashboardModalActionDisableDashboardItem").hide();
+                    $("#dashboardModalActionEnableDashboardItem").show();
+                }
+            });
+        });
+
+        $("#dashboardModalActionEnableDashboardItem").on("click", function (event) {
+            controller.dashboardModalActionDisableDashboardItemEvent(event, taskItemData, controller, taskItem, function () {
+                //modal.close();
+
+                if (taskItemData.enabled != 0) {
+                    $("#dashboardModalActionDisableDashboardItem").show();
+                    $("#dashboardModalActionEnableDashboardItem").hide();
+                    taskItem.remove();
+                } else {
+                    $("#dashboardModalActionDisableDashboardItem").hide();
+                    $("#dashboardModalActionEnableDashboardItem").show();
+                }
             });
         });
 
@@ -912,22 +952,24 @@ class Controller {
         });
     }
 
-    dashboardModalActionDisableDashboardItemEvent(event, taskItemData, controller, taskItem, whenFinished) {
+    dashboardModalActionDisableDashboardItemEvent(event, taskItemData, controller, taskItem, whenSuccess) {
         event.stopPropagation();
+        var bool = taskItemData.enabled != 0 ? true : false;
         console.log(taskItemData.id_dashboard_list);
         var confirmationModal = Modal.confirmationModal({
             title: "Deshabilitar elemento de la lista?",
             body: `Confimar esta acción y deshabilitar <b>"${taskItemData.title}"</b>`,
             onAccept: function () {
-                controller.model.disableDashboardItem(taskItemData.id, function (result) {
+                controller.model.enableDashboardItem(taskItemData.id, !bool, function (result) {
                     console.log(result);
                     if (result === true) {
-                        taskItem.remove();
+                        taskItemData.enabled = !bool ? 1 : 0;
+                        console.log("primero", taskItemData.enabled);
                         var modalSuccess = Modal.specialAlert({
                             title: `"${taskItemData.title}" ha sido deshabilitado con éxito`,
                             error: false,
                         });
-                        whenFinished();
+                        whenSuccess();
                     } else {
                         Modal.specialAlert({
                             title: `"${taskItemData.title}" no se ha podido deshabilitar`,
@@ -1001,6 +1043,7 @@ class Controller {
 
                 var endDate = $("#endDate");
                 endDate.focus();
+                endDate.blur();
                 endDate.val(new DateUtils(newDate, false).printDateWithFormat("Y-m-d h:i:s"));
 
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
