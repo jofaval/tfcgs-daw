@@ -14,6 +14,9 @@ class TimeFromMoment {
         instance.dateElement = instance.htmlContent.find(".timeOutDate");
 
         instance.dateInDateUtils = new DateUtils(originalDate);
+        //instance.dateInDateUtils.date.setMinutes(instance.dateInDateUtils.date.getMinutes() + 1);
+        console.log(instance.dateInDateUtils.date);
+
 
         if (instance.dateInDateUtils === false) {
             return false;
@@ -23,6 +26,7 @@ class TimeFromMoment {
             instance.dateInDateUtils.getTimeFromThisMoment()
         );
 
+        instance.setTimeFromCurrentMoment(instance);
         instance.setNewTimeout(instance);
 
         container.append(instance.htmlContent);
@@ -34,44 +38,52 @@ class TimeFromMoment {
 
         setTimeout(() => {
             instance.setTimeFromCurrentMoment(instance);
-            instance.setNewTimeout(instance);
+            //instance.setNewTimeout(instance);
         }, newTimeStamp + 1000);
     }
 
     getNewTimeSpan(instance) {
-        var current = new Date();
+        /* var current = new Date();
+
+        var original = new Date(instance.dateInDateUtils.date.getTime());
+        current.setSeconds(original.getSeconds());
         var currentTimestamp = current.getTime();
-        var newDate;
+
+        var unitTime = instance.dateInDateUtils.unitTime;
+        console.log(unitTime); */
+
+        var finalDate = new Date();
+
+        var originalDate = instance.dateInDateUtils.date;
+        finalDate.setSeconds(originalDate.getSeconds());
+
+        var currentDate = new Date();
+
         var unitTime = instance.dateInDateUtils.unitTime;
         switch (unitTime) {
-            case "weeks":
-                current.setDate()
-                var lastDayOfWeek = new DateUtils(current, false).getWeekFromDate()[6];
-                lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 1);
-                current = new DateUtils(lastDayOfWeek, false).getWeekFromDate()[0];
-                newDate.setHours(0);
-                newDate.setMinutes(0);
-                newDate.setSeconds(0);
-                break;
-            case "days":
-                current.setDate(current.getDate() + 1);
-                current.setHours(0);
-                current.setMinutes(0);
-                current.setSeconds(0);
+            case "seconds":
+            case "minutes":
+                finalDate.setMinutes(finalDate.getMinutes() + 1);
                 break;
             case "hours":
-                current.setHours(current.getHours() + 1);
-                current.setMinutes(0);
-                current.setSeconds(0);
+                finalDate.setHours(finalDate.getHours() + 1);
                 break;
-            case "minutes":
-            case "seconds":
-                current.setMinutes(current.getMinutes() + 1);
-                current.setSeconds(0);
+            case "days":
+                finalDate.setDate(finalDate.getDate() + 1);
+                break;
+            case "weeks":
+                var lastDayOfWeek = new DateUtils(finalDate, false).getWeekFromDate()[6];
+                lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 1);
+                finalDate = new DateUtils(lastDayOfWeek, false).getWeekFromDate()[0];
+                break;
+            default:
+                finalDate.setTime(finalDate.getTime() * 50);
                 break;
         }
 
-        return current.getTime() - currentTimestamp;
+        console.log("finalDate", finalDate, "currentDate", currentDate);
+
+        return finalDate.getTime() - currentDate.getTime();
     }
 
     setTimeFromCurrentMoment(instance) {
