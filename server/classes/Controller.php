@@ -1191,4 +1191,11 @@ class Controller
 
         return $result;
     }
+    
+    public function assignedTasks()
+    {
+        require_once __DIR__ . "/../templates/assignedTasks.php";
+        return Model::getInstance()->assignedTasks();
+    }
+
 }

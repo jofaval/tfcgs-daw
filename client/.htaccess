@@ -65,3 +65,5 @@ RewriteRule ^profile/change-image[/]?$ ./index.php?ctl=profile&tabName=image [L]
 RewriteRule ^profile/reset-profile-image[/]?$ ./index.php?ctl=profile&reset=profileImage [L]
 RewriteRule ^profile/reset-background-image[/]?$ ./index.php?ctl=profile&reset=bgImage [L]
 RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]
+#assignedTasks
+RewriteRule ^assigned-tasks[/]?$ ./index.php?ctl=assignedTasks[L]
