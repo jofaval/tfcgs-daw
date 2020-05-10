@@ -14,22 +14,29 @@ class TimeFromMoment {
         instance.dateElement = instance.htmlContent.find(".timeOutDate");
 
         instance.dateInDateUtils = new DateUtils(originalDate);
-        //instance.dateInDateUtils.date.setMinutes(instance.dateInDateUtils.date.getMinutes() + 1);
         console.log(instance.dateInDateUtils.date);
-
 
         if (instance.dateInDateUtils === false) {
             return false;
         }
 
-        instance.dateElement.text(
-            instance.dateInDateUtils.getTimeFromThisMoment()
-        );
-
-        instance.setTimeFromCurrentMoment(instance);
-        instance.setNewTimeout(instance);
+        var currentTimestamp = new Date().getTime();
+        var originalDateTimestamp = instance.dateInDateUtils.date.getTime();
+        if (originalDateTimestamp > currentTimestamp) {
+            var timestamp = originalDateTimestamp - currentTimestamp;
+            setTimeout(() => {
+                instance.functionsToExecute(instance);
+            }, timestamp);
+        } else {
+            instance.functionsToExecute(instance);
+        }
 
         container.append(instance.htmlContent);
+    }
+
+    functionsToExecute(instance) {
+        instance.setTimeFromCurrentMoment(instance);
+        instance.setNewTimeout(instance);
     }
 
     setNewTimeout(instance) {
@@ -43,15 +50,6 @@ class TimeFromMoment {
     }
 
     getNewTimeSpan(instance) {
-        /* var current = new Date();
-
-        var original = new Date(instance.dateInDateUtils.date.getTime());
-        current.setSeconds(original.getSeconds());
-        var currentTimestamp = current.getTime();
-
-        var unitTime = instance.dateInDateUtils.unitTime;
-        console.log(unitTime); */
-
         var finalDate = new Date();
 
         var originalDate = instance.dateInDateUtils.date;
