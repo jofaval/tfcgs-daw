@@ -442,13 +442,14 @@ class Model extends PDO
         return $sqlUtils->complexQuery($queryString, ["id" => $id])[0];
     }
 
-    public function assignedTasks()
+    public function assignedTasks($id)
     {
-        require_once __DIR__ . "/../templates/assignedTasks.php";
         $sqlUtils = new SQLUtils($this);
 
-        $queryString = "SELECT * FROM tabla";
-        return $sqlUtils->complexQuery($queryString, []);
+        $queryString = "SELECT *
+        FROM dashboards_item_assignation
+        WHERE dashboards_item_assignation.id_project = :id_project";
+        return $sqlUtils->complexQuery($queryString, ["id_project" => $id_project]);
     }
 
 }

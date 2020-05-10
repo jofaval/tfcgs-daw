@@ -312,6 +312,17 @@ class Controller
 
             $direction = "project";
 
+            if (Utils::exists("subView")) {
+                $subView = Utils::getCleanedData("subView");
+
+                switch ($subView) {
+                    case 'assingedTasks':
+                        $direction = $this->getAssignedTasks($id);
+
+                        break;
+                }
+            }
+
             //Si tiene elemento
             if (Utils::exists("element")) {
                 $element = Utils::getCleanedData("element");
@@ -393,9 +404,11 @@ class Controller
         }
     }
 
-    public function getAssignedTasks($id, $direciton)
+    public function getAssignedTasks($id)
     {
-        $assignedTasks = Model::getInstance()->assignedTasks();
+        $assignedTasks = Model::getInstance()->assignedTasks($id);
+
+        return "project/assignedTasks";
     }
 
     public function downloadDashboardJSON($element, $id, $dashboard_title)
