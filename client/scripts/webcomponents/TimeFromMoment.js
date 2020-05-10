@@ -38,8 +38,8 @@ class TimeFromMoment {
 
         setTimeout(() => {
             instance.setTimeFromCurrentMoment(instance);
-            //instance.setNewTimeout(instance);
-        }, newTimeStamp + 1000);
+            instance.setNewTimeout(instance);
+        }, newTimeStamp + 25);
     }
 
     getNewTimeSpan(instance) {
