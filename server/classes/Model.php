@@ -261,7 +261,7 @@ class Model extends PDO
     {
         $sqlUtils = new SQLUtils($this);
 
-        $queryString = "SELECT id, title, description, `order`, creation_date as creationDate, id_dashboard_list
+        $queryString = "SELECT id, title, description, `order`, creation_date as creationDate, id_dashboard_list, enabled
         FROM `dashboard_item`
         WHERE  enabled = 1 and id_dashboard_list=:id_dashboard_list
         ORDER BY `order` ASC";
