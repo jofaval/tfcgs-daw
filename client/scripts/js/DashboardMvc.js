@@ -92,7 +92,8 @@ var $dashboardModal = $(`
                 </div>
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Del tablero</div>
-                    <div id="dashboardModalActionRemoveDashboardItem" class="dashboardModalAction text-white btn btn-sm btn-danger">Eliminar elemento</div>
+                    <div id="dashboardModalActionDisableDashboardItem" class="dashboardModalAction text-white btn btn-sm btn-danger">Deshabilitar tarea</div>
+                    <div id="dashboardModalActionRemoveDashboardItem" class="dashboardModalAction text-white btn btn-sm btn-danger">Eliminar tarea</div>
                 </div>
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
@@ -216,6 +217,19 @@ class Model {
             url: "/daw/index.php?ctl=deleteDashboardItem",
             data: {
                 "id": id,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    disableDashboardItem(id, whenFinished) {
+        $.ajax({
+            url: "/daw/index.php?ctl=disableDashboardItem",
+            data: {
+                "id": id,
+                "enabled": false ? 1 : 0,
             },
             success: function (result) {
                 whenFinished(result);
@@ -890,6 +904,12 @@ class Controller {
             controller.removeDashboardAssignationModalEvent(controller, taskItemData);
         });
 
+        $("#dashboardModalActionDisableDashboardItem").on("click", function (event) {
+            controller.dashboardModalActionDisableDashboardItemEvent(event, taskItemData, controller, taskItem, function () {
+                modal.close();
+            });
+        });
+
         $(".dashboardModalBtnSaveChanges").on("click", function (event) {
             var event = event || window.event;
             var currentBtn = $(this);
@@ -902,6 +922,33 @@ class Controller {
             if (event.keyCode == 13) {
                 controller.createModalCommentEvent(taskItemData, controller, commentsContainer)
             }
+        });
+    }
+
+    dashboardModalActionDisableDashboardItemEvent(event, taskItemData, controller, taskItem, whenFinished) {
+        event.stopPropagation();
+        console.log(taskItemData.id_dashboard_list);
+        var confirmationModal = Modal.confirmationModal({
+            title: "Deshabilitar elemento de la lista?",
+            body: `Confimar esta acción y deshabilitar <b>"${taskItemData.title}"</b>`,
+            onAccept: function () {
+                controller.model.disableDashboardItem(taskItemData.id, function (result) {
+                    console.log(result);
+                    if (result === true) {
+                        taskItem.remove();
+                        var modalSuccess = Modal.specialAlert({
+                            title: `"${taskItemData.title}" ha sido deshabilitado con éxito`,
+                            error: false,
+                        });
+                        whenFinished();
+                    } else {
+                        Modal.specialAlert({
+                            title: `"${taskItemData.title}" no se ha podido deshabilitar`,
+                            error: true,
+                        });
+                    }
+                });
+            },
         });
     }
 
