@@ -84,18 +84,20 @@ $breadcrumb = [
         <div class="w-100 h-100 tabContent container-fluid text-white p-0 p-sm-3 d-block">
             <div class="row">
                 <div class="col-sm d-flex flex-column">
-                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                    <div class="accordion md-accordion min-height-25" id="asignedByYouUnfinished" role="tablist"
+                        aria-multiselectable="true">
                         <div class="accordionContainer">
                             <div class="card-header bg-dark" role="tab" id="headingTwo1">
-                                <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
-                                    href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                <a class="collapsed text-white" data-toggle="collapse"
+                                    data-parent="#asignedByYouUnfinished" href="#assignedByYouUnfinishedCollapse"
+                                    aria-expanded="false" aria-controls="assignedByYouUnfinishedCollapse">
                                     <h5 class="mb-0">
                                         Asignadas <i class="fa fa-angle-down rotate-icon"></i>
                                     </h5>
                                 </a>
                             </div>
-                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
-                                data-parent="#accordionEx1">
+                            <div id="assignedByYouUnfinishedCollapse" class="collapse" role="tabpanel"
+                                aria-labelledby="headingTwo1" data-parent="#asignedByYouUnfinished">
                                 <div class="card-body max-height-20 overflow-y-auto">
                                     content
                                 </div>
@@ -104,18 +106,20 @@ $breadcrumb = [
                     </div>
                 </div>
                 <div class="col-sm d-flex flex-column">
-                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                    <div class="accordion md-accordion min-height-25" id="assignedByYouFinished" role="tablist"
+                        aria-multiselectable="true">
                         <div class="accordionContainer">
                             <div class="card-header bg-dark" role="tab" id="headingTwo1">
-                                <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
-                                    href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                <a class="collapsed text-white" data-toggle="collapse"
+                                    data-parent="#assignedByYouFinished" href="#assignedByYouFinishedCollapse"
+                                    aria-expanded="false" aria-controls="assignedByYouFinishedCollapse">
                                     <h5 class="mb-0">
                                         Asignadas <i class="fa fa-angle-down rotate-icon"></i>
                                     </h5>
                                 </a>
                             </div>
-                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
-                                data-parent="#accordionEx1">
+                            <div id="assignedByYouFinishedCollapse" class="collapse" role="tabpanel"
+                                aria-labelledby="headingTwo1" data-parent="#assignedByYouFinished">
                                 <div class="card-body max-height-20 overflow-y-auto">
                                     content
                                 </div>
@@ -126,18 +130,20 @@ $breadcrumb = [
             </div>
             <div class="row">
                 <div class="col-sm d-flex flex-column">
-                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                    <div class="accordion md-accordion min-height-25" id="assignedToYouUnfinsihed" role="tablist"
+                        aria-multiselectable="true">
                         <div class="accordionContainer">
                             <div class="card-header bg-dark" role="tab" id="headingTwo1">
-                                <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
-                                    href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                <a class="collapsed text-white" data-toggle="collapse"
+                                    data-parent="#assignedToYouUnfinsihed" href="#assignedToYouUnfinsihedCollapse"
+                                    aria-expanded="false" aria-controls="assignedToYouUnfinsihedCollapse">
                                     <h5 class="mb-0">
                                         Asignadas <i class="fa fa-angle-down rotate-icon"></i>
                                     </h5>
                                 </a>
                             </div>
-                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
-                                data-parent="#accordionEx1">
+                            <div id="assignedToYouUnfinsihedCollapse" class="collapse" role="tabpanel"
+                                aria-labelledby="headingTwo1" data-parent="#assignedToYouUnfinsihed">
                                 <div class="card-body max-height-20 overflow-y-auto">
                                     content
                                     <br>
@@ -182,18 +188,20 @@ $breadcrumb = [
                     </div>
                 </div>
                 <div class="col-sm d-flex flex-column">
-                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                    <div class="accordion md-accordion min-height-25" id="assignedToYouFinsihed" role="tablist"
+                        aria-multiselectable="true">
                         <div class="accordionContainer">
                             <div class="card-header bg-dark" role="tab" id="headingTwo1">
-                                <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
-                                    href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                <a class="collapsed text-white" data-toggle="collapse"
+                                    data-parent="#assignedToYouFinsihed" href="#assignedToYouFinsihedCollapse"
+                                    aria-expanded="false" aria-controls="assignedToYouFinsihedCollapse">
                                     <h5 class="mb-0">
                                         Asignadas <i class="fa fa-angle-down rotate-icon"></i>
                                     </h5>
                                 </a>
                             </div>
-                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
-                                data-parent="#accordionEx1">
+                            <div id="assignedToYouFinsihedCollapse" class="collapse" role="tabpanel"
+                                aria-labelledby="headingTwo1" data-parent="#assignedToYouFinsihed">
                                 <div class="card-body max-height-20 overflow-y-auto">
                                     content
                                 </div>
