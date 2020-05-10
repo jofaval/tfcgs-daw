@@ -393,6 +393,11 @@ class Controller
         }
     }
 
+    public function getAssignedTasks($id, $direciton)
+    {
+        $assignedTasks = Model::getInstance()->assignedTasks();
+    }
+
     public function downloadDashboardJSON($element, $id, $dashboard_title)
     {
         $ajaxController = new AjaxController();
@@ -1191,11 +1196,4 @@ class Controller
 
         return $result;
     }
-    
-    public function assignedTasks()
-    {
-        require_once __DIR__ . "/../templates/assignedTasks.php";
-        return Model::getInstance()->assignedTasks();
-    }
-
 }

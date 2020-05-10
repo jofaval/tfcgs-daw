@@ -37,6 +37,7 @@ RewriteRule ^not-user-agent[/]?$ ./index.php?ctl=notuseragent [L]
 RewriteRule ^projects/id/([^/]+)[/]?$ ./index.php?ctl=project&id=$1 [L]
 #Tabs
 RewriteRule ^projects/id/([^/]+)/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=$2 [L]
+RewriteRule ^projects/id/([^/]+)/overview/assigned-tasks[/]?$ ./index.php?ctl=project&id=$1&tabName=overview [L]
 #Empty params redirection
 RewriteRule ^projects/id[/]?$ ./index.php?ctl=projects [L]
 
@@ -65,5 +66,3 @@ RewriteRule ^profile/change-image[/]?$ ./index.php?ctl=profile&tabName=image [L]
 RewriteRule ^profile/reset-profile-image[/]?$ ./index.php?ctl=profile&reset=profileImage [L]
 RewriteRule ^profile/reset-background-image[/]?$ ./index.php?ctl=profile&reset=bgImage [L]
 RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]
-#assignedTasks
-RewriteRule ^assigned-tasks[/]?$ ./index.php?ctl=assignedTasks[L]
