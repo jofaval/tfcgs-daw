@@ -34,6 +34,10 @@ class TimeFromMoment {
         container.append(instance.htmlContent);
     }
 
+    delete(instance) {
+        clearTimeout(instance.timeoutID);
+    }
+
     functionsToExecute(instance) {
         instance.setTimeFromCurrentMoment(instance);
         instance.setNewTimeout(instance);
@@ -43,7 +47,7 @@ class TimeFromMoment {
         var newTimeStamp = instance.getNewTimeSpan(instance);
         console.log(newTimeStamp);
 
-        setTimeout(() => {
+        instance.timeoutID = setTimeout(() => {
             instance.setTimeFromCurrentMoment(instance);
             instance.setNewTimeout(instance);
         }, newTimeStamp + 25);
