@@ -336,6 +336,38 @@
     min-height: 2.5ch !important;
 }
 
+.max-height-5 {
+    max-height: 5rem;
+}
+
+.max-height-10 {
+    max-height: 10rem;
+}
+
+.max-height-15 {
+    max-height: 15rem;
+}
+
+.max-height-20 {
+    max-height: 20rem;
+}
+
+.max-height-25 {
+    max-height: 25rem;
+}
+
+.max-height-30 {
+    max-height: 30rem;
+}
+
+.max-height-35 {
+    max-height: 35rem;
+}
+
+.max-height-40 {
+    max-height: 40rem;
+}
+
 .md-form.validate-red input:not([type]):focus:not([readonly]), .md-form.validate-red input[type="text"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="password"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="email"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="url"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="time"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="date"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="datetime"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="tel"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="number"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="search"]:not(.browser-default):focus:not([readonly]), .md-form.validate-red input[type="search-md"]:focus:not([readonly]), .md-form.validate-red textarea.md-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #f44242 !important;
     -webkit-box-shadow: 0 1px 0 0 #f44242 !important;
@@ -343,7 +375,7 @@
 }
 
 .md-form.validate-green input:not([type]):focus:not([readonly]), .md-form.validate-green input[type="text"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="password"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="email"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="url"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="time"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="date"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="datetime"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="tel"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="number"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="search"]:not(.browser-default):focus:not([readonly]), .md-form.validate-green input[type="search-md"]:focus:not([readonly]), .md-form.validate-green textarea.md-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #42f451 !important;
-    -webkit-box-shadow: 0 1px 0 0 #42f451 !important;
-    box-shadow: 0 1px 0 0 #42f451 !important;
+    border-bottom: 1px solid #23c931 !important;
+    -webkit-box-shadow: 0 1px 0 0 #23c931 !important;
+    box-shadow: 0 1px 0 0 #23c931 !important;
 }
