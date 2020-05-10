@@ -112,19 +112,26 @@ class DateUtils {
             } else if (Math.floor(days / (365 * 5)) > 0) {
                 finalString += `${Math.floor(days / (365 * 5))} lustro(s)`;
             } else if (Math.floor(days / 365) > 0) {
+                this.unitTime = "years";
                 finalString += `${Math.floor(days / 365)} año(s)`;
             } else if (Math.floor(days / 30) > 0) {
+                this.unitTime = "months";
                 finalString += `${Math.floor(days / 30)} mes(es)`;
             } else if (Math.floor(days / 7) > 0) {
+                this.unitTime = "weeks";
                 finalString += `${Math.floor(days / 7)} semana(s)`;
             } else {
+                this.unitTime = "days";
                 finalString += `${days} dia(s)`;
             }
         } else if (hours > 0) {
+            this.unitTime = "hours";
             finalString += `${hours} hora(s)`;
         } else if (minutes > 0) {
+            this.unitTime = "minutes";
             finalString += `${minutes} minuto(s)`;
         } else if (seconds > 0) {
+            this.unitTime = "seconds";
             //finalString += `${seconds} segundo(s)`;
             finalString += `unos segundos`;
         }
