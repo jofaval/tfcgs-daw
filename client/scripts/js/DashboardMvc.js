@@ -61,7 +61,7 @@ var $dashboardModal = $(`
         <small class="dashboardModalListNameContainer text-muted">in list <a href=""
                 class="dashboardModalListName">list</a></small>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8 order-2 order-sm-1">
                 <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-align-justify mr-2"></span>Description</h4>
                 <div class="md-form my-0">
                     <textarea id="dashboardModalDescription" class="md-textarea form-control text-white" rows="3"></textarea>
@@ -78,31 +78,18 @@ var $dashboardModal = $(`
                         <span class="input-group-text dashboardModalCommentBtn md-addon btn btn-sm btn-primary">Comment</span>
                     </div>
                 </div>
-                <div class="dashboardCommentsContainer"></div>
+                <div class="dashboardCommentsContainer overflow-y-auto overflow-x-hidden max-height-15"></div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 order-1 order-sm-2">
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Del equipo</div>
                     <div id="dashboardModalActionAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Asignar</div>
                     <div id="dashboardModalActionRemoveAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Quitar asignación</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
                 </div>
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Del tablero</div>
-                    <div id="dashboardModalActionDisableDashboardItem" class="dashboardModalAction text-white btn btn-sm btn-danger">Deshabilitar tarea</div>
-                    <div id="dashboardModalActionRemoveDashboardItem" class="dashboardModalAction text-white btn btn-sm btn-danger">Eliminar tarea</div>
-                </div>
-                <div class="dashboardModalActions d-flex flex-column">
-                    <div class="dashboardModalActionsTitle text-uppercase">Action title</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
-                    <div id="" class="dashboardModalAction text-dark btn btn-sm btn-default">action</div>
+                    <div id="dashboardModalActionDisableDashboardItem" class="dashboardModalAction text-light btn btn-sm btn-danger">Deshabilitar tarea</div>
+                    <div id="dashboardModalActionRemoveDashboardItem" class="dashboardModalAction text-light btn btn-sm btn-danger">Eliminar tarea</div>
                 </div>
             </div>
         </div>
@@ -121,9 +108,9 @@ var $dashboardModalComment = $(`
     </div>
     <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light" contenteditable="true">Test</span>
     <div class="row dashboardCommentActions text-white ml-2 mt-2">
-        <a href="" class="dashboardCommentAction dashboardCommentEdit">Edit</a>
+        <a href="" class="dashboardCommentAction dashboardCommentEdit">Editar</a>
         &nbsp;-&nbsp;
-        <a href="" class="dashboardCommentAction dashboardCommentDelete">Delete</a>
+        <a href="" class="dashboardCommentAction dashboardCommentDelete">Eliminar</a>
     </div>
 </div>
 `);
