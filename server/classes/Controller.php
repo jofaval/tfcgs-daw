@@ -1168,7 +1168,6 @@ class Controller
 
     public function getDashboardItemDetails()
     {
-        return false;
         $id = Utils::getCleanedData("id");
 
         $validation = Validation::getInstance();
