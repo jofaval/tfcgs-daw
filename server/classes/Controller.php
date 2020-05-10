@@ -1047,6 +1047,7 @@ class Controller
             $isView = Utils::exists("isView");
             $friendlyURL = Utils::exists("friendlyURL");
             $addToModel = Utils::exists("addToModel");
+            $addToAjax = Utils::exists("addToAjax");
 
             $route = "\n//$routeName";
             $route .= "\n\$map['$routeName'] = array('controller' => 'Controller', 'action' => '$routeName', 'access' => Config::\$ACCESS_LEVEL_GUEST);";
@@ -1083,6 +1084,21 @@ class Controller
 
                 $fileWritter = fopen(__DIR__ . "/Model.php", "a+");
                 fwrite($fileWritter, $modelFunction);
+                fclose($fileWritter);
+            }
+
+            if ($addToAjax) {
+                $ajaxFunction = "\n\n\t//Function to $routeName\n" . $controllerFunction;
+
+                $ajaxFunction .= "\n\t\t\$this->genericAjaxReturn(__FUNCTION__, [\"field\"], \"Controller\");";
+
+                $ajaxFunction .= "\n\t}
+                ";
+
+                $controllerFunction .= "\n\t\treturn Model::getInstance()->$routeName();";
+
+                $fileWritter = fopen(__DIR__ . "/AjaxController.php", "a+");
+                fwrite($fileWritter, $ajaxFunction);
                 fclose($fileWritter);
             }
 
