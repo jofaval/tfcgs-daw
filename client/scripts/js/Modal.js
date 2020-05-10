@@ -37,16 +37,16 @@ class Modal {
 
         modal.params["onOpen"] = function () {
             //settings["onOpen"](modal);
-            $(".sweet-modal-content").addClass("h-100 p-0 p-sm-5 m-auto")
-                .prepend($(".sweet-modal-close").removeClass("position-absolute").addClass("float-right position-sticky"));
-            $(".sweet-modal-box.alert").css({
+            modal.params["$overlay"].find(".sweet-modal-content").addClass("h-100 p-0 p-sm-5 m-auto")
+                .prepend(modal.params["$overlay"].find(".sweet-modal-close").removeClass("position-absolute").addClass("float-right position-sticky"));
+            modal.params["$overlay"].find(".sweet-modal-box.alert").css({
                 "top": "0px", //35%
                 "marginTop": "0px",
                 "position": "unset",
                 /* "maxHeight": "100vh", */
             }).addClass("m-auto overflow-auto");
 
-            $(".sweet-modal-overlay").addClass("d-flex justify-content-center justify-items-center align-content-center align-items-center");
+            modal.params["$overlay"].find(".sweet-modal-overlay").addClass("d-flex justify-content-center justify-items-center align-content-center align-items-center");
         };
 
         modal.params["onClose"] = function () {
