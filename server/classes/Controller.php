@@ -1185,6 +1185,12 @@ class Controller
             return false;
         };
 
-        return Model::getInstance()->getDashboardItemDetails($id);
+        $result = Model::getInstance()->getDashboardItemDetails($id);
+
+        if (is_null($result)) {
+            return false;
+        }
+
+        return $result;
     }
 }

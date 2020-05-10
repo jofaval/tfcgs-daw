@@ -439,7 +439,7 @@ class Model extends PDO
         FROM dashboard_item LEFT JOIN users on (dashboard_item.id_creator=users.id_client)
         LEFT JOIN clients on (users.id_client = clients.id)
         WHERE dashboard_item.id = :id";
-        return $sqlUtils->complexQuery($queryString, ["id" => $id]);
+        return $sqlUtils->complexQuery($queryString, ["id" => $id])[0];
     }
 
 }
