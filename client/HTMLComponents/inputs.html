@@ -5,17 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../styles/jquery.datetimepicker.min.css">
 </head>
 
 <body>
-    <input type="date" name="datepicker" id="datepicker">
+    <div class="row col-md mx-0 p-3 bg-white shadow rounded">
+        <div class="md-form m-auto">
+            <input type="text" class="form-control" name="datepicker" id="datepicker">
+            <label for="datepicker">Fecha</label>
+        </div>
+    </div>
 </body>
+<script src="../scripts/libs/jquery.datetimepicker.full.min.js"></script>
 <script>
-    $("#datepicker").on("keypress", function (event) {
+    $.datetimepicker.setLocale('es');
+    $("#datepicker").datetimepicker({
+        format: 'd-m-Y H:i:s',
+    });
+    /* $("#datepicker").on("keypress", function (event) {
         var event = event || window.event;
         console.log(event.keyCode);
 
-    });
+    }); */
 </script>
 
 </html>
