@@ -146,7 +146,7 @@ class DashboardItem implements CRUD
             "id" => $this->id,
         ];
 
-        return $sqlUtils->enable($this->table, Utils::getCleanedData("enable"), $identificationParams);
+        return $sqlUtils->enable($this->table, $this->enabled, $identificationParams);
     }
 
     public function fill()
