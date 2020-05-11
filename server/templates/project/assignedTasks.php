@@ -29,6 +29,7 @@ $breadcrumb = [
 
 <?php $sessions = Sessions::getInstance();?>
 <?php $username = $sessions->getSession("username");?>
+<?php $controller = new Controller();?>
 
 <div class="w-100 p-0">
     <style>
@@ -92,14 +93,20 @@ $breadcrumb = [
                                     data-parent="#asignedByYouUnfinished" href="#assignedByYouUnfinishedCollapse"
                                     aria-expanded="false" aria-controls="assignedByYouUnfinishedCollapse">
                                     <h5 class="mb-0">
-                                        Asignadas <i class="fa fa-angle-down rotate-icon"></i>
+                                        Asignadas por tí (sin terminar) <i class="fa fa-angle-down rotate-icon"></i>
                                     </h5>
                                 </a>
                             </div>
                             <div id="assignedByYouUnfinishedCollapse" class="collapse" role="tabpanel"
                                 aria-labelledby="headingTwo1" data-parent="#asignedByYouUnfinished">
                                 <div class="card-body max-height-20 overflow-y-auto">
-                                    content
+                                    <?php foreach ($viewParams["assignedTasks"] as $assignedTask):
+    if ($assignedTask["finished"] == 0 && ($assignedTask["assigned_by"] == $viewParams["userId"])):
+        $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
+        $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
+        require __DIR__ . "/../components/cards/assignedCard.php";
+    endif;
+endforeach;?>
                                 </div>
                             </div>
                         </div>
@@ -114,14 +121,20 @@ $breadcrumb = [
                                     data-parent="#assignedByYouFinished" href="#assignedByYouFinishedCollapse"
                                     aria-expanded="false" aria-controls="assignedByYouFinishedCollapse">
                                     <h5 class="mb-0">
-                                        Asignadas <i class="fa fa-angle-down rotate-icon"></i>
+                                        Asignadas por tí (terminadas) <i class="fa fa-angle-down rotate-icon"></i>
                                     </h5>
                                 </a>
                             </div>
                             <div id="assignedByYouFinishedCollapse" class="collapse" role="tabpanel"
                                 aria-labelledby="headingTwo1" data-parent="#assignedByYouFinished">
                                 <div class="card-body max-height-20 overflow-y-auto">
-                                    content
+                                    <?php foreach ($viewParams["assignedTasks"] as $assignedTask):
+    if ($assignedTask["finished"] != 0 && ($assignedTask["assigned_by"] == $viewParams["userId"])):
+        $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
+        $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
+        require __DIR__ . "/../components/cards/assignedCard.php";
+    endif;
+endforeach;?>
                                 </div>
                             </div>
                         </div>
@@ -138,50 +151,20 @@ $breadcrumb = [
                                     data-parent="#assignedToYouUnfinsihed" href="#assignedToYouUnfinsihedCollapse"
                                     aria-expanded="false" aria-controls="assignedToYouUnfinsihedCollapse">
                                     <h5 class="mb-0">
-                                        Asignadas <i class="fa fa-angle-down rotate-icon"></i>
+                                        Asignadas a tí (sin terminar) <i class="fa fa-angle-down rotate-icon"></i>
                                     </h5>
                                 </a>
                             </div>
                             <div id="assignedToYouUnfinsihedCollapse" class="collapse" role="tabpanel"
                                 aria-labelledby="headingTwo1" data-parent="#assignedToYouUnfinsihed">
                                 <div class="card-body max-height-20 overflow-y-auto">
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
-                                    content
-                                    <br>
+                                    <?php foreach ($viewParams["assignedTasks"] as $assignedTask):
+    if ($assignedTask["finished"] == 0 && ($assignedTask["assigned_to"] == $viewParams["userId"])):
+        $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
+        $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
+        require __DIR__ . "/../components/cards/assignedCard.php";
+    endif;
+endforeach;?>
                                 </div>
                             </div>
                         </div>
@@ -196,14 +179,20 @@ $breadcrumb = [
                                     data-parent="#assignedToYouFinsihed" href="#assignedToYouFinsihedCollapse"
                                     aria-expanded="false" aria-controls="assignedToYouFinsihedCollapse">
                                     <h5 class="mb-0">
-                                        Asignadas <i class="fa fa-angle-down rotate-icon"></i>
+                                        Asignadas a tí (terminadas) <i class="fa fa-angle-down rotate-icon"></i>
                                     </h5>
                                 </a>
                             </div>
                             <div id="assignedToYouFinsihedCollapse" class="collapse" role="tabpanel"
                                 aria-labelledby="headingTwo1" data-parent="#assignedToYouFinsihed">
                                 <div class="card-body max-height-20 overflow-y-auto">
-                                    content
+                                    <?php foreach ($viewParams["assignedTasks"] as $assignedTask):
+    if ($assignedTask["finished"] != 0 && ($assignedTask["assigned_to"] == $viewParams["userId"])):
+        $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
+        $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
+        require __DIR__ . "/../components/cards/assignedCard.php";
+    endif;
+endforeach;?>
                                 </div>
                             </div>
                         </div>
