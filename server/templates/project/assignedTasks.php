@@ -15,10 +15,22 @@ $breadcrumb = [
         "icon" => "home",
     ],
     [
-        "name" => "Example",
-        "link" => "/daw/example/",
+        "name" => "Your projects",
+        "link" => "/daw/projects/",
+        "active" => false,
+        "icon" => "folder",
+    ],
+    [
+        "name" => $viewParams["title"],
+        "link" => "/daw/projects/id/" . $viewParams["id"] . "/",
+        "active" => false,
+        "icon" => "clipboard",
+    ],
+    [
+        "name" => "Tareas asignadas",
+        "link" => "/daw/projects/id/" . $viewParams["id"] . "/assigned-tasks/",
         "active" => true,
-        "icon" => "home",
+        "icon" => "tasks",
     ],
 ];
 ?>
