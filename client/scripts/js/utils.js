@@ -69,3 +69,7 @@ function redirectTo(url) {
     a.href = url;
     a.click();
 }
+
+function changeURL(newURL) {
+    window.history.pushState('page2', document.title, newURL);
+}
