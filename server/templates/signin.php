@@ -90,7 +90,7 @@
             <input type="submit" class="btn btn-primary w-100" value="Sign up" id="signup" name="signup" required>
         </div>
     </form>
-    <div class="position-absolute btn btn-primary d-block d-sm-none" id="changeForm" style="bottom: 0;">Cambiar
+    <div class="position-fixed bottom-1 btn btn-primary d-block d-sm-none" id="changeForm">Cambiar
     </div>
     <div id="mainPanel"
         class="aqua-gradient rounded text-white shadow position-relative d-none d-sm-flex z-index-overlap flex-column justify-content-center align-items-center">
