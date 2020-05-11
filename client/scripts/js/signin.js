@@ -124,6 +124,8 @@ $("#changeForm").on("click", function () {
     isInLogin = !isInLogin;
 });
 $("#changeForm").trigger("click");
+$("#changeForm").trigger("click");
+$("#changeForm").trigger("click");
 
 var credentials = localStorage.getItem("signin-credentials");
 if (credentials != null) {

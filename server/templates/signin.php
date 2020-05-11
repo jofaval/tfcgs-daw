@@ -2,7 +2,7 @@
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "signin.css"];?>
 <?php $optionalScripts = ["js/signin.js"];?>
 <?php $title = "Sign in/up";?>
-<?php $mainClasses = "h-100";?>
+<?php $mainClasses = "h-100 overflow-x-visible";?>
 <?php $showFooter = false;?>
 <?php $showHeader = false;?>
 <?php $showBreadcrumb = false;?>
@@ -10,7 +10,7 @@
 <?php $loadLogin = Utils::exists("login")?>
 
 <?php ob_start()?>
-<div class="h-75 m-auto w-50 shadow d-flex text-dark bg-white" id="signFormsContainer">
+<div class="h-75 m-auto w-50 shadow overflow-y-hidden d-flex text-dark bg-white" id="signFormsContainer">
     <form action="/daw/signin/" method="POST" id="registerForm"
         class="col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1>Welcome back!</h1>
@@ -30,10 +30,13 @@
                 </a>
             </div>
         </div>
-        <div class="custom-control w-100 text-left custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="rememberCredentials">
-            <label class="custom-control-label" for="rememberCredentials">Recordar combinación</label>
+        <div class="form-row">
+            <div class="custom-control text-left custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="rememberCredentials">
+                <label class="custom-control-label" for="rememberCredentials">Recordar combinación</label>
+            </div>
         </div>
+
         <div class="md-form w-75">
             <input type="submit" class="btn btn-primary w-100" value="Sign in" id="signin" name="signin" required>
         </div>
