@@ -124,6 +124,7 @@ switch ($tabName) {
         break;
     case "details":
         $titleName = "Detalles";
+        $optionalScripts[] = "js/projectDetails.js";
         $icon = "info-circle";
         break;
     case "overview":
