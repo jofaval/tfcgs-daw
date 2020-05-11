@@ -17,7 +17,7 @@ var $dashboardCard = $(`
         <!--div class="btn btn-sm btn-danger dashboardCardBtnDisable">Disable dashboard</div-->
         <h5 class="dashboardCardTitle max-text-10 text-white text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Dashboard title</h5>
         <div class="dashboardCardBookmarkedIcon"></div>
-        <div class="dashboardCardFlags float-right btn-group"></div>
+        <div class="dashboardCardFlags float-right btn-group d-none d-sm-block"></div>
     </div>
     <a href="" class="dashboardReadMore text-white">Read more...</a>
     <div class="dashboardCardDescription text-white max-text-20 text-overflow-ellipsis pl-3 z-index-overlap-bottom overflow-hidden text-justify my-2"></div>

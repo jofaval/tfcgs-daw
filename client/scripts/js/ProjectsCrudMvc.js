@@ -17,7 +17,7 @@ var $projectCard = $(`
         <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
         <h5 class="projectCardTitle text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Project title</h5>
         <div class="projectCardBookmarkedIcon"></div>
-        <div class="projectCardFlags float-right btn-group"></div>
+        <div class="projectCardFlags float-right btn-group d-none d-sm-block"></div>
     </div>
     <a href="" class="projectReadMore p-2 text-white">Read more...</a>
     <div class="projectCardDescription text-white max-text-20 text-overflow-ellipsis pl-3 z-index-overlap-bottom overflow-hidden text-justify my-2"></div>
