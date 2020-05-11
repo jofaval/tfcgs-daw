@@ -5,7 +5,7 @@ var $projectRow = $(`<div class="row projectCardRow d-flex flex-wrap justify-con
 var $projectPage = $(`<div class="projectsPage"></div>`);
 
 var $projectFlagBookmarked = $(`<div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>`);
-var $projectFlagCreated = $(`<div class="projectsBtnCreated btn btn-sm btn-success">Created</div>`);
+var $projectFlagCreated = $(`<div class="projectsBtnCreated btn btn-sm btn-success text-dark">Created</div>`);
 var $projectFlagShared = $(`<div class="projectsBtnShared btn btn-sm btn-primary">Shared</div>`);
 
 var $projectCard = $(`
