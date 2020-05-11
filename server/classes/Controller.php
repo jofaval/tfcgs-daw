@@ -285,18 +285,6 @@ class Controller
                 if ($isValid !== true || !in_array($tabName, ["overview", "dashboards", "diary", "collaborators", "details"])) {
                     header("Location: /daw/projects/id/$id/");
                 }
-
-                switch ($tabName) {
-                    case 'overview':
-                        $viewParams["projectNumbers"] = Model::getInstance()->getProjectNumbers($id);
-                        $viewParams["recentlyCreated"] = Model::getInstance()->getRecentlyCreated($id);
-                        include __DIR__ . "/config/project_actions.php";
-                        break;
-
-                    default:
-                        # code...
-                        break;
-                }
             }
 
             //Si no tiene ni elemento al que acceder ni pestaña a la que cambiar, fuera
@@ -406,6 +394,14 @@ class Controller
 
                     $viewParams["diaryDatePrev"] = DateUtils::substractDays($viewParams["diaryDate"], 1, "Y-m-d");
                     $viewParams["diaryDateNext"] = DateUtils::addDays($viewParams["diaryDate"], 1, "Y-m-d");
+                    break;
+            }
+
+            switch ($tabName) {
+                case 'overview':
+                    $viewParams["projectNumbers"] = Model::getInstance()->getProjectNumbers($id);
+                    $viewParams["recentlyCreated"] = Model::getInstance()->getRecentlyCreated($id);
+                    include __DIR__ . "/config/project_actions.php";
                     break;
             }
 
