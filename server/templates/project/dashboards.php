@@ -42,7 +42,7 @@ document.querySelector('.tabContentContainer').classList.remove("px-2");
             </div>
         </div>
     </div>
-    <div class="col-md-10 m-0 mx-auto">
+    <div class="col-md-10 m-0 mt-2 mx-auto">
         <div class="dashboardsContainer text-white text-center">
         </div>
         <div class="row d-flex justify-content-center py-3">
