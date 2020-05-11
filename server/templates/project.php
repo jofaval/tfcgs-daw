@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "projects.css", "project.css"];?>
-<?php $optionalScripts = [/*"js/ProjectManagementMvc.js"*/"webcomponents/TimeFromMoment.js"];?>
+<?php $optionalScripts = [/*"js/ProjectManagementMvc.js"*/"js/tabMenuInteraction.js", "webcomponents/TimeFromMoment.js"];?>
 <?php $title = $viewParams["title"];?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
@@ -75,26 +75,27 @@ $breadcrumb = [
         </div>
     </div>
     <div class="row tabs shadow w-100 m-0 text-white">
-        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/overview/"
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/overview/" id="tabOverview"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "overview" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-cogs"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">General</span></a>
-        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/" id="tabDashboards"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "dashboards" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-columns"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Tableros</span></a>
-        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/"
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/" id="tabDiary"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "diary" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-book"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Diario</span></a>
-        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/collaborators/"
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/collaborators/" id="tabCollaborators"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "collaborators" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-users"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Colaboradores</span></a>
-        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/details/"
+        <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/details/" id="tabDetails"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "details" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-info-circle"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Detalles</span></a>
+        <div class="tab-active-indicator w-auto position-sticky p-2 bg-white rounded-pill"></div>
     </div>
     <div class="row tabContentContainer m-0 px-2">
         <?php
