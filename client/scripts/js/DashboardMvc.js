@@ -84,6 +84,7 @@ var $dashboardModal = $(`
                 <div class="dashboardModalActions d-flex flex-column">
                     <div class="dashboardModalActionsTitle text-uppercase">Del equipo</div>
                     <div id="dashboardModalActionAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Asignar</div>
+                    <div id="dashboardModalActionModifyAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Modificar asignación</div>
                     <div id="dashboardModalActionRemoveAssignation" class="dashboardModalAction text-dark btn btn-sm btn-default">Quitar asignación</div>
                     <div id="dashboardModalActionMoveTask" class="dashboardModalAction text-dark btn btn-sm btn-default">Mover</div>
                     <div id="dashboardModalActionDetails" class="dashboardModalAction text-dark btn btn-sm btn-default">Ver detalles</div>
@@ -896,6 +897,10 @@ class Controller {
             controller.removeDashboardAssignationModalEvent(controller, taskItemData);
         });
 
+        $("#dashboardModalActionModifyAssignation").on("click", function (event) {
+            controller.dashboardAssignationModifyModalEvent(controller, taskItemData)
+        });
+
         $("#dashboardModalActionDetails").on("click", function (event) {
             $.ajax({
                 url: "/daw/index.php?&ctl=getDashboardItemDetails",
@@ -967,11 +972,29 @@ class Controller {
         });
 
         $("#dashboardModalActionMoveTask").on("click", function (event) {
-            console.log("test");
+            this.dashboardModalMoveTaskEvent(controller, taskItemData, taskItem);
+        })
 
-            var modal = Modal.modal({
-                "title": "Mover tarea de lista",
-                "content": `
+        $(".dashboardModalBtnSaveChanges").on("click", function (event) {
+            var event = event || window.event;
+            var currentBtn = $(this);
+
+            controller.dashboardSaveChangesEvent(taskItemData);
+        });
+
+        $("#comment").on("keypress", function (event) {
+            console.log(event.keyCode);
+            if (event.keyCode == 13) {
+                controller.createModalCommentEvent(taskItemData, controller, commentsContainer)
+            }
+        });
+    }
+
+    dashboardModalMoveTaskEvent(controller, taskItemData, taskItem) {
+        console.log("test");
+        var modal = Modal.modal({
+            "title": "Mover tarea de lista",
+            "content": `
                     <form action="/daw/index.php?ctl=updateDashboardItem" id="formMoveDashboardList" method="POST">
                         <div class="form-row mb-2">
                             <div class="col-sm">
@@ -993,78 +1016,57 @@ class Controller {
                         </div>
                     </form>
             `,
-                "onOpen": function (modal) {
-                    var selectDashboardList = $("#id_dashboard_list");
-                    var selectOrder = $("#order");
-                    var elements = controller.model.dashboardElements;
-                    $(elements).each(function () {
-                        var newOption = $(`<option value="${this.id}">${this.title}</option>`);
-                        selectDashboardList.append(newOption);
-
-                        var itemsLen = this.items.length;
-                        newOption.on("click", function () {
-                            selectOrder.html("");
-
-                            selectOrder.append($(`<option value="0">1</option>`));
-                            for (let orderIndex = 1; orderIndex <= itemsLen; orderIndex++) {
-                                selectOrder.append($(`<option value="${orderIndex}">${orderIndex + 1}</option>`));
-                            }
-                        });
-                    });
-                    selectDashboardList.val(taskItemData.id_dashboard_list);
-                    selectDashboardList.find("option:selected").trigger("click");
-                    selectOrder.val(taskItemData.order);
-
-                    $("#formMoveDashboardList").on("submit", function (event) {
-                        var event = event || window.event;
-                        event.preventDefault();
-
-                        var id_dashboard_list = selectDashboardList.find("option:selected").val();
-                        var order = $("#order option:selected").val();
-
-                        var movingForward = order == 0;
-                        if (taskItemData.id_dashboard_list == id_dashboard_list) {
-                            movingForward = taskItemData.order > order
+            "onOpen": function (modal) {
+                var selectDashboardList = $("#id_dashboard_list");
+                var selectOrder = $("#order");
+                var elements = controller.model.dashboardElements;
+                $(elements).each(function () {
+                    var newOption = $(`<option value="${this.id}">${this.title}</option>`);
+                    selectDashboardList.append(newOption);
+                    var itemsLen = this.items.length;
+                    newOption.on("click", function () {
+                        selectOrder.html("");
+                        selectOrder.append($(`<option value="0">1</option>`));
+                        for (let orderIndex = 1; orderIndex <= itemsLen; orderIndex++) {
+                            selectOrder.append($(`<option value="${orderIndex}">${orderIndex + 1}</option>`));
                         }
-
-                        $.ajax({
-                            url: "/daw/index.php?ctl=updateDashboardItem",
-                            data: {
-                                "id": taskItemData.id,
-                                "id_dashboard_list": id_dashboard_list,
-                                "order": order,
-                                "movingForward": movingForward ? 1 : 0,
-                            },
-                            success: function (result) {
-                                console.log(result);
-                                if (result !== false) {
-                                    sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
-                                } else {
-                                    sendNotification("No se ha podido cambiar de lista", "changeTaskListFail");
-                                }
-                            }
-                        })
                     });
-                    controller.view.scrollTo(taskItem);
-                },
-                "onClose": function () {
-                    controller.view.scrollTo(taskItem);
-                },
-            });
-        })
-
-        $(".dashboardModalBtnSaveChanges").on("click", function (event) {
-            var event = event || window.event;
-            var currentBtn = $(this);
-
-            controller.dashboardSaveChangesEvent(taskItemData);
-        });
-
-        $("#comment").on("keypress", function (event) {
-            console.log(event.keyCode);
-            if (event.keyCode == 13) {
-                controller.createModalCommentEvent(taskItemData, controller, commentsContainer)
-            }
+                });
+                selectDashboardList.val(taskItemData.id_dashboard_list);
+                selectDashboardList.find("option:selected").trigger("click");
+                selectOrder.val(taskItemData.order);
+                $("#formMoveDashboardList").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+                    var id_dashboard_list = selectDashboardList.find("option:selected").val();
+                    var order = $("#order option:selected").val();
+                    var movingForward = order == 0;
+                    if (taskItemData.id_dashboard_list == id_dashboard_list) {
+                        movingForward = taskItemData.order > order;
+                    }
+                    $.ajax({
+                        url: "/daw/index.php?ctl=updateDashboardItem",
+                        data: {
+                            "id": taskItemData.id,
+                            "id_dashboard_list": id_dashboard_list,
+                            "order": order,
+                            "movingForward": movingForward ? 1 : 0,
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result !== false) {
+                                sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
+                            } else {
+                                sendNotification("No se ha podido cambiar de lista", "changeTaskListFail");
+                            }
+                        }
+                    });
+                });
+                controller.view.scrollTo(taskItem);
+            },
+            "onClose": function () {
+                controller.view.scrollTo(taskItem);
+            },
         });
     }
 
@@ -1168,6 +1170,117 @@ class Controller {
 
                     $.ajax({
                         url: "/daw/index.php?ctl=createDashboardsItemAssignation",
+                        data: {
+                            "id_dashboard_item": taskItemData.id,
+                            "start_date": startDateVal,
+                            "end_date": endDateVal,
+                            "assigned_to": username,
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result !== false) {
+                                sendNotification("Se ha asignato con éxito", "assignateTaskSuccess");
+                                modal.close();
+                            } else {
+                                sendNotification("No se ha podido asignar", "assignateTaskFail");
+                            }
+                        }
+                    });
+                    return false;
+                });
+            },
+        });
+    }
+
+    dashboardAssignationModifyModalEvent(controller, taskItemData) {
+        var modal = Modal.modal({
+            "title": "Asignar tarea",
+            "content": `<form action="/daw/index.php?ctl=updateDashboardItemAssignation" id="formModifyAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+                            <div class="form-row">
+                                <div class="md-form col-sm">
+                                    <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
+                                    <label for="startDate">Fecha inicio</label>
+                                </div>
+                                <div class="md-form col-sm">
+                                    <input type="text" name="endDate" id="endDate" class="form-control text-white" aria-describedby="endDateTime">
+                                    <label for="endDate">Fecha límite</label>
+                                </div>
+                            </div>
+                            <div class="form-row userSearchContainer"></div>
+                            <input type="hidden" name="id_project" value="${controller.model.projectId}" >
+                            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                                <button class="btn btn-primary col-sm" id="getAssignationData">Recoger datos</button>
+                                <input class="btn btn-primary col-sm" type="submit" name="updateDashboard" disabled="true" id="updateDashboard" value="Modificar asignación">
+                            </div>
+                        </form>`,
+            "onOpen": function () {
+
+                var startDate = $("#startDate");
+                startDate.focus();
+                var startDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.start_date).date, startDate, function (ct, $input) {}, "Y-m-d H:i:s");
+
+                var endDate = $("#endDate");
+                endDate.focus();
+                var endDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.end_date).date, endDate, function (ct, $input) {}, "Y-m-d H:i:s");
+
+                var userSearch = new UserSearchInput($(".userSearchContainer"));
+                userSearch.input.addClass("text-white");
+                userSearch.whenBtnSearchClicked = function (event) {
+                    var event = event || window.event;
+                    event.stopPropagation();
+                    event.preventDefault();
+
+                    $.ajax({
+                        url: "/daw/index.php?ctl=queryDashboardsItemAssignation",
+                        data: {
+                            "id_dashboard_item": taskItemData.id,
+                            "assigned_to": userSearch.input.val(),
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result !== false) {
+                                $("#startDate").val(result.start_date);
+                                $("#endDate").val(result.end_date);
+                                $("#updateDashboard").prop("disabled", false);
+                            } else {
+                                sendNotification("No se han podido encontrar los datos", "assignateTaskQueryFail");
+                            }
+                        }
+                    });
+                };
+                $("#getAssignationData").on("click", function (event) {
+                    var event = event || window.event;
+                    event.stopPropagation();
+                    event.preventDefault();
+
+                    $.ajax({
+                        url: "/daw/index.php?ctl=queryDashboardsItemAssignation",
+                        data: {
+                            "id_dashboard_item": taskItemData.id,
+                            "assigned_to": userSearch.input.val(),
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            if (result !== false) {
+                                $("#startDate").val(result.start_date);
+                                $("#endDate").val(result.end_date);
+                                $("#updateDashboard").prop("disabled", false);
+                            } else {
+                                sendNotification("No se han podido encontrar los datos", "assignateTaskQueryFail");
+                            }
+                        }
+                    });
+                });
+                $("#formModifyAssignDashboard").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+
+                    var startDateVal = startDate.val();
+                    var endDateVal = endDate.val();
+                    var username = userSearch.input.val();
+
+                    $.ajax({
+                        url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
                         data: {
                             "id_dashboard_item": taskItemData.id,
                             "start_date": startDateVal,
