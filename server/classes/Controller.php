@@ -317,7 +317,7 @@ class Controller
 
                 switch ($subView) {
                     case 'assingedTasks':
-                        $direction = $this->getAssignedTasks($id);
+                        $direction = $this->getAssignedTasks($id, $viewParams);
 
                         break;
                 }
@@ -404,9 +404,11 @@ class Controller
         }
     }
 
-    public function getAssignedTasks($id)
+    public function getAssignedTasks($id, &$viewParams)
     {
-        $assignedTasks = Model::getInstance()->assignedTasks($id);
+        $userId = Sessions::getInstance()->getSession("userId");
+        $viewParams["assignedTasks"] = Model::getInstance()->getAssignedDashboardItems($id, $userId);
+        $viewParams["userId"] = $userId;
 
         return "project/assignedTasks";
     }

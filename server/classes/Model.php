@@ -376,8 +376,9 @@ class Model extends PDO
     {
         $sqlUtils = new SQLUtils($this);
 
-        return $sqlUtils->complexQuery("SELECT id_dashboard_item, finished, assigned_by, assigned_to, start_date, end_date
-        FROM dashboards_item_assignation
+        $queryString = "SELECT id_dashboard_item, finished, assigned_by, assigned_to, start_date, end_date, dashboard_list.dashboard_title
+        FROM dashboards_item_assignation LEFT JOIN dashboard_item on (dashboards_item_assignation.id_dashboard_item = dashboard_item.id)
+        LEFT JOIN dashboard_list on (dashboard_item.id_dashboard_list = dashboard_list.id)
         WHERE assigned_to = :assigned_to
         and id_dashboard_item in (
             SELECT dashboard_item.id FROM dashboard_item
@@ -385,8 +386,16 @@ class Model extends PDO
             (SELECT dashboard_list.id FROM dashboard_list
             	WHERE dashboard_list.id_project = :id_project)
         )
-        ORDER BY end_date ASC LIMIT 3
-        ", ["id_project" => $id_project, "assigned_to" => $userId]);
+        ORDER BY end_date ASC";
+        $params = [
+            "id_project" => $id_project,
+            "assigned_to" => $userId,
+        ];
+
+        $queryString .= " LIMIT :limit";
+        $params["limit"] = 3;
+
+        return $sqlUtils->complexQuery($queryString, $params);
     }
 
     public function getOrderNumberOfList($id_dashboard_list)
@@ -441,15 +450,4 @@ class Model extends PDO
         WHERE dashboard_item.id = :id";
         return $sqlUtils->complexQuery($queryString, ["id" => $id])[0];
     }
-
-    public function assignedTasks($id)
-    {
-        $sqlUtils = new SQLUtils($this);
-
-        $queryString = "SELECT *
-        FROM dashboards_item_assignation
-        WHERE dashboards_item_assignation.id_project = :id_project";
-        return $sqlUtils->complexQuery($queryString, ["id_project" => $id_project]);
-    }
-
 }
