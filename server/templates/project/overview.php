@@ -49,13 +49,13 @@ $modelInstance = Model::getInstance();
                         </div>
                     </a>
                     <a href="<?php echo $action["link"]; ?>" title="<?php echo $action["name"]; ?>"
-                        class="action d-sm-none cursor-pointer .z-depth-1-half hoverable <?php echo $action["color"]; ?> m-2"
+                        class="action d-sm-none cursor-pointer col-5 px-0 z-depth-1-half hoverable <?php echo $action["color"]; ?> m-2"
                         id="action<?php echo $action["id"]; ?>">
                         <div class="actionIcon img-fluid h-75 waves-light center-elements text-white p-3">
                             <i class="fa fa-<?php echo $action["icon"]; ?>"></i>
                         </div>
                         <div
-                            class="actionTitle h-25 .z-depth-1 text-center d-flex justify-content-center text-white bg-dark">
+                            class="actionTitle h-25 w-100 .z-depth-1 text-center d-flex justify-content-center text-white bg-dark">
                             <p class="align-self-center white-text fixed-line-spacing mb-0">
                                 <?php echo $action["name"]; ?></p>
                         </div>
