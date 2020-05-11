@@ -14,7 +14,7 @@ var $collaboratorCard = $(`<a href="" class="collaboratorCard cursor-pointer tex
         <p class="collaboratorUsername text-white m-0 font-weight-bold">Administrator</p>
         <h5 class="collaboratorName text-white m-0">Pepe Fabra Valverde</h5>
         <p class="collaboratorRole mt-5 mb-2 text-white m-0 informationText font-weight-bold">Administrator</p>
-        <div class="informationTextQuote w-auto mt-5 text-left collaboratorRoleDescription text-white p-3 position-fixed rounded z-index-overlap"></div>
+        <div class="informationTextQuote w-auto mt-0 text-left collaboratorRoleDescription text-white p-3 position-fixed rounded z-index-overlap"></div>
     </div>
 </a>`);
 
