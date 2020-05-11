@@ -379,7 +379,7 @@ class Model extends PDO
         $queryString = "SELECT dashboard_item.title, id_dashboard_item, finished, assigned_by, assigned_to, start_date, end_date, dashboard_list.dashboard_title
         FROM dashboards_item_assignation LEFT JOIN dashboard_item on (dashboards_item_assignation.id_dashboard_item = dashboard_item.id)
         LEFT JOIN dashboard_list on (dashboard_item.id_dashboard_list = dashboard_list.id)
-        WHERE assigned_to = :assigned_to
+        WHERE assigned_to = :assigned_to or assigned_by = :assigned_to
         and id_dashboard_item in (
             SELECT dashboard_item.id FROM dashboard_item
             	WHERE dashboard_item.id_dashboard_list IN
