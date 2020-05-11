@@ -10,3 +10,4 @@ Config::$mvc_vis_css[] = "floating-label.css";
 Config::$mvc_vis_css[] = "inputs.css";
 Config::$mvc_vis_css[] = "jquery.sweet-modal.min.css";
 Config::$mvc_vis_css[] = "gantt.css";
+Config::$mvc_vis_css[] = "jquery.datetimepicker.min.css";

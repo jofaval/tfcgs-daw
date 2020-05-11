@@ -17,3 +17,4 @@ Config::$mvc_vis_scripts[] = "js/Validator.js";
 Config::$mvc_vis_scripts[] = "js/FormValidator.js";
 Config::$mvc_vis_scripts[] = "js/preloader.js";
 Config::$mvc_vis_scripts[] = "js/generalScript.js";
+Config::$mvc_vis_scripts[] = "libs/jquery.datetimepicker.full.min.js";
