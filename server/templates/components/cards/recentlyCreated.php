@@ -10,9 +10,8 @@
         </div>
     </div>
     <div class="recentlyCardDescription text-dark text-overflow-ellipsis pl-3 overflow-hidden text-justify my-2">
-        Creado el <span class="creationDate font-weight-bold"><?php echo $recentlyCreated["creation_date"]; ?></span>
-        <br class="d-block d-sm-none">
-        Creado por&nbsp;<a href="/daw/profile/<?php echo $recentlyCreated["username"] ?>"
+        <span class="creationDate font-weight-bold"><?php echo $recentlyCreated["creation_date"]; ?></span>
+        <br class="d-block d-sm-none">por&nbsp;<a href="/daw/profile/<?php echo $recentlyCreated["username"] ?>"
             class=""><?php echo $recentlyCreated["username"]; ?>
     </div>
 </div>
