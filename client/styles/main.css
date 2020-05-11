@@ -97,7 +97,7 @@ main {
     display: block !important;
 }
 
-#backToTop {
+.scrollingUp #backToTop {
     bottom: 4em;
     right: 2em;
 }
@@ -108,7 +108,8 @@ main {
     }
 }
 
-.scrollOnTop #backToTop {
+.scrollOnTop #backToTop,
+.scrollingDown #backToTop {
     bottom: -20em;
 }
 
