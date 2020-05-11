@@ -92,10 +92,21 @@ class DashboardsItemAssignation implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $params = [
-            "id" => $this->id,
+            "id_dashboard_item" => $this->id_dashboard_item,
+            "assigned_to" => $this->assigned_to,
         ];
 
-        return $sqlUtils->query($this->table, $params);
+        $result = $sqlUtils->query($this->table, $params);
+
+        if ($result !== false) {
+            return [
+                "id" => $result[0]["id"],
+                "start_date" => $result[0]["start_date"],
+                "end_date" => $result[0]["end_date"],
+            ];
+        }
+
+        return $result;
     }
 
     public function enable()
