@@ -23,6 +23,26 @@
             </div>
             <?php endif;?>
         </form>
+        <div class="projectCreationDetails row mb-5 text-muted">
+            <div class="col-sm">Creador por <a
+                    href="/daw/profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
+                    class="projectCreatedBy"><?php echo $projectData["projectCreator"]; ?></a><br><span
+                    class="projectCreationDate"><?php echo $projectData["projectCreationDate"]; ?></span>
+            </div>
+            <?php if (!is_null($projectData["collaborator"])): ?>
+            <div class="ml-auto text-right mt-4 mt-sm-0 col-sm">
+                Te invitó <a href="/daw/profile/<?php echo $projectData["collaboratorInviteUsername"]; ?>/"
+                    class="projectCreatedBy"><?php echo $projectData["collaboratorInviteName"]; ?></a>
+                como
+                <span
+                    class="projectCreationRole informationText font-weight-bold"><?php echo $projectData["collaborationRole"]; ?></span>
+                <div class="informationTextQuote text-left text-white p-3 position-absolute rounded">
+                    <?php echo $projectData["collaborationRoleDescription"]; ?>
+                </div><br><span
+                    class="collaborationStartingDate"><?php echo $projectData["collaborationStartingDate"]; ?></span>
+            </div>
+            <?php endif;?>
+        </div>
         <?php if ($canEdit): ?>
         <form class="" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/" method="POST"
             enctype="multipart/form-data">
@@ -71,25 +91,6 @@
             </div>
         </form>
         <?php endif;?>
-        <div class="projectCreationDetails mb-5 text-muted">
-            <?php if (!is_null($projectData["collaborator"])): ?>
-            <div class="float-right text-right">
-                Te invitó <a href="/daw/profile/<?php echo $projectData["collaboratorInviteUsername"]; ?>/"
-                    class="projectCreatedBy"><?php echo $projectData["collaboratorInviteName"]; ?></a>
-                <br> el <span
-                    class="projectCreationDate"><?php echo $projectData["collaborationStartingDate"]; ?></span> como
-                <span
-                    class="projectCreationRole informationText font-weight-bold"><?php echo $projectData["collaborationRole"]; ?></span>
-                <div class="informationTextQuote text-left text-white p-3 position-absolute rounded">
-                    <?php echo $projectData["collaborationRoleDescription"]; ?>
-                </div>
-            </div>
-            <?php endif;?>
-            <div>Creador por <a href="/daw/profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
-                    class="projectCreatedBy"><?php echo $projectData["projectCreator"]; ?></a>
-                <br> el <span class="projectCreationDate"><?php echo $projectData["projectCreationDate"]; ?></span>
-            </div>
-        </div>
         <div class="row mx-auto flex-center">
 
         </div>
