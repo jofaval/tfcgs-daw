@@ -289,6 +289,7 @@ class Controller
                 switch ($tabName) {
                     case 'overview':
                         $viewParams["projectNumbers"] = Model::getInstance()->getProjectNumbers($id);
+                        $viewParams["recentlyCreated"] = Model::getInstance()->getRecentlyCreated($id);
                         break;
 
                     default:

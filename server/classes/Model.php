@@ -453,7 +453,7 @@ class Model extends PDO
         return $sqlUtils->complexQuery($queryString, ["id" => $id])[0];
     }
 
-    public function getRecentlyCreatred($id_project)
+    public function getRecentlyCreated($id_project)
     {
         $sqlUtils = new SQLUtils($this);
 
