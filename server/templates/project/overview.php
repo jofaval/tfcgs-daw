@@ -135,7 +135,7 @@ foreach ($actionGroups as $actionGroupTitle => $actionGroupDetails):
                             <i class="fa fa-<?php echo $action["icon"]; ?>"></i>
                         </div>
                         <div
-                            class="actionTitle mask flex-center .z-depth-1 z-index-overlap-bottom text-center d-flex justify-content-center text-white bg-dark">
+                            class="actionTitle mask flex-center .z-depth-1 text-center d-flex justify-content-center text-white bg-dark">
                             <p class="align-self-center white-text fixed-line-spacing mb-0">
                                 <?php echo $action["name"]; ?></p>
                         </div>
@@ -147,7 +147,7 @@ foreach ($actionGroups as $actionGroupTitle => $actionGroupDetails):
                             <i class="fa fa-<?php echo $action["icon"]; ?>"></i>
                         </div>
                         <div
-                            class="actionTitle h-25 .z-depth-1 z-index-overlap-bottom text-center d-flex justify-content-center text-white bg-dark">
+                            class="actionTitle h-25 .z-depth-1 text-center d-flex justify-content-center text-white bg-dark">
                             <p class="align-self-center white-text fixed-line-spacing mb-0">
                                 <?php echo $action["name"]; ?></p>
                         </div>
