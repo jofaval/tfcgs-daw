@@ -285,6 +285,16 @@ class Controller
                 if ($isValid !== true || !in_array($tabName, ["overview", "dashboards", "diary", "collaborators", "details"])) {
                     header("Location: /daw/projects/id/$id/");
                 }
+
+                switch ($tabName) {
+                    case 'overview':
+                        $viewParams["projectNumbers"] = Model::getInstance()->getProjectNumbers($id);
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                }
             }
 
             //Si no tiene ni elemento al que acceder ni pestaña a la que cambiar, fuera
