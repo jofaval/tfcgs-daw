@@ -26,6 +26,14 @@ var $projectCard = $(`
 class Model {
     constructor() {
         this.paginationIndex = 1;
+
+        var splittedURL = window.location.href.split("/");
+        this.rowNumberFromURL = splittedURL[6];
+        this.pageIndexFromURL = splittedURL[8];
+        if (splittedURL.length >= 10) {
+            this.searchValueFromURL = splittedURL[10];
+        }
+
     }
 
     loadProjects(whenFinished) {
@@ -158,22 +166,25 @@ class Controller {
 
         view.initializeView(mainContainer);
 
-        var splittedURL = window.location.href.split("/");
-
         model.loadProjects(function (projects) {
             console.log("proyectos", projects);
-            $("#selectNumberOfRows").val(splittedURL[6]);
-            if (splittedURL.length > 9) {
-                searchBar.val(splittedURL[10]);
-                $("#selectNumberOfRows").val(splittedURL[6]);
-                controller.searchProjectEvent(searchBar, controller, function name(params) {
-                    var indexToLoad = splittedURL[8];
-                    $(".page-item").eq(indexToLoad).trigger("click");
-                });
+            if (controller.model.rowNumberFromURL != undefined) {
+                if (controller.model.searchValueFromURL) {
+                    searchBar.val(controller.model.searchValueFromURL);
+                    $("#selectNumberOfRows").val(controller.model.rowNumberFromURL);
+                    controller.searchProjectEvent(searchBar, controller, function () {
+                        var indexToLoad = controller.model.pageIndexFromURL;
+                        $(".page-item").eq(indexToLoad).trigger("click");
+                    });
+                } else {
+                    controller.reload(controller, function () {
+                        var indexToLoad = controller.model.pageIndexFromURL;
+                        $(".page-item").eq(indexToLoad).trigger("click");
+                    });
+                }
             } else {
                 controller.reload(controller, function () {
-                    var indexToLoad = splittedURL[8];
-                    $(".page-item").eq(indexToLoad).trigger("click");
+                    $(".page-item").eq(1).trigger("click");
                 });
             }
             $(".numberOfProjects").text(projects.length);
