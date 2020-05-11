@@ -493,3 +493,23 @@
 .opacity-100 {
     opacity: 1 !important;
 }
+
+.object-fit-contain {
+    object-fit: contain !important;
+}
+
+.object-fit-cover {
+    object-fit: cover !important;
+}
+
+.object-fit-fill {
+    object-fit: fill !important;
+}
+
+.object-fit-unset {
+    object-fit: unset !important;
+}
+
+.object-fit-scale-down {
+    object-fit: scale-down !important;
+}
