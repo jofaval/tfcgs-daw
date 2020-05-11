@@ -1,4 +1,4 @@
-var tabIndicator = $(".tab-active-indicator");
+var tabIndicator = $(".tabActiveIndicator");
 var tabIndicatorRadius = tabIndicator.width();
 
 tabIndicator.css("margin-top", `-${tabIndicator.outerHeight()}px`);
@@ -11,6 +11,7 @@ tabElements.hover(function () {
     onExit($(this));
 });
 var activeElement = $(".tabs .tab.active");
+onEnter(activeElement);
 
 function onEnter(currentTab) {
     activeElement.removeClass("text-primary");

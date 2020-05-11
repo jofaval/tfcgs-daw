@@ -96,7 +96,7 @@ $breadcrumb = [
                 class=""><i class="fa fa-2x fa-info-circle"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Detalles</span></a>
     </div>
-    <div class="tab-active-indicator position-sticky pt-1 bg-primary"></div>
+    <div class="tabActiveIndicator position-sticky pt-1 bg-primary"></div>
     <div class="row tabContentContainer m-0 px-2">
         <?php
 $titleName = "General";
