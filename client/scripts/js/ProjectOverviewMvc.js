@@ -270,8 +270,7 @@ class Controller {
 
         var activeTime = $(".activeTime");
         var activeTimeDate = activeTime.html().trim();
-        activeTime.html(new DateUtils(activeTimeDate).getTimeFromThisMoment());
-        activeTime.append(`<span class="originalDate d-none">${activeTimeDate}</span>`);
+        var timeFromMoment = new TimeFromMoment(activeTime, activeTimeDate);
 
         //Tablero
         $("#actionAddDashboard").on("click", function (event) {
@@ -302,6 +301,11 @@ class Controller {
 
         $("#actionDeleteProject").on("click", function (event) {
             controller.deleteProject(controller, event);
+        });
+
+        $(".recentlyCard .creationDate").each(function () {
+            var current = $(this);
+            var timeFromMoment = new TimeFromMoment(current, current.text().trim());
         });
     }
 
