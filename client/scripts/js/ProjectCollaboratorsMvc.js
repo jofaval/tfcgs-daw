@@ -22,6 +22,13 @@ class Model {
     constructor() {
         this.paginationIndex = 1;
         this.projectId = this.getProjectId();
+
+        var splittedURL = window.location.href.split("/");
+        this.rowNumberFromURL = splittedURL[9];
+        this.pageIndexFromURL = splittedURL[11];
+        if (splittedURL.length >= 13) {
+            this.searchValueFromURL = splittedURL[13];
+        }
     }
 
     loadCollaborators(whenFinished) {
@@ -163,9 +170,25 @@ class Controller {
 
         model.loadCollaborators(function (collaborators) {
             console.log("colaboradores", collaborators);
-            controller.reload(controller);
-            $(".numberOfCollaborators").text(collaborators.length);
-            $(".page-item").eq(1).trigger("click");
+            if (controller.model.rowNumberFromURL != undefined) {
+                if (controller.model.searchValueFromURL) {
+                    searchBar.val(controller.model.searchValueFromURL);
+                    $("#selectNumberOfRows").val(controller.model.rowNumberFromURL);
+                    controller.searchCollaboratorEvent(searchBar, controller, function () {
+                        var indexToLoad = controller.model.pageIndexFromURL;
+                        $(".page-item").eq(indexToLoad).trigger("click");
+                    });
+                } else {
+                    controller.reload(controller, function () {
+                        var indexToLoad = controller.model.pageIndexFromURL;
+                        $(".page-item").eq(indexToLoad).trigger("click");
+                    });
+                }
+            } else {
+                controller.reload(controller, function () {
+                    $(".page-item").eq(1).trigger("click");
+                });
+            }
         });
 
         var selectNumberOfRows = $("#selectNumberOfRows");
@@ -173,32 +196,12 @@ class Controller {
         selectNumberOfRows.on("change", function () {
             controller.reload(controller);
             localStorage.setItem("numberOfRowsInCollaborators", selectNumberOfRows.val());
+            controller.pageChanged(controller, currentPaginationIndex);
         });
 
         var searchBar = $("#searchCollaborator");
         whenUserDoneTypingInInput(searchBar, "searchCollaborator", function () {
-            var content = searchBar.val().toLowerCase();
-            var newCollaboratorsJSON = [];
-            if (content == "") {
-                newCollaboratorsJSON = controller.model.collaborators;
-            } else {
-                $(controller.model.collaborators).each(function () {
-                    if (content == "" || (!this.collaboratorUsername.toLowerCase().includes(content) && !this.collaboratorName.toLowerCase().includes(content))) {
-                        return;
-                    }
-
-                    newCollaboratorsJSON.push(this);
-                });
-            }
-
-            if (newCollaboratorsJSON.length > 0) {
-                controller.model.workingCollaborators = newCollaboratorsJSON;
-                controller.model.filterCollaborators = newCollaboratorsJSON;
-                controller.reload(controller);
-            } else {
-                controller.clearContainer(controller);
-                $(".collaboratorsContainer").text("No se han encontrado resultados.");
-            }
+            this.searchCollaboratorEvent(searchBar, controller);
         }, 100);
 
         $(".collaboratorBtnAdd").on("click", function (event) {
@@ -230,10 +233,47 @@ class Controller {
         });
     }
 
+    searchCollaboratorEvent(searchBar, controller, callback = null) {
+        var content = searchBar.val().toLowerCase();
+        var newCollaboratorsJSON = [];
+        if (content == "") {
+            newCollaboratorsJSON = controller.model.collaborators;
+        } else {
+            $(controller.model.collaborators).each(function () {
+                if (content == "" || (!this.collaboratorUsername.toLowerCase().includes(content) && !this.collaboratorName.toLowerCase().includes(content))) {
+                    return;
+                }
+                newCollaboratorsJSON.push(this);
+            });
+        }
+        if (newCollaboratorsJSON.length > 0) {
+            controller.model.workingCollaborators = newCollaboratorsJSON;
+            controller.model.filterCollaborators = newCollaboratorsJSON;
+            if (callback != null) {
+                controller.reload(controller, callback)
+            } else {
+                controller.reload(controller);
+            }
+        } else {
+            controller.clearContainer(controller);
+            $(".collaboratorsContainer").text("No se han encontrado resultados.");
+        }
+    }
+
+    pageChanged(controller, pageIndex) {
+        var url = `/daw/projects/id/${controller.model.projectId}/collaborators/rows/${localStorage.getItem("numberOfRowsInCollaborators")}/page/${pageIndex}/`;
+
+        var search = $("#searchCollaborator").val();
+        if (search.length > 0) {
+            url += `search/${search}/`;
+        }
+
+        changeURL(url);
+    }
+
     inviteCollaboratorEvent(controller, event) {
         var event = event || window.event;
         event.preventDefault();
-
 
         var username = $("#searchCollaborator").val();
 
@@ -253,7 +293,7 @@ class Controller {
         $(".collaboratorsContainer").html("");
     }
 
-    reload(controller) {
+    reload(controller, callback = null) {
         controller.clearContainer(controller);
         controller.model.paginationIndex = 1;
         var pagination = $(".pagination");
@@ -278,6 +318,10 @@ class Controller {
         console.log(controller.model.workingCollaborators);
 
         $(".page-item").eq(1).trigger("click");
+
+        if (callback != null) {
+            callback();
+        }
     }
 
     getCollaboratorPage(controller, container) {
@@ -305,6 +349,7 @@ class Controller {
             var collaboratorPages = $(".collaboratorsPage");
             collaboratorPages.hide();
             collaboratorPages.eq(parseInt($(this).text()) - 1).show();
+            controller.pageChanged(controller, currentPaginationIndex);
         });
     }
 
