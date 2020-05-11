@@ -67,25 +67,9 @@ $modelInstance = Model::getInstance();
             <div class="row text-white p-0 m-0">
                 <h4 class="h4 text-white">Creado recientemente</h4>
                 <div class="recentlyCreated text-dark">
-                    <div class="card w-100">
-                        <div class="card-body p-0">
-                            <p class="card-text my-auto d-inline">Test</p>
-                            <a href="#" class="btn btn-primary float-right">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card w-100">
-                        <div class="card-body p-0">
-                            <p class="card-text my-auto d-inline">Test</p>
-                            <a href="#" class="btn btn-primary float-right">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card w-100">
-                        <div class="card-body p-0">
-                            <p class="card-text my-auto d-inline">Test</p>
-                            <a href="#" class="btn btn-primary float-right">Go somewhere</a>
-                        </div>
-                    </div>
-                    <span class="btn btn-primary w-100">Ver todos</span>
+                    <?php foreach ($viewParams["recentlyCreated"] as $recentlyCreated): ?>
+                    <?php require __DIR__ . "/../components/cards/recentlyCreated.php"?>
+                    <?php endforeach;?>
                 </div>
             </div>
             <br>
