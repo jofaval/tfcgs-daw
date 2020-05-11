@@ -12,6 +12,7 @@ tabElements.hover(function () {
 });
 var activeElement = $(".tabs .tab.active");
 onEnter(activeElement);
+activeElement.blur();
 
 function onEnter(currentTab) {
     activeElement.removeClass("text-primary");
