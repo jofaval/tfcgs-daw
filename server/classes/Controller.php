@@ -290,6 +290,7 @@ class Controller
                     case 'overview':
                         $viewParams["projectNumbers"] = Model::getInstance()->getProjectNumbers($id);
                         $viewParams["recentlyCreated"] = Model::getInstance()->getRecentlyCreated($id);
+                        include __DIR__ . "/config/project_actions.php";
                         break;
 
                     default:
