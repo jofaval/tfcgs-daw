@@ -146,8 +146,9 @@ class Controller {
         $("#diaryBtnSave").on("click", function () {
             controller.saveContent(controller);
         });
+        var datepickerElement = $("#datepicker");
 
-        $("#datepicker").on("change", function (event) {
+        datepickerElement.on("change", function (event) {
             controller.inputDateFormatCheck(controller, $(this), event);
         });
         //$('#datepicker').datepicker();
@@ -162,6 +163,40 @@ class Controller {
         whenUserDoneTypingInInput($(".note-editable.card-block"), "summernoteContent", function () {
             controller.generateNavigationScheme(controller);
         }, 2.5 * 1000);
+
+        //datepickerElement.prop("readonly", true);
+        $.datetimepicker.setLocale('es');
+
+        var startingDate = new Date(Date.parse(datepickerElement.val()));
+        startingDate.setSeconds(0);
+
+        var timesArray = [];
+
+        var minutes = ["00", "15", "30", "45"]
+
+        for (let hourIndex = 0; hourIndex < 24; hourIndex++) {
+            for (let minuteIndex = 0; minuteIndex < 4; minuteIndex++) {
+                timesArray.push(`${hourIndex}:${minutes[minuteIndex]}`);
+            }
+        }
+
+        var datetimepicker = datepickerElement.datetimepicker({
+            value: new DateUtils(startingDate, false).printDateWithFormat("Y.m.d"),
+            format: 'Y-m-d',
+            theme: 'dark',
+            dayOfWeekStart: 1,
+            allowTimes: timesArray,
+            onSelectDate: function (ct, $input) {
+                var newDate = new DateUtils(ct, false).printDateWithFormat("Y-m-d");
+                $input.val(
+                    newDate
+                );
+                controller.model.currentDate = ct;
+
+                controller.inputDateFormatCheck(controller, $input, null);
+                controller.loadDateContent(controller);
+            }
+        });
     }
 
     loadEditor(controller) {
@@ -368,8 +403,6 @@ class Controller {
         var dateInFormat = new DateUtils(workingDate).printDateWithFormat("Y-m-d");
 
         $("#datepicker").val(dateInFormat);
-
-        window.history.pushState('page2', document.title, `/daw/projects/id/${controller.model.projectId}/diary/date/${dateInFormat}/`);
     }
 
     loadDateContent(controller) {
@@ -378,6 +411,8 @@ class Controller {
                 content = "";
             }
             console.log("result cargarlo", decodeURI(content));
+            var dateInFormat = new DateUtils(controller.model.currentDate).printDateWithFormat("Y-m-d");
+            changeURL(`/daw/projects/id/${controller.model.projectId}/diary/date/${dateInFormat}/`);
             controller.view.visualizeContent($(".note-editable.card-block"), decodeURI(content))
             controller.generateNavigationScheme(controller);
         });
