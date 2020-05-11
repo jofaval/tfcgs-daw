@@ -37,13 +37,15 @@ RewriteRule ^not-user-agent[/]?$ ./index.php?ctl=notuseragent [L]
 
 #Project Rules
 RewriteRule ^projects/id/([^/]+)[/]?$ ./index.php?ctl=project&id=$1 [L]
-RewriteRule ^projects/id/([^/]+)/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&rowNumber=$2&pageIndex=$3 [L]
-RewriteRule ^projects/id/([^/]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&rowNumber=$2&pageIndex=$3&search=$4 [L]
 #Tabs
 RewriteRule ^projects/id/([^/]+)/overview/assigned-tasks[/]?$ ./index.php?ctl=project&id=$1&tabName=overview&subView=assingedTasks [L]
 RewriteRule ^projects/id/([^/]+)/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=$2 [L]
-RewriteRule ^projects/id/dashboards/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=$2&rowNumber=$3&pageIndex=$4 [L]
-RewriteRule ^projects/id/dashboards/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=$2&rowNumber=$3&pageIndex=$4&search=$5 [L]
+#Pagination dashboards
+RewriteRule ^projects/id/([^/]+)/dashboards/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=dashboards&rowNumber=$2&pageIndex=$3 [L]
+RewriteRule ^projects/id/([^/]+)/dashboards/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=dashboards&rowNumber=$2&pageIndex=$3&search=$4 [L]
+#Pagination collaborators
+RewriteRule ^projects/id/([^/]+)/collaborators/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=collaborators&rowNumber=$2&pageIndex=$3 [L]
+RewriteRule ^projects/id/([^/]+)/collaborators/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=collaborators&rowNumber=$2&pageIndex=$3&search=$4 [L]
 #Empty params redirection
 RewriteRule ^projects/id[/]?$ ./index.php?ctl=projects [L]
 
