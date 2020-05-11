@@ -175,17 +175,6 @@ class Controller {
         var searchBar = $("#projectSearch");
         whenUserDoneTypingInInput(searchBar, "projectSearch", function () {
             var content = searchBar.val().toLowerCase();
-            /*  $(".projectCard").each(function () {
-                 var projectCardTitle = $(this).find(".projectCardTitle").text().trim().toLowerCase();
-                 var projectCardDescription = $(this).find(".projectCardDescription").text().trim().toLowerCase();
-                 console.log(projectCardTitle, projectCardTitle.includes(content));
-
-                 if (content != "" && (!projectCardTitle.includes(content) && !projectCardDescription.includes(content))) {
-                     $(this).hide();
-                 } else {
-                     $(this).show();
-                 }
-             }); */
             var newProjectsJSON = [];
             if (content == "") {
                 newProjectsJSON = controller.model.projects;
@@ -214,18 +203,6 @@ class Controller {
             controller.addProjectBtnEvent(controller, event);
         });
 
-        /* $(".projectsBtnBookmarked").on("click", function () {
-            controller.hideProjectsOfType("bookmarked", $(this));
-        });
-
-        $(".projectsBtnCreated").on("click", function () {
-            controller.hideProjectsOfType("created", $(this));
-        });
-
-        $(".projectsBtnShared").on("click", function () {
-            controller.hideProjectsOfType("shared", $(this));
-        }); */
-
         $(".projectsBtnFilters .btn").on("click", function () {
             //controller.hideProjectsOfType(controller, $(this));
             $(this).toggleClass("active");
@@ -246,56 +223,6 @@ class Controller {
                 activePage.trigger("click");
             }
         });
-    }
-
-    hideProjectsOfType(controller, btn) {
-        btn.toggleClass("active");
-
-        var projects = controller.model.workingProjects;
-
-        var projectFilters = $(".projectsBtnFilters");
-        var hideBookmarked = projectFilters.find(".projectsBtnBookmarked").hasClass("active");
-        var hideCreated = projectFilters.find(".projectsBtnCreated").hasClass("active");
-        var hideShared = projectFilters.find(".projectsBtnShared").hasClass("active");
-        var newProjects = [];
-        $(projects).each(function () {
-
-            if ((hideBookmarked && (this.bookmarked != 0)) ||
-                (hideCreated && (this.created != 0)) ||
-                (hideShared && !(this.created != 0))
-            ) {
-                console.log(this);
-                return;
-            }
-
-            newProjects.push(this);
-        });
-        if (newProjects.length > 0) {
-            controller.model.workingProjects = newProjects;
-            controller.reload(controller);
-        } else {
-            controller.clearContainer(controller);
-            $(".projectsContainer").text(controller.model.project.length > 0 ? "No se han encontrado resultados." : "No hay proyectos");
-        }
-        /* $(".projectCard").each(function () {
-            /* var projectCard = $(this);
-            if (projectCard.find(`.projectsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
-                if (btn.hasClass("active")) {
-                    projectCard.addClass("d-none");
-                } else {
-                    projectCard.removeClass("d-none");
-                }
-            } */
-        /* if (projectCard.find(`.projectsBtn${className[0].toUpperCase()}${className.substring(1)}`).length == 1) {
-            if (btn.hasClass("active")) {
-                projectCard.removeClass("d-none");
-            } else {
-                projectCard.addClass("d-none");
-            }
-        } else {
-            projectCard.removeClass("d-none");
-        }
-    });*/
     }
 
     clearContainer(controller) {
