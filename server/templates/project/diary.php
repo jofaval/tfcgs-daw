@@ -38,7 +38,7 @@
 <div class="pushMenuOverlap position-absolute z-index-overlap w-100 h-100">
 </div>
 
-<div class="w-100 h-100 tabContent container p-0 d-block" id="tabContent3">
+<div class="w-100 h-100 tabContent min-height-40 container p-0 d-block" id="tabContent3">
     <div class="mx-auto">
         <div class="form-row d-flex container mx-auto justify-content-center py-4">
             <button class="btn btn-sm m-0 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
