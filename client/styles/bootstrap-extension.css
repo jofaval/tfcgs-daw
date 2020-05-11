@@ -513,3 +513,47 @@
 .object-fit-scale-down {
     object-fit: scale-down !important;
 }
+
+.brightness-0 {
+    filter: brightness(0) !important;
+}
+
+.brightness-10 {
+    filter: brightness(0.1) !important;
+}
+
+.brightness-20 {
+    filter: brightness(0.2) !important;
+}
+
+.brightness-30 {
+    filter: brightness(0.3) !important;
+}
+
+.brightness-40 {
+    filter: brightness(0.4) !important;
+}
+
+.brightness-50 {
+    filter: brightness(0.5) !important;
+}
+
+.brightness-60 {
+    filter: brightness(0.6) !important;
+}
+
+.brightness-70 {
+    filter: brightness(0.7) !important;
+}
+
+.brightness-80 {
+    filter: brightness(0.8) !important;
+}
+
+.brightness-90 {
+    filter: brightness(0.9) !important;
+}
+
+.brightness-100 {
+    filter: brightness(1) !important;
+}
