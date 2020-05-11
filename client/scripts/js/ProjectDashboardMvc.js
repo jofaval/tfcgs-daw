@@ -27,6 +27,13 @@ class Model {
     constructor() {
         this.paginationIndex = 1;
         this.projectId = this.getProjectId();
+
+        var splittedURL = window.location.href.split("/");
+        this.rowNumberFromURL = splittedURL[9];
+        this.pageIndexFromURL = splittedURL[11];
+        if (splittedURL.length >= 13) {
+            this.searchValueFromURL = splittedURL[13];
+        }
     }
 
     loadDashboards(whenFinished) {
@@ -172,9 +179,26 @@ class Controller {
 
         model.loadDashboards(function (dashboards) {
             console.log("tableros", dashboards);
-            controller.reload(controller);
+            if (controller.model.rowNumberFromURL != undefined) {
+                if (controller.model.searchValueFromURL) {
+                    searchBar.val(controller.model.searchValueFromURL);
+                    $("#selectNumberOfRows").val(controller.model.rowNumberFromURL);
+                    controller.searchDashboardEvent(searchBar, controller, function () {
+                        var indexToLoad = controller.model.pageIndexFromURL;
+                        $(".page-item").eq(indexToLoad).trigger("click");
+                    });
+                } else {
+                    controller.reload(controller, function () {
+                        var indexToLoad = controller.model.pageIndexFromURL;
+                        $(".page-item").eq(indexToLoad).trigger("click");
+                    });
+                }
+            } else {
+                controller.reload(controller, function () {
+                    $(".page-item").eq(1).trigger("click");
+                });
+            }
             $(".numberOfDashboards").text(dashboards.length);
-            $(".page-item").eq(1).trigger("click");
         });
 
         var selectNumberOfRows = $("#selectNumberOfRows");
@@ -182,32 +206,12 @@ class Controller {
         selectNumberOfRows.on("change", function () {
             controller.reload(controller);
             localStorage.setItem("numberOfRowsInDashboards", selectNumberOfRows.val());
+            controller.pageChanged(controller, 1);
         });
 
         var searchBar = $("#dashboardSearch");
         whenUserDoneTypingInInput(searchBar, "dashboardSearch", function () {
-            var content = searchBar.val().toLowerCase();
-            var newDashboardsJSON = [];
-            if (content == "") {
-                newDashboardsJSON = controller.model.dashboards;
-            } else {
-                $(controller.model.dashboards).each(function () {
-                    if (content == "" || (!this.title.toLowerCase().includes(content) && !this.description.toLowerCase().includes(content))) {
-                        return;
-                    }
-
-                    newDashboardsJSON.push(this);
-                });
-            }
-
-            if (newDashboardsJSON.length > 0) {
-                controller.model.workingDashboards = newDashboardsJSON;
-                controller.model.filterDashboards = newDashboardsJSON;
-                controller.reload(controller);
-            } else {
-                controller.clearContainer(controller);
-                $(".dashboardsContainer").text(controller.model.dashboards.length > 0 ? "No se han encontrado resultados." : "No hay tableros");
-            }
+            controller.searchDashboardEvent(searchBar, controller);
         }, 100);
 
         $(".dashboardBtnAdd").on("click", function (event) {
@@ -235,11 +239,50 @@ class Controller {
         });
     }
 
+    searchDashboardEvent(searchBar, controller, callback = null) {
+        var content = searchBar.val().toLowerCase();
+        var newDashboardsJSON = [];
+        if (content == "") {
+            newDashboardsJSON = controller.model.dashboards;
+        } else {
+            $(controller.model.dashboards).each(function () {
+                if (content == "" || (!this.title.toLowerCase().includes(content) && !this.description.toLowerCase().includes(content))) {
+                    return;
+                }
+                newDashboardsJSON.push(this);
+            });
+        }
+        if (newDashboardsJSON.length > 0) {
+            controller.model.workingDashboards = newDashboardsJSON;
+            controller.model.filterDashboards = newDashboardsJSON;
+            if (callback != null) {
+                controller.reload(controller, callback);
+            } else {
+                controller.reload(controller);
+            }
+            controller.pageChanged(controller, 1);
+        } else {
+            controller.clearContainer(controller);
+            $(".dashboardsContainer").text(controller.model.dashboards.length > 0 ? "No se han encontrado resultados." : "No hay tableros");
+        }
+    }
+
     clearContainer(controller) {
         $(".dashboardsContainer").html("");
     }
 
-    reload(controller) {
+    pageChanged(controller, pageIndex) {
+        var url = `/daw/projects/id/${controller.model.projectId}/dashboards/rows/${localStorage.getItem("numberOfRowsInDashboards")}/page/${pageIndex}/`;
+
+        var search = $("#dashboardSearch").val();
+        if (search.length > 0) {
+            url += `search/${search}/`;
+        }
+
+        changeURL(url);
+    }
+
+    reload(controller, callback = null) {
         controller.clearContainer(controller);
         controller.model.paginationIndex = 1;
         var pagination = $(".pagination");
@@ -281,6 +324,10 @@ class Controller {
         console.log(controller.model.workingDashboards);
 
         $(".page-item").eq(1).trigger("click");
+
+        if (callback != null) {
+            callback();
+        }
     }
 
     getDashboardPage(controller, container) {
@@ -299,6 +346,7 @@ class Controller {
     }
 
     addPaginationItem(controller) {
+        var currentPaginationIndex = controller.model.paginationIndex;
         var paginationItem = controller.view.visualizePaginationItem(controller.model.paginationIndex);
         controller.model.paginationIndex++;
 
@@ -308,6 +356,7 @@ class Controller {
             var dashboardPages = $(".dashboardsPage");
             dashboardPages.hide();
             dashboardPages.eq(parseInt($(this).text()) - 1).show();
+            controller.pageChanged(controller, currentPaginationIndex);
         });
     }
 
