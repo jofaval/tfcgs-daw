@@ -9,17 +9,18 @@ var $projectFlagCreated = $(`<div class="projectsBtnCreated btn btn-sm btn-succe
 var $projectFlagShared = $(`<div class="projectsBtnShared btn btn-sm btn-primary">Shared</div>`);
 
 var $projectCard = $(`
-<div class="projectCard text-dark row col-12 col-sm m-2 bg-white">
+<div class="projectCard text-dark row col-12 px-0 col-sm m-2 bg-white">
+    <img src="" alt="" class="projectCardBgImg object-fit-cover opacity-80 brightness-30 position-absolute w-100 h-100 z-index">
     <div
-        class="row projectCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+        class="row projectCardDetails pl-3 z-index-overlap flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
         <a href="" class="btn btn-sm btn-primary projectCardBtnView">View</a>
         <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
-        <h5 class="projectCardTitle max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Project title</h5>
+        <h5 class="projectCardTitle text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Project title</h5>
         <div class="projectCardBookmarkedIcon"></div>
         <div class="projectCardFlags float-right btn-group"></div>
     </div>
-    <a href="" class="projectReadMore p-2 bg-white">Read more...</a>
-    <div class="projectCardDescription max-text-20 text-overflow-ellipsis overflow-hidden text-justify my-2"></div>
+    <a href="" class="projectReadMore p-2 text-white">Read more...</a>
+    <div class="projectCardDescription text-white max-text-20 text-overflow-ellipsis pl-3 z-index-overlap-bottom overflow-hidden text-justify my-2"></div>
 </div>`);
 
 class Model {
@@ -407,6 +408,7 @@ class Controller {
 
         var url = `/daw/projects/id/${json.id}/`;
         project.find(".projectCardBtnView").prop("href", url);
+        project.find(".projectCardBgImg").prop("src", `/daw/img/projects/${json.id}/bg.png`);
         project.find(".projectReadMore").prop("href", url);
 
         return project;
