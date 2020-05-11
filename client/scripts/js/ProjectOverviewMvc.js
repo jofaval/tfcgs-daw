@@ -1,24 +1,22 @@
 var $paginationItem = $(`<li class="page-item"><a class="page-link text-white"></a></li>`);
 var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
 
-var $collaboratorRow = $(`<div class="row collaboratorCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
+var $collaboratorRow = $(`<div class="row collaboratorCardRow d-flex flex-start flex-wrap m-0"></div>`);
 var $collaboratorPage = $(`<div class="collaboratorsPage"></div>`);
 
 var $collaboratorFlagBookmarked = $(`<div class="collaboratorsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>`);
 var $collaboratorFlagCreated = $(`<div class="collaboratorsBtnCreated btn btn-sm btn-success">Created</div>`);
 var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm btn-primary">Shared</div>`);
 
-var $collaboratorCard = $(`<div class="collaboratorCard rounded row col-12 col-sm m-2 m-2 bg-white">
-    <img class="collaboratorImg my-2 rounded-pill" src="/daw/img/profile-pic.png" alt="">
-    <div class="collaboratorDetails my-auto col">
-        <p class="collaboratorUsername m-0 font-weight-bold">Administrator</p>
-        <h5 class="collaboratorName m-0">Pepe Fabra Valverde</h5>
-        <p class="collaboratorRole m-0 informationText font-weight-bold">Administrator</p>
-        <div class="informationTextQuote text-left collaboratorRoleDescription text-white p-3 position-absolute rounded z-index-overlap"></div>
+var $collaboratorCard = $(`<a href="" class="collaboratorCard cursor-pointer text-center collaboratorProfileBtn view overlay rounded m-2 m-2">
+    <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/img/profile-pic.png" width="150" height="150" alt="">
+    <div class="collaboratorDetails bg-primary mask flex-center flex-column center-elements h-100 my-auto col">
+        <p class="collaboratorUsername text-white m-0 font-weight-bold">Administrator</p>
+        <h5 class="collaboratorName text-white m-0">Pepe Fabra Valverde</h5>
+        <p class="collaboratorRole mt-3 mb-2 text-white m-0 informationText font-weight-bold">Administrator</p>
+        <div class="informationTextQuote w-auto mt-3 text-left collaboratorRoleDescription text-white p-3 position-fixed rounded z-index-overlap"></div>
     </div>
-    <a href="" class="collaboratorProfileBtn btn btn-sm btn-primary align-self-center float-right">See profile
-    </a>
-</div>`);
+</a>`);
 
 class Model {
     constructor() {
@@ -32,7 +30,7 @@ class Model {
             url: "/daw/index.php?ctl=getCollaboratorsOfProject",
             data: {
                 "id_project": model.projectId,
-                "limit": 3,
+                "limit": 5,
             },
             success: function (collaborators) {
                 model.collaborators = collaborators;
@@ -191,7 +189,7 @@ class View {
         var username = json.collaboratorUsername;
         clonedCard.find(".collaboratorUsername").text(username);
         clonedCard.find(".collaboratorImg").prop("src", `/daw/img/users/${username}/${username}.png`);
-        clonedCard.find(".collaboratorProfileBtn").prop("href", `/daw/profile/${username}/`);
+        clonedCard.prop("href", `/daw/profile/${username}/`);
 
         clonedCard.find(".collaboratorRole").text(json.collaborationRole);
         clonedCard.find(".collaboratorRoleDescription").text(json.collaborationRoleDescription);
@@ -640,7 +638,7 @@ class Controller {
 
         if (container.find(".collaboratorsPage").length == 0 ||
             (collaboratorPageRows.length >= $("#selectNumberOfRows").val() &&
-                collaboratorPageRows.last().find(".collaboratorCard").length >= 2)) {
+                collaboratorPageRows.last().find(".collaboratorCard").length >= 5)) {
             collaboratorsPage = controller.view.visualizeCollaboratorPage(container);
         }
 
@@ -650,7 +648,7 @@ class Controller {
     getCollaboratorRow(controller, container) {
         var collaboratorPage = controller.getCollaboratorPage(controller, container);
         var collaboratorRow = collaboratorPage.find(".collaboratorCardRow ");
-        if (collaboratorPage.find(".collaboratorCardRow").length == 0 || (collaboratorRow.last().find(".collaboratorCard").length >= 1)) {
+        if (collaboratorPage.find(".collaboratorCardRow").length == 0 || (collaboratorRow.last().find(".collaboratorCard").length >= 5)) {
             collaboratorRow = controller.view.visualizeCollaboratorRow(collaboratorPage);
             //console.log(collaboratorRow);
         } else {
