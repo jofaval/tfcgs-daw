@@ -99,7 +99,7 @@ $breadcrumb = [
             </div>
         </div>
     </div>
-    <div class="tabContentContainer min-height-40 m-0 mx-auto px-2 pt-2">
+    <div class="tabContentContainer m-0 mx-auto px-2 pt-2">
         <div class="projectsContainer text-white text-center col-md-10 m-0 mx-auto">
         </div>
         <div class="row d-flex justify-content-center py-3">

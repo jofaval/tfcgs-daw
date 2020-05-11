@@ -2,7 +2,7 @@
 document.querySelector('.tabContentContainer').classList.remove("px-2");
 </script>
 
-<div class="w-100 h-100 tabContent min-height-40 p-0" id="tabContent2">
+<div class="w-100 h-100 tabContent p-0" id="tabContent2">
     <div
         class="row dashboardMenu d-flex justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0 tabs">
         <div class="dashboardsCount ml-3 text-white">
