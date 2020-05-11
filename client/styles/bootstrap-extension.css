@@ -415,3 +415,11 @@
 .position-unset {
     position: unset !important;
 }
+
+.center-elements {
+    display: flex !important;
+    justify-content: center !important;
+    justify-items: center !important;
+    align-content: center !important;
+    align-items: center !important;
+}
