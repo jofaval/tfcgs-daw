@@ -1,8 +1,9 @@
 class TimeFromMoment {
     constructor(container, originalDate) {
         var instance = this;
+        container.html("");
         instance.htmlContent = $(`
-        <div class="timeOutContainer row">
+        <div class="timeOutContainer d-inline-flex row">
             <p class="timeOutDate mb-0"></p>
             <p class="timeOutOriginal mb-0 ml-2 text-muted"></p>
         </div>
