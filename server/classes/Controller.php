@@ -407,7 +407,8 @@ class Controller
     public function getAssignedTasks($id, &$viewParams)
     {
         $userId = Sessions::getInstance()->getSession("userId");
-        $viewParams["assignedTasks"] = Model::getInstance()->getAssignedDashboardItems($id, $userId);
+        $limit = "";
+        $viewParams["assignedTasks"] = Model::getInstance()->getAssignedDashboardItems($id, $userId, $limit);
         $viewParams["userId"] = $userId;
 
         return "project/assignedTasks";

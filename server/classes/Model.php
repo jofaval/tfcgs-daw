@@ -392,8 +392,10 @@ class Model extends PDO
             "assigned_to" => $userId,
         ];
 
-        $queryString .= " LIMIT :limit";
-        $params["limit"] = 3;
+        if ($limit != "") {
+            $queryString .= " LIMIT :limit";
+            $params["limit"] = 3;
+        }
 
         return $sqlUtils->complexQuery($queryString, $params);
     }
