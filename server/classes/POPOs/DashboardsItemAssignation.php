@@ -72,6 +72,18 @@ class DashboardsItemAssignation implements CRUD
             "id" => $this->id,
         ];
 
+        if (Utils::exists("id_dashboard_item")) {
+            $toModify = [
+                "start_date" => $this->start_date,
+                "end_date" => $this->end_date,
+            ];
+
+            $identificationParams = [
+                "id_dashboard_item" => $this->id_dashboard_item,
+                "assigned_to" => $this->assigned_to,
+            ];
+        }
+
         return $sqlUtils->update($this->table, $toModify, $identificationParams);
     }
 

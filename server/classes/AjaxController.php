@@ -645,8 +645,12 @@ class AjaxController
     public function updateDashboardsItemAssignation()
     {
         $controller = new Controller();
-        $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "finished"]);
+        $params = ["id", "finished"];
+        if (Utils::exists("id_dashboard_item")) {
+            $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
+            $params = ["id_dashboard_item", "start_date", "end_date", "assigned_to"];
+        }
+        $this->genericAjaxReturn(__FUNCTION__, $params);
     }
 
     //Function to queryDashboardsItemAssignation
