@@ -1,4 +1,4 @@
-<div class="recentlyCard text-dark row col-12 px-0 col-sm m-2 bg-white">
+<div class="recentlyCard text-dark row col-12 rounded px-0 col-sm m-2 bg-white">
     <div
         class="row recentlyCardDetails pl-3 flex-wrap border-bottom d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
 
