@@ -8,22 +8,32 @@ $(window).on("load", function () {
 
     $("main").addClass("scrollOnTop");
 
+    var oldScroll = 0;
+
     $("main").on("scroll", function () {
-        var current = $(this);
-        var scroll = current.scrollTop();
-        var maxScrollHeight = current.innerHeight();
-        var height = current.get(0).scrollHeight;
+        var $main = $(this);
+        var scroll = $main.scrollTop();
+        var maxScrollHeight = $main.innerHeight();
+        var height = $main.get(0).scrollHeight;
         //console.log(scroll, scroll + maxScrollHeight, height, (scroll + maxScrollHeight) == height);
 
         if (scroll == 0) {
-            current.addClass("scrollOnTop");
-            current.removeClass("scrollOnBottom");
+            $main.addClass("scrollOnTop");
+            $main.removeClass("scrollOnBottom");
         } else if (scroll + maxScrollHeight == height) {
-            current.addClass("scrollOnBottom");
-            current.removeClass("scrollOnTop");
+            $main.addClass("scrollOnBottom");
+            $main.removeClass("scrollOnTop");
         } else {
-            current.removeClass("scrollOnTop");
-            current.removeClass("scrollOnBottom");
+            $main.removeClass("scrollOnTop");
+            $main.removeClass("scrollOnBottom");
+        }
+
+        if (scroll > oldScroll) {
+            $main.removeClass("scrollingUp");
+            $main.addClass("scrollingDown");
+        } else {
+            $main.addClass("scrollingUp");
+            $main.removeClass("scrollingDown");
         }
     });
 
