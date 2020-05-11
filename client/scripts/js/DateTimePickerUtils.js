@@ -1,5 +1,5 @@
 class DateTimePickerUtils {
-    constructor(date, datepickerElement, onSelectDate) {
+    constructor(date, datepickerElement, onSelectDate, format = 'Y-m-d') {
         var instance = this;
         $.datetimepicker.setLocale('es');
 
@@ -14,8 +14,8 @@ class DateTimePickerUtils {
         }
 
         var datetimepicker = datepickerElement.datetimepicker({
-            value: new DateUtils(date, false).printDateWithFormat("Y.m.d"),
-            format: 'Y-m-d',
+            value: new DateUtils(date, false).printDateWithFormat(format.replace("-", ".")),
+            format: format,
             theme: 'dark',
             dayOfWeekStart: 1,
             allowTimes: timesArray,

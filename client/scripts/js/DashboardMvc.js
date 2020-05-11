@@ -1127,19 +1127,13 @@ class Controller {
             "title": "Asignar tarea",
             "content": `<form action="/daw/index.php?ctl=createDashboardItemAssignation" id="formAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row">
-                                <div class="md-form input-group col-sm">
+                                <div class="md-form col-sm">
                                     <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
                                     <label for="startDate">Fecha inicio</label>
-                                    <div class="input-group-append">
-                                        <input type="time" name="startDateTime" id="startDateTime">
-                                    </div>
                                 </div>
-                                <div class="md-form input-group col-sm">
+                                <div class="md-form col-sm">
                                     <input type="text" name="endDate" id="endDate" class="form-control text-white" aria-describedby="endDateTime">
                                     <label for="endDate">Fecha límite</label>
-                                    <div class="input-group-append">
-                                        <input type="time" name="endDateTime" id="endDateTime">
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-row userSearchContainer"></div>
@@ -1152,15 +1146,15 @@ class Controller {
 
                 var startDate = $("#startDate");
                 startDate.focus();
-                startDate.val(new DateUtils(new Date(), false).printDateWithFormat("Y-m-d h:i:s"));
+
+                var startDateUtils = new DateTimePickerUtils(new Date(), startDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
                 var newDate = new Date();
                 newDate.setDate(newDate.getDate() + 20);
 
                 var endDate = $("#endDate");
                 endDate.focus();
-                endDate.blur();
-                endDate.val(new DateUtils(newDate, false).printDateWithFormat("Y-m-d h:i:s"));
+                var endDateUtils = new DateTimePickerUtils(newDate, endDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
                 userSearch.input.addClass("text-white");
