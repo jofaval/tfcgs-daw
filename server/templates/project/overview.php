@@ -32,10 +32,12 @@ $modelInstance = Model::getInstance();
             <?php foreach ($actionGroups as $actionGroupTitle => $actionGroupDetails): if ($userAccessLevel < $actionGroupDetails["access"]): continue;endif;?>
             <div class="actionsGroup my-3">
                 <h4 class="actionsTitle text-white"><?php echo $actionGroupTitle; ?></h4>
-                <div class="actionsButton d-flex justify-content-space-between flex-wrap">
-                    <?php $actionGroup = $actionGroupDetails["actions"];foreach ($actionGroup as $action): if ($userAccessLevel >= $action["access"]): ?>
+                <div class="actionsButton px-auto px-sm-0 d-flex justify-content-space-between flex-wrap">
+                    <?php $actionGroup = $actionGroupDetails["actions"];?>
+                    <?php foreach ($actionGroup as $action): ?>
+                    <?php if ($userAccessLevel >= $action["access"]): ?>
                     <a href="<?php echo $action["link"]; ?>" title="<?php echo $action["name"]; ?>"
-                        class="action d-none d-sm-block view overlay zoom cursor-pointer .z-depth-1-half hoverable <?php echo $action["color"]; ?> m-2"
+                        class="action d-none d-sm-block view overlay zoom cursor-pointer z-depth-1-half hoverable <?php echo $action["color"]; ?> m-2"
                         id="action<?php echo $action["id"]; ?>">
                         <div class="actionIcon img-fluid waves-light h-100 center-elements text-white p-3">
                             <i class="fa fa-<?php echo $action["icon"]; ?>"></i>
@@ -58,7 +60,8 @@ $modelInstance = Model::getInstance();
                                 <?php echo $action["name"]; ?></p>
                         </div>
                     </a>
-                    <?php endif;endforeach;?>
+                    <?php endif;?>
+                    <?php endforeach;?>
                 </div>
             </div>
             <?php endforeach;?>
