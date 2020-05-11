@@ -605,7 +605,7 @@ class Controller {
                 "order": newOrder,
                 "id_dashboard_list": taskListID,
                 "id": movedData["taskItem"]["id"],
-                "moveForward": movedData["endingIndex"] > movedData["startingIndex"] ? 1 : 0,
+                //"moveForward": movedData["endingIndex"] > movedData["startingIndex"] ? 1 : 0,
             },
             success: function (result) {
                 console.log("mover de lista", result);

@@ -67,8 +67,16 @@ class DashboardItem implements CRUD
         $sqlUtils = new SQLUtils($modelInstance);
 
         $isMovingItem = !Utils::exists("title");
+        $oldData = $this->query()[0];
         if ($isMovingItem) {
-            $moveForward = Utils::getCleanedData("moveForward") != 0;
+            //$moveForward = Utils::getCleanedData("moveForward") != 0;
+            $moveForward = false;
+            $oldDashboardListId = $oldData["id_dashboard_list"];
+
+            if ($this->id_dashboard_list == $oldDashboardListId &&
+                $this->order >= $oldData["order"]) {
+                $moveForward = true;
+            }
 
             $id_dashboard_list = $this->id_dashboard_list;
             $order = $this->order;
@@ -82,7 +90,6 @@ class DashboardItem implements CRUD
             } else {
                 $toModify["order"] = $order + 1;
             }
-            $oldDashboardListId = $this->query()[0]["id_dashboard_list"];
         } else {
             $toModify = [
                 "title" => $this->title,
