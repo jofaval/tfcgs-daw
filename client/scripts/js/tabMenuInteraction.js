@@ -8,11 +8,13 @@ var tabElements = $(".tabs .tab");
 tabElements.hover(function () {
     onEnter($(this));
 }, function () {
-    onExit();
+    onExit($(this));
 });
 var activeElement = $(".tabs .tab.active");
 
 function onEnter(currentTab) {
+    activeElement.removeClass("text-primary");
+    currentTab.addClass("text-primary");
     tabIndicator.stop().animate({
         "width": currentTab.innerWidth(),
         "left": currentTab.offset().left - (currentTab.outerWidth() - currentTab.innerWidth()),
@@ -20,7 +22,9 @@ function onEnter(currentTab) {
     //tabIndicator.prependTo(`#${currentTab.prop("id")}`).show(400, 'swing', function () {});
 }
 
-function onExit() {
+function onExit(currentTab) {
+    currentTab.removeClass("text-primary");
+    activeElement.addClass("text-primary");
     tabIndicator.stop().animate({
         "width": activeElement.innerWidth(),
         "left": activeElement.offset().left - (activeElement.outerWidth() - activeElement.innerWidth()),
