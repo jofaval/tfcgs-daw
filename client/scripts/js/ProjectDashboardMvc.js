@@ -5,21 +5,22 @@ var $dashboardRow = $(`<div class="row dashboardCardRow d-flex flex-wrap justify
 var $dashboardPage = $(`<div class="dashboardsPage"></div>`);
 
 var $dashboardFlagBookmarked = $(`<div class="dashboardsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>`);
-var $dashboardFlagCreated = $(`<div class="dashboardsBtnCreated btn btn-sm btn-success">Created</div>`);
+var $dashboardFlagCreated = $(`<div class="dashboardsBtnCreated btn btn-sm btn-success text-dark">Created</div>`);
 var $dashboardFlagShared = $(`<div class="dashboardsBtnShared btn btn-sm btn-primary">Shared</div>`);
 
 var $dashboardCard = $(`
-<div class="dashboardCard text-dark row col-12 col-sm m-2 bg-white">
+<div class="dashboardCard text-dark row col-12 px-0 col-sm m-2 bg-white">
+    <img src="" alt="" class="dashboardCardBgImg object-fit-cover opacity-80 brightness-30 position-absolute w-100 h-100 z-index">
     <div
-        class="row dashboardCardDetails flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+        class="row dashboardCardDetails pl-3 z-index-overlap flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
         <a href="" class="btn btn-sm btn-primary dashboardCardBtnView">View</a>
         <!--div class="btn btn-sm btn-danger dashboardCardBtnDisable">Disable dashboard</div-->
-        <h5 class="dashboardCardTitle max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Dashboard title</h5>
+        <h5 class="dashboardCardTitle max-text-10 text-white text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Dashboard title</h5>
         <div class="dashboardCardBookmarkedIcon"></div>
         <div class="dashboardCardFlags float-right btn-group"></div>
     </div>
-    <a href="" class="dashboardReadMore">Read more...</a>
-    <div class="dashboardCardDescription max-text-20 text-overflow-ellipsis overflow-hidden text-justify my-2"></div>
+    <a href="" class="dashboardReadMore text-white">Read more...</a>
+    <div class="dashboardCardDescription text-white max-text-20 text-overflow-ellipsis pl-3 z-index-overlap-bottom overflow-hidden text-justify my-2"></div>
 </div>`);
 
 class Model {
@@ -338,6 +339,8 @@ class Controller {
         var url = `/daw/projects/id/${controller.model.projectId}/dashboards/${json.title}/`;
         dashboard.find(".dashboardCardBtnView").prop("href", url);
         dashboard.find(".dashboardReadMore").prop("href", url);
+
+        dashboard.find(".dashboardCardBgImg").prop("src", `/daw/img/projects/${controller.model.projectId}/dashboards/${json.title}/bg.png`);
 
         return dashboard;
     }
