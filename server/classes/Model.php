@@ -452,4 +452,25 @@ class Model extends PDO
         WHERE dashboard_item.id = :id";
         return $sqlUtils->complexQuery($queryString, ["id" => $id])[0];
     }
+
+    public function getRecentlyCreatred($id_project)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $queryString = "SELECT dashboard_item.creation_date, dashboard_item.id, dashboard_item.id_creator, dashboard_item.title,
+        username
+        FROM dashboard_item LEFT JOIN users on (dashboard_item.id_creator = users.id_client)
+        WHERE dashboard_item.enabled = 1 and dashboard_item.id in (
+            SELECT dashboard_item.id FROM dashboard_item
+            	WHERE dashboard_item.id_dashboard_list IN
+            (SELECT dashboard_list.id FROM dashboard_list
+            	WHERE dashboard_list.id_project = :id_project)
+        )
+        ORDER BY dashboard_item.creation_date ASC LIMIT 3";
+        $params = [
+            "id_project" => $id_project,
+        ];
+
+        return $sqlUtils->complexQuery($queryString, $params);
+    }
 }
