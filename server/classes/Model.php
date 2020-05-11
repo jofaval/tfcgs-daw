@@ -457,16 +457,17 @@ class Model extends PDO
     {
         $sqlUtils = new SQLUtils($this);
 
-        $queryString = "SELECT dashboard_item.creation_date, dashboard_item.id, dashboard_item.id_creator, dashboard_item.title,
+        $queryString = "SELECT dashboard_item.creation_date, dashboard_item.id, dashboard_item.id_creator, dashboard_item.title, dashboard_list.dashboard_title,
         username
         FROM dashboard_item LEFT JOIN users on (dashboard_item.id_creator = users.id_client)
+        LEFT JOIN dashboard_list on (dashboard_item.id_dashboard_list = dashboard_list.id)
         WHERE dashboard_item.enabled = 1 and dashboard_item.id in (
             SELECT dashboard_item.id FROM dashboard_item
             	WHERE dashboard_item.id_dashboard_list IN
             (SELECT dashboard_list.id FROM dashboard_list
             	WHERE dashboard_list.id_project = :id_project)
         )
-        ORDER BY dashboard_item.creation_date ASC LIMIT 3";
+        ORDER BY dashboard_item.creation_date DESC LIMIT 3";
         $params = [
             "id_project" => $id_project,
         ];
