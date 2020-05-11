@@ -1223,6 +1223,7 @@ class Controller {
                 endDate.focus();
                 var endDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.end_date).date, endDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
+                var assignationId;
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
                 userSearch.input.addClass("text-white");
                 userSearch.whenBtnSearchClicked = function (event) {
@@ -1241,6 +1242,7 @@ class Controller {
                             if (result !== false) {
                                 $("#startDate").val(result.start_date);
                                 $("#endDate").val(result.end_date);
+                                assignationId = result.id;
                                 $("#updateDashboard").prop("disabled", false);
                             } else {
                                 sendNotification("No se han podido encontrar los datos", "assignateTaskQueryFail");
@@ -1264,6 +1266,7 @@ class Controller {
                             if (result !== false) {
                                 $("#startDate").val(result.start_date);
                                 $("#endDate").val(result.end_date);
+                                assignationId = result.id;
                                 $("#updateDashboard").prop("disabled", false);
                             } else {
                                 sendNotification("No se han podido encontrar los datos", "assignateTaskQueryFail");
@@ -1290,10 +1293,10 @@ class Controller {
                         success: function (result) {
                             console.log(result);
                             if (result !== false) {
-                                sendNotification("Se ha asignato con éxito", "assignateTaskSuccess");
+                                sendNotification("Se ha modificado con éxito", "modifyAsignateTaskSuccess");
                                 modal.close();
                             } else {
-                                sendNotification("No se ha podido asignar", "assignateTaskFail");
+                                sendNotification("No se ha podido asignar", "modifyAsignateTaskFail");
                             }
                         }
                     });
@@ -1364,7 +1367,7 @@ class Controller {
         assignationCheckbox.prop("checked", taskItemData.finished != 0);
         assignationCheckbox.unbind("change");
         assignationCheckbox.on("change", function () {
-            assignationItem = this.dashboardAssignationModalCheckboxEvent(assignationCheckbox, controller, taskItemData, taskItem, assignationItem);
+            assignationItem = controller.dashboardAssignationModalCheckboxEvent(assignationCheckbox, controller, taskItemData, taskItem, assignationItem);
         });
 
         console.log("test", assignationCheckbox);
