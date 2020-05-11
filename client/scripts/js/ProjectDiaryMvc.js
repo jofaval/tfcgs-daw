@@ -165,37 +165,19 @@ class Controller {
         }, 2.5 * 1000);
 
         //datepickerElement.prop("readonly", true);
-        $.datetimepicker.setLocale('es');
 
         var startingDate = new Date(Date.parse(datepickerElement.val()));
         startingDate.setSeconds(0);
 
-        var timesArray = [];
+        var dateTimePickerUtils = new DateTimePickerUtils(startingDate, datepickerElement, function (ct, $input) {
+            var newDate = new DateUtils(ct, false).printDateWithFormat("Y-m-d");
+            $input.val(
+                newDate
+            );
+            controller.model.currentDate = ct;
 
-        var minutes = ["00", "15", "30", "45"]
-
-        for (let hourIndex = 0; hourIndex < 24; hourIndex++) {
-            for (let minuteIndex = 0; minuteIndex < 4; minuteIndex++) {
-                timesArray.push(`${hourIndex}:${minutes[minuteIndex]}`);
-            }
-        }
-
-        var datetimepicker = datepickerElement.datetimepicker({
-            value: new DateUtils(startingDate, false).printDateWithFormat("Y.m.d"),
-            format: 'Y-m-d',
-            theme: 'dark',
-            dayOfWeekStart: 1,
-            allowTimes: timesArray,
-            onSelectDate: function (ct, $input) {
-                var newDate = new DateUtils(ct, false).printDateWithFormat("Y-m-d");
-                $input.val(
-                    newDate
-                );
-                controller.model.currentDate = ct;
-
-                controller.inputDateFormatCheck(controller, $input, null);
-                controller.loadDateContent(controller);
-            }
+            controller.inputDateFormatCheck(controller, $input, null);
+            controller.loadDateContent(controller);
         });
     }
 
