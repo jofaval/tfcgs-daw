@@ -35,7 +35,7 @@
     bottom: .5em;
 }
 
-.tab {
+/* .tab {
     border-bottom: .5em solid transparent;
     transition: all 0.2s ease;
     padding-bottom: -.5em !important;
@@ -48,7 +48,7 @@
 
 .tabs:hover .tab.active {
     border-bottom: .5em solid transparent !important;
-}
+} */
 
 /* .projectCollaboratorCard {
     border-top-left-radius: 50rem !important;
