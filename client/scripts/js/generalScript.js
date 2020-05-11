@@ -35,6 +35,7 @@ $(window).on("load", function () {
             $main.addClass("scrollingUp");
             $main.removeClass("scrollingDown");
         }
+        oldScroll = scroll;
     });
 
     $("#backToTop").on("click", function (event) {
