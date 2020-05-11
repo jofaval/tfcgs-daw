@@ -127,12 +127,13 @@ foreach ($actionGroups as $actionGroupTitle => $actionGroupDetails):
         if ($userAccessLevel >= $action["access"]):
         ?>
                     <a href="<?php echo $action["link"]; ?>"
-                        class="action cursor-pointer <?php echo $action["color"]; ?> m-2"
+                        class="action cursor-pointer .z-depth-1-half hoverable <?php echo $action["color"]; ?> m-2"
                         id="action<?php echo $action["id"]; ?>">
-                        <div class="actionIcon h-75 text-white p-3">
+                        <div class="actionIcon waves-light h-75 text-white p-3">
                             <i class="fa fa-<?php echo $action["icon"]; ?>"></i>
                         </div>
-                        <div class="actionTitle h-25 text-center d-flex justify-content-center text-white bg-dark">
+                        <div
+                            class="actionTitle h-25 .z-depth-1 z-index-overlap-bottom text-center d-flex justify-content-center text-white bg-dark">
                             <p class="align-self-center fixed-line-spacing mb-0"><?php echo $action["name"]; ?></p>
                         </div>
                     </a>
