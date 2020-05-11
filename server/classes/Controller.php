@@ -330,7 +330,6 @@ class Controller
                 switch ($subView) {
                     case 'assingedTasks':
                         $direction = $this->getAssignedTasks($id, $viewParams);
-
                         break;
                 }
             }
@@ -420,8 +419,35 @@ class Controller
     {
         $userId = Sessions::getInstance()->getSession("userId");
         $limit = "";
-        $viewParams["assignedTasks"] = Model::getInstance()->getAssignedDashboardItems($id, $userId, $limit);
+        $assignedTasksByYouUnfinished = [];
+        $assignedTasksToYouUnfinished = [];
+        $assignedTasksByYouFinished = [];
+        $assignedTasksToYouFinished = [];
+        $assignedTasks = Model::getInstance()->getAssignedDashboardItems($id, $userId, $limit);
+        $viewParams["assignedTasks"] = $assignedTasks;
         $viewParams["userId"] = $userId;
+
+        foreach ($assignedTasks as $assignedTask) {
+            if ($assignedTask["assigned_to"] == $userId) {
+                if ($assignedTask["finished"] != 0) {
+                    $assignedTasksToYouUnfinished[] = $assignedTask;
+                } else {
+                    $assignedTasksToYouFinished[] = $assignedTask;
+                }
+            }
+            if ($assignedTask["assigned_by"] == $userId) {
+                if ($assignedTask["finished"] != 0) {
+                    $assignedTasksByYouUnfinished[] = $assignedTask;
+                } else {
+                    $assignedTasksByYouFinished[] = $assignedTask;
+                }
+            }
+        }
+
+        $viewParams["assignedTasksByYouUnfinished"] = $assignedTasksByYouUnfinished;
+        $viewParams["assignedTasksToYouUnfinished"] = $assignedTasksToYouUnfinished;
+        $viewParams["assignedTasksByYouFinished"] = $assignedTasksByYouFinished;
+        $viewParams["assignedTasksToYouFinished"] = $assignedTasksToYouFinished;
 
         return "project/assignedTasks";
     }

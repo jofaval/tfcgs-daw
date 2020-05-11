@@ -112,12 +112,10 @@ $breadcrumb = [
                             <div id="assignedByYouUnfinishedCollapse" class="collapse" role="tabpanel"
                                 aria-labelledby="headingTwo1" data-parent="#asignedByYouUnfinished">
                                 <div class="card-body max-height-20 overflow-y-auto">
-                                    <?php foreach ($viewParams["assignedTasks"] as $assignedTask):
-    if ($assignedTask["finished"] == 0 && ($assignedTask["assigned_by"] == $viewParams["userId"])):
-        $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
-        $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
-        require __DIR__ . "/../components/cards/assignedCard.php";
-    endif;
+                                    <?php foreach ($viewParams["assignedTasksByYouUnfinished"] as $assignedTask):
+    $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
+    $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
+    require __DIR__ . "/../components/cards/assignedCard.php";
 endforeach;?>
                                 </div>
                             </div>
@@ -140,12 +138,10 @@ endforeach;?>
                             <div id="assignedByYouFinishedCollapse" class="collapse" role="tabpanel"
                                 aria-labelledby="headingTwo1" data-parent="#assignedByYouFinished">
                                 <div class="card-body max-height-20 overflow-y-auto">
-                                    <?php foreach ($viewParams["assignedTasks"] as $assignedTask):
-    if ($assignedTask["finished"] != 0 && ($assignedTask["assigned_by"] == $viewParams["userId"])):
-        $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
-        $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
-        require __DIR__ . "/../components/cards/assignedCard.php";
-    endif;
+                                    <?php foreach ($viewParams["assignedTasksByYouFinished"] as $assignedTask):
+    $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
+    $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
+    require __DIR__ . "/../components/cards/assignedCard.php";
 endforeach;?>
                                 </div>
                             </div>
@@ -170,12 +166,10 @@ endforeach;?>
                             <div id="assignedToYouUnfinsihedCollapse" class="collapse" role="tabpanel"
                                 aria-labelledby="headingTwo1" data-parent="#assignedToYouUnfinsihed">
                                 <div class="card-body max-height-20 overflow-y-auto">
-                                    <?php foreach ($viewParams["assignedTasks"] as $assignedTask):
-    if ($assignedTask["finished"] == 0 && ($assignedTask["assigned_to"] == $viewParams["userId"])):
-        $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
-        $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
-        require __DIR__ . "/../components/cards/assignedCard.php";
-    endif;
+                                    <?php foreach ($viewParams["assignedTasksToYouUnfinished"] as $assignedTask):
+    $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
+    $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
+    require __DIR__ . "/../components/cards/assignedCard.php";
 endforeach;?>
                                 </div>
                             </div>
@@ -198,12 +192,10 @@ endforeach;?>
                             <div id="assignedToYouFinsihedCollapse" class="collapse" role="tabpanel"
                                 aria-labelledby="headingTwo1" data-parent="#assignedToYouFinsihed">
                                 <div class="card-body max-height-20 overflow-y-auto">
-                                    <?php foreach ($viewParams["assignedTasks"] as $assignedTask):
-    if ($assignedTask["finished"] != 0 && ($assignedTask["assigned_to"] == $viewParams["userId"])):
-        $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
-        $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
-        require __DIR__ . "/../components/cards/assignedCard.php";
-    endif;
+                                    <?php foreach ($viewParams["assignedTasksToYouFinished"] as $assignedTask):
+    $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
+    $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
+    require __DIR__ . "/../components/cards/assignedCard.php";
 endforeach;?>
                                 </div>
                             </div>
