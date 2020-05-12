@@ -33,18 +33,21 @@ class Modal {
             "content": settings["content"],
             "theme": THEME
         });
+        console.log(modal);
+
         settings["onOpen"](modal);
+        modal["$overlay"].addClass("d-flex justify-content-center align-content-center");
+        modal["$overlay"].find(".sweet-modal-content").addClass("p-0 p-sm-5 m-auto")
+            .prepend(modal["$overlay"].find(".sweet-modal-close").removeClass("position-absolute").addClass("float-right position-sticky"));
+        modal["$overlay"].find(".sweet-modal-box.alert").css({
+            "top": "0px", //35%
+            "marginTop": "0px",
+            "position": "unset",
+            /* "maxHeight": "100vh", */
+        }).addClass("m-auto overflow-auto");
 
         modal.params["onOpen"] = function () {
             //settings["onOpen"](modal);
-            modal.params["$overlay"].find(".sweet-modal-content").addClass("h-100 p-0 p-sm-5 m-auto")
-                .prepend(modal.params["$overlay"].find(".sweet-modal-close").removeClass("position-absolute").addClass("float-right position-sticky"));
-            modal.params["$overlay"].find(".sweet-modal-box.alert").css({
-                "top": "0px", //35%
-                "marginTop": "0px",
-                "position": "unset",
-                /* "maxHeight": "100vh", */
-            }).addClass("m-auto overflow-auto");
 
             modal.params["$overlay"].find(".sweet-modal-overlay").addClass("d-flex justify-content-center justify-items-center align-content-center align-items-center");
         };
