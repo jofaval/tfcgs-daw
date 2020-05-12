@@ -1125,7 +1125,7 @@ class Controller
             }
 
             if ($friendlyURL) {
-                $htaccessRoute = "\n#" . $routeName . "\nRewriteRule ^" . $routeName . "[/]?$ ./index.php?ctl=" . $routeName . "[L]";
+                $htaccessRoute = "\n#" . $routeName . "\nRewriteRule ^" . $routeName . "[/]?$ ./index.php?ctl=" . $routeName . " [L]";
 
                 $fileWritter = fopen(__DIR__ . "/../../client/.htaccess", "a+");
                 fwrite($fileWritter, $htaccessRoute);
