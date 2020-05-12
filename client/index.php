@@ -91,11 +91,11 @@ if (isset($_REQUEST["ctl"])) {
     }
 }
 
-if (!Config::$developmentMode) {
-    if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
-        header('Location: /daw/not-signed-in/');
-    }
+//if (!Config::$developmentMode) {
+if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
+    header('Location: /daw/not-signed-in/');
 }
+//}
 
 // Ejecución del controlador asociado a la ruta
 $controlador = $map[$ruta];
