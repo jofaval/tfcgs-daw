@@ -10,7 +10,7 @@
     [
         "name" => "Go back home",
         "link" => "/daw/",
-        "active" => false,
+        "active" => true,
         "icon" => "home",
     ],
 ];?>
