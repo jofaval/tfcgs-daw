@@ -58,7 +58,7 @@ var $dashboardModal = $(`
 <div>
     <div class="col text-left">
     <span class="float-left my-auto mr-2 align-self-center fa fa-pencil h3" style="font-size: 1.75rem !important;"></span><h3 class="dashboardModalTitle" contenteditable="true">Task title</h3>
-        <small class="dashboardModalListNameContainer text-muted">in list <a href=""
+        <small class="dashboardModalListNameContainer text-muted">en la lista <a href=""
                 class="dashboardModalListName">list</a></small>
         <div class="row">
             <div class="col-sm-8 order-2 order-sm-1">
@@ -455,16 +455,18 @@ class View {
     }
 
     scrollTo(element) {
-        $(element).get(0).scrollIntoView({
+        /* $(element).get(0).scrollIntoView({
             behavior: "smooth",
-            block: 'nearest',
+            block: 'nearest', 
             inline: 'start'
-        });
+        }); */
         //$(".listContainer").scrollLeft(element.offset().left);
-        $(".listContainer, main, body, html").scrollTop(0);
+        $(".listContainer").scrollLeft(element.offset().left);
+        $(window).scrollTop(0);
+        /* $(".listContainer, main, body, html").scrollTop(0);
         setTimeout(() => {
             $(window).scrollTop(0);
-        }, 250);
+        }, 250); */
     }
 
     visualizeModalComment(container, commentData) {
@@ -554,25 +556,17 @@ class Controller {
         });
 
         $(".listContainer").scroll(function () {
-            console.log("test");
-
             $(".taskListContainer").each(function () {
                 var current = $(this);
                 if ($(".listContainer").scrollLeft() >= current.offset().left) {
-                    controller.addIdToURL(current.prop("id"));
+                    controller.addIdToURL(controller, current.prop("id"));
                 }
             })
         })
     }
 
-    addIdToURL(id) {
-        var URL = window.location.href;
-        if (URL.includes("#")) {
-            URL = URL.substr(0, URL.indexOf("#"));
-            console.log(URL);
-
-        }
-        changeURL(`${URL}#${id}`);
+    addIdToURL(controller, id) {
+        changeURL(`/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${id}`);
     }
 
     deleteDashboardEvent(controller, event) {
@@ -914,13 +908,31 @@ class Controller {
         console.log(taskItemData);
         controller.view.scrollTo(taskItem);
 
-        changeURL(`/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/task/id/${taskItemData.id}/`);
+        var urlBaseInDashboardModal = `/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/task/id/${taskItemData.id}/`;
+
+        changeURL(urlBaseInDashboardModal);
 
         var inputs = $("input, textarea");
         inputs.focus();
         inputs.first().focus();
         inputs.first().blur();
         console.log(inputs);
+
+        controller.model.findListWithId(taskItemData.id_dashboard_list, function (listElement) {
+            $(".dashboardModalListName").html(listElement.title)
+                .prop("href", `/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${listElement.id}`)
+                .on("click", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+
+                    console.log($(`#${listElement.id}`));
+
+                    controller.view.scrollTo($(`#${listElement.id}`));
+                    modal.close();
+
+                    return false;
+                });
+        });
 
         if (taskItemData.assigned === true) {
             this.dashboardModalAssignedTask(taskItemData, controller, taskItem);
@@ -934,6 +946,7 @@ class Controller {
         $(".dashboardModalCommentBtn").on("click", function () {
             controller.createModalCommentEvent(taskItemData, controller, commentsContainer);
         });
+
         //comments
         $.ajax({
             url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
