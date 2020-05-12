@@ -139,6 +139,17 @@ class Model {
     constructor() {
         this.projectId = this.getProjectId();
         this.title = this.getDashboardtitle().trim();
+
+        var URL = window.location.href;
+        var splittedURL = URL.split("/");
+
+        if (splittedURL.length >= 11) {
+            this.taskIdFromURL = splittedURL[11];
+        }
+
+        if (URL.includes("#")) {
+            this.listIdFromURL = URL.substr(URL.lastIndexOf("#") + 1);
+        }
     }
 
     getProjectId() {
@@ -169,6 +180,43 @@ class Model {
                 whenFinished(dashboardElements);
             }
         });
+    }
+
+    findListWithId(id, whenFound) {
+        var model = this;
+
+        var dashboardLists = model.dashboardElements;
+        for (const listKey in dashboardLists) {
+            if (dashboardLists.hasOwnProperty(listKey)) {
+                const listElement = dashboardLists[listKey];
+                if (listElement.id == id) {
+                    whenFound(listElement);
+                    break;
+                }
+            }
+        }
+    }
+
+    findDashboardItemWithId(id, whenFound) {
+        var model = this;
+
+        var dashboardLists = model.dashboardElements;
+        for (const listKey in dashboardLists) {
+            if (dashboardLists.hasOwnProperty(listKey)) {
+                const listElement = dashboardLists[listKey];
+                var itemsFromListElement = listElement.items;
+                for (const taskKey in itemsFromListElement) {
+                    if (itemsFromListElement.hasOwnProperty(taskKey)) {
+                        const taskElement = itemsFromListElement[taskKey];
+                        if (taskElement.id == id) {
+                            whenFound(taskElement);
+                            $(taskElement.html).trigger("click");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     addDashboardList(title, whenFinished) {
@@ -482,6 +530,14 @@ class Controller {
                         });
                     }
                 }
+            });
+
+            controller.model.findListWithId(controller.model.listIdFromURL, function (listElement) {
+                controller.view.scrollTo(listElement.html);
+            });
+
+            controller.model.findDashboardItemWithId(controller.model.taskIdFromURL, function (taskElement) {
+                $(taskElement.html).trigger("click");
             });
         });
 

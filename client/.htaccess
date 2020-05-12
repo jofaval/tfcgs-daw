@@ -59,6 +59,7 @@ RewriteRule ^projects/id/([^/]+)/tasklist/id[/]?$ ./index.php?ctl=project&id=$1 
 RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2 [L]
 RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)/change-image[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2&view=changeImage [L]
 RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)/json[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2&view=json [L]
+RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)/task/id/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2&taskId=$3 [L]
 #Empty params redirection
 RewriteRule ^projects/id/([^/]+)/dashboards/id[/]?$ ./index.php?ctl=project&id=$1 [L]
 
