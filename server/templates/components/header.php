@@ -18,7 +18,7 @@ $header = [
         "icon" => "folder",
         "access" => 0,
     ],
-    "About" => [
+    "Acerca de" => [
         "link" => "/daw/about/",
         "active" => $currentPage == "About",
         "icon" => "info",
