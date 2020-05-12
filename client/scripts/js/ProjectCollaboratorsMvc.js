@@ -340,6 +340,7 @@ class Controller {
     }
 
     addPaginationItem(controller) {
+        var currentPaginationIndex = controller.model.paginationIndex;
         var paginationItem = controller.view.visualizePaginationItem(controller.model.paginationIndex);
         controller.model.paginationIndex++;
 
