@@ -1251,4 +1251,10 @@ class Controller
 
         return $result;
     }
+
+    public function maintenance()
+    {
+        require_once __DIR__ . "/../templates/maintenance.php";
+    }
+
 }

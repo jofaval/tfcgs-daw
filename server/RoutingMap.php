@@ -230,3 +230,5 @@ $map['searchUsers'] = array('controller' => 'AjaxController', 'action' => 'searc
 $map['getDashboardItemDetails'] = array('controller' => 'AjaxController', 'action' => 'getDashboardItemDetails', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //about
 $map['about'] = array('controller' => 'Controller', 'action' => 'about', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//maintenance
+$map['maintenance'] = array('controller' => 'Controller', 'action' => 'maintenance', 'access' => Config::$ACCESS_LEVEL_GUEST);
