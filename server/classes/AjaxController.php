@@ -17,6 +17,8 @@ class AjaxController
                 $this->throwIfExceptionIfDoesntExist($requiredParams);
             }
 
+            ValidatePopoFields::validatePopoFields($requiredParams, $_REQUEST);
+
             if (method_exists($mainController, $functionName)) {
                 $result = call_user_func([new $mainController, $functionName]);
 
