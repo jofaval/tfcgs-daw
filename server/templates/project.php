@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "projects.css", "project.css"];?>
-<?php $optionalScripts = [/*"js/ProjectManagementMvc.js"*/"js/tabMenuInteraction.js", "webcomponents/TimeFromMoment.js"];?>
+<?php $optionalScripts = [/*"js/ProjectManagementMvc.js"*/"js/tabMenuInteraction.js", "webcomponents/UserSearchInput.js", "webcomponents/TimeFromMoment.js"];?>
 <?php $title = $viewParams["title"];?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>

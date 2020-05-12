@@ -151,7 +151,7 @@ class Model {
         });
     }
 
-    findCollaborator(whenFound) {
+    findCollaborator(username, whenFound) {
         var model = this;
 
         for (const collaboratorKey in model.collaborators) {
@@ -391,21 +391,19 @@ class Controller {
         var modal = Modal.modal({
             "title": "Invitar colaborador/a",
             "content": `<form action="/daw/index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
-                            <div class="md-form">
-                                <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
-                                <label for="username">Username</label>
-                            </div>
+                            <div class="usernameSearchContainer"></div>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                                     <input class="btn btn-primary w-100" type="submit" name="createCollaborators" id="createCollaborators" value="Invitar colaborador/a">
                             </div>
                         </form>`,
             "onOpen": function () {
                 $("#username").focus();
+                var userSearch = new UserSearchInput($(".usernameSearchContainer"));
                 $("#formCreateCollaborator").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
 
-                    var username = $("#username").val();
+                    var username = userSearch.input.val();
 
                     controller.model.inviteCollaborator(username, function (result) {
                         console.log(result);
@@ -437,21 +435,18 @@ class Controller {
         var modal = Modal.modal({
             "title": "Eliminar colaborador/a",
             "content": `<form action="/daw/index.php?ctl=deleteCollaborators" id="formRemoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
-                            <div class="md-form">
-                                <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
-                                <label for="username">Username</label>
-                            </div>
+                            <div class="usernameSearchContainer"></div>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                                     <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Eliminar colaborador/a">
                             </div>
                         </form>`,
             "onOpen": function () {
-                $("#username").focus();
+                var userSearch = new UserSearchInput($(".usernameSearchContainer"));
                 $("#formRemoveCollaborator").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
 
-                    var username = $("#username").val();
+                    var username = userSearch.input.val();
 
                     controller.model.removeCollaborator(username, function (result) {
                         console.log(result);
@@ -549,17 +544,14 @@ class Controller {
         var modal = Modal.modal({
             "title": "Cambiar rol",
             "content": `<form action="/daw/index.php?ctl=updateCollaborators" id="formChangeCollaboratorRole" class="col-sm-10  p-3 mx-auto" method="POST">
-                            <div class="md-form">
-                                <input type="text" placeholder="" id="username" name="username" value="jofaval" class="form-control text-white">
-                                <label for="username">Username</label>
-                            </div>
+                            <div class="usernameSearchContainer"></div>
                             <select class="browser-default mb-3 custom-select" name="role" id="role"></select>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                                     <input class="btn btn-primary w-100" type="submit" name="updateCollaborators" id="updateCollaborators" value="Cambiar rol">
                             </div>
                         </form>`,
             "onOpen": function () {
-                $("#username").focus();
+                var userSearch = new UserSearchInput($(".usernameSearchContainer"));
 
                 controller.model.getProjectCollaborationRoles(function (result) {
                     if (result !== false) {
@@ -580,14 +572,14 @@ class Controller {
                     var event = event || window.event;
                     event.preventDefault();
 
-                    var username = $("#username").val();
+                    var username = userSearch.input.val();
                     var role = $("#role").val();
                     var selectedOption = $("#role option:selected");
 
                     controller.model.changeCollaboratorRole(username, role, function (result) {
                         console.log(result);
                         if (result !== false) {
-                            controller.model.findCollaborator(function (key, collaborator) {
+                            controller.model.findCollaborator(username, function (key, collaborator) {
                                 controller.model.collaborators[key].collaborationRole = selectedOption.text();
                                 controller.model.collaborators[key].collaborationRoleDescription = selectedOption.prop("title");
                             });
