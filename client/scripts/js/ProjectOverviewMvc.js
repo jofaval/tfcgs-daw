@@ -399,6 +399,7 @@ class Controller {
             "onOpen": function () {
                 $("#username").focus();
                 var userSearch = new UserSearchInput($(".usernameSearchContainer"));
+                userSearch.input.addClass("text-white");
                 $("#formCreateCollaborator").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -442,6 +443,7 @@ class Controller {
                         </form>`,
             "onOpen": function () {
                 var userSearch = new UserSearchInput($(".usernameSearchContainer"));
+                userSearch.input.addClass("text-white");
                 $("#formRemoveCollaborator").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -552,6 +554,7 @@ class Controller {
                         </form>`,
             "onOpen": function () {
                 var userSearch = new UserSearchInput($(".usernameSearchContainer"));
+                userSearch.input.addClass("text-white");
 
                 controller.model.getProjectCollaborationRoles(function (result) {
                     if (result !== false) {
