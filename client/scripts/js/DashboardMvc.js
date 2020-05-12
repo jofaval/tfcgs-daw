@@ -383,6 +383,7 @@ class View {
 
         clonedTaskList.find(".taskListId").text(json.id);
         clonedTaskList.find(".taskListTitleText").text(json.title);
+        clonedTaskList.prop("id", json.id);
         json["html"] = clonedTaskList;
 
         $("#taskListInputCreation").before(clonedTaskList);
@@ -546,6 +547,27 @@ class Controller {
         $(".dashboardBtnDelete").on("click", function (event) {
             controller.deleteDashboardEvent(controller, event);
         });
+
+        $(".listContainer").scroll(function () {
+            console.log("test");
+
+            $(".taskListContainer").each(function () {
+                var current = $(this);
+                if ($(".listContainer").scrollLeft() >= current.offset().left) {
+                    controller.addIdToURL(current.prop("id"));
+                }
+            })
+        })
+    }
+
+    addIdToURL(id) {
+        var URL = window.location.href;
+        if (URL.includes("#")) {
+            URL = URL.substr(0, URL.indexOf("#"));
+            console.log(URL);
+
+        }
+        changeURL(`${URL}#${id}`);
     }
 
     deleteDashboardEvent(controller, event) {
