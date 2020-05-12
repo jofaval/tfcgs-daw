@@ -75,4 +75,4 @@ RewriteRule ^profile/reset-profile-image[/]?$ ./index.php?ctl=profile&reset=prof
 RewriteRule ^profile/reset-background-image[/]?$ ./index.php?ctl=profile&reset=bgImage [L]
 RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]
 #about
-RewriteRule ^about[/]?$ ./index.php?ctl=about[L]
+RewriteRule ^about[/]?$ ./index.php?ctl=about [L]
