@@ -799,12 +799,12 @@ class Controller {
                 "title": "",
                 "content": $dashboardModal.html(),
                 "onOpen": function (modal) {
-
                     controller.onOpenDashboardModal(modal, taskItemData, taskItem, controller);
                     controller.view.scrollTo(taskItem);
                 },
                 "onClose": function () {
                     controller.view.scrollTo(taskItem);
+                    changeURL(`/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/`);
                 },
             });
         });
@@ -885,6 +885,9 @@ class Controller {
 
     onOpenDashboardModal(modal, taskItemData, taskItem, controller) {
         console.log(taskItemData);
+        controller.view.scrollTo(taskItem);
+
+        changeURL(`/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/task/id/${taskItemData.id}/`);
 
         var inputs = $("input, textarea");
         inputs.focus();
@@ -984,7 +987,6 @@ class Controller {
         if (taskItemData.enabled != 0) {
             $("#dashboardModalActionDisableDashboardItem").show();
             $("#dashboardModalActionEnableDashboardItem").hide();
-            taskItem.remove();
         } else {
             $("#dashboardModalActionDisableDashboardItem").hide();
             $("#dashboardModalActionEnableDashboardItem").show();
