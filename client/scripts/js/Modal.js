@@ -49,7 +49,7 @@ class Modal {
         modal.params["onOpen"] = function () {
             //settings["onOpen"](modal);
 
-            modal.params["$overlay"].find(".sweet-modal-overlay").addClass("d-flex justify-content-center justify-items-center align-content-center align-items-center");
+            modal["$overlay"].find(".sweet-modal-overlay").addClass("d-flex justify-content-center justify-items-center align-content-center align-items-center");
         };
 
         modal.params["onClose"] = function () {
