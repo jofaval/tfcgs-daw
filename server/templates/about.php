@@ -30,8 +30,11 @@ $breadcrumb = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
     <meta name="description" content="Origen">
+    <link rel="shortcut icon" href="/daw/img/branding/favicon-16x16.png" type="image/png">
+    <link rel="shortcut icon" href="/daw/img/branding/favicon-32x32.png" type="image/png">
+    <link rel="shortcut icon" href="/daw/img/branding/favicon-96x96.png" type="image/png">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Document</title>
+    <title>Acerca de Origen</title>
     <link rel="stylesheet" href="/daw/styles/about.css">
 </head>
 
@@ -44,40 +47,34 @@ $breadcrumb = [
     <div class="navigation">
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#team">Team</a></li>
+            <li><a href="#about">Sobre nosotros</a></li>
+            <li><a href="#pricing">Precios</a></li>
+            <li><a href="#team">Equipo</a></li>
             <li><a href="#faqs">FAQs</a></li>
-            <li><a href="#get_started">Get Started</a></li>
+            <li><a href="#get_started">Comienza</a></li>
         </ul>
         <input type="checkbox" name="menuDisplay" id="menuDisplay">
     </div>
     <div id="home" class="parallax_section_1">
         <div class="caption">
-            <span class="border">Life organizer</span>
+            <span class="border">Origen</span>
         </div>
     </div>
 
 
     <div id="about">
         <div>
-            <h3>What's life organizer?</h3>
+            <h3>¿Qué es origen?</h3>
             <br>
-            <p>Life organizer is a project developed by one person with the idea behind of making life eaiser by
-                providing
-                tools that help us manage
-                the chaos we may live from time to time; life includes work, family and friends, personal projects but
-                also
-                some bussiness projects. This won't automatically create and do life for you, that's not about it, but
-                it
-                will be an extra help.</p>
+            <p>Se pretende proporcionar una gestión básica de cualquier tipo de proyecto con un conjunto de herramientas
+                unificadas en una única plataforma de modo que todo sea más intuitivo y práctico.</p>
         </div>
     </div>
 
 
     <div id="pricing" class="parallax_section_2">
         <div class="caption">
-            <span class="border">PRICING</span>
+            <span class="border">PRECIOS</span>
         </div>
     </div>
 
@@ -87,59 +84,58 @@ $breadcrumb = [
             <div class="pricing_card jadeite">
                 <div>
                     <p>
-                        Jadeite
+                        Jadeita
                     </p>
                     <h3>
-                        FREE plan! <br> <strong>0€/month</strong>
+                        Plan gratis! <br> <strong>0€/mes</strong>
                     </h3>
                     <ul>
-                        <li>Access to the to-do list</li>
-                        <li>Access to the friends network</li>
-                        <li>Access to shared projects</li>
+                        <li>Acceso al tablero</li>
+                        <li>Acceso a proyectos compartidos</li>
                     </ul>
                 </div>
                 <a href="#0">
-                    Buy
+                    Comprar
                 </a>
             </div>
             <div class="pricing_card entropy">
                 <div>
                     <p>
-                        Entropy
+                        Entropía
                     </p>
                     <h3>
-                        PRO plan <br> <strong>9.95€/month</strong>
+                        Plan profesional <br> <strong>9.95€/mes</strong>
                     </h3>
                     <ul>
-                        <li>Access to all the <strong class="draconic">draconic</strong> plan's perks</li>
-                        <li>Create your own text styles</li>
-                        <li>Shareble to everyone you want</li>
-                        <li>Create unlimited projects</li>
-                        <li>More advanced project manager</li>
-                        <li>Customize the app color theme</li>
+                        <li>Acceso a todas las ventajas del <strong class="draconic">draconic</strong></li>
+                        <li>Crea tus propios estilos de texto</li>
+                        <li>Compartelo con quien quieras</li>
+                        <li>Crea proyectos ilimitados</li>
+                        <li>Gestor de proyecto más avanzado</li>
+                        <li>Cambia el color de la aplicación a tu gusto</li>
                     </ul>
                 </div>
                 <a href="#0">
-                    Buy
+                    Comprar
                 </a>
             </div>
             <div class="pricing_card draconic">
                 <div>
                     <p>
-                        Draconic
+                        Dracónico
                     </p>
                     <h3>
-                        Start plan<br> <strong>4.95€/month</strong>
+                        Plan principiante<br> <strong>4.95€/mes</strong>
                     </h3>
                     <ul>
-                        <li>Access to all the <strong class="jadeite">jadeite</strong>'s perks</li>
-                        <li>Access to the project manager</li>
-                        <li>Create up to 5 projects</li>
-                        <li>Shareble up to 3 persons, each project</li>
+                        <li>Acceso a todas las ventajas de <strong class="jadeite">jadeita</strong></li>
+                        <li>Acceso al gestor de proyectos</li>
+                        <li>Crea hasta proyectos</li>
+                        <li>Comparte cada proyecto con hasta 5 personas</li>
                     </ul>
                 </div>
                 <a href="#0">
-                    Buy
+                    Comprar
                 </a>
             </div>
         </div>
@@ -147,8 +143,7 @@ $breadcrumb = [
 
     <div id="team" class="parallax_section_3">
         <div class="caption">
-            <span class="border">DEVELOPMENT
-                TEAM</span>
+            <span class="border">EQUIPO DE DESARROLLO</span>
         </div>
     </div>
 
@@ -159,22 +154,22 @@ $breadcrumb = [
                 <div class="card">
                     <img src="/daw/img/default.png" alt="">
                     <h2>Pepe Fabra Valverde</h2>
-                    <h3>CEO & Founder</h3>
+                    <h3>CEO & Fundador</h3>
                 </div>
                 <div class="card">
                     <img src="/daw/img/default.png" alt="">
                     <h2>Pepe Fabra Valverde</h2>
-                    <h3>Main Developer</h3>
+                    <h3>Jefe de desarrollo</h3>
                 </div>
                 <div class="card">
                     <img src="/daw/img/default.png" alt="">
                     <h2>Pepe Fabra Valverde</h2>
-                    <h3>Graphic Designer</h3>
+                    <h3>Diseñador gráfico</h3>
                 </div>
                 <div class="card">
                     <img src="/daw/img/default.png" alt="">
                     <h2>Pepe Fabra Valverde</h2>
-                    <h3>Marketing Manager</h3>
+                    <h3>Jefe de marketing</h3>
                 </div>
             </div>
         </div>
@@ -188,31 +183,31 @@ $breadcrumb = [
     <div class="content_block">
         <div class="detail_shape"></div>
         <div style="padding: 5rem !important;">
-            <button class="accordion" style="border-radius: 0 !important;">Generic question number 1</button>
+            <button class="accordion" style="border-radius: 0 !important;">Pregunta genérica 1</button>
             <div class="panel">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
                     blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
                     consequuntur delectus voluptate.</p>
             </div>
-            <button class="accordion" style="border-radius: 0 !important;">Generic question number 2</button>
+            <button class="accordion" style="border-radius: 0 !important;">Pregunta genérica 2</button>
             <div class="panel">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
                     blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
                     consequuntur delectus voluptate.</p>
             </div>
-            <button class="accordion" style="border-radius: 0 !important;">Generic question number 3</button>
+            <button class="accordion" style="border-radius: 0 !important;">Pregunta genérica 3</button>
             <div class="panel">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
                     blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
                     consequuntur delectus voluptate.</p>
             </div>
-            <button class="accordion" style="border-radius: 0 !important;">Generic question number 4</button>
+            <button class="accordion" style="border-radius: 0 !important;">Pregunta genérica 4</button>
             <div class="panel">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
                     blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
                     consequuntur delectus voluptate.</p>
             </div>
-            <button class="accordion" style="border-radius: 0 !important;">Generic question number 5</button>
+            <button class="accordion" style="border-radius: 0 !important;">Pregunta genérica 5</button>
             <div class="panel">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium suscipit placeat soluta quae
                     blanditiis nulla iusto aliquid nostrum, hic itaque dicta in non vero. Expedita quos sint
@@ -223,7 +218,7 @@ $breadcrumb = [
 
     <div id="get_started" class="parallax_section_4">
         <div class="caption">
-            <span class="border"><a href="/daw/">LET'S GET STARTED!</a></span>
+            <span class="border"><a href="/daw/">¡VAMOS A EMPEZAR!</a></span>
         </div>
     </div>
 </body>
