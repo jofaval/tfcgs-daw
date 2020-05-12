@@ -42,8 +42,14 @@ if ($ctl == "") {
 }
 
 if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls)) {
-    header("Location: /daw/not-user-agent/");
+    header('Location: /daw/notuseragent/');
 }
+
+//if (!Config::$developmentMode) {
+if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
+    header("Location: /daw/notsigned/");
+}
+//}
 
 /*
  * Access
@@ -90,12 +96,6 @@ if (isset($_REQUEST["ctl"])) {
         $ruta = "projects";
     }
 }
-
-//if (!Config::$developmentMode) {
-if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
-    header('Location: /daw/not-signed-in/');
-}
-//}
 
 // Ejecución del controlador asociado a la ruta
 $controlador = $map[$ruta];
