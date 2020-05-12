@@ -110,6 +110,10 @@ class Sessions
         if (!empty($name)) {
             unset($_SESSION[$name]);
         } else {
+            $this->setSession("access", 0);
+            $this->deleteSession("username");
+            $this->deleteSession("userId");
+            $this->deleteSession("userAgent");
             unset($_SESSION);
             session_unset();
             session_destroy();
