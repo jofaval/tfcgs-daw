@@ -41,6 +41,14 @@ if ($ctl == "") {
     $ctl = "signin";
 }
 
+if (!in_array($ctl, Config::$dont_need_db_ctls)) {
+    try {
+        $model = Model::getInstance();
+    } catch (\Throwable $th) {
+        header("Location: /daw/maintenance/");
+    }
+}
+
 if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls)) {
     header('Location: /daw/notuseragent/');
 }

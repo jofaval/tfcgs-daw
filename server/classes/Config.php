@@ -33,6 +33,12 @@ class Config
         "error",
         "access",
     ];
+    public static $dont_need_db_ctls = [
+        "404",
+        "about",
+        "maintenance",
+        "error",
+    ];
     public static $projectElements = [
         "tasks",
         "diary",
