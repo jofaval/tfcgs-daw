@@ -79,3 +79,5 @@ RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]
 RewriteRule ^about[/]?$ ./index.php?ctl=about [L]
 #maintenance
 RewriteRule ^maintenance[/]?$ ./index.php?ctl=maintenance [L]
+#admin
+RewriteRule ^admin[/]?$ ./index.php?ctl=admin [L]

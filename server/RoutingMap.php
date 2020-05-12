@@ -232,3 +232,5 @@ $map['getDashboardItemDetails'] = array('controller' => 'AjaxController', 'actio
 $map['about'] = array('controller' => 'Controller', 'action' => 'about', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //maintenance
 $map['maintenance'] = array('controller' => 'Controller', 'action' => 'maintenance', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//admin
+$map['admin'] = array('controller' => 'Controller', 'action' => 'admin', 'access' => Config::$ACCESS_LEVEL_GUEST);

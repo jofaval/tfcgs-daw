@@ -1257,4 +1257,9 @@ class Controller
         require_once __DIR__ . "/../templates/maintenance.php";
     }
 
+    public function admin()
+    {
+        require_once __DIR__ . "/../templates/admin.php";
+    }
+
 }
