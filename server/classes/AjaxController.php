@@ -5,15 +5,37 @@ class AjaxController
     {
         header('Content-Type: application/json');
 
+        include_once __DIR__ . "/../ProjectAccess.php";
+
+        /* echo "<pre>";
+        var_dump($projectActionsMap);
+        echo "</pre>";
+        exit; */
+
         try {
             if (!empty($requiredParams)) {
                 $this->throwIfExceptionIfDoesntExist($requiredParams);
             }
+
             if (method_exists($mainController, $functionName)) {
                 $result = call_user_func([new $mainController, $functionName]);
 
                 if (is_null($result)) {
                     $result = false;
+                }
+
+                $projectAccessLevel = 0;
+                if (Utils::exists("idProjectForAccessLevel")) {
+                    $projectAccessLevel = Model::getInstance()->getProjectAccessLevel(
+                        $_REQUEST["idProjectForAccessLevel"],
+                        Sessions::getInstance()->getSession("userId")
+                    );
+
+                    if (is_null($projectAccessLevel)) {
+                        $result = "No estás dentro de este proyecto";
+                    } else if ($projectAccessLevel < $projectActionsMap[$functionName]["access"]) {
+                        $result = "No tienes permisos para realizar esta acción";
+                    }
                 }
 
                 echo json_encode($result);
@@ -90,7 +112,7 @@ class AjaxController
     //Function to bookmarkProject
     public function bookmarkProject()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
     }
 
     //Function to doesUsernameExists
@@ -218,49 +240,49 @@ class AjaxController
     //Function to createGlobalLevel
     public function createGlobalLevel()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["level", "title", "description"]);
     }
 
     //Function to updateGlobalLevel
     public function updateGlobalLevel()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["level", "title", "description"]);
     }
 
     //Function to queryGlobalLevel
     public function queryGlobalLevel()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
     }
 
     //Function to deleteGlobalLevel
     public function deleteGlobalLevel()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
     }
 
     //Function to createPermissions
     public function createPermissions()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["level", "title", "description"]);
     }
 
     //Function to updatePermissions
     public function updatePermissions()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["level", "title", "description"]);
     }
 
     //Function to queryPermissions
     public function queryPermissions()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
     }
 
     //Function to deletePermissions
     public function deletePermissions()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
     }
 
     //Function to createProjectDiary
@@ -290,19 +312,19 @@ class AjaxController
     //Function to createProjects
     public function createProjects()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["title", "description"]);
     }
 
     //Function to updateProjects
     public function updateProjects()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "title", "description", "id_creator"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "title", "description", "id_creator"]);
     }
 
     //Function to queryProjects
     public function queryProjects()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to deleteProjects
@@ -386,25 +408,25 @@ class AjaxController
     //Function to createTaskListsOrderCriteria
     public function createTaskListsOrderCriteria()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "title"]);
     }
 
     //Function to updateTaskListsOrderCriteria
     public function updateTaskListsOrderCriteria()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "title"]);
     }
 
     //Function to queryTaskListsOrderCriteria
     public function queryTaskListsOrderCriteria()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to deleteTaskListsOrderCriteria
     public function deleteTaskListsOrderCriteria()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
     }
 
     //Function to createUsers
