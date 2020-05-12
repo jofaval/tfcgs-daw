@@ -1,0 +1,31 @@
+.rotate-self-animation {
+    animation: rotate 5s infinite linear;
+}
+
+.animation-reverse {
+    animation-direction: reverse !important;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.animation-delay-1 {
+    animation-delay: 0.35s !important;
+}
