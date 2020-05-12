@@ -32,8 +32,8 @@ RewriteRule ^access[/]?$ ./index.php?ctl=access [L]
 RewriteRule ^error[/]?$ ./index.php?ctl=error [L]
 RewriteRule ^execution-error[/]?$ ./index.php?ctl=error&message=Action_could_not_be_executed [L]
 RewriteRule ^no-action[/]?$ ./index.php?ctl=error&message=Action_is_not_available_at_the_moment [L]
-RewriteRule ^not-signed-in[/]?$ ./index.php?ctl=notsigned [L]
-RewriteRule ^not-user-agent[/]?$ ./index.php?ctl=notuseragent [L]
+RewriteRule ^notsigned[/]?$ ./index.php?ctl=notsigned [L]
+RewriteRule ^notuseragent[/]?$ ./index.php?ctl=notuseragent [L]
 
 #Project Rules
 RewriteRule ^projects/id/([^/]+)[/]?$ ./index.php?ctl=project&id=$1 [L]
