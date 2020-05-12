@@ -16,6 +16,12 @@ class Config
     public static $ACCESS_LEVEL_NOT_ACTIVATED = -1;
     public static $ACCESS_LEVEL_USER = 2;
     public static $ACCESS_LEVEL_ADMIN = 3;
+    public static $PROJECT_ACCESS_BANNED = 0;
+    public static $PROJECT_ACCESS_GUEST = 0;
+    public static $PROJECT_ACCESS_WORKER = 0;
+    public static $PROJECT_ACCESS_MANAGER = 0;
+    public static $PROJECT_ACCESS_ADMIN = 0;
+    public static $PROJECT_ACCESS_CREATOR = 0;
     public static $notsigned_ctls = [
         "signin",
         "signup",
