@@ -2,78 +2,64 @@
 
 $projectActionsMap = [];
 
-//$projectActionsMap["example"] = array('access' => Config::$ACCESS_LEVEL_GUEST, 'requiredParams' => [], 'Controller' => 'POPOController');
-$projectActionsMap["updateOrderInDashboardList"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["getAssignedDashboardItems"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["getCommentsOfDashboardItem"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["getListsOfDashboard"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["bookmarkProject"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["bookmarkDashboard"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["getProjectDetails"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["getDashboardsOfProject"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["getCollaboratorsOfProject"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createDashboards"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateDashboards"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryDashboards"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteDashboards"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createCollaborators"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateCollaborators"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryCollaborators"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteCollaborators"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createGlobalLevel"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateGlobalLevel"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryGlobalLevel"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteGlobalLevel"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createPermissions"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updatePermissions"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryPermissions"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deletePermissions"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createProjectDiary"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateProjectDiary"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryProjectDiary"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteProjectDiary"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createProjects"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateProjects"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryProjects"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteProjects"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createTaskListItemListItems"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateTaskListItemListItems"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryTaskListItemListItems"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteTaskListItemListItems"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createTaskListItemLists"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateTaskListItemLists"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryTaskListItemLists"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteTaskListItemLists"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createTaskLists"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateTaskLists"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryTaskLists"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteTaskLists"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createTaskListsOrderCriteria"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateTaskListsOrderCriteria"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryTaskListsOrderCriteria"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteTaskListsOrderCriteria"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createBookmarkedDashboards"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateBookmarkedDashboards"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryBookmarkedDashboards"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteBookmarkedDashboards"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createDashboardItem"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryDashboardItem"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteDashboardItem"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["disableDashboardItem"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createDashboardList"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateDashboardList"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryDashboardList"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteDashboardList"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createDashboardItemComments"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateDashboardItemComments"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryDashboardItemComments"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteDashboardItemComments"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createProjectDiaryModification"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateProjectDiaryModification"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryProjectDiaryModification"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteProjectDiaryModification"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["createDashboardsItemAssignation"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["updateDashboardsItemAssignation"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["queryDashboardsItemAssignation"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["deleteDashboardsItemAssignation"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
-$projectActionsMap["getDashboardItemDetails"] = array('access' => Config::$ACCESS_LEVEL_GUEST);
+//$projectActionsMap["example"] = array('access' => Config::$PROJECT_ACCESS_WORKER, 'requiredParams' => [], 'Controller' => 'POPOController');
+$projectActionsMap["updateOrderInDashboardList"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+
+$projectActionsMap["getAssignedDashboardItems"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["getCommentsOfDashboardItem"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["getProjectDetails"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["getDashboardsOfProject"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["getCollaboratorsOfProject"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+
+$projectActionsMap["getListsOfDashboard"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["bookmarkDashboard"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+
+$projectActionsMap["createDashboards"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+$projectActionsMap["updateDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteDashboards"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+
+$projectActionsMap["createCollaborators"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["updateCollaborators"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+$projectActionsMap["queryCollaborators"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteCollaborators"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+
+$projectActionsMap["createProjectDiary"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["updateProjectDiary"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryProjectDiary"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteProjectDiary"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+
+$projectActionsMap["updateProjects"] = array('access' => Config::$PROJECT_ACCESS_CREATOR);
+$projectActionsMap["deleteProjects"] = array('access' => Config::$PROJECT_ACCESS_CREATOR);
+
+$projectActionsMap["createBookmarkedDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["updateBookmarkedDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryBookmarkedDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteBookmarkedDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+
+$projectActionsMap["createDashboardItem"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryDashboardItem"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["deleteDashboardItem"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["disableDashboardItem"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+
+$projectActionsMap["createDashboardList"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["updateDashboardList"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["queryDashboardList"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteDashboardList"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+
+$projectActionsMap["createDashboardItemComments"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["updateDashboardItemComments"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryDashboardItemComments"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteDashboardItemComments"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+
+$projectActionsMap["createProjectDiaryModification"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["updateProjectDiaryModification"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["queryProjectDiaryModification"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteProjectDiaryModification"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+
+$projectActionsMap["createDashboardsItemAssignation"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["updateDashboardsItemAssignation"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryDashboardsItemAssignation"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteDashboardsItemAssignation"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+
+$projectActionsMap["getDashboardItemDetails"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
