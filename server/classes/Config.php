@@ -20,11 +20,18 @@ class Config
         "signin",
         "signup",
         "notsigned",
+        "404",
         "error",
         "access",
     ];
     public static $notuseragent_ctls = [
         "notuseragent",
+        "signin",
+        "signup",
+        "notsigned",
+        "404",
+        "error",
+        "access",
     ];
     public static $projectElements = [
         "tasks",
