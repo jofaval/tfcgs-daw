@@ -562,6 +562,7 @@ class Controller {
                 }
             })
         })
+        document.title = `${controller.model.title}`;
     }
 
     addIdToURL(controller, id) {
@@ -824,6 +825,7 @@ class Controller {
                 },
                 "onClose": function () {
                     controller.view.scrollTo(taskItem);
+                    document.title = `${controller.model.title}`;
                     changeURL(`/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/`);
                 },
             });
@@ -909,6 +911,7 @@ class Controller {
 
         var urlBaseInDashboardModal = `/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/task/id/${taskItemData.id}/`;
 
+        document.title = `${taskItemData.title}`;
         changeURL(urlBaseInDashboardModal);
 
         var inputs = $("input, textarea");
