@@ -191,7 +191,7 @@ class Model {
                 const listElement = dashboardLists[listKey];
                 if (listElement.id == id) {
                     whenFound(listElement);
-                    break;
+                    return;
                 }
             }
         }
@@ -210,8 +210,7 @@ class Model {
                         const taskElement = itemsFromListElement[taskKey];
                         if (taskElement.id == id) {
                             whenFound(taskElement);
-                            $(taskElement.html).trigger("click");
-                            break;
+                            return;
                         }
                     }
                 }
