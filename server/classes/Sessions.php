@@ -56,6 +56,8 @@ class Sessions
             if ($this->doesSessionExist("time")) {
                 $currentTimeStamp = time();
                 if (($this->getSession("time") - $currentTimeStamp) < 0) {
+                    $this->deleteSession();
+                    $this->initializeValues();
                     header("Location: /daw/signout/");
                 }
             }
