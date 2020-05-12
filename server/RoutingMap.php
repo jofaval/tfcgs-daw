@@ -228,3 +228,5 @@ $map['updateOrderInDashboardList'] = array('controller' => 'AjaxController', 'ac
 $map['searchUsers'] = array('controller' => 'AjaxController', 'action' => 'searchUsers', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //getDashboardItemDetails
 $map['getDashboardItemDetails'] = array('controller' => 'AjaxController', 'action' => 'getDashboardItemDetails', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//about
+$map['about'] = array('controller' => 'Controller', 'action' => 'about', 'access' => Config::$ACCESS_LEVEL_GUEST);

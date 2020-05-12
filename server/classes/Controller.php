@@ -43,6 +43,11 @@ class Controller
         require __DIR__ . '/../classes/one_execution/ExportDatabase-backup.php';
     }
 
+    public function about()
+    {
+        require_once __DIR__ . "/../templates/about.php";
+    }
+
     public function profile()
     {
         $viewParams = [
