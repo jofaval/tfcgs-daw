@@ -18,6 +18,12 @@ $header = [
         "icon" => "folder",
         "access" => 0,
     ],
+    "About" => [
+        "link" => "/daw/about/",
+        "active" => $currentPage == "About",
+        "icon" => "info",
+        "access" => 0,
+    ],
     "Admin" => [
         "link" => "/daw/admin/",
         "active" => $currentPage == "Admin",
@@ -56,7 +62,7 @@ $header = [
             <?php if ($access >= $headerParams["access"]): ?>
             <li class="nav-item d-flex <?php echo $headerParams["active"] ? "active" : "" ?>"
                 style="transition: all 0.2s ease-in-out 0s;">
-                <a class="nav-link align-self-center selected" href="<?php echo $headerParams["link"]; ?>"
+                <a class="nav-link col-sm align-self-center selected" href="<?php echo $headerParams["link"]; ?>"
                     style="transition: all 0.2s ease-in-out 0s;">
                     <span><i class="fa fa-<?php echo $headerParams["icon"]; ?>"></i></span>
                     <?php echo $headerTitle; ?>
