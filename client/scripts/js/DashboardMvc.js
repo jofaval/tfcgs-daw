@@ -460,6 +460,11 @@ class View {
             block: 'nearest',
             inline: 'start'
         });
+        //$(".listContainer").scrollLeft(element.offset().left);
+        $(".listContainer, main, body, html").scrollTop(0);
+        setTimeout(() => {
+            $(window).scrollTop(0);
+        }, 250);
     }
 
     visualizeModalComment(container, commentData) {
