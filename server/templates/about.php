@@ -223,7 +223,7 @@ $breadcrumb = [
 
     <div id="get_started" class="parallax_section_4">
         <div class="caption">
-            <span class="border"><a href="">LET'S GET STARTED!</a></span>
+            <span class="border"><a href="/daw/">LET'S GET STARTED!</a></span>
         </div>
     </div>
 </body>
