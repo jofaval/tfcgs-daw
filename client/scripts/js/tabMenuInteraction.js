@@ -11,8 +11,7 @@ tabElements.hover(function () {
     onExit($(this));
 });
 var activeElement = $(".tabs .tab.active");
-onEnter(activeElement);
-activeElement.blur();
+activeElement.trigger('mouseenter');
 
 function onEnter(currentTab) {
     activeElement.removeClass("text-primary");
@@ -33,8 +32,7 @@ function onExit(currentTab) {
     }, 200);
     //tabIndicator.prependTo(`#${activeElement.prop("id")}`).show(400, 'swing', function () {});
 }
-onExit();
 
 $(window).on("resize", function () {
-    onExit();
+    onExit(activeElement);
 });
