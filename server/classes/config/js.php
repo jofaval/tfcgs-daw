@@ -19,3 +19,4 @@ Config::$mvc_vis_scripts[] = "js/preloader.js";
 Config::$mvc_vis_scripts[] = "js/generalScript.js";
 Config::$mvc_vis_scripts[] = "libs/jquery.datetimepicker.full.min.js";
 Config::$mvc_vis_scripts[] = "js/DateTimePickerUtils.js";
+Config::$mvc_vis_scripts[] = "js/inactivity.js";
