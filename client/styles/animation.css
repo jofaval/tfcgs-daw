@@ -29,3 +29,19 @@
 .animation-delay-1 {
     animation-delay: 0.35s !important;
 }
+
+.animation-delay-2 {
+    animation-delay: 0.50s !important;
+}
+
+.animation-delay-3 {
+    animation-delay: 0.65s !important;
+}
+
+.animation-delay-4 {
+    animation-delay: 0.80s !important;
+}
+
+.animation-delay-5 {
+    animation-delay: 1s !important;
+}
