@@ -23,7 +23,7 @@ input:not(:placeholder-shown)+.removeContent,
 	display: block;
 }
 
-.custom-control-input:checked~.custom-control-label::before {
+/* .custom-control-input:checked~.custom-control-label::before {
 	color: #fff;
 	border-color: #20e04d;
 	background-color: #20e04d;
@@ -45,4 +45,4 @@ input:not(:placeholder-shown)+.removeContent,
 
 .custom-control-label::after {
 	background: none !important;
-}
+} */
