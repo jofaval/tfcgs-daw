@@ -1,5 +1,5 @@
 class TimeFromMoment {
-    constructor(container, originalDate) {
+    constructor(container, originalDate, showOriginalDate = true) {
         var instance = this;
         container.html("");
         instance.htmlContent = $(`
@@ -10,7 +10,9 @@ class TimeFromMoment {
         `);
 
         instance.originalDateElement = instance.htmlContent.find(".timeOutOriginal");
-        instance.originalDateElement.text(`Fecha completa: ${originalDate}`);
+        if (showOriginalDate) {
+            instance.originalDateElement.text(`Fecha completa: ${originalDate}`);
+        }
 
         instance.dateElement = instance.htmlContent.find(".timeOutDate");
 

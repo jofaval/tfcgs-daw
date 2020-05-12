@@ -478,7 +478,7 @@ class View {
 
         var commentDate = commentData.commentDate;
         var commentTimeHTML = clonedComment.find(".dashboardCommentTime");
-        var timeFromMoment = new TimeFromMoment(commentTimeHTML, commentData.commentDate);
+        var timeFromMoment = new TimeFromMoment(commentTimeHTML, commentData.commentDate, false);
 
         clonedComment.find(".dashboardCommentContent").html(decodeURI(commentData.comment));
         container.prepend(clonedComment);
