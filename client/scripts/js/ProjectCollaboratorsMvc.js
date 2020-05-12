@@ -37,6 +37,7 @@ class Model {
             url: "/daw/index.php?ctl=getCollaboratorsOfProject",
             data: {
                 "id_project": model.projectId,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (collaborators) {
                 model.collaborators = collaborators;
@@ -62,6 +63,7 @@ class Model {
                         data: {
                             username: username,
                             id_project: model.projectId,
+                            "idProjectForAccessLevel": model.projectId,
                         },
                         success: function (result) {
                             model.collaborators.push(result);

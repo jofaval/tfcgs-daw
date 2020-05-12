@@ -173,6 +173,7 @@ class Model {
             data: {
                 "id_project": model.projectId,
                 "dashboard": model.title,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (dashboardElements) {
                 model.dashboardElements = dashboardElements;
@@ -226,6 +227,7 @@ class Model {
                 "id_project": model.projectId,
                 "dashboard_title": model.title,
                 "title": title,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (dashboardElements) {
                 model.dashboardElements.push(dashboardElements);
@@ -236,11 +238,14 @@ class Model {
     }
 
     addDashboardItem(id_dashboard_list, title, whenFinished) {
+        var model = this;
+
         $.ajax({
             url: "/daw/index.php?ctl=createDashboardItem",
             data: {
                 "id_dashboard_list": id_dashboard_list,
                 "title": title,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (dashboardItem) {
                 /* model.dashboardElements.push(dashboardElements);
@@ -251,10 +256,13 @@ class Model {
     }
 
     deleteDashboardItem(id, whenFinished) {
+        var model = this;
+
         $.ajax({
             url: "/daw/index.php?ctl=deleteDashboardItem",
             data: {
                 "id": id,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -263,11 +271,13 @@ class Model {
     }
 
     enableDashboardItem(id, enable, whenFinished) {
+        var modal = this;
         $.ajax({
             url: "/daw/index.php?ctl=disableDashboardItem",
             data: {
                 "id": id,
                 "enabled": enable ? 1 : 0,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -276,10 +286,13 @@ class Model {
     }
 
     deleteDashboardList(id, whenFinished) {
+        var modal = this;
+
         $.ajax({
             url: "/daw/index.php?ctl=deleteDashboardList",
             data: {
                 "id": id,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -289,11 +302,13 @@ class Model {
 
     deleteDashboard(whenFinished) {
         var model = this;
+
         $.ajax({
             url: "/daw/index.php?ctl=deleteDashboards",
             data: {
                 "id_project": model.projectId,
                 "title": model.title,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -309,6 +324,7 @@ class Model {
             data: {
                 "id_dashboard_item": id,
                 "comment": comment,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -323,6 +339,7 @@ class Model {
             url: "/daw/index.php?ctl=deleteDashboardItemComments",
             data: {
                 "id": id,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -338,6 +355,7 @@ class Model {
             data: {
                 "id": id,
                 "finished": newState ? 1 : 0,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -668,6 +686,7 @@ class Controller {
                     data: {
                         order: newOrder,
                         id_dashboard_list: taskListID,
+                        "idProjectForAccessLevel": controller.model.projectId,
                     },
                     success: function (result) {
         console.log("updatedOrder", result); */
@@ -677,6 +696,7 @@ class Controller {
                 "order": newOrder,
                 "id_dashboard_list": taskListID,
                 "id": movedData["taskItem"]["id"],
+                "idProjectForAccessLevel": controller.model.projectId,
                 //"moveForward": movedData["endingIndex"] > movedData["startingIndex"] ? 1 : 0,
             },
             success: function (result) {
@@ -954,6 +974,7 @@ class Controller {
             url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
             data: {
                 "id_dashboard_item": taskItemData.id,
+                "idProjectForAccessLevel": controller.model.projectId,
             },
             success: function (result) {
                 if (result !== false) {
@@ -1002,6 +1023,7 @@ class Controller {
                 url: "/daw/index.php?&ctl=getDashboardItemDetails",
                 data: {
                     "id": taskItemData.id,
+                    "idProjectForAccessLevel": controller.model.projectId,
                 },
                 success: function (result) {
                     console.log("details", result);
@@ -1074,7 +1096,7 @@ class Controller {
             var event = event || window.event;
             var currentBtn = $(this);
 
-            controller.dashboardSaveChangesEvent(taskItemData);
+            controller.dashboardSaveChangesEvent(controller, taskItemData);
         });
 
         $("#comment").on("keypress", function (event) {
@@ -1145,7 +1167,8 @@ class Controller {
                             "id": taskItemData.id,
                             "id_dashboard_list": id_dashboard_list,
                             "order": order,
-                            "movingForward": movingForward ? 1 : 0,
+                            "idProjectForAccessLevel": controller.model.projectId,
+                            //"movingForward": movingForward ? 1 : 0,
                         },
                         success: function (result) {
                             console.log(result);
@@ -1194,7 +1217,7 @@ class Controller {
         });
     }
 
-    dashboardSaveChangesEvent(taskItemData) {
+    dashboardSaveChangesEvent(controller, taskItemData) {
         var title = $(".dashboardModalTitle").text();
         var description = $("#dashboardModalDescription").val();
         $.ajax({
@@ -1203,6 +1226,7 @@ class Controller {
                 "id": taskItemData.id,
                 "title": title,
                 "description": description,
+                "idProjectForAccessLevel": controller.model.projectId,
             },
             success: function (result) {
                 console.log("modificar Detalles", result);
@@ -1270,6 +1294,7 @@ class Controller {
                             "start_date": startDateVal,
                             "end_date": endDateVal,
                             "assigned_to": username,
+                            "idProjectForAccessLevel": controller.model.projectId,
                         },
                         success: function (result) {
                             console.log(result);
@@ -1331,6 +1356,7 @@ class Controller {
                         data: {
                             "id_dashboard_item": taskItemData.id,
                             "assigned_to": userSearch.input.val(),
+                            "idProjectForAccessLevel": controller.model.projectId,
                         },
                         success: function (result) {
                             console.log(result);
@@ -1355,6 +1381,7 @@ class Controller {
                         data: {
                             "id_dashboard_item": taskItemData.id,
                             "assigned_to": userSearch.input.val(),
+                            "idProjectForAccessLevel": controller.model.projectId,
                         },
                         success: function (result) {
                             console.log(result);
@@ -1384,6 +1411,7 @@ class Controller {
                             "start_date": startDateVal,
                             "end_date": endDateVal,
                             "assigned_to": username,
+                            "idProjectForAccessLevel": controller.model.projectId,
                         },
                         success: function (result) {
                             console.log(result);
@@ -1425,6 +1453,7 @@ class Controller {
                         data: {
                             "id_dashboard_item": taskItemData.id,
                             "assigned_to": username,
+                            "idProjectForAccessLevel": controller.model.projectId,
                         },
                         success: function (result) {
                             console.log(result);
@@ -1528,6 +1557,7 @@ class Controller {
                 data: {
                     "id": commentJSON.id,
                     "comment": commentContent,
+                    "idProjectForAccessLevel": controller.model.projectId,
                 },
                 success: function (result) {
                     console.log("cambiar comentario", commentJSON.id, result);

@@ -13,6 +13,7 @@ class Model {
             data: {
                 "day": dateInString,
                 "id_project": model.projectId,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (content) {
                 whenFinished(decodeURI(content));
@@ -38,6 +39,7 @@ class Model {
                 "day": dateInString,
                 "id_project": model.projectId,
                 "content": content,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -56,6 +58,7 @@ class Model {
                 "day": dateInString,
                 "id_project": model.projectId,
                 "content": content,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);

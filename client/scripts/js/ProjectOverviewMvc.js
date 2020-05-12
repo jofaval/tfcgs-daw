@@ -30,6 +30,7 @@ class Model {
             data: {
                 "id_project": model.projectId,
                 "limit": 5,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (collaborators) {
                 model.collaborators = collaborators;
@@ -45,6 +46,7 @@ class Model {
             url: "/daw/index.php?ctl=deleteProjects",
             data: {
                 "id": model.projectId,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -61,6 +63,7 @@ class Model {
                 "title": title,
                 "description": description,
                 "id_project": model.projectId,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -91,6 +94,7 @@ class Model {
                     data: {
                         "username": username,
                         "id_project": model.projectId,
+                        "idProjectForAccessLevel": model.projectId,
                     },
                     success: function (result) {
                         model.collaborators.push(result);
@@ -112,6 +116,7 @@ class Model {
                     data: {
                         "username": username,
                         "id_project": model.projectId,
+                        "idProjectForAccessLevel": model.projectId,
                     },
                     success: function (result) {
                         whenFinished(result);
@@ -133,6 +138,7 @@ class Model {
                         "username": username,
                         "id_project": model.projectId,
                         "level": role,
+                        "idProjectForAccessLevel": model.projectId,
                     },
                     success: function (result) {
                         whenFinished(result);

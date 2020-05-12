@@ -60,7 +60,7 @@ class AjaxController
     //Function to updateOrderInDashboardList
     public function updateOrderInDashboardList()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_list", "order"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_dashboard_list", "order"], "Controller");
     }
 
     //Function to getProjectCollaborationRoles
@@ -72,25 +72,25 @@ class AjaxController
     //Function to getAssignedDashboardItems
     public function getAssignedDashboardItems()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project"], "Controller");
     }
 
     //Function to getCommentsOfDashboardItem
     public function getCommentsOfDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_dashboard_item"], "Controller");
     }
 
     //Function to getListsOfDashboard
     public function getListsOfDashboard()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "dashboard"], "Controller");
     }
 
     //Function to bookmarkProject
     public function bookmarkProject()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project"], "Controller");
     }
 
     //Function to doesUsernameExists
@@ -108,25 +108,25 @@ class AjaxController
     //Function to bookmarkDashboard
     public function bookmarkDashboard()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"], "Controller");
     }
 
     //Function to getProjectDetails
     public function getProjectDetails()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"], "Controller");
     }
 
     //Function to getDashboardsOfProject
     public function getDashboardsOfProject()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project"], "Controller");
     }
 
     //Function to getCollaboratorsOfProject
     public function getCollaboratorsOfProject()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project"], "Controller");
     }
 
     //Function to getProjectsOfUser
@@ -162,25 +162,25 @@ class AjaxController
     //Function to createDashboards
     public function createDashboards()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to updateDashboards
     public function updateDashboards()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to queryDashboards
     public function queryDashboards()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to deleteDashboards
     public function deleteDashboards()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to createCollaborators
@@ -188,7 +188,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["id_collaborator"] = $controller->getClientIdFromUsername($_REQUEST["username"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "username"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "username"]);
     }
 
     //Function to updateCollaborators
@@ -196,7 +196,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["id_collaborator"] = $controller->getClientIdFromUsername($_REQUEST["username"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "username", "level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "username", "level"]);
     }
 
     //Function to queryCollaborators
@@ -204,7 +204,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["id_collaborator"] = $controller->getClientIdFromUsername($_REQUEST["username"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "username"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "username"]);
     }
 
     //Function to deleteCollaborators
@@ -212,199 +212,199 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["id_collaborator"] = $controller->getClientIdFromUsername($_REQUEST["username"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "username"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "username"]);
     }
 
     //Function to createGlobalLevel
     public function createGlobalLevel()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["level", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level", "title", "description"]);
     }
 
     //Function to updateGlobalLevel
     public function updateGlobalLevel()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["level", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level", "title", "description"]);
     }
 
     //Function to queryGlobalLevel
     public function queryGlobalLevel()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level"]);
     }
 
     //Function to deleteGlobalLevel
     public function deleteGlobalLevel()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level"]);
     }
 
     //Function to createPermissions
     public function createPermissions()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["level", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level", "title", "description"]);
     }
 
     //Function to updatePermissions
     public function updatePermissions()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["level", "title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level", "title", "description"]);
     }
 
     //Function to queryPermissions
     public function queryPermissions()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level"]);
     }
 
     //Function to deletePermissions
     public function deletePermissions()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["level"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "level"]);
     }
 
     //Function to createProjectDiary
     public function createProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project", "content"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "day", "id_project", "content"]);
     }
 
     //Function to updateProjectDiary
     public function updateProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project", "content"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "day", "id_project", "content"]);
     }
 
     //Function to queryProjectDiary
     public function queryProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "day", "id_project"]);
     }
 
     //Function to deleteProjectDiary
     public function deleteProjectDiary()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["day", "id_project"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "day", "id_project"]);
     }
 
     //Function to createProjects
     public function createProjects()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["title", "description"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "title", "description"]);
     }
 
     //Function to updateProjects
     public function updateProjects()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "title", "description", "id_creator"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "title", "description", "id_creator"]);
     }
 
     //Function to queryProjects
     public function queryProjects()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to deleteProjects
     public function deleteProjects()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to createTaskListItemListItems
     public function createTaskListItemListItems()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_item_list_id", "title", "order", "description", "creation_date", "id_creator"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "task_item_list_id", "title", "order", "description", "creation_date", "id_creator"]);
     }
 
     //Function to updateTaskListItemListItems
     public function updateTaskListItemListItems()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_item_list_id", "title", "order", "description", "creation_date", "id_creator"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "task_item_list_id", "title", "order", "description", "creation_date", "id_creator"]);
     }
 
     //Function to queryTaskListItemListItems
     public function queryTaskListItemListItems()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to deleteTaskListItemListItems
     public function deleteTaskListItemListItems()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to createTaskListItemLists
     public function createTaskListItemLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_list_id", "id_creator", "title", "description", "creation_date", "order_criteria"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "task_list_id", "id_creator", "title", "description", "creation_date", "order_criteria"]);
     }
 
     //Function to updateTaskListItemLists
     public function updateTaskListItemLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "task_list_id", "id_creator", "title", "description", "creation_date", "order_criteria"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "task_list_id", "id_creator", "title", "description", "creation_date", "order_criteria"]);
     }
 
     //Function to queryTaskListItemLists
     public function queryTaskListItemLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to deleteTaskListItemLists
     public function deleteTaskListItemLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to createTaskLists
     public function createTaskLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_project", "title", "creation_date", "id_creator"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "id_project", "title", "creation_date", "id_creator"]);
     }
 
     //Function to updateTaskLists
     public function updateTaskLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "id_project", "title", "creation_date", "id_creator"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "id_project", "title", "creation_date", "id_creator"]);
     }
 
     //Function to queryTaskLists
     public function queryTaskLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to deleteTaskLists
     public function deleteTaskLists()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to createTaskListsOrderCriteria
     public function createTaskListsOrderCriteria()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "title"]);
     }
 
     //Function to updateTaskListsOrderCriteria
     public function updateTaskListsOrderCriteria()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "title"]);
     }
 
     //Function to queryTaskListsOrderCriteria
     public function queryTaskListsOrderCriteria()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to deleteTaskListsOrderCriteria
     public function deleteTaskListsOrderCriteria()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to createUsers
@@ -458,31 +458,31 @@ class AjaxController
     //Function to createBookmarkedDashboards
     public function createBookmarkedDashboards()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to updateBookmarkedDashboards
     public function updateBookmarkedDashboards()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to queryBookmarkedDashboards
     public function queryBookmarkedDashboards()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to deleteBookmarkedDashboards
     public function deleteBookmarkedDashboards()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to createDashboardItem
     public function createDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["title", "id_dashboard_list"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "title", "id_dashboard_list"]);
     }
 
     //Function to updateDashboardItem
@@ -498,43 +498,43 @@ class AjaxController
     //Function to queryDashboardItem
     public function queryDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to deleteDashboardItem
     public function deleteDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to disableDashboardItem
     public function disableDashboardItem()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to createDashboardList
     public function createDashboardList()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "dashboard_title", "title"]);
     }
 
     //Function to updateDashboardList
     public function updateDashboardList()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "dashboard_title", "title"]);
     }
 
     //Function to queryDashboardList
     public function queryDashboardList()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "dashboard_title", "title"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "dashboard_title", "title"]);
     }
 
     //Function to deleteDashboardList
     public function deleteDashboardList()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to createDashboardListOrderCriteria
@@ -588,49 +588,49 @@ class AjaxController
     //Function to createDashboardItemComments
     public function createDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "comment"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_dashboard_item", "comment"]);
     }
 
     //Function to updateDashboardItemComments
     public function updateDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "comment"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id", "comment"]);
     }
 
     //Function to queryDashboardItemComments
     public function queryDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to deleteDashboardItemComments
     public function deleteDashboardItemComments()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"]);
     }
 
     //Function to createProjectDiaryModification
     public function createProjectDiaryModification()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "day"]);
     }
 
     //Function to updateProjectDiaryModification
     public function updateProjectDiaryModification()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "day"]);
     }
 
     //Function to queryProjectDiaryModification
     public function queryProjectDiaryModification()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "day"]);
     }
 
     //Function to deleteProjectDiaryModification
     public function deleteProjectDiaryModification()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id_project", "day"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "day"]);
     }
 
     //Function to createDashboardsItemAssignation
@@ -638,7 +638,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "start_date", "end_date", "assigned_to"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_dashboard_item", "start_date", "end_date", "assigned_to"]);
     }
 
     //Function to updateDashboardsItemAssignation
@@ -658,7 +658,7 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "assigned_to"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_dashboard_item", "assigned_to"]);
     }
 
     //Function to deleteDashboardsItemAssignation
@@ -666,14 +666,14 @@ class AjaxController
     {
         $controller = new Controller();
         $_REQUEST["assigned_to"] = $controller->getClientIdFromUsername($_REQUEST["assigned_to"]);
-        $this->genericAjaxReturn(__FUNCTION__, ["id_dashboard_item", "assigned_to"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_dashboard_item", "assigned_to"]);
     }
 
     //Function to getDashboardItemDetails
 
     public function getDashboardItemDetails()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id"], "Controller");
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"], "Controller");
     }
 
 }

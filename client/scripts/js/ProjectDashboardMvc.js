@@ -43,6 +43,7 @@ class Model {
             url: "/daw/index.php?ctl=getDashboardsOfProject",
             data: {
                 "id_project": model.projectId,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (dashboards) {
                 model.dashboards = dashboards;
@@ -61,6 +62,7 @@ class Model {
                 "title": title,
                 "description": description,
                 "id_project": model.projectId,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 model.workingDashboards.push(result[0]);
@@ -78,6 +80,7 @@ class Model {
                 "id_project": model.projectId,
                 "title": json.title,
                 "bookmarked": json.bookmarked,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
