@@ -11,7 +11,9 @@ tabElements.hover(function () {
     onExit($(this));
 });
 var activeElement = $(".tabs .tab.active");
-activeElement.trigger('mouseenter');
+setTimeout(() => {
+    activeElement.trigger('mouseenter');
+}, 250);
 
 function onEnter(currentTab) {
     activeElement.removeClass("text-primary");
