@@ -474,4 +474,30 @@ class Model extends PDO
 
         return $sqlUtils->complexQuery($queryString, $params);
     }
+
+    public function getProjectAccessLevel($id_project, $userId)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        $queryString = "SELECT `id_creator` FROM projects
+        WHERE id=:id_project";
+
+        $params = [
+            "id_project" => $id_project,
+        ];
+
+        if ($sqlUtils->complexQuery($queryString, $params)[0]["id_creator"] == $userId) {
+            return Config::$PROJECT_ACCESS_CREATOR;
+        }
+
+        $queryString = "SELECT `level` FROM collaborators
+        WHERE id_project=:id_project and id_collaborator=:id_collaborator";
+
+        $params = [
+            "id_project" => $id_project,
+            "id_collaborator" => $userId,
+        ];
+
+        return (int) $sqlUtils->complexQuery($queryString, $params)[0]["level"];
+    }
 }
