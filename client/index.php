@@ -49,12 +49,12 @@ if (!in_array($ctl, Config::$dont_need_db_ctls)) {
     }
 }
 
-if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls)) {
+if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls) && !in_array($ctl, Config::$dont_need_db_ctls)) {
     header('Location: /daw/notuseragent/');
 }
 
 //if (!Config::$developmentMode) {
-if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls)) {
+if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls) && !in_array($ctl, Config::$dont_need_db_ctls)) {
     header("Location: /daw/notsigned/");
 }
 //}
