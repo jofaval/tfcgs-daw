@@ -32,7 +32,7 @@ $breadcrumb = [
                     <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
                         href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
                         <h5 class="mb-0">
-                            Collapsible Group Item #1 <i class="fa fa-angle-down rotate-icon"></i>
+                            Rutas <i class="fa fa-angle-down rotate-icon"></i>
                         </h5>
                     </a>
                 </div>
@@ -40,35 +40,28 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
-                            <a href="#collapseTwo1">
-                                <h5 class="mb-0">
-                                    Elemento
+                            <a href="/daw/admin/new-route/">
+                                <h5 class="mb-0 text-white">
+                                    Añadir nueva ruta
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a href="#collapseTwo1">
-                                <h5 class="mb-0">
-                                    Elemento
+                            <a href="/daw/admin/access-level/">
+                                <h5 class="mb-0 text-white">
+                                    Cambiar nivel de acceso
                                 </h5>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card-header">
-                <a href="#collapseTwo1">
-                    <h5 class="mb-0">
-                        Elemento
-                    </h5>
-                </a>
-            </div>
             <div class="card bg-transparent shadow-none">
                 <div class="card-header bg-dark" role="tab" id="headingTwo2">
                     <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
                         href="#collapseTwo21" aria-expanded="false" aria-controls="collapseTwo21">
                         <h5 class="mb-0">
-                            Collapsible Group Item #2 <i class="fa fa-angle-down rotate-icon"></i>
+                            Codificación <i class="fa fa-angle-down rotate-icon"></i>
                         </h5>
                     </a>
                 </div>
@@ -76,9 +69,23 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
-                            <a href="#collapseTwo1">
-                                <h5 class="mb-0">
-                                    Elemento
+                            <a href="/daw/admin/popo/">
+                                <h5 class="mb-0 text-white">
+                                    Panel de configuración de POPOs
+                                </h5>
+                            </a>
+                        </div>
+                        <div class="card-header">
+                            <a href="/daw/admin/testing/">
+                                <h5 class="mb-0 text-white">
+                                    Ventana de testing
+                                </h5>
+                            </a>
+                        </div>
+                        <div class="card-header">
+                            <a href="/daw/admin/download-database/">
+                                <h5 class="mb-0 text-white">
+                                    Descargarse script de SQL
                                 </h5>
                             </a>
                         </div>
@@ -99,21 +106,21 @@ $breadcrumb = [
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
                             <a href="#collapseTwo1">
-                                <h5 class="mb-0">
+                                <h5 class="mb-0 text-white">
                                     Elemento
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
                             <a href="#collapseTwo1">
-                                <h5 class="mb-0">
+                                <h5 class="mb-0 text-white">
                                     Elemento
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
                             <a href="#collapseTwo1">
-                                <h5 class="mb-0">
+                                <h5 class="mb-0 text-white">
                                     Elemento
                                 </h5>
                             </a>
