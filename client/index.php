@@ -111,9 +111,11 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
     if ($sessions->getSession("access") >= $controlador['access']) {
         call_user_func(array(new $controlador['controller'], $controlador['action']));
     } else {
+        //No tiene suficiente nivel de acceso
         header('Location: /daw/access/');
     }
 } else {
+    //No se ha podido ejecutar
     header('Location: /daw/execution-error/');
     exit;
 }
