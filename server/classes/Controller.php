@@ -749,9 +749,9 @@ class Controller
         $viewParams = [
             "routes" => [],
             "accessLevels" => [
-                "0" => "Guest",
-                "1" => "Non confirmed",
-                "2" => "Confirmed",
+                "0" => "Invitado",
+                "-1" => "Por confirmar",
+                "1" => "Usuario",
                 "3" => "Admin",
             ],
         ];
