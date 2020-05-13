@@ -478,8 +478,11 @@ class View {
             inline: 'start'
         }); */
         //$(".listContainer").scrollLeft(element.offset().left);
-        $(".listContainer").scrollLeft(element.offset().left);
-        $(window).scrollTop(0);
+        $(".listContainer").stop().animate({
+            scrollLeft: element.offset().left,
+        }, function () {
+            $(window).scrollTop(0);
+        });
         /* $(".listContainer, main, body, html").scrollTop(0);
         setTimeout(() => {
             $(window).scrollTop(0);
