@@ -708,13 +708,17 @@ class Controller {
                 }
             });
 
-            controller.model.findListWithId(controller.model.listIdFromURL, function (listElement) {
-                controller.view.scrollTo(listElement.html);
-            });
+            if (controller.model.taskIdFromURL != undefined) {
+                controller.model.findDashboardItemWithId(controller.model.taskIdFromURL, function (taskElement) {
+                    $(taskElement.html).trigger("click");
+                });
+            }
 
-            controller.model.findDashboardItemWithId(controller.model.taskIdFromURL, function (taskElement) {
-                $(taskElement.html).trigger("click");
-            });
+            if (controller.model.listIdFromURL != undefined) {
+                controller.model.findListWithId(controller.model.listIdFromURL, function (listElement) {
+                    controller.view.scrollTo(listElement.html);
+                });
+            }
         });
 
         controller.moveScrollWithMouse();
