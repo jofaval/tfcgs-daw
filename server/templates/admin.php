@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["style.css"];?>
-<?php $optionalScripts = ["js/admin.js"];?>
+<?php $optionalScripts = ["js/MVCadmin.js"];?>
 <?php $title = "Admin";?>
 <?php $showFooter = false;?>
 <?php $showHeader = true;?>
