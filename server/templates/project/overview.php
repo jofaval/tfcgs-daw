@@ -43,7 +43,7 @@ $modelInstance = Model::getInstance();
             </div>
             <?php endforeach;?>
         </div>
-        <div class="col-sm p-0 mx-sm-3 mx-sm-0">
+        <div class="col-sm p-0 mx-0 mb-3 mx-sm-3">
             <div class="row text-white p-0 m-0">
                 <h4 class="h4 text-white">Creado recientemente</h4>
                 <div class="recentlyCreated text-dark">
