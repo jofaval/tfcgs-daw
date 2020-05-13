@@ -9,7 +9,7 @@ var $dashboardFlagCreated = $(`<div class="dashboardsBtnCreated btn btn-sm btn-s
 var $dashboardFlagShared = $(`<div class="dashboardsBtnShared btn btn-sm btn-primary">Compartido</div>`);
 
 var $dashboardCard = $(`
-<div class="dashboardCard text-dark row col-12 px-0 col-sm m-2 bg-white">
+<div class="dashboardCard text-dark row col-12 px-0 col-sm m-2 bg-grey">
     <img src="" alt="" class="dashboardCardBgImg object-fit-cover opacity-80 brightness-30 position-absolute w-100 h-100 z-index">
     <div
         class="row dashboardCardDetails pl-3 z-index-overlap flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
