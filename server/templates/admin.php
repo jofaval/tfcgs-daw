@@ -27,8 +27,8 @@ $breadcrumb = [
 <?php $sessions = Sessions::getInstance();?>
 <?php $username = $sessions->getsession("username");?>
 
-<div class="w-100 h-100 d-flex">
-    <div class=" bg-dark" id="sidebar">
+<div class="w-100 h-100 row m-0 p-0 container-fluid">
+    <div class="h-100 bg-dark" id="sidebar">
         <div class="profileInfo">
             <div class="m-auto">
                 <a href="/daw/profile/<?php echo $username; ?>/"
@@ -146,6 +146,20 @@ $breadcrumb = [
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container-fluid m-1 col-sm">
+        <?php $mysqli = new mysqli(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);?>
+        <?php $mysqli->select_db(Config::$mvc_bd_nombre);?>
+        <?php $mysqli->query("SET NAMES 'utf8'");?>
+        <?php $queryTables = $mysqli->query('SHOW TABLES');?>
+        <?php while ($row = $queryTables->fetch_row()) {?>
+        <?php $target_tables[] = $row[0];?>
+        <?php }?>
+        <div class="row flex-wrap center-elements">
+            <?php foreach ($target_tables as $tableName): ?>
+            <?php include __DIR__ . "/components/cards/dbTableCard.php";?>
+            <?php endforeach;?>
         </div>
     </div>
 </div>
