@@ -16,7 +16,7 @@
     <div class="actionIcon img-fluid h-75 waves-light center-elements text-white p-3">
         <i class="fa fa-<?php echo $action["icon"]; ?>"></i>
     </div>
-    <div class="actionTitle h-25 w-100 .z-depth-1 text-center d-flex justify-content-center text-white bg-dark">
+    <div class="actionTitle h-25 w-100 .z-depth-1 text-center d-flex justify-content-center py-2 text-white bg-dark">
         <p class="align-self-center white-text fixed-line-spacing mb-0">
             <?php echo $action["name"]; ?></p>
     </div>
