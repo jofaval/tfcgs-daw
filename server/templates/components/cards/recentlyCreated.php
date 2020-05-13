@@ -9,9 +9,11 @@
                 class="btn btn-sm btn-primary mt-auto mr-2 mb-2 recentlyCardBtnView">Ir al tablero</a>
         </div>
     </div>
-    <div class="recentlyCardDescription text-dark text-overflow-ellipsis pl-3 overflow-hidden text-justify my-2">
+    <p class="recentlyCardDescription text-dark text-overflow-ellipsis pl-3 overflow-hidden text-justify my-2">
         <span class="creationDate font-weight-bold"><?php echo $recentlyCreated["creation_date"]; ?></span>
-        <br class="d-block d-sm-none">por&nbsp;<a href="/daw/profile/<?php echo $recentlyCreated["username"] ?>"
-            class=""><?php echo $recentlyCreated["username"]; ?>
-    </div>
+        <!-- <br class="d-block d-sm-none"> -->
+        <span class="creatorDetail">por&nbsp;<a href="/daw/profile/<?php echo $recentlyCreated["username"] ?>"
+                class=""><?php echo $recentlyCreated["username"]; ?>
+        </span>
+    </p>
 </div>
