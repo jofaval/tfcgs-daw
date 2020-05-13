@@ -5,6 +5,7 @@
 <?php $showFooter = false;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
+<?php $currentPage = "Admin";?>
 <?php
 $breadcrumb = [
     [

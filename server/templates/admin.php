@@ -5,6 +5,7 @@
 <?php $showFooter = false;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
+<?php $currentPage = "Admin";?>
 <?php
 $breadcrumb = [
     [
@@ -23,6 +24,9 @@ $breadcrumb = [
 ?>
 
 <?php ob_start()?>
+<?php $sessions = Sessions::getInstance();?>
+<?php $username = $sessions->getsession("username");?>
+<?php echo $username; ?>
 
 <div class="w-100 h-100 d-flex">
     <div class=" bg-dark" id="sidebar">
