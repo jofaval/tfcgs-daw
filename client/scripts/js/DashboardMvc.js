@@ -721,6 +721,20 @@ class Controller {
             }
         });
 
+        var dashboardSearchInput = $("#dashboardSearch");
+        whenUserDoneTypingInInput(dashboardSearchInput, "dashboardSearch", function () {
+            var valueToSearch = dashboardSearchInput.val();
+
+            $(".taskListContainer").each(function () {
+                if ($(this).find(".taskListTitleText").text().trim().toLowerCase().includes(valueToSearch)) {
+                    $(this).show('slow');
+                } else {
+                    $(this).hide('slow');
+                }
+            })
+
+        }, 50);
+
         controller.moveScrollWithMouse();
 
         $(".dashboardBtnDelete").on("click", function (event) {
