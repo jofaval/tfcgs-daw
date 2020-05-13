@@ -20,8 +20,8 @@ var $collaboratorCard = $(`
     </a>
     <a href="" class="collaboratorCard d-sm-none text-dark row col-12 px-0 col-sm m-2 bg-white">
         <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
-        <div class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements w-100 m-0 pt-2">
-            <h5 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden m-0 font-weight-normal">
+        <div class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements w-100 m-0">
+            <h5 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden py-1 m-0 font-weight-normal">
                 Pepe Fabra Valverde</h5>
         </div>
         <p class="collaboratorDetails w-100 text-dark text-center pl-3 z-index-overlap-bottom overflow-hidden my-2">
