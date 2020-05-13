@@ -1,8 +1,8 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["style.css"];?>
-<?php $optionalScripts = ["js/script.js"];?>
+<?php $optionalScripts = ["js/admin.js"];?>
 <?php $title = "Admin";?>
-<?php $showFooter = true;?>
+<?php $showFooter = false;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
 <?php
@@ -24,7 +24,106 @@ $breadcrumb = [
 
 <?php ob_start()?>
 
-<h3> Admin </h3>
+<div class="w-100 h-100 d-flex">
+    <div class=" bg-dark" id="sidebar">
+        <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+            <div class="card bg-transparent shadow-none">
+                <div class="card-header bg-dark" role="tab" id="headingTwo1">
+                    <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                        href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                        <h5 class="mb-0">
+                            Collapsible Group Item #1 <i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+                <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+                    data-parent="#accordionEx1">
+                    <div class="card-body rgba-black-light text-white">
+                        <div class="card-header">
+                            <a href="#collapseTwo1">
+                                <h5 class="mb-0">
+                                    Elemento
+                                </h5>
+                            </a>
+                        </div>
+                        <div class="card-header">
+                            <a href="#collapseTwo1">
+                                <h5 class="mb-0">
+                                    Elemento
+                                </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header">
+                <a href="#collapseTwo1">
+                    <h5 class="mb-0">
+                        Elemento
+                    </h5>
+                </a>
+            </div>
+            <div class="card bg-transparent shadow-none">
+                <div class="card-header bg-dark" role="tab" id="headingTwo2">
+                    <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                        href="#collapseTwo21" aria-expanded="false" aria-controls="collapseTwo21">
+                        <h5 class="mb-0">
+                            Collapsible Group Item #2 <i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+                <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21"
+                    data-parent="#accordionEx1">
+                    <div class="card-body rgba-black-light text-white">
+                        <div class="card-header">
+                            <a href="#collapseTwo1">
+                                <h5 class="mb-0">
+                                    Elemento
+                                </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-transparent shadow-none">
+                <div class="card-header bg-dark" role="tab" id="headingThree31">
+                    <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                        href="#collapseThree31" aria-expanded="false" aria-controls="collapseThree31">
+                        <h5 class="mb-0">
+                            Collapsible Group Item #3 <i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+                <div id="collapseThree31" class="collapse" role="tabpanel" aria-labelledby="headingThree31"
+                    data-parent="#accordionEx1">
+                    <div class="card-body rgba-black-light text-white">
+                        <div class="card-header">
+                            <a href="#collapseTwo1">
+                                <h5 class="mb-0">
+                                    Elemento
+                                </h5>
+                            </a>
+                        </div>
+                        <div class="card-header">
+                            <a href="#collapseTwo1">
+                                <h5 class="mb-0">
+                                    Elemento
+                                </h5>
+                            </a>
+                        </div>
+                        <div class="card-header">
+                            <a href="#collapseTwo1">
+                                <h5 class="mb-0">
+                                    Elemento
+                                </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php $contenido = ob_get_clean()?>
 
