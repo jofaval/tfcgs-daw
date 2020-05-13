@@ -13,7 +13,7 @@ class ValidatePopoFields
     {
         $validationInstance = Validation::getInstance();
         foreach ($fields as $fieldName) {
-            if (isset($arrayWithData[$fieldName])) {
+            if (isset($arrayWithData[$fieldName]) && isset(ValidatePopoFields::$validationRules[$fieldName])) {
                 if ($validationInstance->rules([
                     [
                         "name" => $fieldName,
@@ -24,6 +24,8 @@ class ValidatePopoFields
                 }
             }
         }
+
+        return true;
     }
 }
 
@@ -36,6 +38,7 @@ ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validati
     "id_dashboard_list",
     "order",
     "id",
+    "limit",
     "id_dashboard_item",
     "assigned_by",
     "assigned_to",
