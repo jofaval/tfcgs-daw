@@ -1,5 +1,5 @@
 <?php $projectData = $viewParams["projectData"];?>
-<?php $canEdit = Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN;?>
+<?php $canEdit = $viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER;?>
 <div class="w-100 h-100 tabContent container p-0 d-block" id="tabContent5">
     <div class="content px-2 px-sm-5">
         <form method="POST" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/">
