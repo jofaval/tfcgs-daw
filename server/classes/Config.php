@@ -14,7 +14,7 @@ class Config
     public static $emailMsgLineLength = 70;
     public static $ACCESS_LEVEL_GUEST = 0;
     public static $ACCESS_LEVEL_NOT_ACTIVATED = -1;
-    public static $ACCESS_LEVEL_USER = 2;
+    public static $ACCESS_LEVEL_USER = 1;
     public static $ACCESS_LEVEL_ADMIN = 3;
     public static $PROJECT_ACCESS_BANNED = 0;
     public static $PROJECT_ACCESS_GUEST = 0;
