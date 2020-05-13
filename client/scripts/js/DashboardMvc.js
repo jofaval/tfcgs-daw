@@ -957,7 +957,7 @@ class Controller {
         });
 
         if (taskItemData.assigned === true) {
-            this.dashboardModalAssignedTask(taskItemData, controller, taskItem);
+            controller.dashboardModalAssignedTask(taskItemData, controller, taskItem);
         }
 
         $(".dashboardModalTitle").text(taskItemData.title);
@@ -1089,7 +1089,7 @@ class Controller {
         });
 
         $("#dashboardModalActionMoveTask").on("click", function (event) {
-            this.dashboardModalMoveTaskEvent(controller, taskItemData, taskItem);
+            controller.dashboardModalMoveTaskEvent(controller, taskItemData, taskItem);
         })
 
         $(".dashboardModalBtnSaveChanges").on("click", function (event) {
