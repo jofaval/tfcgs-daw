@@ -82,4 +82,8 @@ $header = [
             </li>
         </ul>
     </div>
+    <div class="custom-control mx-2 custom-switch cursor-pointer">
+        <input type="checkbox" class="custom-control-input cursor-pointer" id="nightMode" checked>
+        <label class="custom-control-label text-muted cursor-pointer" for="nightMode">Modo oscuro</label>
+    </div>
 </nav>
