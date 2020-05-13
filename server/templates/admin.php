@@ -26,10 +26,24 @@ $breadcrumb = [
 <?php ob_start()?>
 <?php $sessions = Sessions::getInstance();?>
 <?php $username = $sessions->getsession("username");?>
-<?php echo $username; ?>
 
 <div class="w-100 h-100 d-flex">
     <div class=" bg-dark" id="sidebar">
+        <div class="profileInfo">
+            <div class="m-auto">
+                <a href="/daw/profile/<?php echo $username; ?>/"
+                    class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
+                    <img src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png" alt=""
+                        class="profileAdminCardBgImg object-fit-cover brightness-50 position-absolute w-100 h-100 z-index">
+                    <div
+                        class="row profileAdminCardDetails pl-3 py-5 z-index-overlap flex-wrap center-elements w-100 m-0">
+                        <h5
+                            class="profileAdminCardTitle text-center text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">
+                            <?php echo $username; ?></h5>
+                    </div>
+                </a>
+            </div>
+        </div>
         <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
             <div class="card bg-transparent shadow-none">
                 <div class="card-header bg-dark" role="tab" id="headingTwo1">
