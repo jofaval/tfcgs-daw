@@ -292,56 +292,61 @@ class Controller {
         var timeFromMoment = new TimeFromMoment(activeTime, activeTimeDate);
 
         //Tablero
-        $(".actionAddDashboard").on("click touchstart", function (event) {
+        $("#actionAddDashboard").on("click touchstart", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
             controller.addDashboardBtnEvent(controller, event);
-        }).last().removeAttr("href");
+            return false;
+        });
 
-        $(".actionViewDashboard").on("click touchstart", function (event) {
+        $("#actionViewDashboard").on("click touchstart", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
             controller.viewDashboard(controller, event);
-        }).last().removeAttr("href");
+            return false;
+        });
 
         //Diario
-        $(".actionDiary").on("click touchstart", function (event) {
+        $("#actionDiary").on("click touchstart", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
             controller.viewDiary(controller, event);
-        }).last().removeAttr("href");
+            return false;
+        });
 
         //Proyecto
-        $(".actionAddCollaborator").on("click touchstart", function (event) {
+        $("#actionAddCollaborator").on("click touchstart", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
             controller.inviteCollaboratorEvent(controller, event);
-        }).last().removeAttr("href");
+            return false;
+        });
 
-        $(".actionRemoveCollaborator").on("click touchstart", function (event) {
+        $("#actionRemoveCollaborator").on("click touchstart", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
             controller.removeCollaboratorEvent(controller, event);
-        }).last().removeAttr("href");
+            return false;
+        });
 
-        $(".actionChangeRoleCollaborator").on("click touchstart", function (event) {
+        $("#actionChangeRoleCollaborator").on("click touchstart", function (event) {
             var event = event || window.event;
             event.preventDefault();
             controller.changeCollaboratorRoleEvent(controller, event);
             return false;
-        }).last().removeAttr("href");
+        });
 
-        $(".actionDeleteProject").on("click touchstart", function (event) {
+        $("#actionDeleteProject").on("click touchstart", function (event) {
             var event = event || window.event;
             event.preventDefault();
             controller.deleteProject(controller, event);
             return false;
-        }).last().removeAttr("href");
+        });
 
         $(".recentlyCard .creationDate").each(function () {
             var current = $(this);
