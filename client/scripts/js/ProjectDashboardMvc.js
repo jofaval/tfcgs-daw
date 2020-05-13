@@ -290,6 +290,7 @@ class Controller {
     }
 
     reload(controller, callback = null) {
+        $(".numberOfDashboards").html(controller.model.dashboards.length);
         controller.clearContainer(controller);
         controller.model.paginationIndex = 1;
         var pagination = $(".pagination");

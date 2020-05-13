@@ -277,6 +277,7 @@ class Controller {
     }
 
     reload(controller, callback = null) {
+        $(".numberOfProjects").html(controller.model.projects.length);
         controller.clearContainer(controller);
         controller.model.paginationIndex = 1;
         var pagination = $(".pagination");
