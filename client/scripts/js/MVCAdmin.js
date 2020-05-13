@@ -138,6 +138,20 @@ class AdminController {
 
             $(this).find(".fa").toggleClass("rotate-icon");
         });
+
+        var searchInput = $("#searchTable");
+        whenUserDoneTypingInInput(searchInput, "searchTable", function () {
+            var valueToSearch = searchInput.val().toLowerCase();
+
+            $(".dbTableCard").each(function () {
+                var current = $(this);
+                if (current.find(".dbTableTitle").text().trim().toLowerCase().includes(valueToSearch)) {
+                    current.show('slow');
+                } else {
+                    current.hide('fast');
+                }
+            })
+        }, 50);
     }
 
     static getInstance() {
