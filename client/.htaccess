@@ -21,6 +21,7 @@ RewriteRule ^admin[/]?$ ./index.php?ctl=admin [L]
 RewriteRule ^projects[/]?$ ./index.php?ctl=projects [L]
 RewriteRule ^projects/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=projects&rowNumber=$1&pageIndex=$2 [L]
 RewriteRule ^projects/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=projects&rowNumber=$1&pageIndex=$2&search=$3 [L]
+RewriteRule ^about[/]?$ ./index.php?ctl=about [L]
 
 #Signin
 RewriteRule ^signin[/]?$ ./index.php?ctl=signin&login=test [L]
@@ -28,6 +29,7 @@ RewriteRule ^signout[/]?$ ./index.php?ctl=signout [L]
 RewriteRule ^signup[/]?$ ./index.php?ctl=signup [L]
 
 #Errors
+RewriteRule ^maintenance[/]?$ ./index.php?ctl=maintenance [L]
 RewriteRule ^access[/]?$ ./index.php?ctl=access [L]
 RewriteRule ^error[/]?$ ./index.php?ctl=error [L]
 RewriteRule ^execution-error[/]?$ ./index.php?ctl=error&message=Action_could_not_be_executed [L]
@@ -75,9 +77,11 @@ RewriteRule ^profile/change-image[/]?$ ./index.php?ctl=profile&tabName=image [L]
 RewriteRule ^profile/reset-profile-image[/]?$ ./index.php?ctl=profile&reset=profileImage [L]
 RewriteRule ^profile/reset-background-image[/]?$ ./index.php?ctl=profile&reset=bgImage [L]
 RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]
-#about
-RewriteRule ^about[/]?$ ./index.php?ctl=about [L]
-#maintenance
-RewriteRule ^maintenance[/]?$ ./index.php?ctl=maintenance [L]
-#admin
+
+#Admin
 RewriteRule ^admin[/]?$ ./index.php?ctl=admin [L]
+RewriteRule ^admin/new-route[/]?$ ./index.php?ctl=addNewRoute [L]
+RewriteRule ^admin/access-level[/]?$ ./index.php?ctl=accessLevel [L]
+RewriteRule ^admin/popo[/]?$ ./index.php?ctl=createPOPOfromDatabase [L]
+RewriteRule ^admin/download-database[/]?$ ./index.php?ctl=getDatabase [L]
+RewriteRule ^admin/testing[/]?$ ./index.php?ctl=test [L]
