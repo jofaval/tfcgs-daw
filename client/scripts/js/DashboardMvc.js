@@ -723,7 +723,7 @@ class Controller {
 
         var dashboardSearchInput = $("#dashboardSearch");
         whenUserDoneTypingInInput(dashboardSearchInput, "dashboardSearch", function () {
-            var valueToSearch = dashboardSearchInput.val();
+            var valueToSearch = dashboardSearchInput.val().toLowerCase();
 
             $(".taskListContainer").each(function () {
                 if ($(this).find(".taskListTitleText").text().trim().toLowerCase().includes(valueToSearch)) {
