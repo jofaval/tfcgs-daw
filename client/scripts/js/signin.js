@@ -94,6 +94,8 @@ function togglePanel(toHide, toShow, toRight) {
         mainPanel.removeClass("moveImage");
     }
 
+    changeURL(`/daw/${toRight ? "signin" : "signup"}/`);
+
     writeInElement(toShow.find("h2"), panelInformationTextArray[textIndex][0], intervalTime);
     writeInElement(toShow.find("p"), panelInformationTextArray[textIndex][1], intervalTime / 2);
     writeInElement(toShow.find("button"), panelInformationTextArray[textIndex][2], intervalTime);
