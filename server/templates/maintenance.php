@@ -38,6 +38,8 @@ main {
 }
 </style>
 
+<link rel="shortcut icon" href="/daw/img/branding/maintenance_favicon.gif" type="image/gif">
+
 <div class="w-100 h-100 d-flex text-dark justify-content-center align-content-center
  flex-column justify-items-center align-items-center text-center">
     <h1>La aplicación se encuentra en mantenimiento</h1>
