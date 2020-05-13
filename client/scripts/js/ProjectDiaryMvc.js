@@ -277,14 +277,14 @@ class Controller {
             ],
         });
 
-        setTimeout(() => {
-            if ($(".canEdit").length == 0) {
-                summernote.summernote('disable');
-            } else {
-                summernote.summernote('enable');
-            }
-            $(".canEdit").remove();
-        }, 1500);
+        if ($(".canEdit").length == 0) {
+            $(".note-toolbar.card-header").hide('fast');
+            summernote.summernote('disable');
+            $(".note-editable.card-block").addClass("bg-white");
+        } else {
+            summernote.summernote('enable');
+        }
+        summernote.summernote($(".canEdit").length == 0 ? 'disable' : 'enable');
 
         $(".note-statusbar").on("touchmove", function (e) {
             var adjustment = (e.touches[0].clientY - 155) - $(this).position().top;

@@ -60,7 +60,7 @@
         </div>
 
         <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER): ?>
-        <div class="canEdit"></div>
+        <div class="canEdit"><?php echo var_dump($viewParams["projectAccessLevel"]); ?></div>
         <?php endif;?>
 
         <div class="mx-sm-5 mb-sm-5 summernoteContainer">
