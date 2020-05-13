@@ -156,10 +156,19 @@ $breadcrumb = [
         <?php while ($row = $queryTables->fetch_row()) {?>
         <?php $target_tables[] = $row[0];?>
         <?php }?>
-        <div class="md-form input-group mb-4">
-            <input type="text" class="form-control" autocomplete="off" name="searchUser" id="searchUser" placeholder=""
-                aria-describedby="btnSearch">
-            <label for="searchUser">Usuario</label>
+        <div class="form-row p-3 bg-dark">
+            <div class="md-form mx-3 input-group mb-4">
+                <input type="text" class="form-control text-white" autocomplete="off" name="searchTable"
+                    id="searchTable" placeholder="" aria-describedby="btnSearch">
+                <label for="searchTable">Usuario</label>
+                <div class="input-group-append">
+                    <span class="input-group-text md-addon btn btn-sm btn-primary" id="btnSearch">
+                        <span><i class="fa fa-search"></i></span>
+                        &nbsp;
+                        Buscar
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="row flex-wrap center-elements">
             <?php foreach ($target_tables as $tableName): ?>
