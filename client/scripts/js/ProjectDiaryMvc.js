@@ -297,6 +297,7 @@ class Controller {
         };
         var summernoteContentContainer = $(".note-editable.card-block");
         var summernoteContent = summernoteContentContainer.html();
+        var summernoteContent = `<p>${summernoteContent}</p>`;
         summernoteContentContainer.html("")
 
         var content = $(summernoteContent);
