@@ -156,6 +156,11 @@ $breadcrumb = [
         <?php while ($row = $queryTables->fetch_row()) {?>
         <?php $target_tables[] = $row[0];?>
         <?php }?>
+        <div class="md-form input-group mb-4">
+            <input type="text" class="form-control" autocomplete="off" name="searchUser" id="searchUser" placeholder=""
+                aria-describedby="btnSearch">
+            <label for="searchUser">Usuario</label>
+        </div>
         <div class="row flex-wrap center-elements">
             <?php foreach ($target_tables as $tableName): ?>
             <?php include __DIR__ . "/components/cards/dbTableCard.php";?>
