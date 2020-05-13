@@ -33,7 +33,7 @@ document.querySelector('.tabContentContainer').classList.remove("px-2");
         <div class="btn btn-success btn-sm dashboardBtnAdd">+ Añadir</div>
         <div class="md-form input-group col-12 col-sm my-2">
             <input type="search" class="form-control text-white pl-0 rounded-0" name="dashboardSearch"
-                id="dashboardSearch" placeholder="Search...">
+                id="dashboardSearch" placeholder="Buscar...">
             <div class="input-group-append">
                 <span class="btn btn-sm btn-primary m-0 input-group-text md-addon">
                     <span class="d-none d-sm-inline-block">Buscar&nbsp;</span>

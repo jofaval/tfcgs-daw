@@ -90,7 +90,7 @@ $breadcrumb = [
         <div class="btn btn-success btn-sm projectBtnAdd">+ Añadir</div>
         <div class="md-form input-group col-12 col-sm my-2">
             <input type="search" class="form-control text-white pl-0 rounded-0" name="projectSearch" id="projectSearch"
-                placeholder="Search...">
+                placeholder="Buscar...">
             <div class="input-group-append">
                 <span class="btn btn-sm btn-primary m-0 input-group-text md-addon">
                     <span class="d-none d-sm-inline-block">Buscar&nbsp;</span>

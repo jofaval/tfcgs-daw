@@ -72,7 +72,7 @@ main {
     <?php endif;?>
     <div class="md-form input-group col-md-4 my-2 m-0 p-0">
         <input type="search" class="form-control text-white grey darken-4 pl-2 rounded-0" name="dashboardSearch"
-            id="dashboardSearch" placeholder="Search...">
+            id="dashboardSearch" placeholder="Buscar...">
         <div class="input-group-append">
             <span class="btn btn-sm btn-primary m-0 input-group-text md-addon"><span><i
                         class="fa fa-search"></i></span>Buscar</span>
