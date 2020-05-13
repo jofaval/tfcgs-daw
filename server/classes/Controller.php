@@ -223,6 +223,13 @@ class Controller
                 header("Location: /daw/projects/");
             }
 
+            $projectAccessLevel = Model::getInstance()->getProjectNumbers($id);
+            $viewParams["projectAccessLevel"] = $projectAccessLevel;
+            //Si no está invitado, aquí iría la opción de privado/público
+            if (is_null($projectAccessLevel)) {
+                header("Location: /daw/projects");
+            }
+
             if (Utils::exists("changeProjectDetails")) {
                 $title = Utils::getCleanedData("projectTitle");
                 $description = Utils::getCleanedData("projectDescription");
