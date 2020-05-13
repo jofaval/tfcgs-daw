@@ -292,35 +292,91 @@ class Controller {
         var timeFromMoment = new TimeFromMoment(activeTime, activeTimeDate);
 
         //Tablero
-        $("#actionAddDashboard").on("click", function (event) {
-            controller.addDashboardBtnEvent(controller, event);
-        });
+        $("#actionAddDashboard").on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
 
-        $("#actionViewDashboard").on("click", function (event) {
+            controller.addDashboardBtnEvent(controller, event);
+        }).next().on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
+            controller.addDashboardBtnEvent(controller, event);
+        }).removeAttr("href");
+
+        $("#actionViewDashboard").on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
             controller.viewDashboard(controller, event);
-        });
+        }).next().on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
+            controller.viewDashboard(controller, event);
+        }).removeAttr("href");
 
         //Diario
-        $("#actionDiary").on("click", function (event) {
+        $("#actionDiary").on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
             controller.viewDiary(controller, event);
-        });
+        }).next().on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
+            controller.viewDiary(controller, event);
+        }).removeAttr("href");
 
         //Proyecto
-        $("#actionAddCollaborator").on("click", function (event) {
+        $("#actionAddCollaborator").on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
             controller.inviteCollaboratorEvent(controller, event);
-        });
+        }).next().on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
 
-        $("#actionRemoveCollaborator").on("click", function (event) {
+            controller.inviteCollaboratorEvent(controller, event);
+        }).removeAttr("href");
+
+        $("#actionRemoveCollaborator").on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+
             controller.removeCollaboratorEvent(controller, event);
-        });
+        }).next().on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
 
-        $("#actionChangeRoleCollaborator").on("click", function (event) {
+            controller.removeCollaboratorEvent(controller, event);
+        }).removeAttr("href");
+
+        $("#actionChangeRoleCollaborator").on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
             controller.changeCollaboratorRoleEvent(controller, event);
-        });
+            return false;
+        }).next().on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+            controller.changeCollaboratorRoleEvent(controller, event);
+            return false;
+        }).removeAttr("href");
 
-        $("#actionDeleteProject").on("click", function (event) {
+        $("#actionDeleteProject").on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
             controller.deleteProject(controller, event);
-        });
+            return false;
+        }).next().on("click touchstart", function (event) {
+            var event = event || window.event;
+            event.preventDefault();
+            controller.deleteProject(controller, event);
+            return false;
+        }).removeAttr("href");
 
         $(".recentlyCard .creationDate").each(function () {
             var current = $(this);
