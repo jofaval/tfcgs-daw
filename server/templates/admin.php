@@ -40,14 +40,14 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
-                            <a href="/daw/admin/new-route/">
+                            <a target="_blank" href="/daw/admin/new-route/">
                                 <h5 class="mb-0 text-white">
                                     Añadir nueva ruta
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a href="/daw/admin/access-level/">
+                            <a target="_blank" href="/daw/admin/access-level/">
                                 <h5 class="mb-0 text-white">
                                     Cambiar nivel de acceso
                                 </h5>
@@ -69,21 +69,21 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
-                            <a href="/daw/admin/popo/">
+                            <a target="_blank" href="/daw/admin/popo/">
                                 <h5 class="mb-0 text-white">
                                     Panel de configuración de POPOs
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a href="/daw/admin/testing/">
+                            <a target="_blank" href="/daw/admin/testing/">
                                 <h5 class="mb-0 text-white">
                                     Ventana de testing
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a href="/daw/admin/download-database/">
+                            <a target="_blank" href="/daw/admin/download-database/">
                                 <h5 class="mb-0 text-white">
                                     Descargarse script de SQL
                                 </h5>
@@ -105,21 +105,21 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
-                            <a href="#collapseTwo1">
+                            <a target="_blank" href="#collapseTwo1">
                                 <h5 class="mb-0 text-white">
                                     Elemento
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a href="#collapseTwo1">
+                            <a target="_blank" href="#collapseTwo1">
                                 <h5 class="mb-0 text-white">
                                     Elemento
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a href="#collapseTwo1">
+                            <a target="_blank" href="#collapseTwo1">
                                 <h5 class="mb-0 text-white">
                                     Elemento
                                 </h5>
