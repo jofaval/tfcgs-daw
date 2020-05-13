@@ -9,7 +9,7 @@ var $collaboratorFlagCreated = $(`<div class="collaboratorsBtnCreated btn btn-sm
 var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm btn-primary">Compartido</div>`);
 
 var $collaboratorCard = $(`
-<div class="collaboratorCardContainer m-2">
+<div class="collaboratorCardContainer m-sm-2">
     <a href="" class="collaboratorCard d-none d-sm-block cursor-pointer text-center collaboratorProfileBtn view overlay rounded">
         <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/img/profile-pic.png" width="150" height="150" alt="">
         <div class="collaboratorDetails bg-primary mask flex-center flex-column center-elements h-100 my-auto col">
@@ -18,7 +18,7 @@ var $collaboratorCard = $(`
             <p class="collaboratorRole mt-3 mb-2 text-white m-0 font-weight-bold">Administrator</p>
         </div>
     </a>
-    <a href="" class="collaboratorCard d-sm-none text-dark row col-12 px-0 col-sm m-2 bg-white">
+    <a href="" class="collaboratorCard d-sm-none rounded text-dark row col-12 px-0 col-sm m-2 bg-white">
         <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
         <div class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements w-100 m-0">
             <h5 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden py-1 m-0 font-weight-normal">
