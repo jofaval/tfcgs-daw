@@ -26,6 +26,8 @@ class Config
         "signin",
         "signup",
         "notsigned",
+        "doesEmailExists",
+        "doesUsernameExists",
         "404",
         "error",
         "access",

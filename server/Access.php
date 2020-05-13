@@ -28,9 +28,9 @@ $map['bookmarkProject']['access'] = Config::$ACCESS_LEVEL_USER;
 //Ruta de bookmarkDashboard
 $map['bookmarkDashboard']['access'] = Config::$ACCESS_LEVEL_USER;
 //Ruta de doesUsernameExists
-$map['doesUsernameExists']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['doesUsernameExists']['access'] = Config::$ACCESS_LEVEL_GUEST;
 //Ruta de doesEmailExists
-$map['doesEmailExists']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['doesEmailExists']['access'] = Config::$ACCESS_LEVEL_GUEST;
 //Ruta de getListsOfDashboard
 $map['getListsOfDashboard']['access'] = Config::$ACCESS_LEVEL_USER;
 //Ruta de getCommentsOfDashboardItem
