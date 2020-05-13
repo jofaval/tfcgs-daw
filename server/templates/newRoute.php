@@ -8,10 +8,22 @@
 <?php
 $breadcrumb = [
     [
-        "name" => "Vuelta a la principal",
+        "name" => "Home",
         "link" => "/daw/",
-        "active" => true,
+        "active" => false,
         "icon" => "home",
+    ],
+    [
+        "name" => "Admin",
+        "link" => "/daw/admin/",
+        "active" => false,
+        "icon" => "cogs",
+    ],
+    [
+        "name" => "Añadir ruta",
+        "link" => "/daw/admin/new-route/",
+        "active" => true,
+        "icon" => "code",
     ],
 ];
 ?>
