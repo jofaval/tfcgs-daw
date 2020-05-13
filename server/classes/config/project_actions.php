@@ -2,7 +2,7 @@
 
 $viewParams["actionGroups"] = [
     "Tablero" => [
-        "access" => Config::$ACCESS_LEVEL_GUEST,
+        "access" => Config::$PROJECT_ACCESS_GUEST,
         "actions" => [
             [
                 "name" => "Añadir tablero",
@@ -10,7 +10,7 @@ $viewParams["actionGroups"] = [
                 "icon" => "plus",
                 "id" => "AddDashboard",
                 "color" => "blue",
-                "access" => Config::$ACCESS_LEVEL_ADMIN,
+                "access" => Config::$PROJECT_ACCESS_MANAGER,
             ],
             [
                 "name" => "Ver tablero",
@@ -18,7 +18,7 @@ $viewParams["actionGroups"] = [
                 "icon" => "eye",
                 "id" => "ViewDashboard",
                 "color" => "blue",
-                "access" => Config::$ACCESS_LEVEL_GUEST,
+                "access" => Config::$PROJECT_ACCESS_WORKER,
             ],
             [
                 "name" => "Ver tareas asignadas",
@@ -26,11 +26,11 @@ $viewParams["actionGroups"] = [
                 "icon" => "tasks",
                 "id" => "DashboardTasks",
                 "color" => "blue",
-                "access" => Config::$ACCESS_LEVEL_GUEST,
+                "access" => Config::$PROJECT_ACCESS_WORKER,
             ]],
     ],
     "Diario" => [
-        "access" => Config::$ACCESS_LEVEL_GUEST,
+        "access" => Config::$PROJECT_ACCESS_WORKER,
         "actions" => [
             [
                 "name" => "Ver diario de hoy",
@@ -38,7 +38,7 @@ $viewParams["actionGroups"] = [
                 "icon" => "calendar-check-o",
                 "id" => "TodayDiary",
                 "color" => "green",
-                "access" => Config::$ACCESS_LEVEL_GUEST,
+                "access" => Config::$PROJECT_ACCESS_WORKER,
             ],
             [
                 "name" => "Ir a selección de fecha",
@@ -46,11 +46,11 @@ $viewParams["actionGroups"] = [
                 "icon" => "calendar",
                 "id" => "Diary",
                 "color" => "green",
-                "access" => Config::$ACCESS_LEVEL_GUEST,
+                "access" => Config::$PROJECT_ACCESS_WORKER,
             ]],
     ],
     "Proyecto" => [
-        "access" => Config::$ACCESS_LEVEL_ADMIN,
+        "access" => Config::$PROJECT_ACCESS_MANAGER,
         "actions" => [
             [
                 "name" => "Añadir colaborador",
@@ -59,7 +59,7 @@ $viewParams["actionGroups"] = [
                 "id" => "AddCollaborator",
                 "color" =>
                 "red",
-                "access" => Config::$ACCESS_LEVEL_USER,
+                "access" => Config::$PROJECT_ACCESS_MANAGER,
             ],
             [
                 "name" => "Eliminar colaborador",
@@ -67,7 +67,7 @@ $viewParams["actionGroups"] = [
                 "icon" => "user-times",
                 "id" => "RemoveCollaborator",
                 "color" => "red",
-                "access" => Config::$ACCESS_LEVEL_ADMIN,
+                "access" => Config::$PROJECT_ACCESS_ADMIN,
             ],
             [
                 "name" => "Cambiar rol colaborador",
@@ -76,7 +76,7 @@ $viewParams["actionGroups"] = [
                 "id" =>
                 "ChangeRoleCollaborator",
                 "color" => "red",
-                "access" => Config::$ACCESS_LEVEL_ADMIN,
+                "access" => Config::$PROJECT_ACCESS_ADMIN,
             ],
             [
                 "name" => "Eliminar proyecto",
@@ -84,7 +84,7 @@ $viewParams["actionGroups"] = [
                 "icon" => "times",
                 "id" => "DeleteProject",
                 "color" => "red",
-                "access" => Config::$ACCESS_LEVEL_ADMIN,
+                "access" => Config::$PROJECT_ACCESS_CREATOR,
             ],
         ]],
 ];

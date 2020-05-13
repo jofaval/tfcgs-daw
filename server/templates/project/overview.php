@@ -27,7 +27,7 @@ $modelInstance = Model::getInstance();
         <div class="col-sm p-0">
             <?php $actionGroups = $viewParams["actionGroups"];?>
 
-            <?php $userAccessLevel = Sessions::getInstance()->getSession("access");?>
+            <?php $userAccessLevel = $viewParams["projectAccessLevel"];?>
 
             <?php foreach ($actionGroups as $actionGroupTitle => $actionGroupDetails): if ($userAccessLevel < $actionGroupDetails["access"]): continue;endif;?>
             <div class="actionsGroup my-3">
