@@ -12,7 +12,8 @@
     require_once __DIR__ . "/components/header.php";
 endif;?>
     <?php if ($showBreadcrumb): require_once __DIR__ . "/components/breadcrum.php";endif;?>
-    <main role="main" class="w-100 d-flex flex-column justify-content-start overflow-auto <?php echo $mainClasses; ?>">
+    <main role="main"
+        class="w-100 d-flex flex-column d-none justify-content-start overflow-auto <?php echo $mainClasses; ?>">
         <div id="content" class="w-100 w-100 d-flex">
             <?php echo $contenido ?>
         </div>
