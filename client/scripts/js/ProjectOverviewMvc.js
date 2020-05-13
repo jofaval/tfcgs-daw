@@ -8,14 +8,28 @@ var $collaboratorFlagBookmarked = $(`<div class="collaboratorsBtnBookmarked btn 
 var $collaboratorFlagCreated = $(`<div class="collaboratorsBtnCreated btn btn-sm btn-success">Creado</div>`);
 var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm btn-primary">Compartido</div>`);
 
-var $collaboratorCard = $(`<a href="" class="collaboratorCard cursor-pointer text-center collaboratorProfileBtn view overlay rounded m-2 m-2">
-    <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/img/profile-pic.png" width="150" height="150" alt="">
-    <div class="collaboratorDetails bg-primary mask flex-center flex-column center-elements h-100 my-auto col">
-        <p class="collaboratorUsername text-white m-0 font-weight-bold">Administrator</p>
-        <h5 class="collaboratorName text-white m-0">Pepe Fabra Valverde</h5>
-        <p class="collaboratorRole mt-3 mb-2 text-white m-0 font-weight-bold">Administrator</p>
-    </div>
-</a>`);
+var $collaboratorCard = $(`
+<div class="collaboratorCardContainer m-2">
+    <a href="" class="collaboratorCard d-none d-sm-block cursor-pointer text-center collaboratorProfileBtn view overlay rounded">
+        <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/img/profile-pic.png" width="150" height="150" alt="">
+        <div class="collaboratorDetails bg-primary mask flex-center flex-column center-elements h-100 my-auto col">
+            <p class="collaboratorUsername text-white m-0 font-weight-bold">Administrator</p>
+            <h5 class="collaboratorName text-white m-0">Pepe Fabra Valverde</h5>
+            <p class="collaboratorRole mt-3 mb-2 text-white m-0 font-weight-bold">Administrator</p>
+        </div>
+    </a>
+    <a href="" class="collaboratorCard d-sm-none text-dark row col-12 px-0 col-sm m-2 bg-white">
+        <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
+        <div class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements w-100 m-0 pt-2">
+            <h5 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden m-0 font-weight-normal">
+                Pepe Fabra Valverde</h5>
+        </div>
+        <p class="collaboratorDetails w-100 text-dark text-center pl-3 z-index-overlap-bottom overflow-hidden my-2">
+            <span class="ml-2">@</span><span class="collaboratorUsername text-dark font-weight-bold">jofaval2</span>
+            <span class="collaboratorRole mt-3 mb-2 text-dark m-0">Administrator</span>
+        </p>
+    </a>
+</div>`);
 
 class Model {
     constructor() {
@@ -642,7 +656,7 @@ class Controller {
 
         if (container.find(".collaboratorsPage").length == 0 ||
             (collaboratorPageRows.length >= $("#selectNumberOfRows").val() &&
-                collaboratorPageRows.last().find(".collaboratorCard").length >= 5)) {
+                collaboratorPageRows.last().find(".collaboratorCardContainer").length >= 5)) {
             collaboratorsPage = controller.view.visualizeCollaboratorPage(container);
         }
 
@@ -652,7 +666,7 @@ class Controller {
     getCollaboratorRow(controller, container) {
         var collaboratorPage = controller.getCollaboratorPage(controller, container);
         var collaboratorRow = collaboratorPage.find(".collaboratorCardRow ");
-        if (collaboratorPage.find(".collaboratorCardRow").length == 0 || (collaboratorRow.last().find(".collaboratorCard").length >= 5)) {
+        if (collaboratorPage.find(".collaboratorCardRow").length == 0 || (collaboratorRow.last().find(".collaboratorCardContainer").length >= 5)) {
             collaboratorRow = controller.view.visualizeCollaboratorRow(collaboratorPage);
             //console.log(collaboratorRow);
         } else {
