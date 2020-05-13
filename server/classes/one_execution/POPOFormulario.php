@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Database Mapping</title>
-    <link rel="stylesheet" href="./styles/bootstrap.min.css">
-    <link rel="stylesheet" href="./styles/jquery-ui.min.css">
-    <link rel="stylesheet" href="./styles/mdb.min.css">
-    <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/loader.css">
-    <link rel="stylesheet" href="./styles/floating-label.css">
-    <link rel="stylesheet" href="./styles/inputs.css">
-    <link rel="stylesheet" href="./styles/jquery.sweet-modal.min.css">
+    <link rel="stylesheet" href="/daw/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/daw/styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="/daw/styles/mdb.min.css">
+    <link rel="stylesheet" href="/daw/styles/main.css">
+    <link rel="stylesheet" href="/daw/styles/loader.css">
+    <link rel="stylesheet" href="/daw/styles/floating-label.css">
+    <link rel="stylesheet" href="/daw/styles/inputs.css">
+    <link rel="stylesheet" href="/daw/styles/jquery.sweet-modal.min.css">
 </head>
 
 <body>
