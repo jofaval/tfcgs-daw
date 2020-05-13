@@ -8,27 +8,39 @@
 <?php $showBreadcrumb = true;?>
 <?php $breadcrumb = [
     [
-        "name" => "Go back to admin panel",
-        "link" => "/daw/admin/",
+        "name" => "Home",
+        "link" => "/daw/",
         "active" => false,
         "icon" => "home",
+    ],
+    [
+        "name" => "Admin",
+        "link" => "/daw/admin/",
+        "active" => false,
+        "icon" => "cogs",
+    ],
+    [
+        "name" => "Acceso",
+        "link" => "/daw/admin/access-level/",
+        "active" => true,
+        "icon" => "key",
     ],
 ];?>
 
 <?php ob_start()?>
 
 <form action="/daw/index.php?ctl=accessLevel" method="POST" class="bg-white rounded shadow p-5">
-    <h2>New route</h2>
+    <h2>Nueva ruta</h2>
     <div class="md-form">
         <input type="text" class="form-control" placeholder="" name="newRoute" id="newRoute" />
-        <label for="newRoute">New route</label>
-        <button type="submit" name="add" class="btn btn-primary w-100 mx-auto" value="Add">Add</button>
+        <label for="newRoute">Nueva ruta</label>
+        <button type="submit" name="add" class="btn btn-primary w-100 mx-auto" value="Add">Añadir</button>
     </div>
     <br />
-    <h2>Change access</h2>
+    <h2>Cambiar nivel de acceso</h2>
     <div class="form-row">
-        <label for="route" class="col">Routes</label>
-        <label for="access" class="col">Access Levels</label>
+        <label for="route" class="col">Rutas</label>
+        <label for="access" class="col">Niveles de acceso</label>
     </div>
     <div class="form-row">
         <div class="md-form col">
@@ -46,7 +58,7 @@
                 <?php endforeach;?>
             </select>
         </div>
-        <button type="submit" name="change" class="btn btn-primary w-100 mx-auto" value="Change">Change</button>
+        <button type="submit" name="change" class="btn btn-primary w-100 mx-auto" value="Change">Cambiar</button>
     </div>
 </form>
 <?php $contenido = ob_get_clean()?>
