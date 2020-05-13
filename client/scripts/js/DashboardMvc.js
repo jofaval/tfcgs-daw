@@ -572,14 +572,14 @@ class Controller {
             controller.deleteDashboardEvent(controller, event);
         });
 
-        $(".listContainer").scroll(function () {
+        /* $(".listContainer").scroll(function () {
             $(".taskListContainer").each(function () {
                 var current = $(this);
                 if ($(".listContainer").scrollLeft() >= current.offset().left) {
                     controller.addIdToURL(controller, current.prop("id"));
                 }
             })
-        })
+        }) */
         document.title = `${controller.model.title}`;
     }
 
