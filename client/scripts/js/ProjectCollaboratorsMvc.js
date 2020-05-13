@@ -134,7 +134,7 @@ class View {
         var username = json.collaboratorUsername;
         clonedCard.find(".collaboratorUsername").text(username);
         clonedCard.find(".collaboratorImg").prop("src", `/daw/img/users/${username}/${username}.png`);
-        clonedCard.prop("href", `/daw/profile/${username}/`);
+        clonedCard.find(".collaboratorCard").prop("href", `/daw/profile/${username}/`);
 
         clonedCard.find(".collaboratorRole").text(json.collaborationRole);
         clonedCard.find(".collaboratorRoleDescription").text(json.collaborationRoleDescription);
