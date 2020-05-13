@@ -101,20 +101,22 @@ class View {
     }
 
     scrollTo(element) {
-        /* $(element).get(0).scrollIntoView({
+        $(element).get(0).scrollIntoView({
             behavior: "smooth",
-        }); */
+            block: 'nearest',
+            inline: 'start'
+        });
         var editor = $(".note-editable.card-block");
         /* $("main").stop().animate({
             scrollTop: editor.offset().top,
         }, function () { */
-        editor.stop().animate({
+        /* editor.stop().animate({
             scrollTop: element.offset().top,
         }, function () {
             $("body, html").scrollTop(0);
             $(window).scrollTop(0);
         });
-        hidePushMenu();
+        hidePushMenu(); */
         /* }); */
     }
 }
