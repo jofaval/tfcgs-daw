@@ -65,6 +65,8 @@ $map['signinFunctionality']['access'] = Config::$ACCESS_LEVEL_GUEST;
 
 //Ruta de test
 $map['test']['access'] = Config::$ACCESS_LEVEL_ADMIN;
+//Ruta de admin
+$map['admin']['access'] = Config::$ACCESS_LEVEL_ADMIN;
 //Ruta de createClients
 $map['createClients']['access'] = Config::$ACCESS_LEVEL_USER;
 //Ruta de updateClients
