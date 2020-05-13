@@ -58,6 +58,11 @@
                 class="btn btn-sm btn-primary projectDiaryBtnNext order-3 text-white">&gt;</a>
             <br>
         </div>
+
+        <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER): ?>
+        <div class="canEdit"></div>
+        <?php endif;?>
+
         <div class="mx-sm-5 mb-sm-5 summernoteContainer">
             <div id="summernote"></div>
         </div>

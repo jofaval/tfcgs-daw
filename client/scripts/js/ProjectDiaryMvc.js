@@ -216,7 +216,7 @@ class Controller {
             return button.render(); // return button as jquery object
         }
 
-        $('#summernote').summernote({
+        var summernote = $('#summernote').summernote({
             lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
             disableDragAndDrop: true,
             height: 400,
@@ -224,6 +224,7 @@ class Controller {
             codeviewIframeFilter: true,
             tabDisable: true,
             placeholder: '',
+            enable: false,
             codemirror: { // codemirror options
                 theme: 'monokai'
             },
@@ -275,6 +276,15 @@ class Controller {
                 }
             ],
         });
+
+        setTimeout(() => {
+            if ($(".canEdit").length == 0) {
+                summernote.summernote('disable');
+            } else {
+                summernote.summernote('enable');
+            }
+            $(".canEdit").remove();
+        }, 1500);
 
         $(".note-statusbar").on("touchmove", function (e) {
             var adjustment = (e.touches[0].clientY - 155) - $(this).position().top;
