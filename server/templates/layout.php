@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html scroll="no" class="overflow-hidden w-100 h-100" style="max-width: 100% !important; max-height: 100% !important;">>
+<html scroll="no" class="overflow-hidden w-100 h-100" style="max-width: 100% !important; max-height: 100% !important;">
 <?php $sessions = Sessions::getInstance();?>
 <?php $username = $sessions->getSession("username");?>
 
 <?php require_once __DIR__ . "/components/head.php"?>
 
 <body scroll="no" class="text-light overflow-hidden w-100 h-100"
-    style="max-width: 100% !important; max-height: 100% !important;">>
+    style="max-width: 100% !important; max-height: 100% !important;">
     <?php require_once __DIR__ . "/components/loader.php";?>
     <?php require_once __DIR__ . "/components/noscript.php";?>
     <?php if ($showHeader): require_once __DIR__ . "/components/header.php";endif;?>
