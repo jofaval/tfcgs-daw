@@ -4,7 +4,7 @@
         <div class="input-group-prepend">
             <div class="dashboardsCount align-self-center mx-2 text-white">
                 <span class="numberOfCollaborators">0</span>&nbsp;
-                <span class="font-weight-bold">colaborador(es)(s)</span>
+                <span class="font-weight-bold">colaborador(es)</span>
             </div>
         </div>
         <div class="row w-auto mx-2">
