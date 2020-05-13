@@ -73,7 +73,7 @@ $(".projectBtnAdd").on("click", function (event) {
                 </div>
                 <div class="md-form">
                 <textarea class="md-textarea form-control" placeholder="" id="description" name="description"></textarea>
-                <label for="description">Description</label>
+                <label for="description">Descripción</label>
                 </div>
                 <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                         <input class="btn btn-primary w-100" type="submit" name="createProject" value="Crear project">

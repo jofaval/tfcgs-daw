@@ -15,7 +15,7 @@ $breadcrumb = [
         "icon" => "home",
     ],
     [
-        "name" => "Your projects",
+        "name" => "Tus proyectos",
         "link" => "/daw/projects/",
         "active" => false,
         "icon" => "folder",
@@ -67,7 +67,7 @@ $breadcrumb = [
             </div>
 
             <a href="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/" class="">
-                Change project information...<span><i class="fa fa-pencil"></i></span>
+                Modificar información del proyecto...<span><i class="fa fa-pencil"></i></span>
             </a>
         </div>
     </div>

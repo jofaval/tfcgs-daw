@@ -15,7 +15,7 @@ $breadcrumb = [
         "icon" => "home",
     ],
     [
-        "name" => "Your projects",
+        "name" => "Tus proyectos",
         "link" => "/daw/projects/",
         "active" => false,
         "icon" => "folder",
@@ -75,7 +75,7 @@ main {
             id="dashboardSearch" placeholder="Search...">
         <div class="input-group-append">
             <span class="btn btn-sm btn-primary m-0 input-group-text md-addon"><span><i
-                        class="fa fa-search"></i></span>Search</span>
+                        class="fa fa-search"></i></span>Buscar</span>
         </div>
     </div>
 </div>

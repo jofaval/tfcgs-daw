@@ -41,8 +41,8 @@
 <div class="w-100 h-100 tabContent min-height-40 container p-0 d-block" id="tabContent3">
     <div class="mx-auto">
         <div class="form-row d-flex container mx-auto justify-content-center py-4">
-            <button class="btn btn-sm m-0 btn-primary" id="navigationSchemeBtn">Generate navigation scheme</button>
-            <button class="btn btn-sm m-0 btn-primary diaryBtnSave" id="diaryBtnSave">Save</button>
+            <button class="btn btn-sm m-0 btn-primary" id="navigationSchemeBtn">Generar esquema de navegación</button>
+            <button class="btn btn-sm m-0 btn-primary diaryBtnSave" id="diaryBtnSave">Guardar</button>
             <div class="col-sm-3 rounded order-0 order-sm-2 shadow mx-1">
                 <div class="md-form m-0">
                     <input placeholder="AAAA/MM/DD" type="datepicker" autofocus="true" id="datepicker"

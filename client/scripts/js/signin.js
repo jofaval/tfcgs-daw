@@ -42,14 +42,14 @@ $("#registerPanel .btn").on("click", function () {
 function togglePanel(toHide, toShow, toRight) {
     var panelInformationTextArray = [
         [
-            "Registration form",
-            "I'm already signed up, take me to:",
-            "Login form",
+            "Formulario de registro",
+            "Ya estoy registrado, llevame al:",
+            "Formulario de inicio",
         ],
         [
-            "Login form",
-            "I'm not signed up, take me to:",
-            "Registration form",
+            "Formulario de inicio",
+            "No estoy registrado, llevame al:",
+            "Formulario de registro",
         ],
     ];
 

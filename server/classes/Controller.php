@@ -203,7 +203,7 @@ class Controller
             "diaryDate" => DateUtils::getCurrentDateTime("Y-m-d"),
             "diaryDatePrev" => "general",
             "diaryDateNext" => "general",
-            "dashboardTitle" => "Title",
+            "dashboardTitle" => "Título",
         ];
 
         if (Utils::exists("id")) {

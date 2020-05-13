@@ -64,15 +64,15 @@ $breadcrumb = [
         class="row tabs d-flex text-white justify-content-center justify-items-center align-content-center align-items-center shadow w-100 m-0 tabs">
         <div class="projectsCount ml-3">
             <span class="numberOfProjects">0</span>&nbsp;
-            <span class="font-weight-bold">project(s)</span>
+            <span class="font-weight-bold">proyecto(s)</span>
         </div>
         <div class="btn-group projectsBtnFilters">
-            <div class="projectsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>
-            <div class="projectsBtnCreated btn btn-sm btn-success">Created</div>
-            <div class="projectsBtnShared btn btn-sm btn-primary">Shared</div>
+            <div class="projectsBtnBookmarked btn btn-sm btn-warning">Favorito</div>
+            <div class="projectsBtnCreated btn btn-sm btn-success">Creado</div>
+            <div class="projectsBtnShared btn btn-sm btn-primary">Compartido</div>
         </div>
         <div class="row w-auto mx-2">
-            <p class="m-0 align-self-center text-white">Show&nbsp;</p>
+            <p class="m-0 align-self-center text-white">Mostrar&nbsp;</p>
             <select class="custom-select custom-select-sm align-self-center w-auto" id="selectNumberOfRows">
                 <option value="1" class="d-block d-sm-none">2</option>
                 <option value="1" class="d-none d-sm-block">1</option>
@@ -85,15 +85,15 @@ $breadcrumb = [
                 <option value="5" class="d-block d-sm-none">10</option>
                 <option value="5" class="d-none d-sm-block">5</option>
             </select>
-            <p class="m-0 align-self-center text-white">&nbsp;row(s).</p>
+            <p class="m-0 align-self-center text-white">&nbsp;fila(s).</p>
         </div>
-        <div class="btn btn-success btn-sm projectBtnAdd">+ Add</div>
+        <div class="btn btn-success btn-sm projectBtnAdd">+ Añadir</div>
         <div class="md-form input-group col-12 col-sm my-2">
             <input type="search" class="form-control text-white pl-0 rounded-0" name="projectSearch" id="projectSearch"
                 placeholder="Search...">
             <div class="input-group-append">
                 <span class="btn btn-sm btn-primary m-0 input-group-text md-addon">
-                    <span class="d-none d-sm-inline-block">Search&nbsp;</span>
+                    <span class="d-none d-sm-inline-block">Buscar&nbsp;</span>
                     <span><i class="fa fa-search fa-2x"></i></span>
                 </span>
             </div>
@@ -106,10 +106,10 @@ $breadcrumb = [
             <nav aria-label="Page navigation example" class="bg-transparent">
                 <ul class="pagination pg-blue mb-0">
                     <li class="page-item nav-previous">
-                        <a class="page-link text-white" tabindex="-1">Previous</a>
+                        <a class="page-link text-white" tabindex="-1">Anterior</a>
                     </li>
                     <li class="page-item nav-next">
-                        <a class="page-link text-white">Next</a>
+                        <a class="page-link text-white">Siguiente</a>
                     </li>
                 </ul>
             </nav>

@@ -20,7 +20,7 @@ var emptyListTemplate = $(`<div class="taskContainer mx-2">
                 <div class="pb-3">
                     <div class="col d-flex">
                         <div class="input-group md-form my-0">
-                            <input type="text" class="form-control" placeholder="First name">
+                            <input type="text" class="form-control" placeholder="Nombre">
                             <div class="input-group-append">
                                 <button class="btn addTask btn-sm btn-primary m-0">+</button>
                             </div>

@@ -49,7 +49,7 @@ class View {
         this.tableTeachers = $(`<table class="text-center table mx-auto w-100 table-striped table-light table-bordered table-sm dataTable" role="grid" aria-describedby="dtBasicExample_info" cellspacing="0">
             <thead class="text-center">
                 <tr>
-                    <th>Username</th>
+                    <th>Usuario</th>
                     <th>Full name</th>
                     <th>Type</th>
                     <th>Email</th>

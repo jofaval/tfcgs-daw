@@ -4,9 +4,9 @@ var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
 var $collaboratorRow = $(`<div class="row collaboratorCardRow d-flex flex-start flex-wrap m-0"></div>`);
 var $collaboratorPage = $(`<div class="collaboratorsPage"></div>`);
 
-var $collaboratorFlagBookmarked = $(`<div class="collaboratorsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>`);
-var $collaboratorFlagCreated = $(`<div class="collaboratorsBtnCreated btn btn-sm btn-success">Created</div>`);
-var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm btn-primary">Shared</div>`);
+var $collaboratorFlagBookmarked = $(`<div class="collaboratorsBtnBookmarked btn btn-sm btn-warning">Favorito</div>`);
+var $collaboratorFlagCreated = $(`<div class="collaboratorsBtnCreated btn btn-sm btn-success">Creado</div>`);
+var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm btn-primary">Compartido</div>`);
 
 var $collaboratorCard = $(`<a href="" class="collaboratorCard cursor-pointer text-center collaboratorProfileBtn view overlay rounded m-2 m-2">
     <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/img/profile-pic.png" width="150" height="150" alt="">

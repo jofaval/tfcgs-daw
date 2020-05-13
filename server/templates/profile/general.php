@@ -18,7 +18,7 @@
                     <input type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="username"
                         id="username" class="form-control my-1 validate"
                         value="<?php echo $viewParams["profile"]["username"]; ?>">
-                    <label for="username" data-error="wrong" data-success="right">Username</label>
+                    <label for="username" data-error="wrong" data-success="right">Usuario</label>
                 </div>
             </div>
             <div class="col-md-6">
@@ -26,8 +26,7 @@
                     <input type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="website"
                         id="website" class="form-control my-1 validate"
                         value="<?php echo $viewParams["profile"]["website"]; ?>">
-                    <label for="website" data-error="wrong" data-success="right">Website
-                        Address</label>
+                    <label for="website" data-error="wrong" data-success="right">Sitio web</label>
                 </div>
             </div>
         </div>
@@ -37,7 +36,7 @@
                     <input type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="name"
                         id="name" class="form-control my-1 validate"
                         value="<?php echo $viewParams["profile"]["name"]; ?>">
-                    <label for="name" data-error="wrong" data-success="right">First name</label>
+                    <label for="name" data-error="wrong" data-success="right">Nombre</label>
                 </div>
             </div>
             <div class="col-md-6">
@@ -45,7 +44,7 @@
                     <input type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="surname"
                         id="surname" class="form-control my-1 validate"
                         value="<?php echo $viewParams["profile"]["surname"]; ?>">
-                    <label for="surname" data-error="wrong" data-success="right">Last name</label>
+                    <label for="surname" data-error="wrong" data-success="right">Apellidos</label>
                 </div>
             </div>
         </div>
@@ -55,7 +54,7 @@
                     <input type="email" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="email"
                         id="email" class="form-control my-1 validate"
                         value="<?php echo $viewParams["profile"]["email"]; ?>">
-                    <label for="email">Email address</label>
+                    <label for="email">Correo electrónico</label>
                 </div>
             </div>
         </div>
@@ -65,7 +64,7 @@
                     <textarea type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?>
                         name="biography" id="biography" class="md-textarea form-control"
                         rows="3"><?php echo $viewParams["profile"]["biography"]; ?></textarea>
-                    <label for="biography">About me</label>
+                    <label for="biography">Biografía (corta)</label>
                 </div>
             </div>
         </div>

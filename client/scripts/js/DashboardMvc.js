@@ -17,7 +17,7 @@ var $taskList = $(`
         <div class="pb-3 taskListInputContainer">
             <div class="col d-flex taskListInputRow">
                 <div class="input-group md-form my-0 taskListInputGroup">
-                    <input type="text" class="form-control taskListInput text-white" placeholder="Title">
+                    <input type="text" class="form-control taskListInput text-white" placeholder="Título">
                     <div class="input-group-append taskListInputBtnContainer">
                         <button class="btn addTask btn-sm btn-primary m-0 taskListInputBtn">+</button>
                     </div>
@@ -62,7 +62,7 @@ var $dashboardModal = $(`
                 class="dashboardModalListName">list</a></small>
         <div class="row">
             <div class="col-sm-8 order-2 order-sm-1">
-                <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-align-justify mr-2"></span>Description</h4>
+                <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-align-justify mr-2"></span>Descripción</h4>
                 <div class="md-form my-0">
                     <textarea id="dashboardModalDescription" class="md-textarea form-control text-white" rows="3"></textarea>
                     <label for="dashboardModalDescription">Descripción</label>
@@ -70,12 +70,12 @@ var $dashboardModal = $(`
                 <div class="row dashboardModalSaveChanges">
                 <button class="btn mx-auto btn-sm btn-primary dashboardModalBtnSaveChanges">Guardar cambios</button>
                 </div>
-                <h4 class="dashboardModalCommentsTitle"><span class="fa fa-comments mr-2"></span>Comments</h4>
+                <h4 class="dashboardModalCommentsTitle"><span class="fa fa-comments mr-2"></span>Comentarios</h4>
                 <div class="md-form input-group mb-4">
                     <input type="text" class="form-control text-white" id="comment">
-                    <label for="comment" class="">Comment</label>
+                    <label for="comment" class="">Comentario</label>
                     <div class="input-group-append">
-                        <span class="input-group-text dashboardModalCommentBtn md-addon btn btn-sm btn-primary">Comment</span>
+                        <span class="input-group-text dashboardModalCommentBtn md-addon btn btn-sm btn-primary">Comentar</span>
                     </div>
                 </div>
                 <div class="dashboardCommentsContainer overflow-y-auto overflow-x-hidden max-height-15"></div>
@@ -644,7 +644,7 @@ class Controller {
 
         var newTaskListTitle = taskListAddInput.val();
         if (newTaskListTitle.length < 3) {
-            sendNotification("Task list title must have at least 3 characters", "taskListTitleTooShort");
+            sendNotification("El título de la lista debe tener al menos 3 carácteres", "taskListTitleTooShort");
             return;
         }
         controller.onTaskListCreation(controller, newTaskListTitle, function (result) {
@@ -786,7 +786,7 @@ class Controller {
 
         var taskListItemValue = taskListInput.val();
         if (taskListItemValue.length < 3) {
-            sendNotification("Task list item title must have at least 3 characters", "taskListItemTooShort");
+            sendNotification("El título de la tarea debe tener al menos 3 carácteres", "taskListItemTooShort");
             return;
         }
 

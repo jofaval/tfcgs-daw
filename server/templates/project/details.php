@@ -3,13 +3,13 @@
 <div class="w-100 h-100 tabContent container p-0 d-block" id="tabContent5">
     <div class="content px-2 px-sm-5">
         <form method="POST" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/">
-            <div class="text-white mt-5 h5">Project title</div>
+            <div class="text-white mt-5 h5">Título del proyecto</div>
             <div class="md-form mb-5">
                 <input class="form-control text-white font-weight-bold h3" <?php echo !$canEdit ? 'disabled=""' : ''; ?>
                     name="projectTitle" id="projectTitle" value="<?php echo $projectData["projectTitle"]; ?>" />
                 <label for="projectTitle"></label>
             </div>
-            <div class="text-white h5">Project description</div>
+            <div class="text-white h5">Descripción del proyecto</div>
             <div class="md-form mb-5 mt-0">
                 <textarea id="projectDescription" name="projectDescription"
                     class="md-textarea form-control text-white p-0" <?php echo !$canEdit ? 'disabled=""' : ''; ?>

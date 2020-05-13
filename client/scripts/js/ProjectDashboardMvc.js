@@ -4,22 +4,22 @@ var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
 var $dashboardRow = $(`<div class="row dashboardCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
 var $dashboardPage = $(`<div class="dashboardsPage"></div>`);
 
-var $dashboardFlagBookmarked = $(`<div class="dashboardsBtnBookmarked btn btn-sm btn-warning">Bookmarked</div>`);
-var $dashboardFlagCreated = $(`<div class="dashboardsBtnCreated btn btn-sm btn-success text-dark">Created</div>`);
-var $dashboardFlagShared = $(`<div class="dashboardsBtnShared btn btn-sm btn-primary">Shared</div>`);
+var $dashboardFlagBookmarked = $(`<div class="dashboardsBtnBookmarked btn btn-sm btn-warning">Favorito</div>`);
+var $dashboardFlagCreated = $(`<div class="dashboardsBtnCreated btn btn-sm btn-success text-dark">Creado</div>`);
+var $dashboardFlagShared = $(`<div class="dashboardsBtnShared btn btn-sm btn-primary">Compartido</div>`);
 
 var $dashboardCard = $(`
 <div class="dashboardCard text-dark row col-12 px-0 col-sm m-2 bg-white">
     <img src="" alt="" class="dashboardCardBgImg object-fit-cover opacity-80 brightness-30 position-absolute w-100 h-100 z-index">
     <div
         class="row dashboardCardDetails pl-3 z-index-overlap flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
-        <a href="" class="btn btn-sm btn-primary dashboardCardBtnView">View</a>
+        <a href="" class="btn btn-sm btn-primary dashboardCardBtnView">Ver</a>
         <!--div class="btn btn-sm btn-danger dashboardCardBtnDisable">Disable dashboard</div-->
         <h5 class="dashboardCardTitle max-text-10 text-white text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Dashboard title</h5>
         <div class="dashboardCardBookmarkedIcon"></div>
         <div class="dashboardCardFlags float-right btn-group d-none d-sm-block"></div>
     </div>
-    <a href="" class="dashboardReadMore text-white">Read more...</a>
+    <a href="" class="dashboardReadMore text-white">Leer más...</a>
     <div class="dashboardCardDescription text-white max-text-20 text-overflow-ellipsis pl-3 z-index-overlap-bottom overflow-hidden text-justify my-2"></div>
 </div>`);
 

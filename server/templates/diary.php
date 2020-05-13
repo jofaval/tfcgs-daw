@@ -15,7 +15,7 @@ $breadcrumb = [
         "icon" => "home",
     ],
     [
-        "name" => "Your projects",
+        "name" => "Tus proyectos",
         "link" => "/daw/projects/",
         "active" => false,
         "icon" => "folder",
