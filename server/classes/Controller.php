@@ -223,7 +223,7 @@ class Controller
                 header("Location: /daw/projects/");
             }
 
-            $projectAccessLevel = Model::getInstance()->getProjectNumbers($id);
+            $projectAccessLevel = Model::getInstance()->getProjectAccessLevel($id, Sessions::getInstance()->getSession('userId'));
             $viewParams["projectAccessLevel"] = $projectAccessLevel;
             //Si no está invitado, aquí iría la opción de privado/público
             if (is_null($projectAccessLevel)) {
