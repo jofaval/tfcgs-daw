@@ -28,7 +28,7 @@ class ValidatePopoFields
         return true;
     }
 }
-
+ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validationRules, array_fill_keys(["email"], 'email'));
 ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validationRules, array_fill_keys(["role",
     "id_collaborator",
     "invited_by",
@@ -46,7 +46,6 @@ ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validati
     "id_creator"], 'numeric'));
 ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validationRules, array_fill_keys(["name",
     "surname",
-    "email",
     "website",
     "dashboard_title",
     "title",
