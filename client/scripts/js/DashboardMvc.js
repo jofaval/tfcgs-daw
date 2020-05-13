@@ -362,6 +362,154 @@ class Model {
             }
         });
     }
+
+    moveDashboardItem(order, taskItemId, dashboardListId, whenFinished) {
+        var model = this;
+        $.ajax({
+            url: "/daw/index.php?ctl=updateDashboardItem",
+            data: {
+                "order": order,
+                "id_dashboard_list": dashboardListId,
+                "id": taskItemId,
+                "idProjectForAccessLevel": model.projectId,
+                //"moveForward": movedData["endingIndex"] > movedData["startingIndex"] ? 1 : 0,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    getCommentsOfDashboardItem(taskItemDataId, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
+            data: {
+                "id_dashboard_item": taskItemDataId,
+                "idProjectForAccessLevel": controller.model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    getDashboardItemDetails(taskItemDataId, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?&ctl=getDashboardItemDetails",
+            data: {
+                "id": taskItemDataId,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        })
+    }
+
+    updateDashboardItem(taskItemId, title, description, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=updateDashboardItem",
+            data: {
+                "id": taskItemId,
+                "title": title,
+                "description": description,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    createDashboardsItemAssignation(taskItemId, startDate, endDate, username, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=createDashboardsItemAssignation",
+            data: {
+                "id_dashboard_item": taskItemData.id,
+                "start_date": startDate,
+                "end_date": endDate,
+                "assigned_to": username,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    queryDashboardsItemAssignation(taskItemId, username, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=createDashboardsItemAssignation",
+            data: {
+                "id_dashboard_item": taskItemId,
+                "assigned_to": username,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    updateDashboardsItemAssignation(taskItemId, startDate, endDate, username, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            data: {
+                "id_dashboard_item": taskItemId,
+                "start_date": startDate,
+                "end_date": endDate,
+                "assigned_to": username,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    deleteDashboardsItemAssignation(taskItemId, username, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            data: {
+                "id_dashboard_item": taskItemId,
+                "assigned_to": username,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
+
+    updateDashboardItemComments(id, comment, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            data: {
+                "id_dashboard_item": taskItemId,
+                "assigned_to": username,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            }
+        });
+    }
 }
 
 class View {
@@ -680,35 +828,13 @@ class Controller {
             return;
         }
 
-        var newOrder = movedData["endingIndex"];
-        var taskListID = movedData["endingTaskList"]["id"];
-        /* 
-                $.ajax({
-                    //rearrange order
-                    url: "/daw/index.php?ctl=updateOrderInDashboardList",
-                    data: {
-                        order: newOrder,
-                        id_dashboard_list: taskListID,
-                        "idProjectForAccessLevel": controller.model.projectId,
-                    },
-                    success: function (result) {
-        console.log("updatedOrder", result); */
-        $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardItem",
-            data: {
-                "order": newOrder,
-                "id_dashboard_list": taskListID,
-                "id": movedData["taskItem"]["id"],
-                "idProjectForAccessLevel": controller.model.projectId,
-                //"moveForward": movedData["endingIndex"] > movedData["startingIndex"] ? 1 : 0,
-            },
-            success: function (result) {
-                console.log("mover de lista", result);
-            }
+        var order = movedData["endingIndex"];
+        var dashboardListId = movedData["endingTaskList"]["id"];
+        var taskItemId = movedData["taskItem"]["id"];
+
+        controller.model.moveDashboardItem(order, taskItemId, dashboardListId, function (result) {
+            console.log("mover de lista", result);
         });
-        /*     }
-        })
- */
     }
 
     createTaskList(controller, taskListData) {
@@ -973,21 +1099,14 @@ class Controller {
         });
 
         //comments
-        $.ajax({
-            url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
-            data: {
-                "id_dashboard_item": taskItemData.id,
-                "idProjectForAccessLevel": controller.model.projectId,
-            },
-            success: function (result) {
-                if (result !== false) {
-                    commentsContainer.html("");
-                    $(result).each(function () {
-                        var commentJSON = this;
-                        console.log(commentJSON);
-                        controller.createComment(controller, commentJSON, commentsContainer);
-                    });
-                }
+        controller.model.getCommentsOfDashboardItem(taskItemData.id, function (result) {
+            if (result !== false) {
+                commentsContainer.html("");
+                $(result).each(function () {
+                    var commentJSON = this;
+                    console.log(commentJSON);
+                    controller.createComment(controller, commentJSON, commentsContainer);
+                });
             }
         });
 
@@ -1022,33 +1141,26 @@ class Controller {
         });
 
         $("#dashboardModalActionDetails").on("click", function (event) {
-            $.ajax({
-                url: "/daw/index.php?&ctl=getDashboardItemDetails",
-                data: {
-                    "id": taskItemData.id,
-                    "idProjectForAccessLevel": controller.model.projectId,
-                },
-                success: function (result) {
-                    console.log("details", result);
-                    if (result !== false) {
-                        Modal.modal({
-                            "title": `Detalles de ${taskItemData.title}`,
-                            "content": `<div class="row">
-                            <p class="mb-0">Creado por <a href="/daw/profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
-                            <div class="dashboardItemCreationDate ml-auto mr-2"></div>
-                        </div>`,
-                            "onOpen": function (modal) {
-                                var creationDateContainer = $(".dashboardItemCreationDate");
-                                var originalDate = result.creation_date;
-                                var timeFromMoment = new TimeFromMoment(creationDateContainer, originalDate)
-                                timeFromMoment.delete(timeFromMoment);
-                            }
-                        });
-                    } else {
-                        sendNotification("No se han podido extraer los detalles", "dashboardItemDetailsFail");
-                    }
+            controller.model.getDashboardItemDetails(taskItemData.id, function (result) {
+                console.log("details", result);
+                if (result !== false) {
+                    Modal.modal({
+                        "title": `Detalles de ${taskItemData.title}`,
+                        "content": `<div class="row">
+                        <p class="mb-0">Creado por <a href="/daw/profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
+                        <div class="dashboardItemCreationDate ml-auto mr-2"></div>
+                    </div>`,
+                        "onOpen": function (modal) {
+                            var creationDateContainer = $(".dashboardItemCreationDate");
+                            var originalDate = result.creation_date;
+                            var timeFromMoment = new TimeFromMoment(creationDateContainer, originalDate)
+                            timeFromMoment.delete(timeFromMoment);
+                        }
+                    });
+                } else {
+                    sendNotification("No se han podido extraer los detalles", "dashboardItemDetailsFail");
                 }
-            })
+            });
         });
 
         if (taskItemData.enabled != 0) {
@@ -1164,24 +1276,14 @@ class Controller {
                     if (taskItemData.id_dashboard_list == id_dashboard_list) {
                         movingForward = taskItemData.order > order;
                     }
-                    $.ajax({
-                        url: "/daw/index.php?ctl=updateDashboardItem",
-                        data: {
-                            "id": taskItemData.id,
-                            "id_dashboard_list": id_dashboard_list,
-                            "order": order,
-                            "idProjectForAccessLevel": controller.model.projectId,
-                            //"movingForward": movingForward ? 1 : 0,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result !== false) {
-                                sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
-                            } else {
-                                sendNotification("No se ha podido cambiar de lista", "changeTaskListFail");
-                            }
+                    moveDashboardItem(order, taskItemData.id, id_dashboard_list, function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
+                        } else {
+                            sendNotification("No se ha podido cambiar de lista", "changeTaskListFail");
                         }
-                    });
+                    })
                 });
                 controller.view.scrollTo(taskItem);
             },
@@ -1223,25 +1325,17 @@ class Controller {
     dashboardSaveChangesEvent(controller, taskItemData) {
         var title = $(".dashboardModalTitle").text();
         var description = $("#dashboardModalDescription").val();
-        $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardItem",
-            data: {
-                "id": taskItemData.id,
-                "title": title,
-                "description": description,
-                "idProjectForAccessLevel": controller.model.projectId,
-            },
-            success: function (result) {
-                console.log("modificar Detalles", result);
-                if (result !== false) {
-                    console.log(taskItemData);
-                    taskItemData.title = title;
-                    taskItemData.description = description;
-                    taskItemData.html.find(".taskListItemTitle").text(taskItemData.title);
-                    $(".dashboardModalSaveChanges").hide();
-                } else {
-                    sendNotification("No se han podido cambiar los detalles", "changeTaskItemDetailsFail");
-                }
+
+        controller.model.updateDashboardItem(taskItemData.id, title, description, function (result) {
+            console.log("modificar Detalles", result);
+            if (result !== false) {
+                console.log(taskItemData);
+                taskItemData.title = title;
+                taskItemData.description = description;
+                taskItemData.html.find(".taskListItemTitle").text(taskItemData.title);
+                $(".dashboardModalSaveChanges").hide();
+            } else {
+                sendNotification("No se han podido cambiar los detalles", "changeTaskItemDetailsFail");
             }
         });
     }
@@ -1290,25 +1384,16 @@ class Controller {
                     var endDateVal = endDate.val();
                     var username = userSearch.input.val();
 
-                    $.ajax({
-                        url: "/daw/index.php?ctl=createDashboardsItemAssignation",
-                        data: {
-                            "id_dashboard_item": taskItemData.id,
-                            "start_date": startDateVal,
-                            "end_date": endDateVal,
-                            "assigned_to": username,
-                            "idProjectForAccessLevel": controller.model.projectId,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result !== false) {
-                                sendNotification("Se ha asignato con éxito", "assignateTaskSuccess");
-                                modal.close();
-                            } else {
-                                sendNotification("No se ha podido asignar", "assignateTaskFail");
-                            }
+                    controller.model.createDashboardsItemAssignation(taskItemData.id, startDateVal, endDateVal, username, function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            sendNotification("Se ha asignato con éxito", "assignateTaskSuccess");
+                            modal.close();
+                        } else {
+                            sendNotification("No se ha podido asignar", "assignateTaskFail");
                         }
                     });
+
                     return false;
                 });
             },
@@ -1354,23 +1439,15 @@ class Controller {
                     event.stopPropagation();
                     event.preventDefault();
 
-                    $.ajax({
-                        url: "/daw/index.php?ctl=queryDashboardsItemAssignation",
-                        data: {
-                            "id_dashboard_item": taskItemData.id,
-                            "assigned_to": userSearch.input.val(),
-                            "idProjectForAccessLevel": controller.model.projectId,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result !== false) {
-                                $("#startDate").val(result.start_date);
-                                $("#endDate").val(result.end_date);
-                                assignationId = result.id;
-                                $("#updateDashboard").prop("disabled", false);
-                            } else {
-                                sendNotification("No se han podido encontrar los datos", "assignateTaskQueryFail");
-                            }
+                    controller.model.queryDashboardsItemAssignation(taskItemData.id, userSearch.input.val(), function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            $("#startDate").val(result.start_date);
+                            $("#endDate").val(result.end_date);
+                            assignationId = result.id;
+                            $("#updateDashboard").prop("disabled", false);
+                        } else {
+                            sendNotification("No se han podido encontrar los datos", "assignateTaskQueryFail");
                         }
                     });
                 };
@@ -1379,23 +1456,15 @@ class Controller {
                     event.stopPropagation();
                     event.preventDefault();
 
-                    $.ajax({
-                        url: "/daw/index.php?ctl=queryDashboardsItemAssignation",
-                        data: {
-                            "id_dashboard_item": taskItemData.id,
-                            "assigned_to": userSearch.input.val(),
-                            "idProjectForAccessLevel": controller.model.projectId,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result !== false) {
-                                $("#startDate").val(result.start_date);
-                                $("#endDate").val(result.end_date);
-                                assignationId = result.id;
-                                $("#updateDashboard").prop("disabled", false);
-                            } else {
-                                sendNotification("No se han podido encontrar los datos", "assignateTaskQueryFail");
-                            }
+                    controller.model.queryDashboardsItemAssignation(taskItemData.id, userSearch.input.val(), function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            $("#startDate").val(result.start_date);
+                            $("#endDate").val(result.end_date);
+                            assignationId = result.id;
+                            $("#updateDashboard").prop("disabled", false);
+                        } else {
+                            sendNotification("No se han podido encontrar los datos", "assignateTaskQueryFail");
                         }
                     });
                 });
@@ -1407,23 +1476,13 @@ class Controller {
                     var endDateVal = endDate.val();
                     var username = userSearch.input.val();
 
-                    $.ajax({
-                        url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
-                        data: {
-                            "id_dashboard_item": taskItemData.id,
-                            "start_date": startDateVal,
-                            "end_date": endDateVal,
-                            "assigned_to": username,
-                            "idProjectForAccessLevel": controller.model.projectId,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result !== false) {
-                                sendNotification("Se ha modificado con éxito", "modifyAsignateTaskSuccess");
-                                modal.close();
-                            } else {
-                                sendNotification("No se ha podido asignar", "modifyAsignateTaskFail");
-                            }
+                    controller.model.updateDashboardsItemAssignation(taskItemData.id, startDateVal, endDateVal, username, function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            sendNotification("Se ha modificado con éxito", "modifyAsignateTaskSuccess");
+                            modal.close();
+                        } else {
+                            sendNotification("No se ha podido asignar", "modifyAsignateTaskFail");
                         }
                     });
                     return false;
@@ -1451,23 +1510,16 @@ class Controller {
 
                     var username = userSearch.input.val();
 
-                    $.ajax({
-                        url: "/daw/index.php?ctl=deleteDashboardsItemAssignation",
-                        data: {
-                            "id_dashboard_item": taskItemData.id,
-                            "assigned_to": username,
-                            "idProjectForAccessLevel": controller.model.projectId,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            if (result !== false) {
-                                sendNotification("Se ha quitado la asignación", "removeAssignationTaskSuccess");
-                                modal.close();
-                            } else {
-                                sendNotification("No se ha quitar la asignación", "removeAssignationTaskFail");
-                            }
+                    controller.model.deleteDashboardsItemAssignation(taskItemData.id, userSearch.input.val(), function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            sendNotification("Se ha quitado la asignación", "removeAssignationTaskSuccess");
+                            modal.close();
+                        } else {
+                            sendNotification("No se ha quitar la asignación", "removeAssignationTaskFail");
                         }
                     });
+
                     return false;
                 });
             },
@@ -1555,20 +1607,12 @@ class Controller {
         btnEditComment.on("click", function () {
             var commentContent = encodeURI(clonedComment.find(".dashboardCommentContent").html());
 
-            $.ajax({
-                url: "/daw/index.php?ctl=updateDashboardItemComments",
-                data: {
-                    "id": commentJSON.id,
-                    "comment": commentContent,
-                    "idProjectForAccessLevel": controller.model.projectId,
-                },
-                success: function (result) {
-                    console.log("cambiar comentario", commentJSON.id, result);
-                    if (result !== false) {
-                        btnEditComment.hide();
-                    } else {
+            controller.model.updateDashboardItemComments(commentJSON.id, commentContent, function (result) {
+                console.log("cambiar comentario", commentJSON.id, result);
+                if (result !== false) {
+                    btnEditComment.hide();
+                } else {
 
-                    }
                 }
             });
         });
