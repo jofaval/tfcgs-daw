@@ -34,7 +34,7 @@ $breadcrumb = [
     ],
     [
         "name" => $viewParams["dashboardTitle"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"],
+        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"] . "/",
         "active" => false,
         "icon" => "columns",
     ],
