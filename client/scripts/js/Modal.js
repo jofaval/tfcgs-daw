@@ -37,8 +37,8 @@ class Modal {
 
         settings["onOpen"](modal);
         modal["$overlay"].addClass("d-flex justify-content-center align-content-center");
-        modal["$overlay"].find(".sweet-modal-content").addClass("p-0 p-sm-5 m-auto")
-            .prepend(modal["$overlay"].find(".sweet-modal-close").removeClass("position-absolute").addClass("float-right position-sticky"));
+        modal["$overlay"].find(".sweet-modal-content").addClass("p-0 p-sm-5 m-auto");
+        modal["$overlay"].find(".sweet-modal-title-wrap").prepend(modal["$overlay"].find(".sweet-modal-close").removeClass("position-absolute").addClass("float-right position-sticky"));
         modal["$overlay"].find(".sweet-modal-box.alert").css({
             "top": "0px", //35%
             "marginTop": "0px",
