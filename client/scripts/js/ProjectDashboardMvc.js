@@ -205,7 +205,11 @@ class Controller {
         });
 
         var selectNumberOfRows = $("#selectNumberOfRows");
-        selectNumberOfRows.val(localStorage.getItem("numberOfRowsInDashboards") || 3);
+        var localStorageNumberRows = localStorage.getItem("numberOfRowsInCollaborators");
+        if (localStorageNumberRows === null) {
+            localStorageNumberRows = 3;
+        }
+        selectNumberOfRows.val(localStorageNumberRows);
         selectNumberOfRows.on("change", function () {
             controller.reload(controller);
             localStorage.setItem("numberOfRowsInDashboards", selectNumberOfRows.val());
