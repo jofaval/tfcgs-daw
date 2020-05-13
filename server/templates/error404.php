@@ -8,7 +8,7 @@
 <?php $showBreadcrumb = true;?>
 <?php $breadcrumb = [
     [
-        "name" => "Go back home",
+        "name" => "Volver a la home",
         "link" => "/daw/",
         "active" => true,
         "icon" => "home",
@@ -20,7 +20,7 @@
 <div class="container text-center d-flex flex-column">
     <h1 class="font-weight-bold" style="font-size: 10em;">404</h1>
     <h1 style="font-size: 6em;">Mamma mia!</h1>
-    <h2>We have not found what you requested!</h2>
+    <h2>¡No hemos encontrado lo que nos has pedido!</h2>
 </div>
 
 <?php $contenido = ob_get_clean()?>
