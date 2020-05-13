@@ -341,6 +341,8 @@ class Controller {
         controller.model.paginationIndex = 1;
         var pagination = $(".pagination");
 
+        $(".numberOfCollaborators").html(controller.model.collaborators.length);
+
         var navigation = $(".page-item.nav-previous, .page-item.nav-next");
         pagination.before(navigation);
         pagination.html("");
