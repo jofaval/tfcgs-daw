@@ -187,6 +187,35 @@ class Controller {
     loadEditor(controller) {
         controller.model.loadEmojis();
 
+        var SaveButton = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var button = ui.button({
+                contents: '<i class="fa fa-lg m-1 fa-save"/>',
+                tooltip: 'Guardar contenido',
+                click: function () {
+                    controller.saveContent(controller);
+                }
+            });
+
+            return button.render(); // return button as jquery object
+        }
+        var SchemeButton = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var button = ui.button({
+                contents: '<i class="fa fa-lg m-1 fa-th-list"/>',
+                tooltip: 'Esquema de navegación',
+                click: function () {
+                    controller.generateNavigationScheme(controller);
+                }
+            });
+
+            return button.render(); // return button as jquery object
+        }
+
         $('#summernote').summernote({
             lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
             disableDragAndDrop: true,
@@ -197,6 +226,21 @@ class Controller {
             placeholder: '',
             codemirror: { // codemirror options
                 theme: 'monokai'
+            },
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname', 'fontsize', 'fontsizeunit']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+                ['customOptions', ['save', 'scheme']],
+            ],
+            buttons: {
+                save: SaveButton,
+                scheme: SchemeButton,
             },
             hint: [{
                     mentions: ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com'],
@@ -231,6 +275,42 @@ class Controller {
                 }
             ],
         });
+        var AutoLink = function (context) {
+
+            // you can get current editor's elements from layoutInfo
+            var layoutInfo = context.layoutInfo;
+            var $editor = layoutInfo.editor;
+            var $editable = layoutInfo.editable;
+            var $toolbar = layoutInfo.toolbar;
+
+            // ui is a set of renderers to build ui elements.
+            var ui = $.summernote.ui;
+
+            // this method will be called when editor is initialized by $('..').summernote();
+            // You can attach events and created elements on editor elements(eg, editable, ...).
+            this.initialize = function () {
+                // create button
+                var button = ui.button({
+                    className: 'note-btn-bold',
+                    contents: '<i class="fa fa-bold">',
+                    click: function (e) {
+                        // invoke bold method of a module named editor
+                        context.invoke('editor.bold');
+                    }
+                });
+
+                // generate jQuery element from button instance.
+                this.$button = button.render();
+                $toolbar.append(this.$button);
+            }
+
+            // this method will be called when editor is destroyed by $('..').summernote('destroy');
+            // You should detach events and remove elements on `initialize`.
+            this.destroy = function () {
+                this.$button.remove();
+                this.$button = null;
+            }
+        };
 
         $(".note-statusbar").on("touchmove", function (e) {
             var adjustment = (e.touches[0].clientY - 155) - $(this).position().top;
