@@ -18,8 +18,8 @@
 #loader {
     display: block;
     position: relative;
-    left: 50%;
-    top: 50%;
+    /* left: 50%;
+    top: 50%; */
     width: 150px;
     height: 150px;
     margin: -75px 0 0 -75px;
@@ -69,7 +69,6 @@
         transform: rotate(0deg);
         /* Firefox 16+, IE 10+, Opera */
     }
-
     100% {
         /* Chrome, Opera 15+, Safari 3.1+ */
         /* IE 9 */
@@ -132,7 +131,7 @@
 }
 
 #loader-wrapper {
-    -webkit-filter: grayscale(100%);
+    /* -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
-    filter: grayscale(100%);
+    filter: grayscale(100%); */
 }
