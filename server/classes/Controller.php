@@ -1271,6 +1271,19 @@ class Controller
 
     public function getDataFromTable()
     {
+        $tableName = Utils::getCleanedData("tableName");
+        $viewParams = [];
+
+        $sqlUtils = new SQLUtils(Model::getInstance());
+
+        $viewParams["results"] = $sqlUtils->query($tableName);
+        $viewParams["columns"] = array_keys($viewParams["results"][0]); /*
+
+        echo "<pre>";
+        var_dump($viewParams);
+        echo "</pre>";
+        exit; */
+
         require_once __DIR__ . "/../templates/getDataFromTable.php";
     }
 
