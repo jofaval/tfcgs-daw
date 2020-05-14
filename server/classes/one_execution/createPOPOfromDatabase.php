@@ -413,4 +413,4 @@ function camelCase($string = "", $firstLetterCapital = false)
 
     return $parsedString;
 }
-require_once __DIR__ . "/../../templates/popo.php";
+require_once __DIR__ . "/../../templates/admin/popo.php";

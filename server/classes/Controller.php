@@ -806,7 +806,7 @@ class Controller
             file_put_contents($filePath, $newFileContent);
         }
 
-        require __DIR__ . '/../templates/accessLevel.php';
+        require __DIR__ . '/../templates/admin/accessLevel.php';
     }
 
     public function signout()
@@ -1179,7 +1179,7 @@ class Controller
             fclose($fileWritter);
         }
 
-        require_once __DIR__ . "/../templates/newRoute.php";
+        require_once __DIR__ . "/../templates/admin/newRoute.php";
     }
 
     public function resizeImage($imageSrc, $targetWidth, $targetHeight)
@@ -1266,7 +1266,7 @@ class Controller
 
     public function admin()
     {
-        require_once __DIR__ . "/../templates/admin.php";
+        require_once __DIR__ . "/../templates/admin/admin.php";
     }
 
     public function getDataFromTable()
@@ -1285,7 +1285,7 @@ class Controller
         echo "</pre>";
         exit; */
 
-        require_once __DIR__ . "/../templates/getDataFromTable.php";
+        require_once __DIR__ . "/../templates/admin/getDataFromTable.php";
     }
 
 }
