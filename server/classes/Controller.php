@@ -9,22 +9,22 @@ class Controller
 
     public function error()
     {
-        require __DIR__ . '/../templates/error.php';
+        require __DIR__ . '/../templates/errors/error.php';
     }
 
     public function access()
     {
-        require __DIR__ . '/../templates/access.php';
+        require __DIR__ . '/../templates/errors/access.php';
     }
 
     public function notsigned()
     {
-        require __DIR__ . '/../templates/notsigned.php';
+        require __DIR__ . '/../templates/errors/notsigned.php';
     }
 
     public function notuseragent()
     {
-        require __DIR__ . '/../templates/notuseragent.php';
+        require __DIR__ . '/../templates/errors/notuseragent.php';
     }
 
     public function projects()
@@ -730,7 +730,7 @@ class Controller
 
     public function error404()
     {
-        require __DIR__ . '/../templates/error404.php';
+        require __DIR__ . '/../templates/errors/error404.php';
     }
 
     public function condenseFilesIntoOne()
@@ -1261,7 +1261,7 @@ class Controller
 
     public function maintenance()
     {
-        require_once __DIR__ . "/../templates/maintenance.php";
+        require_once __DIR__ . "/../templates/errors/maintenance.php";
     }
 
     public function admin()
