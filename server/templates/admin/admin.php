@@ -6,6 +6,7 @@
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
 <?php $currentPage = "Admin";?>
+<?php $mainClasses = "overflow-hidden";?>
 <?php
 $breadcrumb = [
     [
