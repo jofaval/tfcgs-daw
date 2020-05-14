@@ -9,6 +9,8 @@ $("#nightMode").on("click", function () {
 }).find(":checkbox").prop("checked", nightModeStatus);
 changeNightMode();
 
+var courtainEffect = false;
+
 function changeNightMode() {
     var nightModeInput = $("#nightMode");
 
@@ -35,5 +37,12 @@ function changeNightMode() {
         $(".footer")
             .addClass("bg-light").removeClass("bg-transparent").removeClass("text-white").addClass("text-dark")
             .find("a").removeClass("text-white").addClass("text-dark");
+    }
+
+    if (courtainEffect) {
+        $("body").removeClass("loaded");
+        setTimeout(() => {
+            $("body").addClass("loaded");
+        }, 50);
     }
 }
