@@ -36,6 +36,7 @@
                 <label class="custom-control-label" for="rememberCredentials">Recordar combinación</label>
             </div>
         </div>
+        <div class="position-absolute btn btn-default bottom-1 right-1 d-sm-none" id="btnToSignup">Registrarse</div>
 
         <div class="md-form w-75">
             <input type="submit" class="btn btn-primary w-100" value="Iniciar sesión" id="signin" name="signin"
@@ -44,6 +45,7 @@
     </form>
     <form action="/daw/signup/" method="POST" id="loginForm"
         class="col-md-6 rounded d-flex align-items-center justify-content-center flex-column pr-5 pl-0 h-100 text-center">
+        <div class="position-absolute btn btn-default bottom-1 left-1 d-sm-none" id="btnToSignin">Iniciar sesión</div>
         <h1 class="text-white">¡Bienvenid@!</h1>
         <div class="form-row text-white w-100">
             <div class="col">
@@ -94,8 +96,8 @@
             <input type="submit" class="btn btn-primary w-100" value="Registrarse" id="signup" name="signup" required>
         </div>
     </form>
-    <div class="position-fixed bottom-1 btn btn-primary d-block d-sm-none" id="changeForm">Cambiar
-    </div>
+    <!-- <div class="position-fixed bottom-1 btn btn-primary d-block d-sm-none" id="changeForm">Cambiar
+    </div> -->
     <div id="mainPanel"
         class="aqua-gradient rounded text-white bg-dark shadow position-relative d-none d-sm-flex z-index-overlap flex-column justify-content-center align-items-center">
         <div class="d-flex <?php echo $loadLogin ? "" : "formToLoad"; ?> togglePanel flex-column justify-content-center align-items-center"

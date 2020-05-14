@@ -209,3 +209,33 @@ function doesEmailExist() {
         }
     });
 }
+
+var oldHorizontalScroll = 0;
+$("main").scroll(function () {
+    var newHorizontalScroll = $(this).scrollLeft();
+
+    if (newHorizontalScroll > oldHorizontalScroll) {
+        $("#loginForm").get(0).scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'start'
+        });
+    } else {
+        $("#registerForm").get(0).scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'start'
+        });
+    }
+
+    oldHorizontalScroll = newHorizontalScroll;
+});
+
+$("#btnToSignup").on("click", function (event) {
+    var event = event || window.event;
+    $("main").scrollLeft(5);
+});
+$("#btnToSignin").on("click", function (event) {
+    var event = event || window.event;
+    $("main").scrollLeft(5);
+});
