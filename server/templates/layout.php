@@ -5,7 +5,7 @@
 
 <?php require_once __DIR__ . "/components/head.php"?>
 
-<body scroll="no" class="text-light overflow-hidden w-100 h-100"
+<body scroll="no" class="text-light position-fixed overflow-hidden w-100 h-100"
     style="max-width: 100% !important; max-height: 100% !important;">
     <?php require_once __DIR__ . "/components/loader.php";?>
     <?php require_once __DIR__ . "/components/noscript.php";?>
