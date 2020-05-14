@@ -40,7 +40,7 @@ class Model {
     loadCollaborators(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getCollaboratorsOfProject",
+            url: "/daw/ajax/getCollaboratorsOfProject/",
             data: {
                 "id_project": model.projectId,
                 "limit": 5,
@@ -57,7 +57,7 @@ class Model {
     deleteProject(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=deleteProjects",
+            url: "/daw/ajax/deleteProjects/",
             data: {
                 "id": model.projectId,
                 "idProjectForAccessLevel": model.projectId,
@@ -72,7 +72,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboards",
+            url: "/daw/ajax/createDashboards/",
             data: {
                 "title": title,
                 "description": description,
@@ -87,7 +87,7 @@ class Model {
 
     doesUsernameExist(username, whenFinished) {
         $.ajax({
-            url: "/daw/index.php?ctl=doesUsernameExists",
+            url: "/daw/ajax/doesUsernameExists/",
             data: {
                 "username": username,
             },
@@ -104,7 +104,7 @@ class Model {
             console.log(result);
             if (result) {
                 $.ajax({
-                    url: "/daw/index.php?ctl=createCollaborators",
+                    url: "/daw/ajax/createCollaborators/",
                     data: {
                         "username": username,
                         "id_project": model.projectId,
@@ -126,7 +126,7 @@ class Model {
             console.log(result);
             if (result) {
                 $.ajax({
-                    url: "/daw/index.php?ctl=deleteCollaborators",
+                    url: "/daw/ajax/deleteCollaborators/",
                     data: {
                         "username": username,
                         "id_project": model.projectId,
@@ -147,7 +147,7 @@ class Model {
             console.log(result);
             if (result) {
                 $.ajax({
-                    url: "/daw/index.php?ctl=updateCollaborators",
+                    url: "/daw/ajax/updateCollaborators/",
                     data: {
                         "username": username,
                         "id_project": model.projectId,
@@ -164,7 +164,7 @@ class Model {
 
     getProjectCollaborationRoles(whenFinished) {
         $.ajax({
-            url: "/daw/index.php?ctl=getProjectCollaborationRoles",
+            url: "/daw/ajax/getProjectCollaborationRoles/",
             success: function (result) {
                 whenFinished(result);
             }

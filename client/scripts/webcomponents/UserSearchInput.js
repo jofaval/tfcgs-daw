@@ -143,7 +143,7 @@ class UserSearchInput {
 
     getUsersLike(username, whenFinished) {
         $.ajax({
-            url: "/daw/index.php?ctl=searchUsers",
+            url: "/daw/ajax/searchUsers/",
             data: {
                 "username": username,
             },

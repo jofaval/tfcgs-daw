@@ -169,7 +169,7 @@ class Model {
     loadDashboardContent(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getListsOfDashboard",
+            url: "/daw/ajax/getListsOfDashboard/",
             data: {
                 "id_project": model.projectId,
                 "dashboard": model.title,
@@ -222,7 +222,7 @@ class Model {
     addDashboardList(title, whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardList",
+            url: "/daw/ajax/createDashboardList/",
             data: {
                 "id_project": model.projectId,
                 "dashboard_title": model.title,
@@ -241,7 +241,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardItem",
+            url: "/daw/ajax/createDashboardItem/",
             data: {
                 "id_dashboard_list": id_dashboard_list,
                 "title": title,
@@ -259,7 +259,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=deleteDashboardItem",
+            url: "/daw/ajax/deleteDashboardItem/",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -273,7 +273,7 @@ class Model {
     enableDashboardItem(id, enable, whenFinished) {
         var modal = this;
         $.ajax({
-            url: "/daw/index.php?ctl=disableDashboardItem",
+            url: "/daw/ajax/disableDashboardItem/",
             data: {
                 "id": id,
                 "enabled": enable ? 1 : 0,
@@ -289,7 +289,7 @@ class Model {
         var modal = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=deleteDashboardList",
+            url: "/daw/ajax/deleteDashboardList/",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -304,7 +304,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=deleteDashboards",
+            url: "/daw/ajax/deleteDashboards/",
             data: {
                 "id_project": model.projectId,
                 "title": model.title,
@@ -320,7 +320,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardItemComments",
+            url: "/daw/ajax/createDashboardItemComments/",
             data: {
                 "id_dashboard_item": id,
                 "comment": comment,
@@ -336,7 +336,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=deleteDashboardItemComments",
+            url: "/daw/ajax/deleteDashboardItemComments/",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -351,7 +351,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            url: "/daw/ajax/updateDashboardsItemAssignation/",
             data: {
                 "id": id,
                 "finished": newState ? 1 : 0,
@@ -366,7 +366,7 @@ class Model {
     moveDashboardItem(order, taskItemId, dashboardListId, whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardItem",
+            url: "/daw/ajax/updateDashboardItem/",
             data: {
                 "order": order,
                 "id_dashboard_list": dashboardListId,
@@ -384,7 +384,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
+            url: "/daw/ajax/getCommentsOfDashboardItem/",
             data: {
                 "id_dashboard_item": taskItemDataId,
                 "idProjectForAccessLevel": controller.model.projectId,
@@ -399,7 +399,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?&ctl=getDashboardItemDetails",
+            url: "/daw/ajax/getDashboardItemDetails/",
             data: {
                 "id": taskItemDataId,
                 "idProjectForAccessLevel": model.projectId,
@@ -414,7 +414,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardItem",
+            url: "/daw/ajax/updateDashboardItem/",
             data: {
                 "id": taskItemId,
                 "title": title,
@@ -431,7 +431,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardsItemAssignation",
+            url: "/daw/ajax/createDashboardsItemAssignation/",
             data: {
                 "id_dashboard_item": taskItemData.id,
                 "start_date": startDate,
@@ -449,7 +449,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardsItemAssignation",
+            url: "/daw/ajax/createDashboardsItemAssignation/",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -465,7 +465,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            url: "/daw/ajax/updateDashboardsItemAssignation/",
             data: {
                 "id_dashboard_item": taskItemId,
                 "start_date": startDate,
@@ -483,7 +483,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            url: "/daw/ajax/updateDashboardsItemAssignation/",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -499,7 +499,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            url: "/daw/ajax/updateDashboardsItemAssignation/",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,

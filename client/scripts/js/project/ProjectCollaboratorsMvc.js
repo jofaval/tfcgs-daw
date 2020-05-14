@@ -71,7 +71,7 @@ class Model {
     loadCollaborators(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getCollaboratorsOfProject",
+            url: "/daw/ajax/getCollaboratorsOfProject/",
             data: {
                 "id_project": model.projectId,
                 "idProjectForAccessLevel": model.projectId,
@@ -88,7 +88,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=doesUsernameExists",
+            url: "/daw/ajax/doesUsernameExists/",
             data: {
                 username: username,
             },
@@ -96,7 +96,7 @@ class Model {
                 console.log(result);
                 if (result) {
                     $.ajax({
-                        url: "/daw/index.php?ctl=createCollaborators",
+                        url: "/daw/ajax/createCollaborators/",
                         data: {
                             username: username,
                             id_project: model.projectId,

@@ -39,7 +39,7 @@ class Model {
     loadProjects(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getProjectsOfUser",
+            url: "/daw/ajax/getProjectsOfUser/",
             success: function (projects) {
                 model.projects = projects;
                 model.workingProjects = projects;
@@ -52,7 +52,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createProjects",
+            url: "/daw/ajax/createProjects/",
             data: {
                 "title": title,
                 "description": description,
@@ -69,7 +69,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=bookmarkProject",
+            url: "/daw/ajax/bookmarkProject/",
             data: {
                 "id_project": model.projectId,
                 "title": json.title,
