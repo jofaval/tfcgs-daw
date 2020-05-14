@@ -1,5 +1,5 @@
 <!--Page configuration-->
-<?php $optionalCSS = ["floating-label.css", "inputs.css", "projects.css", "project.css"];?>
+<?php $optionalCSS = ["floating-label.css", "inputs.css"];?>
 <?php $optionalScripts = [/* "js/ProjectManagementMvc.js" */];?>
 <?php $title = "Añadir ruta"?>
 <?php $showFooter = true;?>
