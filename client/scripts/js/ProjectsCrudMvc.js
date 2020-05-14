@@ -12,7 +12,7 @@ var $projectCard = $(`
 <div class="projectCard text-dark row col-12 px-0 col-sm m-2 bg-grey">
     <img src="" alt="" class="projectCardBgImg object-fit-cover opacity-80 brightness-30 position-absolute w-100 h-100 z-index">
     <div
-        class="row projectCardDetails pl-3 z-index-overlap flex-wrap center-elements w-100 m-0 pt-2">
+        class="row projectCardDetails pl-3 z-index-overlap flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
         <a href="" class="btn btn-sm btn-primary projectCardBtnView">Ver</a>
         <!--div class="btn btn-sm btn-danger projectCardBtnDisable">Disable project</div-->
         <h5 class="projectCardTitle text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Título del proyecto</h5>
