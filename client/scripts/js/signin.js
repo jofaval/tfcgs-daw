@@ -159,7 +159,7 @@ doesUsernameExist();
 
 function doesUsernameExist() {
     $.ajax({
-        url: "/daw/ajax/doesUsernameExists",
+        url: "/daw/index.php?ctl=doesUsernameExists",
         data: {
             "username": signupUsername.val(),
         },
@@ -189,7 +189,7 @@ doesEmailExist();
 
 function doesEmailExist() {
     $.ajax({
-        url: "/daw/ajax/doesEmailExists",
+        url: "/daw/index.php?ctl=doesEmailExists",
         data: {
             "email": signupEmail.val(),
         },

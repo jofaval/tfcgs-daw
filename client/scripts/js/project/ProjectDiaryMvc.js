@@ -9,7 +9,7 @@ class Model {
 
         var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
-            url: "/daw/ajax/queryProjectDiary/",
+            url: "/daw/index.php?ctl=queryProjectDiary",
             data: {
                 "day": dateInString,
                 "id_project": model.projectId,
@@ -34,7 +34,7 @@ class Model {
         content = encodeURI(content);
         var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
-            url: "/daw/ajax/createProjectDiary/",
+            url: "/daw/index.php?ctl=createProjectDiary",
             data: {
                 "day": dateInString,
                 "id_project": model.projectId,
@@ -53,7 +53,7 @@ class Model {
         content = encodeURI(content);
         var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
-            url: "/daw/ajax/updateProjectDiary/",
+            url: "/daw/index.php?ctl=updateProjectDiary",
             data: {
                 "day": dateInString,
                 "id_project": model.projectId,

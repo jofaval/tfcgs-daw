@@ -4,7 +4,7 @@ $("#searchUserProfileForm").on("submit", function (event) {
 
     var username = $("#username").val();
     $.ajax({
-        url: "/daw/ajax/doesUsernameExists/",
+        url: "/daw/index.php?ctl=doesUsernameExists/",
         data: {
             "username": username,
         },
@@ -24,7 +24,7 @@ var userSearch = new UserSearchInput($(".searchUserProfileContainer"));
 
 function goToProfile(username) {
     $.ajax({
-        url: "/daw/ajax/doesUsernameExists/",
+        url: "/daw/index.php?ctl=doesUsernameExists",
         data: {
             "username": username,
         },
