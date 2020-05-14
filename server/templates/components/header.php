@@ -54,7 +54,7 @@ $header = [
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
-            <div class="dropdown-menu ml-5 tabContentContainer">
+            <div class="dropdown-menu ml-5 tabContentContainer bg-dark">
                 <form action="/daw/signin/" method="POST" id="registerForm"
                     class="col-md m-0 p-01 rounded d-flex align-items-center justify-content-center flex-column h-100 text-center">
                     <div class="md-form my-3 w-100">
@@ -77,7 +77,7 @@ $header = [
                     </div>
                 </form>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item btn btn-sm h6 btn-danger shadow-none text-capitalize text-white m-0"
+                <a class="dropdown-item btn btn-sm h6 bg-dark text-white shadow-none text-capitalize text-white m-0"
                     href="/daw/signout/" style="transition: all 0.2s ease-in-out 0s;">
                     <span><i class="fa fa-sign-out"></i></span>
                     Cerrar
