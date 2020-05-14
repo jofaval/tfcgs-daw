@@ -12,7 +12,7 @@ var $dashboardCard = $(`
 <div class="dashboardCard text-dark row col-12 px-0 col-sm m-2 bg-grey">
     <img src="" alt="" class="dashboardCardBgImg object-fit-cover opacity-80 brightness-30 position-absolute w-100 h-100 z-index">
     <div
-        class="row dashboardCardDetails pl-3 z-index-overlap flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+        class="row dashboardCardDetails pl-3 z-index-overlap flex-wrap center-elements w-100 m-0 pt-2">
         <a href="" class="btn btn-sm btn-primary dashboardCardBtnView">Ver</a>
         <!--div class="btn btn-sm btn-danger dashboardCardBtnDisable">Disable dashboard</div-->
         <h5 class="dashboardCardTitle max-text-10 text-white text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Dashboard title</h5>
