@@ -67,7 +67,7 @@ main {
             href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
             imagen</a>
     </div>
-    <?php if (Sessions::getInstance()->getSession("access") >= Config::$ACCESS_LEVEL_ADMIN): ?>
+    <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_ADMIN): ?>
     <div class="btn btn-sm btn-danger dashboardBtnDelete align-self-center">Borrar tablero</div>
     <?php endif;?>
     <div class="md-form input-group col-md-4 my-2 m-0 p-0">
