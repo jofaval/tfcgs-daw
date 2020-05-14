@@ -8,7 +8,7 @@
 <?php $showBreadcrumb = true;?>
 <?php $breadcrumb = [
     [
-        "name" => "Go back home",
+        "name" => "Volver a la home",
         "link" => "/daw/",
         "active" => true,
         "icon" => "home",
