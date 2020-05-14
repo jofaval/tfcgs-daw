@@ -39,16 +39,15 @@ $header = [
         style="transition: all 0.2s ease-in-out 0s;">
         <span class="navbar-toggler-icon" style="transition: all 0.2s ease-in-out 0s;"></span>
     </button>
-
     <a href="/daw/profile/">
-        <img class="navbar-brand rounded-circle mr-2" width="45"
+        <img class="navbar-brand order-1 rounded-circle mr-2" width="45"
             src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
         <small class="text-muted"><span class="font-weight-bold"><?php echo $username ?></span>
             <br>
             <?php echo $sessions->getSession("roleName"); ?>
         </small>
     </a>
-    <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
+    <div class="collapse navbar-collapse order-3 order-sm-1 justify-content-md-center" id="navbarsExample08"
         style="transition: all 0.2s ease-in-out 0s;">
         <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
             <li class="nav-item " style="transition: all 0.2s ease-in-out 0s;">
@@ -82,7 +81,7 @@ $header = [
             </li>
         </ul>
     </div>
-    <div class="custom-control mx-2 custom-switch cursor-pointer">
+    <div class="custom-control mx-2 order-2 order-sm-3 custom-switch cursor-pointer">
         <input type="checkbox" class="custom-control-input cursor-pointer" id="nightMode" checked>
         <label class="custom-control-label text-muted cursor-pointer" for="nightMode">Modo oscuro</label>
     </div>
