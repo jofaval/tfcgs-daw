@@ -106,19 +106,19 @@ if (in_array($tabName, $tabNames)) {
 }
 switch ($tabName) {
     case "dashboards":
-        $optionalScripts[] = "js/ProjectDashboardMvc.js";
+        $optionalScripts[] = "js/project/ProjectDashboardMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         $titleName = "Tableros";
         $icon = "columns";
         break;
     case "diary":
-        $optionalScripts[] = "js/ProjectDiaryMvc.js";
+        $optionalScripts[] = "js/project/ProjectDiaryMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         $titleName = "Tablón de anuncios";
         $icon = "book";
         break;
     case "collaborators":
-        $optionalScripts[] = "js/ProjectCollaboratorsMvc.js";
+        $optionalScripts[] = "js/project/ProjectCollaboratorsMvc.js";
         require_once __DIR__ . "/project/$tabName.php";
         $titleName = "Colaboradores";
         $icon = "users";
@@ -130,7 +130,7 @@ switch ($tabName) {
         break;
     case "overview":
     default:
-        $optionalScripts[] = "js/ProjectOverviewMvc.js";
+        $optionalScripts[] = "js/project/ProjectOverviewMvc.js";
         require_once __DIR__ . "/project/overview.php";
         break;
 }

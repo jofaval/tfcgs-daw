@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css", "projects.css"];?>
-<?php $optionalScripts = ["js/ProjectsCrudMvc.js"];?>
+<?php $optionalScripts = ["js/project/ProjectsCrudMvc.js"];?>
 <?php $title = "Proyectos";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
