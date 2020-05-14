@@ -74,7 +74,8 @@ $breadcrumb = [
         </div>
         <div class="row w-auto mx-2">
             <p class="m-0 align-self-center text-white">Mostrar&nbsp;</p>
-            <select class="custom-select custom-select-sm align-self-center w-auto" id="selectNumberOfRows">
+            <select class="custom-select bg-dark border-0 custom-select-sm align-self-center w-auto"
+                id="selectNumberOfRows">
                 <option value="1" class="d-block d-sm-none">2</option>
                 <option value="1" class="d-none d-sm-block">1</option>
                 <option value="2" class="d-block d-sm-none">4</option>
