@@ -481,7 +481,7 @@ class Controller
             }
         }
 
-        return "/../tasks/change-image";
+        return "/tasks/change-image";
     }
 
     public function getProjectsOfUser()
