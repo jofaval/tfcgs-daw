@@ -10,7 +10,7 @@
 <?php $loadLogin = Utils::exists("login")?>
 
 <?php ob_start()?>
-<div class="h-75 m-auto w-50 rounded shadow d-flex text-dark bg-white" id="signFormsContainer">
+<div class="h-75 m-auto w-50 rounded d-flex text-dark bg-white" id="signFormsContainer">
     <form action="/daw/signin/" method="POST" id="registerForm"
         class="col-md-6 rounded d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1 class="text-white">¡Nos alegra verte de nuevo!</h1>
@@ -98,8 +98,9 @@
     </form>
     <!-- <div class="position-fixed bottom-1 btn btn-primary d-block d-sm-none" id="changeForm">Cambiar
     </div> -->
+    <!-- bg image by Kirill Maksimchuk - https://dribbble.com/nomorerender/about -->
     <div id="mainPanel"
-        class="aqua-gradient rounded text-white bg-dark shadow position-relative d-none d-sm-flex z-index-overlap flex-column justify-content-center align-items-center">
+        class=" rounded text-white bg-primary position-relative d-none d-sm-flex z-index-overlap flex-column justify-content-center align-items-center">
         <div class="d-flex <?php echo $loadLogin ? "" : "formToLoad"; ?> togglePanel flex-column justify-content-center align-items-center"
             id="loginPanel">
             <h2 class="font-weight-bold">Formulario de inicio</h2>

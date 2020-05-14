@@ -15,6 +15,8 @@ nav.navbar, .breadcrumbContainer, .footer {
 
 main {
     height: 100% !important;
+    background: url('/daw/img/components/signin/bg.jpg');
+    background-size: cover !important;
 }
 
 .md-form {
