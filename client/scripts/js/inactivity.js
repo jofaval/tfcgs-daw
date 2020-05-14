@@ -13,6 +13,9 @@ $(document).ready(function () {
     $(this).keypress(function (e) {
         localStorage.setItem("interval", 0);
     });
+    $(this).touchstart(function (e) {
+        localStorage.setItem("interval", 0);
+    });
 });
 
 function timerIncrement() {
