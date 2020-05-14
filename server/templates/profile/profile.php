@@ -118,13 +118,13 @@ if (!$viewParams["editable"]) {
                     <?php endif;?>
                     <?php switch ($tabName) {
     case 'pass':
-        require_once __DIR__ . "/profile/pass.php";
+        require_once __DIR__ . "/pass.php";
         break;
     case 'image':
-        require_once __DIR__ . "/profile/image.php";
+        require_once __DIR__ . "/image.php";
         break;
     default:
-        require_once __DIR__ . "/profile/general.php";
+        require_once __DIR__ . "/general.php";
         break;
 }?>
 
@@ -139,5 +139,6 @@ if (!$viewParams["editable"]) {
 }?>
 
 <?php $contenido = ob_get_clean()?>
+<!-- __DIR__ . '/../ -->
 
-<?php include_once 'layout.php'?>
+<?php include_once __DIR__ . '/../layout.php'?>
