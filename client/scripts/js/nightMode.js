@@ -13,6 +13,7 @@ var courtainEffect = false;
 
 function changeNightMode() {
     var nightModeInput = $("#nightMode");
+    var nightModeLabel = nightModeInput.next();
 
     nightModeStatus = nightModeInput.is(":checked");
     localStorage.setItem("nightMode", nightModeInput.is(":checked"));
@@ -41,6 +42,7 @@ function changeNightMode() {
         $(".pagination *").removeClass("text-dark");
 
         THEME = DARK_THEME;
+        //nightModeLabel.text("Modo oscuro");
     } else { //claro
         $("nav.navbar")
             .addClass("bg-light").removeClass("bg-transparent").removeClass("navbar-dark").addClass("navbar-light")
@@ -65,6 +67,7 @@ function changeNightMode() {
         $(".pagination *").addClass("text-dark");
 
         THEME = MIXED_THEME;
+        //nightModeLabel.text("Modo claro");
     }
 
     if (courtainEffect) {
