@@ -170,8 +170,10 @@ $breadcrumb = [
                 </div>
             </div>
         </div>
+        <?php $randomIndex = 0?>
         <div class="row flex-wrap center-elements">
             <?php foreach ($target_tables as $tableName): ?>
+            <?php $randomIndex++?>
             <?php include __DIR__ . "/components/cards/dbTableCard.php";?>
             <?php endforeach;?>
         </div>
