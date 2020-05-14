@@ -111,42 +111,6 @@ $breadcrumb = [
                     </div>
                 </div>
             </div>
-            <div class="card bg-transparent shadow-none">
-                <div class="card-header bg-dark" role="tab" id="headingThree31">
-                    <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
-                        href="#collapseThree31" aria-expanded="false" aria-controls="collapseThree31">
-                        <h5 class="mb-0">
-                            Collapsible Group Item #3 <i class="fa fa-angle-down rotate-icon"></i>
-                        </h5>
-                    </a>
-                </div>
-                <div id="collapseThree31" class="collapse" role="tabpanel" aria-labelledby="headingThree31"
-                    data-parent="#accordionEx1">
-                    <div class="card-body rgba-black-light text-white">
-                        <div class="card-header">
-                            <a target="_blank" href="#collapseTwo1">
-                                <h5 class="mb-0 text-white">
-                                    Elemento
-                                </h5>
-                            </a>
-                        </div>
-                        <div class="card-header">
-                            <a target="_blank" href="#collapseTwo1">
-                                <h5 class="mb-0 text-white">
-                                    Elemento
-                                </h5>
-                            </a>
-                        </div>
-                        <div class="card-header">
-                            <a target="_blank" href="#collapseTwo1">
-                                <h5 class="mb-0 text-white">
-                                    Elemento
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="container-fluid m-1 h-100 overflow-auto col-12 col-sm">
