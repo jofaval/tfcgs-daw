@@ -145,10 +145,14 @@ class AdminController {
 
             $(".dbTableCard").each(function () {
                 var current = $(this);
-                if (current.find(".dbTableTitle").text().trim().toLowerCase().includes(valueToSearch)) {
-                    current.show('slow');
+                if (current.find(".dbTableCardTitle").text().trim().toLowerCase().includes(valueToSearch)) {
+                    current.show('drop', {
+                        duration: 200,
+                    });
                 } else {
-                    current.hide('fast');
+                    current.hide('fold', {
+                        duration: 200,
+                    });
                 }
             })
         }, 50);
