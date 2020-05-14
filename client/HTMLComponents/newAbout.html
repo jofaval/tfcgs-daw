@@ -8,53 +8,10 @@
 </head>
 
 <body>
-    <div class="d-flex p-0 m-0 w-100 h-100 flex-column" id="pageScrollingContainer">
-        <div class="page center-elements col-12 bg-primary" id="page1">
-            <h1>Test</h1>
-        </div>
-        <div class="page center-elements col-12 bg-danger" id="page2">
-            <h1>Test</h1>
-        </div>
-        <div class="page center-elements col-12 bg-warning" id="page3">
-            <h1>Test</h1>
-        </div>
-        <div class="page center-elements col-12 bg-success" id="page4">
-            <h1>Test</h1>
-        </div>
-        <div class="page center-elements col-12 bg-info" id="page5">
-            <h1>Test</h1>
-        </div>
-    </div>
+
 </body>
 <script>
-    var pageIndex = 1;
-    var pageOldScroll = 0;
-    $("main").bind("mousewheel", function () {
-        console.log("test");
 
-        var scrollContainer = $(this);
-        var scrollContainerScrollTop = scrollContainer.scrollTop();
-
-        if (pageOldScroll > scrollContainerScrollTop) {
-            if (pageIndex < 5) {
-                pageIndex++;
-            }
-        } else {
-            if (pageIndex > 1) {
-                pageIndex--;
-            }
-        }
-        console.log(pageIndex);
-
-
-        $(`#page${pageIndex}`).get(0).scrollIntoView({
-            behavior: "smooth",
-            block: 'nearest',
-            inline: 'start'
-        });
-
-        pageOldScroll = scrollContainerScrollTop;
-    });
 </script>
 
 </html>
