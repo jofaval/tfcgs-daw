@@ -76,6 +76,12 @@ $header = [
                             name="signin" required>
                     </div>
                 </form>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item btn btn-sm h6 btn-danger shadow-none text-capitalize text-white m-0"
+                    href="/daw/signout/" style="transition: all 0.2s ease-in-out 0s;">
+                    <span><i class="fa fa-sign-out"></i></span>
+                    Cerrar
+                    sesión</a>
             </div>
         </div>
     </div>
