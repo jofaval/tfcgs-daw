@@ -4,7 +4,7 @@
 <?php $title = $viewParams["dashboardTitle"];?>
 <?php $mainClasses = "h-100 overflow-hidden";?>
 <?php $showFooter = false;?>
-<?php $showHeader = false;?>
+<?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
 <?php
 $breadcrumb = [
@@ -62,10 +62,12 @@ main {
         <a class="dropdown-item" id="downloadJSONcontent"
             href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /json/">Descargar
             contenido</a>
+        <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER): ?>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item"
             href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
             imagen</a>
+        <?php endif;?>
     </div>
     <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_ADMIN): ?>
     <div class="btn btn-sm btn-danger dashboardBtnDelete align-self-center">Borrar tablero</div>
