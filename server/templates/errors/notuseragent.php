@@ -15,13 +15,12 @@
         <div class="col-md-12">
             <div class="error-template text-center text-light">
                 <h1>
-                    This seems suspicous...</h1>
+                    Esto parece sospechoso...</h1>
                 <h2>
-                    It seems you're not who you're telling.</h2>
+                    No eres quien nos dices ser.</h2>
                 <div class="error-details">
-                    Please, go back and <a href="mailto:<?php echo Config::$emailSender; ?>">contact us</a> if it
-                    happens
-                    again!
+                    Por favor, vuelve a intentarlo y <a
+                        href="mailto:<?php echo Config::$emailSender; ?>">contáctanos</a> si este problema persiste.
                 </div>
             </div>
         </div>

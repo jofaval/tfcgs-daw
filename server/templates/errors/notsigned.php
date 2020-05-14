@@ -15,8 +15,8 @@
         <div class="col-md-12">
             <div class="notsigned-template text-center text-light">
                 <h1>
-                    You're not signed in!</h1>
-                <h2>Please <a href="/daw/signin/">signin</a>. </h2>
+                    ¡No has iniciado sesión!</h1>
+                <h2>Por favor <a href="/daw/signin/">inicia sesión</a>. </h2>
             </div>
         </div>
     </div>
