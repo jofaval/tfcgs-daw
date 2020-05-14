@@ -1,4 +1,4 @@
-document.querySelector("#menuDisplay").addEventListener("click", function () {
+/* document.querySelector("#menuDisplay").addEventListener("click", function () {
     if (this.checked) {
         this.previousElementSibling.classList.remove("toggledMenuDispaly");
         this.classList.remove("toggledMenuDispaly");
@@ -23,4 +23,40 @@ for (i = 0; i < acc.length; i++) {
             panel.style.display = "block";
         }
     });
+} */
+
+var selectedPageIndex = 1;
+
+window.onwheel = function () {
+    return false;
 }
+$(window).on("keyup", function (event) {
+    var event = event || window.event;
+    var keyCode = event.keyCode;
+    console.log(keyCode);
+
+    var valueToAdd = null;
+
+    switch (keyCode) {
+        case 37:
+            if (selectedPageIndex > 1) {
+                valueToAdd = -1;
+            }
+            break;
+        case 39:
+            if (selectedPageIndex < 5) {
+                valueToAdd = 1;
+            }
+            break;
+    }
+
+    if (valueToAdd !== null) {
+        selectedPageIndex += valueToAdd;
+    }
+
+    $(`.page${selectedPageIndex}`).get(0).scrollIntoView({
+        behavior: "smooth",
+        block: 'nearest',
+        inline: 'start'
+    });
+})
