@@ -292,7 +292,7 @@ class Controller {
         var timeFromMoment = new TimeFromMoment(activeTime, activeTimeDate);
 
         //Tablero
-        $("#actionAddDashboard").on("click touchstart", function (event) {
+        $("#actionAddDashboard").on("click touchend", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
@@ -300,7 +300,7 @@ class Controller {
             return false;
         });
 
-        $("#actionViewDashboard").on("click touchstart", function (event) {
+        $("#actionViewDashboard").on("click touchend", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
@@ -309,7 +309,7 @@ class Controller {
         });
 
         //Diario
-        $("#actionDiary").on("click touchstart", function (event) {
+        $("#actionDiary").on("click touchend", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
@@ -318,7 +318,7 @@ class Controller {
         });
 
         //Proyecto
-        $("#actionAddCollaborator").on("click touchstart", function (event) {
+        $("#actionAddCollaborator").on("click touchend", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
@@ -326,7 +326,7 @@ class Controller {
             return false;
         });
 
-        $("#actionRemoveCollaborator").on("click touchstart", function (event) {
+        $("#actionRemoveCollaborator").on("click touchend", function (event) {
             var event = event || window.event;
             event.preventDefault();
 
@@ -334,14 +334,14 @@ class Controller {
             return false;
         });
 
-        $("#actionChangeRoleCollaborator").on("click touchstart", function (event) {
+        $("#actionChangeRoleCollaborator").on("click touchend", function (event) {
             var event = event || window.event;
             event.preventDefault();
             controller.changeCollaboratorRoleEvent(controller, event);
             return false;
         });
 
-        $("#actionDeleteProject").on("click touchstart", function (event) {
+        $("#actionDeleteProject").on("click touchend", function (event) {
             var event = event || window.event;
             event.preventDefault();
             controller.deleteProject(controller, event);
