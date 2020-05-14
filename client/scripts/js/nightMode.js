@@ -40,6 +40,7 @@ function changeNightMode() {
         $(".footer, .tabs").removeClass("bg-light grey lighten-4").addClass("bg-dark");
 
         $(".pagination *").removeClass("text-dark");
+        $("select").removeClass("text-white").addClass("text-dark");
 
         THEME = DARK_THEME;
         //nightModeLabel.text("Modo oscuro");
@@ -65,6 +66,7 @@ function changeNightMode() {
         $(".footer, .tabs").removeClass("bg-light bg-dark").addClass("grey lighten-4");
 
         $(".pagination *").addClass("text-dark");
+        $("select").removeClass("text-white").addClass("text-dark");
 
         THEME = MIXED_THEME;
         //nightModeLabel.text("Modo claro");
