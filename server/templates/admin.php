@@ -27,7 +27,7 @@ $breadcrumb = [
 <?php $sessions = Sessions::getInstance();?>
 <?php $username = $sessions->getsession("username");?>
 
-<div class="w-100 h-100 row m-0 p-0 container-fluid">
+<div class="h-100 row m-0 p-0 container-fluid">
     <div class="h-100 bg-dark" id="sidebar">
         <div class="profileInfo">
             <div class="m-auto">
@@ -148,7 +148,7 @@ $breadcrumb = [
             </div>
         </div>
     </div>
-    <div class="container-fluid m-1 col-sm">
+    <div class="container-fluid m-1 h-100 overflow-auto col-12 col-sm">
         <?php $mysqli = new mysqli(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);?>
         <?php $mysqli->select_db(Config::$mvc_bd_nombre);?>
         <?php $mysqli->query("SET NAMES 'utf8'");?>
