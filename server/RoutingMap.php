@@ -234,3 +234,5 @@ $map['about'] = array('controller' => 'Controller', 'action' => 'about', 'access
 $map['maintenance'] = array('controller' => 'Controller', 'action' => 'maintenance', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //admin
 $map['admin'] = array('controller' => 'Controller', 'action' => 'admin', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//getDataFromTable
+$map['getDataFromTable'] = array('controller' => 'Controller', 'action' => 'getDataFromTable', 'access' => Config::$ACCESS_LEVEL_GUEST);

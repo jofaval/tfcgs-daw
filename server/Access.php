@@ -230,3 +230,4 @@ $map['searchUsers']['access'] = Config::$ACCESS_LEVEL_USER;
 $map['getDashboardItemDetails']['access'] = Config::$ACCESS_LEVEL_USER;
 //about
 $map['about']['access'] = Config::$ACCESS_LEVEL_GUEST;
+$map['getDataFromTable']['access'] = Config::$ACCESS_LEVEL_ADMIN;

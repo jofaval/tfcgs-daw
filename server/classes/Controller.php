@@ -1269,4 +1269,9 @@ class Controller
         require_once __DIR__ . "/../templates/admin.php";
     }
 
+    public function getDataFromTable()
+    {
+        require_once __DIR__ . "/../templates/getDataFromTable.php";
+    }
+
 }
