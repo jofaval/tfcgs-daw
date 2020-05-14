@@ -39,14 +39,46 @@ $header = [
         style="transition: all 0.2s ease-in-out 0s;">
         <span class="navbar-toggler-icon" style="transition: all 0.2s ease-in-out 0s;"></span>
     </button>
-    <a href="/daw/profile/">
-        <img class="navbar-brand order-1 rounded-circle mr-2" width="45"
-            src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
-        <small class="text-muted"><span class="font-weight-bold"><?php echo $username ?></span>
-            <br>
-            <?php echo $sessions->getSession("roleName"); ?>
-        </small>
-    </a>
+
+    <div class="btn-group">
+        <a href="/daw/profile/">
+            <img class="navbar-brand order-1 rounded-circle mr-2" width="45"
+                src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
+            <small class="text-muted"><span class="font-weight-bold"><?php echo $username ?></span>
+                <br>
+                <?php echo $sessions->getSession("roleName"); ?>
+            </small>
+        </a>
+        <button type="button" class="btn btn-sm shadow-none dropdown-toggle px-1" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+            <div class="">
+                <form action="/daw/signin/" method="POST" id="registerForm"
+                    class="col-md m-0 p-01 rounded d-flex align-items-center justify-content-center flex-column h-100 text-center">
+                    <div class="md-form w-100">
+                        <input type="text" class="form-control text-dark" autocomplete="off" autocorrect="off"
+                            autocapitalize="off" spellcheck="false" id="username" name="username" required>
+                        <label class="text-dark" for="username">Usuario</label>
+                    </div>
+                    <div class="md-form input-group w-100">
+                        <input type="password" class="form-control text-dark" id="password" name="password" required>
+                        <label class="text-dark" for="password">Contraseña</label>
+                        <div class="input-group-append">
+                            <a class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md-form col-12">
+                        <input type="submit" class="btn btn-primary w-100" value="Iniciar sesión" id="signin"
+                            name="signin" required>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="collapse navbar-collapse order-3 order-sm-1 justify-content-md-center" id="navbarsExample08"
         style="transition: all 0.2s ease-in-out 0s;">
         <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
