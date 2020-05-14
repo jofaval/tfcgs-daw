@@ -102,24 +102,24 @@ $breadcrumb = [
 $titleName = "General";
 $icon = "cogs";
 if (in_array($tabName, $tabNames)) {
-    require_once __DIR__ . "/project/$tabName.php";
+    require_once "$tabName.php";
 }
 switch ($tabName) {
     case "dashboards":
         $optionalScripts[] = "js/project/ProjectDashboardMvc.js";
-        require_once __DIR__ . "/project/$tabName.php";
+        require_once "$tabName.php";
         $titleName = "Tableros";
         $icon = "columns";
         break;
     case "diary":
         $optionalScripts[] = "js/project/ProjectDiaryMvc.js";
-        require_once __DIR__ . "/project/$tabName.php";
+        require_once "$tabName.php";
         $titleName = "Tablón de anuncios";
         $icon = "book";
         break;
     case "collaborators":
         $optionalScripts[] = "js/project/ProjectCollaboratorsMvc.js";
-        require_once __DIR__ . "/project/$tabName.php";
+        require_once "$tabName.php";
         $titleName = "Colaboradores";
         $icon = "users";
         break;
@@ -131,7 +131,7 @@ switch ($tabName) {
     case "overview":
     default:
         $optionalScripts[] = "js/project/ProjectOverviewMvc.js";
-        require_once __DIR__ . "/project/overview.php";
+        require_once "overview.php";
         break;
 }
 $title .= " - " . $titleName;
@@ -145,7 +145,6 @@ $breadcrumb[] = [
     </div>
 </div>
 </div>
-
 
 <?php $contenido = ob_get_clean()?>
 

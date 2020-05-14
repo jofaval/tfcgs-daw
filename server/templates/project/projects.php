@@ -27,6 +27,7 @@ $breadcrumb = [
 <?php $username = $sessions->getSession("username");?>
 
 <?php ob_start()?>
+
 <div class="w-100 p-0">
     <div class="row py-5 m-0 projectHeader pr-sm-5">
         <style>
@@ -119,4 +120,4 @@ $breadcrumb = [
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once 'layout.php'?>
+<?php include_once __DIR__ . '/../layout.php'?>

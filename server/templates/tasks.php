@@ -82,4 +82,4 @@ main {
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once 'layoutProject.php'?>
+<?php include_once __DIR__ . '/project/layoutProject.php'?>

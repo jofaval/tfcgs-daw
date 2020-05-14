@@ -35,7 +35,7 @@ class Controller
             $clientId
         );
 
-        require __DIR__ . '/../templates/projects.php';
+        require __DIR__ . '/../templates/project/projects.php';
     }
 
     public function getDatabase()
@@ -417,7 +417,7 @@ class Controller
                     break;
             }
 
-            require __DIR__ . "/../templates/$direction.php";
+            require_once __DIR__ . "/../templates/project/$direction.php";
         } else {
             header("Location: /daw/projects/");
         }
@@ -457,7 +457,7 @@ class Controller
         $viewParams["assignedTasksByYouFinished"] = $assignedTasksByYouFinished;
         $viewParams["assignedTasksToYouFinished"] = $assignedTasksToYouFinished;
 
-        return "project/assignedTasks";
+        return "assignedTasks";
     }
 
     public function downloadDashboardJSON($element, $id, $dashboard_title)
@@ -481,7 +481,7 @@ class Controller
             }
         }
 
-        return "tasks/change-image";
+        return "/../tasks/change-image";
     }
 
     public function getProjectsOfUser()

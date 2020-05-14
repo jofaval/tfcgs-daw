@@ -211,4 +211,4 @@ endforeach;?>
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once __DIR__ . '/../layoutProject.php'?>
+<?php include_once 'layoutProject.php'?>
