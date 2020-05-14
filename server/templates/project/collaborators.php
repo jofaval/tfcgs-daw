@@ -28,10 +28,12 @@
             <input type="text" class="form-control pl-0 col-12 col-sm text-white rounded-0" name="searchCollaborator"
                 id="searchCollaborator" placeholder="Usuario del/a colaborador/a">
             <div class="input-group-append">
+                <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER): ?>
                 <span class="btn btn-sm collaboratorBtnInvite btn-success m-0 input-group-text md-addon">
                     <span class="d-none d-sm-inline-block">Invitar&nbsp;</span>
                     <span><i class="fa fa-user-plus fa-2x"></i></span>
                 </span>
+                <?php endif;?>
                 <span class="btn btn-sm collaboratorBtnSearch btn-warning m-0 input-group-text md-addon">
                     <span class="d-none d-sm-inline-block">Buscar&nbsp;</span>
                     <span><i class="fa fa-search fa-2x"></i></span>

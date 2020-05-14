@@ -31,7 +31,9 @@ document.querySelector('.tabContentContainer').classList.remove("px-2");
             </select>
             <p class="m-0 align-self-center text-white">&nbsp;fila(s).</p>
         </div>
+        <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER): ?>
         <div class="btn btn-success btn-sm dashboardBtnAdd">+ Añadir</div>
+        <?php endif;?>
         <div class="md-form input-group col-12 col-sm my-2">
             <input type="search" class="form-control text-white pl-0 rounded-0" name="dashboardSearch"
                 id="dashboardSearch" placeholder="Buscar...">
