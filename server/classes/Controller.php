@@ -1276,6 +1276,7 @@ class Controller
 
         $sqlUtils = new SQLUtils(Model::getInstance());
 
+        $viewParams["tableName"] = $tableName;
         $viewParams["results"] = $sqlUtils->query($tableName);
         $viewParams["columns"] = array_keys($viewParams["results"][0]); /*
 

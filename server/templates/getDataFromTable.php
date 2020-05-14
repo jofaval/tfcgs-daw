@@ -1,7 +1,7 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["datatables.min.css"];?>
 <?php $optionalScripts = ["libs/datatables.min.js", "js/getDataTable.js"];?>
-<?php $title = "Example";?>
+<?php $title = $viewParams["tableName"];?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
@@ -14,10 +14,16 @@ $breadcrumb = [
         "icon" => "home",
     ],
     [
-        "name" => "Example",
-        "link" => "/daw/example/",
+        "name" => "Admin",
+        "link" => "/daw/admin/",
+        "active" => false,
+        "icon" => "cogs",
+    ],
+    [
+        "name" => "Ver tablas",
+        "link" => "/daw/admin/get-data-from-table/" . $viewParams["tableName"] . "/",
         "active" => true,
-        "icon" => "home",
+        "icon" => "database",
     ],
 ];
 ?>
