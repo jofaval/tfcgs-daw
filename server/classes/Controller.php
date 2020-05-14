@@ -337,7 +337,8 @@ class Controller
             //Si tiene elemento
             if (Utils::exists("element")) {
                 $element = Utils::getCleanedData("element");
-                $viewParams["secondaryId"] = Utils::getCleanedData("secondaryId");
+                $secondaryId = Utils::getCleanedData("secondaryId");
+                $viewParams["secondaryId"] = $secondaryId;
 
                 //Si el elemento que se ha introducido es uno de los aceptados
                 if (in_array($element, Config::$projectElements)) {
@@ -361,7 +362,12 @@ class Controller
                                 $view = Utils::getCleanedData("view");
                                 switch ($view) {
                                     case 'changeImage':
-                                        $direction = $this->changeDashboardBgImage($element, $id, $dashboard_title);
+                                        if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER) {
+                                            $direction = $this->changeDashboardBgImage($element, $id, $dashboard_title);
+                                        } else {
+                                            header("Location: /daw/projects/id/$id/dashboards/$secondaryId/");
+                                        }
+
                                         break;
                                     case 'json':
                                         $direction = $this->downloadDashboardJSON($element, $id, $dashboard_title);
