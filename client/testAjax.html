@@ -15,17 +15,31 @@
     </div>
 </body>
 <script src="./scripts/libs/jquery.min.js"></script>
+<script src="./scripts/js/DateUtils.js"></script>
 <script src="./scripts/js/utils.js"></script>
 <script src="./scripts/js/AjaxController.js"></script>
 <script>
-    AjaxController.request("bookmarkProject", "POST", {
+    $.ajax({
+        url: "/daw/ajax/doesUsernameExists/",
+        data: {
+            username: "jofaval",
+        },
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (result) {
+            console.error(result);
+
+        }
+    })
+    /* AjaxController.request("bookmarkProject", "POST", {
         "id_project": 7,
         "bookmarked": false,
     }, function (result) {
         console.log("resultado", result);
     }, function () {
         sendNotification("No ha funcionado");
-    });
+    }); */
     /* AjaxController.genericAjaxRequest("test", {
                     "inputScheduleStartHour": "7:55",
                     "inputScheduleEndHour": "8:50",
