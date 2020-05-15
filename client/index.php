@@ -11,6 +11,10 @@ function requireAllFromDir($dir = null)
     }
 }
 
+/* //Print URL with params
+var_dump(array_merge($_REQUEST, ["URL" => $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']]));
+exit; */
+
 //Basics
 require_once __DIR__ . '/../server/classes/Config.php';
 error_reporting(Config::$developmentMode);
