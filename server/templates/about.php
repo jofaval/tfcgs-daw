@@ -26,23 +26,23 @@ $breadcrumb = [
 
 <div class="d-flex w-100 h-100 overflow-auto m-0 p-0 text-white flex-wrap flex-column">
     <div class="topSpace my-5">&nbsp;</div>
-    <div class="w-100 h-100 col-sm-12 page page1 m-0 center-elements flex-column">
+    <div id="page1" class="w-100 h-100 col-sm-12 overflow-auto page page1 m-0 center-elements flex-column">
         <div class="container text-center">
             <h1>Te damos la bienvenida a <span class="font-weight-bold">Origen</span></h1>
             <p>Usa las flechas del teclado para navegar</p>
         </div>
     </div>
-    <div class="w-100 h-100 col-sm-12 page page2 m-0 center-elements flex-column">
+    <div id="page2" class="w-100 h-100 col-sm-12 overflow-auto page page2 m-0 center-elements flex-column">
         <div class="container text-center">
+            <img src="/daw/img/branding/logo.png" class="mb-3" width="250" height="250" alt="">
             <h1>¿Qué es origen?</h1>
-            <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet nulla laborum vitae eaque blanditiis
-                cumque
-                exercitationem ut aliquid laudantium dicta quo, facere itaque, velit inventore labore temporibus a vero
-                at.
+            <h4>Se pretende proporcionar una gestión básica de cualquier tipo de proyecto con un conjunto de
+                herramientas
+                unificadas en una única plataforma de modo que todo sea más intuitivo y práctico.
             </h4>
         </div>
     </div>
-    <div class="w-100 h-100 col-sm-12 page page3 m-0 center-elements flex-column">
+    <div id="page3" class="w-100 h-100 col-sm-12 overflow-auto page page3 m-0 center-elements flex-column">
         <div class="container text-center">
             <h2>Nuestros precios</h2>
             <section class="pricing py-5">
@@ -52,25 +52,32 @@ $breadcrumb = [
                         <div class="col-lg-4">
                             <div class="card mb-5 mb-lg-0">
                                 <div class="card-body">
-                                    <h5 class="card-title text-muted text-uppercase text-center">Free</h5>
-                                    <h6 class="card-price text-center">$0<span class="period">/month</span></h6>
+                                    <h5 class="card-title text-danger text-uppercase text-center">Gratis</h5>
+                                    <h6 class="card-price text-center">€ 0<span class="period">/mes</span></h6>
                                     <hr>
                                     <ul class="fa-ul">
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Single User</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>5GB Storage</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Public
-                                            Projects</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
-                                        <li class="text-muted"><span class="fa-li"><i
-                                                    class="fa fa-times"></i></span>Unlimited Private Projects</li>
-                                        <li class="text-muted"><span class="fa-li"><i
-                                                    class="fa fa-times"></i></span>Dedicated Phone Support</li>
-                                        <li class="text-muted"><span class="fa-li"><i
-                                                    class="fa fa-times"></i></span>Free Subdomain</li>
-                                        <li class="text-muted"><span class="fa-li"><i
-                                                    class="fa fa-times"></i></span>Monthly Status Reports</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Página de perfil</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Búsqueda de perfiles
+                                        </li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Creación de proyecto
+                                        </li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Acceso al tablón de
+                                            anuncios</li>
+                                        <li class="text-left text-muted"><span class="fa-li"><i
+                                                    class="fa fa-times"></i></span>Gestión de proyectos</li>
+                                        <li class="text-left text-muted"><span class="fa-li"><i
+                                                    class="fa fa-times"></i></span>Acceso al tablero</li>
+                                        <li class="text-left text-muted"><span class="fa-li"><i
+                                                    class="fa fa-times"></i></span>Invita a colaboradores a tu proyecto
+                                        </li>
+                                        <li class="text-left text-muted"><span class="fa-li"><i
+                                                    class="fa fa-times"></i></span>Gestiona a los colaboradores</li>
                                     </ul>
-                                    <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
+                                    <a href="#" class="btn btn-block btn-danger text-uppercase">Elegir</a>
                                 </div>
                             </div>
                         </div>
@@ -78,25 +85,35 @@ $breadcrumb = [
                         <div class="col-lg-4">
                             <div class="card mb-5 mb-lg-0">
                                 <div class="card-body">
-                                    <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
-                                    <h6 class="card-price text-center">$9<span class="period">/month</span></h6>
+                                    <h5 class="card-title text-primary text-uppercase text-center">Intermedio</h5>
+                                    <h6 class="card-price text-center">€ 9<span class="period">/mes</span></h6>
                                     <hr>
                                     <ul class="fa-ul">
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span><strong>5
-                                                Users</strong></li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>50GB Storage</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Public
-                                            Projects</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Private
-                                            Projects</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Dedicated Phone
-                                            Support</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Free Subdomain</li>
-                                        <li class="text-muted"><span class="fa-li"><i
-                                                    class="fa fa-times"></i></span>Monthly Status Reports</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Página de
+                                            perfil</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Búsqueda de perfiles
+                                        </li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Creación de proyecto
+                                        </li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Acceso al tablón de
+                                            anuncios</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Gestión de
+                                            proyectos</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Acceso al
+                                            tablero</li>
+                                        <li class="text-left text-muted"><span class="fa-li"><i
+                                                    class="fa fa-times"></i></span>Invita a colaboradores a tu proyecto
+                                        </li>
+                                        <li class="text-left text-muted"><span class="fa-li"><i
+                                                    class="fa fa-times"></i></span>Gestiona a los colaboradores</li>
                                     </ul>
-                                    <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
+                                    <a href="#" class="btn btn-block btn-primary text-uppercase">Elegir</a>
                                 </div>
                             </div>
                         </div>
@@ -104,27 +121,36 @@ $breadcrumb = [
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
-                                    <h6 class="card-price text-center">$49<span class="period">/month</span></h6>
+                                    <h5 class="card-title text-success text-uppercase text-center">Profesional</h5>
+                                    <h6 class="card-price text-center">€ 49<span class="period">/mes</span></h6>
                                     <hr>
                                     <ul class="fa-ul">
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span><strong>Unlimited
-                                                Users</strong></li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>150GB Storage</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Public
-                                            Projects</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Community Access</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Private
-                                            Projects</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Dedicated Phone
-                                            Support</li>
-                                        <li><span class="fa-li"><i
-                                                    class="fa fa-check"></i></span><strong>Unlimited</strong> Free
-                                            Subdomains</li>
-                                        <li><span class="fa-li"><i class="fa fa-check"></i></span>Monthly Status
-                                            Reports</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Página de perfil</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Búsqueda de perfiles
+                                        </li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Creación de proyecto
+                                        </li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Acceso al tablón de
+                                            anuncios</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Gestión de
+                                            proyectos</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Acceso al
+                                            tablero</li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Invita a
+                                            colaboradores a tu proyecto
+                                        </li>
+                                        <li class="text-left"><span class="fa-li"><i
+                                                    class="fa fa-check"></i></span>Gestiona a
+                                            los colaboradores</li>
                                     </ul>
-                                    <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
+                                    <a href="#" class="btn btn-block btn-success text-uppercase">Elegir</a>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +159,7 @@ $breadcrumb = [
             </section>
         </div>
     </div>
-    <div class="w-100 h-100 col-sm-12 page page4 m-0 center-elements flex-column">
+    <div id="page4" class="w-100 h-100 col-sm-12 overflow-auto page page4 m-0 center-elements flex-column">
         <div class="container text-center">
             <h1>Nuestro equipo</h1>
             <div class="row">
@@ -188,7 +214,7 @@ $breadcrumb = [
             </div>
         </div>
     </div>
-    <div class="w-100 h-100 col-sm-12 page page5 m-0 center-elements flex-column">
+    <div id="page5" class="w-100 h-100 col-sm-12 overflow-auto page page5 m-0 center-elements flex-column">
         <div class="container text-center">
             <a href="/daw/" class="btn btn-lg btn-primary">Comenzar</a>
         </div>

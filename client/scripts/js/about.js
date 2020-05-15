@@ -25,7 +25,11 @@ for (i = 0; i < acc.length; i++) {
     });
 } */
 
-var selectedPageIndex = 1;
+/* var pageIndexFromLocalStorage = localStorage.getItem("pageIndex");
+var selectedPageIndex = pageIndexFromLocalStorage;
+if (pageIndexFromLocalStorage === null) { */
+selectedPageIndex = 1;
+//}
 
 window.onwheel = function () {
     return false;
@@ -36,25 +40,34 @@ $(window).on("keyup", function (event) {
     console.log(keyCode);
 
     var valueToAdd = null;
+    var changePage = false;
 
     switch (keyCode) {
         case 37:
             if (selectedPageIndex > 1) {
                 valueToAdd = -1;
+                changePage = true;
             }
             break;
         case 39:
             if (selectedPageIndex < 5) {
                 valueToAdd = 1;
+                changePage = true;
             }
             break;
     }
 
-    if (valueToAdd !== null) {
-        selectedPageIndex += valueToAdd;
+    if (changePage) {
+        if (valueToAdd !== null) {
+            selectedPageIndex += valueToAdd;
+            //var pageIndexFromLocalStorage = localStorage.setItem("pageIndex", selectedPageIndex);
+        }
     }
 
-    $(`.page${selectedPageIndex}`).get(0).scrollIntoView({
+    changeURL(`/daw/about/#page${selectedPageIndex}`);
+
+    $(".page.active").removeClass("active");
+    $(`.page${selectedPageIndex}`).addClass("active").get(0).scrollIntoView({
         behavior: "smooth",
         block: 'nearest',
         inline: 'start'
