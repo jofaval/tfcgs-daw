@@ -10,19 +10,19 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Admin",
-        "link" => "/daw/admin/",
+        "link" => "/daw/client/admin/",
         "active" => false,
         "icon" => "cogs",
     ],
     [
         "name" => "Añadir ruta",
-        "link" => "/daw/admin/new-route/",
+        "link" => "/daw/client/admin/new-route/",
         "active" => true,
         "icon" => "code",
     ],
@@ -32,7 +32,7 @@ $breadcrumb = [
 <?php ob_start()?>
 
 <!--form>(.md-form>.form-control+label)+input:submit.btn.btn-primary{Añadir ruta}-->
-<form action="/daw/index.php?ctl=addNewRoute" method="POST"
+<form action="/daw/client/index.php?ctl=addNewRoute" method="POST"
     class="p-5 m-auto bg-white col-sm-6 d-flex align-items-center justify-content-center flex-column">
     <h1>Añadir ruta</h1>
     <div class="md-form col-sm">

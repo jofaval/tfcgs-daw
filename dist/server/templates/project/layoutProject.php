@@ -25,10 +25,10 @@ endif;?>
 </body>
 
 <?php foreach (Config::$mvc_vis_scripts as $script_link): ?>
-<script src="/daw/scripts/<?php echo $script_link ?>"></script>
+<script src="/daw/client/scripts/<?php echo $script_link ?>"></script>
 <?php endforeach;?>
 <?php foreach ($optionalScripts as $script_link): ?>
-<script src="/daw/scripts/<?php echo $script_link ?>"></script>
+<script src="/daw/client/scripts/<?php echo $script_link ?>"></script>
 <?php endforeach;?>
 
 </html>

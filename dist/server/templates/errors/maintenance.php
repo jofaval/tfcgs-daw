@@ -9,13 +9,13 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Mantenimiento",
-        "link" => "/daw/maintenance/",
+        "link" => "/daw/client/maintenance/",
         "active" => true,
         "icon" => "cogs",
     ],
@@ -38,7 +38,7 @@ main {
 }
 </style>
 
-<link rel="shortcut icon" href="/daw/img/branding/maintenance_favicon.gif" type="image/gif">
+<link rel="shortcut icon" href="/daw/client/img/branding/maintenance_favicon.gif" type="image/gif">
 
 <div class="w-100 h-100 d-flex text-dark justify-content-center align-content-center
  flex-column justify-items-center align-items-center text-center">

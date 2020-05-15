@@ -52,9 +52,9 @@
                 </div>
             </div>
 
-            <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDatePrev"]; ?>/"
+            <a href="/daw/client/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDatePrev"]; ?>/"
                 class="btn btn-sm btn-primary projectDiaryBtnPrev order-1 text-white">&lt;</a>
-            <a href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDateNext"]; ?>/"
+            <a href="/daw/client/projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDateNext"]; ?>/"
                 class="btn btn-sm btn-primary projectDiaryBtnNext order-3 text-white">&gt;</a>
             <br>
         </div>

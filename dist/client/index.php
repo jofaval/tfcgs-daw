@@ -49,17 +49,17 @@ if (!in_array($ctl, Config::$dont_need_db_ctls)) {
     try {
         $model = Model::getInstance();
     } catch (\Throwable $th) {
-        header("Location: /daw/maintenance/");
+        header("Location: /daw/client/maintenance/");
     }
 }
 
 if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls) && !in_array($ctl, Config::$dont_need_db_ctls)) {
-    header('Location: /daw/notuseragent/');
+    header('Location: /daw/client/notuseragent/');
 }
 
 //if (!Config::$developmentMode) {
 if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls) && !in_array($ctl, Config::$dont_need_db_ctls)) {
-    header("Location: /daw/notsigned/");
+    header("Location: /daw/client/notsigned/");
 }
 //}
 
@@ -96,15 +96,15 @@ if (isset($_REQUEST["ctl"])) {
     if (isset($map[$ctl])) {
         $ruta = $ctl;
     } else {
-        header('Location: /daw/no-action/');
+        header('Location: /daw/client/no-action/');
         exit;
     }
 } else {
     if (!$sessions->doesSessionExist("username")) {
-        header("Location: /daw/signin/");
+        header("Location: /daw/client/signin/");
         $ruta = "signin";
     } else {
-        header("Location: /daw/projects/");
+        header("Location: /daw/client/projects/");
         $ruta = "projects";
     }
 }
@@ -116,10 +116,10 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
         call_user_func(array(new $controlador['controller'], $controlador['action']));
     } else {
         //No tiene suficiente nivel de acceso
-        header('Location: /daw/access/');
+        header('Location: /daw/client/access/');
     }
 } else {
     //No se ha podido ejecutar
-    header('Location: /daw/execution-error/');
+    header('Location: /daw/client/execution-error/');
     exit;
 }

@@ -10,19 +10,19 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Admin",
-        "link" => "/daw/admin/",
+        "link" => "/daw/client/admin/",
         "active" => false,
         "icon" => "cogs",
     ],
     [
         "name" => "Ver tablas",
-        "link" => "/daw/admin/get-data-from-table/" . $viewParams["tableName"] . "/",
+        "link" => "/daw/client/admin/get-data-from-table/" . $viewParams["tableName"] . "/",
         "active" => true,
         "icon" => "database",
     ],

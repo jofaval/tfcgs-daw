@@ -7,13 +7,13 @@ class ExceptionUtils
             if (method_exists($class, $function)) {
                 return call_user_func([new $class, $function]);
             } else {
-                header("Location: /daw/error/");
+                header("Location: /daw/client/error/");
             }
         } catch (Exception $exception) {
             writeToLog("Exception", "Exception happend at " . microtime() . " with message (" . $exception->getMessage() . ")." . PHP_EOL);
 
             if (!Config::$developmentMode) {
-                header("Location: /daw/error/");
+                header("Location: /daw/client/error/");
             } else {
                 echo "error";
                 echo "<style>
@@ -27,7 +27,7 @@ class ExceptionUtils
             writeToLog("Error", "Error with number " . ($errno) . " happend at " . microtime() . " with message (" . ($e->$errstr) . ") inside \"" . ($e->$errfile) . "\" file at line " . ($e . $errline) . "." . PHP_EOL);
 
             if (!Config::$developmentMode) {
-                header("Location: /daw/error/");
+                header("Location: /daw/client/error/");
             } else {
                 echo "error";
                 echo "<style>
@@ -60,7 +60,7 @@ function expcetionHandler($exception)
     writeToLog("Exception", "Exception happend at " . microtime() . " with message (" . $exception->getMessage() . ")." . PHP_EOL);
 
     if (!Config::$developmentMode) {
-        header("Location: /daw/error/");
+        header("Location: /daw/client/error/");
     } else {
         echo "error";
         echo "<style>
@@ -77,7 +77,7 @@ function errorAction($errno = -1, $errstr = "", $errfile = "", $errline = 0)
     writeToLog("Error", "Error with number " . ($errno) . " happend at " . microtime() . " with message (" . ($errstr) . ") inside \"" . ($errfile) . "\" file at line " . ($errline) . "." . PHP_EOL);
 
     if (!Config::$developmentMode) {
-        header("Location: /daw/error/");
+        header("Location: /daw/client/error/");
     } else {
         echo "error";
         echo "<style>

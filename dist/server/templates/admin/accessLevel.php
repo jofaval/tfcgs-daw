@@ -10,19 +10,19 @@
 <?php $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Admin",
-        "link" => "/daw/admin/",
+        "link" => "/daw/client/admin/",
         "active" => false,
         "icon" => "cogs",
     ],
     [
         "name" => "Acceso",
-        "link" => "/daw/admin/access-level/",
+        "link" => "/daw/client/admin/access-level/",
         "active" => true,
         "icon" => "key",
     ],
@@ -30,7 +30,7 @@
 
 <?php ob_start()?>
 
-<form action="/daw/index.php?ctl=accessLevel" method="POST" class="bg-white rounded shadow p-5">
+<form action="/daw/client/index.php?ctl=accessLevel" method="POST" class="bg-white rounded shadow p-5">
     <h2>Nueva ruta</h2>
     <div class="md-form">
         <input type="text" class="form-control" placeholder="" name="newRoute" id="newRoute" />

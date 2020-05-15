@@ -9,7 +9,7 @@
 <?php $breadcrumb = [
     [
         "name" => "Volver a la home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => true,
         "icon" => "home",
     ],

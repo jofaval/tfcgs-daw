@@ -10,13 +10,13 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Tus proyectos",
-        "link" => "/daw/projects/",
+        "link" => "/daw/client/projects/",
         "active" => false,
         "icon" => "folder",
     ],

@@ -1,4 +1,4 @@
-<a href="/daw/admin/get-data-from-table/<?php echo $tableName ?>/"
+<a href="/daw/client/admin/get-data-from-table/<?php echo $tableName ?>/"
     class="dbTableCard text-dark col-12 p-0 m-2 col-sm bg-dark">
     <img src="https://picsum.photos/400/400?random=<?php echo $randomIndex ?>" alt=""
         class="dbTableCardBgImg object-fit-cover opacity-30 position-absolute m-0 w-100 h-100 z-index">

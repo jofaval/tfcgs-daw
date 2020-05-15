@@ -4,13 +4,13 @@ $("#searchUserProfileForm").on("submit", function (event) {
 
     var username = $("#username").val();
     $.ajax({
-        url: "/daw/index.php?ctl=doesUsernameExists/",
+        url: "/daw/client/index.php?ctl=doesUsernameExists/",
         data: {
             "username": username,
         },
         success: function (exist) {
             if (exist !== false) {
-                window.location.href = `/daw/profile/${username}/`;
+                window.location.href = `/daw/client/profile/${username}/`;
             } else {
                 sendNotification("No se ha encontrado ese usuario", "usernameDoesNotExist")
             }
@@ -24,14 +24,14 @@ var userSearch = new UserSearchInput($(".searchUserProfileContainer"));
 
 function goToProfile(username) {
     $.ajax({
-        url: "/daw/index.php?ctl=doesUsernameExists",
+        url: "/daw/client/index.php?ctl=doesUsernameExists",
         data: {
             "username": username,
         },
         success: function (exist) {
             if (exist !== false) {
                 userSearch.input.val("");
-                window.location.href = `/daw/profile/${username}/`;
+                window.location.href = `/daw/client/profile/${username}/`;
             } else {
                 sendNotification("No se ha encontrado ese usuario", "usernameDoesNotExist")
             }

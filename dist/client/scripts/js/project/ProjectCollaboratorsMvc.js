@@ -12,7 +12,7 @@ var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm b
 var $collaboratorCard = $(`
 <div class="collaboratorCardContainer m-sm-2">
     <a href="" class="collaboratorCard d-none d-sm-block cursor-pointer text-center collaboratorProfileBtn view overlay rounded m-2 m-2">
-        <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/img/profile-pic.png" width="150" height="150" alt="">
+        <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/client/img/profile-pic.png" width="150" height="150" alt="">
         <div class="collaboratorDetails bg-primary mask flex-center flex-column center-elements h-100 my-auto col">
             <p class="collaboratorUsername text-white m-0 font-weight-bold">Administrator</p>
             <h5 class="collaboratorName text-white m-0">Pepe Fabra Valverde</h5>
@@ -20,7 +20,7 @@ var $collaboratorCard = $(`
         </div>
     </a>
     <a href="" class="collaboratorCard rounded d-sm-none text-dark row col-12 px-0 col-sm m-2 bg-white">
-        <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
+        <img src="/daw/client/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
         <div class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements w-100">
             <h5 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden m-0 font-weight-normal">
                 Pepe Fabra Valverde</h5>
@@ -34,7 +34,7 @@ var $collaboratorCard = $(`
 var $collaboratorCard = $(`
 <div class="collaboratorCardContainer m-2">
     <a href="" class="collaboratorCard d-none d-sm-block cursor-pointer text-center collaboratorProfileBtn view overlay rounded">
-        <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/img/profile-pic.png" width="200" height="200" alt="">
+        <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/client/img/profile-pic.png" width="200" height="200" alt="">
         <div class="collaboratorDetails bg-dark mask flex-center flex-column center-elements h-100 my-auto col">
             <p class="collaboratorUsername text-white m-0 font-weight-bold">Administrator</p>
             <h5 class="collaboratorName text-white m-0">Pepe Fabra Valverde</h5>
@@ -43,7 +43,7 @@ var $collaboratorCard = $(`
         </div>
     </a>
     <a href="" class="collaboratorCard d-sm-none text-dark px-0 row col-12 m-2 mx-auto bg-white">
-        <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
+        <img src="/daw/client/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
         <div class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
             <h5 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden py-1 m-0 font-weight-normal">
                 Pepe Fabra Valverde</h5>
@@ -71,7 +71,7 @@ class Model {
     loadCollaborators(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getCollaboratorsOfProject",
+            url: "/daw/client/index.php?ctl=getCollaboratorsOfProject",
             data: {
                 "id_project": model.projectId,
                 "idProjectForAccessLevel": model.projectId,
@@ -88,7 +88,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=doesUsernameExists",
+            url: "/daw/client/index.php?ctl=doesUsernameExists",
             data: {
                 username: username,
             },
@@ -96,7 +96,7 @@ class Model {
                 console.log(result);
                 if (result) {
                     $.ajax({
-                        url: "/daw/index.php?ctl=createCollaborators",
+                        url: "/daw/client/index.php?ctl=createCollaborators",
                         data: {
                             username: username,
                             id_project: model.projectId,
@@ -133,8 +133,8 @@ class View {
         clonedCard.find(".collaboratorName").text(json.collaboratorName);
         var username = json.collaboratorUsername;
         clonedCard.find(".collaboratorUsername").text(username);
-        clonedCard.find(".collaboratorImg").prop("src", `/daw/img/users/${username}/${username}.png`);
-        clonedCard.find(".collaboratorCard").prop("href", `/daw/profile/${username}/`);
+        clonedCard.find(".collaboratorImg").prop("src", `/daw/client/img/users/${username}/${username}.png`);
+        clonedCard.find(".collaboratorCard").prop("href", `/daw/client/profile/${username}/`);
 
         clonedCard.find(".collaboratorRole").text(json.collaborationRole);
         clonedCard.find(".collaboratorRoleDescription").text(json.collaborationRoleDescription);
@@ -304,7 +304,7 @@ class Controller {
     }
 
     pageChanged(controller, pageIndex) {
-        var url = `/daw/projects/id/${controller.model.projectId}/collaborators/rows/${localStorage.getItem("numberOfRowsInCollaborators")}/page/${pageIndex}/`;
+        var url = `/daw/client/projects/id/${controller.model.projectId}/collaborators/rows/${localStorage.getItem("numberOfRowsInCollaborators")}/page/${pageIndex}/`;
 
         var search = $("#searchCollaborator").val();
         if (search.length > 0) {
@@ -419,7 +419,7 @@ class Controller {
         var collaborator = controller.view.visualizeCollaborator(collaboratorRow, json);
         controller.view.visualizeCollaboratorFlags(collaborator, json.created != 0);
 
-        var url = `/daw/projects/id/${controller.model.projectId}/collaborators/${json.title}`;
+        var url = `/daw/client/projects/id/${controller.model.projectId}/collaborators/${json.title}`;
         collaborator.find(".collaboratorCardBtnView").prop("href", url);
         collaborator.find(".collaboratorReadMore").prop("href", url);
 

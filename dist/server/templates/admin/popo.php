@@ -10,19 +10,19 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Admin",
-        "link" => "/daw/admin/",
+        "link" => "/daw/client/admin/",
         "active" => false,
         "icon" => "cogs",
     ],
     [
         "name" => "POPOs",
-        "link" => "/daw/admin/popo/",
+        "link" => "/daw/client/admin/popo/",
         "active" => true,
         "icon" => "table",
     ],

@@ -39,7 +39,7 @@ class Model {
     loadProjects(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getProjectsOfUser",
+            url: "/daw/client/index.php?ctl=getProjectsOfUser",
             success: function (projects) {
                 model.projects = projects;
                 model.workingProjects = projects;
@@ -52,7 +52,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createProjects",
+            url: "/daw/client/index.php?ctl=createProjects",
             data: {
                 "title": title,
                 "description": description,
@@ -69,7 +69,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=bookmarkProject",
+            url: "/daw/client/index.php?ctl=bookmarkProject",
             data: {
                 "id_project": model.projectId,
                 "title": json.title,
@@ -266,7 +266,7 @@ class Controller {
     }
 
     pageChanged(controller, pageIndex) {
-        var url = `/daw/projects/rows/${localStorage.getItem("numberOfRowsInProjects")}/page/${pageIndex}/`;
+        var url = `/daw/client/projects/rows/${localStorage.getItem("numberOfRowsInProjects")}/page/${pageIndex}/`;
 
         var search = $("#projectSearch").val();
         if (search.length > 0) {
@@ -389,9 +389,9 @@ class Controller {
         bookmarkedIcon.on("click", this.bookmarkProject(controller, json, bookmarkedIcon));
         controller.view.visualizeProjectFlags(project, json.created != 0, json.bookmarked != 0);
 
-        var url = `/daw/projects/id/${json.id}/`;
+        var url = `/daw/client/projects/id/${json.id}/`;
         project.find(".projectCardBtnView").prop("href", url);
-        project.find(".projectCardBgImg").prop("src", `/daw/img/projects/${json.id}/bg.png`);
+        project.find(".projectCardBgImg").prop("src", `/daw/client/img/projects/${json.id}/bg.png`);
         project.find(".projectReadMore").prop("href", url);
 
         return project;
@@ -419,7 +419,7 @@ class Controller {
 
         Modal.modal({
             "title": "Crear proyecto",
-            "content": `<form action="/daw/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action="/daw/client/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
                             <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
                             <label for="title">Título</label>
@@ -445,7 +445,7 @@ class Controller {
                             modal.close();
                             controller.addProject(controller, result[0]);
                             controller.reload(controller);
-                            window.location.href = `/daw/projects/id/${result[0]["id"]}/`;
+                            window.location.href = `/daw/client/projects/id/${result[0]["id"]}/`;
                         }
                     });
 

@@ -2,7 +2,7 @@
 <?php $breadcrumb[count($breadcrumb) - 1]["active"] = false;?>
 <?php $breadcrumb[] = [
     "name" => "Imagen",
-    "link" => "/daw/profile/change-image",
+    "link" => "/daw/client/profile/change-image",
     "active" => true,
     "icon" => "image",
 ];?>
@@ -11,7 +11,7 @@
 <?php endif;?>
 
 <div class="card-body card-body-cascade text-center mt-3">
-    <form class="" action="/daw/profile/change-image/" method="POST" enctype="multipart/form-data">
+    <form class="" action="/daw/client/profile/change-image/" method="POST" enctype="multipart/form-data">
         <h1 class="text-left">Imagen de perfil</h1>
         <div class="row">
             <div class="col-md-6 mx-auto">
@@ -37,7 +37,7 @@
         </div>
         <?php endif;?>
     </form>
-    <form class="" action="/daw/profile/change-image/" method="POST" enctype="multipart/form-data">
+    <form class="" action="/daw/client/profile/change-image/" method="POST" enctype="multipart/form-data">
         <h1 class="text-left">Imagen de fondo</h1>
         <div class="row">
             <div class="col-md-6 mx-auto">

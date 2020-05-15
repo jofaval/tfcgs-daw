@@ -1,5 +1,5 @@
 var $collaboratorCard = $(`<div class="collaboratorCard rounded row col-12 col-sm m-2 m-2 bg-white">
-    <img class="collaboratorImg my-2 rounded-pill" src="/daw/img/profile-pic.png" alt="">
+    <img class="collaboratorImg my-2 rounded-pill" src="/daw/client/img/profile-pic.png" alt="">
     <div class="collaboratorDetails my-auto col">
         <p class="collaboratorUsername m-0 font-weight-bold">Administrator</p>
         <h5 class="collaboratorName m-0">Pepe Fabra Valverde</h5>
@@ -19,7 +19,7 @@ class Model {
     loadCollaborators(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getCollaboratorsOfProject",
+            url: "/daw/client/index.php?ctl=getCollaboratorsOfProject",
             data: {
                 "id_project": model.projectId,
             },
@@ -52,7 +52,7 @@ class View {
         clonedCard.find(".collaboratorName").text(json.collaboratorName);
         var username = json.collaboratorUsername;
         clonedCard.find(".collaboratorUsername").text(username);
-        clonedCard.find(".collaboratorImg").prop("src", `/daw/img/users/${username}/${username}.png`);
+        clonedCard.find(".collaboratorImg").prop("src", `/daw/client/img/users/${username}/${username}.png`);
 
         clonedCard.find(".collaboratorRole").text(json.collaborationRole);
         clonedCard.find(".collaboratorRoleDescription").text(json.collaborationRoleDescription);

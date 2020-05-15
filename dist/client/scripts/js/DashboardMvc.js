@@ -103,7 +103,7 @@ var $dashboardModal = $(`
 var $dashboardModalComment = $(`
 <div class="w-100 dashboardComment my-2">
     <button class="btn btn-primary btn-sm align-self-center float-right btnEditComment">Cambiar</button>
-    <img src="/daw/img/default.png" width="50"
+    <img src="/daw/client/img/default.png" width="50"
         class="dashboardCommentUserImg rounded-pill float-left mr-2" />
     <div class="row dashboardCommentInformation mb-2">
         <div class="dashboardCommentUsername text-white mr-2">Test</div>
@@ -169,7 +169,7 @@ class Model {
     loadDashboardContent(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getListsOfDashboard",
+            url: "/daw/client/index.php?ctl=getListsOfDashboard",
             data: {
                 "id_project": model.projectId,
                 "dashboard": model.title,
@@ -222,7 +222,7 @@ class Model {
     addDashboardList(title, whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardList",
+            url: "/daw/client/index.php?ctl=createDashboardList",
             data: {
                 "id_project": model.projectId,
                 "dashboard_title": model.title,
@@ -241,7 +241,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardItem",
+            url: "/daw/client/index.php?ctl=createDashboardItem",
             data: {
                 "id_dashboard_list": id_dashboard_list,
                 "title": title,
@@ -259,7 +259,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=deleteDashboardItem",
+            url: "/daw/client/index.php?ctl=deleteDashboardItem",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -273,7 +273,7 @@ class Model {
     enableDashboardItem(id, enable, whenFinished) {
         var modal = this;
         $.ajax({
-            url: "/daw/index.php?ctl=disableDashboardItem",
+            url: "/daw/client/index.php?ctl=disableDashboardItem",
             data: {
                 "id": id,
                 "enabled": enable ? 1 : 0,
@@ -289,7 +289,7 @@ class Model {
         var modal = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=deleteDashboardList",
+            url: "/daw/client/index.php?ctl=deleteDashboardList",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -304,7 +304,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=deleteDashboards",
+            url: "/daw/client/index.php?ctl=deleteDashboards",
             data: {
                 "id_project": model.projectId,
                 "title": model.title,
@@ -320,7 +320,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardItemComments",
+            url: "/daw/client/index.php?ctl=createDashboardItemComments",
             data: {
                 "id_dashboard_item": id,
                 "comment": comment,
@@ -336,7 +336,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=deleteDashboardItemComments",
+            url: "/daw/client/index.php?ctl=deleteDashboardItemComments",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -351,7 +351,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            url: "/daw/client/index.php?ctl=updateDashboardsItemAssignation",
             data: {
                 "id": id,
                 "finished": newState ? 1 : 0,
@@ -366,7 +366,7 @@ class Model {
     moveDashboardItem(order, taskItemId, dashboardListId, whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardItem",
+            url: "/daw/client/index.php?ctl=updateDashboardItem",
             data: {
                 "order": order,
                 "id_dashboard_list": dashboardListId,
@@ -384,7 +384,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=getCommentsOfDashboardItem",
+            url: "/daw/client/index.php?ctl=getCommentsOfDashboardItem",
             data: {
                 "id_dashboard_item": taskItemDataId,
                 "idProjectForAccessLevel": controller.model.projectId,
@@ -399,7 +399,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=getDashboardItemDetails",
+            url: "/daw/client/index.php?ctl=getDashboardItemDetails",
             data: {
                 "id": taskItemDataId,
                 "idProjectForAccessLevel": model.projectId,
@@ -414,7 +414,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardItem",
+            url: "/daw/client/index.php?ctl=updateDashboardItem",
             data: {
                 "id": taskItemId,
                 "title": title,
@@ -431,7 +431,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardsItemAssignation",
+            url: "/daw/client/index.php?ctl=createDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemData.id,
                 "start_date": startDate,
@@ -449,7 +449,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboardsItemAssignation",
+            url: "/daw/client/index.php?ctl=createDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -465,7 +465,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            url: "/daw/client/index.php?ctl=updateDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "start_date": startDate,
@@ -483,7 +483,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            url: "/daw/client/index.php?ctl=updateDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -499,7 +499,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=updateDashboardsItemAssignation",
+            url: "/daw/client/index.php?ctl=updateDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -643,7 +643,7 @@ class View {
         clonedComment.find(".dashboardCommentName").text(commentData.commentCreatorName);
         var commentUsername = commentData.commentCreatorUsername;
         clonedComment.find(".dashboardCommentUsername").text(commentData.commentCreatorUsername);
-        clonedComment.find(".dashboardCommentUserImg").prop("src", `/daw/img/users/${commentUsername}/${commentUsername}.png`);
+        clonedComment.find(".dashboardCommentUserImg").prop("src", `/daw/client/img/users/${commentUsername}/${commentUsername}.png`);
 
         var commentDate = commentData.commentDate;
         var commentTimeHTML = clonedComment.find(".dashboardCommentTime");
@@ -753,7 +753,7 @@ class Controller {
     }
 
     addIdToURL(controller, id) {
-        changeURL(`/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${id}`);
+        changeURL(`/daw/client/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${id}`);
     }
 
     deleteDashboardEvent(controller, event) {
@@ -993,7 +993,7 @@ class Controller {
                 "onClose": function () {
                     controller.view.scrollTo(taskItem);
                     document.title = `${controller.model.title}`;
-                    changeURL(`/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/`);
+                    changeURL(`/daw/client/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/`);
                 },
             });
         });
@@ -1076,7 +1076,7 @@ class Controller {
         console.log(taskItemData);
         controller.view.scrollTo(taskItem);
 
-        var urlBaseInDashboardModal = `/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/task/id/${taskItemData.id}/`;
+        var urlBaseInDashboardModal = `/daw/client/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/task/id/${taskItemData.id}/`;
 
         document.title = `${taskItemData.title}`;
         changeURL(urlBaseInDashboardModal);
@@ -1089,7 +1089,7 @@ class Controller {
 
         controller.model.findListWithId(taskItemData.id_dashboard_list, function (listElement) {
             $(".dashboardModalListName").html(listElement.title)
-                .prop("href", `/daw/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${listElement.id}`)
+                .prop("href", `/daw/client/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${listElement.id}`)
                 .on("click", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -1165,7 +1165,7 @@ class Controller {
                     Modal.modal({
                         "title": `Detalles de ${taskItemData.title}`,
                         "content": `<div class="row">
-                        <p class="mb-0">Creado por <a href="/daw/profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
+                        <p class="mb-0">Creado por <a href="/daw/client/profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
                         <div class="dashboardItemCreationDate ml-auto mr-2"></div>
                     </div>`,
                         "onOpen": function (modal) {
@@ -1245,7 +1245,7 @@ class Controller {
         var modal = Modal.modal({
             "title": "Mover tarea de lista",
             "content": `
-                    <form action="/daw/index.php?ctl=updateDashboardItem" id="formMoveDashboardList" method="POST">
+                    <form action="/daw/client/index.php?ctl=updateDashboardItem" id="formMoveDashboardList" method="POST">
                         <div class="form-row mb-2">
                             <div class="col-sm">
                                 <label for="id_dashboard_list">Lista de tareas</label>
@@ -1361,7 +1361,7 @@ class Controller {
     dashboardAssignationModalEvent(controller, taskItemData) {
         var modal = Modal.modal({
             "title": "Asignar tarea",
-            "content": `<form action="/daw/index.php?ctl=createDashboardItemAssignation" id="formAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action="/daw/client/index.php?ctl=createDashboardItemAssignation" id="formAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row">
                                 <div class="md-form col-sm">
                                     <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
@@ -1421,7 +1421,7 @@ class Controller {
     dashboardAssignationModifyModalEvent(controller, taskItemData) {
         var modal = Modal.modal({
             "title": "Asignar tarea",
-            "content": `<form action="/daw/index.php?ctl=updateDashboardItemAssignation" id="formModifyAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action="/daw/client/index.php?ctl=updateDashboardItemAssignation" id="formModifyAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row">
                                 <div class="md-form col-sm">
                                     <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
@@ -1512,7 +1512,7 @@ class Controller {
     removeDashboardAssignationModalEvent(controller, taskItemData) {
         var modal = Modal.modal({
             "title": "Asignar tarea",
-            "content": `<form action="/daw/index.php?ctl=deleteDashboardItemAssignation" id="formRemoveAssignation" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action="/daw/client/index.php?ctl=deleteDashboardItemAssignation" id="formRemoveAssignation" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row userSearchContainer"></div>
                             <input type="hidden" name="id_project" value="${controller.model.projectId}" >
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">

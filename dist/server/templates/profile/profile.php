@@ -10,13 +10,13 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Profile",
-        "link" => "/daw/profile/",
+        "link" => "/daw/client/profile/",
         "active" => true,
         "icon" => "user",
     ],
@@ -28,7 +28,7 @@ if (!$viewParams["editable"]) {
     $breadcrumb[count($breadcrumb) - 1]["active"] = false;
     $breadcrumb[] = [
         "name" => $viewParams["profile"]["username"],
-        "link" => "/daw/profile/" . $viewParams["profile"]["username"] . "/",
+        "link" => "/daw/client/profile/" . $viewParams["profile"]["username"] . "/",
         "active" => true,
         "icon" => "user",
     ];
@@ -46,7 +46,7 @@ if (!$viewParams["editable"]) {
             <div class="col-lg-4 mb-4 pr-sm-0">
                 <!-- col-sm-4 -->
                 <div class="searchUserProfileContainer mb-sm-3 ml-auto px-3 py-1 bg-white rounded-0 shadow">
-                    <!-- <form action="/daw/profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
+                    <!-- <form action="/daw/client/profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
                         <div class="input-group md-form form-sm form-2 pl-0">
                             <input class="form-control my-0 py-1" type="text" id="username" name="username"
                                 placeholder="Search" aria-label="Search">
@@ -64,21 +64,21 @@ if (!$viewParams["editable"]) {
                     </div>
                     <?php endif;?>
                     <div class="card-body card-body-cascade text-center rounded-0">
-                        <img src="/daw/img/users/<?php echo $viewParams["profile"]["username"]; ?>/<?php echo $viewParams["profile"]["username"]; ?>.png"
+                        <img src="/daw/client/img/users/<?php echo $viewParams["profile"]["username"]; ?>/<?php echo $viewParams["profile"]["username"]; ?>.png"
                             width="200" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
                         <p class="imUsername mb-0 font-weight-bold">
                             <?php echo $viewParams["profile"]["username"]; ?>
                         </p>
                         <?php if ($viewParams["editable"]): ?>
                         <div class="row flex-center">
-                            <a href="/daw/profile/change-image/"
+                            <a href="/daw/client/profile/change-image/"
                                 class="btn btn-primary btn-sm btn-sm waves-effect waves-light"><span><i
                                         class="fa fa-upload"></i></span> Subir
                                 foto</a><br>
-                            <a href="/daw/profile/reset-profile-image/"
+                            <a href="/daw/client/profile/reset-profile-image/"
                                 class="btn btn-danger btn-sm btn-sm waves-effect waves-light"><span><i
                                         class="fa fa-trash"></i></span> Eliminar imagen de perfil</a>
-                            <a href="/daw/profile/reset-background-image/"
+                            <a href="/daw/client/profile/reset-background-image/"
                                 class="btn btn-danger btn-sm btn-sm waves-effect waves-light"><span><i
                                         class="fa fa-trash"></i></span> Eliminar imagen de fondo</a>
                         </div>
@@ -90,9 +90,9 @@ if (!$viewParams["editable"]) {
                     <div class="row flex-center my-3">
                         <!-- <button class="btn btn-danger btn-sm waves-effect waves-light">Deshabilitar
                             cuenta</button> -->
-                        <a href="/daw/signout/" class="btn btn-danger btn-sm waves-effect waves-light">
+                        <a href="/daw/client/signout/" class="btn btn-danger btn-sm waves-effect waves-light">
                             <span><i class="fa fa-sign-out"></i></span> Cerrar sesión</a>
-                        <a href="/daw/profile/<?php echo $username ?>/"
+                        <a href="/daw/client/profile/<?php echo $username ?>/"
                             class="btn btn-primary btn-sm waves-effect waves-light"><span><i
                                     class="fa fa-eye"></i></span> Ver
                             público</a>
@@ -103,7 +103,7 @@ if (!$viewParams["editable"]) {
             <div class="col-lg-8 mb-4">
                 <?php if (!$viewParams["editable"]): ?>
                 <img class="profileBackgroundImage w-100 d-none d-sm-block" height="300"
-                    src="/daw/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png" alt="">
+                    src="/daw/client/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png" alt="">
                 <?php endif;?>
                 <div class="card card-cascade narrower shadow-none">
                     <?php if ($viewParams["editable"]): ?>
@@ -111,9 +111,9 @@ if (!$viewParams["editable"]) {
                         <h5 class="mb-0 font-weight-bold text-center p-3 text-white">Editar Cuenta</h5>
                     </div>
                     <div class="btn-group m-0 p-0 w-100">
-                        <a href="/daw/profile/" class="btn btn-info shadow-none">Cambiar datos generales</a>
-                        <a href="/daw/profile/change-pass/" class="btn btn-info shadow-none">Cambiar contraseña</a>
-                        <a href="/daw/profile/change-image/" class="btn btn-info shadow-none">Cambiar imagen</a>
+                        <a href="/daw/client/profile/" class="btn btn-info shadow-none">Cambiar datos generales</a>
+                        <a href="/daw/client/profile/change-pass/" class="btn btn-info shadow-none">Cambiar contraseña</a>
+                        <a href="/daw/client/profile/change-image/" class="btn btn-info shadow-none">Cambiar imagen</a>
                     </div>
                     <?php endif;?>
                     <?php switch ($tabName) {

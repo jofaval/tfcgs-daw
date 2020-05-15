@@ -10,31 +10,31 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => "/daw/client/",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Tus proyectos",
-        "link" => "/daw/projects/",
+        "link" => "/daw/client/projects/",
         "active" => false,
         "icon" => "folder",
     ],
     [
         "name" => $viewParams["title"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/",
+        "link" => "/daw/client/projects/id/" . $viewParams["id"] . "/",
         "active" => false,
         "icon" => "clipboard",
     ],
     [
         "name" => "Tableros",
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+        "link" => "/daw/client/projects/id/" . $viewParams["id"] . "/dashboards/",
         "active" => false,
         "icon" => "columns",
     ],
     [
         "name" => $viewParams["dashboardTitle"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"],
+        "link" => "/daw/client/projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"],
         "active" => true,
         "icon" => "columns",
     ],
@@ -45,7 +45,7 @@ $breadcrumb = [
 
 <style>
 main {
-    background-image: url('/daw/img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png') !important;
+    background-image: url('/daw/client/img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png') !important;
 }
 </style>
 
@@ -60,12 +60,12 @@ main {
 
     <div class="dropdown-menu">
         <a class="dropdown-item" id="downloadJSONcontent"
-            href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /json/">Descargar
+            href="/daw/client/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /json/">Descargar
             contenido</a>
         <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER): ?>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item"
-            href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
+            href="/daw/client/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
             imagen</a>
         <?php endif;?>
     </div>

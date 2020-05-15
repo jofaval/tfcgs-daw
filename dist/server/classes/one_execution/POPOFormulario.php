@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Database Mapping</title>
-    <link rel="stylesheet" href="/daw/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/daw/styles/jquery-ui.min.css">
-    <link rel="stylesheet" href="/daw/styles/mdb.min.css">
-    <link rel="stylesheet" href="/daw/styles/main.css">
-    <link rel="stylesheet" href="/daw/styles/loader.css">
-    <link rel="stylesheet" href="/daw/styles/floating-label.css">
-    <link rel="stylesheet" href="/daw/styles/inputs.css">
-    <link rel="stylesheet" href="/daw/styles/jquery.sweet-modal.min.css">
+    <link rel="stylesheet" href="/daw/client/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/daw/client/styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="/daw/client/styles/mdb.min.css">
+    <link rel="stylesheet" href="/daw/client/styles/main.css">
+    <link rel="stylesheet" href="/daw/client/styles/loader.css">
+    <link rel="stylesheet" href="/daw/client/styles/floating-label.css">
+    <link rel="stylesheet" href="/daw/client/styles/inputs.css">
+    <link rel="stylesheet" href="/daw/client/styles/jquery.sweet-modal.min.css">
 </head>
 
 <body>
@@ -110,22 +110,22 @@ if (isset($_REQUEST["createPopo"])) {
     document.querySelector("#dbName").value = "origen";
     </script>
 </body>
-<script src="/daw/scripts/libs/jquery.min.js"></script>
-<script src="/daw/scripts/libs/jquery-ui.min.js"></script>
-<script src="/daw/scripts/libs/popper.min.js"></script>
-<script src="/daw/scripts/libs/bootstrap.min.js"></script>
-<script src="/daw/scripts/libs/bootstrap.bundle.min.js"></script>
-<script src="/daw/scripts/libs/mdb.min.js"></script>
-<script src="/daw/scripts/libs/jquery.sweet-modal.min.js"></script>
-<script src="/daw/scripts/js/Modal.js"></script>
-<script src="/daw/scripts/js/utils.js"></script>
-<script src="/daw/scripts/js/ViewUtils.js"></script>
-<script src="/daw/scripts/js/inputs.js"></script>
-<script src="/daw/scripts/js/AjaxController.js"></script>
-<script src="/daw/scripts/js/Validator.js"></script>
-<script src="/daw/scripts/js/FormValidator.js"></script>
-<script src="/daw/scripts/js/preloader.js"></script>
-<script src="/daw/scripts/libs/summernote-bs4.min.js"></script>
-<script src="/daw/scripts/js/generalScript.js"></script>
+<script src="/daw/client/scripts/libs/jquery.min.js"></script>
+<script src="/daw/client/scripts/libs/jquery-ui.min.js"></script>
+<script src="/daw/client/scripts/libs/popper.min.js"></script>
+<script src="/daw/client/scripts/libs/bootstrap.min.js"></script>
+<script src="/daw/client/scripts/libs/bootstrap.bundle.min.js"></script>
+<script src="/daw/client/scripts/libs/mdb.min.js"></script>
+<script src="/daw/client/scripts/libs/jquery.sweet-modal.min.js"></script>
+<script src="/daw/client/scripts/js/Modal.js"></script>
+<script src="/daw/client/scripts/js/utils.js"></script>
+<script src="/daw/client/scripts/js/ViewUtils.js"></script>
+<script src="/daw/client/scripts/js/inputs.js"></script>
+<script src="/daw/client/scripts/js/AjaxController.js"></script>
+<script src="/daw/client/scripts/js/Validator.js"></script>
+<script src="/daw/client/scripts/js/FormValidator.js"></script>
+<script src="/daw/client/scripts/js/preloader.js"></script>
+<script src="/daw/client/scripts/libs/summernote-bs4.min.js"></script>
+<script src="/daw/client/scripts/js/generalScript.js"></script>
 
 </html>

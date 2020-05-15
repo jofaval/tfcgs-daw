@@ -97,7 +97,7 @@ class Model extends PDO
                     WHERE `email`=:email';
                 $clientId = $this->query($queryString, ["email" => $email])[0]["id"];
 
-                //$userImagePath = "/daw/img/users/$username/$username.png";
+                //$userImagePath = "/daw/client/img/users/$username/$username.png";
                 $params = [
                     "username" => $username,
                     "password" => Cryptography::blowfishCrypt($password, $username),

@@ -2,7 +2,7 @@
 <?php $breadcrumb[count($breadcrumb) - 1]["active"] = false;?>
 <?php $breadcrumb[] = [
     "name" => "General",
-    "link" => "/daw/profile/",
+    "link" => "/daw/client/profile/",
     "active" => true,
     "icon" => "edit",
 ];?>
@@ -11,7 +11,7 @@
 <?php endif;?>
 
 <div class="card-body card-body-cascade text-center mt-3">
-    <form class="" action="/daw/profile/" method="POST">
+    <form class="" action="/daw/client/profile/" method="POST">
         <div class="row">
             <div class="col-md-6">
                 <div class="md-form mb-0">
