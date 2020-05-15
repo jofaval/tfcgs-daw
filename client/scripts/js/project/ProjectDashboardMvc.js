@@ -40,7 +40,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=getDashboardsOfProject/",
+            url: "/daw/index.php?ctl=getDashboardsOfProject",
             data: {
                 "id_project": model.projectId,
                 "idProjectForAccessLevel": model.projectId,

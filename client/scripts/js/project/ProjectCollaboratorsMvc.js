@@ -71,7 +71,7 @@ class Model {
     loadCollaborators(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getCollaboratorsOfProject/",
+            url: "/daw/index.php?ctl=getCollaboratorsOfProject",
             data: {
                 "id_project": model.projectId,
                 "idProjectForAccessLevel": model.projectId,
