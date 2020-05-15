@@ -1,0 +1,47 @@
+.rotate-self-animation {
+    animation: rotate 5s infinite linear;
+}
+
+.animation-reverse {
+    animation-direction: reverse !important;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.animation-delay-1 {
+    animation-delay: 0.35s !important;
+}
+
+.animation-delay-2 {
+    animation-delay: 0.50s !important;
+}
+
+.animation-delay-3 {
+    animation-delay: 0.65s !important;
+}
+
+.animation-delay-4 {
+    animation-delay: 0.80s !important;
+}
+
+.animation-delay-5 {
+    animation-delay: 1s !important;
+}

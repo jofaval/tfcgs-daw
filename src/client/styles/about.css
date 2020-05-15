@@ -1,0 +1,26 @@
+main {
+    background: transparent !important;
+    -ms-scroll-snap-type: mandatory !important;
+    scroll-snap-type: mandatory !important;
+    -ms-scroll-snap-points-y: repeat(100vw) !important;
+    scroll-snap-points-y: repeat(100vw) !important;
+    -ms-scroll-snap-type: y mandatory !important;
+    scroll-snap-type: y mandatory !important;
+}
+
+nav.navbar,
+.breadcrumb,
+.breadcrumbContainer {
+    background: transparent !important;
+    position: fixed !important;
+    width: 100% !important;
+    box-shadow: none !important;
+}
+
+.page {
+    scroll-snap-align: start;
+}
+
+.breadcrumbContainer {
+    top: 4em !important;
+}

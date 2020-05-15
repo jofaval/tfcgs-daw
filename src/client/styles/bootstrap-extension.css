@@ -1,0 +1,559 @@
+.overflow-auto {
+    overflow: auto !important;
+}
+
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.overflow-scroll {
+    overflow: scroll !important;
+}
+
+.overflow-x-auto {
+    overflow-x: auto !important;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden !important;
+}
+
+.overflow-x-scroll {
+    overflow-x: scroll !important;
+}
+
+.overflow-y-auto {
+    overflow-y: auto !important;
+}
+
+.overflow-y-hidden {
+    overflow-y: hidden !important;
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll !important;
+}
+
+.bg-transparent {
+    background: transparent !important;
+}
+
+.z-index-hidden {
+    z-index: -1 !important;
+}
+
+.z-index-normal {
+    z-index: 1 !important;
+}
+
+.z-index-overlap-bottom {
+    z-index: 1500000 !important;
+}
+
+.z-index-overlap {
+    z-index: 2140000001 !important;
+}
+
+.z-index-overlap-top {
+    z-index: 9999999999 !important;
+}
+
+.text-transparent {
+    color: transparent !important;
+}
+
+.click-through {
+    pointer-events: none !important;
+}
+
+.text-shadow-sm {
+    text-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
+.text-shadow {
+    text-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+.text-shadow-lg {
+    text-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+}
+
+.text-shadow-none {
+    text-shadow: none !important;
+}
+
+.justify-text-left {
+    text-align: justify !important;
+    text-align-last: left !important;
+}
+
+.justify-text-center {
+    text-align: justify !important;
+    text-align-last: center !important;
+}
+
+.justify-text-right {
+    text-align: justify !important;
+    text-align-last: right !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.text-lowercase {
+    text-transform: lowercase !important;
+}
+
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+
+.cursor-default {
+    cursor: default !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.cursor-grabbing {
+    cursor: grabbing !important;
+}
+
+.hide-on-hover .elementToHide {
+    display: block !important;
+}
+
+.hide-on-hover:hover .elementToHide {
+    display: none !important;
+}
+
+.hide-on-blur .elementToHide {
+    display: none !important;
+}
+
+.hide-on-blur:hover .elementToHide {
+    display: block !important;
+}
+
+.special-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media (min-width:576px) {
+    .special-container {
+        max-width: 540px
+    }
+}
+
+@media (min-width:768px) {
+    .special-container {
+        max-width: 720px
+    }
+}
+
+@media (min-width:992px) {
+    .special-container {
+        max-width: 960px
+    }
+}
+
+@media (min-width:1200px) {
+    .special-container {
+        margin: inherit 7.5em;
+    }
+}
+
+.right-0 {
+    right: 0em !important;
+}
+
+.right-1 {
+    right: 1em !important;
+}
+
+.right-2 {
+    right: 2em !important;
+}
+
+.right-3 {
+    right: 3em !important;
+}
+
+.right-4 {
+    right: 4em !important;
+}
+
+.left-5 {
+    left: 5em !important;
+}
+
+.left-0 {
+    left: 0em !important;
+}
+
+.left-1 {
+    left: 1em !important;
+}
+
+.left-2 {
+    left: 2em !important;
+}
+
+.left-3 {
+    left: 3em !important;
+}
+
+.left-4 {
+    left: 4em !important;
+}
+
+.left-5 {
+    left: 5em !important;
+}
+
+.left-5 {
+    left: 5em !important;
+}
+
+.top-0 {
+    top: 0em !important;
+}
+
+.top-1 {
+    top: 1em !important;
+}
+
+.top-2 {
+    top: 2em !important;
+}
+
+.top-3 {
+    top: 3em !important;
+}
+
+.top-4 {
+    top: 4em !important;
+}
+
+.top-5 {
+    top: 5em !important;
+}
+
+.bottom-0 {
+    bottom: 0em !important;
+}
+
+.bottom-1 {
+    bottom: 1em !important;
+}
+
+.bottom-2 {
+    bottom: 2em !important;
+}
+
+.bottom-3 {
+    bottom: 3em !important;
+}
+
+.bottom-4 {
+    bottom: 4em !important;
+}
+
+.bottom-5 {
+    bottom: 5em !important;
+}
+
+.h1 {
+    font-size: 2.5rem !important;
+}
+
+.h2 {
+    font-size: 2rem !important;
+}
+
+.h3 {
+    font-size: 1.75rem !important;
+}
+
+.h4 {
+    font-size: 1.5rem !important;
+}
+
+.h5 {
+    font-size: 1.25rem !important;
+}
+
+.h6 {
+    font-size: 1rem !important;
+}
+
+.fixed-line-spacing {
+    line-height: 1em !important;
+}
+
+.text-overflow-ellipsis {
+    text-overflow: ellipsis !important;
+}
+
+.max-text-10 {
+    max-width: 10ch !important;
+    min-width: 2.5ch !important;
+    max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
+}
+
+.max-text-20 {
+    max-width: 20ch !important;
+    min-width: 2.5ch !important;
+    max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
+}
+
+.max-text-30 {
+    max-width: 30ch !important;
+    min-width: 2.5ch !important;
+    max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
+}
+
+.max-text-40 {
+    max-width: 40ch !important;
+    min-width: 2.5ch !important;
+    max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
+}
+
+.max-text-50 {
+    max-width: 50ch !important;
+    min-width: 2.5ch !important;
+    max-height: 2.5ch !important;
+    min-height: 2.5ch !important;
+}
+
+.max-height-5 {
+    max-height: 5rem;
+}
+
+.max-height-10 {
+    max-height: 10rem;
+}
+
+.max-height-15 {
+    max-height: 15rem;
+}
+
+.max-height-20 {
+    max-height: 20rem;
+}
+
+.max-height-25 {
+    max-height: 25rem;
+}
+
+.max-height-30 {
+    max-height: 30rem;
+}
+
+.max-height-35 {
+    max-height: 35rem;
+}
+
+.max-height-40 {
+    max-height: 40rem;
+}
+
+.min-height-5 {
+    min-height: 5rem;
+}
+
+.min-height-10 {
+    min-height: 10rem;
+}
+
+.min-height-15 {
+    min-height: 15rem;
+}
+
+.min-height-20 {
+    min-height: 20rem;
+}
+
+.min-height-25 {
+    min-height: 25rem;
+}
+
+.min-height-30 {
+    min-height: 30rem;
+}
+
+.min-height-35 {
+    min-height: 35rem;
+}
+
+.min-height-40 {
+    min-height: 40rem;
+}
+
+.md-form.validate-red input:not([type]):focus:not([readonly]),
+.md-form.validate-red input[type="text"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="password"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="email"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="url"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="time"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="date"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="datetime"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="datetime-local"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="tel"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="number"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="search"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-red input[type="search-md"]:focus:not([readonly]),
+.md-form.validate-red textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #f44242 !important;
+    -webkit-box-shadow: 0 1px 0 0 #f44242 !important;
+    box-shadow: 0 1px 0 0 #f44242 !important;
+}
+
+.md-form.validate-green input:not([type]):focus:not([readonly]),
+.md-form.validate-green input[type="text"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="password"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="email"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="url"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="time"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="date"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="datetime"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="datetime-local"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="tel"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="number"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="search"]:not(.browser-default):focus:not([readonly]),
+.md-form.validate-green input[type="search-md"]:focus:not([readonly]),
+.md-form.validate-green textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #23c931 !important;
+    -webkit-box-shadow: 0 1px 0 0 #23c931 !important;
+    box-shadow: 0 1px 0 0 #23c931 !important;
+}
+
+.position-unset {
+    position: unset !important;
+}
+
+.center-elements {
+    display: flex !important;
+    justify-content: center !important;
+    justify-items: center !important;
+    align-content: center !important;
+    align-items: center !important;
+}
+
+.opacity-0 {
+    opacity: 0 !important;
+}
+
+.opacity-10 {
+    opacity: 0.1 !important;
+}
+
+.opacity-20 {
+    opacity: 0.2 !important;
+}
+
+.opacity-30 {
+    opacity: 0.3 !important;
+}
+
+.opacity-40 {
+    opacity: 0.4 !important;
+}
+
+.opacity-50 {
+    opacity: 0.5 !important;
+}
+
+.opacity-60 {
+    opacity: 0.6 !important;
+}
+
+.opacity-70 {
+    opacity: 0.7 !important;
+}
+
+.opacity-80 {
+    opacity: 0.8 !important;
+}
+
+.opacity-90 {
+    opacity: 0.9 !important;
+}
+
+.opacity-100 {
+    opacity: 1 !important;
+}
+
+.object-fit-contain {
+    object-fit: contain !important;
+}
+
+.object-fit-cover {
+    object-fit: cover !important;
+}
+
+.object-fit-fill {
+    object-fit: fill !important;
+}
+
+.object-fit-unset {
+    object-fit: unset !important;
+}
+
+.object-fit-scale-down {
+    object-fit: scale-down !important;
+}
+
+.brightness-0 {
+    filter: brightness(0) !important;
+}
+
+.brightness-10 {
+    filter: brightness(0.1) !important;
+}
+
+.brightness-20 {
+    filter: brightness(0.2) !important;
+}
+
+.brightness-30 {
+    filter: brightness(0.3) !important;
+}
+
+.brightness-40 {
+    filter: brightness(0.4) !important;
+}
+
+.brightness-50 {
+    filter: brightness(0.5) !important;
+}
+
+.brightness-60 {
+    filter: brightness(0.6) !important;
+}
+
+.brightness-70 {
+    filter: brightness(0.7) !important;
+}
+
+.brightness-80 {
+    filter: brightness(0.8) !important;
+}
+
+.brightness-90 {
+    filter: brightness(0.9) !important;
+}
+
+.brightness-100 {
+    filter: brightness(1) !important;
+}

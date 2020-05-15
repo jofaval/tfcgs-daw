@@ -1,18 +1,25 @@
 #Client files to ignore
 test.html
 test.php
-css/*
-client/test.sql
-client/testAjax.html
-client/test.json
+src/css/*
+dist/css/*
+src/client/test.sql
+dist/client/test.sql
+src/client/testAjax.html
+dist/client/testAjax.html
+src/client/test.json
+dist/client/test.json
+dist/dist.zip
 *.jpg
 *.jpeg
 *.png
 *.gif
 
 #Server files to ignore
-!server/logs/
-server/logs/*
+src/!server/logs/
+dist/!server/logs/
+src/server/logs/*
+dist/server/logs/*
 
 #Local files
 !structure/
@@ -20,8 +27,10 @@ structure/*
 !backups/
 backups/*
 *backup.*
-!client/downloads/
-client/downloads/*
+src/!client/downloads/
+dist/!client/downloads/
+src/client/downloads/*
+dist/client/downloads/*
 
 #PHPUnit 9.0.0 by Sebastian Bergmann and contributors.
 !vendor/

@@ -1,0 +1,78 @@
+.md-form {
+    transition: all 0.2s ease-in-out;
+}
+
+main {
+    overflow: auto;
+    background: url('https://i.picsum.photos/id/1060/1920/1080.jpg?blur=5') no-repeat !important;
+    /* background-attachment: fixed !important;
+    background-size: 100vw 100vh !important;
+    background-position: 0vw 0vh !important; */
+    background-size: cover !important;
+    align-items: start;
+    -ms-scroll-snap-type: mandatory;
+    scroll-snap-type: mandatory;
+    -ms-scroll-snap-points-x: repeat(18rem);
+    scroll-snap-points-x: repeat(18rem);
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
+}
+
+main * {
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -ms-touch-select: none;
+}
+
+@media screen and (max-width: 576px) {
+    main {
+        -ms-scroll-snap-points-x: repeat(100vw);
+        scroll-snap-points-x: repeat(100vw);
+    }
+}
+
+.taskList {
+    max-width: 18rem;
+    background: #222224 !important;
+}
+
+.taskListItemsContainer {
+    max-height: 65vh;
+    overflow: auto;
+}
+
+.taskListItem:hover {
+    cursor: pointer;
+}
+
+.taskListItem {
+    background: #333334 !important;
+}
+
+html body .taskListItemReference {
+    background-color: #646464 !important;
+}
+
+.taskListItem:move {
+    cursor: cell;
+}
+
+.taskListTitle {
+    background: #646464 !important;
+}
+
+.taskListContainer {
+    min-width: 18rem;
+    scroll-snap-align-x: center;
+}
+
+.dragging {
+    cursor: -webkit-grabbing !important;
+    transform: rotate(-15deg);
+}
+
+#content {
+    flex-direction: column !important;
+}

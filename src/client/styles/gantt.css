@@ -1,0 +1,71 @@
+main {
+    -ms-scroll-snap-type: mandatory;
+    scroll-snap-type: mandatory;
+    -ms-scroll-snap-points-y: repeat(5rem);
+    scroll-snap-points-y: repeat(5rem);
+    -ms-scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory;
+    -ms-scroll-snap-points-x: repeat(5rem);
+    scroll-snap-points-x: repeat(5rem);
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
+    padding: 0 !important;
+}
+
+#content {
+    /*overflow: auto;*/
+}
+
+main {
+    align-items: start;
+}
+
+#content td {
+    min-width: 2.5rem !important;
+}
+
+.weekDays th {
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
+}
+
+.nonRotatedText {
+    writing-mode: horizontal-tb !important;
+    text-align: right !important;
+}
+
+.progressIndicator {
+    padding: 0 !important;
+    vertical-align: middle !important;
+}
+
+.ganttTitle {
+    left: 0;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    /*margin-top: -1rem ;*/
+    z-index: 3;
+}
+
+.subTaskTitle {
+    background: #343a40;
+}
+
+.daysSpan {
+    text-align: center !important;
+}
+
+tr {
+    scroll-snap-align: start;
+}
+
+td,
+th {
+    scroll-snap-align: start;
+}
+
+.selectedColumn {
+    background: white !important;
+}
+
+/*deadline bg-primary rounded shadow*/

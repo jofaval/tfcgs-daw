@@ -1,0 +1,193 @@
+Options -MultiViews
+RewriteEngine On
+
+#Improved SEO rules
+AddDefaultCharset UTF-8
+DefaultLanguage es-ES
+
+Header set X-Robots-Tag "noindex, noarchive, nosnippet"
+Header set Cache-Control "max-age=300, public"
+
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|css|pdf)$">
+	Header set Cache-Control "max-age=28800"
+</FilesMatch>
+
+#HTTP Error redirections
+ErrorDocument 404 /daw/404/
+RewriteRule ^404[/]?$ ./index.php?ctl=404 [L]
+
+#Main pages
+RewriteRule ^admin[/]?$ ./index.php?ctl=admin [L]
+RewriteRule ^projects[/]?$ ./index.php?ctl=projects [L]
+RewriteRule ^projects/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=projects&rowNumber=$1&pageIndex=$2 [L]
+RewriteRule ^projects/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=projects&rowNumber=$1&pageIndex=$2&search=$3 [L]
+RewriteRule ^about[/]?$ ./index.php?ctl=about [L]
+
+#Signin
+RewriteRule ^signin[/]?$ ./index.php?ctl=signin&login=test [L]
+RewriteRule ^signout[/]?$ ./index.php?ctl=signout [L]
+RewriteRule ^signup[/]?$ ./index.php?ctl=signup [L]
+
+#Errors
+RewriteRule ^maintenance[/]?$ ./index.php?ctl=maintenance [L]
+RewriteRule ^access[/]?$ ./index.php?ctl=access [L]
+RewriteRule ^error[/]?$ ./index.php?ctl=error [L]
+RewriteRule ^execution-error[/]?$ ./index.php?ctl=error&message=No_se_ha_podido_ejecutar_la_acci%C3%B3n_correspondiente [L]
+RewriteRule ^no-action[/]?$ ./index.php?ctl=error&message=La_acci%C3%B3n_no_se_ha_podido_encontrar_o_no_est%C3%A1_disponible_en_estos_momentos [L]
+RewriteRule ^notsigned[/]?$ ./index.php?ctl=notsigned [L]
+RewriteRule ^notuseragent[/]?$ ./index.php?ctl=notuseragent [L]
+
+#Project Rules
+RewriteRule ^projects/id/([^/]+)[/]?$ ./index.php?ctl=project&id=$1 [L]
+#Tabs
+RewriteRule ^projects/id/([^/]+)/overview/assigned-tasks[/]?$ ./index.php?ctl=project&id=$1&tabName=overview&subView=assingedTasks [L]
+RewriteRule ^projects/id/([^/]+)/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=$2 [L]
+#Pagination dashboards
+RewriteRule ^projects/id/([^/]+)/dashboards/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=dashboards&rowNumber=$2&pageIndex=$3 [L]
+RewriteRule ^projects/id/([^/]+)/dashboards/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=dashboards&rowNumber=$2&pageIndex=$3&search=$4 [L]
+#Pagination collaborators
+RewriteRule ^projects/id/([^/]+)/collaborators/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=collaborators&rowNumber=$2&pageIndex=$3 [L]
+RewriteRule ^projects/id/([^/]+)/collaborators/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=collaborators&rowNumber=$2&pageIndex=$3&search=$4 [L]
+#Empty params redirection
+RewriteRule ^projects/id[/]?$ ./index.php?ctl=projects [L]
+
+#Task list
+RewriteRule ^projects/id/([^/]+)/tasklist/id/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2 [L]
+#Empty params redirection
+RewriteRule ^projects/id/([^/]+)/tasklist[/]?$ ./index.php?ctl=project&id=$1 [L]
+RewriteRule ^projects/id/([^/]+)/tasklist/id[/]?$ ./index.php?ctl=project&id=$1 [L]
+
+#Dashboard
+RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2 [L]
+RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)/change-image[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2&view=changeImage [L]
+RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)/json[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2&view=json [L]
+RewriteRule ^projects/id/([^/]+)/dashboards/([^/]+)/task/id/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&element=tasks&secondaryId=$2&taskId=$3 [L]
+#Empty params redirection
+RewriteRule ^projects/id/([^/]+)/dashboards/id[/]?$ ./index.php?ctl=project&id=$1 [L]
+
+#Diary
+RewriteRule ^projects/id/([^/]+)/diary[/]?$ ./index.php?ctl=project&id=$1&tabName=diary [L]
+RewriteRule ^projects/id/([^/]+)/diary/date[/]?$ ./index.php?ctl=project&id=$1&tabName=diary [L]
+RewriteRule ^projects/id/([^/]+)/diary/date/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=diary&date=$2 [L]
+
+#Profile
+RewriteRule ^profile[/]?$ ./index.php?ctl=profile [L]
+RewriteRule ^profile/change-pass[/]?$ ./index.php?ctl=profile&tabName=pass [L]
+RewriteRule ^profile/change-image[/]?$ ./index.php?ctl=profile&tabName=image [L]
+RewriteRule ^profile/reset-profile-image[/]?$ ./index.php?ctl=profile&reset=profileImage [L]
+RewriteRule ^profile/reset-background-image[/]?$ ./index.php?ctl=profile&reset=bgImage [L]
+RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]
+
+#Admin
+RewriteRule ^admin[/]?$ ./index.php?ctl=admin [L]
+RewriteRule ^admin/new-route[/]?$ ./index.php?ctl=addNewRoute [L]
+RewriteRule ^admin/access-level[/]?$ ./index.php?ctl=accessLevel [L]
+RewriteRule ^admin/popo[/]?$ ./index.php?ctl=createPOPOfromDatabase [L]
+RewriteRule ^admin/download-database[/]?$ ./index.php?ctl=getDatabase [L]
+RewriteRule ^admin/testing[/]?$ ./index.php?ctl=test [L]
+RewriteRule ^admin/get-data-from-table/([^/]+)[/]?$ ./index.php?ctl=getDataFromTable&tableName=$1 [L]
+
+#rutasAjax
+RewriteRule ^ajax/([^/]+)/?([^/]+)$ ./index.php?ctl=$1&$2 [L]
+RewriteRule ^ajax/doesUsernameExists/([^/]+)[/]$ ./index.php?ctl=doesUsernameExists&username=$1 [L]
+
+#RewriteRule ^ajax/searchUsers/username ./index.php?ctl=searchUsers&
+#RewriteRule ^ajax/updateOrderInDashboardList/idProjectForAccessLevel/id_dashboard_list/order ./index.php?ctl=updateOrderInDashboardList&
+#RewriteRule ^ajax/getProjectCollaborationRoles/ ./index.php?ctl=getProjectCollaborationRoles&
+#RewriteRule ^ajax/getAssignedDashboardItems/idProjectForAccessLevel/id_project ./index.php?ctl=getAssignedDashboardItems&
+#RewriteRule ^ajax/getCommentsOfDashboardItem/idProjectForAccessLevel/id_dashboard_item ./index.php?ctl=getCommentsOfDashboardItem&
+#RewriteRule ^ajax/getListsOfDashboard/idProjectForAccessLevel/id_project/dashboard ./index.php?ctl=getListsOfDashboard&
+#RewriteRule ^ajax/bookmarkProject/id_project ./index.php?ctl=bookmarkProject&
+#RewriteRule ^ajax/doesUsernameExists/username ./index.php?ctl=doesUsernameExists&
+#RewriteRule ^ajax/doesEmailExists/email ./index.php?ctl=doesEmailExists&
+#RewriteRule ^ajax/bookmarkDashboard/idProjectForAccessLevel/id_project/title ./index.php?ctl=bookmarkDashboard&
+#RewriteRule ^ajax/getProjectDetails/idProjectForAccessLevel/id ./index.php?ctl=getProjectDetails&
+#RewriteRule ^ajax/getDashboardsOfProject/idProjectForAccessLevel/id_project ./index.php?ctl=getDashboardsOfProject&
+#RewriteRule ^ajax/getCollaboratorsOfProject/idProjectForAccessLevel/id_project ./index.php?ctl=getCollaboratorsOfProject&
+#RewriteRule ^ajax/getProjectsOfUser/ ./index.php?ctl=getProjectsOfUser&
+#RewriteRule ^ajax/createClients/id/first_name/second_name/email" ./index.php?ctl=createClients&
+#RewriteRule ^ajax/updateClients/id/first_name/second_name/email" ./index.php?ctl=updateClients&
+#RewriteRule ^ajax/queryClients/id" ./index.php?ctl=queryClients&
+#RewriteRule ^ajax/deleteClients/id" ./index.php?ctl=deleteClients&
+#RewriteRule ^ajax/createDashboards/idProjectForAccessLevel/id_project/title" ./index.php?ctl=createDashboards&
+#RewriteRule ^ajax/updateDashboards/idProjectForAccessLevel/id_project/title" ./index.php?ctl=updateDashboards&
+#RewriteRule ^ajax/queryDashboards/idProjectForAccessLevel/id_project/title" ./index.php?ctl=queryDashboards&
+#RewriteRule ^ajax/deleteDashboards/idProjectForAccessLevel/id_project/title" ./index.php?ctl=deleteDashboards&
+#RewriteRule ^ajax/createCollaborators/idProjectForAccessLevel/id_project/username" ./index.php?ctl=createCollaborators&
+#RewriteRule ^ajax/updateCollaborators/idProjectForAccessLevel/id_project/username/level" ./index.php?ctl=updateCollaborators&
+#RewriteRule ^ajax/queryCollaborators/idProjectForAccessLevel/id_project/username" ./index.php?ctl=queryCollaborators&
+#RewriteRule ^ajax/deleteCollaborators/idProjectForAccessLevel/id_project/username" ./index.php?ctl=deleteCollaborators&
+#RewriteRule ^ajax/createGlobalLevel/level/title/description" ./index.php?ctl=createGlobalLevel&
+#RewriteRule ^ajax/updateGlobalLevel/level/title/description" ./index.php?ctl=updateGlobalLevel&
+#RewriteRule ^ajax/queryGlobalLevel/level" ./index.php?ctl=queryGlobalLevel&
+#RewriteRule ^ajax/deleteGlobalLevel/level" ./index.php?ctl=deleteGlobalLevel&
+#RewriteRule ^ajax/createPermissions/level/title/description" ./index.php?ctl=createPermissions&
+#RewriteRule ^ajax/updatePermissions/level/title/description" ./index.php?ctl=updatePermissions&
+#RewriteRule ^ajax/queryPermissions/level" ./index.php?ctl=queryPermissions&
+#RewriteRule ^ajax/deletePermissions/level" ./index.php?ctl=deletePermissions&
+#RewriteRule ^ajax/createProjectDiary/idProjectForAccessLevel/day/id_project/content" ./index.php?ctl=createProjectDiary&
+#RewriteRule ^ajax/updateProjectDiary/idProjectForAccessLevel/day/id_project/content" ./index.php?ctl=updateProjectDiary&
+#RewriteRule ^ajax/queryProjectDiary/idProjectForAccessLevel/day/id_project" ./index.php?ctl=queryProjectDiary&
+#RewriteRule ^ajax/deleteProjectDiary/idProjectForAccessLevel/day/id_project" ./index.php?ctl=deleteProjectDiary&
+#RewriteRule ^ajax/createProjects/title/description" ./index.php?ctl=createProjects&
+#RewriteRule ^ajax/updateProjects/id/title/description/id_creator" ./index.php?ctl=updateProjects&
+#RewriteRule ^ajax/queryProjects/id" ./index.php?ctl=queryProjects&
+#RewriteRule ^ajax/deleteProjects/idProjectForAccessLevel/id" ./index.php?ctl=deleteProjects&
+#RewriteRule ^ajax/createTaskListItemListItems/idProjectForAccessLevel/id/task_item_list_id/title/order/description/creation_date/id_creator" ./index.php?ctl=createTaskListItemListItems&
+#RewriteRule ^ajax/updateTaskListItemListItems/idProjectForAccessLevel/id/task_item_list_id/title/order/description/creation_date/id_creator" ./index.php?ctl=updateTaskListItemListItems&
+#RewriteRule ^ajax/queryTaskListItemListItems/idProjectForAccessLevel/id" ./index.php?ctl=queryTaskListItemListItems&
+#RewriteRule ^ajax/deleteTaskListItemListItems/idProjectForAccessLevel/id" ./index.php?ctl=deleteTaskListItemListItems&
+#RewriteRule ^ajax/createTaskListItemLists/idProjectForAccessLevel/id/task_list_id/id_creator/title/description/creation_date/order_criteria" ./index.php?ctl=createTaskListItemLists&
+#RewriteRule ^ajax/updateTaskListItemLists/idProjectForAccessLevel/id/task_list_id/id_creator/title/description/creation_date/order_criteria" ./index.php?ctl=updateTaskListItemLists&
+#RewriteRule ^ajax/queryTaskListItemLists/idProjectForAccessLevel/id" ./index.php?ctl=queryTaskListItemLists&
+#RewriteRule ^ajax/deleteTaskListItemLists/idProjectForAccessLevel/id" ./index.php?ctl=deleteTaskListItemLists&
+#RewriteRule ^ajax/createTaskLists/idProjectForAccessLevel/id/id_project/title/creation_date/id_creator" ./index.php?ctl=createTaskLists&
+#RewriteRule ^ajax/updateTaskLists/idProjectForAccessLevel/id/id_project/title/creation_date/id_creator" ./index.php?ctl=updateTaskLists&
+#RewriteRule ^ajax/queryTaskLists/idProjectForAccessLevel/id" ./index.php?ctl=queryTaskLists&
+#RewriteRule ^ajax/deleteTaskLists/idProjectForAccessLevel/id" ./index.php?ctl=deleteTaskLists&
+#RewriteRule ^ajax/createTaskListsOrderCriteria/id/title" ./index.php?ctl=createTaskListsOrderCriteria&
+#RewriteRule ^ajax/updateTaskListsOrderCriteria/id/title" ./index.php?ctl=updateTaskListsOrderCriteria&
+#RewriteRule ^ajax/queryTaskListsOrderCriteria/id" ./index.php?ctl=queryTaskListsOrderCriteria&
+#RewriteRule ^ajax/deleteTaskListsOrderCriteria/id" ./index.php?ctl=deleteTaskListsOrderCriteria&
+#RewriteRule ^ajax/createUsers/id/username/password/level" ./index.php?ctl=createUsers&
+#RewriteRule ^ajax/updateUsers/id/username/password/level" ./index.php?ctl=updateUsers&
+#RewriteRule ^ajax/queryUsers/id" ./index.php?ctl=queryUsers&
+#RewriteRule ^ajax/deleteUsers/id" ./index.php?ctl=deleteUsers&
+#RewriteRule ^ajax/createBookmarked/id_project" ./index.php?ctl=createBookmarked&
+#RewriteRule ^ajax/updateBookmarked/id_project" ./index.php?ctl=updateBookmarked&
+#RewriteRule ^ajax/queryBookmarked/id_project" ./index.php?ctl=queryBookmarked&
+#RewriteRule ^ajax/deleteBookmarked/id_project" ./index.php?ctl=deleteBookmarked&
+#RewriteRule ^ajax/createBookmarkedDashboards/idProjectForAccessLevel/id_project/title" ./index.php?ctl=createBookmarkedDashboards&
+#RewriteRule ^ajax/updateBookmarkedDashboards/idProjectForAccessLevel/id_project/title" ./index.php?ctl=updateBookmarkedDashboards&
+#RewriteRule ^ajax/queryBookmarkedDashboards/idProjectForAccessLevel/id_project/title" ./index.php?ctl=queryBookmarkedDashboards&
+#RewriteRule ^ajax/deleteBookmarkedDashboards/idProjectForAccessLevel/id_project/title" ./index.php?ctl=deleteBookmarkedDashboards&
+#RewriteRule ^ajax/createDashboardItem/idProjectForAccessLevel/title/id_dashboard_list" ./index.php?ctl=createDashboardItem&
+#RewriteRule ^ajax/updateDashboardItem/$requiredParams); ./index.php?ctl=updateDashboardItem&
+#RewriteRule ^ajax/queryDashboardItem/idProjectForAccessLevel/id" ./index.php?ctl=queryDashboardItem&
+#RewriteRule ^ajax/deleteDashboardItem/idProjectForAccessLevel/id" ./index.php?ctl=deleteDashboardItem&
+#RewriteRule ^ajax/disableDashboardItem/idProjectForAccessLevel/id" ./index.php?ctl=disableDashboardItem&
+#RewriteRule ^ajax/createDashboardList/idProjectForAccessLevel/id_project/dashboard_title/title" ./index.php?ctl=createDashboardList&
+#RewriteRule ^ajax/updateDashboardList/idProjectForAccessLevel/id_project/dashboard_title/title" ./index.php?ctl=updateDashboardList&
+#RewriteRule ^ajax/queryDashboardList/idProjectForAccessLevel/id_project/dashboard_title/title" ./index.php?ctl=queryDashboardList&
+#RewriteRule ^ajax/deleteDashboardList/idProjectForAccessLevel/id" ./index.php?ctl=deleteDashboardList&
+#RewriteRule ^ajax/createDashboardListOrderCriteria/level" ./index.php?ctl=createDashboardListOrderCriteria&
+#RewriteRule ^ajax/updateDashboardListOrderCriteria/level" ./index.php?ctl=updateDashboardListOrderCriteria&
+#RewriteRule ^ajax/queryDashboardListOrderCriteria/level" ./index.php?ctl=queryDashboardListOrderCriteria&
+#RewriteRule ^ajax/deleteDashboardListOrderCriteria/level" ./index.php?ctl=deleteDashboardListOrderCriteria&
+#RewriteRule ^ajax/createRoles/level" ./index.php?ctl=createRoles&
+#RewriteRule ^ajax/updateRoles/level" ./index.php?ctl=updateRoles&
+#RewriteRule ^ajax/queryRoles/level" ./index.php?ctl=queryRoles&
+#RewriteRule ^ajax/deleteRoles/level" ./index.php?ctl=deleteRoles&
+#RewriteRule ^ajax/createDashboardItemComments/idProjectForAccessLevel/id_dashboard_item/comment" ./index.php?ctl=createDashboardItemComments&
+#RewriteRule ^ajax/updateDashboardItemComments/idProjectForAccessLevel/id/comment" ./index.php?ctl=updateDashboardItemComments&
+#RewriteRule ^ajax/queryDashboardItemComments/idProjectForAccessLevel/id" ./index.php?ctl=queryDashboardItemComments&
+#RewriteRule ^ajax/deleteDashboardItemComments/idProjectForAccessLevel/id" ./index.php?ctl=deleteDashboardItemComments&
+#RewriteRule ^ajax/createProjectDiaryModification/idProjectForAccessLevel/id_project/day" ./index.php?ctl=createProjectDiaryModification&
+#RewriteRule ^ajax/updateProjectDiaryModification/idProjectForAccessLevel/id_project/day" ./index.php?ctl=updateProjectDiaryModification&
+#RewriteRule ^ajax/queryProjectDiaryModification/idProjectForAccessLevel/id_project/day" ./index.php?ctl=queryProjectDiaryModification&
+#RewriteRule ^ajax/deleteProjectDiaryModification/idProjectForAccessLevel/id_project/day" ./index.php?ctl=deleteProjectDiaryModification&
+#RewriteRule ^ajax/createDashboardsItemAssignation/idProjectForAccessLevel/id_dashboard_item/start_date/end_date/assigned_to" ./index.php?ctl=createDashboardsItemAssignation&
+#RewriteRule ^ajax/updateDashboardsItemAssignation/$params); ./index.php?ctl=updateDashboardsItemAssignation&
+#RewriteRule ^ajax/queryDashboardsItemAssignation/idProjectForAccessLevel/id_dashboard_item/assigned_to" ./index.php?ctl=queryDashboardsItemAssignation&
+#RewriteRule ^ajax/deleteDashboardsItemAssignation/idProjectForAccessLevel/id_dashboard_item/assigned_to" ./index.php?ctl=deleteDashboardsItemAssignation&
+#RewriteRule ^ajax/getDashboardItemDetails/idProjectForAccessLevel/id ./index.php?ctl=getDashboardItemDetails&

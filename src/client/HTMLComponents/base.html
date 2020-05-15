@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            background: #1f1f22 !important;
+        }
+
+        /* .notificationContainer {
+            top: 0 !important;
+            right: 0 !important;
+        } */
+
+        /*Header*/
+        body>.navbar {
+            grid-area: header;
+        }
+
+        /*Breadcrumb*/
+        body>.breadcrumbContainer {
+            grid-area: breadcrumb;
+        }
+
+        /*Footer*/
+        body>.footer {
+            grid-area: footer;
+        }
+
+        /*Main*/
+        body>main {
+            grid-area: main;
+        }
+
+        /*Body grid*/
+        body {
+            display: grid;
+            grid-template-areas:
+                "header"
+                "breadcrumb"
+                "main"
+                "footer"
+            ;
+
+            grid-template-rows:
+                auto auto 1fr auto;
+        }
+
+        /*Responsiveness*/
+        @media (max-width: 576px) {
+
+            /*Body grid*/
+            body {
+                display: grid;
+                grid-template-areas:
+                    "main"
+                    "header"
+                    "breadcrumb"
+                ;
+
+                grid-template-rows:
+                    1fr auto auto;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../styles/loader.css">
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/bootstrap-extension.css">
+    <link rel="stylesheet" href="../styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../styles/mdb.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/floating-label.css">
+    <link rel="stylesheet" href="../styles/inputs.css">
+    <link rel="stylesheet" href="../styles/jquery.sweet-modal.min.css">
+    <!--link rel="stylesheet" href="../styles/margin.css"-->
+    <link rel="stylesheet" href="../styles/gantt.css">
+    <link rel="shortcut icon" href="../img/branding/favicon-16x16.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/branding/favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/branding/favicon-96x96.png" type="image/x-icon">
+</head>
+
+<body>
+    <!--Only to browser through pages-->
+    <div class="d-flex justify-content-center position-absolute w-100"
+        style="z-index: 50000 !important; background: #1f1f22 !important;">
+        <button class="btn btn-primary" id="prevPage">&lt;</button>
+        <h4 id="currentPage" class="text-white"></h4>
+        <button class="btn btn-primary" id="nextPage">&gt;</button>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-wrap" style="transition: all 0.2s ease-in-out 0s;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08"
+            aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation"
+            style="transition: all 0.2s ease-in-out 0s;">
+            <span class="navbar-toggler-icon" style="transition: all 0.2s ease-in-out 0s;"></span>
+        </button>
+
+        <img class="navbar-brand rounded-circle mr-2" width="45" src="../img/profile-pic.png">
+        <small class="text-muted"><span class="font-weight-bold">@username</span>
+            <br>
+            Rol
+        </small>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08"
+            style="transition: all 0.2s ease-in-out 0s;">
+            <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
+                <li class="nav-item active" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link" href="index.php" style="transition: all 0.2s ease-in-out 0s;">Schedules<span
+                            class="sr-only" style="transition: all 0.2s ease-in-out 0s;">(current)</span></a>
+                </li>
+                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link selected" href="index.php?ctl=classrooms"
+                        style="transition: all 0.2s ease-in-out 0s;">Classrooms</a>
+                </li>
+                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link selected" href="index.php?ctl=admin"
+                        style="transition: all 0.2s ease-in-out 0s;">Admin</a>
+                </li>
+                <li class="nav-item" style="transition: all 0.2s ease-in-out 0s;">
+                    <a class="nav-link" href="index.php?ctl=signout"
+                        style="transition: all 0.2s ease-in-out 0s;">Signout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="w-100 breadcrumbContainer" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 rounded-0">
+            <li class="breadcrumb-item"><a class="" href="index.php">Home</a></li>
+            <li class="breadcrumb-item"><a class="text-muted" href="index.php?ctl=projects">Projects</a></li>
+        </ol>
+    </section>
+    <main role="main" class="w-100 d-flex flex-column justify-content-start">
+        <div id="content" class="w-100 h-100 d-flex">
+
+        </div>
+        <a href="#content" id="backToTop"
+            class="z-index-overlap position-absolute p-3 bg-light rounded cursor-pointer">↑</a>
+    </main>
+    <footer class="footer py-3 bg-light d-none d-md-block">
+        <div class="container text-align-right">
+            <span class="text-dark">- Developed by <a class="font-weight-bold text-dark"
+                    href="jofaval@iesabastos.org">Pepe
+                    Fabra Valverde</a>
+                &copy; <span id="currentYear"></span>
+                -</span>
+        </div>
+    </footer>
+</body>
+<script src="../scripts/libs/jquery.min.js"></script>
+<script src="../scripts/libs/jquery-ui.min.js"></script>
+<script src="../scripts/libs/popper.min.js"></script>
+<script src="../scripts/libs/bootstrap.min.js"></script>
+<script src="../scripts/libs/bootstrap.bundle.min.js"></script>
+<script src="../scripts/libs/mdb.min.js"></script>
+<script src="../scripts/libs/jquery.sweet-modal.min.js"></script>
+<script src="../scripts/js/Modal.js"></script>
+<script src="../scripts/js/DateUtils.js"></script>
+<script src="../scripts/js/utils.js"></script>
+<script src="../scripts/js/ViewUtils.js"></script>
+<script src="../scripts/js/inputs.js"></script>
+<script src="../scripts/js/AjaxController.js"></script>
+<script src="../scripts/js/Validator.js"></script>
+<script src="../scripts/js/FormValidator.js"></script>
+<script src="../scripts/js/preloader.js"></script>
+<script src="../scripts/libs/summernote-bs4.min.js"></script>
+<script src="../scripts/js/generalScript.js"></script>
+<script>
+    var templates = [
+        "agenda",
+        "projects",
+        "project",
+        "todo_lists",
+        "modal",
+        "multipush_menu",
+        "notification",
+        "signin",
+        "context-menu",
+        "schedule",
+        "inputs",
+        "UserSearch",
+        "TimeFromMoment",
+        "cards",
+        "newAbout",
+    ];
+    var templatePageIndex = 14;
+    var url = window.location.href;
+    var index = url.indexOf("#") + 1;
+    if (index > 0) {
+        templatePageIndex = url.substring(index);
+    }
+    $(window).on("load", function () {
+        loadPage();
+        $("#prevPage").on("click", function () {
+            if (templatePageIndex > 0) {
+                console.log("Decremento");
+                console.log("antes: ", templatePageIndex);
+                templatePageIndex--;
+                console.log("despues: ", templatePageIndex);
+            } else {
+                return;
+            }
+
+            loadPage();
+        });
+        $("#nextPage").on("click", function () {
+            if (templatePageIndex < templates.length) {
+                console.log("Incremento");
+                console.log("antes: ", templatePageIndex);
+                templatePageIndex++;
+                console.log("despues: ", templatePageIndex);
+            } else {
+                return;
+            }
+
+            loadPage();
+        });
+    });
+
+    function loadPage() {
+        $("#content").html("");
+        console.log("en el cambio de página: ", templatePageIndex);
+        var selectedPage = templates[templatePageIndex];
+        $("#content").load(selectedPage + ".html", function () {});
+        $("#currentPage").text(selectedPage + templatePageIndex);
+    }
+</script>
+
+</html>

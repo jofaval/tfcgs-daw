@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/signin.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+    <div class="h-75 m-auto w-50 shadow d-flex text-dark bg-white" id="signFormsContainer">
+        <form action="/daw/signin/" method="POST" id="registerForm"
+            class=" col-md-6 d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
+            <h1>¡Nos alegra verte de nuevo!</h1>
+            <div class="md-form w-100">
+                <input type="text" class="form-control" id="username" name="username" required>
+                <label for="username">Usuario</label>
+            </div>
+            <div class="md-form input-group w-100">
+                <input type="password" class="form-control" id="password" name="password" required>
+                <label for="password" Contraseña</label> <div class="input-group-append">
+                    <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
+                        <i class="fa fa-eye"></i>
+                    </a>
+            </div>
+    </div>
+    <div class="md-form w-75">
+        <input type="submit" class="btn btn-primary w-100" value="Iniciar sesión" id="signin" name="signin" required>
+    </div>
+    </form>
+    <form action="/daw/signup/" method="POST" id="loginForm"
+        class="col-md-6 d-flex align-items-center justify-content-center flex-column pr-5 pl-0 h-100 text-center">
+        <h1>¡Bienvenid@!</h1>
+        <div class="form-row w-100">
+            <div class="col">
+                <!-- Nombre -->
+                <div class="md-form">
+                    <input type="text" name="firstName" id="firstName" required class="form-control">
+                    <label for="firstName">Nombre</label>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Apellidos -->
+                <div class="md-form">
+                    <input type="text" name="secondName" id="secondName" required class="form-control">
+                    <label for="secondName">Apellidos</label>
+                </div>
+            </div>
+        </div>
+        <div class="md-form w-100">
+            <input type="email" class="form-control" id="email" name="email" required>
+            <label for="email">Correo electrónico</label>
+        </div>
+        <div class="md-form w-100">
+            <input type="text" class="form-control" id="username" name="username" required>
+            <label for="username">Usuario</label>
+        </div>
+        <div class="md-form input-group w-100">
+            <input type="password" class="form-control" id="password" name="password" required>
+            <label for="password" Contraseña</label> <div class="input-group-append">
+                <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
+                    <i class="fa fa-eye"></i>
+                </a>
+        </div>
+
+        </div>
+        <div class="md-form w-75">
+            <input type="submit" class="btn btn-primary w-100" value="Registrarse" id="signup" name="signup" required>
+        </div>
+    </form>
+    <div class="position-absolute btn btn-primary d-block d-sm-none" id="changeForm" style="bottom: 0;">Cambiar
+    </div>
+    <div id="mainPanel"
+        class="aqua-gradient rounded text-white shadow position-relative d-none d-sm-flex z-index-overlap flex-column justify-content-center align-items-center">
+        <div class="d-flex togglePanel flex-column justify-content-center align-items-center" id="loginPanel">
+            <h2 class="font-weight-bold">Formulario de inicio</h2>
+            <p>No estoy registrado, llevame al:</p>
+            <br>
+            <button class="btn rounded">Formulario de registro</button>
+        </div>
+        <div class="d-flex formToLoad togglePanel flex-column justify-content-center align-items-center"
+            id="registerPanel">
+            <h2 class="font-weight-bold">Formulario de registro</h2>
+            <br>
+            <p>Ya estoy registrado, llevame al:</p>
+            <button class="btn rounded">Formulario de inicio</button>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="../scripts/js/signin.js"></script>
+
+</html>

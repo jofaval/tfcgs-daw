@@ -1,0 +1,48 @@
+.removeContent {
+	display: none;
+	position: absolute;
+	float: right;
+	cursor: pointer;
+	margin-top: 0.35em;
+	width: 1rem;
+	z-index: 3;
+	-moz-transform: translateX(94%);
+	-ms-transform: translateX(94%);
+	-webkit-transform: translateX(94%);
+	-o-transform: translateX(94%);
+	transform: translateX(94%);
+}
+
+#inputUsername+.removeContent,
+#inputName+.removeContent {
+	margin-top: -2em;
+}
+
+input:not(:placeholder-shown)+.removeContent,
+.removeContent:hover {
+	display: block;
+}
+
+/* .custom-control-input:checked~.custom-control-label::before {
+	color: #fff;
+	border-color: #20e04d;
+	background-color: #20e04d;
+}
+
+.custom-control-input:not(:checked)~.custom-control-label::before {
+	border-color: #adadad;
+	background-color: #adadad;
+	box-shadow: none !important;
+}
+
+.custom-control-input:checked:focus~.custom-control-label::before {
+	box-shadow: 0 0 0 .2rem rgba(72, 180, 97, .5) !important;
+}
+
+.custom-control-label::before {
+	border-radius: 50% !important;
+}
+
+.custom-control-label::after {
+	background: none !important;
+} */

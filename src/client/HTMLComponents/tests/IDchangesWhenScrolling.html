@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="padding: 150px 250px; text-align: justify; font-size: 2.5rem;">
+    <p id="1">
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore atque, reprehenderit, assumenda
+            neque saepe fugit accusamus deserunt obcaecati illo aperiam, minus quod quaerat. Voluptates similique
+            tempore dignissimos dolorem aperiam?</span>
+        <span>Aperiam architecto molestiae quaerat ex consectetur non iusto possimus expedita voluptas a eaque, in
+            accusantium tempora illo facilis, earum maxime consequatur ipsam aliquid officiis aut voluptatibus! Sequi
+            debitis incidunt excepturi!</span>
+        <span>Cupiditate, reiciendis eaque ad quam adipisci esse laboriosam saepe nam consectetur voluptates, quia
+            labore, aut rem illo nesciunt nisi culpa. Doloribus excepturi natus tenetur ipsa autem architecto impedit,
+            eveniet beatae!</span>
+    </p>
+    <p id="2">
+        <span>Iste sed necessitatibus ab possimus officiis eaque, voluptate magni dolor repellat debitis deserunt
+            repellendus corporis, labore, enim earum eos ipsa tenetur quod in impedit. Doloribus neque suscipit
+            laudantium nisi corporis!</span>
+        <span>Adipisci, quam amet. Quod, dolorum libero beatae architecto quae ullam corporis id cum aliquid corrupti
+            vel suscipit quis rerum blanditiis in perspiciatis doloribus animi, et numquam amet facere doloremque
+            perferendis!</span>
+        <span>Cum quos praesentium sed deserunt delectus tempore molestias, labore nemo et sunt error natus earum
+            repellendus dicta, obcaecati nihil itaque consequuntur ipsa quia ab assumenda? Voluptatibus sapiente nisi
+            dolorum earum!</span>
+    </p>
+    <p id="3">
+        <span>Impedit quaerat consectetur rem voluptatem dicta doloremque optio assumenda nisi, facere excepturi quidem
+            eaque praesentium non aspernatur tempore maiores reprehenderit nulla, error porro voluptatibus. Molestias
+            harum ducimus quidem culpa. Ab?</span>
+        <span>Maxime asperiores nostrum illo iure dolorum voluptatibus commodi ut neque, ea repellat aperiam cum
+            maiores, iusto, facere facilis repellendus quos harum. Rerum illum quae aliquam impedit! Iste porro dolore
+            praesentium?</span>
+        <span>Facere assumenda obcaecati, quidem autem nisi doloremque. Voluptas mollitia culpa fugit, dolores iusto
+            natus nulla temporibus! Molestias vero unde sequi nesciunt. Quis iusto facere, eaque aspernatur reiciendis
+            itaque ratione distinctio!</span>
+    </p>
+    <p id="4">
+        <span>Aspernatur et perferendis voluptas est, iusto beatae quis rerum obcaecati dolores! Quas fugit molestiae
+            cumque explicabo asperiores eos eligendi quam animi accusantium quis magni, et ipsam aliquid alias iure
+            quia?</span>
+        <span>Sequi laudantium deleniti magni saepe ullam tempora, quia repellat illum aperiam beatae minima esse ut
+            minus maiores? Explicabo id non sunt rem debitis temporibus, cupiditate odit, corporis eius inventore
+            voluptatem.</span>
+        <span>Itaque consequuntur at facere expedita pariatur quas possimus reprehenderit nostrum temporibus ut id
+            exercitationem hic praesentium animi iusto fugiat perspiciatis illum ducimus tempora quis eveniet, aut
+            tenetur minima? Assumenda, mollitia.</span>
+    </p>
+    <p id="5">
+        <span>Sunt, officiis totam. Culpa eius est obcaecati omnis, ipsa minus impedit sit possimus veniam, quae
+            laudantium! Nisi earum consectetur dolore voluptates culpa unde, asperiores voluptate, aut dolores soluta
+            nesciunt officiis.</span>
+        <span>Debitis eaque soluta cum tempore, aperiam deserunt? Eos laboriosam sit numquam voluptatem, accusantium rem
+            alias sequi quibusdam provident magnam porro cum corrupti cupiditate quasi eius adipisci minus culpa quas
+            nobis.</span>
+        <span>Fugiat ratione quas temporibus asperiores delectus. Consectetur sunt, dolorum dolor deserunt error illum
+            assumenda ab sapiente nobis aliquam velit, eos nesciunt iusto neque aut ullam laborum reprehenderit
+            repellendus ut repudiandae.</span>
+    </p>
+</body>
+<script src="../../scripts/libs/jquery.min.js"></script>
+<script src="../../scripts/js/DateUtils.js"></script>
+<script src="../../scripts/js/utils.js"></script>
+<script>
+    var originalURL = window.location.href;
+    $(window).scroll(function () {
+        console.log($(window).scrollTop(), $("#3").offset().top, $(window).scrollTop >= $("#3").offset().top);
+        if ($(window).scrollTop() >= $("#3").offset().top) {
+
+            changeURL(originalURL + "#3");
+        }
+    });
+</script>
+
+</html>

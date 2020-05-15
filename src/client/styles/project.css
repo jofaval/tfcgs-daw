@@ -1,0 +1,90 @@
+.dashboardCardBookmarkedIcon {
+    margin-left: .5em;
+    width: 1em;
+    height: 1em;
+    background-image: url('/daw/img/components/projects/bookmarked_off.png');
+    background-size: 1em;
+    cursor: pointer;
+}
+
+.dashboardCardBookmarkedIcon.active {
+    background-image: url('/daw/img/components/projects/bookmarked_on.png') !important;
+}
+
+.action {
+    width: 150px;
+    height: 150px;
+}
+
+.action .actionIcon {
+    text-align: center;
+}
+
+.action .actionIcon .fa {
+    font-size: 5rem;
+}
+
+.dashboardCardFlags {
+    position: absolute;
+    right: .5em;
+}
+
+.dashboardReadMore {
+    position: absolute;
+    right: .5em;
+    bottom: .5em;
+}
+
+/* .tab {
+    border-bottom: .5em solid transparent;
+    transition: all 0.2s ease;
+    padding-bottom: -.5em !important;
+}
+
+.tab:hover,
+.tab.active {
+    border-bottom: .5em solid rgb(21, 103, 255);
+}
+
+.tabs:hover .tab.active {
+    border-bottom: .5em solid transparent !important;
+} */
+
+/* .projectCollaboratorCard {
+    border-top-left-radius: 50rem !important;
+    border-bottom-left-radius: 50rem !important;
+} */
+
+.collaboratorImg {
+    /* width: 75px;
+    height: 75px; */
+    /* margin-left: -.5rem !important; */
+}
+
+.projectCollaboratorProfileBtn {
+    align-self: center;
+}
+
+.recentlyCreated,
+.recentlyInvited {
+    width: 95%;
+}
+
+.projectCardDescription,
+.dashboardCardDescription {
+    max-height: 1.5em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#projectDiaryNavigationScheme {
+    list-style-type: none !important;
+}
+
+#projectDiaryNavigationScheme ul {
+    list-style-type: none !important;
+}
+
+.page-link:hover {
+    color: rgb(141, 124, 124) !important;
+}

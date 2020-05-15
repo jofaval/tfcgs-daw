@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- https://codepen.io/simeydotme/pen/EKRpam -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/context-menu.css">
+</head>
+
+<body>
+    <!-- <div id="contextMenu" class="bg-light">
+        <ul class="d-flex flex-column justify-content-space-between">
+            <li>Test</li>
+            <li>Test</li>
+            <li>Test</li>
+            <li>Test</li>
+            <li>Test</li>
+        </ul>
+    </div> -->
+
+    <!-- <ul class="context">
+        <li class="context__header">Menú contextual</li>
+        <li class="context__item context__item--twitter"><a href="#"><i class="pre entypo-twitter"> </i>Elemento de menu
+                1</a>
+        </li>
+        <li class="context__item context__item--facebook"><a href="#"><i class="pre entypo-facebook-squared">
+                </i>Elemento de menu 2</a></li>
+        <li class="context__item context__item--google context__item--nope"><a href="#" title="lol, not likely">Elemento
+                de menu 3 (bloqueado)</a></li>
+        <li class="context__item context__item--pinterest"><a href="#"><i class="pre entypo-pinterest"> </i>Elemento de
+                menu 4</a>
+        </li>
+        <li class="context__divider"></li>
+        <li class="context__item context__item--email"><a href="#">Elemento de menu 5</a><i
+                class="post entypo-right-open"></i>
+            <ul class="context context--sub">
+                <li class="context__item"><a href="#">Subelem 1</a></li>
+                <li class="context__item"><a href="#"><i class="pre entypo-check"> </i>Subelem 2</a></li>
+                <li class="context__item"><a href="#">Subelem 3</a></li>
+                <li class="context__item"><a href="#">Subelem 4</a></li>
+                <li class="context__item"><a href="#">Subelem 5</a></li>
+            </ul>
+        </li>
+        <li class="context__item context__item--email"><a href="#">Elemento de menu 6</a></li>
+    </ul> -->
+</body>
+
+<script>
+    var context = $(`<ul class="context"></ul>`);
+    var subContext = $(`<ul class="context context--sub"></ul>`);
+    var contextTitle = $(`<li class="context__header"></li>`);
+    var contextItem = $(
+        `<li class="context__item">
+            <a href="#">
+                <i class="pre entypo-twitter"></i>
+            </a>
+        </li>`
+    );
+    var contextDivider = $(`<li class="context__divider"></li>`);
+    var disableClass = "context__item--nope";
+
+    function createContext(title = "test") {
+        var contextClone = context.clone();
+
+        $("body").append(contextClone);
+        var titleClone = contextTitle.clone();
+        titleClone.text(title);
+        contextClone.append(titleClone);
+
+        return contextClone;
+    }
+
+    function createContextItem(context, itemContent, href) {
+        var itemClone = contextItem.clone();
+
+        itemClone.find("a").prop("href", href);
+        itemClone.text(itemContent);
+        context.append(itemClone);
+
+        return itemClone;
+    }
+
+    function createSubMenu(contextItem) {
+        var subMenu = subContext.clone();
+
+        contextItem.append(subMenu);
+
+        return subMenu;
+    }
+
+    function addDivider(item, before = true) {
+        var divider = contextDivider.clone();
+
+        if (before) {
+            item.before(divider);
+        } else {
+            item.after(divider);
+        }
+
+        return divider;
+    }
+
+    var c = createContext("Test");
+    var item = createContextItem(c, "test", "tgest");
+    var item2 = createContextItem(c, "wegwegweg", "tgest");
+    var subMenu = createSubMenu(item2);
+    var subItem1 = createContextItem(subMenu, "wegwegweg", "tgest");
+    addDivider(item2);
+</script>
+<script src="../scripts/js/context-menu.js"></script>
+
+</html>

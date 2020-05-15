@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/push-menu.css">
+    <style>
+        /* body {
+            grid-area:
+                "header header"
+                "breadcrum breadcrum"
+                "pushMenu main"
+                "footer footer"
+            ;
+
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto 1fr auto;
+        }
+
+        .pushMenu {
+            grid-area: pushMenu;
+        } */
+        /*  .z-index-overlap-top {
+            z-index: 9999999999 !important;
+        } */
+
+        /* #pushMenuToggleBtn {
+            bottom: -5.5em;
+        } */
+
+        /* .pushMenuBorder {
+            cursor: pointer;
+        } */
+
+        #content {
+            margin-left: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="pushMenu overflow-auto row h-100 col-md-2 cursor-pointer">
+        <div class="content col d-flex h-100 flex-column justify-content-start align-content-start">
+            <a class="py-3 ml-3" style="padding-left: 0em" href="#1.">
+                1. Test 1656
+            </a>
+            <a class="py-3 ml-3" style="padding-left: 0em" href="#2.">
+                2. Test 552
+            </a>
+            <a class="py-3 ml-3" style="padding-left: 0.5em" href="#2.1.">
+                2.1. subtitle
+            </a>
+            <a class="py-3 ml-3" style="padding-left: 1em" href="#2.1.1.">
+                2.1.1. ewgewhweh
+            </a>
+        </div>
+    </nav>
+    <div class="pushMenuOverlap position-absolute z-index-overlap w-100 h-100">
+        <!-- <button class="btn btn-primary position-absolute" id="pushMenuToggleBtn">&lt;-</button> -->
+    </div>
+    <h1>Test</h1>
+</body>
+<script src="../scripts/js/push-menu.js"></script>
+
+</html>
