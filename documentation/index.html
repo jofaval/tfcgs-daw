@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" class="w-100 h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="Roboto.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="mdb.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<!-- 
+<div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingTwo1">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo1"
+          aria-expanded="false" aria-controls="collapseTwo1">
+          <h5 class="mb-0">
+            Collapsible Group Item #1 <i class="fas fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+      </div>
+      <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+        data-parent="#accordionEx1">
+        <div class="card-body">content</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" role="tab" id="headingTwo2">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo21"
+          aria-expanded="false" aria-controls="collapseTwo21">
+          <h5 class="mb-0">
+            Collapsible Group Item #2 <i class="fas fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+      </div>
+      <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21"
+        data-parent="#accordionEx1">
+        <div class="card-body">content</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" role="tab" id="headingThree31">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseThree31"
+          aria-expanded="false" aria-controls="collapseThree31">
+          <h5 class="mb-0">
+            Collapsible Group Item #3 <i class="fas fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+      </div>
+      <div id="collapseThree31" class="collapse" role="tabpanel" aria-labelledby="headingThree31"
+        data-parent="#accordionEx1">
+        <div class="card-body">content</div>
+      </div>
+    </div>
+  </div>
+ -->
+
+<body class="w-100 h-100">
+    <main role="main" class="w-100 h-100 bg-secondary d-flex flex-column justify-content-start">
+        <div id="content" class="w-100 h-100 d-flex">
+            <div class="col-sm-5 col-md-3 px-0">
+                <!--Accordion wrapper-->
+                <div class="accordion md-accordion" id="mainAccordion" role="tablist" aria-multiselectable="true">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingTwo1">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#mainAccordion"
+                                href="#clientCollapse" aria-expanded="false" aria-controls="clientCollapse">
+                                <h5 class="mb-0">
+                                    client <i class="fas fa-angle-down rotate-icon"></i>
+                                </h5>
+                            </a>
+                        </div>
+                        <div id="clientCollapse" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+                            data-parent="#mainAccordion">
+                            <div class="card-body">
+                                content
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingTwo2">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#mainAccordion"
+                                href="#serverCollapse" aria-expanded="false" aria-controls="serverCollapse">
+                                <h5 class="mb-0">
+                                    server <i class="fas fa-angle-down rotate-icon"></i>
+                                </h5>
+                            </a>
+                        </div>
+                        <div id="serverCollapse" class="collapse" role="tabpanel" aria-labelledby="headingTwo21"
+                            data-parent="#mainAccordion">
+                            <div class="card-body">
+                                <div class="accordion md-accordion" id="serverAccordion" role="tablist"
+                                    aria-multiselectable="true">
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingTwo1">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#serverAccordion"
+                                                href="#classesCollapse" aria-expanded="false"
+                                                aria-controls="classesCollapse">
+                                                <h5 class="mb-0">
+                                                    classes <i class="fas fa-angle-down rotate-icon"></i>
+                                                </h5>
+                                            </a>
+                                        </div>
+                                        <div id="classesCollapse" class="collapse" role="tabpanel"
+                                            aria-labelledby="headingTwo1" data-parent="#serverAccordion">
+                                            <div class="card-body">
+                                                content
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingTwo1">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#serverAccordion"
+                                                href="#libsCollapse" aria-expanded="false" aria-controls="libsCollapse">
+                                                <h5 class="mb-0">
+                                                    libs <i class="fas fa-angle-down rotate-icon"></i>
+                                                </h5>
+                                            </a>
+                                        </div>
+                                        <div id="libsCollapse" class="collapse" role="tabpanel"
+                                            aria-labelledby="headingTwo1" data-parent="#serverAccordion">
+                                            <div class="card-body">
+                                                content
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingTwo1">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#serverAccordion"
+                                                href="#logsCollapse" aria-expanded="false" aria-controls="logsCollapse">
+                                                <h5 class="mb-0">
+                                                    logs <i class="fas fa-angle-down rotate-icon"></i>
+                                                </h5>
+                                            </a>
+                                        </div>
+                                        <div id="logsCollapse" class="collapse" role="tabpanel"
+                                            aria-labelledby="headingTwo1" data-parent="#serverAccordion">
+                                            <div class="card-body">
+                                                content
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingTwo1">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#serverAccordion"
+                                                href="#templatesCollapse" aria-expanded="false"
+                                                aria-controls="templatesCollapse">
+                                                <h5 class="mb-0">
+                                                    templates <i class="fas fa-angle-down rotate-icon"></i>
+                                                </h5>
+                                            </a>
+                                        </div>
+                                        <div id="templatesCollapse" class="collapse" role="tabpanel"
+                                            aria-labelledby="headingTwo1" data-parent="#serverAccordion">
+                                            <div class="card-body">
+                                                <!--Accordion wrapper-->
+                                                <div class="accordion md-accordion" id="templatesAccordion"
+                                                    role="tablist" aria-multiselectable="true">
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id="headingTwo1">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                                data-parent="#templatesAccordion" href="#adminCollapse"
+                                                                aria-expanded="false" aria-controls="adminCollapse">
+                                                                <h5 class="mb-0">
+                                                                    admin <i class="fas fa-angle-down rotate-icon"></i>
+                                                                </h5>
+                                                            </a>
+                                                        </div>
+                                                        <div id="adminCollapse" class="collapse" role="tabpanel"
+                                                            aria-labelledby="headingTwo1"
+                                                            data-parent="#templatesAccordion">
+                                                            <div class="card-body">
+                                                                content
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id="headingTwo2">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                                data-parent="#templatesAccordion"
+                                                                href="#componentsCollapse" aria-expanded="false"
+                                                                aria-controls="componentsCollapse">
+                                                                <h5 class="mb-0">
+                                                                    components <i
+                                                                        class="fas fa-angle-down rotate-icon"></i>
+                                                                </h5>
+                                                            </a>
+                                                        </div>
+                                                        <div id="componentsCollapse" class="collapse" role="tabpanel"
+                                                            aria-labelledby="headingTwo21"
+                                                            data-parent="#templatesAccordion">
+                                                            <div class="card-body">
+                                                                content
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id="headingThree31">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                                data-parent="#templatesAccordion" href="#errors"
+                                                                aria-expanded="false" aria-controls="errors">
+                                                                <h5 class="mb-0">
+                                                                    errors <i class="fas fa-angle-down rotate-icon"></i>
+                                                                </h5>
+                                                            </a>
+                                                        </div>
+                                                        <div id="errors" class="collapse" role="tabpanel"
+                                                            aria-labelledby="headingThree31"
+                                                            data-parent="#templatesAccordion">
+                                                            <div class="card-body">
+                                                                content
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id="headingThree31">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                                data-parent="#templatesAccordion" href="#forms"
+                                                                aria-expanded="false" aria-controls="forms">
+                                                                <h5 class="mb-0">
+                                                                    forms <i class="fas fa-angle-down rotate-icon"></i>
+                                                                </h5>
+                                                            </a>
+                                                        </div>
+                                                        <div id="forms" class="collapse" role="tabpanel"
+                                                            aria-labelledby="headingThree31"
+                                                            data-parent="#templatesAccordion">
+                                                            <div class="card-body">
+                                                                content
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id="headingThree31">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                                data-parent="#templatesAccordion" href="#profile"
+                                                                aria-expanded="false" aria-controls="profile">
+                                                                <h5 class="mb-0">
+                                                                    profile <i
+                                                                        class="fas fa-angle-down rotate-icon"></i>
+                                                                </h5>
+                                                            </a>
+                                                        </div>
+                                                        <div id="profile" class="collapse" role="tabpanel"
+                                                            aria-labelledby="headingThree31"
+                                                            data-parent="#templatesAccordion">
+                                                            <div class="card-body">
+                                                                content
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id="headingThree31">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                                data-parent="#templatesAccordion" href="#project"
+                                                                aria-expanded="false" aria-controls="project">
+                                                                <h5 class="mb-0">
+                                                                    project <i
+                                                                        class="fas fa-angle-down rotate-icon"></i>
+                                                                </h5>
+                                                            </a>
+                                                        </div>
+                                                        <div id="project" class="collapse" role="tabpanel"
+                                                            aria-labelledby="headingThree31"
+                                                            data-parent="#templatesAccordion">
+                                                            <div class="card-body">
+                                                                <div class="accordion md-accordion" id="accordionEx1"
+                                                                    role="tablist" aria-multiselectable="true">
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab"
+                                                                            id="headingTwo1">
+                                                                            <a class="collapsed" data-toggle="collapse"
+                                                                                data-parent="#accordionEx1"
+                                                                                href="#collapseTwo1"
+                                                                                aria-expanded="false"
+                                                                                aria-controls="collapseTwo1">
+                                                                                <h5 class="mb-0">
+                                                                                    Collapsible Group Item #1 <i
+                                                                                        class="fas fa-angle-down rotate-icon"></i>
+                                                                                </h5>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div id="collapseTwo1" class="collapse"
+                                                                            role="tabpanel"
+                                                                            aria-labelledby="headingTwo1"
+                                                                            data-parent="#accordionEx1">
+                                                                            <div class="card-body">content</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab"
+                                                                            id="headingTwo2">
+                                                                            <a class="collapsed" data-toggle="collapse"
+                                                                                data-parent="#accordionEx1"
+                                                                                href="#collapseTwo21"
+                                                                                aria-expanded="false"
+                                                                                aria-controls="collapseTwo21">
+                                                                                <h5 class="mb-0">
+                                                                                    Collapsible Group Item #2 <i
+                                                                                        class="fas fa-angle-down rotate-icon"></i>
+                                                                                </h5>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div id="collapseTwo21" class="collapse"
+                                                                            role="tabpanel"
+                                                                            aria-labelledby="headingTwo21"
+                                                                            data-parent="#accordionEx1">
+                                                                            <div class="card-body">content</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab"
+                                                                            id="headingThree31">
+                                                                            <a class="collapsed" data-toggle="collapse"
+                                                                                data-parent="#accordionEx1"
+                                                                                href="#collapseThree31"
+                                                                                aria-expanded="false"
+                                                                                aria-controls="collapseThree31">
+                                                                                <h5 class="mb-0">
+                                                                                    Collapsible Group Item #3 <i
+                                                                                        class="fas fa-angle-down rotate-icon"></i>
+                                                                                </h5>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div id="collapseThree31" class="collapse"
+                                                                            role="tabpanel"
+                                                                            aria-labelledby="headingThree31"
+                                                                            data-parent="#accordionEx1">
+                                                                            <div class="card-body">content</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="popper.min.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
+<script type="text/javascript" src="mdb.min.js"></script>
+
+</html>
