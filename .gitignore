@@ -31,6 +31,7 @@ src/!client/downloads/
 dist/!client/downloads/
 src/client/downloads/*
 dist/client/downloads/*
+*.zip
 
 #PHPUnit 9.0.0 by Sebastian Bergmann and contributors.
 !vendor/
