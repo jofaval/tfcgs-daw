@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" class="w-100 h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> -->
+    <link rel="stylesheet" href="Roboto.css">
+    <link href="./bootstrap.min.css" rel="stylesheet">
+    <link href="./mdb.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+
+
+<body class="w-100 h-100">
+    <main role="main" class="w-100 h-100 bg-secondary d-flex flex-column justify-content-start">
+        <div id="content" class="w-100 h-100 d-flex">
+            <!-- col-sm-5 col-md-3 -->
+            <div class="col-sm px-0" id="mainNavigation">
+
+            </div>
+        </div>
+    </main>
+    <a href=""></a>
+</body>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="popper.min.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
+<script type="text/javascript" src="mdb.min.js"></script>
+<script src="structure_header.js"></script>
+<script>
+    readAccordionContainer(structureHeader);
+
+    function readAccordionContainer(accordions) {
+        $("#mainNavigation").html("");
+        var container = generateAccordionContainer($("#mainNavigation"), "principal");
+        accordions.forEach(accordion => {
+            forEachAccordionTab(accordion, "principal", container);
+        });
+    }
+
+    function readFiles(accordionFiles, accordionContainer) {
+        accordionContainer.html("");
+        var accordionFilesLen = accordionFiles.length;
+        for (let accordionFilesIndex = 0; accordionFilesIndex < accordionFilesLen; accordionFilesIndex++) {
+            const accordionTab = accordionFiles[accordionFilesIndex];
+            forEachAccordionFile(accordionTab, accordionContainer);
+        }
+    }
+
+    function readAccordionTabs(accordionTabs, container, name) {
+        var accordionTabsLen = accordionTabs.length;
+        var accordionContainer = generateAccordionContainer(container, name);
+        console.log(accordionContainer);
+
+        for (let accordionTabsIndex = 0; accordionTabsIndex < accordionTabsLen; accordionTabsIndex++) {
+            const accordionTab = accordionTabs[accordionTabsIndex];
+            forEachAccordionTab(accordionTab, accordionTab["accordionName"], accordionContainer);
+        }
+    }
+
+    function forEachAccordionTab(accordionTab, parentName, accordionContainer) {
+        //console.log(accordionTab);
+
+        var accordionTabElement = generateAccordionTab(accordionContainer, accordionTab, parentName);
+
+        readFiles(accordionTab["files"], accordionTabElement.find(".card-body ul"));
+        readAccordionTabs(accordionTab["accordionTabs"], accordionTabElement.find(".card-body"), accordionTab[
+            "accordionName"]);
+        //console.log(accordionTabElement.find(".card-body"));
+    }
+
+    function forEachAccordionFile(accordionFile, accordtionTabFileContainer) {
+        //console.log(accordionFile, accordtionTabFileContainer);
+        //throw new Error("Something went badly wrong!");
+
+        if (accordtionTabFileContainer != undefined) {
+            accordtionTabFileContainer.append($(
+                `<li class="list-group-item"><a href="${accordionFile["link"]}">${accordionFile["name"]} - ${accordionFile["desc"]}</a></li>`
+            ));
+        }
+    }
+
+    function generateAccordionTab(container, accordionTab, parent = "principal") {
+        var accordion = $(`
+            <div class="card shadow-none border">
+                <div class="card-header" role="tab" id="${accordionTab["accordionName"]}Heading">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#${parent}Accordion" href="#${accordionTab["accordionName"]}Collapse"
+                        aria-expanded="false" aria-controls="${accordionTab["accordionName"]}Collapse">
+                        <h5 class="mb-0">
+                            ${accordionTab["accordionName"]} <i class="fas fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+                <div id="${accordionTab["accordionName"]}Collapse" class="collapse" role="tabpanel" aria-labelledby="${accordionTab["accordionName"]}Heading"
+                    data-parent="#${parent}Accordion">
+                    <div class="card-body">
+                            <ul class="list-group"></ul>
+                        </div>
+                </div>
+            </div>
+        `);
+
+        container.append(accordion);
+
+        return accordion;
+    }
+
+    function generateAccordionContainer(container, id) {
+        var accordionContainer = $(`
+            <div class="accordion md-accordion" id="${id}Accordion" role="tablist" aria-multiselectable="true">
+                
+            </div>
+        `);
+
+        container.prepend(accordionContainer);
+
+        return accordionContainer;
+    }
+</script>
+
+</html>
