@@ -46,6 +46,7 @@ class Modal {
             /* "maxHeight": "100vh", */
         }).addClass("m-auto overflow-auto");
 
+        modal["$overlay"].addClass("z-index-overlap-top");
         modal.params["onOpen"] = function () {
             //settings["onOpen"](modal);
 
@@ -91,6 +92,7 @@ class Modal {
             }
         });
 
+        confirm["$overlay"].addClass("z-index-overlap-top");
         confirm.params["onOpen"] = function () {
             settings["onOpen"](confirm);
         };
@@ -120,6 +122,8 @@ class Modal {
             "icon": settings["error"] ? $.sweetModal.ICON_ERROR : $.sweetModal.ICON_SUCCESS,
             "theme": THEME,
         });
+
+        alert["$overlay"].addClass("z-index-overlap-top");
         alert.params["onOpen"] = function () {
             settings["onOpen"](alert);
         }

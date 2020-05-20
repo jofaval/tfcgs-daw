@@ -417,7 +417,7 @@ class Controller {
     addProjectBtnEvent(controller, event) {
         var event = event || window.event;
 
-        Modal.modal({
+        var modal = Modal.modal({
             "title": "Crear proyecto",
             "content": `<form action="/daw/client/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">

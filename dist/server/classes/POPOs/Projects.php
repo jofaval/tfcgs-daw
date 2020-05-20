@@ -23,34 +23,37 @@ class Projects implements CRUD
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
 
+        $creationDate = DateUtils::getCurrentDateTime();
         $params = [
             "title" => $this->title,
+            //"description" => $this->description,
             "id_creator" => $this->id_creator,
+            //"creation_date" => $creationDate,
+            //"enabled" => 1,
         ];
 
-        $params["id_creator"] = 16;
-
         $result = $sqlUtils->query(Projects::$table, $params);
+        //return [Projects::$table, $params];
 
-        if (count($result) == 0) {
+        if ($result !== false && $result !== null && count($result) == 0) {
             $params["description"] = $this->description;
-            $params["creation_date"] = DateUtils::getCurrentDateTime();
+            $params["creation_date"] = $creationDate;
             $sqlUtils->insert(Projects::$table, $params);
-            $queryResult = $sqlUtils->query(Projects::$table, $params);
+            $queryResult = $sqlUtils->query(Projects::$table, $params)[0];
 
-            mkdir(__DIR__ . "/../../../client/img/projects/" . $queryResult[0]["id"]);
+            mkdir(__DIR__ . "/../../../client/img/projects/" . $queryResult["id"]);
 
             $randomImage = __DIR__ . "/../../../client/img/projects/templates/bg-" . rand(1, 6) . ".png";
-            $finalPath = __DIR__ . "/../../../client/img/projects/" . $queryResult[0]["id"] . "/bg.png";
+            $finalPath = __DIR__ . "/../../../client/img/projects/" . $queryResult["id"] . "/bg.png";
 
             FileUtils::copy($randomImage, $finalPath);
 
             $randomImage = __DIR__ . "/../../../client/img/projects/templates/profile-" . rand(1, 6) . ".png";
-            $finalPath = __DIR__ . "/../../../client/img/projects/" . $queryResult[0]["id"] . "/profile.png";
+            $finalPath = __DIR__ . "/../../../client/img/projects/" . $queryResult["id"] . "/profile.png";
 
             FileUtils::copy($randomImage, $finalPath);
 
-            return $queryResult;
+            return [0 => $queryResult];
         }
 
         return false;
