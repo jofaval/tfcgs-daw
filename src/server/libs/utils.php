@@ -53,11 +53,11 @@ class Utils
 
     public static function ifExistsShowError($array, $name)
     {
-        ?> <div> <?php
+        ?> <div class="text-danger p-1 bg-dark"> <?php
 if (isset($array[$name])) {
             foreach ($array[$name] as $value) {
                 ?>
-    <small class="text-muted"><?php echo $value ?></small>
+    <small><?php echo $value ?></small>
     <?php
 }
         }
