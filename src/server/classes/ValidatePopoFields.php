@@ -20,7 +20,7 @@ class ValidatePopoFields
                         "rules" => "no-empty," . ValidatePopoFields::$validationRules[$fieldName],
                     ],
                 ], $arrayWithData) !== true) {
-                    throw new Error("$elem doesn't exist");
+                    throw new Error("$fieldName no es válido");
                 }
             }
         }
