@@ -77,6 +77,7 @@ RewriteRule ^profile/change-image[/]?$ ./index.php?ctl=profile&tabName=image [L]
 RewriteRule ^profile/reset-profile-image[/]?$ ./index.php?ctl=profile&reset=profileImage [L]
 RewriteRule ^profile/reset-background-image[/]?$ ./index.php?ctl=profile&reset=bgImage [L]
 RewriteRule ^profile/([^/]+)[/]?$ ./index.php?ctl=profile&username=$1 [L]
+RewriteRule ^profile/not-found[/]?$ ./index.php?ctl=profileNotFound [L]
 
 #Admin
 RewriteRule ^admin[/]?$ ./index.php?ctl=admin [L]

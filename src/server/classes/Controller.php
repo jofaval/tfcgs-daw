@@ -1294,4 +1294,8 @@ class Controller
         require_once __DIR__ . "/../templates/admin/getDataFromTable.php";
     }
 
+    public function profileNotFound()
+    {
+        require_once __DIR__ . "/../templates/profileNotFound.php";
+    }
 }
