@@ -11,7 +11,11 @@
 <?php endif;?>
 
 <div class="card-body card-body-cascade text-center mt-3">
+<<<<<<< HEAD
     <form class="" action="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/change-image/" method="POST"
+=======
+    <form class="" action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/change-image/" method="POST"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
         enctype="multipart/form-data">
         <h1 class="text-left">Imagen de perfil</h1>
         <div class="row">
@@ -38,7 +42,11 @@
         </div>
         <?php endif;?>
     </form>
+<<<<<<< HEAD
     <form class="" action="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/change-image/" method="POST"
+=======
+    <form class="" action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/change-image/" method="POST"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
         enctype="multipart/form-data">
         <h1 class="text-left">Imagen de fondo</h1>
         <div class="row">

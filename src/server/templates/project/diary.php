@@ -52,9 +52,15 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDatePrev"]; ?>/"
                 class="btn btn-sm btn-primary projectDiaryBtnPrev order-1 text-white">&lt;</a>
             <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDateNext"]; ?>/"
+=======
+            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDatePrev"]; ?>/"
+                class="btn btn-sm btn-primary projectDiaryBtnPrev order-1 text-white">&lt;</a>
+            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/diary/date/<?php echo $viewParams["diaryDateNext"]; ?>/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                 class="btn btn-sm btn-primary projectDiaryBtnNext order-3 text-white">&gt;</a>
             <br>
         </div>

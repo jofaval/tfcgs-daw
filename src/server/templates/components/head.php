@@ -2,11 +2,19 @@
 
 <head>
     <title>Origen - <?php echo $title; ?></title>
+<<<<<<< HEAD
     <link rel="shortcut icon" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/branding/favicon-16x16.png"
         type="image/x-icon">
     <link rel="shortcut icon" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/branding/favicon-32x32.png"
         type="image/x-icon">
     <link rel="shortcut icon" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/branding/favicon-96x96.png"
+=======
+    <link rel="shortcut icon" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/branding/favicon-16x16.png"
+        type="image/x-icon">
+    <link rel="shortcut icon" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/branding/favicon-32x32.png"
+        type="image/x-icon">
+    <link rel="shortcut icon" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/branding/favicon-96x96.png"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
         type="image/x-icon">
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,16 +30,26 @@
     </style>
     <?php foreach (Config::$mvc_vis_css as $css_link): ?>
     <link rel="stylesheet" type="text/css"
+<<<<<<< HEAD
         href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/<?php echo $css_link ?>" />
+=======
+        href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/<?php echo $css_link ?>" />
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
     <?php endforeach;?>
     <?php if (Config::$allowExternalResources != 0): ?>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <?php endif;?>
     <?php foreach ($optionalCSS as $css_link): ?>
     <link rel="stylesheet" type="text/css"
+<<<<<<< HEAD
         href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/<?php echo $css_link ?>" />
     <?php endforeach;?>
     <link rel="stylesheet" type="text/css" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/grid.php?
+=======
+        href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/<?php echo $css_link ?>" />
+    <?php endforeach;?>
+    <link rel="stylesheet" type="text/css" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/grid.php?
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
         showHeader=<?php echo $showHeader ? "1" : "0"; ?>&showBreadcrumb=<?php echo $showBreadcrumb ? "1" : "0"; ?>
         &showFooter=<?php echo $showFooter ? "1" : "0"; ?>">
 </head>

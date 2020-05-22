@@ -46,7 +46,11 @@ if (!$viewParams["editable"]) {
             <div class="col-lg-4 mb-4 pr-sm-0">
                 <!-- col-sm-4 -->
                 <div class="searchUserProfileContainer mb-sm-3 ml-auto px-3 py-1 bg-white rounded-0 shadow">
+<<<<<<< HEAD
                     <!-- <form action="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
+=======
+                    <!-- <form action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/" id="searchUserProfileForm" class="p-3 bg-white rounded shadow">
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                         <div class="input-group md-form form-sm form-2 pl-0">
                             <input class="form-control my-0 py-1" type="text" id="username" name="username"
                                 placeholder="Search" aria-label="Search">
@@ -64,13 +68,18 @@ if (!$viewParams["editable"]) {
                     </div>
                     <?php endif;?>
                     <div class="card-body card-body-cascade text-center rounded-0">
+<<<<<<< HEAD
                         <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $viewParams["profile"]["username"]; ?>/<?php echo $viewParams["profile"]["username"]; ?>.png"
+=======
+                        <img src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $viewParams["profile"]["username"]; ?>/<?php echo $viewParams["profile"]["username"]; ?>.png"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                             width="200" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
                         <p class="imUsername mb-0 font-weight-bold">
                             <?php echo $viewParams["profile"]["username"]; ?>
                         </p>
                         <?php if ($viewParams["editable"]): ?>
                         <div class="row flex-center">
+<<<<<<< HEAD
                             <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/change-image/"
                                 class="btn btn-primary btn-sm btn-sm waves-effect waves-light"><span><i
                                         class="fa fa-upload"></i></span> Subir
@@ -79,6 +88,16 @@ if (!$viewParams["editable"]) {
                                 class="btn btn-danger btn-sm btn-sm waves-effect waves-light"><span><i
                                         class="fa fa-trash"></i></span> Eliminar imagen de perfil</a>
                             <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/reset-background-image/"
+=======
+                            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/change-image/"
+                                class="btn btn-primary btn-sm btn-sm waves-effect waves-light"><span><i
+                                        class="fa fa-upload"></i></span> Subir
+                                foto</a><br>
+                            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/reset-profile-image/"
+                                class="btn btn-danger btn-sm btn-sm waves-effect waves-light"><span><i
+                                        class="fa fa-trash"></i></span> Eliminar imagen de perfil</a>
+                            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/reset-background-image/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                                 class="btn btn-danger btn-sm btn-sm waves-effect waves-light"><span><i
                                         class="fa fa-trash"></i></span> Eliminar imagen de fondo</a>
                         </div>
@@ -90,10 +109,17 @@ if (!$viewParams["editable"]) {
                     <div class="row flex-center my-3">
                         <!-- <button class="btn btn-danger btn-sm waves-effect waves-light">Deshabilitar
                             cuenta</button> -->
+<<<<<<< HEAD
                         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>signout/"
                             class="btn btn-danger btn-sm waves-effect waves-light">
                             <span><i class="fa fa-sign-out"></i></span> Cerrar sesión</a>
                         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $username ?>/"
+=======
+                        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"signout/"
+                            class="btn btn-danger btn-sm waves-effect waves-light">
+                            <span><i class="fa fa-sign-out"></i></span> Cerrar sesión</a>
+                        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $username ?>/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                             class="btn btn-primary btn-sm waves-effect waves-light"><span><i
                                     class="fa fa-eye"></i></span> Ver
                             público</a>
@@ -104,7 +130,11 @@ if (!$viewParams["editable"]) {
             <div class="col-lg-8 mb-4">
                 <?php if (!$viewParams["editable"]): ?>
                 <img class="profileBackgroundImage w-100 d-none d-sm-block" height="300"
+<<<<<<< HEAD
                     src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png"
+=======
+                    src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                     alt="">
                 <?php endif;?>
                 <div class="card card-cascade narrower shadow-none">
@@ -113,11 +143,19 @@ if (!$viewParams["editable"]) {
                         <h5 class="mb-0 font-weight-bold text-center p-3 text-white">Editar Cuenta</h5>
                     </div>
                     <div class="btn-group m-0 p-0 w-100">
+<<<<<<< HEAD
                         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/"
                             class="btn btn-info shadow-none">Cambiar datos generales</a>
                         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/change-pass/"
                             class="btn btn-info shadow-none">Cambiar contraseña</a>
                         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/change-image/"
+=======
+                        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/"
+                            class="btn btn-info shadow-none">Cambiar datos generales</a>
+                        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/change-pass/"
+                            class="btn btn-info shadow-none">Cambiar contraseña</a>
+                        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/change-image/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                             class="btn btn-info shadow-none">Cambiar imagen</a>
                     </div>
                     <?php endif;?>

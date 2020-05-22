@@ -49,19 +49,31 @@ $breadcrumb = [
 <div class="w-100 p-0">
     <style>
     .projectHeader {
+<<<<<<< HEAD
         background-image: url("<?php echo Config::$EXECUTION_HOME_PATH; ?>img/projects/<?php echo $viewParams["id"]; ?>/bg.png") !important;
+=======
+        background-image: url(<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/projects/<?php echo $viewParams["id"]; ?>/bg.png") !important;
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
     }
     </style>
     <div class="row py-5 projectHeader m-0 pr-sm-5">
         <div class="projectImageContainer mx-auto mx-sm-0">
             <img class="projectImage mx-sm-5 shadow"
+<<<<<<< HEAD
                 src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/projects/<?php echo $viewParams["id"]; ?>/profile.png"
+=======
+                src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/projects/<?php echo $viewParams["id"]; ?>/profile.png"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                 alt="" width="200" height="200">
         </div>
         <div class="d-none d-sm-block projectDetails bg-dark rounded text-white col">
             <h1 class="projectTitle font-weight-bold"><?php echo $projectData["projectTitle"]; ?></h1>
             <p class="projectCreatedBy mb-2">creado por <a
+<<<<<<< HEAD
                     href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
+=======
+                    href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                     id="projectCreator"
                     class="font-weight-bold text-white"><?php echo $projectData["projectCreator"]; ?></a></p>
 
@@ -71,34 +83,58 @@ $breadcrumb = [
                     rows="3"><?php echo $projectData["projectDescription"]; ?></textarea>
             </div>
 
+<<<<<<< HEAD
             <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"] ?>/details/"
+=======
+            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"] ?>/details/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                 class="">
                 Modificar información del proyecto...<span><i class="fa fa-pencil"></i></span>
             </a>
         </div>
     </div>
     <div class="row tabs shadow w-100 m-0 text-white">
+<<<<<<< HEAD
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/overview/"
+=======
+        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/overview/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
             id="tabOverview"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "overview" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-cogs"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">General</span></a>
+<<<<<<< HEAD
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
+=======
+        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
             id="tabDashboards"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "dashboards" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-columns"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Tableros</span></a>
+<<<<<<< HEAD
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/diary/"
+=======
+        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/diary/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
             id="tabDiary"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "diary" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-book"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Diario</span></a>
+<<<<<<< HEAD
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/collaborators/"
+=======
+        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/collaborators/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
             id="tabCollaborators"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "collaborators" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-users"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Colaboradores</span></a>
+<<<<<<< HEAD
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/details/"
+=======
+        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/details/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
             id="tabDetails"
             class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "details" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-info-circle"></i></span>&nbsp;<span

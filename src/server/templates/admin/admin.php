@@ -32,9 +32,15 @@ $breadcrumb = [
     <div class="h-100 bg-dark" id="sidebar">
         <div class="profileInfo">
             <div class="m-auto">
+<<<<<<< HEAD
                 <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $username; ?>/"
                     class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
                     <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
+=======
+                <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $username; ?>/"
+                    class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
+                    <img src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                         alt=""
                         class="profileAdminCardBgImg object-fit-cover brightness-50 position-absolute w-100 h-100 z-index">
                     <div
@@ -60,14 +66,22 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
+<<<<<<< HEAD
                             <a target="_blank" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/new-route/">
+=======
+                            <a target="_blank" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/new-route/">
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                                 <h5 class="mb-0 text-white">
                                     Añadir nueva ruta
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
+<<<<<<< HEAD
                             <a target="_blank" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/access-level/">
+=======
+                            <a target="_blank" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/access-level/">
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                                 <h5 class="mb-0 text-white">
                                     Cambiar nivel de acceso
                                 </h5>
@@ -89,14 +103,22 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
+<<<<<<< HEAD
                             <a target="_blank" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/popo/">
+=======
+                            <a target="_blank" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/popo/">
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                                 <h5 class="mb-0 text-white">
                                     Panel de configuración de POPOs
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
+<<<<<<< HEAD
                             <a target="_blank" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/testing/">
+=======
+                            <a target="_blank" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/testing/">
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                                 <h5 class="mb-0 text-white">
                                     Ventana de testing
                                 </h5>
@@ -104,7 +126,11 @@ $breadcrumb = [
                         </div>
                         <div class="card-header">
                             <a target="_blank"
+<<<<<<< HEAD
                                 href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/download-database/">
+=======
+                                href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/download-database/">
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                                 <h5 class="mb-0 text-white">
                                     Descargarse script de SQL
                                 </h5>

@@ -30,7 +30,11 @@
 
 <?php ob_start()?>
 
+<<<<<<< HEAD
 <form action="<?php echo Config::$EXECUTION_HOME_PATH; ?>index.php?ctl=accessLevel" method="POST"
+=======
+<form action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"index.php?ctl=accessLevel" method="POST"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
     class="bg-white rounded shadow p-5">
     <h2>Nueva ruta</h2>
     <div class="md-form">

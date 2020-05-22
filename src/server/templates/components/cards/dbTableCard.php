@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/get-data-from-table/<?php echo $tableName ?>/"
+=======
+<a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/get-data-from-table/<?php echo $tableName ?>/"
+>>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
     class="dbTableCard text-dark col-12 p-0 m-2 col-sm bg-dark">
     <img src="https://picsum.photos/400/400?random=<?php echo $randomIndex ?>" alt=""
         class="dbTableCardBgImg object-fit-cover opacity-30 position-absolute m-0 w-100 h-100 z-index">
