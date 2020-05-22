@@ -34,11 +34,7 @@ $breadcrumb = [
     </div>
     <div id="page2" class="w-100 h-100 col-sm-12 overflow-auto page page2 m-0 center-elements flex-column">
         <div class="container text-center">
-<<<<<<< HEAD
             <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/branding/logo.png" class="mb-3" width="250"
-=======
-            <img src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/branding/logo.png" class="mb-3" width="250"
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                 height="250" alt="">
             <h1>¿Qué es origen?</h1>
             <h4>Se pretende proporcionar una gestión básica de cualquier tipo de proyecto con un conjunto de
@@ -170,11 +166,7 @@ $breadcrumb = [
             <div class="row">
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-<<<<<<< HEAD
                         <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
-=======
-                        <img src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/default.png" alt=""
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                             class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
@@ -190,11 +182,7 @@ $breadcrumb = [
                 </div>
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-<<<<<<< HEAD
                         <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
-=======
-                        <img src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/default.png" alt=""
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                             class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
@@ -210,11 +198,7 @@ $breadcrumb = [
                 </div>
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-<<<<<<< HEAD
                         <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
-=======
-                        <img src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/default.png" alt=""
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                             class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
@@ -233,11 +217,7 @@ $breadcrumb = [
     </div>
     <div id="page5" class="w-100 h-100 col-sm-12 overflow-auto page page5 m-0 center-elements flex-column">
         <div class="container text-center">
-<<<<<<< HEAD
             <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>" class="btn btn-lg btn-primary">Comenzar</a>
-=======
-            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"" class="btn btn-lg btn-primary">Comenzar</a>
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
         </div>
     </div>
 </div>

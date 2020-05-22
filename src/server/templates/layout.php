@@ -22,17 +22,10 @@
 </body>
 
 <?php foreach (Config::$mvc_vis_scripts as $script_link): ?>
-<<<<<<< HEAD
 <script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/<?php echo $script_link ?>"></script>
 <?php endforeach;?>
 <?php foreach ($optionalScripts as $script_link): ?>
 <script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/<?php echo $script_link ?>"></script>
-=======
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/<?php echo $script_link ?>"></script>
-<?php endforeach;?>
-<?php foreach ($optionalScripts as $script_link): ?>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/<?php echo $script_link ?>"></script>
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
 <?php endforeach;?>
 
 </html>

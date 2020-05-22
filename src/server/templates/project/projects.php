@@ -32,20 +32,12 @@ $breadcrumb = [
     <div class="row py-5 m-0 projectHeader pr-sm-5">
         <style>
         .projectHeader {
-<<<<<<< HEAD
             background-image: url("<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png") !important;
-=======
-            background-image: url(<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png") !important;
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
         }
         </style>
         <div class="projectImageContainer mx-auto mx-sm-0">
             <img class="projectImage shadow mx-sm-5"
-<<<<<<< HEAD
                 src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
-=======
-                src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                 alt="" width="200" height="200">
         </div>
         <div class="d-none d-sm-block projectDetails bg-dark rounded text-white col">
@@ -62,17 +54,10 @@ $breadcrumb = [
                     rows="3"><?php echo $viewParams["profile"]["biography"]; ?></textarea>
             </div>
 
-<<<<<<< HEAD
             <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $username; ?>/" class="text-white">
                 <span><i class="fa fa-eye"></i></span>&nbsp;Ver perfil</a>
             &nbsp;
             <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/" class="text-white">
-=======
-            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $username; ?>/" class="text-white">
-                <span><i class="fa fa-eye"></i></span>&nbsp;Ver perfil</a>
-            &nbsp;
-            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/" class="text-white">
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                 <span><i class="fa fa-pencil"></i></span>&nbsp;Editar perfil </a>
         </div>
     </div>

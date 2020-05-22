@@ -41,15 +41,9 @@ $header = [
     </button>
 
     <div class="btn-group">
-<<<<<<< HEAD
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/" class="">
             <img class="navbar-brand order-1 rounded-circle" width="45"
                 src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
-=======
-        <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/" class="">
-            <img class="navbar-brand order-1 rounded-circle" width="45"
-                src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
             <small class="text-muted"><span class="font-weight-bold"><?php echo $username ?></span>
                 <br>
                 <?php echo $sessions->getSession("roleName"); ?>
@@ -61,11 +55,7 @@ $header = [
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <div class="dropdown-menu ml-5 tabContentContainer bg-dark">
-<<<<<<< HEAD
                 <form action="<?php echo Config::$EXECUTION_HOME_PATH; ?>signin/" method="POST" id="registerForm"
-=======
-                <form action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"signin/" method="POST" id="registerForm"
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                     class="col-md m-0 p-01 rounded d-flex align-items-center justify-content-center flex-column h-100 text-center">
                     <div class="md-form my-3 w-100">
                         <input type="text" class="form-control text-white" autocomplete="off" autocorrect="off"
@@ -88,11 +78,7 @@ $header = [
                 </form>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item btn btn-sm h6 bg-dark text-white shadow-none text-capitalize text-white m-0"
-<<<<<<< HEAD
                     href="<?php echo Config::$EXECUTION_HOME_PATH; ?>signout/"
-=======
-                    href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"signout/"
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                     style="transition: all 0.2s ease-in-out 0s;">
                     <span><i class="fa fa-sign-out"></i></span>
                     Cerrar
@@ -105,11 +91,7 @@ $header = [
         <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
             <li class="nav-item " style="transition: all 0.2s ease-in-out 0s;">
                 <a class="nav-link btn btn-sm h6 btn-primary shadow-none text-capitalize text-white"
-<<<<<<< HEAD
                     href="<?php echo Config::$EXECUTION_HOME_PATH; ?>" style="transition: all 0.2s ease-in-out 0s;">
-=======
-                    href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"" style="transition: all 0.2s ease-in-out 0s;">
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                     <span><i class="fa fa-home"></i></span>
                     Origen</a>
             </li>
@@ -131,11 +113,7 @@ $header = [
             <?php endforeach;?>
             <li class="nav-item " style="transition: all 0.2s ease-in-out 0s;">
                 <a class="nav-link btn btn-sm h6 btn-danger shadow-none text-capitalize text-white"
-<<<<<<< HEAD
                     href="<?php echo Config::$EXECUTION_HOME_PATH; ?>signout/"
-=======
-                    href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"signout/"
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
                     style="transition: all 0.2s ease-in-out 0s;">
                     <span><i class="fa fa-sign-out"></i></span>
                     Cerrar

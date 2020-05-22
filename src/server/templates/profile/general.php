@@ -11,11 +11,7 @@
 <?php endif;?>
 
 <div class="card-body card-body-cascade text-center mt-3">
-<<<<<<< HEAD
     <form class="" action="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/" method="POST">
-=======
-    <form class="" action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/" method="POST">
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
         <div class="row">
             <div class="col-md-6">
                 <div class="md-form mb-0">

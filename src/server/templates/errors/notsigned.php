@@ -16,11 +16,7 @@
             <div class="notsigned-template text-center text-light">
                 <h1>
                     ¡No has iniciado sesión!</h1>
-<<<<<<< HEAD
                 <h2>Por favor <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>signin/">inicia sesión</a>. </h2>
-=======
-                <h2>Por favor <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"signin/">inicia sesión</a>. </h2>
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
             </div>
         </div>
     </div>

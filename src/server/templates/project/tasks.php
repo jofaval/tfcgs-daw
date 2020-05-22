@@ -59,22 +59,12 @@ main {
     </button>
 
     <div class="dropdown-menu">
-        <a class="dropdown-item" id="downloadJSONcontent"
-<<<<<<< HEAD
-            href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>
-=======
-            href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
+        <a class="dropdown-item" id="downloadJSONcontent" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>
             /json/">Descargar
             contenido</a>
         <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER): ?>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item"
-<<<<<<< HEAD
-            href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>
-=======
-            href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
+        <a class="dropdown-item" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>
             /change-image/">Cambiar
             imagen</a>
         <?php endif;?>

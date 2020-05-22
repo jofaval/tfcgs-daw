@@ -38,11 +38,7 @@ main {
 }
 </style>
 
-<<<<<<< HEAD
 <link rel="shortcut icon" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/branding/maintenance_favicon.gif"
-=======
-<link rel="shortcut icon" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/branding/maintenance_favicon.gif"
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
     type="image/gif">
 
 <div class="w-100 h-100 d-flex text-dark justify-content-center align-content-center

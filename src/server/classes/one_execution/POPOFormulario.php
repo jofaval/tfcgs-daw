@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Database Mapping</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/jquery-ui.min.css">
     <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/mdb.min.css">
@@ -16,16 +15,6 @@
     <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/floating-label.css">
     <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/inputs.css">
     <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/jquery.sweet-modal.min.css">
-=======
-    <link rel="stylesheet" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/bootstrap.min.css">
-    <link rel="stylesheet" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/jquery-ui.min.css">
-    <link rel="stylesheet" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/mdb.min.css">
-    <link rel="stylesheet" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/main.css">
-    <link rel="stylesheet" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/loader.css">
-    <link rel="stylesheet" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/floating-label.css">
-    <link rel="stylesheet" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/inputs.css">
-    <link rel="stylesheet" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"styles/jquery.sweet-modal.min.css">
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
 </head>
 
 <body>
@@ -121,7 +110,6 @@ if (isset($_REQUEST["createPopo"])) {
     document.querySelector("#dbName").value = "origen";
     </script>
 </body>
-<<<<<<< HEAD
 <script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/jquery.min.js"></script>
 <script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/jquery-ui.min.js"></script>
 <script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/popper.min.js"></script>
@@ -139,24 +127,5 @@ if (isset($_REQUEST["createPopo"])) {
 <script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/preloader.js"></script>
 <script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/summernote-bs4.min.js"></script>
 <script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/generalScript.js"></script>
-=======
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/libs/jquery.min.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/libs/jquery-ui.min.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/libs/popper.min.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/libs/bootstrap.min.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/libs/bootstrap.bundle.min.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/libs/mdb.min.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/libs/jquery.sweet-modal.min.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/Modal.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/utils.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/ViewUtils.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/inputs.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/AjaxController.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/Validator.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/FormValidator.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/preloader.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/libs/summernote-bs4.min.js"></script>
-<script src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"scripts/js/generalScript.js"></script>
->>>>>>> 3581ba16a411ff959f27583d19bf9007ad75c058
 
 </html>
