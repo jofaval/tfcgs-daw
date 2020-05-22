@@ -479,14 +479,15 @@ class Model extends PDO
     {
         $sqlUtils = new SQLUtils($this);
 
-        $queryString = "SELECT `id_creator` FROM projects
-        WHERE id=:id_project";
+        $queryString = "SELECT * FROM projects WHERE id=:id_project";
 
         $params = [
-            "id_project" => $id_project,
+            "id" => $id_project,
         ];
 
-        if ($sqlUtils->complexQuery($queryString, $params)[0]["id_creator"] == $userId) {
+        $queryCreatorResult = $sqlUtils->query("projects", $params, "id_creator");
+
+        if ($queryCreatorResult[0]["id_creator"] == $userId) {
             return Config::$PROJECT_ACCESS_CREATOR;
         }
 
