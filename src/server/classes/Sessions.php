@@ -58,7 +58,7 @@ class Sessions
                 if (($this->getSession("time") - $currentTimeStamp) < 0) {
                     $this->deleteSession();
                     $this->initializeValues();
-                    header("Location: /daw/signout/");
+                    header("Location: " . Config::$EXECUTION_HOME_PATH . "signout/");
                 }
             }
             session_regenerate_id(true);
