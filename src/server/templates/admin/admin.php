@@ -33,18 +33,16 @@ $breadcrumb = [
         <div class="profileInfo">
             <div class="m-auto">
                 <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $username; ?>/"
-                    class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
-                    <img
-                        src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"><a
-                        href=<?php echo Config::$EXECUTION_HOME_PATH; ?>profile<?php echo $username; ?>
-                        class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
-                        <div
-                            class="row profileAdminCardDetails pl-3 py-5 z-index-overlap flex-wrap center-elements w-100 m-0">
-                            <h5
-                                class="profileAdminCardTitle text-center text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">
-                                <?php echo $username; ?></h5>
-                        </div>
-                    </a>
+                    class="profileAdminCard text-dark row col-12 px-0 min-width-10 col-sm m-0 bg-grey">
+                    <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
+                        class="opacity-60 object-fit-cover w-100" height="100" style="min-width: 22.5rem !important;" />
+                    <div
+                        class="row profileAdminCardDetails pl-3 py-5 position-absolute z-index-overlap flex-wrap center-elements w-100 m-0">
+                        <h5
+                            class="profileAdminCardTitle text-center text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">
+                            <?php echo $username; ?></h5>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
