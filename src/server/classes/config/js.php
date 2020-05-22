@@ -1,5 +1,6 @@
 <?php
 
+Config::$mvc_vis_scripts[] = "config/config.js";
 Config::$mvc_vis_scripts[] = "libs/jquery.min.js";
 Config::$mvc_vis_scripts[] = "libs/jquery-ui.min.js";
 Config::$mvc_vis_scripts[] = "libs/popper.min.js";
