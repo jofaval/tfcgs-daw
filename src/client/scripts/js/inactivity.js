@@ -21,6 +21,6 @@ $(document).ready(function () {
 function timerIncrement() {
     localStorage.setItem("interval", parseInt(localStorage.getItem("interval")) + 1);
     if (parseInt(localStorage.getItem("interval")) > 15) { // 15 minutes
-        window.location.href = "/daw/signout/";
+        window.location.href = EXECUTION_HOME_PATH + "signout/";
     }
 }

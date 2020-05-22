@@ -143,7 +143,7 @@ class UserSearchInput {
 
     getUsersLike(username, whenFinished) {
         $.ajax({
-            url: "/daw/index.php?ctl=searchUsers",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=searchUsers",
             data: {
                 "username": username,
             },
@@ -156,7 +156,7 @@ class UserSearchInput {
     loadUser(userSearchClass, container, username) {
         var usernameCardClone = userSearchClass.usernameCard.clone();
 
-        usernameCardClone.find(".usernameProfileImg").prop("src", `/daw/img/users/${username}/${username}.png`);
+        usernameCardClone.find(".usernameProfileImg").prop("src", `${EXECUTION_HOME_PATH}img/users/${username}/${username}.png`);
         usernameCardClone.find(".username").text(`${username}`);
         usernameCardClone.on("click", function () {
             userSearchClass.input.val(username);

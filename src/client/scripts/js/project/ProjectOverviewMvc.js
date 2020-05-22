@@ -11,7 +11,7 @@ var $collaboratorFlagShared = $(`<div class="collaboratorsBtnShared btn btn-sm b
 var $collaboratorCard = $(`
 <div class="collaboratorCardContainer m-sm-2">
     <a href="" class="collaboratorCard d-none d-sm-block cursor-pointer text-center collaboratorProfileBtn view overlay rounded">
-        <img class="collaboratorImg img-fluid w-100-2 h-100" src="/daw/img/profile-pic.png" width="150" height="150" alt="">
+        <img class="collaboratorImg img-fluid w-100-2 h-100" src=EXECUTION_HOME_PATH + "img/profile-pic.png" width="150" height="150" alt="">
         <div class="collaboratorDetails bg-primary mask flex-center flex-column center-elements h-100 my-auto col">
             <p class="collaboratorUsername text-white m-0 font-weight-bold">Administrator</p>
             <h5 class="collaboratorName text-white m-0">Pepe Fabra Valverde</h5>
@@ -19,7 +19,7 @@ var $collaboratorCard = $(`
         </div>
     </a>
     <a href="" class="collaboratorCard d-sm-none rounded text-dark row col-12 px-0 col-sm m-2 bg-white">
-        <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
+        <img src=EXECUTION_HOME_PATH + "img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index" height="100">
         <div class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements w-100 m-0">
             <h5 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden py-1 m-0 font-weight-normal">
                 Pepe Fabra Valverde</h5>
@@ -40,7 +40,7 @@ class Model {
     loadCollaborators(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=getCollaboratorsOfProject",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=getCollaboratorsOfProject",
             data: {
                 "id_project": model.projectId,
                 "limit": 5,
@@ -57,7 +57,7 @@ class Model {
     deleteProject(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/index.php?ctl=deleteProjects",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=deleteProjects",
             data: {
                 "id": model.projectId,
                 "idProjectForAccessLevel": model.projectId,
@@ -72,7 +72,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/index.php?ctl=createDashboards",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createDashboards",
             data: {
                 "title": title,
                 "description": description,
@@ -87,7 +87,7 @@ class Model {
 
     doesUsernameExist(username, whenFinished) {
         $.ajax({
-            url: "/daw/index.php?ctl=doesUsernameExists",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=doesUsernameExists",
             data: {
                 "username": username,
             },
@@ -104,7 +104,7 @@ class Model {
             console.log(result);
             if (result) {
                 $.ajax({
-                    url: "/daw/index.php?ctl=createCollaborators",
+                    url: EXECUTION_HOME_PATH + "index.php?ctl=createCollaborators",
                     data: {
                         "username": username,
                         "id_project": model.projectId,
@@ -126,7 +126,7 @@ class Model {
             console.log(result);
             if (result) {
                 $.ajax({
-                    url: "/daw/index.php?ctl=deleteCollaborators",
+                    url: EXECUTION_HOME_PATH + "index.php?ctl=deleteCollaborators",
                     data: {
                         "username": username,
                         "id_project": model.projectId,
@@ -147,7 +147,7 @@ class Model {
             console.log(result);
             if (result) {
                 $.ajax({
-                    url: "/daw/index.php?ctl=updateCollaborators",
+                    url: EXECUTION_HOME_PATH + "index.php?ctl=updateCollaborators",
                     data: {
                         "username": username,
                         "id_project": model.projectId,
@@ -164,7 +164,7 @@ class Model {
 
     getProjectCollaborationRoles(whenFinished) {
         $.ajax({
-            url: "/daw/index.php?ctl=getProjectCollaborationRoles",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=getProjectCollaborationRoles",
             success: function (result) {
                 whenFinished(result);
             }
@@ -207,8 +207,8 @@ class View {
         clonedCard.find(".collaboratorName").text(json.collaboratorName);
         var username = json.collaboratorUsername;
         clonedCard.find(".collaboratorUsername").text(username);
-        clonedCard.find(".collaboratorImg").prop("src", `/daw/img/users/${username}/${username}.png`);
-        clonedCard.find(".collaboratorCard").prop("href", `/daw/profile/${username}/`);
+        clonedCard.find(".collaboratorImg").prop("src", `${EXECUTION_HOME_PATH}img/users/${username}/${username}.png`);
+        clonedCard.find(".collaboratorCard").prop("href", `${EXECUTION_HOME_PATH}profile/${username}/`);
 
         clonedCard.find(".collaboratorRole").text(json.collaborationRole);
         clonedCard.find(".collaboratorRoleDescription").text(json.collaborationRoleDescription);
@@ -392,7 +392,7 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Crear tablero",
-            "content": `<form action="/daw/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
             <div class="md-form">
                 <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
                 <label for="title">Título</label>
@@ -419,7 +419,7 @@ class Controller {
                         if (result !== false) {
                             modal.close();
                             controller.reload(controller);
-                            window.location.href = `/daw/projects/id/${controller.model.projectId}/dashboards/${title}/`;
+                            window.location.href = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/${title}/`;
                         } else {
                             sendNotification("No se ha podido crear el tablero", "dashboardCreationFail");
                         }
@@ -438,7 +438,7 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Invitar colaborador/a",
-            "content": `<form action="/daw/index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="usernameSearchContainer"></div>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                                     <input class="btn btn-primary w-100" type="submit" name="createCollaborators" id="createCollaborators" value="Invitar colaborador/a">
@@ -483,7 +483,7 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Eliminar colaborador/a",
-            "content": `<form action="/daw/index.php?ctl=deleteCollaborators" id="formRemoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=deleteCollaborators" id="formRemoveCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="usernameSearchContainer"></div>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                                     <input class="btn btn-primary w-100" type="submit" name="deleteCollaborators" id="deleteCollaborators" value="Eliminar colaborador/a">
@@ -527,7 +527,7 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Ver tablero",
-            "content": `<form action="/daw/index.php?ctl=viewDashboard" id="formViewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=viewDashboard" id="formViewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
                                 <input type="text" placeholder="" id="dashboardName" name="dashboardName" value="" class="form-control text-white">
                                 <label for="dashboardName">Nombre del tablero</label>
@@ -544,7 +544,7 @@ class Controller {
 
                     var dashboardName = $("#dashboardName").val();
 
-                    redirectTo(`/daw/projects/id/${controller.model.projectId}/dashboards/${dashboardName}/`);
+                    redirectTo(`${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/${dashboardName}/`);
 
                     return false;
                 });
@@ -560,7 +560,7 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Ver diario",
-            "content": `<form action="/daw/projects/id/${controller.model.projectId}/diary/" id="formViewDiary" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "projects/id/${controller.model.projectId}/diary/" id="formViewDiary" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
                                 <input type="date" placeholder="" id="diaryDate" name="diaryDate" value="" class="form-control text-white">
                                 <label for="diaryDate">Fecha</label>
@@ -577,7 +577,7 @@ class Controller {
 
                     var diaryDate = $("#diaryDate").val();
 
-                    redirectTo(`/daw/projects/id/${controller.model.projectId}/diary/date/${diaryDate}/`);
+                    redirectTo(`${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/diary/date/${diaryDate}/`);
 
                     return false;
                 });
@@ -593,7 +593,7 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Cambiar rol",
-            "content": `<form action="/daw/index.php?ctl=updateCollaborators" id="formChangeCollaboratorRole" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=updateCollaborators" id="formChangeCollaboratorRole" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="usernameSearchContainer"></div>
                             <select class="browser-default mb-3 custom-select" name="role" id="role"></select>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
@@ -711,7 +711,7 @@ class Controller {
         var collaborator = controller.view.visualizeCollaborator(collaboratorRow, json);
         controller.view.visualizeCollaboratorFlags(collaborator, json.created != 0);
 
-        var url = `/daw/projects/id/${controller.model.projectId}/collaborators/${json.title}`;
+        var url = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/collaborators/${json.title}`;
         collaborator.find(".collaboratorCardBtnView").prop("href", url);
         collaborator.find(".collaboratorReadMore").prop("href", url);
 

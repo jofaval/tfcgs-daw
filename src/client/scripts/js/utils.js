@@ -16,7 +16,7 @@ function sendNotification(message = "An error occurred", id = "empty", title = "
                 var notification = new Notification(title, {
                     body: message,
                     tag: "empty",
-                    icon: "/daw/img/branding/favicon-96x96.png",
+                    icon: EXECUTION_HOME_PATH + "img/branding/favicon-96x96.png",
                 });
 
                 if (notifications[id]) {

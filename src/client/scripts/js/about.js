@@ -64,7 +64,7 @@ $(window).on("keyup", function (event) {
         }
     }
 
-    changeURL(`/daw/about/#page${selectedPageIndex}`);
+    changeURL(`${EXECUTION_HOME_PATH}about/#page${selectedPageIndex}`);
 
     $(".page.active").removeClass("active");
     $(`.page${selectedPageIndex}`).addClass("active").get(0).scrollIntoView({
