@@ -1297,8 +1297,6 @@ class Controller
 
     public function profileNotFound()
     {
-        echo "test";
-        exit;
         require_once __DIR__ . "/../templates/profile/profileNotFound.php";
     }
 }
