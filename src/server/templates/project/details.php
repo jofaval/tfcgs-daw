@@ -2,7 +2,8 @@
 <?php $canEdit = $viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER;?>
 <div class="w-100 h-100 tabContent container p-0 d-block" id="tabContent5">
     <div class="content px-2 px-sm-5">
-        <form method="POST" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/">
+        <form method="POST"
+            action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"] ?>/details/">
             <div class="text-white mt-5 h5">Título del proyecto</div>
             <div class="md-form mb-5">
                 <input class="form-control text-white font-weight-bold h3" <?php echo !$canEdit ? 'disabled=""' : ''; ?>
@@ -25,13 +26,14 @@
         </form>
         <div class="projectCreationDetails row mb-5 text-muted">
             <div class="col-sm">Creador por <a
-                    href="/daw/profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
+                    href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
                     class="projectCreatedBy"><?php echo $projectData["projectCreator"]; ?></a><br><span
                     class="projectCreationDate"><?php echo $projectData["projectCreationDate"]; ?></span>
             </div>
             <?php if (!is_null($projectData["collaborator"])): ?>
             <div class="ml-auto text-right mt-4 mt-sm-0 col-sm">
-                Te invitó <a href="/daw/profile/<?php echo $projectData["collaboratorInviteUsername"]; ?>/"
+                Te invitó <a
+                    href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $projectData["collaboratorInviteUsername"]; ?>/"
                     class="projectCreatedBy"><?php echo $projectData["collaboratorInviteName"]; ?></a>
                 como
                 <span
@@ -44,8 +46,9 @@
             <?php endif;?>
         </div>
         <?php if ($canEdit): ?>
-        <form class="" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/" method="POST"
-            enctype="multipart/form-data">
+        <form class=""
+            action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"] ?>/details/"
+            method="POST" enctype="multipart/form-data">
             <h1 class="text-left text-white">Imagen de perfil</h1>
             <div class="row">
                 <div class="col-md-6 mx-auto">
@@ -67,8 +70,9 @@
                     perfil</button>
             </div>
         </form>
-        <form class="" action="/daw/projects/id/<?php echo $viewParams["id"] ?>/details/" method="POST"
-            enctype="multipart/form-data">
+        <form class=""
+            action=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"] ?>/details/"
+            method="POST" enctype="multipart/form-data">
             <h1 class="text-left text-white">Imagen de fondo</h1>
             <div class="row">
                 <div class="col-md-6 mx-auto">

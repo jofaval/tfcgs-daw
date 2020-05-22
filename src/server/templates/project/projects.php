@@ -10,13 +10,13 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Projects",
-        "link" => "/daw/projects",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects",
         "active" => true,
         "icon" => "folder",
     ],
@@ -32,13 +32,13 @@ $breadcrumb = [
     <div class="row py-5 m-0 projectHeader pr-sm-5">
         <style>
         .projectHeader {
-            background-image: url("/daw/img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png") !important;
+            background-image: url(<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png") !important;
         }
         </style>
         <div class="projectImageContainer mx-auto mx-sm-0">
             <img class="projectImage shadow mx-sm-5"
-                src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png" alt="" width="200"
-                height="200">
+                src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
+                alt="" width="200" height="200">
         </div>
         <div class="d-none d-sm-block projectDetails bg-dark rounded text-white col">
             <h1 class="projectTitle font-weight-bold">
@@ -54,10 +54,10 @@ $breadcrumb = [
                     rows="3"><?php echo $viewParams["profile"]["biography"]; ?></textarea>
             </div>
 
-            <a href="/daw/profile/<?php echo $username; ?>/" class="text-white">
+            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $username; ?>/" class="text-white">
                 <span><i class="fa fa-eye"></i></span>&nbsp;Ver perfil</a>
             &nbsp;
-            <a href="/daw/profile/" class="text-white">
+            <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/" class="text-white">
                 <span><i class="fa fa-pencil"></i></span>&nbsp;Editar perfil </a>
         </div>
     </div>

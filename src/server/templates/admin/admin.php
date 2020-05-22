@@ -11,13 +11,13 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Admin",
-        "link" => "/daw/admin/",
+        "link" => Config::$EXECUTION_HOME_PATH . "admin/",
         "active" => true,
         "icon" => "cogs",
     ],
@@ -32,9 +32,10 @@ $breadcrumb = [
     <div class="h-100 bg-dark" id="sidebar">
         <div class="profileInfo">
             <div class="m-auto">
-                <a href="/daw/profile/<?php echo $username; ?>/"
+                <a href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $username; ?>/"
                     class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
-                    <img src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png" alt=""
+                    <img src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
+                        alt=""
                         class="profileAdminCardBgImg object-fit-cover brightness-50 position-absolute w-100 h-100 z-index">
                     <div
                         class="row profileAdminCardDetails pl-3 py-5 z-index-overlap flex-wrap center-elements w-100 m-0">
@@ -59,14 +60,14 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
-                            <a target="_blank" href="/daw/admin/new-route/">
+                            <a target="_blank" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/new-route/">
                                 <h5 class="mb-0 text-white">
                                     Añadir nueva ruta
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a target="_blank" href="/daw/admin/access-level/">
+                            <a target="_blank" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/access-level/">
                                 <h5 class="mb-0 text-white">
                                     Cambiar nivel de acceso
                                 </h5>
@@ -88,21 +89,22 @@ $breadcrumb = [
                     data-parent="#accordionEx1">
                     <div class="card-body rgba-black-light text-white">
                         <div class="card-header">
-                            <a target="_blank" href="/daw/admin/popo/">
+                            <a target="_blank" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/popo/">
                                 <h5 class="mb-0 text-white">
                                     Panel de configuración de POPOs
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a target="_blank" href="/daw/admin/testing/">
+                            <a target="_blank" href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/testing/">
                                 <h5 class="mb-0 text-white">
                                     Ventana de testing
                                 </h5>
                             </a>
                         </div>
                         <div class="card-header">
-                            <a target="_blank" href="/daw/admin/download-database/">
+                            <a target="_blank"
+                                href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"admin/download-database/">
                                 <h5 class="mb-0 text-white">
                                     Descargarse script de SQL
                                 </h5>

@@ -10,31 +10,31 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Tus proyectos",
-        "link" => "/daw/projects/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/",
         "active" => false,
         "icon" => "folder",
     ],
     [
         "name" => $viewParams["title"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/",
         "active" => false,
         "icon" => "clipboard",
     ],
     [
         "name" => "Tableros",
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/dashboards/",
         "active" => false,
         "icon" => "columns",
     ],
     [
         "name" => $viewParams["dashboardTitle"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"],
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"],
         "active" => true,
         "icon" => "columns",
     ],
@@ -45,7 +45,7 @@ $breadcrumb = [
 
 <style>
 main {
-    background-image: url('/daw/img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png') !important;
+    background-image: url(<?php echo Config::$EXECUTION_HOME_PATH; ?>'img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png') !important;
 }
 </style>
 
@@ -60,12 +60,14 @@ main {
 
     <div class="dropdown-menu">
         <a class="dropdown-item" id="downloadJSONcontent"
-            href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /json/">Descargar
+            href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>
+            /json/">Descargar
             contenido</a>
         <?php if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER): ?>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item"
-            href="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?> /change-image/">Cambiar
+            href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>
+            /change-image/">Cambiar
             imagen</a>
         <?php endif;?>
     </div>
