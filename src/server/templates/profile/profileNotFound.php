@@ -1,10 +1,11 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["style.css"];?>
 <?php $optionalScripts = ["js/script.js"];?>
-<?php $title = "Example";?>
+<?php $title = "Perfil no encontrado";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
+<?php $currentPage = "Perfil";?>
 <?php
 $breadcrumb = [
     [
