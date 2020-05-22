@@ -387,7 +387,7 @@ class Model {
             url: EXECUTION_HOME_PATH + "index.php?ctl=getCommentsOfDashboardItem",
             data: {
                 "id_dashboard_item": taskItemDataId,
-                "idProjectForAccessLevel": controller.model.projectId,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
