@@ -314,7 +314,7 @@ class Controller {
         if (noResultsFound) {
             controller.clearContainer(controller);
 
-            $(".projectsContainer").text(controller.model.project.length > 0 ? "No se han encontrado resultados." : "No hay proyectos");
+            $(".projectsContainer").text(controller.model.projects.length > 0 ? "No se han encontrado resultados." : "No hay proyectos");
         }
 
         console.log(controller.model.workingProjects);
