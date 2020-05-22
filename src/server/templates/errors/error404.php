@@ -9,7 +9,7 @@
 <?php $breadcrumb = [
     [
         "name" => "Volver a la home",
-        "link" => "/daw/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => true,
         "icon" => "home",
     ],

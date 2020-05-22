@@ -22,6 +22,7 @@ class Config
     public static $PROJECT_ACCESS_MANAGER = 0;
     public static $PROJECT_ACCESS_ADMIN = 0;
     public static $PROJECT_ACCESS_CREATOR = 0;
+    public static $EXECUTION_HOME_PATH = "/daw/";
     public static $notsigned_ctls = [
         "signin",
         "signup",

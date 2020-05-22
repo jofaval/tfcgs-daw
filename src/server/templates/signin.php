@@ -11,7 +11,7 @@
 
 <?php ob_start()?>
 <div class="h-75 m-auto w-50 rounded d-flex text-dark bg-white" id="signFormsContainer">
-    <form action="/daw/signin/" method="POST" id="registerForm"
+    <form action="<?php echo Config::$EXECUTION_HOME_PATH; ?>signin/" method="POST" id="registerForm"
         class="col-md-6 rounded d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1 class="text-white">¡Nos alegra verte de nuevo!</h1>
         <div class="md-form w-100">
@@ -43,7 +43,7 @@
                 required>
         </div>
     </form>
-    <form action="/daw/signup/" method="POST" id="loginForm"
+    <form action="<?php echo Config::$EXECUTION_HOME_PATH; ?>signup/" method="POST" id="loginForm"
         class="col-md-6 rounded d-flex align-items-center justify-content-center flex-column pr-5 pl-0 h-100 text-center">
         <div class="position-absolute btn btn-default bottom-1 left-1 d-sm-none" id="btnToSignin">Iniciar sesión</div>
         <h1 class="text-white">¡Bienvenid@!</h1>

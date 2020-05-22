@@ -9,13 +9,13 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Acerca de ",
-        "link" => "/daw/about/",
+        "link" => Config::$EXECUTION_HOME_PATH . "about/",
         "active" => true,
         "icon" => "info",
     ],
@@ -34,7 +34,8 @@ $breadcrumb = [
     </div>
     <div id="page2" class="w-100 h-100 col-sm-12 overflow-auto page page2 m-0 center-elements flex-column">
         <div class="container text-center">
-            <img src="/daw/img/branding/logo.png" class="mb-3" width="250" height="250" alt="">
+            <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/branding/logo.png" class="mb-3" width="250"
+                height="250" alt="">
             <h1>¿Qué es origen?</h1>
             <h4>Se pretende proporcionar una gestión básica de cualquier tipo de proyecto con un conjunto de
                 herramientas
@@ -165,8 +166,8 @@ $breadcrumb = [
             <div class="row">
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-                        <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index"
-                            height="400">
+                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
+                            class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
                             <h5
@@ -181,8 +182,8 @@ $breadcrumb = [
                 </div>
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-                        <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index"
-                            height="400">
+                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
+                            class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
                             <h5
@@ -197,8 +198,8 @@ $breadcrumb = [
                 </div>
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-                        <img src="/daw/img/default.png" alt="" class="collaboratorImg object-fit-cover w-100 z-index"
-                            height="400">
+                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
+                            class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
                             <h5
@@ -216,7 +217,7 @@ $breadcrumb = [
     </div>
     <div id="page5" class="w-100 h-100 col-sm-12 overflow-auto page page5 m-0 center-elements flex-column">
         <div class="container text-center">
-            <a href="/daw/" class="btn btn-lg btn-primary">Comenzar</a>
+            <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>" class="btn btn-lg btn-primary">Comenzar</a>
         </div>
     </div>
 </div>

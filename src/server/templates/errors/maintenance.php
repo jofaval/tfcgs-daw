@@ -9,13 +9,13 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Mantenimiento",
-        "link" => "/daw/maintenance/",
+        "link" => Config::$EXECUTION_HOME_PATH . "maintenance/",
         "active" => true,
         "icon" => "cogs",
     ],
@@ -38,7 +38,8 @@ main {
 }
 </style>
 
-<link rel="shortcut icon" href="/daw/img/branding/maintenance_favicon.gif" type="image/gif">
+<link rel="shortcut icon" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/branding/maintenance_favicon.gif"
+    type="image/gif">
 
 <div class="w-100 h-100 d-flex text-dark justify-content-center align-content-center
  flex-column justify-items-center align-items-center text-center">

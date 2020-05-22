@@ -1,31 +1,31 @@
 <?php
 $header = [
     /* "Origen" => [
-    "link" => "/daw/",
+    "link" => Config::$EXECUTION_HOME_PATH . "",
     "active" => $title == "Home",
     "icon" => "home",
     "access" => 0,
     ], */
     "Perfil" => [
-        "link" => "/daw/profile/",
+        "link" => Config::$EXECUTION_HOME_PATH . "profile/",
         "active" => $currentPage == "Perfil",
         "icon" => "user",
         "access" => 0,
     ],
     "Proyectos" => [
-        "link" => "/daw/projects/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/",
         "active" => $currentPage == "Proyectos",
         "icon" => "folder",
         "access" => 0,
     ],
     "Acerca de" => [
-        "link" => "/daw/about/",
+        "link" => Config::$EXECUTION_HOME_PATH . "about/",
         "active" => $currentPage == "About",
         "icon" => "info",
         "access" => 0,
     ],
     "Admin" => [
-        "link" => "/daw/admin/",
+        "link" => Config::$EXECUTION_HOME_PATH . "admin/",
         "active" => $currentPage == "Admin",
         "icon" => "cogs",
         "access" => Config::$ACCESS_LEVEL_ADMIN,
@@ -41,9 +41,9 @@ $header = [
     </button>
 
     <div class="btn-group">
-        <a href="/daw/profile/" class="">
+        <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/" class="">
             <img class="navbar-brand order-1 rounded-circle" width="45"
-                src="/daw/img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
+                src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">
             <small class="text-muted"><span class="font-weight-bold"><?php echo $username ?></span>
                 <br>
                 <?php echo $sessions->getSession("roleName"); ?>
@@ -55,7 +55,7 @@ $header = [
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <div class="dropdown-menu ml-5 tabContentContainer bg-dark">
-                <form action="/daw/signin/" method="POST" id="registerForm"
+                <form action="<?php echo Config::$EXECUTION_HOME_PATH; ?>signin/" method="POST" id="registerForm"
                     class="col-md m-0 p-01 rounded d-flex align-items-center justify-content-center flex-column h-100 text-center">
                     <div class="md-form my-3 w-100">
                         <input type="text" class="form-control text-white" autocomplete="off" autocorrect="off"
@@ -78,7 +78,8 @@ $header = [
                 </form>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item btn btn-sm h6 bg-dark text-white shadow-none text-capitalize text-white m-0"
-                    href="/daw/signout/" style="transition: all 0.2s ease-in-out 0s;">
+                    href="<?php echo Config::$EXECUTION_HOME_PATH; ?>signout/"
+                    style="transition: all 0.2s ease-in-out 0s;">
                     <span><i class="fa fa-sign-out"></i></span>
                     Cerrar
                     sesión</a>
@@ -89,8 +90,8 @@ $header = [
         style="transition: all 0.2s ease-in-out 0s;">
         <ul class="navbar-nav" style="transition: all 0.2s ease-in-out 0s;">
             <li class="nav-item " style="transition: all 0.2s ease-in-out 0s;">
-                <a class="nav-link btn btn-sm h6 btn-primary shadow-none text-capitalize text-white" href="/daw/"
-                    style="transition: all 0.2s ease-in-out 0s;">
+                <a class="nav-link btn btn-sm h6 btn-primary shadow-none text-capitalize text-white"
+                    href="<?php echo Config::$EXECUTION_HOME_PATH; ?>" style="transition: all 0.2s ease-in-out 0s;">
                     <span><i class="fa fa-home"></i></span>
                     Origen</a>
             </li>
@@ -111,7 +112,8 @@ $header = [
             <?php endif;?>
             <?php endforeach;?>
             <li class="nav-item " style="transition: all 0.2s ease-in-out 0s;">
-                <a class="nav-link btn btn-sm h6 btn-danger shadow-none text-capitalize text-white" href="/daw/signout/"
+                <a class="nav-link btn btn-sm h6 btn-danger shadow-none text-capitalize text-white"
+                    href="<?php echo Config::$EXECUTION_HOME_PATH; ?>signout/"
                     style="transition: all 0.2s ease-in-out 0s;">
                     <span><i class="fa fa-sign-out"></i></span>
                     Cerrar

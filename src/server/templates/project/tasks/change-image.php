@@ -10,37 +10,37 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Tus proyectos",
-        "link" => "/daw/projects/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/",
         "active" => false,
         "icon" => "folder",
     ],
     [
         "name" => $viewParams["title"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/",
         "active" => false,
         "icon" => "clipboard",
     ],
     [
         "name" => "Tableros",
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/dashboards/",
         "active" => false,
         "icon" => "columns",
     ],
     [
         "name" => $viewParams["dashboardTitle"],
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"] . "/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"] . "/",
         "active" => false,
         "icon" => "columns",
     ],
     [
         "name" => "Fondo",
-        "link" => "/daw/projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"] . "/change-image",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/dashboards/" . $viewParams["dashboardTitle"] . "/change-image",
         "active" => true,
         "icon" => "image",
     ],
@@ -52,12 +52,12 @@ $breadcrumb = [
 <div class="container bg-white p-5 my-sm-5 mx-auto">
     <div class="card-body card-body-cascade text-center mt-3">
         <form class=""
-            action="/daw/projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/change-image/"
+            action="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/change-image/"
             method="POST" enctype="multipart/form-data">
             <h1 class="text-ceneter">Imagen de fondo</h1>
             <div class="d-none d-sm-flex flex-column my-3">
                 <img width="640" height="360" class="mx-auto"
-                    src="/daw/img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png"
+                    src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png"
                     alt="">
                 <h4>Imagen actual</h4>
             </div>
