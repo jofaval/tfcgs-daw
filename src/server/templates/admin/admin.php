@@ -32,22 +32,18 @@ $breadcrumb = [
     <div class="h-100 bg-dark" id="sidebar">
         <div class="profileInfo">
             <div class="m-auto">
-                <<<<<<< HEAD <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $username; ?>/"
+                <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $username; ?>/"
                     class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
-                    <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"=======<a
-                        href=<?php echo Config::$EXECUTION_HOME_PATH; ?>"profile/<?php echo $username; ?>/"
-                        class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
                     <img
-                        src=<?php echo Config::$EXECUTION_HOME_PATH; ?>"img/users/<?php echo $username; ?>/<?php echo $username; ?>.png">>>>>>>
-                    3581ba16a411ff959f27583d19bf9007ad75c058
-                    alt=""
-                    class="profileAdminCardBgImg object-fit-cover brightness-50 position-absolute w-100 h-100 z-index">
-                    <div
-                        class="row profileAdminCardDetails pl-3 py-5 z-index-overlap flex-wrap center-elements w-100 m-0">
-                        <h5
-                            class="profileAdminCardTitle text-center text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">
-                            <?php echo $username; ?></h5>
-                    </div>
+                        src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"><a
+                        href=<?php echo Config::$EXECUTION_HOME_PATH; ?>profile<?php echo $username; ?>
+                        class="profileAdminCard text-dark row col-12 px-0 col-sm m-0 bg-grey">
+                        <div
+                            class="row profileAdminCardDetails pl-3 py-5 z-index-overlap flex-wrap center-elements w-100 m-0">
+                            <h5
+                                class="profileAdminCardTitle text-center text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">
+                                <?php echo $username; ?></h5>
+                        </div>
                     </a>
             </div>
         </div>
