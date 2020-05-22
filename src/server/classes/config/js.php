@@ -12,6 +12,7 @@ Config::$mvc_vis_scripts[] = "js/Modal.js";
 Config::$mvc_vis_scripts[] = "js/nightMode.js";
 Config::$mvc_vis_scripts[] = "js/DateUtils.js";
 Config::$mvc_vis_scripts[] = "js/utils.js";
+Config::$mvc_vis_scripts[] = "js/connectivity.js";
 Config::$mvc_vis_scripts[] = "js/ViewUtils.js";
 Config::$mvc_vis_scripts[] = "js/inputs.js";
 Config::$mvc_vis_scripts[] = "js/AjaxController.js";
