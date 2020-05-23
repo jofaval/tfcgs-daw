@@ -1,4 +1,4 @@
-var $paginationItem = $(`<li class="page-item"><a class="page-link text-white"></a></li>`);
+var $paginationItem = $(`<li class="page-item"><a class="page-link text-dark"></a></li>`);
 var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
 
 var $collaboratorRow = $(`<div class="row collaboratorCardRow d-flex flex-start flex-wrap m-0"></div>`);

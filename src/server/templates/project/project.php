@@ -58,16 +58,16 @@ $breadcrumb = [
                 src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/projects/<?php echo $viewParams["id"]; ?>/profile.png"
                 alt="" width="200" height="200">
         </div>
-        <div class="d-none d-sm-block projectDetails bg-dark rounded text-white col">
+        <div class="d-none d-sm-block projectDetails bg-dark rounded text-dark col">
             <h1 class="projectTitle font-weight-bold"><?php echo $projectData["projectTitle"]; ?></h1>
             <p class="projectCreatedBy mb-2">creado por <a
                     href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"
                     id="projectCreator"
-                    class="font-weight-bold text-white"><?php echo $projectData["projectCreator"]; ?></a></p>
+                    class="font-weight-bold text-dark"><?php echo $projectData["projectCreator"]; ?></a></p>
 
             <div class="md-form m-0 p-0">
                 <textarea id="projectDescription" disabled="true"
-                    class="md-textarea text-white form-control m-0 p-0 description"
+                    class="md-textarea text-dark form-control m-0 p-0 description"
                     rows="3"><?php echo $projectData["projectDescription"]; ?></textarea>
             </div>
 
@@ -77,30 +77,30 @@ $breadcrumb = [
             </a>
         </div>
     </div>
-    <div class="row tabs shadow w-100 m-0 text-white">
+    <div class="row tabs shadow w-100 m-0 text-dark">
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/overview/"
             id="tabOverview"
-            class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "overview" ? "active" : ""; ?>"><span
+            class="tab d-flex justify-content-center align-content-center p-3 text-dark <?php echo $tabName == "overview" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-cogs"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">General</span></a>
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/dashboards/"
             id="tabDashboards"
-            class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "dashboards" ? "active" : ""; ?>"><span
+            class="tab d-flex justify-content-center align-content-center p-3 text-dark <?php echo $tabName == "dashboards" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-columns"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Tableros</span></a>
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/diary/"
             id="tabDiary"
-            class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "diary" ? "active" : ""; ?>"><span
+            class="tab d-flex justify-content-center align-content-center p-3 text-dark <?php echo $tabName == "diary" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-book"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Diario</span></a>
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/collaborators/"
             id="tabCollaborators"
-            class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "collaborators" ? "active" : ""; ?>"><span
+            class="tab d-flex justify-content-center align-content-center p-3 text-dark <?php echo $tabName == "collaborators" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-users"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Colaboradores</span></a>
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/details/"
             id="tabDetails"
-            class="tab d-flex justify-content-center align-content-center p-3 text-white <?php echo $tabName == "details" ? "active" : ""; ?>"><span
+            class="tab d-flex justify-content-center align-content-center p-3 text-dark <?php echo $tabName == "details" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-info-circle"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Detalles</span></a>
     </div>
