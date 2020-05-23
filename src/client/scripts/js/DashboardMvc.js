@@ -2,15 +2,15 @@ var $taskListsContainer = $(`<div class="d-flex overflow-scroll w-100 h-100 just
 
 var $taskList = $(`
 <div class="taskListContainer mx-1">
-    <div class="taskList shadow bg-light rounded">
+    <div class="taskList shadow grey lighten-3 rounded">
         <div class="taskListProperties d-none">
             <span class="taskListId"></span>
         </div>
-        <section class="taskListTitle hide-on-blur text-left p-2">
-            <a class="float-right dashboardListBtnClose p-1 btn btn-sm elementToHide m-1 text-white align-self-center">
+        <section class="taskListTitle grey lighten-3 text-dark hide-on-blur text-left p-2">
+            <a class="float-right dashboardListBtnClose p-1 btn btn-sm elementToHide m-1 text-dark align-self-center">
                 <i class="fa fa-times"></i>
             </a>
-            <p class="mb-0 ml-3 taskListTitleText text-white">Titulo 1</p>
+            <p class="mb-0 ml-3 taskListTitleText">Titulo 1</p>
         </section>
         <div class="taskListItemsContainer px-2 pt-2 mb-3 " ondragover="event.preventDefault()">
         </div>
@@ -35,13 +35,13 @@ var $referenceTaskList = $(`
 </div>`);
 
 var $taskListItem = $(`
-<div class="taskListItem card mb-2" draggable="true" draggable="true">
-    <div class="taskListItemBody hide-on-blur text-white hide card-body px-2 py-1">
+<div class="taskListItem grey lighten-4 card mb-2" draggable="true" draggable="true">
+    <div class="taskListItemBody hide-on-blur  grey lighten-4 text-white hide card-body px-2 py-1">
         <p class="card-text taskListItemTitle m-0">project description.</p>
-        <a class="position-absolute dashboardBtnEdit p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-white align-self-center">
+        <a class="position-absolute dashboardBtnEdit p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-dark align-self-center">
             <i class="fa fa-times"></i>
         </a>
-        <a class="position-absolute dashboardBtnClose p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-white align-self-center">
+        <a class="position-absolute dashboardBtnClose p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-dark align-self-center">
             <i class="fa fa-times"></i>
         </a>
     </div>
@@ -106,12 +106,12 @@ var $dashboardModalComment = $(`
     <img src=EXECUTION_HOME_PATH + "img/default.png" width="50"
         class="dashboardCommentUserImg rounded-pill float-left mr-2" />
     <div class="row dashboardCommentInformation mb-2">
-        <div class="dashboardCommentUsername text-white mr-2">Test</div>
-        <div class="dashboardCommentName text-white mr-2">Test</div>
+        <div class="dashboardCommentUsername text-dark mr-2">Test</div>
+        <div class="dashboardCommentName text-dark mr-2">Test</div>
         <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
     </div>
     <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light" contenteditable="true">Test</span>
-    <div class="row dashboardCommentActions text-white ml-2 mt-2">
+    <div class="row dashboardCommentActions text-dark ml-2 mt-2">
         <a href="" class="dashboardCommentAction dashboardCommentEdit">Editar</a>
         &nbsp;-&nbsp;
         <a href="" class="dashboardCommentAction dashboardCommentDelete">Eliminar</a>

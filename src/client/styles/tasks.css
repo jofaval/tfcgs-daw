@@ -35,7 +35,8 @@ main * {
 
 .taskList {
     max-width: 18rem;
-    background: #222224 !important;
+    background: #222224/*  !important */
+    ;
 }
 
 .taskListItemsContainer {
@@ -48,11 +49,13 @@ main * {
 }
 
 .taskListItem {
-    background: #333334 !important;
+    background: #333334/*  !important */
+    ;
 }
 
 html body .taskListItemReference {
-    background-color: #646464 !important;
+    background-color: #646464/*  !important */
+    ;
 }
 
 .taskListItem:move {
@@ -60,7 +63,8 @@ html body .taskListItemReference {
 }
 
 .taskListTitle {
-    background: #646464 !important;
+    background: #646464/*  !important */
+    ;
 }
 
 .taskListContainer {

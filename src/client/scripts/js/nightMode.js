@@ -13,9 +13,10 @@ var courtainEffect = false;
 
 function changeNightMode() {
     var nightModeInput = $("#nightMode");
-    var nightModeLabel = nightModeInput.next();
+    //var nightModeLabel = nightModeInput.next();
 
-    nightModeStatus = nightModeInput.is(":checked");
+    //nightModeStatus = nightModeInput.is(":checked");
+    nightModeStatus = false;
     localStorage.setItem("nightMode", nightModeInput.is(":checked"));
 
     if (nightModeStatus) { //oscuro
@@ -40,6 +41,9 @@ function changeNightMode() {
         $(".footer, .tabs").removeClass("bg-light grey lighten-4").addClass("bg-dark");
 
         $(".pagination *").removeClass("text-dark");
+        $(".bg-white").removeClass("bg-white").addClass("bg-dark")
+            .removeClass("text-dark").addClass("text-white");
+        $("main").removeClass("bg-light");
         //$("select").removeClass("text-white").addClass("text-dark");
 
         THEME = DARK_THEME;
@@ -66,8 +70,11 @@ function changeNightMode() {
         $(".footer, .tabs").removeClass("bg-light bg-dark").addClass("grey lighten-4");
 
         $(".pagination *").addClass("text-dark");
+        $(".pagination .page-link").addClass("text-dark");
         //$("select").removeClass("text-white").addClass("text-dark");
-
+        $(".bg-dark").removeClass("bg-dark").addClass("bg-white")
+            .removeClass("text-white").addClass("text-dark");
+        $("main").addClass("bg-light");
         THEME = MIXED_THEME;
         //nightModeLabel.text("Modo claro");
     }

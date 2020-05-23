@@ -50,10 +50,10 @@ main {
 </style>
 
 <div class="row dashboardTopBar m-2 d-flex justify-content-space-around">
-    <div class="dashboardTitleContainer align-self-center rounded grey darken-4 p-2 px-3">
-        <div class="dashboardTitle align-self-center text-white"><?php echo $viewParams["dashboardTitle"]; ?></div>
+    <div class="dashboardTitleContainer align-self-center rounded bg-dark p-2 px-3">
+        <div class="dashboardTitle align-self-center"><?php echo $viewParams["dashboardTitle"]; ?></div>
     </div>
-    <button class="btn btn-dark align-self-center btn-sm m-0 mx-2 dropdown-toggle p-2" type="button"
+    <button class="btn btn-white align-self-center btn-sm m-0 mx-2 dropdown-toggle p-2" type="button"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="fa fa-ellipsis-v"></div>
     </button>
@@ -73,8 +73,8 @@ main {
     <div class="btn btn-sm btn-danger dashboardBtnDelete align-self-center">Borrar tablero</div>
     <?php endif;?>
     <div class="md-form input-group col-md-4 my-2 m-0 p-0">
-        <input type="search" class="form-control text-white grey darken-4 pl-2 rounded-0" name="dashboardSearch"
-            id="dashboardSearch" placeholder="Buscar...">
+        <input type="search" class="form-control bg-dark pl-2 rounded-0" name="dashboardSearch" id="dashboardSearch"
+            placeholder="Buscar...">
         <div class="input-group-append">
             <span class="btn btn-sm btn-primary m-0 input-group-text md-addon"><span><i
                         class="fa fa-search"></i></span>Buscar</span>
