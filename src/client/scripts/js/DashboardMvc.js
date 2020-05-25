@@ -1276,7 +1276,7 @@ class Controller {
                     var itemsLen = this.items.length;
                     newOption.on("click", function () {
                         selectOrder.html("");
-                        selectOrder.append($(`<option value="0">1</option>`));
+                        selectOrder.append($(`<option value="1">1</option>`));
                         for (let orderIndex = 1; orderIndex <= itemsLen; orderIndex++) {
                             selectOrder.append($(`<option value="${orderIndex + 1}">${orderIndex + 1}</option>`));
                         }
@@ -1297,7 +1297,11 @@ class Controller {
                     controller.model.moveDashboardItem(order, taskItemData.id, id_dashboard_list, function (result) {
                         console.log(result);
                         if (result !== false) {
-                            sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
+                            controller.model.findListWithId(id_dashboard_list, function (list) {
+                                list.html.find(".taskListItemsContainer").append(taskItemData.html);
+                                list.html.find(`.taskListItemsContainer .taskListItem:eq(${order - 1})`).before(taskItemData.html);
+                                sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
+                            });
                         } else {
                             sendNotification("No se ha podido cambiar de lista", "changeTaskListFail");
                         }
