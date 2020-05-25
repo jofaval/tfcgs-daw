@@ -50,7 +50,7 @@ $header = [
             </small>
         </a>
         <div class="d-none d-sm-block">
-            <button type="button" class="btn btn-sm shadow-none h-100 my-auto dropdown-toggle px-1"
+            <button type="button" class="btn btn-sm text-primary shadow-none h-100 my-auto dropdown-toggle px-1"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
