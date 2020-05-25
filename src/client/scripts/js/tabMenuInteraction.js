@@ -10,14 +10,16 @@ tabElements.hover(function () {
 }, function () {
     onExit($(this));
 });
+$(".tabs *").removeClass("text-dark text-white");
 var activeElement = $(".tabs .tab.active");
+$(".tabs .tab").addClass("text-dark");
 setTimeout(() => {
     activeElement.trigger('mouseenter');
 }, 250);
 
 function onEnter(currentTab) {
-    activeElement.removeClass("text-primary");
-    currentTab.addClass("text-primary");
+    activeElement.removeClass("text-primary").addClass("text-dark");
+    currentTab.addClass("text-primary").removeClass("text-dark");
     tabIndicator.stop().animate({
         "width": currentTab.innerWidth(),
         "left": currentTab.offset().left - (currentTab.outerWidth() - currentTab.innerWidth()),
@@ -26,8 +28,8 @@ function onEnter(currentTab) {
 }
 
 function onExit(currentTab) {
-    currentTab.removeClass("text-primary");
-    activeElement.addClass("text-primary");
+    currentTab.removeClass("text-primary").addClass("text-dark");
+    activeElement.addClass("text-primary").removeClass("text-dark");
     tabIndicator.stop().animate({
         "width": activeElement.innerWidth(),
         "left": activeElement.offset().left - (activeElement.outerWidth() - activeElement.innerWidth()),
