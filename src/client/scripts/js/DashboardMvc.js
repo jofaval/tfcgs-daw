@@ -449,7 +449,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: EXECUTION_HOME_PATH + "index.php?ctl=createDashboardsItemAssignation",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=queryDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -1321,7 +1321,7 @@ class Controller {
         console.log(taskItemData.id_dashboard_list);
         var confirmationModal = Modal.confirmationModal({
             title: "Deshabilitar elemento de la lista?",
-            body: `Confimar esta acción y deshabilitar <b>"${taskItemData.title}"</b>`,
+            body: `Confimar esta acción y ${bool ? "deshabilitar" : "habilitar"} <b>"${taskItemData.title}"</b>`,
             onAccept: function () {
                 controller.model.enableDashboardItem(taskItemData.id, !bool, function (result) {
                     console.log(result);
@@ -1447,11 +1447,11 @@ class Controller {
 
                 var startDate = $("#startDate");
                 startDate.focus();
-                var startDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.start_date).date, startDate, function (ct, $input) {}, "Y-m-d H:i:s");
+                var startDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.start_date).date || new Date(), startDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
                 var endDate = $("#endDate");
                 endDate.focus();
-                var endDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.end_date).date, endDate, function (ct, $input) {}, "Y-m-d H:i:s");
+                var endDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.end_date).date || new Date(), endDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
                 var assignationId;
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
