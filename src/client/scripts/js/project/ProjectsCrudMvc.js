@@ -421,11 +421,11 @@ class Controller {
             "title": "Crear proyecto",
             "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
-                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
+                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-dark">
                             <label for="title">Título</label>
                         </div>
                         <div class="md-form">
-                        <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
+                        <textarea class="md-textarea form-control text-dark" placeholder="" id="description" name="description">Test</textarea>
                         <label for="description">Descripción</label>
                         </div>
                         <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">

@@ -394,11 +394,11 @@ class Controller {
             "title": "Crear tablero",
             "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
             <div class="md-form">
-                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
+                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-dark">
                 <label for="title">Título</label>
             </div>
             <div class="md-form">
-            <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
+            <textarea class="md-textarea form-control text-dark" placeholder="" id="description" name="description">Test</textarea>
             <label for="description">Descripción</label>
             </div>
             <input type="hidden" name="id_project" value="${controller.model.projectId}" >
@@ -447,7 +447,7 @@ class Controller {
             "onOpen": function () {
                 $("#username").focus();
                 var userSearch = new UserSearchInput($(".usernameSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
                 $("#formCreateCollaborator").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -491,7 +491,7 @@ class Controller {
                         </form>`,
             "onOpen": function () {
                 var userSearch = new UserSearchInput($(".usernameSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
                 $("#formRemoveCollaborator").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -529,7 +529,7 @@ class Controller {
             "title": "Ver tablero",
             "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=viewDashboard" id="formViewDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
-                                <input type="text" placeholder="" id="dashboardName" name="dashboardName" value="" class="form-control text-white">
+                                <input type="text" placeholder="" id="dashboardName" name="dashboardName" value="" class="form-control text-dark">
                                 <label for="dashboardName">Nombre del tablero</label>
                             </div>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
@@ -562,7 +562,7 @@ class Controller {
             "title": "Ver diario",
             "content": `<form action=EXECUTION_HOME_PATH + "projects/id/${controller.model.projectId}/diary/" id="formViewDiary" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="md-form">
-                                <input type="date" placeholder="" id="diaryDate" name="diaryDate" value="" class="form-control text-white">
+                                <input type="date" placeholder="" id="diaryDate" name="diaryDate" value="" class="form-control text-dark">
                                 <label for="diaryDate">Fecha</label>
                             </div>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
@@ -602,7 +602,7 @@ class Controller {
                         </form>`,
             "onOpen": function () {
                 var userSearch = new UserSearchInput($(".usernameSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
 
                 controller.model.getProjectCollaborationRoles(function (result) {
                     if (result !== false) {
@@ -672,7 +672,7 @@ class Controller {
 
         if (noResultsFound) {
             controller.clearContainer(controller);
-            $(".collaboratorsContainer").append("<span class='text-center text-white'>No se han encontrado resultados.</span>");
+            $(".collaboratorsContainer").append("<span class='text-center text-dark'>No se han encontrado resultados.</span>");
         }
 
         console.log(controller.model.workingCollaborators);

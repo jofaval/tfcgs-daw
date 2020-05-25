@@ -17,7 +17,7 @@ var $taskList = $(`
         <div class="pb-3 taskListInputContainer">
             <div class="col d-flex taskListInputRow">
                 <div class="input-group md-form my-0 taskListInputGroup">
-                    <input type="text" class="form-control taskListInput text-white" placeholder="Título">
+                    <input type="text" class="form-control taskListInput text-dark" placeholder="Título">
                     <div class="input-group-append taskListInputBtnContainer">
                         <button class="btn addTask btn-sm btn-primary m-0 taskListInputBtn">+</button>
                     </div>
@@ -36,7 +36,7 @@ var $referenceTaskList = $(`
 
 var $taskListItem = $(`
 <div class="taskListItem grey lighten-4 card mb-2" draggable="true" draggable="true">
-    <div class="taskListItemBody hide-on-blur  grey lighten-4 text-white hide card-body px-2 py-1">
+    <div class="taskListItemBody hide-on-blur  grey lighten-4 text-dark hide card-body px-2 py-1">
         <p class="card-text taskListItemTitle m-0">project description.</p>
         <a class="position-absolute dashboardBtnEdit p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-dark align-self-center">
             <i class="fa fa-times"></i>
@@ -64,7 +64,7 @@ var $dashboardModal = $(`
             <div class="col-sm-8 order-2 order-sm-1">
                 <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-align-justify mr-2"></span>Descripción</h4>
                 <div class="md-form my-0">
-                    <textarea id="dashboardModalDescription" class="md-textarea form-control text-white" rows="3"></textarea>
+                    <textarea id="dashboardModalDescription" class="md-textarea form-control text-dark" rows="3"></textarea>
                     <label for="dashboardModalDescription">Descripción</label>
                 </div>
                 <div class="row dashboardModalSaveChanges">
@@ -72,7 +72,7 @@ var $dashboardModal = $(`
                 </div>
                 <h4 class="dashboardModalCommentsTitle"><span class="fa fa-comments mr-2"></span>Comentarios</h4>
                 <div class="md-form input-group mb-4">
-                    <input type="text" class="form-control text-white" id="comment">
+                    <input type="text" class="form-control text-dark" id="comment">
                     <label for="comment" class="">Comentario</label>
                     <div class="input-group-append">
                         <span class="input-group-text dashboardModalCommentBtn md-addon btn btn-sm btn-primary">Comentar</span>
@@ -1364,11 +1364,11 @@ class Controller {
             "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createDashboardItemAssignation" id="formAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row">
                                 <div class="md-form col-sm">
-                                    <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
+                                    <input type="text" name="startDate" id="startDate" class="form-control text-dark" aria-describedby="startDateTime">
                                     <label for="startDate">Fecha inicio</label>
                                 </div>
                                 <div class="md-form col-sm">
-                                    <input type="text" name="endDate" id="endDate" class="form-control text-white" aria-describedby="endDateTime">
+                                    <input type="text" name="endDate" id="endDate" class="form-control text-dark" aria-describedby="endDateTime">
                                     <label for="endDate">Fecha límite</label>
                                 </div>
                             </div>
@@ -1393,7 +1393,7 @@ class Controller {
                 var endDateUtils = new DateTimePickerUtils(newDate, endDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
                 $("#formAssignDashboard").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -1424,11 +1424,11 @@ class Controller {
             "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardItemAssignation" id="formModifyAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row">
                                 <div class="md-form col-sm">
-                                    <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
+                                    <input type="text" name="startDate" id="startDate" class="form-control text-dark" aria-describedby="startDateTime">
                                     <label for="startDate">Fecha inicio</label>
                                 </div>
                                 <div class="md-form col-sm">
-                                    <input type="text" name="endDate" id="endDate" class="form-control text-white" aria-describedby="endDateTime">
+                                    <input type="text" name="endDate" id="endDate" class="form-control text-dark" aria-describedby="endDateTime">
                                     <label for="endDate">Fecha límite</label>
                                 </div>
                             </div>
@@ -1451,7 +1451,7 @@ class Controller {
 
                 var assignationId;
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
                 userSearch.whenBtnSearchClicked = function (event) {
                     var event = event || window.event;
                     event.stopPropagation();
@@ -1521,7 +1521,7 @@ class Controller {
                         </form>`,
             "onOpen": function () {
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
                 $("#formRemoveAssignation").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();

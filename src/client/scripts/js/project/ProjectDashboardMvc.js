@@ -426,11 +426,11 @@ class Controller {
             "title": "Crear tablero",
             "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
             <div class="md-form">
-                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
+                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-dark">
                 <label for="title">Título</label>
             </div>
             <div class="md-form">
-            <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
+            <textarea class="md-textarea form-control text-dark" placeholder="" id="description" name="description">Test</textarea>
             <label for="description">Descripción</label>
             </div>
             <input type="hidden" name="id_project" value="${controller.model.projectId}" >
