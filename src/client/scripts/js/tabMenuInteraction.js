@@ -1,5 +1,6 @@
 var tabIndicator = $(".tabActiveIndicator");
 var tabIndicatorRadius = tabIndicator.width();
+var animationTime = 200;
 
 tabIndicator.css("margin-top", `-${tabIndicator.outerHeight()}px`);
 console.log(tabIndicatorRadius);
@@ -23,7 +24,7 @@ function onEnter(currentTab) {
     tabIndicator.stop().animate({
         "width": currentTab.innerWidth(),
         "left": currentTab.offset().left - (currentTab.outerWidth() - currentTab.innerWidth()),
-    }, 200);
+    }, animationTime * .75);
     //tabIndicator.prependTo(`#${currentTab.prop("id")}`).show(400, 'swing', function () {});
 }
 
@@ -33,7 +34,7 @@ function onExit(currentTab) {
     tabIndicator.stop().animate({
         "width": activeElement.innerWidth(),
         "left": activeElement.offset().left - (activeElement.outerWidth() - activeElement.innerWidth()),
-    }, 200);
+    }, animationTime * 1.25);
     //tabIndicator.prependTo(`#${activeElement.prop("id")}`).show(400, 'swing', function () {});
 }
 
