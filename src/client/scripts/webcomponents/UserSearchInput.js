@@ -126,12 +126,13 @@ class UserSearchInput {
             container.html("");
             if (result.length > 0) {
                 userSearchClass.showResults(userSearchClass);
+                result.forEach(usernameData => {
+                    userSearchClass.loadUser(userSearchClass, container, usernameData.username);
+                });
             } else {
                 userSearchClass.hideResults(userSearchClass);
             }
-            result.forEach(usernameData => {
-                userSearchClass.loadUser(userSearchClass, container, usernameData.username);
-            });
+
             $(window).on("click", function () {
                 userSearchClass.hideResults(userSearchClass);
                 $(window).off("click");
