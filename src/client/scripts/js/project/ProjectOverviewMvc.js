@@ -501,12 +501,13 @@ class Controller {
                     controller.model.removeCollaborator(username, function (result) {
                         console.log(result);
                         if (result) {
-                            controller.model.findCollaborator(function (key, collaborator) {
+                            controller.model.findCollaborator(username, function (key, collaborator) {
+                                collaborator.html.remove();
                                 delete controller.model.collaborators[key];
                                 controller.modifyNumberOfCollaborators(controller);
+                                controller.clearContainer(controller);
+                                controller.reload(controller);
                             });
-                            controller.clearContainer(controller);
-                            controller.reload(controller);
                             sendNotification("Se ha eliminado con éxito", "projectRemoveCollaboratorSuccess");
                             modal.close();
                         } else {
