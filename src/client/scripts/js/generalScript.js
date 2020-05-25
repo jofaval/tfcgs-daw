@@ -46,6 +46,7 @@ $(window).on("load", function () {
     });
 
     $("#signinFormBtnDropdown").click();
+    $("input").focus().blur();
 
     vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
