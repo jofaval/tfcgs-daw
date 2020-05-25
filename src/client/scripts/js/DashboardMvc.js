@@ -527,6 +527,7 @@ class View {
     visualizeTaskListCreation(container) {
         var taskListInput = $taskList.clone();
 
+        taskListInput.addClass("d-block");
         taskListInput.prop("id", "taskListInputCreation");
         taskListInput.find(".taskListTitle").remove();
         taskListInput.find(".taskListItemsContainer").remove();
