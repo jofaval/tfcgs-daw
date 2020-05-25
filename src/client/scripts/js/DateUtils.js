@@ -5,6 +5,8 @@ class DateUtils {
 
     constructor(date, convert = true) {
         this.date = date;
+        console.log(date, this.date);
+
 
         if (convert) {
             if (!this.stringToDate()) {
