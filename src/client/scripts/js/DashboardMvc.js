@@ -127,7 +127,7 @@ var $dashboardAssignationFinishedStateInput = $(`
 </div>
 `);
 var $dashboardAssignation = $(`
-<div class="w-auto dashboardAssignation text-white small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
+<div class="w-auto dashboardAssignation text-dark small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
     <span><i class="fa fa-clock-o"></i></span>
     <span class="startDate"></span>
     <span class="">&nbsp;-&nbsp;</span>
@@ -1105,7 +1105,7 @@ class Controller {
         });
 
         if (taskItemData.assigned === true) {
-            controller.dashboardModalAssignedTask(taskItemData, controller, taskItem);
+            controller.dashboardModalAssignedTask(modal, taskItemData, controller, taskItem);
         }
 
         $(".dashboardModalTitle").text(taskItemData.title);
@@ -1156,7 +1156,7 @@ class Controller {
         });
 
         $("#dashboardModalActionModifyAssignation").on("click", function (event) {
-            controller.dashboardAssignationModifyModalEvent(controller, taskItemData)
+            controller.dashboardAssignationModifyModalEvent(modal, controller, taskItemData)
         });
 
         $("#dashboardModalActionDetails").on("click", function (event) {
@@ -1423,7 +1423,7 @@ class Controller {
         });
     }
 
-    dashboardAssignationModifyModalEvent(controller, taskItemData) {
+    dashboardAssignationModifyModalEvent(dashboardModal, controller, taskItemData) {
         var modal = Modal.modal({
             "title": "Asignar tarea",
             "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardItemAssignation" id="formModifyAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
@@ -1503,6 +1503,19 @@ class Controller {
                         console.log(result);
                         if (result !== false) {
                             sendNotification("Se ha modificado con éxito", "modifyAsignateTaskSuccess");
+                            dashboardModal["$overlay"].find(".dashboardAssignation").remove();
+                            taskItemData.html.find(".dashboardAssignation").remove();
+                            console.log(result);
+                            controller.view.visualizeDashboardAssignation(taskItemData.html, startDateVal, endDateVal, taskItemData.finished);
+                            taskItemData.start_date = startDateVal;
+                            taskItemData.end_date = endDateVal;
+                            console.log(dashboardModal["$overlay"].find(".dashboardAssignationContainer"));
+
+                            controller.view.visualizeDashboardAssignation(
+                                dashboardModal["$overlay"].find(".dashboardAssignationContainer"),
+                                startDateVal, endDateVal,
+                                taskItemData.finished
+                            ).removeClass("ml-auto");
                             modal.close();
                         } else {
                             sendNotification("No se ha podido asignar", "modifyAsignateTaskFail");
@@ -1549,7 +1562,7 @@ class Controller {
         });
     }
 
-    dashboardModalAssignedTask(taskItemData, controller, taskItem) {
+    dashboardModalAssignedTask(modal, taskItemData, controller, taskItem) {
         console.log("FUNCIONA", taskItemData);
         console.log($dashboardAssignationContainer);
 
@@ -1569,14 +1582,14 @@ class Controller {
         assignationCheckbox.prop("checked", taskItemData.finished != 0);
         assignationCheckbox.unbind("change");
         assignationCheckbox.on("change", function () {
-            assignationItem = controller.dashboardAssignationModalCheckboxEvent(assignationCheckbox, controller, taskItemData, taskItem, assignationItem);
+            assignationItem = controller.dashboardAssignationModalCheckboxEvent(modal, assignationCheckbox, controller, taskItemData, taskItem, assignationItem);
         });
 
         console.log("test", assignationCheckbox);
         $("#dashboardModalDescription").after($dashboardAssignationContainer);
     }
 
-    dashboardAssignationModalCheckboxEvent(assignationCheckbox, controller, taskItemData, taskItem, assignationItem) {
+    dashboardAssignationModalCheckboxEvent(modal, assignationCheckbox, controller, taskItemData, taskItem, assignationItem) {
         console.log("AQUI", assignationCheckbox.is(":checked"));
         var checkboxValue = assignationCheckbox.is(":checked");
         controller.model.setAssignationFinishState(taskItemData.assignation_id, checkboxValue, function (result) {
@@ -1584,7 +1597,8 @@ class Controller {
             if (result !== false) {
                 taskItemData.finished = checkboxValue;
                 sendNotification("Se ha cambiado el estado", "changeFinishStatusSuccess");
-                taskItem.find(".dashboardAssignation").remove();
+                modal["$overlay"].find(".dashboardAssignation").remove();
+                taskItemData.html.find(".dashboardAssignation").remove();
                 controller.view.visualizeDashboardAssignation(taskItem, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
                 assignationItem.remove();
                 assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
