@@ -433,7 +433,7 @@ class Model {
         $.ajax({
             url: EXECUTION_HOME_PATH + "index.php?ctl=createDashboardsItemAssignation",
             data: {
-                "id_dashboard_item": taskItemData.id,
+                "id_dashboard_item": taskItemId,
                 "start_date": startDate,
                 "end_date": endDate,
                 "assigned_to": username,
