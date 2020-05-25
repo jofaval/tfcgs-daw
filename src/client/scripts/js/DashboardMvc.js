@@ -483,7 +483,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardsItemAssignation",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=deleteDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
