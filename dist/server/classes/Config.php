@@ -2,10 +2,10 @@
 
 class Config
 {
-    public static $mvc_bd_hostname = "localhost";
-    public static $mvc_bd_nombre = "origen";
-    public static $mvc_bd_usuario = "test";
-    public static $mvc_bd_clave = "";
+    public static $mvc_bd_hostname = "sql101.epizy.com";
+    public static $mvc_bd_nombre = "epiz_25783103_origen";
+    public static $mvc_bd_usuario = "epiz_25783103";
+    public static $mvc_bd_clave = "C4fJuiphIl";
     public static $mvc_img_exts = ["image/png", "image/jpg", "image/jpeg", "image/gif"];
     public static $mvc_vis_css = [];
     public static $mvc_vis_scripts = [];
@@ -22,6 +22,7 @@ class Config
     public static $PROJECT_ACCESS_MANAGER = 0;
     public static $PROJECT_ACCESS_ADMIN = 0;
     public static $PROJECT_ACCESS_CREATOR = 0;
+    public static $EXECUTION_HOME_PATH = "/daw/client/";
     public static $notsigned_ctls = [
         "signin",
         "signup",

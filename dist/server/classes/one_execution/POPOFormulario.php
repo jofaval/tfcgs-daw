@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Database Mapping</title>
-    <link rel="stylesheet" href="/daw/client/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/daw/client/styles/jquery-ui.min.css">
-    <link rel="stylesheet" href="/daw/client/styles/mdb.min.css">
-    <link rel="stylesheet" href="/daw/client/styles/main.css">
-    <link rel="stylesheet" href="/daw/client/styles/loader.css">
-    <link rel="stylesheet" href="/daw/client/styles/floating-label.css">
-    <link rel="stylesheet" href="/daw/client/styles/inputs.css">
-    <link rel="stylesheet" href="/daw/client/styles/jquery.sweet-modal.min.css">
+    <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/mdb.min.css">
+    <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/main.css">
+    <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/loader.css">
+    <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/floating-label.css">
+    <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/inputs.css">
+    <link rel="stylesheet" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>styles/jquery.sweet-modal.min.css">
 </head>
 
 <body>
@@ -110,22 +110,22 @@ if (isset($_REQUEST["createPopo"])) {
     document.querySelector("#dbName").value = "origen";
     </script>
 </body>
-<script src="/daw/client/scripts/libs/jquery.min.js"></script>
-<script src="/daw/client/scripts/libs/jquery-ui.min.js"></script>
-<script src="/daw/client/scripts/libs/popper.min.js"></script>
-<script src="/daw/client/scripts/libs/bootstrap.min.js"></script>
-<script src="/daw/client/scripts/libs/bootstrap.bundle.min.js"></script>
-<script src="/daw/client/scripts/libs/mdb.min.js"></script>
-<script src="/daw/client/scripts/libs/jquery.sweet-modal.min.js"></script>
-<script src="/daw/client/scripts/js/Modal.js"></script>
-<script src="/daw/client/scripts/js/utils.js"></script>
-<script src="/daw/client/scripts/js/ViewUtils.js"></script>
-<script src="/daw/client/scripts/js/inputs.js"></script>
-<script src="/daw/client/scripts/js/AjaxController.js"></script>
-<script src="/daw/client/scripts/js/Validator.js"></script>
-<script src="/daw/client/scripts/js/FormValidator.js"></script>
-<script src="/daw/client/scripts/js/preloader.js"></script>
-<script src="/daw/client/scripts/libs/summernote-bs4.min.js"></script>
-<script src="/daw/client/scripts/js/generalScript.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/jquery.min.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/jquery-ui.min.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/popper.min.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/bootstrap.min.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/bootstrap.bundle.min.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/mdb.min.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/jquery.sweet-modal.min.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/Modal.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/utils.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/ViewUtils.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/inputs.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/AjaxController.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/Validator.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/FormValidator.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/preloader.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/libs/summernote-bs4.min.js"></script>
+<script src="<?php echo Config::$EXECUTION_HOME_PATH; ?>scripts/js/generalScript.js"></script>
 
 </html>

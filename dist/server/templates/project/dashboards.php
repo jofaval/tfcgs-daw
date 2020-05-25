@@ -52,10 +52,10 @@ document.querySelector('.tabContentContainer').classList.remove("px-2");
             <nav aria-label="Page navigation example" class="bg-transparent">
                 <ul class="pagination pg-blue mb-0">
                     <li class="page-item nav-previous">
-                        <a class="page-link text-white" tabindex="-1">Anterior</a>
+                        <a class="page-link text-dark" tabindex="-1">Anterior</a>
                     </li>
                     <li class="page-item nav-next">
-                        <a class="page-link text-white">Siguiente</a>
+                        <a class="page-link text-dark">Siguiente</a>
                     </li>
                 </ul>
             </nav>

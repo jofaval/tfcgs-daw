@@ -10,19 +10,19 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/client/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Admin",
-        "link" => "/daw/client/admin/",
+        "link" => Config::$EXECUTION_HOME_PATH . "admin/",
         "active" => false,
         "icon" => "cogs",
     ],
     [
         "name" => "POPOs",
-        "link" => "/daw/client/admin/popo/",
+        "link" => Config::$EXECUTION_HOME_PATH . "admin/popo/",
         "active" => true,
         "icon" => "table",
     ],

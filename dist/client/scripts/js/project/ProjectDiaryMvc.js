@@ -9,7 +9,7 @@ class Model {
 
         var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
-            url: "/daw/client/index.php?ctl=queryProjectDiary",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=queryProjectDiary",
             data: {
                 "day": dateInString,
                 "id_project": model.projectId,
@@ -34,7 +34,7 @@ class Model {
         content = encodeURI(content);
         var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
-            url: "/daw/client/index.php?ctl=createProjectDiary",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createProjectDiary",
             data: {
                 "day": dateInString,
                 "id_project": model.projectId,
@@ -53,7 +53,7 @@ class Model {
         content = encodeURI(content);
         var dateInString = new DateUtils(model.currentDate).printDateWithFormat("Y-m-d");
         $.ajax({
-            url: "/daw/client/index.php?ctl=updateProjectDiary",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=updateProjectDiary",
             data: {
                 "day": dateInString,
                 "id_project": model.projectId,
@@ -466,7 +466,7 @@ class Controller {
             }
             console.log("result cargarlo", decodeURI(content));
             var dateInFormat = new DateUtils(controller.model.currentDate).printDateWithFormat("Y-m-d");
-            changeURL(`/daw/client/projects/id/${controller.model.projectId}/diary/date/${dateInFormat}/`);
+            changeURL(`${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/diary/date/${dateInFormat}/`);
             controller.view.visualizeContent($(".note-editable.card-block"), decodeURI(content))
             controller.generateNavigationScheme(controller);
         });

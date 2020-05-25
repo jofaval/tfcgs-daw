@@ -1,4 +1,4 @@
-var $paginationItem = $(`<li class="page-item"><a class="page-link text-white"></a></li>`);
+var $paginationItem = $(`<li class="page-item"><a class="page-link text-dark"></a></li>`);
 var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
 
 var $projectRow = $(`<div class="row projectCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
@@ -39,7 +39,7 @@ class Model {
     loadProjects(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/client/index.php?ctl=getProjectsOfUser",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=getProjectsOfUser",
             success: function (projects) {
                 model.projects = projects;
                 model.workingProjects = projects;
@@ -52,7 +52,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=createProjects",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createProjects",
             data: {
                 "title": title,
                 "description": description,
@@ -69,7 +69,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=bookmarkProject",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=bookmarkProject",
             data: {
                 "id_project": model.projectId,
                 "title": json.title,
@@ -266,7 +266,7 @@ class Controller {
     }
 
     pageChanged(controller, pageIndex) {
-        var url = `/daw/client/projects/rows/${localStorage.getItem("numberOfRowsInProjects")}/page/${pageIndex}/`;
+        var url = `${EXECUTION_HOME_PATH}projects/rows/${localStorage.getItem("numberOfRowsInProjects")}/page/${pageIndex}/`;
 
         var search = $("#projectSearch").val();
         if (search.length > 0) {
@@ -314,7 +314,7 @@ class Controller {
         if (noResultsFound) {
             controller.clearContainer(controller);
 
-            $(".projectsContainer").text(controller.model.project.length > 0 ? "No se han encontrado resultados." : "No hay proyectos");
+            $(".projectsContainer").text(controller.model.projects.length > 0 ? "No se han encontrado resultados." : "No hay proyectos");
         }
 
         console.log(controller.model.workingProjects);
@@ -389,9 +389,9 @@ class Controller {
         bookmarkedIcon.on("click", this.bookmarkProject(controller, json, bookmarkedIcon));
         controller.view.visualizeProjectFlags(project, json.created != 0, json.bookmarked != 0);
 
-        var url = `/daw/client/projects/id/${json.id}/`;
+        var url = `${EXECUTION_HOME_PATH}projects/id/${json.id}/`;
         project.find(".projectCardBtnView").prop("href", url);
-        project.find(".projectCardBgImg").prop("src", `/daw/client/img/projects/${json.id}/bg.png`);
+        project.find(".projectCardBgImg").prop("src", `${EXECUTION_HOME_PATH}img/projects/${json.id}/bg.png`);
         project.find(".projectReadMore").prop("href", url);
 
         return project;
@@ -419,13 +419,13 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Crear proyecto",
-            "content": `<form action="/daw/client/index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createProjects" id="formCreateProject" class="col-sm-10  p-3 mx-auto" method="POST">
                         <div class="md-form">
-                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
+                            <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-dark">
                             <label for="title">Título</label>
                         </div>
                         <div class="md-form">
-                        <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
+                        <textarea class="md-textarea form-control text-dark" placeholder="" id="description" name="description">Test</textarea>
                         <label for="description">Descripción</label>
                         </div>
                         <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
@@ -445,10 +445,11 @@ class Controller {
                             modal.close();
                             controller.addProject(controller, result[0]);
                             controller.reload(controller);
-                            window.location.href = `/daw/client/projects/id/${result[0]["id"]}/`;
+                            window.location.href = `${EXECUTION_HOME_PATH}projects/id/${result[0]["id"]}/`;
                         }
                     });
 
+                    return false;
                 });
             },
         });

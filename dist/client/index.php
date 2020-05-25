@@ -49,17 +49,17 @@ if (!in_array($ctl, Config::$dont_need_db_ctls)) {
     try {
         $model = Model::getInstance();
     } catch (\Throwable $th) {
-        header("Location: /daw/client/maintenance/");
+        header("Location: " . Config::$EXECUTION_HOME_PATH . "maintenance/");
     }
 }
 
 if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls) && !in_array($ctl, Config::$dont_need_db_ctls)) {
-    header('Location: /daw/client/notuseragent/');
+    header('Location: " . Config::$EXECUTION_HOME_PATH . "notuseragent/');
 }
 
 //if (!Config::$developmentMode) {
 if (!$sessions->doesSessionExist("username") && !in_array($ctl, Config::$notsigned_ctls) && !in_array($ctl, Config::$dont_need_db_ctls)) {
-    header("Location: /daw/client/notsigned/");
+    header("Location: " . Config::$EXECUTION_HOME_PATH . "notsigned/");
 }
 //}
 
@@ -96,15 +96,15 @@ if (isset($_REQUEST["ctl"])) {
     if (isset($map[$ctl])) {
         $ruta = $ctl;
     } else {
-        header('Location: /daw/client/no-action/');
+        header('Location: " . Config::$EXECUTION_HOME_PATH . "no-action/');
         exit;
     }
 } else {
     if (!$sessions->doesSessionExist("username")) {
-        header("Location: /daw/client/signin/");
+        header("Location: " . Config::$EXECUTION_HOME_PATH . "signin/");
         $ruta = "signin";
     } else {
-        header("Location: /daw/client/projects/");
+        header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/");
         $ruta = "projects";
     }
 }
@@ -116,10 +116,10 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
         call_user_func(array(new $controlador['controller'], $controlador['action']));
     } else {
         //No tiene suficiente nivel de acceso
-        header('Location: /daw/client/access/');
+        header('Location: " . Config::$EXECUTION_HOME_PATH . "access/');
     }
 } else {
     //No se ha podido ejecutar
-    header('Location: /daw/client/execution-error/');
+    header('Location: " . Config::$EXECUTION_HOME_PATH . "execution-error/');
     exit;
 }

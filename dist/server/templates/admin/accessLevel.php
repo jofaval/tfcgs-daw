@@ -10,19 +10,19 @@
 <?php $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/client/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Admin",
-        "link" => "/daw/client/admin/",
+        "link" => Config::$EXECUTION_HOME_PATH . "admin/",
         "active" => false,
         "icon" => "cogs",
     ],
     [
         "name" => "Acceso",
-        "link" => "/daw/client/admin/access-level/",
+        "link" => Config::$EXECUTION_HOME_PATH . "admin/access-level/",
         "active" => true,
         "icon" => "key",
     ],
@@ -30,7 +30,8 @@
 
 <?php ob_start()?>
 
-<form action="/daw/client/index.php?ctl=accessLevel" method="POST" class="bg-white rounded shadow p-5">
+<form action="<?php echo Config::$EXECUTION_HOME_PATH; ?>index.php?ctl=accessLevel" method="POST"
+    class="bg-white rounded shadow p-5">
     <h2>Nueva ruta</h2>
     <div class="md-form">
         <input type="text" class="form-control" placeholder="" name="newRoute" id="newRoute" />

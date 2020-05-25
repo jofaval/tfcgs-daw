@@ -16,7 +16,7 @@ class DateTimePickerUtils {
         var datetimepicker = datepickerElement.datetimepicker({
             value: new DateUtils(date, false).printDateWithFormat(format.replace("-", ".")),
             format: format,
-            theme: 'dark',
+            theme: 'light',
             dayOfWeekStart: 1,
             allowTimes: timesArray,
             onSelectDate: function (ct, $input) {

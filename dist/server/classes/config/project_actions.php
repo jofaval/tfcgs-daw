@@ -6,7 +6,7 @@ $viewParams["actionGroups"] = [
         "actions" => [
             [
                 "name" => "Añadir tablero",
-                "link" => "/daw/client/projects/id/" . $viewParams["id"] . "/dashboards/",
+                "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/dashboards/",
                 "icon" => "plus",
                 "id" => "AddDashboard",
                 "color" => "blue",
@@ -14,7 +14,7 @@ $viewParams["actionGroups"] = [
             ],
             [
                 "name" => "Ver tablero",
-                "link" => "/daw/client/projects/id/" . $viewParams["id"] . "/dashboards/",
+                "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/dashboards/",
                 "icon" => "eye",
                 "id" => "ViewDashboard",
                 "color" => "blue",
@@ -22,7 +22,7 @@ $viewParams["actionGroups"] = [
             ],
             [
                 "name" => "Ver tareas asignadas",
-                "link" => "/daw/client/projects/id/" . $viewParams["id"] . "/overview/assigned-tasks/",
+                "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/overview/assigned-tasks/",
                 "icon" => "tasks",
                 "id" => "DashboardTasks",
                 "color" => "blue",
@@ -34,7 +34,7 @@ $viewParams["actionGroups"] = [
         "actions" => [
             [
                 "name" => "Ver diario de hoy",
-                "link" => "/daw/client/projects/id/" . $viewParams["id"] . "/diary/date/" . $viewParams["diaryDate"] . "/",
+                "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/diary/date/" . $viewParams["diaryDate"] . "/",
                 "icon" => "calendar-check-o",
                 "id" => "TodayDiary",
                 "color" => "green",
@@ -42,7 +42,7 @@ $viewParams["actionGroups"] = [
             ],
             [
                 "name" => "Ir a selección de fecha",
-                "link" => "/daw/client/projects/id/" . $viewParams["id"] . "/diary/",
+                "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/diary/",
                 "icon" => "calendar",
                 "id" => "Diary",
                 "color" => "green",

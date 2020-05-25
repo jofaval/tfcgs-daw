@@ -66,7 +66,7 @@ $(".projectBtnAdd").on("click", function (event) {
 
     $.sweetModal({
         title: 'Create dashboard',
-        content: `<form action="/daw/client/index.php?ctl=createProjects" class="col-sm-10  p-3 mx-auto" method="POST">
+        content: `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createProjects" class="col-sm-10  p-3 mx-auto" method="POST">
                 <div class="md-form">
                     <input type="text" placeholder="" id="title" name="title" class="form-control">
                     <label for="title">Title</label>

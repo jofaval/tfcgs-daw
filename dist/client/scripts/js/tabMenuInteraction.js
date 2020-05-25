@@ -1,5 +1,6 @@
 var tabIndicator = $(".tabActiveIndicator");
 var tabIndicatorRadius = tabIndicator.width();
+var animationTime = 200;
 
 tabIndicator.css("margin-top", `-${tabIndicator.outerHeight()}px`);
 console.log(tabIndicatorRadius);
@@ -10,28 +11,30 @@ tabElements.hover(function () {
 }, function () {
     onExit($(this));
 });
+$(".tabs *").removeClass("text-dark text-white");
 var activeElement = $(".tabs .tab.active");
+$(".tabs .tab").addClass("text-dark");
 setTimeout(() => {
     activeElement.trigger('mouseenter');
 }, 250);
 
 function onEnter(currentTab) {
-    activeElement.removeClass("text-primary");
-    currentTab.addClass("text-primary");
+    activeElement.removeClass("text-primary").addClass("text-dark");
+    currentTab.addClass("text-primary").removeClass("text-dark");
     tabIndicator.stop().animate({
         "width": currentTab.innerWidth(),
         "left": currentTab.offset().left - (currentTab.outerWidth() - currentTab.innerWidth()),
-    }, 200);
+    }, animationTime * .75);
     //tabIndicator.prependTo(`#${currentTab.prop("id")}`).show(400, 'swing', function () {});
 }
 
 function onExit(currentTab) {
-    currentTab.removeClass("text-primary");
-    activeElement.addClass("text-primary");
+    currentTab.removeClass("text-primary").addClass("text-dark");
+    activeElement.addClass("text-primary").removeClass("text-dark");
     tabIndicator.stop().animate({
         "width": activeElement.innerWidth(),
         "left": activeElement.offset().left - (activeElement.outerWidth() - activeElement.innerWidth()),
-    }, 200);
+    }, animationTime * 1.25);
     //tabIndicator.prependTo(`#${activeElement.prop("id")}`).show(400, 'swing', function () {});
 }
 

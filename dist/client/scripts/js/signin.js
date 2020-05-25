@@ -94,7 +94,7 @@ function togglePanel(toHide, toShow, toRight) {
         mainPanel.removeClass("moveImage");
     }
 
-    changeURL(`/daw/client/${toRight ? "signin" : "signup"}/`);
+    changeURL(`${EXECUTION_HOME_PATH}${toRight ? "signin" : "signup"}/`);
 
     writeInElement(toShow.find("h2"), panelInformationTextArray[textIndex][0], intervalTime);
     writeInElement(toShow.find("p"), panelInformationTextArray[textIndex][1], intervalTime / 2);
@@ -159,7 +159,7 @@ doesUsernameExist();
 
 function doesUsernameExist() {
     $.ajax({
-        url: "/daw/client/index.php?ctl=doesUsernameExists",
+        url: EXECUTION_HOME_PATH + "index.php?ctl=doesUsernameExists",
         data: {
             "username": signupUsername.val(),
         },
@@ -189,7 +189,7 @@ doesEmailExist();
 
 function doesEmailExist() {
     $.ajax({
-        url: "/daw/client/index.php?ctl=doesEmailExists",
+        url: EXECUTION_HOME_PATH + "index.php?ctl=doesEmailExists",
         data: {
             "email": signupEmail.val(),
         },

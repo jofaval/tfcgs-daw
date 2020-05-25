@@ -13,7 +13,7 @@ Header set Cache-Control "max-age=300, public"
 </FilesMatch>
 
 #HTTP Error redirections
-ErrorDocument 404 /daw/client/404/
+ErrorDocument 404 ./404/
 RewriteRule ^404[/]?$ ./index.php?ctl=404 [L]
 
 #Main pages
@@ -71,6 +71,7 @@ RewriteRule ^projects/id/([^/]+)/diary/date[/]?$ ./index.php?ctl=project&id=$1&t
 RewriteRule ^projects/id/([^/]+)/diary/date/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=diary&date=$2 [L]
 
 #Profile
+RewriteRule ^profile/not-found[/]?$ ./index.php?ctl=profileNotFound [L]
 RewriteRule ^profile[/]?$ ./index.php?ctl=profile [L]
 RewriteRule ^profile/change-pass[/]?$ ./index.php?ctl=profile&tabName=pass [L]
 RewriteRule ^profile/change-image[/]?$ ./index.php?ctl=profile&tabName=image [L]

@@ -10,19 +10,19 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/client/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Admin",
-        "link" => "/daw/client/admin/",
+        "link" => Config::$EXECUTION_HOME_PATH . "admin/",
         "active" => false,
         "icon" => "cogs",
     ],
     [
         "name" => "Ver tablas",
-        "link" => "/daw/client/admin/get-data-from-table/" . $viewParams["tableName"] . "/",
+        "link" => Config::$EXECUTION_HOME_PATH . "admin/get-data-from-table/" . $viewParams["tableName"] . "/",
         "active" => true,
         "icon" => "database",
     ],

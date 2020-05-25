@@ -1,4 +1,4 @@
-var $paginationItem = $(`<li class="page-item"><a class="page-link text-white"></a></li>`);
+var $paginationItem = $(`<li class="page-item"><a class="page-link text-dark"></a></li>`);
 var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
 
 var $dashboardRow = $(`<div class="row dashboardCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
@@ -40,7 +40,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=getDashboardsOfProject",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=getDashboardsOfProject",
             data: {
                 "id_project": model.projectId,
                 "idProjectForAccessLevel": model.projectId,
@@ -57,7 +57,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=createDashboards",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createDashboards",
             data: {
                 "title": title,
                 "description": description,
@@ -75,7 +75,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=bookmarkDashboard",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=bookmarkDashboard",
             data: {
                 "id_project": model.projectId,
                 "title": json.title,
@@ -279,7 +279,7 @@ class Controller {
     }
 
     pageChanged(controller, pageIndex) {
-        var url = `/daw/client/projects/id/${controller.model.projectId}/dashboards/rows/${localStorage.getItem("numberOfRowsInDashboards")}/page/${pageIndex}/`;
+        var url = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/rows/${localStorage.getItem("numberOfRowsInDashboards")}/page/${pageIndex}/`;
 
         var search = $("#dashboardSearch").val();
         if (search.length > 0) {
@@ -393,11 +393,11 @@ class Controller {
         bookmarkedIcon.on("click", this.bookmarkDashboard(controller, json, bookmarkedIcon));
         controller.view.visualizeDashboardFlags(dashboard, json.created != 0, json.bookmarked != 0);
 
-        var url = `/daw/client/projects/id/${controller.model.projectId}/dashboards/${json.title}/`;
+        var url = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/${json.title}/`;
         dashboard.find(".dashboardCardBtnView").prop("href", url);
         dashboard.find(".dashboardReadMore").prop("href", url);
 
-        dashboard.find(".dashboardCardBgImg").prop("src", `/daw/client/img/projects/${controller.model.projectId}/dashboards/${json.title}/bg.png`);
+        dashboard.find(".dashboardCardBgImg").prop("src", `${EXECUTION_HOME_PATH}img/projects/${controller.model.projectId}/dashboards/${json.title}/bg.png`);
 
         return dashboard;
     }
@@ -424,13 +424,13 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Crear tablero",
-            "content": `<form action="/daw/client/index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createDashboards" id="formCreateDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
             <div class="md-form">
-                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-white">
+                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-dark">
                 <label for="title">Título</label>
             </div>
             <div class="md-form">
-            <textarea class="md-textarea form-control text-white" placeholder="" id="description" name="description">Test</textarea>
+            <textarea class="md-textarea form-control text-dark" placeholder="" id="description" name="description">Test</textarea>
             <label for="description">Descripción</label>
             </div>
             <input type="hidden" name="id_project" value="${controller.model.projectId}" >
@@ -452,7 +452,7 @@ class Controller {
                             modal.close();
                             controller.addDashboard(controller, result[0]);
                             controller.reload(controller);
-                            window.location.href = `/daw/client/projects/id/${controller.model.projectId}/dashboards/${title}/`;
+                            window.location.href = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/${title}/`;
                         }
                     });
 

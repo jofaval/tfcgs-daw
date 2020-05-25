@@ -86,7 +86,7 @@ class Controller
                         break;
                 }
 
-                header("Location: /daw/client/profile/");
+                header("Location: " . Config::$EXECUTION_HOME_PATH . "profile/");
             }
 
             if (Utils::exists("updateProfile")) {
@@ -159,7 +159,8 @@ class Controller
         );
 
         if (is_null($viewParams["profile"])) {
-            header("Location: /daw/client/profile/");
+            //header("Location: " . Config::$EXECUTION_HOME_PATH . "profile/");
+            header("Location: " . Config::$EXECUTION_HOME_PATH . "profile/not-found/");
         }
 
         require_once __DIR__ . "/../templates/profile/profile.php";
@@ -220,14 +221,14 @@ class Controller
 
             $isValid = $validation->rules($regla, $_REQUEST);
             if ($isValid !== true) {
-                header("Location: /daw/client/projects/");
+                header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/");
             }
 
             $projectAccessLevel = Model::getInstance()->getProjectAccessLevel($id, Sessions::getInstance()->getSession('userId'));
             $viewParams["projectAccessLevel"] = $projectAccessLevel;
             //Si no está invitado, aquí iría la opción de privado/público
             if (is_null($projectAccessLevel)) {
-                header("Location: /daw/client/projects");
+                header("Location: " . Config::$EXECUTION_HOME_PATH . "projects");
             }
 
             if (Utils::exists("changeProjectDetails")) {
@@ -295,7 +296,7 @@ class Controller
 
                 $isValid = $validation->rules($regla, ["id" => $id]);
                 if ($isValid !== true || !in_array($tabName, ["overview", "dashboards", "diary", "collaborators", "details"])) {
-                    header("Location: /daw/client/projects/id/$id/");
+                    header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/id/$id/");
                 }
             }
 
@@ -310,7 +311,7 @@ class Controller
             $project = new Projects();
             $projectData = $project->query()[0];
             if (is_null($projectData)) {
-                header("Location: /daw/client/projects/");
+                header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/");
             }
             $viewParams["projectData"] = $this->getProjectDetails();
 
@@ -354,7 +355,7 @@ class Controller
                             $dashboardQueryData = $sqlUtils->complexQuery("SELECT title FROM dashboards WHERE id_project=:id_project and title=:title", ["title" => $dashboard_title, "id_project" => $id]);
 
                             if ($dashboardQueryData === false || count($dashboardQueryData) == 0) {
-                                header("Location: /daw/client/projects/id/$id/dashboards/");
+                                header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/id/$id/dashboards/");
                             }
                             $direction = $element;
 
@@ -365,7 +366,7 @@ class Controller
                                         if ($viewParams["projectAccessLevel"] >= Config::$PROJECT_ACCESS_MANAGER) {
                                             $direction = $this->changeDashboardBgImage($element, $id, $dashboard_title);
                                         } else {
-                                            header("Location: /daw/client/projects/id/$id/dashboards/$secondaryId/");
+                                            header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/id/$id/dashboards/$secondaryId/");
                                         }
 
                                         break;
@@ -392,7 +393,7 @@ class Controller
                         $date = Utils::getCleanedData("date");
 
                         if ($date == "") {
-                            header("Location: /daw/client/projects/id/$id/diary/");
+                            header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/id/$id/diary/");
                         }
 
                         $regla = array(
@@ -406,7 +407,7 @@ class Controller
                         if ($isDate === true) {
                             $viewParams["diaryDate"] = $date;
                         } else {
-                            header("Location: /daw/client/projects/id/$id/diary/");
+                            header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/id/$id/diary/");
                         }
                     }
 
@@ -425,7 +426,7 @@ class Controller
 
             require_once __DIR__ . "/../templates/project/$direction.php";
         } else {
-            header("Location: /daw/client/projects/");
+            header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/");
         }
     }
 
@@ -821,7 +822,7 @@ class Controller
         /* $sessions->setSession("access", 0);
         $sessions->deleteSession("username"); */
         $sessions->deleteSession();
-        header("Location: /daw/client/signin/");
+        header("Location: " . Config::$EXECUTION_HOME_PATH . "signin/");
     }
 
     public function signin()
@@ -844,7 +845,7 @@ class Controller
             $viewParams["signinPassword"] = Utils::getCleanedData("password");
 
             if ($result !== false) {
-                header("Location: /daw/client/projects/");
+                header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/");
             } else {
                 $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
                 <p class='m-0'>Error: We couldn't sign you in.</p>\n
@@ -961,7 +962,7 @@ class Controller
                         $finalPath = $this->img_path . "/users/$username/bg-$username.png";
 
                         FileUtils::copy($randomImage, $finalPath);
-                        header("Location: /daw/client/signin/");
+                        header("Location: " . Config::$EXECUTION_HOME_PATH . "signin/");
                     }
                     $viewParams["error"] = "<div class='p-3 m-5 mb-0 btn btn-danger rounded position-absolute fixed-bottom float-right' onclick='this.remove();'>
                 <p class='m-0'>Error: We couldn't sign you up.</p>\n
@@ -1058,7 +1059,7 @@ class Controller
         foreach ($projects as $project) {
             $projectId = $project["id"];
             $sitemapXMLContent .= "<url>";
-            $url = "http://localhost.com/daw/client/projects/id/$projectId/";
+            $url = "http://localhost.com" . Config::$EXECUTION_HOME_PATH . "projects/id/$projectId/";
             $sitemapXMLContent .= "<loc>" . $this->encodeURI($url) . "</loc>";
             $sitemapXMLContent .= "<lastmod>" . $project["creation_date"] . "</lastmod>";
             $sitemapXMLContent .= "<changefreq>never</changefreq>";
@@ -1066,7 +1067,7 @@ class Controller
             $sitemapXMLContent .= "</url>";
             foreach ($projectPages as $projectPage) {
                 $sitemapXMLContent .= "<url>";
-                $url = "http://localhost.com/daw/client/projects/id/$projectId/$projectPage/";
+                $url = "http://localhost.com" . Config::$EXECUTION_HOME_PATH . "projects/id/$projectId/$projectPage/";
                 $sitemapXMLContent .= "<loc>" . $this->encodeURI($url) . "</loc>";
                 $sitemapXMLContent .= "<lastmod>" . $project["creation_date"] . "</lastmod>";
                 $sitemapXMLContent .= "<changefreq>never</changefreq>";
@@ -1078,7 +1079,7 @@ class Controller
             foreach ($dashboards as $dashboard) {
                 $dashboardTitle = $dashboard["title"];
                 $sitemapXMLContent .= "<url>";
-                $url = "http://localhost.com/daw/client/projects/id/$projectId/dashboards/$dashboardTitle/";
+                $url = "http://localhost.com" . Config::$EXECUTION_HOME_PATH . "projects/id/$projectId/dashboards/$dashboardTitle/";
                 $sitemapXMLContent .= "<loc>" . $this->encodeURI($url) . "</loc>";
                 $sitemapXMLContent .= "<lastmod>" . $dashboard["creation_date"] . "</lastmod>";
                 $sitemapXMLContent .= "<changefreq>never</changefreq>";
@@ -1294,4 +1295,8 @@ class Controller
         require_once __DIR__ . "/../templates/admin/getDataFromTable.php";
     }
 
+    public function profileNotFound()
+    {
+        require_once __DIR__ . "/../templates/profile/profileNotFound.php";
+    }
 }

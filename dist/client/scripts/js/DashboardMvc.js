@@ -2,22 +2,22 @@ var $taskListsContainer = $(`<div class="d-flex overflow-scroll w-100 h-100 just
 
 var $taskList = $(`
 <div class="taskListContainer mx-1">
-    <div class="taskList shadow bg-light rounded">
+    <div class="taskList shadow grey lighten-3 rounded">
         <div class="taskListProperties d-none">
             <span class="taskListId"></span>
         </div>
-        <section class="taskListTitle hide-on-blur text-left p-2">
-            <a class="float-right dashboardListBtnClose p-1 btn btn-sm elementToHide m-1 text-white align-self-center">
+        <section class="taskListTitle grey lighten-3 text-dark hide-on-blur text-left p-2">
+            <a class="float-right dashboardListBtnClose p-1 btn btn-sm elementToHide m-1 text-dark align-self-center">
                 <i class="fa fa-times"></i>
             </a>
-            <p class="mb-0 ml-3 taskListTitleText text-white">Titulo 1</p>
+            <p class="mb-0 ml-3 taskListTitleText">Titulo 1</p>
         </section>
         <div class="taskListItemsContainer px-2 pt-2 mb-3 " ondragover="event.preventDefault()">
         </div>
         <div class="pb-3 taskListInputContainer">
             <div class="col d-flex taskListInputRow">
                 <div class="input-group md-form my-0 taskListInputGroup">
-                    <input type="text" class="form-control taskListInput text-white" placeholder="Título">
+                    <input type="text" class="form-control taskListInput text-dark" placeholder="Título">
                     <div class="input-group-append taskListInputBtnContainer">
                         <button class="btn addTask btn-sm btn-primary m-0 taskListInputBtn">+</button>
                     </div>
@@ -35,13 +35,13 @@ var $referenceTaskList = $(`
 </div>`);
 
 var $taskListItem = $(`
-<div class="taskListItem card mb-2" draggable="true" draggable="true">
-    <div class="taskListItemBody hide-on-blur text-white hide card-body px-2 py-1">
+<div class="taskListItem grey lighten-4 card mb-2" draggable="true" draggable="true">
+    <div class="taskListItemBody hide-on-blur  grey lighten-4 text-dark hide card-body px-2 py-1">
         <p class="card-text taskListItemTitle m-0">project description.</p>
-        <a class="position-absolute dashboardBtnEdit p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-white align-self-center">
+        <a class="position-absolute dashboardBtnEdit p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-dark align-self-center">
             <i class="fa fa-times"></i>
         </a>
-        <a class="position-absolute dashboardBtnClose p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-white align-self-center">
+        <a class="position-absolute dashboardBtnClose p-1 btn btn-sm elementToHide right-0 m-1 top-0 text-dark align-self-center">
             <i class="fa fa-times"></i>
         </a>
     </div>
@@ -64,7 +64,7 @@ var $dashboardModal = $(`
             <div class="col-sm-8 order-2 order-sm-1">
                 <h4 class="dashboardModalDescriptionTitle"><span class="fa fa-align-justify mr-2"></span>Descripción</h4>
                 <div class="md-form my-0">
-                    <textarea id="dashboardModalDescription" class="md-textarea form-control text-white" rows="3"></textarea>
+                    <textarea id="dashboardModalDescription" class="md-textarea form-control text-dark" rows="3"></textarea>
                     <label for="dashboardModalDescription">Descripción</label>
                 </div>
                 <div class="row dashboardModalSaveChanges">
@@ -72,7 +72,7 @@ var $dashboardModal = $(`
                 </div>
                 <h4 class="dashboardModalCommentsTitle"><span class="fa fa-comments mr-2"></span>Comentarios</h4>
                 <div class="md-form input-group mb-4">
-                    <input type="text" class="form-control text-white" id="comment">
+                    <input type="text" class="form-control text-dark" id="comment">
                     <label for="comment" class="">Comentario</label>
                     <div class="input-group-append">
                         <span class="input-group-text dashboardModalCommentBtn md-addon btn btn-sm btn-primary">Comentar</span>
@@ -103,15 +103,15 @@ var $dashboardModal = $(`
 var $dashboardModalComment = $(`
 <div class="w-100 dashboardComment my-2">
     <button class="btn btn-primary btn-sm align-self-center float-right btnEditComment">Cambiar</button>
-    <img src="/daw/client/img/default.png" width="50"
+    <img src=EXECUTION_HOME_PATH + "img/default.png" width="50"
         class="dashboardCommentUserImg rounded-pill float-left mr-2" />
     <div class="row dashboardCommentInformation mb-2">
-        <div class="dashboardCommentUsername text-white mr-2">Test</div>
-        <div class="dashboardCommentName text-white mr-2">Test</div>
+        <div class="dashboardCommentUsername text-dark mr-2">Test</div>
+        <div class="dashboardCommentName text-dark mr-2">Test</div>
         <div width="25" class="dashboardCommentTime text-muted">10 seconds ago</div>
     </div>
     <span class="dashboardCommentContent text-dark p-2 m-2 rounded w-auto bg-light" contenteditable="true">Test</span>
-    <div class="row dashboardCommentActions text-white ml-2 mt-2">
+    <div class="row dashboardCommentActions text-dark ml-2 mt-2">
         <a href="" class="dashboardCommentAction dashboardCommentEdit">Editar</a>
         &nbsp;-&nbsp;
         <a href="" class="dashboardCommentAction dashboardCommentDelete">Eliminar</a>
@@ -121,13 +121,13 @@ var $dashboardModalComment = $(`
 
 var $dashboardAssignationContainer = $(`<div class="dashboardAssignationContainer row"></div>`);
 var $dashboardAssignationFinishedStateInput = $(`
-<div class="custom-control w-auto text-right ml-auto custom-checkbox">
-    <input type="checkbox" class="custom-control-input" name="finished" id="finished">
-    <label class="custom-control-label" for="finished">Terminado</label>
+<div class="custom-control col-sm-6 m-0 p-0 custom-checkbox">
+    <input type="checkbox" class="custom-control-input d-none" id="finished">
+    <label class="custom-control-label m-0 cursor-pointer" style="left: unset; position: unset !important; display: unset !important;" for="finished">Terminado</label>
 </div>
 `);
 var $dashboardAssignation = $(`
-<div class="w-auto dashboardAssignation text-white small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
+<div class="col-sm dashboardAssignation text-dark small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
     <span><i class="fa fa-clock-o"></i></span>
     <span class="startDate"></span>
     <span class="">&nbsp;-&nbsp;</span>
@@ -169,7 +169,7 @@ class Model {
     loadDashboardContent(whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/client/index.php?ctl=getListsOfDashboard",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=getListsOfDashboard",
             data: {
                 "id_project": model.projectId,
                 "dashboard": model.title,
@@ -222,7 +222,7 @@ class Model {
     addDashboardList(title, whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/client/index.php?ctl=createDashboardList",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createDashboardList",
             data: {
                 "id_project": model.projectId,
                 "dashboard_title": model.title,
@@ -241,7 +241,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=createDashboardItem",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createDashboardItem",
             data: {
                 "id_dashboard_list": id_dashboard_list,
                 "title": title,
@@ -259,7 +259,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=deleteDashboardItem",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=deleteDashboardItem",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -271,9 +271,9 @@ class Model {
     }
 
     enableDashboardItem(id, enable, whenFinished) {
-        var modal = this;
+        var model = this;
         $.ajax({
-            url: "/daw/client/index.php?ctl=disableDashboardItem",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=disableDashboardItem",
             data: {
                 "id": id,
                 "enabled": enable ? 1 : 0,
@@ -286,10 +286,10 @@ class Model {
     }
 
     deleteDashboardList(id, whenFinished) {
-        var modal = this;
+        var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=deleteDashboardList",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=deleteDashboardList",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -304,7 +304,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=deleteDashboards",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=deleteDashboards",
             data: {
                 "id_project": model.projectId,
                 "title": model.title,
@@ -320,7 +320,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=createDashboardItemComments",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createDashboardItemComments",
             data: {
                 "id_dashboard_item": id,
                 "comment": comment,
@@ -336,7 +336,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=deleteDashboardItemComments",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=deleteDashboardItemComments",
             data: {
                 "id": id,
                 "idProjectForAccessLevel": model.projectId,
@@ -351,7 +351,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=updateDashboardsItemAssignation",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardsItemAssignation",
             data: {
                 "id": id,
                 "finished": newState ? 1 : 0,
@@ -366,7 +366,7 @@ class Model {
     moveDashboardItem(order, taskItemId, dashboardListId, whenFinished) {
         var model = this;
         $.ajax({
-            url: "/daw/client/index.php?ctl=updateDashboardItem",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardItem",
             data: {
                 "order": order,
                 "id_dashboard_list": dashboardListId,
@@ -384,10 +384,10 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=getCommentsOfDashboardItem",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=getCommentsOfDashboardItem",
             data: {
                 "id_dashboard_item": taskItemDataId,
-                "idProjectForAccessLevel": controller.model.projectId,
+                "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
                 whenFinished(result);
@@ -399,7 +399,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=getDashboardItemDetails",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=getDashboardItemDetails",
             data: {
                 "id": taskItemDataId,
                 "idProjectForAccessLevel": model.projectId,
@@ -414,7 +414,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=updateDashboardItem",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardItem",
             data: {
                 "id": taskItemId,
                 "title": title,
@@ -431,9 +431,9 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=createDashboardsItemAssignation",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createDashboardsItemAssignation",
             data: {
-                "id_dashboard_item": taskItemData.id,
+                "id_dashboard_item": taskItemId,
                 "start_date": startDate,
                 "end_date": endDate,
                 "assigned_to": username,
@@ -449,7 +449,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=createDashboardsItemAssignation",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=queryDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -465,7 +465,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=updateDashboardsItemAssignation",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "start_date": startDate,
@@ -483,7 +483,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=updateDashboardsItemAssignation",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=deleteDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -499,7 +499,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: "/daw/client/index.php?ctl=updateDashboardsItemAssignation",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardsItemAssignation",
             data: {
                 "id_dashboard_item": taskItemId,
                 "assigned_to": username,
@@ -527,6 +527,7 @@ class View {
     visualizeTaskListCreation(container) {
         var taskListInput = $taskList.clone();
 
+        taskListInput.addClass("d-block");
         taskListInput.prop("id", "taskListInputCreation");
         taskListInput.find(".taskListTitle").remove();
         taskListInput.find(".taskListItemsContainer").remove();
@@ -643,7 +644,7 @@ class View {
         clonedComment.find(".dashboardCommentName").text(commentData.commentCreatorName);
         var commentUsername = commentData.commentCreatorUsername;
         clonedComment.find(".dashboardCommentUsername").text(commentData.commentCreatorUsername);
-        clonedComment.find(".dashboardCommentUserImg").prop("src", `/daw/client/img/users/${commentUsername}/${commentUsername}.png`);
+        clonedComment.find(".dashboardCommentUserImg").prop("src", `${EXECUTION_HOME_PATH}img/users/${commentUsername}/${commentUsername}.png`);
 
         var commentDate = commentData.commentDate;
         var commentTimeHTML = clonedComment.find(".dashboardCommentTime");
@@ -753,7 +754,7 @@ class Controller {
     }
 
     addIdToURL(controller, id) {
-        changeURL(`/daw/client/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${id}`);
+        changeURL(`${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${id}`);
     }
 
     deleteDashboardEvent(controller, event) {
@@ -993,7 +994,7 @@ class Controller {
                 "onClose": function () {
                     controller.view.scrollTo(taskItem);
                     document.title = `${controller.model.title}`;
-                    changeURL(`/daw/client/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/`);
+                    changeURL(`${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/`);
                 },
             });
         });
@@ -1076,7 +1077,7 @@ class Controller {
         console.log(taskItemData);
         controller.view.scrollTo(taskItem);
 
-        var urlBaseInDashboardModal = `/daw/client/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/task/id/${taskItemData.id}/`;
+        var urlBaseInDashboardModal = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/task/id/${taskItemData.id}/`;
 
         document.title = `${taskItemData.title}`;
         changeURL(urlBaseInDashboardModal);
@@ -1089,7 +1090,7 @@ class Controller {
 
         controller.model.findListWithId(taskItemData.id_dashboard_list, function (listElement) {
             $(".dashboardModalListName").html(listElement.title)
-                .prop("href", `/daw/client/projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${listElement.id}`)
+                .prop("href", `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/dashboards/${controller.model.title}/#${listElement.id}`)
                 .on("click", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -1104,7 +1105,7 @@ class Controller {
         });
 
         if (taskItemData.assigned === true) {
-            controller.dashboardModalAssignedTask(taskItemData, controller, taskItem);
+            controller.dashboardModalAssignedTask(modal, taskItemData, controller, taskItem);
         }
 
         $(".dashboardModalTitle").text(taskItemData.title);
@@ -1155,7 +1156,7 @@ class Controller {
         });
 
         $("#dashboardModalActionModifyAssignation").on("click", function (event) {
-            controller.dashboardAssignationModifyModalEvent(controller, taskItemData)
+            controller.dashboardAssignationModifyModalEvent(modal, controller, taskItemData)
         });
 
         $("#dashboardModalActionDetails").on("click", function (event) {
@@ -1165,7 +1166,7 @@ class Controller {
                     Modal.modal({
                         "title": `Detalles de ${taskItemData.title}`,
                         "content": `<div class="row">
-                        <p class="mb-0">Creado por <a href="/daw/client/profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
+                        <p class="mb-0">Creado por <a href=EXECUTION_HOME_PATH + "profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
                         <div class="dashboardItemCreationDate ml-auto mr-2"></div>
                     </div>`,
                         "onOpen": function (modal) {
@@ -1245,7 +1246,7 @@ class Controller {
         var modal = Modal.modal({
             "title": "Mover tarea de lista",
             "content": `
-                    <form action="/daw/client/index.php?ctl=updateDashboardItem" id="formMoveDashboardList" method="POST">
+                    <form action=EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardItem" id="formMoveDashboardList" method="POST">
                         <div class="form-row mb-2">
                             <div class="col-sm">
                                 <label for="id_dashboard_list">Lista de tareas</label>
@@ -1276,9 +1277,9 @@ class Controller {
                     var itemsLen = this.items.length;
                     newOption.on("click", function () {
                         selectOrder.html("");
-                        selectOrder.append($(`<option value="0">1</option>`));
+                        selectOrder.append($(`<option value="1">1</option>`));
                         for (let orderIndex = 1; orderIndex <= itemsLen; orderIndex++) {
-                            selectOrder.append($(`<option value="${orderIndex}">${orderIndex + 1}</option>`));
+                            selectOrder.append($(`<option value="${orderIndex + 1}">${orderIndex + 1}</option>`));
                         }
                     });
                 });
@@ -1294,10 +1295,14 @@ class Controller {
                     if (taskItemData.id_dashboard_list == id_dashboard_list) {
                         movingForward = taskItemData.order > order;
                     }
-                    moveDashboardItem(order, taskItemData.id, id_dashboard_list, function (result) {
+                    controller.model.moveDashboardItem(order, taskItemData.id, id_dashboard_list, function (result) {
                         console.log(result);
                         if (result !== false) {
-                            sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
+                            controller.model.findListWithId(id_dashboard_list, function (list) {
+                                list.html.find(".taskListItemsContainer").append(taskItemData.html);
+                                list.html.find(`.taskListItemsContainer .taskListItem:eq(${order - 1})`).before(taskItemData.html);
+                                sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
+                            });
                         } else {
                             sendNotification("No se ha podido cambiar de lista", "changeTaskListFail");
                         }
@@ -1317,7 +1322,7 @@ class Controller {
         console.log(taskItemData.id_dashboard_list);
         var confirmationModal = Modal.confirmationModal({
             title: "Deshabilitar elemento de la lista?",
-            body: `Confimar esta acción y deshabilitar <b>"${taskItemData.title}"</b>`,
+            body: `Confimar esta acción y ${bool ? "deshabilitar" : "habilitar"} <b>"${taskItemData.title}"</b>`,
             onAccept: function () {
                 controller.model.enableDashboardItem(taskItemData.id, !bool, function (result) {
                     console.log(result);
@@ -1361,14 +1366,14 @@ class Controller {
     dashboardAssignationModalEvent(controller, taskItemData) {
         var modal = Modal.modal({
             "title": "Asignar tarea",
-            "content": `<form action="/daw/client/index.php?ctl=createDashboardItemAssignation" id="formAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createDashboardItemAssignation" id="formAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row">
                                 <div class="md-form col-sm">
-                                    <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
+                                    <input type="text" name="startDate" id="startDate" class="form-control text-dark" aria-describedby="startDateTime">
                                     <label for="startDate">Fecha inicio</label>
                                 </div>
                                 <div class="md-form col-sm">
-                                    <input type="text" name="endDate" id="endDate" class="form-control text-white" aria-describedby="endDateTime">
+                                    <input type="text" name="endDate" id="endDate" class="form-control text-dark" aria-describedby="endDateTime">
                                     <label for="endDate">Fecha límite</label>
                                 </div>
                             </div>
@@ -1393,7 +1398,7 @@ class Controller {
                 var endDateUtils = new DateTimePickerUtils(newDate, endDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
                 $("#formAssignDashboard").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -1418,17 +1423,17 @@ class Controller {
         });
     }
 
-    dashboardAssignationModifyModalEvent(controller, taskItemData) {
+    dashboardAssignationModifyModalEvent(dashboardModal, controller, taskItemData) {
         var modal = Modal.modal({
             "title": "Asignar tarea",
-            "content": `<form action="/daw/client/index.php?ctl=updateDashboardItemAssignation" id="formModifyAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardItemAssignation" id="formModifyAssignDashboard" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row">
                                 <div class="md-form col-sm">
-                                    <input type="text" name="startDate" id="startDate" class="form-control text-white" aria-describedby="startDateTime">
+                                    <input type="text" name="startDate" id="startDate" class="form-control text-dark" aria-describedby="startDateTime">
                                     <label for="startDate">Fecha inicio</label>
                                 </div>
                                 <div class="md-form col-sm">
-                                    <input type="text" name="endDate" id="endDate" class="form-control text-white" aria-describedby="endDateTime">
+                                    <input type="text" name="endDate" id="endDate" class="form-control text-dark" aria-describedby="endDateTime">
                                     <label for="endDate">Fecha límite</label>
                                 </div>
                             </div>
@@ -1443,15 +1448,15 @@ class Controller {
 
                 var startDate = $("#startDate");
                 startDate.focus();
-                var startDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.start_date).date, startDate, function (ct, $input) {}, "Y-m-d H:i:s");
+                var startDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.start_date).date || new Date(), startDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
                 var endDate = $("#endDate");
                 endDate.focus();
-                var endDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.end_date).date, endDate, function (ct, $input) {}, "Y-m-d H:i:s");
+                var endDateUtils = new DateTimePickerUtils(new DateUtils(taskItemData.end_date).date || new Date(), endDate, function (ct, $input) {}, "Y-m-d H:i:s");
 
                 var assignationId;
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
                 userSearch.whenBtnSearchClicked = function (event) {
                     var event = event || window.event;
                     event.stopPropagation();
@@ -1498,6 +1503,19 @@ class Controller {
                         console.log(result);
                         if (result !== false) {
                             sendNotification("Se ha modificado con éxito", "modifyAsignateTaskSuccess");
+                            dashboardModal["$overlay"].find(".dashboardAssignation").remove();
+                            taskItemData.html.find(".dashboardAssignation").remove();
+                            console.log(result);
+                            controller.view.visualizeDashboardAssignation(taskItemData.html, startDateVal, endDateVal, taskItemData.finished);
+                            taskItemData.start_date = startDateVal;
+                            taskItemData.end_date = endDateVal;
+                            console.log(dashboardModal["$overlay"].find(".dashboardAssignationContainer"));
+
+                            controller.view.visualizeDashboardAssignation(
+                                dashboardModal["$overlay"].find(".dashboardAssignationContainer"),
+                                startDateVal, endDateVal,
+                                taskItemData.finished
+                            ).removeClass("ml-auto");
                             modal.close();
                         } else {
                             sendNotification("No se ha podido asignar", "modifyAsignateTaskFail");
@@ -1512,7 +1530,7 @@ class Controller {
     removeDashboardAssignationModalEvent(controller, taskItemData) {
         var modal = Modal.modal({
             "title": "Asignar tarea",
-            "content": `<form action="/daw/client/index.php?ctl=deleteDashboardItemAssignation" id="formRemoveAssignation" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=deleteDashboardItemAssignation" id="formRemoveAssignation" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="form-row userSearchContainer"></div>
                             <input type="hidden" name="id_project" value="${controller.model.projectId}" >
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
@@ -1521,7 +1539,7 @@ class Controller {
                         </form>`,
             "onOpen": function () {
                 var userSearch = new UserSearchInput($(".userSearchContainer"));
-                userSearch.input.addClass("text-white");
+                userSearch.input.addClass("text-dark");
                 $("#formRemoveAssignation").on("submit", function (event) {
                     var event = event || window.event;
                     event.preventDefault();
@@ -1544,13 +1562,13 @@ class Controller {
         });
     }
 
-    dashboardModalAssignedTask(taskItemData, controller, taskItem) {
+    dashboardModalAssignedTask(modal, taskItemData, controller, taskItem) {
         console.log("FUNCIONA", taskItemData);
         console.log($dashboardAssignationContainer);
 
         $dashboardAssignationContainer.html("");
         $dashboardAssignationContainer.append($dashboardAssignationFinishedStateInput);
-        $dashboardAssignationFinishedStateInput.addClass("mr-auto align-self-center");
+        //$dashboardAssignationFinishedStateInput.addClass("mr-auto align-self-center");
 
         var assignationItem = controller.view.visualizeDashboardAssignation(
             $dashboardAssignationContainer,
@@ -1564,14 +1582,14 @@ class Controller {
         assignationCheckbox.prop("checked", taskItemData.finished != 0);
         assignationCheckbox.unbind("change");
         assignationCheckbox.on("change", function () {
-            assignationItem = controller.dashboardAssignationModalCheckboxEvent(assignationCheckbox, controller, taskItemData, taskItem, assignationItem);
+            assignationItem = controller.dashboardAssignationModalCheckboxEvent(modal, assignationCheckbox, controller, taskItemData, taskItem, assignationItem);
         });
 
         console.log("test", assignationCheckbox);
         $("#dashboardModalDescription").after($dashboardAssignationContainer);
     }
 
-    dashboardAssignationModalCheckboxEvent(assignationCheckbox, controller, taskItemData, taskItem, assignationItem) {
+    dashboardAssignationModalCheckboxEvent(modal, assignationCheckbox, controller, taskItemData, taskItem, assignationItem) {
         console.log("AQUI", assignationCheckbox.is(":checked"));
         var checkboxValue = assignationCheckbox.is(":checked");
         controller.model.setAssignationFinishState(taskItemData.assignation_id, checkboxValue, function (result) {
@@ -1579,7 +1597,8 @@ class Controller {
             if (result !== false) {
                 taskItemData.finished = checkboxValue;
                 sendNotification("Se ha cambiado el estado", "changeFinishStatusSuccess");
-                taskItem.find(".dashboardAssignation").remove();
+                modal["$overlay"].find(".dashboardAssignation").remove();
+                taskItemData.html.find(".dashboardAssignation").remove();
                 controller.view.visualizeDashboardAssignation(taskItem, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);
                 assignationItem.remove();
                 assignationItem = controller.view.visualizeDashboardAssignation($dashboardAssignationContainer, taskItemData.start_date, taskItemData.end_date, taskItemData.finished);

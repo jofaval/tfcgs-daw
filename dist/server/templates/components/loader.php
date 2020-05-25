@@ -3,6 +3,6 @@
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
     <!-- <div class="position-absolute  center-elements z-index-overlap-top">
-        <img src="/daw/client/img/branding/logo.png" width="500" height="500" alt="">
+        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/branding/logo.png" width="500" height="500" alt="">
     </div> -->
 </div>

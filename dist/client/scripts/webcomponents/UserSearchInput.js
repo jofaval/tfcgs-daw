@@ -126,12 +126,13 @@ class UserSearchInput {
             container.html("");
             if (result.length > 0) {
                 userSearchClass.showResults(userSearchClass);
+                result.forEach(usernameData => {
+                    userSearchClass.loadUser(userSearchClass, container, usernameData.username);
+                });
             } else {
                 userSearchClass.hideResults(userSearchClass);
             }
-            result.forEach(usernameData => {
-                userSearchClass.loadUser(userSearchClass, container, usernameData.username);
-            });
+
             $(window).on("click", function () {
                 userSearchClass.hideResults(userSearchClass);
                 $(window).off("click");
@@ -143,7 +144,7 @@ class UserSearchInput {
 
     getUsersLike(username, whenFinished) {
         $.ajax({
-            url: "/daw/client/index.php?ctl=searchUsers",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=searchUsers",
             data: {
                 "username": username,
             },
@@ -156,7 +157,7 @@ class UserSearchInput {
     loadUser(userSearchClass, container, username) {
         var usernameCardClone = userSearchClass.usernameCard.clone();
 
-        usernameCardClone.find(".usernameProfileImg").prop("src", `/daw/client/img/users/${username}/${username}.png`);
+        usernameCardClone.find(".usernameProfileImg").prop("src", `${EXECUTION_HOME_PATH}img/users/${username}/${username}.png`);
         usernameCardClone.find(".username").text(`${username}`);
         usernameCardClone.on("click", function () {
             userSearchClass.input.val(username);

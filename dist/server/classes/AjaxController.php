@@ -20,24 +20,27 @@ class AjaxController
             ValidatePopoFields::validatePopoFields($requiredParams, $_REQUEST);
 
             if (method_exists($mainController, $functionName)) {
-                $result = call_user_func([new $mainController, $functionName]);
-
-                if (is_null($result)) {
-                    $result = false;
-                }
-
                 $projectAccessLevel = 0;
                 if (Utils::exists("idProjectForAccessLevel")) {
+                    $idProjectAccessLevel = Utils::getCleanedData("idProjectForAccessLevel");
                     $projectAccessLevel = Model::getInstance()->getProjectAccessLevel(
-                        $_REQUEST["idProjectForAccessLevel"],
+                        $idProjectAccessLevel,
                         Sessions::getInstance()->getSession("userId")
                     );
 
                     if (is_null($projectAccessLevel)) {
                         $result = "No estás dentro de este proyecto";
-                    } else if ($projectAccessLevel < $projectActionsMap[$functionName]["access"]) {
+                    } else if (!($projectAccessLevel >= $projectActionsMap[$functionName]["access"])) {
                         $result = "No tienes permisos para realizar esta acción";
+                    } else {
+                        $result = call_user_func([new $mainController, $functionName]);
                     }
+                } else {
+                    $result = call_user_func([new $mainController, $functionName]);
+                }
+
+                if (is_null($result)) {
+                    $result = false;
                 }
 
                 echo json_encode($result);

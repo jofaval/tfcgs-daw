@@ -16,7 +16,7 @@
             <div class="notsigned-template text-center text-light">
                 <h1>
                     ¡No has iniciado sesión!</h1>
-                <h2>Por favor <a href="/daw/client/signin/">inicia sesión</a>. </h2>
+                <h2>Por favor <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>signin/">inicia sesión</a>. </h2>
             </div>
         </div>
     </div>

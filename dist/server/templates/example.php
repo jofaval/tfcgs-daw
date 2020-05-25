@@ -9,13 +9,13 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/client/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
         "icon" => "home",
     ],
     [
         "name" => "Example",
-        "link" => "/daw/client/example/",
+        "link" => Config::$EXECUTION_HOME_PATH . "example/",
         "active" => true,
         "icon" => "home",
     ],

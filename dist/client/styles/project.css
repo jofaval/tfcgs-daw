@@ -65,13 +65,11 @@
     align-self: center;
 }
 
-.recentlyCreated,
-.recentlyInvited {
+.recentlyCreated, .recentlyInvited {
     width: 95%;
 }
 
-.projectCardDescription,
-.dashboardCardDescription {
+.projectCardDescription, .dashboardCardDescription {
     max-height: 1.5em;
     text-overflow: ellipsis;
     overflow: hidden;
