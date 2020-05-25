@@ -271,7 +271,7 @@ class Model {
     }
 
     enableDashboardItem(id, enable, whenFinished) {
-        var modal = this;
+        var model = this;
         $.ajax({
             url: EXECUTION_HOME_PATH + "index.php?ctl=disableDashboardItem",
             data: {
@@ -286,7 +286,7 @@ class Model {
     }
 
     deleteDashboardList(id, whenFinished) {
-        var modal = this;
+        var model = this;
 
         $.ajax({
             url: EXECUTION_HOME_PATH + "index.php?ctl=deleteDashboardList",
@@ -1278,7 +1278,7 @@ class Controller {
                         selectOrder.html("");
                         selectOrder.append($(`<option value="0">1</option>`));
                         for (let orderIndex = 1; orderIndex <= itemsLen; orderIndex++) {
-                            selectOrder.append($(`<option value="${orderIndex}">${orderIndex + 1}</option>`));
+                            selectOrder.append($(`<option value="${orderIndex + 1}">${orderIndex + 1}</option>`));
                         }
                     });
                 });
@@ -1294,7 +1294,7 @@ class Controller {
                     if (taskItemData.id_dashboard_list == id_dashboard_list) {
                         movingForward = taskItemData.order > order;
                     }
-                    moveDashboardItem(order, taskItemData.id, id_dashboard_list, function (result) {
+                    controller.model.moveDashboardItem(order, taskItemData.id, id_dashboard_list, function (result) {
                         console.log(result);
                         if (result !== false) {
                             sendNotification("Se ha cambiado de lista correctamente", "changeTaskListSuccess");
