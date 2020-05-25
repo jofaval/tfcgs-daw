@@ -121,13 +121,13 @@ var $dashboardModalComment = $(`
 
 var $dashboardAssignationContainer = $(`<div class="dashboardAssignationContainer row"></div>`);
 var $dashboardAssignationFinishedStateInput = $(`
-<div class="custom-control w-auto text-right ml-auto custom-checkbox">
-    <input type="checkbox" class="custom-control-input" name="finished" id="finished">
-    <label class="custom-control-label" for="finished">Terminado</label>
+<div class="custom-control col-sm-6 m-0 p-0 custom-checkbox">
+    <input type="checkbox" class="custom-control-input d-none" id="finished">
+    <label class="custom-control-label m-0 cursor-pointer" style="left: unset; position: unset !important; display: unset !important;" for="finished">Terminado</label>
 </div>
 `);
 var $dashboardAssignation = $(`
-<div class="w-auto dashboardAssignation text-dark small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
+<div class="col-sm dashboardAssignation text-dark small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
     <span><i class="fa fa-clock-o"></i></span>
     <span class="startDate"></span>
     <span class="">&nbsp;-&nbsp;</span>
@@ -1568,7 +1568,7 @@ class Controller {
 
         $dashboardAssignationContainer.html("");
         $dashboardAssignationContainer.append($dashboardAssignationFinishedStateInput);
-        $dashboardAssignationFinishedStateInput.addClass("mr-auto align-self-center");
+        //$dashboardAssignationFinishedStateInput.addClass("mr-auto align-self-center");
 
         var assignationItem = controller.view.visualizeDashboardAssignation(
             $dashboardAssignationContainer,
