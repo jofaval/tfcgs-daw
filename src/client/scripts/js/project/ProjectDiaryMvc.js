@@ -25,7 +25,7 @@ class Model {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
 
-        return splittedURL[6];
+        return splittedURL[URL_PROJECTS_ID_INDEX];
     }
 
     saveContent(content, whenFinished, ifError) {

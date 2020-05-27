@@ -28,10 +28,10 @@ class Model {
         this.paginationIndex = 1;
 
         var splittedURL = window.location.href.split("/");
-        this.rowNumberFromURL = splittedURL[6];
-        this.pageIndexFromURL = splittedURL[8];
-        if (splittedURL.length >= 10) {
-            this.searchValueFromURL = splittedURL[10];
+        this.rowNumberFromURL = splittedURL[URL_PROJECTS_ROWS_INDEX];
+        this.pageIndexFromURL = splittedURL[URL_PROJECTS_PAGE_INDEX];
+        if (splittedURL.length >= URL_PROJECTS_SEARCH_INDEX) {
+            this.searchValueFromURL = splittedURL[URL_PROJECTS_SEARCH_INDEX];
         }
 
     }
