@@ -3,7 +3,7 @@
     <img src="https://picsum.photos/400/400?random=<?php echo $randomIndex ?>" alt=""
         class="dbTableCardBgImg object-fit-cover opacity-30 position-absolute m-0 w-100 h-100 z-index">
     <div class="row dbTableCardDetails pl-3 z-index-overlap flex-wrap center-elements w-100 m-0 pt-2 p-5">
-        <h5 class="dbTableCardTitle text-white m-0 font-weight-bold">
+        <h5 class="dbTableCardTitle text-dark m-0 font-weight-bold">
             <?php echo $tableName ?></h5>
     </div>
 </a>

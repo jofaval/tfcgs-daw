@@ -15,7 +15,7 @@ $breadcrumb = [
         "icon" => "home",
     ],
     [
-        "name" => "Projects",
+        "name" => "Proyectos",
         "link" => Config::$EXECUTION_HOME_PATH . "projects",
         "active" => true,
         "icon" => "folder",

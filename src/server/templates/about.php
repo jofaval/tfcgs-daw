@@ -24,7 +24,7 @@ $breadcrumb = [
 
 <?php ob_start()?>
 
-<div class="d-flex w-100 h-100 overflow-auto m-0 p-0 text-white flex-wrap flex-column">
+<div class="d-flex w-100 h-100 overflow-auto m-0 p-0 text-dark flex-wrap flex-column">
     <div class="topSpace my-5">&nbsp;</div>
     <div id="page1" class="w-100 h-100 col-sm-12 overflow-auto page page1 m-0 center-elements flex-column">
         <div class="container text-center">

@@ -77,12 +77,10 @@ class TimeFromMoment {
                 finalDate.setDate(finalDate.getDate() + 1);
                 break;
             case "weeks":
+            default:
                 var lastDayOfWeek = new DateUtils(finalDate, false).getWeekFromDate()[6];
                 lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 1);
                 finalDate = new DateUtils(lastDayOfWeek, false).getWeekFromDate()[0];
-                break;
-            default:
-                finalDate.setTime(finalDate.getTime() * 50);
                 break;
         }
 

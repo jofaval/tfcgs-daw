@@ -40,7 +40,7 @@ $breadcrumb = [
                     <div
                         class="row profileAdminCardDetails pl-3 py-5 z-index-overlap flex-wrap center-elements w-100 m-0">
                         <h5
-                            class="profileAdminCardTitle text-center text-white max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">
+                            class="profileAdminCardTitle text-center text-dark max-text-10 text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">
                             <?php echo $username; ?></h5>
                     </div>
                 </a>
@@ -48,8 +48,8 @@ $breadcrumb = [
         </div>
         <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
             <div class="card bg-transparent shadow-none">
-                <div class="card-header bg-dark" role="tab" id="headingTwo1">
-                    <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                <div class="card-header bg-white" role="tab" id="headingTwo1">
+                    <a class="collapsed text-dark" data-toggle="collapse" data-parent="#accordionEx1"
                         href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
                         <h5 class="mb-0">
                             Rutas <i class="fa fa-angle-down rotate-icon"></i>
@@ -58,17 +58,17 @@ $breadcrumb = [
                 </div>
                 <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
                     data-parent="#accordionEx1">
-                    <div class="card-body rgba-black-light text-white">
-                        <div class="card-header">
+                    <div class="card-body grey lighten-3 text-dark">
+                        <div class="card-header bg-white">
                             <a target="_blank" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/new-route/">
-                                <h5 class="mb-0 text-white">
+                                <h5 class="mb-0 text-dark">
                                     Añadir nueva ruta
                                 </h5>
                             </a>
                         </div>
-                        <div class="card-header">
+                        <div class="card-header bg-white">
                             <a target="_blank" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/access-level/">
-                                <h5 class="mb-0 text-white">
+                                <h5 class="mb-0 text-dark">
                                     Cambiar nivel de acceso
                                 </h5>
                             </a>
@@ -77,8 +77,8 @@ $breadcrumb = [
                 </div>
             </div>
             <div class="card bg-transparent shadow-none">
-                <div class="card-header bg-dark" role="tab" id="headingTwo2">
-                    <a class="collapsed text-white" data-toggle="collapse" data-parent="#accordionEx1"
+                <div class="card-header bg-white" role="tab" id="headingTwo2">
+                    <a class="collapsed text-dark" data-toggle="collapse" data-parent="#accordionEx1"
                         href="#collapseTwo21" aria-expanded="false" aria-controls="collapseTwo21">
                         <h5 class="mb-0">
                             Codificación <i class="fa fa-angle-down rotate-icon"></i>
@@ -87,25 +87,25 @@ $breadcrumb = [
                 </div>
                 <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21"
                     data-parent="#accordionEx1">
-                    <div class="card-body rgba-black-light text-white">
-                        <div class="card-header">
+                    <div class="card-body grey lighten-2 text-dark">
+                        <div class="card-header bg-white">
                             <a target="_blank" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/popo/">
-                                <h5 class="mb-0 text-white">
+                                <h5 class="mb-0 text-dark">
                                     Panel de configuración de POPOs
                                 </h5>
                             </a>
                         </div>
-                        <div class="card-header">
+                        <div class="card-header bg-white">
                             <a target="_blank" href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/testing/">
-                                <h5 class="mb-0 text-white">
+                                <h5 class="mb-0 text-dark">
                                     Ventana de testing
                                 </h5>
                             </a>
                         </div>
-                        <div class="card-header">
+                        <div class="card-header bg-white">
                             <a target="_blank"
                                 href="<?php echo Config::$EXECUTION_HOME_PATH; ?>admin/download-database/">
-                                <h5 class="mb-0 text-white">
+                                <h5 class="mb-0 text-dark">
                                     Descargarse script de SQL
                                 </h5>
                             </a>
@@ -125,8 +125,8 @@ $breadcrumb = [
         <?php }?>
         <div class="form-row p-3 mt-2 mb-1 rounded bg-dark">
             <div class="md-form mx-3 input-group mb-4">
-                <input type="text" class="form-control text-white" autocomplete="off" name="searchTable"
-                    id="searchTable" placeholder="" aria-describedby="btnSearch">
+                <input type="text" class="form-control text-dark" autocomplete="off" name="searchTable" id="searchTable"
+                    placeholder="" aria-describedby="btnSearch">
                 <label for="searchTable">Tabla</label>
                 <div class="input-group-append">
                     <span class="input-group-text md-addon btn btn-sm btn-primary" id="btnSearch">
