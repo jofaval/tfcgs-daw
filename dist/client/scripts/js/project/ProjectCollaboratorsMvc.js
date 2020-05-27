@@ -61,10 +61,10 @@ class Model {
         this.projectId = this.getProjectId();
 
         var splittedURL = window.location.href.split("/");
-        this.rowNumberFromURL = splittedURL[9];
-        this.pageIndexFromURL = splittedURL[11];
-        if (splittedURL.length >= 13) {
-            this.searchValueFromURL = splittedURL[13];
+        this.rowNumberFromURL = splittedURL[URL_PROJECTS_TAB_ROWS_INDEX];
+        this.pageIndexFromURL = splittedURL[URL_PROJECTS_TAB_PAGE_INDEX];
+        if (splittedURL.length >= URL_PROJECTS_TAB_SEARCH_INDEX) {
+            this.searchValueFromURL = splittedURL[URL_PROJECTS_TAB_SEARCH_INDEX];
         }
     }
 
@@ -116,7 +116,7 @@ class Model {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
 
-        return splittedURL[6];
+        return splittedURL[URL_PROJECTS_ID_INDEX];
     }
 }
 

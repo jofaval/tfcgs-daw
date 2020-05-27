@@ -76,7 +76,7 @@ $(".projectBtnAdd").on("click", function (event) {
                 <label for="description">Descripción</label>
                 </div>
                 <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
-                        <input class="btn btn-primary w-100" type="submit" name="createProject" value="Crear project">
+                        <input class="btn btn-primary w-100" type="submit" name="createProject" value="Crear proyecto">
                 </div>
             </form>`,
         theme: $.sweetModal.THEME_DARK

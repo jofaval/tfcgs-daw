@@ -143,8 +143,8 @@ class Model {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
 
-        if (splittedURL.length >= 11) {
-            this.taskIdFromURL = splittedURL[11];
+        if (splittedURL.length >= URL_DASHBOARD_TASK_ID) {
+            this.taskIdFromURL = splittedURL[URL_DASHBOARD_TASK_ID];
         }
 
         if (URL.includes("#")) {
@@ -156,14 +156,14 @@ class Model {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
 
-        return splittedURL[6];
+        return splittedURL[URL_PROJECTS_ID_INDEX];
     }
 
     getDashboardtitle() {
         var URL = window.location.href;
         var splittedURL = URL.split("/");
 
-        return decodeURI(splittedURL[8]);
+        return decodeURI(splittedURL[URL_DASHBOARD_BASE]);
     }
 
     loadDashboardContent(whenFinished) {
