@@ -2,13 +2,13 @@
     margin-left: .5em;
     width: 1em;
     height: 1em;
-    background-image: url('/daw/client/img/components/projects/bookmarked_off.png');
+    background-image: url('/daw/img/components/projects/bookmarked_off.png');
     background-size: 1em;
     cursor: pointer;
 }
 
 .dashboardCardBookmarkedIcon.active {
-    background-image: url('/daw/client/img/components/projects/bookmarked_on.png') !important;
+    background-image: url('/daw/img/components/projects/bookmarked_on.png') !important;
 }
 
 .action {
@@ -65,11 +65,13 @@
     align-self: center;
 }
 
-.recentlyCreated, .recentlyInvited {
+.recentlyCreated,
+.recentlyInvited {
     width: 95%;
 }
 
-.projectCardDescription, .dashboardCardDescription {
+.projectCardDescription,
+.dashboardCardDescription {
     max-height: 1.5em;
     text-overflow: ellipsis;
     overflow: hidden;

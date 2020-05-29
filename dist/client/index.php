@@ -22,6 +22,7 @@ error_reporting(Config::$developmentMode);
 if (Config::$allowConsoleOutput == 0) {
     echo "<script>console.log = function() {}</script>";
     echo "<script>console.error = function() {}</script>";
+    echo "<script>console.warn = function() {}</script>";
 }
 requireAllFromDir("classes/config");
 
@@ -54,7 +55,7 @@ if (!in_array($ctl, Config::$dont_need_db_ctls)) {
 }
 
 if (!$sessions->isUserAgentTheSame() && !in_array($ctl, Config::$notuseragent_ctls) && !in_array($ctl, Config::$dont_need_db_ctls)) {
-    header('Location: " . Config::$EXECUTION_HOME_PATH . "notuseragent/');
+    header('Location: ' . Config::$EXECUTION_HOME_PATH . 'notuseragent/');
 }
 
 //if (!Config::$developmentMode) {
@@ -96,7 +97,7 @@ if (isset($_REQUEST["ctl"])) {
     if (isset($map[$ctl])) {
         $ruta = $ctl;
     } else {
-        header('Location: " . Config::$EXECUTION_HOME_PATH . "no-action/');
+        header('Location: ' . Config::$EXECUTION_HOME_PATH . 'no-action/');
         exit;
     }
 } else {
@@ -116,10 +117,10 @@ if (method_exists($controlador['controller'], $controlador['action'])) {
         call_user_func(array(new $controlador['controller'], $controlador['action']));
     } else {
         //No tiene suficiente nivel de acceso
-        header('Location: " . Config::$EXECUTION_HOME_PATH . "access/');
+        header('Location: ' . Config::$EXECUTION_HOME_PATH . 'access/');
     }
 } else {
     //No se ha podido ejecutar
-    header('Location: " . Config::$EXECUTION_HOME_PATH . "execution-error/');
+    header('Location: ' . Config::$EXECUTION_HOME_PATH . 'execution-error/');
     exit;
 }

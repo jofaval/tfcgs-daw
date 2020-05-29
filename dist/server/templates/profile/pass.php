@@ -16,7 +16,9 @@
             <div class="col-md-6 mx-auto">
                 <div class="md-form mb-0">
                     <input type="password" required name="oldPassword" id="oldPassword" class="form-control validate">
-                    <label for="oldPassword" data-error="wrong" data-success="right">Contraseña anterior</label>
+                    <label for="oldPassword"
+                        <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Contraseña
+                        anterior</label>
                 </div>
             </div>
         </div>
@@ -24,7 +26,8 @@
             <div class="col-md-6 mx-auto">
                 <div class="md-form mb-0">
                     <input type="password" required name="password" id="password" class="form-control validate">
-                    <label for="password" data-error="wrong" data-success="right">Contraseña</label>
+                    <label for="password"
+                        <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Contraseña</label>
                 </div>
             </div>
         </div>
@@ -33,7 +36,9 @@
                 <div class="md-form mb-0">
                     <input type="password" required name="repeatPassword" id="repeatPassword"
                         class="form-control validate">
-                    <label for="repeatPassword" data-error="wrong" data-success="right">Repetir Contraseña</label>
+                    <label for="repeatPassword"
+                        <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Repetir
+                        Contraseña</label>
                 </div>
             </div>
         </div>

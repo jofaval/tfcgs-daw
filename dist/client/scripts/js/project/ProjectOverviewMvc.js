@@ -438,7 +438,7 @@ class Controller {
 
         var modal = Modal.modal({
             "title": "Invitar colaborador/a",
-            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
+            "content": `<form action="${EXECUTION_HOME_PATH}index.php?ctl=createCollaborators" id="formCreateCollaborator" class="col-sm-10  p-3 mx-auto" method="POST">
                             <div class="usernameSearchContainer"></div>
                             <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
                                     <input class="btn btn-primary w-100" type="submit" name="createCollaborators" id="createCollaborators" value="Invitar colaborador/a">

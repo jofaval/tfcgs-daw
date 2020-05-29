@@ -22,6 +22,7 @@ error_reporting(Config::$developmentMode);
 if (Config::$allowConsoleOutput == 0) {
     echo "<script>console.log = function() {}</script>";
     echo "<script>console.error = function() {}</script>";
+    echo "<script>console.warn = function() {}</script>";
 }
 requireAllFromDir("classes/config");
 

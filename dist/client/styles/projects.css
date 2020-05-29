@@ -17,13 +17,13 @@ main {
     margin-left: .5em;
     width: 1em;
     height: 1em;
-    background-image: url('/daw/client/img/components/projects/bookmarked_off.png');
+    background-image: url('/daw/img/components/projects/bookmarked_off.png');
     background-size: 1em;
     cursor: pointer;
 }
 
 .projectCardBookmarkedIcon.active {
-    background-image: url('/daw/client/img/components/projects/bookmarked_on.png') !important;
+    background-image: url('/daw/img/components/projects/bookmarked_on.png') !important;
 }
 
 .projectCardFlags {

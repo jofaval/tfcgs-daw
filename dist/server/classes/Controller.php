@@ -472,6 +472,7 @@ class Controller
         $ajaxController = new AjaxController();
 
         $_REQUEST["id_project"] = $id;
+        $_REQUEST["idProjectForAccessLevel"] = $id;
         $_REQUEST["dashboard"] = $dashboard_title;
 
         $ajaxController->getListsOfDashboard();

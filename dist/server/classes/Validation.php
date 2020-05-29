@@ -187,6 +187,16 @@ class Validation
         }
     }
 
+    protected function _boolean($campo, $valor)
+    {
+        if (isset($valor) && preg_match("/^(true|false)$/iu", $valor)) {
+            return true;
+        } else {
+            $this->mensaje[$campo][] = "The field $campo must be either boolean";
+            return false;
+        }
+    }
+
     protected function _text($campo, $valor)
     {
         if (isset($valor) && preg_match("/^[a-zñ\ 0-9\-\º\ª]+$/ium", $valor)) {

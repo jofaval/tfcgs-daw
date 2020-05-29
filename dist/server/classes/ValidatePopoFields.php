@@ -51,12 +51,11 @@ ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validati
     "title",
     "description",
     "comment",
-    "biography",
-    "content"], 'text'));
+    "biography"], 'text'));
 ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validationRules, array_fill_keys(["username"], 'username'));
 ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validationRules, array_fill_keys(["password"], 'password'));
 ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validationRules, array_fill_keys(["finished",
-    "enabled"], 'password'));
+    "enabled"], 'boolean'));
 ValidatePopoFields::$validationRules = array_merge(ValidatePopoFields::$validationRules, array_fill_keys(["starting_date",
     "start_date",
     "end_date",

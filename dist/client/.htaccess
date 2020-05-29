@@ -13,7 +13,7 @@ Header set Cache-Control "max-age=300, public"
 </FilesMatch>
 
 #HTTP Error redirections
-ErrorDocument 404 ./404/
+ErrorDocument 404 /daw/404/
 RewriteRule ^404[/]?$ ./index.php?ctl=404 [L]
 
 #Main pages
