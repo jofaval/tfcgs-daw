@@ -188,7 +188,7 @@ $breadcrumb = [
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
                             <h5
                                 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden py-1 m-0 font-weight-normal">
-                                Chema Slonso</h5>
+                                Chema Alonso</h5>
                         </div>
                         <p
                             class="collaboratorDetails w-100 text-dark text-center pl-3 z-index-overlap-bottom overflow-hidden my-2">
