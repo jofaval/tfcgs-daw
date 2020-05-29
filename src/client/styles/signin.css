@@ -67,6 +67,7 @@ main {
     background-image: url("/daw/img/components/signin/form-bg.jpg");
     background-size: cover;
     filter: grayscale(50%) brightness(0.7);
+    opacity: 0.4 !important;
 }
 
 @media (max-width: 800px) {

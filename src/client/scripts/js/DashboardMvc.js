@@ -127,7 +127,7 @@ var $dashboardAssignationFinishedStateInput = $(`
 </div>
 `);
 var $dashboardAssignation = $(`
-<div class="col-sm dashboardAssignation text-dark small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
+<div class="col-sm dashboardAssignation text-dark text-center small ml-auto text-right p-1 mx-2 mb-2 mt-0 rounded">
     <span><i class="fa fa-clock-o"></i></span>
     <span class="startDate"></span>
     <span class="">&nbsp;-&nbsp;</span>
@@ -144,6 +144,7 @@ class Model {
         var splittedURL = URL.split("/");
 
         if (splittedURL.length >= URL_DASHBOARD_TASK_ID) {
+            console.log(splittedURL[URL_PROJECTS_TAB_BASE]);
             this.taskIdFromURL = splittedURL[URL_DASHBOARD_TASK_ID];
         }
 
@@ -354,7 +355,7 @@ class Model {
             url: EXECUTION_HOME_PATH + "index.php?ctl=updateDashboardsItemAssignation",
             data: {
                 "id": id,
-                "finished": newState ? 1 : 0,
+                "finished": newState /*  ? 1 : 0 */ ,
                 "idProjectForAccessLevel": model.projectId,
             },
             success: function (result) {
@@ -1410,7 +1411,8 @@ class Controller {
                     controller.model.createDashboardsItemAssignation(taskItemData.id, startDateVal, endDateVal, username, function (result) {
                         console.log(result);
                         if (result !== false) {
-                            sendNotification("Se ha asignato con éxito", "assignateTaskSuccess");
+                            sendNotification("Se ha asignado con éxito", "assignateTaskSuccess");
+                            window.location.href = window.location.href;
                             modal.close();
                         } else {
                             sendNotification("No se ha podido asignar", "assignateTaskFail");
@@ -1550,6 +1552,7 @@ class Controller {
                         console.log(result);
                         if (result !== false) {
                             sendNotification("Se ha quitado la asignación", "removeAssignationTaskSuccess");
+                            window.location.href = window.location.href;
                             modal.close();
                         } else {
                             sendNotification("No se ha quitar la asignación", "removeAssignationTaskFail");

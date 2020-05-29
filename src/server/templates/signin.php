@@ -10,7 +10,7 @@
 <?php $loadLogin = Utils::exists("login")?>
 
 <?php ob_start()?>
-<div class="h-75 m-auto w-50 rounded d-flex text-dark bg-white" id="signFormsContainer">
+<div class="h-75 m-auto w-50 rounded d-flex text-dark bg-dark grey darken-4" id="signFormsContainer">
     <form action="<?php echo Config::$EXECUTION_HOME_PATH; ?>signin/" method="POST" id="registerForm"
         class="col-md-6 rounded d-flex align-items-center justify-content-center flex-column pl-5 pr-0 h-100 text-center">
         <h1 class="text-white">¡Nos alegra verte de nuevo!</h1>
@@ -52,8 +52,9 @@
                 <!-- Nombre -->
                 <div class="md-form">
                     <input type="text" name="firstName" id="firstName" required
-                        value="<?php echo $viewParams["signupFirstName"]; ?>" class="form-control text-white">
-                    <label class="text-white" for="firstName">Nombre</label>
+                        value="<?php echo $viewParams["signupFirstName"]; ?>" class="form-control validate text-white">
+                    <label data-error="Erróneo" data-success="Correcto" class="text-white"
+                        for="firstName">Nombre</label>
                 </div>
                 <?php Utils::ifExistsShowError($viewParams, "firstName");?>
             </div>
@@ -61,30 +62,32 @@
                 <!-- Apellidos -->
                 <div class="md-form">
                     <input type="text" name="secondName" id="secondName" required
-                        value="<?php echo $viewParams["signupSecondName"]; ?>" class="form-control text-white">
-                    <label class="text-white" for="secondName">Apellidos</label>
+                        value="<?php echo $viewParams["signupSecondName"]; ?>" class="form-control validate text-white">
+                    <label data-error="Erróneo" data-success="Correcto" class="text-white"
+                        for="secondName">Apellidos</label>
                 </div>
                 <?php Utils::ifExistsShowError($viewParams, "secondName");?>
             </div>
         </div>
         <div class="md-form w-100">
-            <input type="email" class="form-control text-white" id="email" autocomplete="off" autocorrect="off"
+            <input type="email" class="form-control validate text-white" id="email" autocomplete="off" autocorrect="off"
                 autocapitalize="off" spellcheck="false" name="email" required
                 value="<?php echo $viewParams["signupEmail"]; ?>">
-            <label class="text-white" for="email">Correo electrónico</label>
+            <label data-error="Erróneo" data-success="Correcto" class="text-white" for="email">Correo
+                electrónico</label>
             <?php Utils::ifExistsShowError($viewParams, "email");?>
         </div>
         <div class="md-form w-100">
-            <input type="text" class="form-control text-white" autocomplete="off" autocorrect="off" autocapitalize="off"
-                spellcheck="false" id="username" name="username" required
+            <input type="text" class="form-control validate text-white" autocomplete="off" autocorrect="off"
+                autocapitalize="off" spellcheck="false" id="username" name="username" required
                 value="<?php echo $viewParams["signupUsername"]; ?>">
-            <label class="text-white" for="username">Usuario</label>
+            <label data-error="Erróneo" data-success="Correcto" class="text-white" for="username">Usuario</label>
             <?php Utils::ifExistsShowError($viewParams, "username");?>
         </div>
         <div class="md-form input-group w-100">
-            <input type="password" class="form-control text-white" id="password" name="password" required
+            <input type="password" class="form-control validate text-white" id="password" name="password" required
                 value="<?php echo $viewParams["signupPassword"]; ?>">
-            <label class="text-white" for="password">Contraseña</label>
+            <label data-error="Erróneo" data-success="Correcto" class="text-white" for="password">Contraseña</label>
             <div class="input-group-append">
                 <a href="" class="btn btn-primary btn-sm input-group-text md-addon shadow-none togglePassword">
                     <i class="fa fa-eye"></i>

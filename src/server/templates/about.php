@@ -166,49 +166,49 @@ $breadcrumb = [
             <div class="row">
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
+                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/about/steve-jobs.jpg" alt=""
                             class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
                             <h5
                                 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden py-1 m-0 font-weight-normal">
-                                Pepe Fabra Valverde</h5>
+                                Steve Jobs</h5>
                         </div>
                         <p
                             class="collaboratorDetails w-100 text-dark text-center pl-3 z-index-overlap-bottom overflow-hidden my-2">
-                            <span class="collaboratorRole mt-3 mb-2 text-dark m-0">Administrator</span>
+                            <span class="collaboratorRole mt-3 mb-2 text-dark m-0">CEO</span>
                         </p>
                     </a>
                 </div>
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
+                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/about/chema-alonso.jpg" alt=""
                             class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
                             <h5
                                 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden py-1 m-0 font-weight-normal">
-                                Pepe Fabra Valverde</h5>
+                                Chema Slonso</h5>
                         </div>
                         <p
                             class="collaboratorDetails w-100 text-dark text-center pl-3 z-index-overlap-bottom overflow-hidden my-2">
-                            <span class="collaboratorRole mt-3 mb-2 text-dark m-0">Administrator</span>
+                            <span class="collaboratorRole mt-3 mb-2 text-dark m-0">Programador</span>
                         </p>
                     </a>
                 </div>
                 <div class="col-md">
                     <a href="" class="collaboratorCard text-dark px-0 row col-12 m-2 mx-auto bg-white">
-                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/default.png" alt=""
+                        <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/about/bob-ross.jpg" alt=""
                             class="collaboratorImg object-fit-cover w-100 z-index" height="400">
                         <div
                             class="row collaboratorDetails border pl-3 z-index-overlap flex-wrap center-elements m-0 w-100">
                             <h5
                                 class="collaboratorName text-dark text-overflow-ellipsis overflow-hidden py-1 m-0 font-weight-normal">
-                                Pepe Fabra Valverde</h5>
+                                Bob Ross</h5>
                         </div>
                         <p
                             class="collaboratorDetails w-100 text-dark text-center pl-3 z-index-overlap-bottom overflow-hidden my-2">
-                            <span class="collaboratorRole mt-3 mb-2 text-dark m-0">Administrator</span>
+                            <span class="collaboratorRole mt-3 mb-2 text-dark m-0">Diseñador gráfico</span>
                         </p>
                     </a>
                 </div>

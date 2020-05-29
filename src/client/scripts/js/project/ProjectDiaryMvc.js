@@ -16,7 +16,7 @@ class Model {
                 "idProjectForAccessLevel": model.projectId,
             },
             success: function (content) {
-                whenFinished(decodeURI(content));
+                whenFinished(content);
             },
         });
     }
