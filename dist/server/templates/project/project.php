@@ -58,7 +58,7 @@ $breadcrumb = [
                 src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/projects/<?php echo $viewParams["id"]; ?>/profile.png"
                 alt="" width="200" height="200">
         </div>
-        <div class="d-none d-sm-block projectDetails bg-dark rounded text-dark col">
+        <div class="d-none d-sm-block projectDetails opacity-90 bg-dark rounded text-dark col">
             <h1 class="projectTitle font-weight-bold"><?php echo $projectData["projectTitle"]; ?></h1>
             <p class="projectCreatedBy mb-2">creado por <a
                     href="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/<?php echo $projectData["projectCreatorUsername"]; ?>/"

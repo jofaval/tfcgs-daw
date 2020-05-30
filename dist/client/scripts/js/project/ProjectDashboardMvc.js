@@ -404,7 +404,7 @@ class Controller {
 
     bookmarkDashboard(controller, json, bookmarkedIcon) {
         return function () {
-            bookmarkDashboard(json, function () {
+            controller.model.bookmarkDashboard(json, function (result) {
                 if (result !== false) {
                     bookmarkedIcon.toggleClass("active");
                     json.bookmarked = !json.bookmarked;

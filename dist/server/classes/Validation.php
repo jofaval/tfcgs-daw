@@ -199,7 +199,7 @@ class Validation
 
     protected function _text($campo, $valor)
     {
-        if (isset($valor) && preg_match("/^[a-zñ\ 0-9\-\º\ª]+$/ium", $valor)) {
+        if (isset($valor) && preg_match("/^[a-záéíóúñ\ \\/\.0-9\-\º\ª]+$/ium", $valor)) {
             return true;
         } else {
             $this->mensaje[$campo][] = "The field $campo must be a text";

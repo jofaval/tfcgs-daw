@@ -45,7 +45,7 @@ $breadcrumb = [
 
 <style>
 main {
-    background-image: url(<?php echo Config::$EXECUTION_HOME_PATH; ?>'img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png') !important;
+    background-image: url('<?php echo Config::$EXECUTION_HOME_PATH; ?>img/projects/<?php echo $viewParams["id"]; ?>/dashboards/<?php echo $viewParams["dashboardTitle"]; ?>/bg.png') !important;
 }
 </style>
 

@@ -40,7 +40,7 @@ $breadcrumb = [
                 src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/<?php echo $username; ?>.png"
                 alt="" width="200" height="200">
         </div>
-        <div class="d-none d-sm-block projectDetails bg-dark rounded text-dark col">
+        <div class="d-none d-sm-block projectDetails opacity-90 bg-dark rounded text-dark col">
             <h1 class="projectTitle font-weight-bold">
                 <?php echo $viewParams["profile"]["name"] . " " . $viewParams["profile"]["surname"]; ?></h1>
 

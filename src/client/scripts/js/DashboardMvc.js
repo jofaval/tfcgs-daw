@@ -839,7 +839,7 @@ class Controller {
         });
     }
 
-    onTaskItemMoved(movedData) {
+    onTaskItemMoved(controller, movedData) {
         console.log(movedData);
 
         if (movedData["endingIndex"] == movedData["startingIndex"] &&
@@ -891,7 +891,7 @@ class Controller {
             console.log("se llama", taskListData);
             startingTaskListData = taskListData;
 
-            controller.onTaskItemMoved({
+            controller.onTaskItemMoved(controller, {
                 "startingTaskList": startingTaskListData,
                 "startingIndex": startingIndex,
                 "endingTaskList": endingTaskListData,
