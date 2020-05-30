@@ -15,7 +15,7 @@ nav.navbar, .breadcrumbContainer, .footer {
 
 main {
     height: 100% !important;
-    background: url('/daw/img/components/signin/bg.jpg');
+    background: url('/daw/client/img/components/signin/bg.jpg');
     background-size: cover !important;
 }
 
@@ -42,7 +42,7 @@ main {
     width: 100%;
     height: 100%;
     z-index: -1;
-    /* background-image: url("/daw/img/components/signin/form-indicator.jpg");
+    /* background-image: url("/daw/client/img/components/signin/form-indicator.jpg");
     background-size: cover; */
     /* filter: grayscale(50%) brightness(0.7); */
     /* background: #fff !important; */
@@ -64,7 +64,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/daw/img/components/signin/form-bg.jpg");
+    background-image: url("/daw/client/img/components/signin/form-bg.jpg");
     background-size: cover;
     filter: grayscale(50%) brightness(0.7);
     opacity: 0.4 !important;
