@@ -65,7 +65,7 @@ class DashboardsItemAssignation implements CRUD
         $sqlUtils = new SQLUtils(Model::getInstance());
 
         $toModify = [
-            "finished" => $this->finished,
+            "finished" => $this->finished != "false",
         ];
 
         $identificationParams = [

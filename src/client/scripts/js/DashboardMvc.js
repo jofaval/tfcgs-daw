@@ -1167,7 +1167,7 @@ class Controller {
                     Modal.modal({
                         "title": `Detalles de ${taskItemData.title}`,
                         "content": `<div class="row">
-                        <p class="mb-0">Creado por <a href=EXECUTION_HOME_PATH + "profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
+                        <p class="mb-0">Creado por <a href="${EXECUTION_HOME_PATH}profile/${result.username}" class="dashboardItemCreator">${result.fullname}</a></p>
                         <div class="dashboardItemCreationDate ml-auto mr-2"></div>
                     </div>`,
                         "onOpen": function (modal) {
