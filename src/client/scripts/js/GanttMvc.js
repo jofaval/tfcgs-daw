@@ -215,11 +215,11 @@ class View {
 
         var startingDate = ViewUtils.createTableData(tr, "&nbsp;")
             .addClass("startingDate");
-        startingDate.text(printDateWithFormat(subTaskData.startingDate, "d/m/Y"));
+        startingDate.text(new DateUtils(subTaskData.startingDate).printDateWithFormat("d/m/Y"));
 
         var endingDate = ViewUtils.createTableData(tr, "&nbsp;")
             .addClass("endingDate");
-        endingDate.text(printDateWithFormat(subTaskData.endingDate, "d/m/Y"));
+        endingDate.text(new DateUtils(subTaskData.endingDate).printDateWithFormat("d/m/Y"));
 
         var progressIndicator = ViewUtils.createTableData(tr, "")
             .addClass("progressIndicator align-middle");
