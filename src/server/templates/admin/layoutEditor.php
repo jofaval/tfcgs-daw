@@ -24,8 +24,10 @@ $breadcrumb = [
 
 <?php ob_start()?>
 
-<h3> Hello world! </h3>
+<div class="m-auto bg-dark p-5 rounded">
+
+</div>
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once 'layout.php'?>
+<?php include_once __DIR__ . '/../layout.php'?>

@@ -959,6 +959,6 @@ class Controller
 
     public function layoutEditor()
     {
-        require_once __DIR__ . "/../templates/layoutEditor.php";
+        require_once __DIR__ . "/../templates/admin/layoutEditor.php";
     }
 }
