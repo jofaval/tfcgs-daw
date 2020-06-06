@@ -956,4 +956,9 @@ class Controller
     {
         require_once __DIR__ . "/../templates/profile/profileNotFound.php";
     }
+
+    public function layoutEditor()
+    {
+        require_once __DIR__ . "/../templates/layoutEditor.php";
+    }
 }

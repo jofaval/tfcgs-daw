@@ -97,6 +97,7 @@ RewriteRule ^admin/popo[/]?$ ./index.php?ctl=createPOPOfromDatabase [L]
 RewriteRule ^admin/download-database[/]?$ ./index.php?ctl=getDatabase [L]
 RewriteRule ^admin/testing[/]?$ ./index.php?ctl=test [L]
 RewriteRule ^admin/get-data-from-table/([^/]+)[/]?$ ./index.php?ctl=getDataFromTable&tableName=$1 [L]
+RewriteRule ^admin/layoutEditor[/]?$ ./index.php?ctl=layoutEditor [L]
 
 #rutasAjax
 RewriteRule ^ajax/([^/]+)/?([^/]+)$ ./index.php?ctl=$1&$2 [L]

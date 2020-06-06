@@ -238,3 +238,5 @@ $map['admin'] = array('controller' => 'Controller', 'action' => 'admin', 'access
 $map['getDataFromTable'] = array('controller' => 'Controller', 'action' => 'getDataFromTable', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //profileNotFound
 $map['profileNotFound'] = array('controller' => 'Controller', 'action' => 'profileNotFound', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//layoutEditor
+$map['layoutEditor'] = array('controller' => 'Controller', 'action' => 'layoutEditor', 'access' => Config::$ACCESS_LEVEL_GUEST);
