@@ -51,6 +51,7 @@ class Config
     public static $projectElements = [
         "tasks",
         "diary",
+        "gantt",
     ];
     public static $developmentMode = 1;
     public static $allowConsoleOutput = 1;
