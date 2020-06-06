@@ -27,6 +27,11 @@ class Controller
         require __DIR__ . '/../templates/errors/notuseragent.php';
     }
 
+    public function gantt()
+    {
+        require __DIR__ . '/../templates/gantt.php';
+    }
+
     public function projects()
     {
         $clientId = Sessions::getInstance()->getSession("userId");
