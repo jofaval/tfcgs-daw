@@ -13,10 +13,10 @@ var courtainEffect = false;
 
 function changeNightMode() {
     var nightModeInput = $("#nightMode");
-    //var nightModeLabel = nightModeInput.next();
+    var nightModeLabel = nightModeInput.next();
 
-    //nightModeStatus = nightModeInput.is(":checked");
-    nightModeStatus = false;
+    nightModeStatus = nightModeInput.is(":checked");
+    //nightModeStatus = true;
     localStorage.setItem("nightMode", nightModeInput.is(":checked"));
 
     if (nightModeStatus) { //oscuro
