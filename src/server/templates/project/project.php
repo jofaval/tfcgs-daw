@@ -126,7 +126,7 @@ switch ($tabName) {
         $icon = "columns";
         break;
     case "gantts":
-        $optionalScripts[] = "js/project/ProjectGanttsMvc.js";
+        $optionalScripts[] = "js/project/ProjectGanttMvc.js";
         require_once "$tabName.php";
         $titleName = "Gantts";
         $icon = "table";

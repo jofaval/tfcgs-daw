@@ -104,7 +104,7 @@ if (Utils::exists("id")) {
         );
 
         $isValid = $validation->rules($regla, ["id" => $id]);
-        if ($isValid !== true || !in_array($tabName, ["overview", "dashboards", "diary", "collaborators", "details"])) {
+        if ($isValid !== true || !in_array($tabName, ["overview", "dashboards", "gantts", "diary", "collaborators", "details"])) {
             header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/id/$id/");
         }
     }
@@ -188,6 +188,7 @@ if (Utils::exists("id")) {
                     break;
                 case 'gantt':
                     $ganttTitle = Utils::getCleanedData("secondaryId");
+                    $direction = "diagram_gantt";
                     $viewParams["ganttTitle"] = $ganttTitle;
                     break;
             }
