@@ -1,6 +1,6 @@
 <?php
 
-class BookmarkedGantts implements CRUD 
+class BookmarkedGantts implements CRUD
 {
     private $table = "bookmarked_gantts";
 
@@ -13,10 +13,12 @@ class BookmarkedGantts implements CRUD
 
     //Foreign Keys
 
-public function __construct()
-                    {
-                    $this->fill();
-                    }
+    public function __construct()
+    {
+
+        $this->fill();
+
+    }
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -27,7 +29,7 @@ public function __construct()
             "title" => $this->title,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()
@@ -85,14 +87,12 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id_client = Utils::getCleanedData("idClient");
         $this->id_project = Utils::getCleanedData("idProject");
         $this->title = Utils::getCleanedData("title");
     }
-
 
     public function parse()
     {
@@ -102,6 +102,4 @@ public function __construct()
             "title" => $this->title,
         ]);
     }
-} 
-
-
+}

@@ -1,6 +1,6 @@
 <?php
 
-class GanttDiagrams implements CRUD 
+class GanttDiagrams implements CRUD
 {
     private $table = "gantt_diagrams";
 
@@ -14,22 +14,26 @@ class GanttDiagrams implements CRUD
 
     //Foreign Keys
 
-public function __construct()
-                    {
-                    $this->fill();
-                    }
+    public function __construct()
+    {
+
+        $this->fill();
+
+    }
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
+
+        $creation_date = DateUtils::getCurrentDateTime();
 
         $params = [
             "id_project" => $this->id_project,
             "title" => $this->title,
             "id_creator" => $this->id_creator,
-            "creation_date" => $this->creation_date,
+            "creation_date" => $creation_date,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()
@@ -85,15 +89,13 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
-        $this->id_project = Utils::getCleanedData("idProject");
+        $this->id_project = Utils::getCleanedData("id_project");
         $this->title = Utils::getCleanedData("title");
-        $this->id_creator = Utils::getCleanedData("idCreator");
-        $this->creation_date = Utils::getCleanedData("creationDate");
+        $this->id_creator = Sessions::getInstance()->getSession("userId");
+        $this->creation_date = Utils::getCleanedData("creation_date");
     }
-
 
     public function parse()
     {
@@ -104,6 +106,4 @@ public function __construct()
             "creationDate" => $this->creation_date,
         ]);
     }
-} 
-
-
+}

@@ -1,6 +1,6 @@
 <?php
 
-class GanttDiagramTaskAssignation implements CRUD 
+class GanttDiagramTaskAssignation implements CRUD
 {
     private $table = "gantt_diagram_task_assignation";
 
@@ -13,10 +13,12 @@ class GanttDiagramTaskAssignation implements CRUD
 
     //Foreign Keys
 
-public function __construct()
-                    {
-                    $this->fill();
-                    }
+    public function __construct()
+    {
+
+        $this->fill();
+
+    }
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -27,7 +29,7 @@ public function __construct()
             "assignation_date" => $this->assignation_date,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()
@@ -85,14 +87,12 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
         $this->assigned_user_id = Utils::getCleanedData("assignedUserId");
         $this->assignation_date = Utils::getCleanedData("assignationDate");
     }
-
 
     public function parse()
     {
@@ -102,6 +102,4 @@ public function __construct()
             "assignationDate" => $this->assignation_date,
         ]);
     }
-} 
-
-
+}

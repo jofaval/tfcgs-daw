@@ -1,6 +1,6 @@
 <?php
 
-class GanttDiagramTasks implements CRUD 
+class GanttDiagramTasks implements CRUD
 {
     private $table = "gantt_diagram_tasks";
 
@@ -21,10 +21,12 @@ class GanttDiagramTasks implements CRUD
     //Foreign Keys
     private $status;
 
-public function __construct()
-                    {
-                    $this->fill();
-                    }
+    public function __construct()
+    {
+
+        $this->fill();
+
+    }
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -43,7 +45,7 @@ public function __construct()
             "status" => $this->status,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()
@@ -103,7 +105,6 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
@@ -118,7 +119,6 @@ public function __construct()
         $this->parent = Utils::getCleanedData("parent");
         $this->status = Utils::getCleanedData("status");
     }
-
 
     public function parse()
     {
@@ -136,6 +136,4 @@ public function __construct()
             "status" => $this->status,
         ]);
     }
-} 
-
-
+}

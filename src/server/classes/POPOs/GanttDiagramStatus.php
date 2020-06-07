@@ -1,6 +1,6 @@
 <?php
 
-class GanttDiagramStatus implements CRUD 
+class GanttDiagramStatus implements CRUD
 {
     private $table = "gantt_diagram_status";
 
@@ -13,10 +13,12 @@ class GanttDiagramStatus implements CRUD
 
     //Foreign Keys
 
-public function __construct()
-                    {
-                    $this->fill();
-                    }
+    public function __construct()
+    {
+
+        $this->fill();
+
+    }
     public function create()
     {
         $sqlUtils = new SQLUtils(Model::getInstance());
@@ -27,7 +29,7 @@ public function __construct()
             "description" => $this->description,
         ];
 
-        return $sqlUtils->insert($params);
+        return $sqlUtils->insert($this->table, $params);
     }
 
     public function update()
@@ -79,14 +81,12 @@ public function __construct()
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
     }
 
-
     public function fill()
     {
         $this->id = Utils::getCleanedData("id");
         $this->title = Utils::getCleanedData("title");
         $this->description = Utils::getCleanedData("description");
     }
-
 
     public function parse()
     {
@@ -96,6 +96,4 @@ public function __construct()
             "description" => $this->description,
         ]);
     }
-} 
-
-
+}
