@@ -43,6 +43,15 @@ class GanttDiagrams implements CRUD
                 "id_project" => $this->id_project,
                 "title" => $this->title,
             ]);
+
+            mkdir(SystemPaths::CLIENT_IMG_PATH . "/projects/" . $this->id_project . "/gantts/");
+            mkdir(SystemPaths::CLIENT_IMG_PATH . "/projects/" . $this->id_project . "/gantts/" . $this->title);
+
+            $randomImage = SystemPaths::CLIENT_IMG_PATH . "/projects/templates/bg-" . rand(1, 6) . ".png";
+            $randomImage = SystemPaths::CLIENT_IMG_PATH . "/gantts/templates/bg-" . rand(1, 6) . ".png";
+            $finalPath = SystemPaths::CLIENT_IMG_PATH . "/projects/" . $this->id_project . "/gantts/" . $this->title . "/bg.png";
+
+            FileUtils::copy($randomImage, $finalPath);
         }
 
         return $result;

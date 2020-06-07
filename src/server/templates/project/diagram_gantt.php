@@ -43,6 +43,12 @@ $breadcrumb = [
 
 <?php ob_start()?>
 
+<style>
+main {
+    background-image: url('<?php echo Config::$EXECUTION_HOME_PATH; ?>img/projects/<?php echo $viewParams["id"]; ?>/gantts/<?php echo $viewParams["ganttTitle"]; ?>/bg.png') !important;
+}
+</style>
+
 <?php $contenido = ob_get_clean()?>
 
 <?php include_once SystemPaths::SERVER_PROJECT_PATH . '/layoutProject.php'?>
