@@ -59,11 +59,11 @@ $breadcrumb = [
                 <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
                     data-parent="#accordionEx1">
                     <div class="card-body grey darken-3 text-light">
-                        <?php $title = "Añadir nueva ruta"?>
+                        <?php $accordionElementTitle = "Añadir nueva ruta"?>
                         <?php $href = Config::$EXECUTION_HOME_PATH . "admin/new-route/"?>
                         <?php include SystemPaths::SERVER_COMPONENTS_PATH . '/accordionElement.php'?>
 
-                        <?php $title = "Cambiar nivel de acceso"?>
+                        <?php $accordionElementTitle = "Cambiar nivel de acceso"?>
                         <?php $href = Config::$EXECUTION_HOME_PATH . "admin/access-level/"?>
                         <?php include SystemPaths::SERVER_COMPONENTS_PATH . '/accordionElement.php'?>
 
@@ -82,19 +82,19 @@ $breadcrumb = [
                 <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21"
                     data-parent="#accordionEx1">
                     <div class="card-body grey darken-3 text-light">
-                        <?php $title = "Panel de configuración de POPOs"?>
+                        <?php $accordionElementTitle = "Panel de configuración de POPOs"?>
                         <?php $href = Config::$EXECUTION_HOME_PATH . "admin/popo/"?>
                         <?php include SystemPaths::SERVER_COMPONENTS_PATH . '/accordionElement.php'?>
 
-                        <?php $title = "Ventana de testing"?>
+                        <?php $accordionElementTitle = "Ventana de testing"?>
                         <?php $href = Config::$EXECUTION_HOME_PATH . "admin/testing/"?>
                         <?php include SystemPaths::SERVER_COMPONENTS_PATH . '/accordionElement.php'?>
 
-                        <?php $title = "Descargarse script de SQL"?>
+                        <?php $accordionElementTitle = "Descargarse script de SQL"?>
                         <?php $href = Config::$EXECUTION_HOME_PATH . "admin/download-database/"?>
                         <?php include SystemPaths::SERVER_COMPONENTS_PATH . '/accordionElement.php'?>
 
-                        <?php $title = "Editor de templates"?>
+                        <?php $accordionElementTitle = "Editor de templates"?>
                         <?php $href = Config::$EXECUTION_HOME_PATH . "admin/layoutEditor/"?>
                         <?php include SystemPaths::SERVER_COMPONENTS_PATH . '/accordionElement.php'?>
                     </div>
