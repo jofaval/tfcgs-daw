@@ -966,6 +966,7 @@ class Controller
             $templateName = Utils::getCleanedData("templateName");
 
             $content = file_get_contents(SystemPaths::SERVER_TEMPLATES_PATH . "/$templateName");
+            $viewParams["fileContent"] = $content;
             $content = htmlentities($content);
             $splittedContent = mb_split("ob_start()", $content);
             eval(substr(5, strlen($splittedContent[0]) - 3));

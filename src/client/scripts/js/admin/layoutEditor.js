@@ -26,3 +26,4 @@ var summernote = $('#summernote').summernote({
 });
 
 $("div.note-editor button[data-event='codeview']").click();
+$('#summernote').summernote('codeview.toggle');

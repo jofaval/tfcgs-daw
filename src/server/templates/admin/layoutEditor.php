@@ -1,7 +1,7 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["summernote-bs4.min.css"];?>
 <?php $optionalScripts = ["libs/summernote-bs4.min.js", "js/admin/layoutEditor.js"];?>
-<?php $title = "Editor de layouts";?>
+<?php $title = "Editor de templates";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
@@ -21,7 +21,7 @@ $breadcrumb = [
         "icon" => "cogs",
     ],
     [
-        "name" => "Editor de layouts",
+        "name" => "Editor de templates",
         "link" => Config::$EXECUTION_HOME_PATH . "admin/layoutEditor/",
         "active" => true,
         "icon" => "edit",
@@ -42,7 +42,7 @@ $breadcrumb = [
         <input type="submit" class="btn btn-primary m-3" value="Cargar contenido del fichero" name="loadFileContent"
             id="loadFileContent">
     </form>
-    <div id="summernote"></div>
+    <div id="summernote"><?php echo $viewParams["fileContent"] ?></div>
 </div>
 
 <?php $contenido = ob_get_clean()?>
