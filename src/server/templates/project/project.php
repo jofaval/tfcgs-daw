@@ -31,6 +31,7 @@ $breadcrumb = [
 <?php $tabNames = [
     "overview",
     "dashboards",
+    "gantts",
     "diary",
     "collaborators",
     "details",
@@ -88,6 +89,11 @@ $breadcrumb = [
             class="tab d-flex justify-content-center align-content-center p-3 <?php echo $tabName == "dashboards" ? "active" : ""; ?>"><span
                 class=""><i class="fa fa-2x fa-columns"></i></span>&nbsp;<span
                 class="align-self-center d-none d-sm-inline-block">Tableros</span></a>
+        <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/gantts/"
+            id="tabGantts"
+            class="tab d-flex justify-content-center align-content-center p-3 <?php echo $tabName == "gantts" ? "active" : ""; ?>"><span
+                class=""><i class="fa fa-2x fa-table"></i></span>&nbsp;<span
+                class="align-self-center d-none d-sm-inline-block">Gantts</span></a>
         <a href="<?php echo Config::$EXECUTION_HOME_PATH; ?>projects/id/<?php echo $viewParams["id"]; ?>/diary/"
             id="tabDiary"
             class="tab d-flex justify-content-center align-content-center p-3 <?php echo $tabName == "diary" ? "active" : ""; ?>"><span
@@ -118,6 +124,12 @@ switch ($tabName) {
         require_once "$tabName.php";
         $titleName = "Tableros";
         $icon = "columns";
+        break;
+    case "gantts":
+        $optionalScripts[] = "js/project/ProjectGanttsMvc.js";
+        require_once "$tabName.php";
+        $titleName = "Gantts";
+        $icon = "table";
         break;
     case "diary":
         $optionalScripts[] = "js/project/ProjectDiaryMvc.js";

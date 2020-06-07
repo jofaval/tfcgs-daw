@@ -1,129 +1,101 @@
-var currentDate = new Date();
-var newDate = new Date();
-newDate.setDate(currentDate.getDate() + 3);
-var tasks = [{
-    "id": 1,
-    "color": 1,
-    "title": "Title",
-    "desc": "Desc",
-    "startingDate": currentDate,
-    "endingDate": newDate,
-    "subTasks": [{
-            "id": 1,
-            "title": "Title",
-            "desc": "Desc",
-            "startingDate": currentDate,
-            "endingDate": newDate,
-            "daysSpan": "3",
-            "progress": Math.floor(Math.random() * 100),
-        },
-        {
-            "id": 2,
-            "title": "Title",
-            "desc": "Desc",
-            "startingDate": currentDate,
-            "endingDate": newDate,
-            "daysSpan": "3",
-            "progress": Math.floor(Math.random() * 100),
-        },
-        {
-            "id": 3,
-            "title": "Title",
-            "desc": "Desc",
-            "startingDate": currentDate,
-            "endingDate": newDate,
-            "daysSpan": "3",
-            "progress": Math.floor(Math.random() * 100),
-        },
-        {
-            "id": 4,
-            "title": "Title",
-            "desc": "Desc",
-            "startingDate": currentDate,
-            "endingDate": newDate,
-            "daysSpan": "3",
-            "progress": Math.floor(Math.random() * 100),
-        },
-    ],
-}, ];
+var $paginationItem = $(`<li class="page-item"><a class="page-link text-dark"></a></li>`);
+var $currentPaginationItem = $(`<span class="sr-only">(current)</span>`);
 
-/* var weekDays = {
-    0: "Sunday",
-    1: "Monday",
-    2: "Tuesday",
-    3: "Wednesday",
-    4: "Thursday",
-    5: "Friday",
-    6: "Saturday",
-}; */
+var $ganttRow = $(`<div class="row ganttCardRow d-flex flex-wrap justify-content-center m-0"></div>`);
+var $ganttPage = $(`<div class="ganttsPage"></div>`);
 
-var weekDays = {
-    0: "Sábado",
-    1: "Lunes",
-    2: "Martes",
-    3: "Miércoles",
-    4: "Jueves",
-    5: "Viernes",
-    6: "Domingo",
-};
+var $ganttFlagBookmarked = $(`<div class="ganttsBtnBookmarked btn btn-sm btn-warning">Favorito</div>`);
+var $ganttFlagCreated = $(`<div class="ganttsBtnCreated btn btn-sm btn-success text-dark">Creado</div>`);
+var $ganttFlagShared = $(`<div class="ganttsBtnShared btn btn-sm btn-primary">Compartido</div>`);
 
-var taskColorCode = {
-    0: {
-        "background": "danger",
-        "gradient": "young-passion-gradient",
-        "task": "red",
-    },
-    1: {
-        "background": "warning",
-        "gradient": "peach-gradient",
-        "task": "yellow",
-    },
-    2: {
-        "background": "success",
-        "gradient": "dusty-grass-gradient",
-        "task": "green",
-    },
-    3: {
-        "background": "primary",
-        "gradient": "blue-gradient",
-        "task": "blue",
-    },
-    4: {
-        "background": "secondary",
-        "gradient": "ripe-malinka-gradient",
-        "task": "purple",
-    },
-    5: {
-        "background": "light",
-        "gradient": "bg-white",
-        "task": "grey",
-    }
-};
-
-var $taskTitleSpan = $(`
-<span class="position-absolute py-3 shadow ganttTitle"
-style="left: 0; padding-left: 2rem; padding-right: 1rem; margin-top: -1rem;"></span>
-`);
-
-var $taskProgress = $(`
-<div class="progress my-auto mx-3 bg-dark" title="50%">
-    <div class="progress-bar text-dark font-weight-bold" role="progressbar"
-        style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-</div>
-`);
-
-var $taskCreation = $(`
-<tr class="subTaskCreationRow text-dark">
-    <td colspan="999999">
-        <button class="btn btn-sm ">Create Task +</button>
-    </td>
-</tr>
-`);
+var $ganttCard = $(`
+<div class="ganttCard text-dark row col-12 px-0 col-sm m-2 bg-grey">
+    <img src="" alt="" class="ganttCardBgImg object-fit-cover opacity-80 brightness-30 position-absolute w-100 h-100 z-index">
+    <div
+        class="row ganttCardDetails pl-3 z-index-overlap flex-wrap d-flex justify-content-start justify-items-center align-content-center align-items-center w-100 m-0 pt-2">
+        <a href="" class="btn btn-sm btn-primary ganttCardBtnView">Ver</a>
+        <!--div class="btn btn-sm btn-danger ganttCardBtnDisable">Disable gantt</div-->
+        <h5 class="ganttCardTitle max-text-10 text-white text-overflow-ellipsis overflow-hidden m-0 font-weight-bold">Gantt title</h5>
+        <div class="ganttCardBookmarkedIcon"></div>
+        <div class="ganttCardFlags float-right btn-group d-none d-sm-block"></div>
+    </div>
+    <a href="" class="ganttReadMore text-white">Leer más...</a>
+    <div class="ganttCardDescription text-white max-text-20 text-overflow-ellipsis pl-3 z-index-overlap-bottom overflow-hidden text-justify my-2"></div>
+</div>`);
 
 class Model {
-    constructor(startDate, endDate) {
-        this.startingDate = startDate;
-        this.endingDate = endDate;
+    constructor() {
+        this.paginationIndex = 1;
+        this.projectId = this.getProjectId();
+
+        var splittedURL = window.location.href.split("/");
+        this.rowNumberFromURL = splittedURL[URL_PROJECTS_TAB_ROWS_INDEX];
+        this.pageIndexFromURL = splittedURL[URL_PROJECTS_TAB_PAGE_INDEX];
+        if (splittedURL.length >= URL_PROJECTS_TAB_SEARCH_INDEX) {
+            this.searchValueFromURL = splittedURL[URL_PROJECTS_TAB_SEARCH_INDEX];
+        }
+    }
+
+    loadGantts(whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: EXECUTION_HOME_PATH + "index.php?ctl=getGanttsOfProject",
+            data: {
+                "id_project": model.projectId,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (gantts) {
+                model.gantts = gantts;
+                model.workingGantts = gantts;
+                whenFinished(gantts);
+            }
+        });
+    }
+
+    createGantt(title, description, whenFinished) {
+        var model = this;
+
+        $.ajax({
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createGantts",
+            data: {
+                "title": title,
+                "description": description,
+                "id_project": model.projectId,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                model.workingGantts.push(result[0]);
+                whenFinished(result);
+            }
+        });
+    }
+
+    bookmarkGantt(json, whenFinished, ifErrorThen) {
+        var model = this;
+
+        $.ajax({
+            url: EXECUTION_HOME_PATH + "index.php?ctl=bookmarkGantt",
+            data: {
+                "id_project": model.projectId,
+                "title": json.title,
+                "bookmarked": json.bookmarked,
+                "idProjectForAccessLevel": model.projectId,
+            },
+            success: function (result) {
+                whenFinished(result);
+            },
+            error: function (result) {
+                ifErrorThen(result);
+            }
+        });
+    }
+
+    getProjectId() {
+        var URL = window.location.href;
+        var splittedURL = URL.split("/");
+
+        return splittedURL[URL_PROJECTS_ID_INDEX];
     }
 }
 
@@ -132,167 +104,68 @@ class View {
 
     }
 
-    initializeView(container) {
-        var table = ViewUtils.createTable(container);
-        table.addClass("ganttTable overflow-hidden");
-        var thead = ViewUtils.createTableHeader(table);
-        thead.addClass("ganttTableHeader");
-        var rowDates = ViewUtils.createTableRow(thead);
+    initializeView(container) {}
 
-        rowDates.addClass("ganttRowDates weekDays");
-        var days = ViewUtils.createTableHead(rowDates, "");
-        days.addClass("nonRotatedText");
+    visualizeGantt(container, name, desc = "") {
+        var clonedCard = $ganttCard.clone();
 
-        this.visualizeTaskIntervalForm(days);
+        clonedCard.find(".ganttCardTitle").text(name);
+        clonedCard.find(".ganttCardDescription").text(desc);
 
-        var rowTaskTitles = ViewUtils.createTableRow(thead);
-        rowTaskTitles.addClass("ganttRowMonth");
-        this.visualizeTaskHeaderTitles(rowTaskTitles);
+        container.append(clonedCard);
 
-        days.prop("colspan", 5);
-        var tbody = ViewUtils.createTableBody(table);
+        return clonedCard;
     }
 
-    visualizeMonth(monthName, days) {
-        var month = ViewUtils.createTableHead($(".ganttRowMonth"), monthName);
-        month.prop("colspan", days);
-        month.addClass("text-center align-middle");
+    visualizeGanttRow(container) {
+        var clonedRow = $ganttRow.clone();
+
+        container.append(clonedRow);
+
+        return clonedRow;
     }
 
-    visualizeTaskIntervalForm(tableData) {
-        var daysForm = ViewUtils.createForm(tableData);
-        daysForm.removeClass("bg-white")
-            .addClass("mb-0");
+    visualizeGanttPage(container) {
+        var clonedRow = $ganttPage.clone();
 
-        var daysFormRow = ViewUtils.addFormRow(daysForm);
+        container.append(clonedRow);
 
-        ViewUtils.addInput(daysFormRow, "startDate", "date", "Starting Date").find("input").addClass("text-white");
-        ViewUtils.addInput(daysFormRow, "endDate", "date", "Ending Date").find("input").addClass("text-white");
-
-        var daysFormRow = ViewUtils.addSubmit(daysForm, "Change interval", "newDateInterval");
+        return clonedRow;
     }
 
-    visualizeTaskHeaderTitles(tableRow) {
-        var taskTitles = ViewUtils.createTableHead(tableRow, "Task titles");
-        taskTitles.prop("id", "titles");
+    visualizePaginationItem(index) {
+        var clonedPageItem = $paginationItem.clone();
 
-        ViewUtils.createTableHead(tableRow, "Starting day").addClass("text-center align-middle");
-        ViewUtils.createTableHead(tableRow, "Ending day").addClass("text-center align-middle");
-        ViewUtils.createTableHead(tableRow, "Progress").addClass("text-center align-middle min-width-15");
-        ViewUtils.createTableHead(tableRow, "Days span").addClass("text-center align-middle");
+        clonedPageItem.find(".page-link").html(index + "");
+        $(".pagination .nav-next").before(clonedPageItem);
+
+        return clonedPageItem;
     }
 
-    visualizeTask(tbody, taskData) {
-        var colorCode = "primary";
-        var tr = ViewUtils.createTableRow(tbody);
-        tr.addClass(`task bg-${colorCode}`);
+    visualizeGanttFlags(gantt, created, bookmarked) {
+        var ganttFlagsContainer = gantt.find(".ganttCardFlags");
 
-        var td = ViewUtils.createTableData(tr, "&nbsp;").addClass("text-dark");
-        td.prop("colspan", "999999");
-
-        var clonedSpan = $taskTitleSpan.clone()
-            .addClass("taskTitle");
-        clonedSpan.text(taskData.title);
-        td.append(clonedSpan);
-
-        this.onGanttTitleHover(clonedSpan);
-
-        return tr;
-    }
-
-    onGanttTitleHover(element) {
-        element.hover(function () {
-            element.stop().animate({
-                paddingLeft: "6rem"
-            }, 200);
-
-            element.css("cursor", "pointer");
-        }, function () {
-            element.stop().animate({
-                paddingLeft: "2rem"
-            }, 350);
-        });
-    }
-
-    visualizeSubTask(tbody, subTaskData) {
-        var tr = ViewUtils.createTableRow(tbody).addClass("subTask");
-        tr.addClass("task");
-
-        var td = ViewUtils.createTableData(tr, "&nbsp;");
-
-        var clonedSpan = $taskTitleSpan.clone()
-            .addClass("subTaskTitle");
-        clonedSpan.text(subTaskData.title);
-        td.append(clonedSpan);
-
-        this.onGanttTitleHover(clonedSpan);
-
-        var startingDate = ViewUtils.createTableData(tr, "&nbsp;")
-            .addClass("startingDate py-0 my-0");
-        startingDate.html(`<div class="md-form col my-2 p-0">
-        <input type="date" class="form-control m-0 p-0 text-white" value="${new DateUtils(subTaskData.startingDate).printDateWithFormat("Y-m-d")}" placeholder="" id="startDate" name="startDate">
-    </div>`);
-
-        var endingDate = ViewUtils.createTableData(tr, "&nbsp;")
-            .addClass("endingDate py-0 my-0");
-        endingDate.html(`<div class="md-form col my-2 p-0">
-        <input type="date" class="form-control m-0 p-0 text-white" value="${new DateUtils(subTaskData.endingDate).printDateWithFormat("Y-m-d")}" placeholder="" id="endDate" name="endDate">
-    </div>`);
-
-        var progressIndicator = ViewUtils.createTableData(tr, "")
-            .addClass("progressIndicator align-middle");
-        this.visualizeProgress(progressIndicator, subTaskData.progress);
-
-        var daysSpan = ViewUtils.createTableData(tr, "wegwegweg")
-            .addClass("daysSpan");
-        daysSpan.text(subTaskData.daysSpan)
-
-        for (let index = 0; index < 60; index++) {
-            ViewUtils.createTableData(tr, "&nbsp;");
+        if (created) {
+            ganttFlagsContainer.append($ganttFlagCreated.clone());
+        } else {
+            ganttFlagsContainer.append($ganttFlagShared.clone());
         }
 
-        tbody.append(tr);
+        if (bookmarked) {
+            //ganttFlagsContainer.prepend($ganttFlagBookmarked.clone());
+        }
 
-        return tr;
+        return ganttFlagsContainer;
     }
 
-    visualizeProgress(progress, value, gradient = "aqua-gradient") {
-        var clonedProgress = $taskProgress.clone();
-
-        progress.append(clonedProgress);
-        var progressBar = clonedProgress.find(".progress-bar")
-            .addClass(gradient);
-        clonedProgress.prop("title", `${value}%`);
-        progressBar.prop("title", `${value}%`);
-        progressBar.width(`${value}%`);
-        progressBar.prop("aria-valuenow", `${value}`);
-        progressBar.text(`${value}%`);
-
-        return clonedProgress
+    hideComponent(component) {
+        //component.fadeOut();
+        component.hide();
     }
 
-    visualizeTaskCreation(tbody, text = "Create Task +") {
-        var clonedTaskCreation = $taskCreation.clone();
-
-        clonedTaskCreation.find(".btn").text(text);
-        tbody.append(clonedTaskCreation);
-
-        return clonedTaskCreation;
-    }
-
-    adjustMaxLengthTitles() {
-        var titlesLengths = [];
-        $(".taskTitle, .subTaskTitle").each(function () {
-            titlesLengths.push($(this).width());
-        });
-
-        $("#titles, .taskTitle, .subTaskTitle").css("min-width", `calc(${Math.max.apply(null, titlesLengths)}px + 3rem)`);
-    }
-
-    scrollTo(element) {
-        $(element).get(0).scrollIntoView({
-            behavior: "smooth"
-        });
+    showComponent(component) {
+        //component.fadeIn();
+        component.show();
     }
 }
 
@@ -303,205 +176,298 @@ class Controller {
 
         var controller = this;
 
-        view.initializeView($("#content"));
+        var mainContainer = $("#mainGanttPanel");
 
-        view.visualizeMonth("March", 30);
-        var weekDaysLen = 7;
-        for (let index = 0; index < 30; index++) {
-            var dayInString = `${weekDays[(index + 1) % weekDaysLen]}, ${(index + 1)}`;
-            ViewUtils.createTableHead($(".ganttRowDates"), dayInString);
+        view.initializeView(mainContainer);
+
+        model.loadGantts(function (gantts) {
+            console.log("tableros", gantts);
+            if (controller.model.rowNumberFromURL != undefined) {
+                if (controller.model.searchValueFromURL) {
+                    searchBar.val(controller.model.searchValueFromURL);
+                    $("#selectNumberOfRows").val(controller.model.rowNumberFromURL);
+                    controller.searchGanttEvent(searchBar, controller, function () {
+                        var indexToLoad = controller.model.pageIndexFromURL;
+                        $(".page-item").eq(indexToLoad).trigger("click");
+                    });
+                } else {
+                    controller.reload(controller, function () {
+                        var indexToLoad = controller.model.pageIndexFromURL;
+                        $(".page-item").eq(indexToLoad).trigger("click");
+                    });
+                }
+            } else {
+                controller.reload(controller, function () {
+                    $(".page-item").eq(1).trigger("click");
+                });
+            }
+            $(".numberOfGantts").text(gantts.length);
+        });
+
+        var selectNumberOfRows = $("#selectNumberOfRows");
+        var localStorageNumberRows = localStorage.getItem("numberOfRowsInCollaborators");
+        if (localStorageNumberRows === null) {
+            localStorageNumberRows = 3;
         }
-        view.visualizeMonth("April", 30);
-        var weekDaysLen = 7;
-        for (let index = 0; index < 30; index++) {
-            var dayInString = `${weekDays[(index + 1) % weekDaysLen]}, ${(index + 1)}`;
-            ViewUtils.createTableHead($(".ganttRowDates"), dayInString);
+        selectNumberOfRows.val(localStorageNumberRows);
+        selectNumberOfRows.on("change", function () {
+            controller.reload(controller);
+            localStorage.setItem("numberOfRowsInGantts", selectNumberOfRows.val());
+            controller.pageChanged(controller, 1);
+        });
+
+        var searchBar = $("#ganttSearch");
+        whenUserDoneTypingInInput(searchBar, "ganttSearch", function () {
+            controller.searchGanttEvent(searchBar, controller);
+        }, 100);
+
+        $(".ganttBtnAdd").on("click", function (event) {
+            controller.addGanttBtnEvent(controller, event);
+        });
+
+        $(".ganttsBtnFilters .btn").on("click", function () {
+            $(this).toggleClass("active");
+
+            controller.reload(controller);
+        });
+
+        $(".page-item.nav-previous .page-link").on("click", function () {
+            var activePage = $(this).parent().siblings(".active").prev();
+            if (!activePage.hasClass("nav-previous")) {
+                activePage.trigger("click");
+            }
+        });
+
+        $(".page-item.nav-next .page-link").on("click", function () {
+            var activePage = $(this).parent().siblings(".active").next();
+            if (!activePage.hasClass("nav-next")) {
+                activePage.trigger("click");
+            }
+        });
+    }
+
+    searchGanttEvent(searchBar, controller, callback = null) {
+        var content = searchBar.val().toLowerCase();
+        var newGanttsJSON = [];
+        if (content == "") {
+            newGanttsJSON = controller.model.gantts;
+        } else {
+            $(controller.model.gantts).each(function () {
+                if (content == "" || (!this.title.toLowerCase().includes(content) && !this.description.toLowerCase().includes(content))) {
+                    return;
+                }
+                newGanttsJSON.push(this);
+            });
+        }
+        if (newGanttsJSON.length > 0) {
+            controller.model.workingGantts = newGanttsJSON;
+            controller.model.filterGantts = newGanttsJSON;
+            if (callback != null) {
+                controller.reload(controller, callback);
+            } else {
+                controller.reload(controller);
+            }
+            controller.pageChanged(controller, 1);
+        } else {
+            controller.clearContainer(controller);
+            $(".ganttsContainer").text(controller.model.gantts.length > 0 ? "No se han encontrado resultados." : "No hay tableros");
+        }
+    }
+
+    clearContainer(controller) {
+        $(".ganttsContainer").html("");
+    }
+
+    pageChanged(controller, pageIndex) {
+        var url = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/gantts/rows/${localStorage.getItem("numberOfRowsInGantts")}/page/${pageIndex}/`;
+
+        var search = $("#ganttSearch").val();
+        if (search.length > 0) {
+            url += `search/${search}/`;
         }
 
-        //Load from JSON
-        $(tasks).each(function () {
-            var taskData = this;
-            var task = controller.createTask(controller, taskData);
-            var subTasks = this.subTasks;
-
-            $(subTasks).each(function () {
-                var subTask = controller.createSubTask(controller, taskData, this);
-            })
-        });
-
-        controller.createTaskCreationBtn(controller);
-
-        $("main").scroll(function () {
-            var height = $(this).scrollTop();
-
-            $(".taskTitle, .subTaskTitle").css("margin-top", `calc(-1rem - ${height}px)`);
-        });
+        changeURL(url);
     }
 
-    createTaskCreationBtn(controller) {
-        var controllerView = controller.view;
-        var taskCreationButton = controllerView.visualizeTaskCreation($("tbody"))
-            .removeClass("text-dark").addClass("text-white");
+    reload(controller, callback = null) {
+        $(".numberOfGantts").html(controller.model.gantts.length);
+        controller.clearContainer(controller);
+        controller.model.paginationIndex = 1;
+        var pagination = $(".pagination");
 
-        taskCreationButton.find(".btn").on("click", function () {
-            var newTask = controller.createTask(controller, {
-                "title": `Task ${$(".taskTitle").length + 1}`,
-                "id": `${$(".taskTitle").length + 1}`,
-            });
+        var navigation = $(".page-item.nav-previous, .page-item.nav-next");
+        pagination.before(navigation);
+        pagination.html("");
+        pagination.append(navigation);
 
-            //controllerView.scrollTo(taskCreationButton);
-            $("tbody").append(taskCreationButton);
-        });
+        var ganttFilters = $(".ganttsBtnFilters");
+        var hideBookmarked = ganttFilters.find(".ganttsBtnBookmarked").hasClass("active");
+        var hideCreated = ganttFilters.find(".ganttsBtnCreated").hasClass("active");
+        var hideShared = ganttFilters.find(".ganttsBtnShared").hasClass("active");
 
-        return taskCreationButton;
-    }
+        console.log(
+            "hideBookmarked", hideBookmarked,
+            "hideCreated", hideCreated,
+            "hideShared", hideShared
+        );
 
-    createTask(controller, taskData) {
-        var controllerView = controller.view;
-
-        var task = controllerView.visualizeTask($("tbody"), taskData);
-        controller.createSubTaskCreationBtn(controller, taskData);
-
-        controllerView.adjustMaxLengthTitles();
-
-        return task;
-    }
-
-    createSubTask(controller, taskData, subTaskData) {
-        var controllerView = controller.view;
-
-        var subTask = controllerView.visualizeSubTask($("tbody"), subTaskData);
-        controller.onSubTaskDrop(subTask.find("td"));
-        $(`#${taskData.id}SubTaskCreation`).before(subTask);
-
-        controllerView.adjustMaxLengthTitles();
-
-        return subTask;
-    }
-
-    createSubTaskCreationBtn(controller, taskData) {
-        var controllerView = controller.view;
-        var subTaskCreationButton = controllerView.visualizeTaskCreation($("tbody"), "Create SubTask +")
-            .removeClass("text-dark").addClass("text-white")
-            .prop("id", `${taskData.id}SubTaskCreation`);
-
-        var count = 0;
-        subTaskCreationButton.find(".btn").on("click", function () {
-            var newsubTask = controller.createSubTask(controller, taskData, {
-                "title": `Sub Task ${count + 1}`,
-                "startingDate": currentDate,
-                "endingDate": newDate,
-                "daysSpan": "3",
-            });
-            count++;
-
-            //controllerView.scrollTo(subTaskCreationButton);
-            subTaskCreationButton.before(newsubTask);
-        }).addClass("btn-primary text-dark");
-
-        return subTaskCreationButton;
-    }
-
-    onSubTaskDrop(elements) {
-        var startingIndex = 0;
-        var firstOne = null;
-        var secondOne = null;
-        var rowOne = null;
-        elements.prop("draggable", true);
-        elements.on("dragstart", function () {
-            console.log("start");
-            firstOne = $(this);
-            rowOne = firstOne.parent();
-            if (rowOne.find(".taskBar").length > 0) {
-                sendNotification("This already has a taskBar", "ganttRowHasDeadline");
+        var noResultsFound = true;
+        $(controller.model.workingGantts).each(function () {
+            if ((hideBookmarked && (this.bookmarked != 0)) ||
+                (hideCreated && (this.created != 0)) ||
+                (hideShared && !(this.created != 0))
+            ) {
                 return;
             }
-        }).on("dragend", function () {
-            console.log("end");
-            firstOne = null;
-            secondOne = null;
-        }).on("dragover", function (event) {
-            var event = event || window.event;
-            event.preventDefault();
-            console.log("encima");
-        }).on("drop", function () {
-            console.log("drop");
-            if (rowOne.prop("id") != $(this).parent().prop("id")) {
-                sendNotification("Rows are not the same", "ganttRowsNotMatching");
-                return;
-            }
-            secondOne = $(this);
-            var indexes = [firstOne.index(), secondOne.index()];
-            var toBeAffected = rowOne.children().slice(Math.min.apply(null,
-                indexes), Math.max.apply(null, indexes) + 1);
-            var newTd = $("<td class='taskBar'></td>");
-            $(toBeAffected[0]).before(newTd);
-            toBeAffected.remove();
-            newTd.prop("colspan", toBeAffected.length);
-            newTd.addClass("bg-dark");
+            noResultsFound = false;
+
+            this.html = controller.addGantt(controller, this);
+        });
+
+        if (noResultsFound) {
+            controller.clearContainer(controller);
+            $(".ganttsContainer").text(controller.model.gantts.length > 0 ? "No se han encontrado resultados." : "No hay tableros");
+        }
+
+        console.log(controller.model.workingGantts);
+
+        $(".page-item").eq(1).trigger("click");
+
+        if (callback != null) {
+            callback();
+        }
+    }
+
+    getGanttPage(controller, container) {
+        var ganttsPage = container.find(".ganttsPage").last();
+        var ganttPageRows = ganttsPage.find(".ganttCardRow");
+
+        if (container.find(".ganttsPage").length == 0 ||
+            (ganttPageRows.length >= $("#selectNumberOfRows").val() &&
+                ganttPageRows.last().find(".ganttCard").length >= 2)) {
+            ganttsPage = controller.view.visualizeGanttPage(container);
+
+            controller.addPaginationItem(controller);
+        }
+
+        return ganttsPage;
+    }
+
+    addPaginationItem(controller) {
+        var currentPaginationIndex = controller.model.paginationIndex;
+        var paginationItem = controller.view.visualizePaginationItem(controller.model.paginationIndex);
+        controller.model.paginationIndex++;
+
+        paginationItem.on("click", function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            $(this).find(".page-link").append($currentPaginationItem);
+            var ganttPages = $(".ganttsPage");
+            ganttPages.hide();
+            ganttPages.eq(parseInt($(this).text()) - 1).show();
+            controller.pageChanged(controller, currentPaginationIndex);
         });
     }
 
-    addDaysToDeadline(deadline) {
-        deadline.find(".addDays").on("click", function (event) {
-            var event = event || window.event;
-            event.preventDefault();
-            var current = $(this).parents("td");
-            current.prop("colspan", parseInt(current.prop("colspan")) + 1);
-            current.next().remove();
-        }, false);
+    getGanttRow(controller, container) {
+        var ganttPage = controller.getGanttPage(controller, container);
+        var ganttRow = ganttPage.find(".ganttCardRow ");
+        if (ganttPage.find(".ganttCardRow").length == 0 || (ganttRow.last().find(".ganttCard").length >= 2)) {
+            ganttRow = controller.view.visualizeGanttRow(ganttPage);
+            //console.log(ganttRow);
+        } else {
+            ganttRow = ganttRow.last();
+        }
+
+        return ganttRow;
     }
 
-    removeDaysToDeadline(deadline) {
-        deadline.find(".removeDays").on("click", function (event) {
-            var event = event || window.event;
-            event.preventDefault();
-            var current = $(this).parents("td");
-            var colspan = parseInt(current.prop("colspan"));
-            current.prop("colspan", colspan - 1);
-            current.after($("<td>&nbsp;</td>"));
-            if (colspan <= 1) {
-                current.remove();
-            }
-        }, false);
+    addGantt(controller, json) {
+        var ganttContainer = $(".ganttsContainer");
+        var ganttRow = controller.getGanttRow(controller, ganttContainer);
+
+        console.log(json);
+
+        var gantt = controller.view.visualizeGantt(ganttRow, json.title, json.description);
+        var bookmarkedIcon = gantt.find(".ganttCardBookmarkedIcon");
+        bookmarkedIcon.addClass(json.bookmarked != 0 ? "active" : "");
+        bookmarkedIcon.on("click", this.bookmarkGantt(controller, json, bookmarkedIcon));
+        controller.view.visualizeGanttFlags(gantt, json.created != 0, json.bookmarked != 0);
+
+        var url = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/gantts/${json.title}/`;
+        gantt.find(".ganttCardBtnView").prop("href", url);
+        gantt.find(".ganttReadMore").prop("href", url);
+
+        gantt.find(".ganttCardBgImg").prop("src", `${EXECUTION_HOME_PATH}img/projects/${controller.model.projectId}/gantts/${json.title}/bg.png`);
+
+        return gantt;
     }
 
-    onTaskCreation(taskData) {
-
+    bookmarkGantt(controller, json, bookmarkedIcon) {
+        return function () {
+            controller.model.bookmarkGantt(json, function (result) {
+                if (result !== false) {
+                    bookmarkedIcon.toggleClass("active");
+                    json.bookmarked = !json.bookmarked;
+                }
+                console.log("resultado", result, "activo", bookmarkedIcon.hasClass("active"));
+                bookmarkedIcon.bind("click", controller.bookmarkGantt(controller, json, bookmarkedIcon));
+            }, function () {
+                sendNotification(`No se ha podido ${bookmarkedIcon.hasClass("active") ? "quitar" : "añadir"} a favoritos`, "bookmarkingGantt");
+                bookmarkedIcon.bind("click", controller.bookmarkGantt(controller, json, bookmarkedIcon));
+            });
+            bookmarkedIcon.unbind("click");
+        };
     }
 
-    onSubTaskCreation(taskData, subTaskData) {
+    addGanttBtnEvent(controller, event) {
+        var event = event || window.event;
 
+        var modal = Modal.modal({
+            "title": "Crear Diagrama de gantt",
+            "content": `<form action=EXECUTION_HOME_PATH + "index.php?ctl=createGantts" id="formCreateGantt" class="col-sm-10  p-3 mx-auto" method="POST">
+            <div class="md-form">
+                <input type="text" placeholder="" id="title" name="title" value="Prueba" class="form-control text-dark">
+                <label for="title">Título</label>
+            </div>
+            <div class="md-form">
+            <textarea class="md-textarea form-control text-dark" placeholder="" id="description" name="description">Test</textarea>
+            <label for="description">Descripción</label>
+            </div>
+            <input type="hidden" name="id_project" value="${controller.model.projectId}" >
+            <div class="row m-0 d-flex justify-content-center align-content-center align-items-center justify-items-center">
+                    <input class="btn btn-primary w-100" type="submit" name="createGantt" id="createGantt" value="Crear gantt">
+            </div>
+        </form>`,
+            "onOpen": function () {
+                $("#description").focus();
+                $("#title").focus();
+                $("#formCreateGantt").on("submit", function (event) {
+                    var event = event || window.event;
+                    event.preventDefault();
+
+                    var title = $("#title").val();
+                    controller.model.createGantt(title, $("#description").val(), function (result) {
+                        console.log(result);
+                        if (result !== false) {
+                            modal.close();
+                            controller.addGantt(controller, result[0]);
+                            controller.reload(controller);
+                            window.location.href = `${EXECUTION_HOME_PATH}projects/id/${controller.model.projectId}/gantts/${title}/`;
+                        }
+                    });
+
+                    return false;
+                });
+            },
+        });
+
+        modal.params["onOpen"] = function () {};
     }
 
-    onTaskRemoval(taskData) {
-
-    }
-
-    onTaskModify(taskData) {
-
-    }
-
-    onTaskAddDeadline(taskData, deadlineData) {
-
-    }
-
-    onTaskModifyDeadline(taskData, deadlineData) {
-
-    }
-
-    onTaskRemoveDeadline(taskData, deadlineData) {
-
-    }
+    //pagination
 }
 
-var startDate = new Date();
-startDate.setDate(currentDate.getDate());
-
-var endDate = new Date();
-endDate.setDate(newDate.getDate() + 90);
-
-const ganttController = new Controller(
-    new Model(startDate, endDate),
+const ganttsController = new Controller(
+    new Model(),
     new View()
 );

@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css"];?>
-<?php $optionalScripts = ["js/project/ProjectGanttMvc.js"];?>
+<?php $optionalScripts = ["js/project/GanttMvc.js"];?>
 <?php $title = $viewParams["ganttTitle"];?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
