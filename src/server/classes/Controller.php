@@ -973,7 +973,6 @@ class Controller
             }
 
             $templateFile = substr($templateFile, strrpos($templateFile, $folderString) + $folderLen, strlen($templateFile));
-            //$templateFile = mb_ereg_replace("/[\\]+/", "/", $templateFile);
 
             $lastPosOfSeparator = strrpos($templateFile, "\\");
             $groupName = "root";
@@ -982,11 +981,6 @@ class Controller
                 $groupName = substr($templateFile, 0, $lastPosOfSeparator);
             }
 
-            /*   echo $templateFile . " - " . substr($fileName, $startPos !== false ? $startPos : 0);
-            echo "<br>"; */
-
-            //echo "$groupName<br>";
-
             if (!is_array($groups[$groupName])) {
                 $groups[$groupName] = [];
             }
@@ -994,25 +988,25 @@ class Controller
             $groups[$groupName][] = $templateFile;
         }
 
-        /* echo "<pre>";
-        var_dump($groups);
-        echo "</pre>";
-        exit; */
         $viewParams["files"] = $groups;
 
         if (Utils::exists("loadFileContent")) {
             $templateName = Utils::getCleanedData("templateName");
+            $path = SystemPaths::SERVER_TEMPLATES_PATH . "/$templateName";
 
-            $content = file_get_contents(SystemPaths::SERVER_TEMPLATES_PATH . "/$templateName");
-            $viewParams["fileContent"] = $content;
+            $content = file_get_contents($path);
             $content = htmlentities($content);
+            $viewParams["fileContent"] = $content;
+
             $splittedContent = mb_split("ob_start()", $content);
             eval(substr(5, strlen($splittedContent[0]) - 3));
             //$splittedContent = mb_split("\n", $content);
 
-            echo "<pre id='test'>";
-            var_dump($showBreadcrumb);
-            echo "</pre>";
+            //$viewParams["fileContent"] = $splittedContent[0];
+
+            /* echo "<pre id='test'>";
+        var_dump($splittedContent[0]);
+        echo "</pre>"; */
         }
 
         require_once SystemPaths::SERVER_ADMIN_PATH . "/layoutEditor.php";
