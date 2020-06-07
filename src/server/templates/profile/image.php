@@ -10,7 +10,7 @@
 <?php $currentPage = "Perfil";?>
 <?php endif;?>
 
-<div class="card-body card-body-cascade text-center mt-3">
+<div class="card-body card-body-cascade bg-white text-center mt-3">
     <form class="" action="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/change-image/" method="POST"
         enctype="multipart/form-data">
         <h1 class="text-left">Imagen de perfil</h1>

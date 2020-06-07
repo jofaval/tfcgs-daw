@@ -10,13 +10,14 @@
 <?php $currentPage = "Perfil";?>
 <?php endif;?>
 
-<div class="card-body card-body-cascade text-center mt-3">
+<div class="card-body card-body-cascade text-center mt-3 bg-white">
     <form class="" action="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/" method="POST">
         <div class="row">
             <div class="col-md-6">
                 <div class="md-form mb-0">
                     <input type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="username"
-                        id="username" class="form-control my-1 <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
+                        id="username"
+                        class="form-control my-1 text-white <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
                         value="<?php echo $viewParams["profile"]["username"]; ?>">
                     <label for="username"
                         <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Usuario</label>
@@ -25,7 +26,8 @@
             <div class="col-md-6">
                 <div class="md-form mb-0">
                     <input type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="website"
-                        id="website" class="form-control my-1 <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
+                        id="website"
+                        class="form-control my-1 text-white <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
                         value="<?php echo $viewParams["profile"]["website"]; ?>">
                     <label for="website"
                         <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Sitio
@@ -37,7 +39,8 @@
             <div class="col-md-6">
                 <div class="md-form mb-0">
                     <input type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="name"
-                        id="name" class="form-control my-1 <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
+                        id="name"
+                        class="form-control my-1 text-white <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
                         value="<?php echo $viewParams["profile"]["name"]; ?>">
                     <label for="name"
                         <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Nombre</label>
@@ -46,7 +49,8 @@
             <div class="col-md-6">
                 <div class="md-form mb-0">
                     <input type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="surname"
-                        id="surname" class="form-control my-1 <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
+                        id="surname"
+                        class="form-control my-1 text-white <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
                         value="<?php echo $viewParams["profile"]["surname"]; ?>">
                     <label for="surname"
                         <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Apellidos</label>
@@ -57,7 +61,8 @@
             <div class="col-md">
                 <div class="md-form mb-0">
                     <input type="email" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?> name="email"
-                        id="email" class="form-control my-1 <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
+                        id="email"
+                        class="form-control my-1 text-white <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
                         value="<?php echo $viewParams["profile"]["email"]; ?>">
                     <label for="email"
                         <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Correo
@@ -70,7 +75,7 @@
                 <div class="md-form mb-0">
                     <textarea type="text" <?php echo !$viewParams["editable"] ? "disabled='true'" : ""; ?>
                         name="biography" id="biography"
-                        class="md-textarea form-control <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
+                        class="md-textarea form-control text-white <?php echo $viewParams['editable'] ? 'validate' : ''; ?>"
                         rows="3"><?php echo $viewParams["profile"]["biography"]; ?></textarea>
                     <label for="biography"
                         <?php if ($viewParams["editable"]): echo 'data-error="Erróneo" data-success="Correcto"';endif;?>>Biografía

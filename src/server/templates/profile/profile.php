@@ -57,13 +57,13 @@ if (!$viewParams["editable"]) {
                         </div>
                     </form> -->
                 </div>
-                <div class="card card-cascade narrower shadow-none rounded-0">
+                <div class="card card-cascade narrower shadow-none bg-white rounded-0">
                     <?php if ($viewParams["editable"]): ?>
                     <div class="view view-cascade bg-primary lighten-3 shadow mx-3">
                         <h5 class="mb-0 font-weight-bold text-center p-3 text-white">Editar Imagen</h5>
                     </div>
                     <?php endif;?>
-                    <div class="card-body card-body-cascade text-center rounded-0">
+                    <div class="card-body card-body-cascade text-center rounded-0 bg-white">
                         <img src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $viewParams["profile"]["username"]; ?>/<?php echo $viewParams["profile"]["username"]; ?>.png"
                             width="200" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
                         <p class="imUsername mb-0 font-weight-bold">
@@ -86,7 +86,7 @@ if (!$viewParams["editable"]) {
                     </div>
                 </div>
                 <?php if ($viewParams["editable"]): ?>
-                <div class="card card-cascade my-3 narrower shadow-none">
+                <div class="card card-cascade my-3 narrower bg-white shadow-none">
                     <div class="row flex-center my-3">
                         <!-- <button class="btn btn-danger btn-sm waves-effect waves-light">Deshabilitar
                             cuenta</button> -->
@@ -107,7 +107,7 @@ if (!$viewParams["editable"]) {
                     src="<?php echo Config::$EXECUTION_HOME_PATH; ?>img/users/<?php echo $username; ?>/bg-<?php echo $username; ?>.png"
                     alt="">
                 <?php endif;?>
-                <div class="card card-cascade narrower shadow-none">
+                <div class="card card-cascade narrower bg-white shadow-none">
                     <?php if ($viewParams["editable"]): ?>
                     <div class="view view-cascade bg-primary lighten-3 shadow mx-3">
                         <h5 class="mb-0 font-weight-bold text-center p-3 text-white">Editar Cuenta</h5>

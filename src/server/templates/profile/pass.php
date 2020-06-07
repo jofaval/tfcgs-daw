@@ -10,7 +10,7 @@
 <?php $currentPage = "Perfil";?>
 <?php endif;?>
 
-<div class="card-body card-body-cascade text-center mt-3">
+<div class="card-body card-body-cascade bg-white text-center mt-3">
     <form class="" action="<?php echo Config::$EXECUTION_HOME_PATH; ?>profile/change-pass/" method="POST">
         <div class="row">
             <div class="col-md-6 mx-auto">
