@@ -1,7 +1,7 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css"];?>
 <?php $optionalScripts = ["js/project/ProjectGanttMvc.js"];?>
-<?php $title = "ProjectName - Gantt";?>
+<?php $title = $viewParams["ganttTitle"];?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
 <?php $showBreadcrumb = true;?>
@@ -9,23 +9,33 @@
 $breadcrumb = [
     [
         "name" => "Home",
-        "link" => "/daw/",
+        "link" => Config::$EXECUTION_HOME_PATH . "",
         "active" => false,
+        "icon" => "home",
     ],
     [
-        "name" => "Your projects",
-        "link" => "/daw/projects/",
+        "name" => "Tus proyectos",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/",
         "active" => false,
+        "icon" => "folder",
     ],
     [
         "name" => $viewParams["title"],
-        "link" => "./project/id/" . $viewParams["id"] . "/",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/",
         "active" => false,
+        "icon" => "clipboard",
     ],
     [
-        "name" => $viewParams["elementName"],
-        "link" => "./project/id/name/gantt/id/" . $viewParams["secondaryId"],
+        "name" => "Gantts",
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/gantts/",
+        "active" => false,
+        "icon" => "list",
+    ],
+    [
+        "name" => $viewParams["ganttTitle"],
+        "link" => Config::$EXECUTION_HOME_PATH . "projects/id/" . $viewParams["id"] . "/gantts/" . $viewParams["ganttTitle"],
         "active" => true,
+        "icon" => "table",
     ],
 ];
 ?>

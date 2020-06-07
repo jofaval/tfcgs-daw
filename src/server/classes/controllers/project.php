@@ -186,6 +186,10 @@ if (Utils::exists("id")) {
                     }
 
                     break;
+                case 'gantt':
+                    $ganttTitle = Utils::getCleanedData("secondaryId");
+                    $viewParams["ganttTitle"] = $ganttTitle;
+                    break;
             }
         }
     }
