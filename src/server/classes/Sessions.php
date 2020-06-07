@@ -52,6 +52,12 @@ class Sessions
             $this->setSession("clicks", 0);
         }
 
+        if (($this->getSession("time") - $currentTimeStamp) < 0) {
+            $this->deleteSession();
+            $this->initializeValues();
+            header("Location: " . Config::$EXECUTION_HOME_PATH . "signout/");
+        }
+
         if ($this->getSession("clicks") <= 0) {
             if ($this->doesSessionExist("time")) {
                 $currentTimeStamp = time();
