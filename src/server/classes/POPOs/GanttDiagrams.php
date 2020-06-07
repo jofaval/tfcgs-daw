@@ -33,9 +33,19 @@ class GanttDiagrams implements CRUD
             "id_creator" => $this->id_creator,
             "creation_date" => $creation_date,
             "description" => $this->description,
+            "enabled" => true,
         ];
 
-        return $sqlUtils->insert($this->table, $params);
+        $result = $sqlUtils->insert($this->table, $params);
+
+        if ($result !== false) {
+            $result = $sqlUtils->query($this->table, [
+                "id_project" => $this->id_project,
+                "title" => $this->title,
+            ]);
+        }
+
+        return $result;
     }
 
     public function update()

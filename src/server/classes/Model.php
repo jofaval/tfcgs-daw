@@ -236,18 +236,22 @@ class Model extends PDO
     {
         $sqlUtils = new SQLUtils($this);
 
-        return $sqlUtils->complexQuery("SELECT gantt_diagrams.title, gantt_diagrams.id_project, gantt_diagrams.description, gantt_diagrams.creation_date,
-        gantt_diagrams.id_creator = :id_client as created,
-        (gantt_diagrams.id_project, gantt_diagrams.title) in (select bookmarked_gantt_diagrams.id_project, bookmarked_gantt_diagrams.title
-        from bookmarked_gantt_diagrams
-        where bookmarked_gantt_diagrams.id_client = :id_client
-        and bookmarked_gantt_diagrams.id_project = :id_project
-        and bookmarked_gantt_diagrams.title = gantt_diagrams.title) as bookmarked
-        FROM `gantt_diagrams` LEFT JOIN `projects` on (`gantt_diagrams`.`id_project` = `projects`.`id`)
-            WHERE `gantt_diagrams`.`enabled` = 1 and `projects`.`enabled` = 1 and projects.id = :id_project and (projects.id_creator = :id_client or :id_client in
-                (SELECT collaborators.id_collaborator
-                     FROM collaborators
-                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY gantt_diagrams.creation_date",
+        $queryString = "SELECT gantt_diagrams.title, gantt_diagrams.id_project, gantt_diagrams.description, gantt_diagrams.creation_date ";
+        $queryString .= ", gantt_diagrams.id_creator = :id_client as created,
+        (gantt_diagrams.id_project, gantt_diagrams.title) in (select bookmarked_gantts.id_project, bookmarked_gantts.title
+        from bookmarked_gantts
+        where bookmarked_gantts.id_client = :id_client
+        and bookmarked_gantts.id_project = :id_project
+        and bookmarked_gantts.title = gantt_diagrams.title) as bookmarked ";
+        $queryString .= "FROM `gantt_diagrams` LEFT JOIN `projects` on (`gantt_diagrams`.`id_project` = `projects`.`id`)";
+        $queryString .= " WHERE `gantt_diagrams`.`enabled` = 1 and `projects`.`enabled`";
+
+        $queryString .= " = 1 and projects.id = :id_project and (projects.id_creator = :id_client or :id_client in
+        (SELECT collaborators.id_collaborator
+        FROM collaborators
+        WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY gantt_diagrams.creation_date";
+
+        return $sqlUtils->complexQuery($queryString,
             ["id_client" => Sessions::getInstance()->getSession("userId"), "id_project" => (string) $id_project]);
     }
 

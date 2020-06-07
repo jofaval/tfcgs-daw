@@ -47,7 +47,7 @@ class Model {
             },
             success: function (gantts) {
                 model.gantts = gantts;
-                model.workingGantts = gantts;
+                model.workingGantts = gantts || [];
                 whenFinished(gantts);
             }
         });
@@ -57,7 +57,7 @@ class Model {
         var model = this;
 
         $.ajax({
-            url: EXECUTION_HOME_PATH + "index.php?ctl=createGantts",
+            url: EXECUTION_HOME_PATH + "index.php?ctl=createGanttDiagrams",
             data: {
                 "title": title,
                 "description": description,
@@ -181,7 +181,7 @@ class Controller {
         view.initializeView(mainContainer);
 
         model.loadGantts(function (gantts) {
-            console.log("tableros", gantts);
+            console.log("gantts", gantts);
             if (controller.model.rowNumberFromURL != undefined) {
                 if (controller.model.searchValueFromURL) {
                     searchBar.val(controller.model.searchValueFromURL);
@@ -270,7 +270,7 @@ class Controller {
             controller.pageChanged(controller, 1);
         } else {
             controller.clearContainer(controller);
-            $(".ganttsContainer").text(controller.model.gantts.length > 0 ? "No se han encontrado resultados." : "No hay tableros");
+            $(".ganttsContainer").text(controller.model.gantts.length > 0 ? "No se han encontrado resultados." : "No hay gantts");
         }
     }
 
@@ -326,7 +326,7 @@ class Controller {
 
         if (noResultsFound) {
             controller.clearContainer(controller);
-            $(".ganttsContainer").text(controller.model.gantts.length > 0 ? "No se han encontrado resultados." : "No hay tableros");
+            $(".ganttsContainer").text(controller.model.gantts.length > 0 ? "No se han encontrado resultados." : "No hay gantts");
         }
 
         console.log(controller.model.workingGantts);

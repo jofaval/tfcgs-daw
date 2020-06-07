@@ -45,6 +45,9 @@ RewriteRule ^projects/id/([^/]+)/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabN
 #Pagination dashboards
 RewriteRule ^projects/id/([^/]+)/dashboards/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=dashboards&rowNumber=$2&pageIndex=$3 [L]
 RewriteRule ^projects/id/([^/]+)/dashboards/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=dashboards&rowNumber=$2&pageIndex=$3&search=$4 [L]
+#Pagination gantts
+RewriteRule ^projects/id/([^/]+)/gantts/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=gantts&rowNumber=$2&pageIndex=$3 [L]
+RewriteRule ^projects/id/([^/]+)/gantts/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=gantts&rowNumber=$2&pageIndex=$3&search=$4 [L]
 #Pagination collaborators
 RewriteRule ^projects/id/([^/]+)/collaborators/rows/([0-9]+)/page/([0-9]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=collaborators&rowNumber=$2&pageIndex=$3 [L]
 RewriteRule ^projects/id/([^/]+)/collaborators/rows/([0-9]+)/page/([0-9]+)/search/([^/]+)[/]?$ ./index.php?ctl=project&id=$1&tabName=collaborators&rowNumber=$2&pageIndex=$3&search=$4 [L]
