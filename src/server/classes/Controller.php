@@ -961,7 +961,45 @@ class Controller
     {
         $viewParams = [];
 
-        $viewParams["files"] = FileUtils::getDirContents(SystemPaths::SERVER_TEMPLATES_PATH);
+        $templateFiles = FileUtils::getDirContents(SystemPaths::SERVER_TEMPLATES_PATH);
+
+        $groups = [];
+
+        $folderString = "templates\\";
+        $folderLen = strlen($folderString);
+        foreach ($templateFiles as $templateFile) {
+            if (!preg_match("/(\.php)$/m", $templateFile)) {
+                continue;
+            }
+
+            $templateFile = substr($templateFile, strrpos($templateFile, $folderString) + $folderLen, strlen($templateFile));
+            //$templateFile = mb_ereg_replace("/[\\]+/", "/", $templateFile);
+
+            $lastPosOfSeparator = strrpos($templateFile, "\\");
+            $groupName = "root";
+
+            if ($lastPosOfSeparator !== false) {
+                $groupName = substr($templateFile, 0, $lastPosOfSeparator);
+            }
+
+            /*   echo $templateFile . " - " . substr($fileName, $startPos !== false ? $startPos : 0);
+            echo "<br>"; */
+
+            //echo "$groupName<br>";
+
+            if (!is_array($groups[$groupName])) {
+                $groups[$groupName] = [];
+            }
+
+            $groups[$groupName][] = $templateFile;
+        }
+
+        /* echo "<pre>";
+        var_dump($groups);
+        echo "</pre>";
+        exit; */
+        $viewParams["files"] = $groups;
+
         if (Utils::exists("loadFileContent")) {
             $templateName = Utils::getCleanedData("templateName");
 

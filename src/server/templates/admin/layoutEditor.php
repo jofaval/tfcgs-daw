@@ -34,9 +34,14 @@ $breadcrumb = [
 <div class="m-auto bg-dark p-5 rounded">
     <form action="" method="POST" class="text-center">
         <select class="browser-default custom-select" name="templateName" id="templateName">
-            <?php foreach ($viewParams["files"] as $file): ?>
-            <?php $fileName = substr($file, strpos($file, "templates") + strlen("templates") + 1);?>
-            <option value="<?php echo $fileName; ?>"><?php echo $fileName; ?></option>
+            <?php foreach ($viewParams["files"] as $fileGroupName => $fileGroup): ?>
+            <optgroup label="<?php echo $fileGroupName ?>">
+                <?php foreach ($fileGroup as $fileName): ?>
+                <?php $startPos = strrpos($fileName, "\\")?>
+                <?php $parsedFileName = substr($fileName, $startPos !== false ? $startPos + 1 : 0)?>
+                <option value="<?php echo $fileName; ?>"><?php echo $parsedFileName; ?></option>
+                <?php endforeach;?>
+            </optgroup>
             <?php endforeach;?>
         </select>
         <input type="submit" class="btn btn-primary m-3" value="Cargar contenido del fichero" name="loadFileContent"
