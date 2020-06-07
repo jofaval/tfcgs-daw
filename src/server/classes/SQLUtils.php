@@ -208,7 +208,7 @@ class SQLUtils
             $this->$model->commit();
             return $result;
         } catch (PDOException $ex) {
-            return $ex;
+            //return $ex;
             $this->$model->rollback();
         }
 
