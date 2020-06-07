@@ -713,13 +713,13 @@ class AjaxController
     //Function to createGanttDiagrams
     public function createGanttDiagrams()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title", "id_creator", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to updateGanttDiagrams
     public function updateGanttDiagrams()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title", "id_creator", "creation_date"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
     }
 
     //Function to queryGanttDiagrams
@@ -785,13 +785,13 @@ class AjaxController
     //Function to createGanttDiagramTasks
     public function createGanttDiagramTasks()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "gantt_diagram_id_project", "gantt_diagram_title", "id_creator", "title", "progress", "creation_date", "start_date", "end_date", "parent", "status"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "gantt_diagram_id_project", "gantt_diagram_title", "title", "progress", "creation_date", "start_date", "end_date", "parent", "status"]);
     }
 
     //Function to updateGanttDiagramTasks
     public function updateGanttDiagramTasks()
     {
-        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "gantt_diagram_id_project", "gantt_diagram_title", "id_creator", "title", "progress", "creation_date", "start_date", "end_date", "parent", "status"]);
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "gantt_diagram_id_project", "gantt_diagram_title", "title", "progress", "creation_date", "start_date", "end_date", "parent", "status"]);
     }
 
     //Function to queryGanttDiagramTasks
