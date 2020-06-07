@@ -330,7 +330,7 @@ class Controller {
                 "id": `${$(".taskTitle").length + 1}`,
             });
 
-            controllerView.scrollTo(taskCreationButton);
+            //controllerView.scrollTo(taskCreationButton);
             $("tbody").append(taskCreationButton);
         });
 
@@ -376,7 +376,7 @@ class Controller {
             });
             count++;
 
-            controllerView.scrollTo(subTaskCreationButton);
+            //controllerView.scrollTo(subTaskCreationButton);
             subTaskCreationButton.before(newsubTask);
         }).addClass("btn-primary text-dark");
 

@@ -1,6 +1,6 @@
 <!--Page configuration-->
 <?php $optionalCSS = ["floating-label.css", "inputs.css"];?>
-<?php $optionalScripts = ["js/GanttMvc.js"];?>
+<?php $optionalScripts = ["js/project/ProjectGanttMvc.js"];?>
 <?php $title = "ProjectName - Gantt";?>
 <?php $showFooter = true;?>
 <?php $showHeader = true;?>
@@ -29,6 +29,7 @@ $breadcrumb = [
     ],
 ];
 ?>
+<?php $currentPage = "Proyectos";?>
 
 <?php ob_start()?>
 
