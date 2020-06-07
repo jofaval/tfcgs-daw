@@ -15,6 +15,7 @@ var tasks = [{
             "startingDate": currentDate,
             "endingDate": newDate,
             "daysSpan": "3",
+            "progress": Math.floor(Math.random() * 100),
         },
         {
             "id": 2,
@@ -23,6 +24,7 @@ var tasks = [{
             "startingDate": currentDate,
             "endingDate": newDate,
             "daysSpan": "3",
+            "progress": Math.floor(Math.random() * 100),
         },
         {
             "id": 3,
@@ -31,6 +33,7 @@ var tasks = [{
             "startingDate": currentDate,
             "endingDate": newDate,
             "daysSpan": "3",
+            "progress": Math.floor(Math.random() * 100),
         },
         {
             "id": 4,
@@ -39,11 +42,12 @@ var tasks = [{
             "startingDate": currentDate,
             "endingDate": newDate,
             "daysSpan": "3",
+            "progress": Math.floor(Math.random() * 100),
         },
     ],
 }, ];
 
-var weekDays = {
+/* var weekDays = {
     0: "Sunday",
     1: "Monday",
     2: "Tuesday",
@@ -51,6 +55,16 @@ var weekDays = {
     4: "Thursday",
     5: "Friday",
     6: "Saturday",
+}; */
+
+var weekDays = {
+    0: "Sábado",
+    1: "Lunes",
+    2: "Martes",
+    3: "Miércoles",
+    4: "Jueves",
+    5: "Viernes",
+    6: "Domingo",
 };
 
 var taskColorCode = {
@@ -227,7 +241,7 @@ class View {
 
         var progressIndicator = ViewUtils.createTableData(tr, "")
             .addClass("progressIndicator align-middle");
-        this.visualizeProgress(progressIndicator, 50);
+        this.visualizeProgress(progressIndicator, subTaskData.progress);
 
         var daysSpan = ViewUtils.createTableData(tr, "wegwegweg")
             .addClass("daysSpan");
@@ -248,6 +262,7 @@ class View {
         progress.append(clonedProgress);
         var progressBar = clonedProgress.find(".progress-bar")
             .addClass(gradient);
+        clonedProgress.prop("title", `${value}%`);
         progressBar.prop("title", `${value}%`);
         progressBar.width(`${value}%`);
         progressBar.prop("aria-valuenow", `${value}`);
