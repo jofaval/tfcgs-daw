@@ -7,6 +7,7 @@ class GanttDiagrams implements CRUD
     //Primary Keys
     private $id_project;
     private $title;
+    private $description;
 
     //Table Keys
     private $id_creator;
@@ -31,6 +32,7 @@ class GanttDiagrams implements CRUD
             "title" => $this->title,
             "id_creator" => $this->id_creator,
             "creation_date" => $creation_date,
+            "description" => $this->description,
         ];
 
         return $sqlUtils->insert($this->table, $params);
@@ -43,6 +45,7 @@ class GanttDiagrams implements CRUD
         $toModify = [
             "id_creator" => $this->id_creator,
             "creation_date" => $this->creation_date,
+            "description" => $this->description,
         ];
 
         $identificationParams = [
@@ -60,6 +63,7 @@ class GanttDiagrams implements CRUD
         $params = [
             "id_project" => $this->id_project,
             "title" => $this->title,
+            "description" => $this->description,
         ];
 
         return $sqlUtils->delete($this->$table, $params);
@@ -72,6 +76,7 @@ class GanttDiagrams implements CRUD
         $params = [
             "id_project" => $this->id_project,
             "title" => $this->title,
+            "description" => $this->description,
         ];
 
         return $sqlUtils->query($this->$table, $params);
@@ -84,6 +89,7 @@ class GanttDiagrams implements CRUD
         $identificationParams = [
             "id_project" => $this->id_project,
             "title" => $this->title,
+            "description" => $this->description,
         ];
 
         return $sqlUtils->enable($this->$table, Utils::getCleanedData("enable"), $identificationParams);
@@ -93,6 +99,7 @@ class GanttDiagrams implements CRUD
     {
         $this->id_project = Utils::getCleanedData("id_project");
         $this->title = Utils::getCleanedData("title");
+        $this->description = Utils::getCleanedData("description");
         $this->id_creator = Sessions::getInstance()->getSession("userId");
         $this->creation_date = Utils::getCleanedData("creation_date");
     }
