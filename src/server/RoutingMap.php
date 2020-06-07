@@ -242,3 +242,35 @@ $map['getDataFromTable'] = array('controller' => 'Controller', 'action' => 'getD
 $map['profileNotFound'] = array('controller' => 'Controller', 'action' => 'profileNotFound', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //layoutEditor
 $map['layoutEditor'] = array('controller' => 'Controller', 'action' => 'layoutEditor', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//createGanttDiagrams
+$map['createGanttDiagrams'] = array('controller' => 'AjaxController', 'action' => 'createGanttDiagrams', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//updateGanttDiagrams
+$map['updateGanttDiagrams'] = array('controller' => 'AjaxController', 'action' => 'updateGanttDiagrams', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//queryGanttDiagrams
+$map['queryGanttDiagrams'] = array('controller' => 'AjaxController', 'action' => 'queryGanttDiagrams', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//deleteGanttDiagrams
+$map['deleteGanttDiagrams'] = array('controller' => 'AjaxController', 'action' => 'deleteGanttDiagrams', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//createGanttDiagramStatus
+$map['createGanttDiagramStatus'] = array('controller' => 'AjaxController', 'action' => 'createGanttDiagramStatus', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//updateGanttDiagramStatus
+$map['updateGanttDiagramStatus'] = array('controller' => 'AjaxController', 'action' => 'updateGanttDiagramStatus', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//queryGanttDiagramStatus
+$map['queryGanttDiagramStatus'] = array('controller' => 'AjaxController', 'action' => 'queryGanttDiagramStatus', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//deleteGanttDiagramStatus
+$map['deleteGanttDiagramStatus'] = array('controller' => 'AjaxController', 'action' => 'deleteGanttDiagramStatus', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//createGanttDiagramTaskAssignation
+$map['createGanttDiagramTaskAssignation'] = array('controller' => 'AjaxController', 'action' => 'createGanttDiagramTaskAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//updateGanttDiagramTaskAssignation
+$map['updateGanttDiagramTaskAssignation'] = array('controller' => 'AjaxController', 'action' => 'updateGanttDiagramTaskAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//queryGanttDiagramTaskAssignation
+$map['queryGanttDiagramTaskAssignation'] = array('controller' => 'AjaxController', 'action' => 'queryGanttDiagramTaskAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//deleteGanttDiagramTaskAssignation
+$map['deleteGanttDiagramTaskAssignation'] = array('controller' => 'AjaxController', 'action' => 'deleteGanttDiagramTaskAssignation', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//createGanttDiagramTasks
+$map['createGanttDiagramTasks'] = array('controller' => 'AjaxController', 'action' => 'createGanttDiagramTasks', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//updateGanttDiagramTasks
+$map['updateGanttDiagramTasks'] = array('controller' => 'AjaxController', 'action' => 'updateGanttDiagramTasks', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//queryGanttDiagramTasks
+$map['queryGanttDiagramTasks'] = array('controller' => 'AjaxController', 'action' => 'queryGanttDiagramTasks', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//deleteGanttDiagramTasks
+$map['deleteGanttDiagramTasks'] = array('controller' => 'AjaxController', 'action' => 'deleteGanttDiagramTasks', 'access' => Config::$ACCESS_LEVEL_GUEST);

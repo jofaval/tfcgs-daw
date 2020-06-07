@@ -709,4 +709,100 @@ class AjaxController
     {
         $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project"], "Controller");
     }
+
+    //Function to createGanttDiagrams
+    public function createGanttDiagrams()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title", "id_creator", "creation_date"]);
+    }
+
+    //Function to updateGanttDiagrams
+    public function updateGanttDiagrams()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title", "id_creator", "creation_date"]);
+    }
+
+    //Function to queryGanttDiagrams
+    public function queryGanttDiagrams()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
+    }
+
+    //Function to deleteGanttDiagrams
+    public function deleteGanttDiagrams()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project", "title"]);
+    }
+
+    //Function to createGanttDiagramStatus
+    public function createGanttDiagramStatus()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "title", "description"]);
+    }
+
+    //Function to updateGanttDiagramStatus
+    public function updateGanttDiagramStatus()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "title", "description"]);
+    }
+
+    //Function to queryGanttDiagramStatus
+    public function queryGanttDiagramStatus()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel"]);
+    }
+
+    //Function to deleteGanttDiagramStatus
+    public function deleteGanttDiagramStatus()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel"]);
+    }
+
+    //Function to createGanttDiagramTaskAssignation
+    public function createGanttDiagramTaskAssignation()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "assigned_user_id", "assignation_date"]);
+    }
+
+    //Function to updateGanttDiagramTaskAssignation
+    public function updateGanttDiagramTaskAssignation()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "assigned_user_id", "assignation_date"]);
+    }
+
+    //Function to queryGanttDiagramTaskAssignation
+    public function queryGanttDiagramTaskAssignation()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "assigned_user_id", "assignation_date"]);
+    }
+
+    //Function to deleteGanttDiagramTaskAssignation
+    public function deleteGanttDiagramTaskAssignation()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "assigned_user_id", "assignation_date"]);
+    }
+
+    //Function to createGanttDiagramTasks
+    public function createGanttDiagramTasks()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "gantt_diagram_id_project", "gantt_diagram_title", "id_creator", "title", "progress", "creation_date", "start_date", "end_date", "parent", "status"]);
+    }
+
+    //Function to updateGanttDiagramTasks
+    public function updateGanttDiagramTasks()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel", "gantt_diagram_id_project", "gantt_diagram_title", "id_creator", "title", "progress", "creation_date", "start_date", "end_date", "parent", "status"]);
+    }
+
+    //Function to queryGanttDiagramTasks
+    public function queryGanttDiagramTasks()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel"]);
+    }
+
+    //Function to deleteGanttDiagramTasks
+    public function deleteGanttDiagramTasks()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["id", "idProjectForAccessLevel"]);
+    }
 }

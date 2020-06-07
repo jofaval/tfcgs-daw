@@ -231,3 +231,23 @@ $map['getDashboardItemDetails']['access'] = Config::$ACCESS_LEVEL_USER;
 //about
 $map['about']['access'] = Config::$ACCESS_LEVEL_GUEST;
 $map['getDataFromTable']['access'] = Config::$ACCESS_LEVEL_ADMIN;
+
+$map['createGanttDiagrams']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['updateGanttDiagrams']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['queryGanttDiagrams']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['deleteGanttDiagrams']['access'] = Config::$ACCESS_LEVEL_USER;
+
+$map['createGanttDiagramStatus']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['updateGanttDiagramStatus']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['queryGanttDiagramStatus']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['deleteGanttDiagramStatus']['access'] = Config::$ACCESS_LEVEL_USER;
+
+$map['createGanttDiagramTaskAssignation']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['updateGanttDiagramTaskAssignation']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['queryGanttDiagramTaskAssignation']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['deleteGanttDiagramTaskAssignation']['access'] = Config::$ACCESS_LEVEL_USER;
+
+$map['createGanttDiagramTasks']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['updateGanttDiagramTasks']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['queryGanttDiagramTasks']['access'] = Config::$ACCESS_LEVEL_USER;
+$map['deleteGanttDiagramTasks']['access'] = Config::$ACCESS_LEVEL_USER;

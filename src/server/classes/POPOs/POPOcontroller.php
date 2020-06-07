@@ -3,6 +3,34 @@
 class POPOcontroller
 {
 
+    public function createGanttDiagrams()
+    {
+        $popoInstance = new GanttDiagrams();
+
+        return $popoInstance->create();
+    }
+
+    public function updateGanttDiagrams()
+    {
+        $popoInstance = new GanttDiagrams();
+
+        return $popoInstance->update();
+    }
+
+    public function queryGanttDiagrams()
+    {
+        $popoInstance = new GanttDiagrams();
+
+        return $popoInstance->query();
+    }
+
+    public function deleteGanttDiagrams()
+    {
+        $popoInstance = new GanttDiagrams();
+
+        return $popoInstance->delete();
+    }
+
     public function createClients()
     {
         $popoInstance = new Clients();
@@ -594,6 +622,90 @@ class POPOcontroller
     public function deleteDashboardsItemAssignation()
     {
         $popoInstance = new DashboardsItemAssignation();
+
+        return $popoInstance->delete();
+    }
+
+    public function createGanttDiagramTaskAssignation()
+    {
+        $popoInstance = new GanttDiagramTaskAssignation();
+
+        return $popoInstance->create();
+    }
+
+    public function updateGanttDiagramTaskAssignation()
+    {
+        $popoInstance = new GanttDiagramTaskAssignation();
+
+        return $popoInstance->update();
+    }
+
+    public function queryGanttDiagramTaskAssignation()
+    {
+        $popoInstance = new GanttDiagramTaskAssignation();
+
+        return $popoInstance->query();
+    }
+
+    public function deleteGanttDiagramTaskAssignation()
+    {
+        $popoInstance = new GanttDiagramTaskAssignation();
+
+        return $popoInstance->delete();
+    }
+
+    public function createGanttDiagramStatus()
+    {
+        $popoInstance = new GanttDiagramStatus();
+
+        return $popoInstance->create();
+    }
+
+    public function updateGanttDiagramStatus()
+    {
+        $popoInstance = new GanttDiagramStatus();
+
+        return $popoInstance->update();
+    }
+
+    public function queryGanttDiagramStatus()
+    {
+        $popoInstance = new GanttDiagramStatus();
+
+        return $popoInstance->query();
+    }
+
+    public function deleteGanttDiagramStatus()
+    {
+        $popoInstance = new GanttDiagramStatus();
+
+        return $popoInstance->delete();
+    }
+
+    public function createGanttDiagramTasks()
+    {
+        $popoInstance = new GanttDiagramTasks();
+
+        return $popoInstance->create();
+    }
+
+    public function updateGanttDiagramTasks()
+    {
+        $popoInstance = new GanttDiagramTasks();
+
+        return $popoInstance->update();
+    }
+
+    public function queryGanttDiagramTasks()
+    {
+        $popoInstance = new GanttDiagramTasks();
+
+        return $popoInstance->query();
+    }
+
+    public function deleteGanttDiagramTasks()
+    {
+        $popoInstance = new GanttDiagramTasks();
 
         return $popoInstance->delete();
     }

@@ -74,3 +74,18 @@ $projectActionsMap["queryDashboardsItemAssignation"] = array('access' => Config:
 $projectActionsMap["deleteDashboardsItemAssignation"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
 
 $projectActionsMap["getDashboardItemDetails"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+
+$projectActionsMap["createGanttDiagramStatus"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+$projectActionsMap["updateGanttDiagramStatus"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+$projectActionsMap["queryGanttDiagramStatus"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+$projectActionsMap["deleteGanttDiagramStatus"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+
+$projectActionsMap["createGanttDiagramTaskAssignation"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["updateGanttDiagramTaskAssignation"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["queryGanttDiagramTaskAssignation"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+$projectActionsMap["deleteGanttDiagramTaskAssignation"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
+
+$projectActionsMap["createGanttDiagramTasks"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["updateGanttDiagramTasks"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryGanttDiagramTasks"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteGanttDiagramTasks"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
