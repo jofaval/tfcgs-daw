@@ -1,6 +1,6 @@
 <?php
 
-require_once SystemPaths::SERVER_CONTROLLERS_PATH . "/Controller.php";
+require_once SystemPaths::SERVER_CLASSES_PATH . "/Controller.php";
 
 $mysqlUserName = "test";
 $mysqlPassword = "";
@@ -413,4 +413,5 @@ function camelCase($string = "", $firstLetterCapital = false)
 
     return $parsedString;
 }
+
 require_once SystemPaths::SERVER_ADMIN_PATH . "/popo.php";

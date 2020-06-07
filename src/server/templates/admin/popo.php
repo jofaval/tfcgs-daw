@@ -29,6 +29,7 @@ $breadcrumb = [
 ];
 ?>
 
+
 <?php ob_start()?>
 
 <div class="container my-auto mx-auto">
@@ -119,4 +120,4 @@ document.querySelector("#dbName").value = "origen";
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once SystemPaths::SERVER_TEMPLATES_PATH . '/../layout.php'?>
+<?php include_once SystemPaths::SERVER_TEMPLATES_PATH . '/layout.php'?>
