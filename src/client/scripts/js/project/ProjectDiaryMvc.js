@@ -305,6 +305,7 @@ class Controller {
 
             $(".note-editable").height($(".note-editable").height() + adjustment);
         });
+        $(".dropdown-toggle").click();
     }
 
     generateNavigationScheme(controller) {
