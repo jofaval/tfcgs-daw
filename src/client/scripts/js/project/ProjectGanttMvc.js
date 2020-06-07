@@ -92,7 +92,7 @@ style="left: 0; padding-left: 2rem; padding-right: 1rem; margin-top: -1rem;"></s
 `);
 
 var $taskProgress = $(`
-<div class="progress my-auto bg-dark" title="50%">
+<div class="progress my-auto mx-3 bg-dark" title="50%">
     <div class="progress-bar text-dark font-weight-bold" role="progressbar"
         style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
 </div>
@@ -120,7 +120,7 @@ class View {
 
     initializeView(container) {
         var table = ViewUtils.createTable(container);
-        table.addClass("ganttTable");
+        table.addClass("ganttTable overflow-hidden");
         var thead = ViewUtils.createTableHeader(table);
         thead.addClass("ganttTableHeader");
         var rowDates = ViewUtils.createTableRow(thead);
@@ -164,7 +164,7 @@ class View {
 
         ViewUtils.createTableHead(tableRow, "Starting day").addClass("text-center align-middle");
         ViewUtils.createTableHead(tableRow, "Ending day").addClass("text-center align-middle");
-        ViewUtils.createTableHead(tableRow, "Progress").addClass("text-center align-middle");
+        ViewUtils.createTableHead(tableRow, "Progress").addClass("text-center align-middle min-width-15");
         ViewUtils.createTableHead(tableRow, "Days span").addClass("text-center align-middle");
     }
 
@@ -214,12 +214,16 @@ class View {
         this.onGanttTitleHover(clonedSpan);
 
         var startingDate = ViewUtils.createTableData(tr, "&nbsp;")
-            .addClass("startingDate");
-        startingDate.text(new DateUtils(subTaskData.startingDate).printDateWithFormat("d/m/Y"));
+            .addClass("startingDate py-0 my-0");
+        startingDate.html(`<div class="md-form col my-2 p-0">
+        <input type="date" class="form-control m-0 p-0 text-white" value="${new DateUtils(subTaskData.startingDate).printDateWithFormat("Y-m-d")}" placeholder="" id="startDate" name="startDate">
+    </div>`);
 
         var endingDate = ViewUtils.createTableData(tr, "&nbsp;")
-            .addClass("endingDate");
-        endingDate.text(new DateUtils(subTaskData.endingDate).printDateWithFormat("d/m/Y"));
+            .addClass("endingDate py-0 my-0");
+        endingDate.html(`<div class="md-form col my-2 p-0">
+        <input type="date" class="form-control m-0 p-0 text-white" value="${new DateUtils(subTaskData.endingDate).printDateWithFormat("Y-m-d")}" placeholder="" id="endDate" name="endDate">
+    </div>`);
 
         var progressIndicator = ViewUtils.createTableData(tr, "")
             .addClass("progressIndicator align-middle");
