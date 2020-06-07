@@ -21,6 +21,8 @@ $map['getProjectsOfUser'] = array('controller' => 'AjaxController', 'action' => 
 $map['getProjectDetails'] = array('controller' => 'AjaxController', 'action' => 'getProjectDetails', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de getDashboardsOfProject
 $map['getDashboardsOfProject'] = array('controller' => 'AjaxController', 'action' => 'getDashboardsOfProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
+//Ruta de getGanttsOfProject
+$map['getGanttsOfProject'] = array('controller' => 'AjaxController', 'action' => 'getGanttsOfProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de getCollaboratorsOfProject
 $map['getCollaboratorsOfProject'] = array('controller' => 'AjaxController', 'action' => 'getCollaboratorsOfProject', 'access' => Config::$ACCESS_LEVEL_GUEST);
 //Ruta de bookmarkProject

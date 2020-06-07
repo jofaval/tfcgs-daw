@@ -232,6 +232,25 @@ class Model extends PDO
             ["id_client" => Sessions::getInstance()->getSession("userId"), "id_project" => (string) $id_project]);
     }
 
+    public function getGanttsOfProject($id_project)
+    {
+        $sqlUtils = new SQLUtils($this);
+
+        return $sqlUtils->complexQuery("SELECT gantt_diagrams.title, gantt_diagrams.id_project, gantt_diagrams.description, gantt_diagrams.creation_date,
+        gantt_diagrams.id_creator = :id_client as created,
+        (gantt_diagrams.id_project, gantt_diagrams.title) in (select bookmarked_gantt_diagrams.id_project, bookmarked_gantt_diagrams.title
+        from bookmarked_gantt_diagrams
+        where bookmarked_gantt_diagrams.id_client = :id_client
+        and bookmarked_gantt_diagrams.id_project = :id_project
+        and bookmarked_gantt_diagrams.title = gantt_diagrams.title) as bookmarked
+        FROM `gantt_diagrams` LEFT JOIN `projects` on (`gantt_diagrams`.`id_project` = `projects`.`id`)
+            WHERE `gantt_diagrams`.`enabled` = 1 and `projects`.`enabled` = 1 and projects.id = :id_project and (projects.id_creator = :id_client or :id_client in
+                (SELECT collaborators.id_collaborator
+                     FROM collaborators
+                         WHERE `collaborators`.`enabled` = 1 and collaborators.id_project = :id_project)) ORDER BY gantt_diagrams.creation_date",
+            ["id_client" => Sessions::getInstance()->getSession("userId"), "id_project" => (string) $id_project]);
+    }
+
     public function getCollaboratorsOfProject($id_project, $limit)
     {
         $sqlUtils = new SQLUtils($this);

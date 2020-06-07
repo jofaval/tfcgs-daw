@@ -703,4 +703,10 @@ class AjaxController
         $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id"], "Controller");
     }
 
+    //Function to getGanttsOfProject
+
+    public function getGanttsOfProject()
+    {
+        $this->genericAjaxReturn(__FUNCTION__, ["idProjectForAccessLevel", "id_project"], "Controller");
+    }
 }

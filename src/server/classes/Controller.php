@@ -161,6 +161,12 @@ class Controller
 
         return Model::getInstance()->getDashboardsOfProject($id_project);
     }
+    public function getGanttsOfProject()
+    {
+        $id_project = Utils::getCleanedData("id_project");
+
+        return Model::getInstance()->getGanttsOfProject($id_project);
+    }
 
     public function getProjectDetails()
     {

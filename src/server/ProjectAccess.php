@@ -9,6 +9,7 @@ $projectActionsMap["getAssignedDashboardItems"] = array('access' => Config::$PRO
 $projectActionsMap["getCommentsOfDashboardItem"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 $projectActionsMap["getProjectDetails"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 $projectActionsMap["getDashboardsOfProject"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["getGanttsOfProject"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 $projectActionsMap["getCollaboratorsOfProject"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 
 $projectActionsMap["getListsOfDashboard"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
@@ -18,6 +19,11 @@ $projectActionsMap["createDashboards"] = array('access' => Config::$PROJECT_ACCE
 $projectActionsMap["updateDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 $projectActionsMap["queryDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 $projectActionsMap["deleteDashboards"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+
+$projectActionsMap["createGantts"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
+$projectActionsMap["updateGantts"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryGantts"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteGantts"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
 
 $projectActionsMap["createCollaborators"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
 $projectActionsMap["updateCollaborators"] = array('access' => Config::$PROJECT_ACCESS_ADMIN);
@@ -36,6 +42,11 @@ $projectActionsMap["createBookmarkedDashboards"] = array('access' => Config::$PR
 $projectActionsMap["updateBookmarkedDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 $projectActionsMap["queryBookmarkedDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 $projectActionsMap["deleteBookmarkedDashboards"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+
+$projectActionsMap["createBookmarkedGantts"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["updateBookmarkedGantts"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["queryBookmarkedGantts"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
+$projectActionsMap["deleteBookmarkedGantts"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 
 $projectActionsMap["createDashboardItem"] = array('access' => Config::$PROJECT_ACCESS_WORKER);
 $projectActionsMap["queryDashboardItem"] = array('access' => Config::$PROJECT_ACCESS_MANAGER);
