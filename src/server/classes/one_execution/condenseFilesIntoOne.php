@@ -1,32 +1,30 @@
 <?php
 
 $newFileName = "condensed.js";
-$path = __DIR__ . "/../../../client/scripts/$newFileName";
+$path = SystemPaths::CLIENT_SCRIPTS_PATH . "/$newFileName";
 
 $filesToRead = [
-    "/../../../client/scripts/libs/jquery.min.js",
-    "/../../../client/scripts/libs/jquery-ui.min.js",
-    "/../../../client/scripts/libs/bootstrap.min.js",
-    "/../../../client/scripts/libs/bootstrap.bundle.min.js",
-    "/../../../client/scripts/libs/mdb.min.js",
-    "/../../../client/scripts/libs/jquery.sweet-modal.min.js",
-    "/../../../client/scripts/js/Modal.js",
-    "/../../../client/scripts/js/utils.js",
-    "/../../../client/scripts/js/ViewUtils.js",
-    "/../../../client/scripts/js/inputs.js",
-    "/../../../client/scripts/js/AjaxController.js",
-    "/../../../client/scripts/js/Validator.js",
-    "/../../../client/scripts/js/FormValidator.js",
-    "/../../../client/scripts/js/preloader.js",
-    "/../../../client/scripts/js/generalScript.js",
+    SystemPaths::CLIENT_LIBS_PATH . "/jquery.min.js",
+    SystemPaths::CLIENT_LIBS_PATH . "/jquery-ui.min.js",
+    SystemPaths::CLIENT_LIBS_PATH . "/bootstrap.min.js",
+    SystemPaths::CLIENT_LIBS_PATH . "/bootstrap.bundle.min.js",
+    SystemPaths::CLIENT_LIBS_PATH . "/mdb.min.js",
+    SystemPaths::CLIENT_LIBS_PATH . "/jquery.sweet-modal.min.js",
+    SystemPaths::CLIENT_JS_PATH . "/Modal.js",
+    SystemPaths::CLIENT_JS_PATH . "/utils.js",
+    SystemPaths::CLIENT_JS_PATH . "/ViewUtils.js",
+    SystemPaths::CLIENT_JS_PATH . "/inputs.js",
+    SystemPaths::CLIENT_JS_PATH . "/AjaxController.js",
+    SystemPaths::CLIENT_JS_PATH . "/Validator.js",
+    SystemPaths::CLIENT_JS_PATH . "/FormValidator.js",
+    SystemPaths::CLIENT_JS_PATH . "/preloader.js",
+    SystemPaths::CLIENT_JS_PATH . "/generalScript.js",
 ];
 
 $content = "";
 
 foreach ($filesToRead as $fileToRead) {
-    /* echo __DIR__ . $fileToRead;
-    echo "<br />"; */
-    $content .= PHP_EOL . file_get_contents(__DIR__ . $fileToRead) . PHP_EOL;
+    $content .= PHP_EOL . file_get_contents($fileToRead) . PHP_EOL;
 }
 
 touch($path);

@@ -36,7 +36,7 @@ $modelInstance = Model::getInstance();
                     <?php $actionGroup = $actionGroupDetails["actions"];?>
                     <?php foreach ($actionGroup as $action): ?>
                     <?php if ($userAccessLevel >= $action["access"]): ?>
-                    <?php include __DIR__ . "/../components/cards/actionCard.php";?>
+                    <?php include SystemPaths::SERVER_CARDS_PATH . "/actionCard.php";?>
                     <?php endif;?>
                     <?php endforeach;?>
                 </div>
@@ -48,7 +48,7 @@ $modelInstance = Model::getInstance();
                 <h4 class="h4 text-white">Creado recientemente</h4>
                 <div class="recentlyCreated text-dark">
                     <?php foreach ($viewParams["recentlyCreated"] as $recentlyCreated): ?>
-                    <?php require __DIR__ . "/../components/cards/recentlyCreated.php"?>
+                    <?php require SystemPaths::SERVER_CARDS_PATH . "/recentlyCreated.php"?>
                     <?php endforeach;?>
                 </div>
             </div>

@@ -113,4 +113,4 @@ if (is_null($viewParams["profile"])) {
     header("Location: " . Config::$EXECUTION_HOME_PATH . "profile/not-found/");
 }
 
-require_once __DIR__ . "/../../templates/profile/profile.php";
+require_once SystemPaths::SERVER_PROFILE_PATH . "/profile.php";

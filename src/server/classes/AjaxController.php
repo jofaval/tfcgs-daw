@@ -5,7 +5,7 @@ class AjaxController
     {
         header('Content-Type: application/json');
 
-        include_once __DIR__ . "/../ProjectAccess.php";
+        include_once SystemPaths::SERVER_PATH . "/ProjectAccess.php";
 
         /* echo "<pre>";
         var_dump($projectActionsMap);

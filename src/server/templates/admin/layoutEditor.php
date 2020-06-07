@@ -35,7 +35,8 @@ $breadcrumb = [
     <form action="" method="POST" class="text-center">
         <select class="browser-default custom-select" name="templateName" id="templateName">
             <?php foreach ($viewParams["files"] as $file): ?>
-            <option value=""><?php echo substr($file, strpos($file, "templates") + strlen("templates") + 1); ?></option>
+            <?php $fileName = substr($file, strpos($file, "templates") + strlen("templates") + 1);?>
+            <option value="<?php echo $fileName; ?>"><?php echo $fileName; ?></option>
             <?php endforeach;?>
         </select>
         <input type="submit" class="btn btn-primary m-3" value="Cargar contenido del fichero" name="loadFileContent"
@@ -46,4 +47,4 @@ $breadcrumb = [
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once __DIR__ . '/../layout.php'?>
+<?php include_once SystemPaths::SERVER_TEMPLATES_PATH . '/layout.php'?>

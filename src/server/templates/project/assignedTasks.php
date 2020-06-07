@@ -118,7 +118,7 @@ $breadcrumb = [
                                     <?php foreach ($viewParams["assignedTasksByYouUnfinished"] as $assignedTask):
     $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
     $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
-    require __DIR__ . "/../components/cards/assignedCard.php";
+    require SystemPaths::SERVER_CARDS_PATH . "/assignedCard.php";
 endforeach;?>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@ endforeach;?>
                                     <?php foreach ($viewParams["assignedTasksByYouFinished"] as $assignedTask):
     $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
     $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
-    require __DIR__ . "/../components/cards/assignedCard.php";
+    require SystemPaths::SERVER_CARDS_PATH . "/assignedCard.php";
 endforeach;?>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@ endforeach;?>
                                     <?php foreach ($viewParams["assignedTasksToYouUnfinished"] as $assignedTask):
     $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
     $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
-    require __DIR__ . "/../components/cards/assignedCard.php";
+    require SystemPaths::SERVER_CARDS_PATH . "/assignedCard.php";
 endforeach;?>
                                 </div>
                             </div>
@@ -198,7 +198,7 @@ endforeach;?>
                                     <?php foreach ($viewParams["assignedTasksToYouFinished"] as $assignedTask):
     $assginedByUsername = $controller->getUsernameFromClientId($assignedTask["assigned_by"]);
     $assginedtoUsername = $controller->getUsernameFromClientId($assignedTask["assigned_to"]);
-    require __DIR__ . "/../components/cards/assignedCard.php";
+    require SystemPaths::SERVER_CARDS_PATH . "/assignedCard.php";
 endforeach;?>
                                 </div>
                             </div>

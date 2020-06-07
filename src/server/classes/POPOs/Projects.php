@@ -41,15 +41,15 @@ class Projects implements CRUD
             $sqlUtils->insert(Projects::$table, $params);
             $queryResult = $sqlUtils->query(Projects::$table, $params)[0];
 
-            mkdir(__DIR__ . "/../../../client/img/projects/" . $queryResult["id"]);
+            mkdir(SystemPaths::CLIENT_SCRIPTS_PATH . "/projects/" . $queryResult["id"]);
 
-            $randomImage = __DIR__ . "/../../../client/img/projects/templates/bg-" . rand(1, 6) . ".png";
-            $finalPath = __DIR__ . "/../../../client/img/projects/" . $queryResult["id"] . "/bg.png";
+            $randomImage = SystemPaths::CLIENT_SCRIPTS_PATH . "/projects/templates/bg-" . rand(1, 6) . ".png";
+            $finalPath = SystemPaths::CLIENT_SCRIPTS_PATH . "/projects/" . $queryResult["id"] . "/bg.png";
 
             FileUtils::copy($randomImage, $finalPath);
 
-            $randomImage = __DIR__ . "/../../../client/img/projects/templates/profile-" . rand(1, 6) . ".png";
-            $finalPath = __DIR__ . "/../../../client/img/projects/" . $queryResult["id"] . "/profile.png";
+            $randomImage = SystemPaths::CLIENT_SCRIPTS_PATH . "/projects/templates/profile-" . rand(1, 6) . ".png";
+            $finalPath = SystemPaths::CLIENT_SCRIPTS_PATH . "/projects/" . $queryResult["id"] . "/profile.png";
 
             FileUtils::copy($randomImage, $finalPath);
 

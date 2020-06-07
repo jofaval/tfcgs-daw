@@ -45,7 +45,7 @@ class ExceptionUtils
 
 function writeToLog($log, $message)
 {
-    $fw = fopen(__DIR__ . "/../server/logs/log$log.txt" . "a+");
+    $fw = fopen(SystemPaths::SERVER_LOGS_PATH . "/log$log.txt" . "a+");
     fwrite($fw, $message);
     fclose($fw);
 }

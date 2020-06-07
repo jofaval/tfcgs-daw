@@ -229,11 +229,11 @@ if (Utils::exists("id")) {
         case 'overview':
             $viewParams["projectNumbers"] = Model::getInstance()->getProjectNumbers($id);
             $viewParams["recentlyCreated"] = Model::getInstance()->getRecentlyCreated($id);
-            include __DIR__ . "/../config/project_actions.php";
+            include SystemPaths::SERVER_CONFIG_PATH . "/project_actions.php";
             break;
     }
 
-    require_once __DIR__ . "/../../templates/project/$direction.php";
+    require_once SystemPaths::SERVER_PROJECT_PATH . "/$direction.php";
 } else {
     header("Location: " . Config::$EXECUTION_HOME_PATH . "projects/");
 }

@@ -2,7 +2,7 @@
 // carga del modelo y los controladores
 function requireAllFromDir($dir = null)
 {
-    $dir = __DIR__ . "/../server/$dir";
+    $dir = SystemPaths::SERVER_PATH . "/$dir";
     foreach (scandir($dir) as $filename) {
         $path = $dir . '/' . $filename;
         if (is_file($path)) {
@@ -16,7 +16,8 @@ var_dump(array_merge($_REQUEST, ["URL" => $_SERVER['HTTP_HOST'] . $_SERVER['REQU
 exit; */
 
 //Basics
-require_once __DIR__ . '/../server/classes/Config.php';
+require_once __DIR__ . '/../server/Paths.php';
+require_once SystemPaths::SERVER_CLASSES_PATH . '/Config.php';
 error_reporting(Config::$developmentMode);
 
 if (Config::$allowConsoleOutput == 0) {
@@ -29,15 +30,15 @@ requireAllFromDir("classes/config");
 //Core
 requireAllFromDir("libs");
 requireAllFromDir("classes");
-require_once __DIR__ . '/../server/classes/POPOs/CRUDInterface.php';
+require_once SystemPaths::SERVER_POPOS_PATH . '/CRUDInterface.php';
 requireAllFromDir("classes/POPOs");
 
 $map = [];
 //Security
-require_once __DIR__ . '/../server/RoutingMap.php';
-require_once __DIR__ . '/../server/ExtraRoutes.php';
-require_once __DIR__ . '/../server/OnlyAdmin.php';
-require_once __DIR__ . '/../server/Access.php';
+require_once SystemPaths::SERVER_PATH . '/RoutingMap.php';
+require_once SystemPaths::SERVER_PATH . '/ExtraRoutes.php';
+require_once SystemPaths::SERVER_PATH . '/OnlyAdmin.php';
+require_once SystemPaths::SERVER_PATH . '/Access.php';
 
 $sessions = Sessions::getInstance();
 

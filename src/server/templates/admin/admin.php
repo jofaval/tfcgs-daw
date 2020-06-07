@@ -141,7 +141,7 @@ $breadcrumb = [
         <div class="row flex-wrap center-elements">
             <?php foreach ($target_tables as $tableName): ?>
             <?php $randomIndex++?>
-            <?php include __DIR__ . "/../components/cards/dbTableCard.php";?>
+            <?php include SystemPaths::SERVER_CARDS_PATH . "/dbTableCard.php";?>
             <?php endforeach;?>
         </div>
     </div>
@@ -149,4 +149,4 @@ $breadcrumb = [
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once __DIR__ . '/../layout.php'?>
+<?php include_once SystemPaths::SERVER_TEMPLATES_PATH . '/layout.php'?>

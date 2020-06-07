@@ -84,4 +84,4 @@ main {
 
 <?php $contenido = ob_get_clean()?>
 
-<?php include_once __DIR__ . '/layoutProject.php'?>
+<?php include_once SystemPaths::SERVER_PROJECT_PATH . '/layoutProject.php'?>

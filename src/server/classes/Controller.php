@@ -4,32 +4,32 @@ class Controller
 {
     public function __construct()
     {
-        $this->img_path = __DIR__ . "/../../client/img";
+        $this->img_path = SystemPaths::CLIENT_IMG_PATH;
     }
 
     public function error()
     {
-        require __DIR__ . '/../templates/errors/error.php';
+        require SystemPaths::SERVER_ERRORS_PATH . '/error.php';
     }
 
     public function access()
     {
-        require __DIR__ . '/../templates/errors/access.php';
+        require SystemPaths::SERVER_ERRORS_PATH . '/access.php';
     }
 
     public function notsigned()
     {
-        require __DIR__ . '/../templates/errors/notsigned.php';
+        require SystemPaths::SERVER_ERRORS_PATH . '/notsigned.php';
     }
 
     public function notuseragent()
     {
-        require __DIR__ . '/../templates/errors/notuseragent.php';
+        require SystemPaths::SERVER_ERRORS_PATH . '/notuseragent.php';
     }
 
     public function gantt()
     {
-        require __DIR__ . '/../templates/gantt.php';
+        require SystemPaths::SERVER_TEMPLATES_PATH . '/gantt.php';
     }
 
     public function projects()
@@ -40,22 +40,22 @@ class Controller
             $clientId
         );
 
-        require __DIR__ . '/../templates/project/projects.php';
+        require SystemPaths::SERVER_PROJECT_PATH . '/projects.php';
     }
 
     public function getDatabase()
     {
-        require __DIR__ . '/../classes/one_execution/ExportDatabase-backup.php';
+        require SystemPaths::SERVER_ONE_EXECUTION_PATH . '/ExportDatabase-backup.php';
     }
 
     public function about()
     {
-        require_once __DIR__ . "/../templates/about.php";
+        require_once SystemPaths::SERVER_TEMPLATES_PATH . "/about.php";
     }
 
     public function profile()
     {
-        require_once __DIR__ . "/controllers/profile.php";
+        require_once SystemPaths::SERVER_CONTROLLERS_PATH . "/profile.php";
     }
 
     public function getAssignedDashboardItems()
@@ -83,7 +83,7 @@ class Controller
 
     public function project()
     {
-        require_once __DIR__ . "/controllers/project.php";
+        require_once SystemPaths::SERVER_CONTROLLERS_PATH . "/project.php";
     }
 
     public function getAssignedTasks($id, &$viewParams)
@@ -394,22 +394,22 @@ class Controller
 
     public function error404()
     {
-        require __DIR__ . '/../templates/errors/error404.php';
+        require SystemPaths::SERVER_ERRORS_PATH . '/error404.php';
     }
 
     public function condenseFilesIntoOne()
     {
-        require __DIR__ . '/../classes/one_execution/condenseFilesIntoOne.php';
+        require SystemPaths::SERVER_ONE_EXECUTION_PATH . '/condenseFilesIntoOne.php';
     }
 
     public function createPOPOfromDatabase()
     {
-        require __DIR__ . '/one_execution/createPOPOfromDatabase.php';
+        require SystemPaths::SERVER_ONE_EXECUTION_PATH . '/createPOPOfromDatabase.php';
     }
 
     public function accessLevel()
     {
-        $filePath = __DIR__ . '/../Access.php';
+        $filePath = SystemPaths::SERVER_PATH . '/Access.php';
         $viewParams = [
             "routes" => [],
             "accessLevels" => [
@@ -470,7 +470,7 @@ class Controller
             file_put_contents($filePath, $newFileContent);
         }
 
-        require __DIR__ . '/../templates/admin/accessLevel.php';
+        require SystemPaths::SERVER_ADMIN_PATH . '/accessLevel.php';
     }
 
     public function signout()
@@ -510,7 +510,7 @@ class Controller
             }
         }
 
-        require __DIR__ . '/../templates/signin.php';
+        require SystemPaths::SERVER_TEMPLATES_PATH . '/signin.php';
     }
 
     public function signinFunctionality()
@@ -632,7 +632,7 @@ class Controller
                 }
             }
         }
-        require __DIR__ . '/../templates/signin.php';
+        require SystemPaths::SERVER_TEMPLATES_PATH . '/signin.php';
     }
 
     public function generateImage($text, $savePath)
@@ -749,7 +749,7 @@ class Controller
 
         echo $sitemapXMLContent;
 
-        file_put_contents(__DIR__ . "/../../client/sitemap.xml", $sitemapXMLContent);
+        file_put_contents(SystemPaths::CLIENT_PATH . "/sitemap.xml", $sitemapXMLContent);
     }
 
     public function encodeURI($url)
@@ -786,19 +786,19 @@ class Controller
             $controllerFunction = "\n\tpublic function $routeName() \n\t{";
 
             if ($isView) {
-                $templateContent = file_get_contents(__DIR__ . "/../templates/example.php");
+                $templateContent = file_get_contents(SystemPaths::SERVER_TEMPLATES_PATH . "/example.php");
                 file_put_contents(
-                    __DIR__ . "/../templates/$routeName.php",
+                    SystemPaths::SERVER_TEMPLATES_PATH . "/$routeName.php",
                     $templateContent
                 );
 
-                $controllerFunction .= "\n\t\t" . 'require_once __DIR__ . "/../templates/' . $routeName . '.php";';
+                $controllerFunction .= "\n\t\t" . 'require_once \' . SystemPaths::SERVER_TEMPLATES_PATH . \'/' . $routeName . '.php";';
             }
 
             if ($friendlyURL) {
                 $htaccessRoute = "\n#" . $routeName . "\nRewriteRule ^" . $routeName . "[/]?$ ./index.php?ctl=" . $routeName . " [L]";
 
-                $fileWritter = fopen(__DIR__ . "/../../client/.htaccess", "a+");
+                $fileWritter = fopen(SystemPaths::CLIENT_PATH . "/.htaccess", "a+");
                 fwrite($fileWritter, $htaccessRoute);
                 fclose($fileWritter);
             }
@@ -811,7 +811,7 @@ class Controller
                 $ajaxFunction .= "\n\t}
                 ";
 
-                $fileWritter = fopen(__DIR__ . "/AjaxController.php", "a+");
+                $fileWritter = fopen(SystemPaths::SERVER_CLASSES_PATH . "/AjaxController.php", "a+");
                 fwrite($fileWritter, $ajaxFunction);
                 fclose($fileWritter);
             }
@@ -826,7 +826,7 @@ class Controller
 
                 $controllerFunction .= "\n\t\treturn Model::getInstance()->$routeName();";
 
-                $fileWritter = fopen(__DIR__ . "/Model.php", "a+");
+                $fileWritter = fopen(SystemPaths::SERVER_CLASSES_PATH . "/Model.php", "a+");
                 fwrite($fileWritter, $modelFunction);
                 fclose($fileWritter);
             }
@@ -834,16 +834,16 @@ class Controller
             $controllerFunction .= "\n\t}
             ";
 
-            $fileWritter = fopen(__DIR__ . "/Controller.php", "a+");
+            $fileWritter = fopen(SystemPaths::SERVER_CLASSES_PATH . "/Controller.php", "a+");
             fwrite($fileWritter, $controllerFunction);
             fclose($fileWritter);
 
-            $fileWritter = fopen(__DIR__ . "/../RoutingMap.php", "a+");
+            $fileWritter = fopen(SystemPaths::SERVER_PATH . "/../RoutingMap.php", "a+");
             fwrite($fileWritter, $route);
             fclose($fileWritter);
         }
 
-        require_once __DIR__ . "/../templates/admin/newRoute.php";
+        require_once SystemPaths::SERVER_ADMIN_PATH . "/newRoute.php";
     }
 
     public function resizeImage($imageSrc, $targetWidth, $targetHeight)
@@ -892,7 +892,7 @@ class Controller
 
     public function test()
     {
-        require_once __DIR__ . "/one_execution/test.php";
+        require_once SystemPaths::SERVER_ONE_EXECUTION_PATH . "/test.php";
     }
 
     public function getDashboardItemDetails()
@@ -925,12 +925,12 @@ class Controller
 
     public function maintenance()
     {
-        require_once __DIR__ . "/../templates/errors/maintenance.php";
+        require_once SystemPaths::SERVER_ERRORS_PATH . "/maintenance.php";
     }
 
     public function admin()
     {
-        require_once __DIR__ . "/../templates/admin/admin.php";
+        require_once SystemPaths::SERVER_ADMIN_PATH . "/admin.php";
     }
 
     public function getDataFromTable()
@@ -949,20 +949,33 @@ class Controller
         echo "</pre>";
         exit; */
 
-        require_once __DIR__ . "/../templates/admin/getDataFromTable.php";
+        require_once SystemPaths::SERVER_ADMIN_PATH . "/getDataFromTable.php";
     }
 
     public function profileNotFound()
     {
-        require_once __DIR__ . "/../templates/profile/profileNotFound.php";
+        require_once SystemPaths::SERVER_PROFILE_PATH . "/profileNotFound.php";
     }
 
     public function layoutEditor()
     {
         $viewParams = [];
 
-        $viewParams["files"] = FileUtils::getDirContents(__DIR__ . "/../templates");
+        $viewParams["files"] = FileUtils::getDirContents(SystemPaths::SERVER_TEMPLATES_PATH);
+        if (Utils::exists("loadFileContent")) {
+            $templateName = Utils::getCleanedData("templateName");
 
-        require_once __DIR__ . "/../templates/admin/layoutEditor.php";
+            $content = file_get_contents(SystemPaths::SERVER_TEMPLATES_PATH . "/$templateName");
+            $content = htmlentities($content);
+            $splittedContent = mb_split("ob_start()", $content);
+            eval(substr(5, strlen($splittedContent[0]) - 3));
+            //$splittedContent = mb_split("\n", $content);
+
+            echo "<pre id='test'>";
+            var_dump($showBreadcrumb);
+            echo "</pre>";
+        }
+
+        require_once SystemPaths::SERVER_ADMIN_PATH . "/layoutEditor.php";
     }
 }

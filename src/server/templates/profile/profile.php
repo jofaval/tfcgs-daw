@@ -123,13 +123,13 @@ if (!$viewParams["editable"]) {
                     <?php endif;?>
                     <?php switch ($tabName) {
     case 'pass':
-        require_once __DIR__ . "/pass.php";
+        require_once SystemPaths::SERVER_PROFILE_PATH . "/pass.php";
         break;
     case 'image':
-        require_once __DIR__ . "/image.php";
+        require_once SystemPaths::SERVER_PROFILE_PATH . "/image.php";
         break;
     default:
-        require_once __DIR__ . "/general.php";
+        require_once SystemPaths::SERVER_PROFILE_PATH . "/general.php";
         break;
 }?>
 
@@ -144,6 +144,6 @@ if (!$viewParams["editable"]) {
 }?>
 
 <?php $contenido = ob_get_clean()?>
-<!-- __DIR__ . '/../ -->
+<!-- SystemPaths::SERVER_TEMPLATES_PATH . '/ -->
 
-<?php include_once __DIR__ . '/../layout.php'?>
+<?php include_once SystemPaths::SERVER_TEMPLATES_PATH . '/layout.php'?>

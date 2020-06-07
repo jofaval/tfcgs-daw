@@ -3,22 +3,22 @@
 <?php $sessions = Sessions::getInstance();?>
 <?php $username = $sessions->getSession("username");?>
 
-<?php require_once __DIR__ . "/components/head.php"?>
+<?php require_once SystemPaths::SERVER_COMPONENTS_PATH . "/head.php"?>
 
 <body scroll="no" class="text-light position-fixed overflow-hidden w-100 h-100"
     style="max-width: 100% !important; max-height: 100% !important;">
-    <?php require_once __DIR__ . "/components/loader.php";?>
-    <?php require_once __DIR__ . "/components/noscript.php";?>
-    <?php if ($showHeader): require_once __DIR__ . "/components/header.php";endif;?>
-    <?php if ($showBreadcrumb): require_once __DIR__ . "/components/breadcrum.php";endif;?>
+    <?php require_once SystemPaths::SERVER_COMPONENTS_PATH . "/loader.php";?>
+    <?php require_once SystemPaths::SERVER_COMPONENTS_PATH . "/noscript.php";?>
+    <?php if ($showHeader): require_once SystemPaths::SERVER_COMPONENTS_PATH . "/header.php";endif;?>
+    <?php if ($showBreadcrumb): require_once SystemPaths::SERVER_COMPONENTS_PATH . "/breadcrum.php";endif;?>
     <main role="main"
         class="w-100 h-100 d-flex flex-column d-none justify-content-start overflow-auto <?php echo $mainClasses; ?>">
         <div id="content" class="w-100 h-100 d-flex">
             <?php echo $contenido ?>
         </div>
-        <?php require_once __DIR__ . "/components/backToTop.php";?>
+        <?php require_once SystemPaths::SERVER_COMPONENTS_PATH . "/backToTop.php";?>
     </main>
-    <?php if ($showFooter): require_once __DIR__ . "/components/footer.php";endif;?>
+    <?php if ($showFooter): require_once SystemPaths::SERVER_COMPONENTS_PATH . "/footer.php";endif;?>
 </body>
 
 <?php foreach (Config::$mvc_vis_scripts as $script_link): ?>

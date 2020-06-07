@@ -37,12 +37,12 @@ class Dashboards implements CRUD
             $params["creation_date"] = DateUtils::getCurrentDateTime();
             $result = $sqlUtils->insert(Dashboards::$table, $params);
 
-            mkdir(__DIR__ . "/../../../client/img/projects/" . $this->id_project . "/dashboards/");
-            mkdir(__DIR__ . "/../../../client/img/projects/" . $this->id_project . "/dashboards/" . $this->title);
+            mkdir(SystemPaths::CLIENT_IMG_PATH . "/projects/" . $this->id_project . "/dashboards/");
+            mkdir(SystemPaths::CLIENT_IMG_PATH . "/projects/" . $this->id_project . "/dashboards/" . $this->title);
 
-            $randomImage = __DIR__ . "/../../../client/img/projects/templates/bg-" . rand(1, 6) . ".png";
-            $randomImage = __DIR__ . "/../../../client/img/dashboards/templates/bg-" . rand(1, 6) . ".png";
-            $finalPath = __DIR__ . "/../../../client/img/projects/" . $this->id_project . "/dashboards/" . $this->title . "/bg.png";
+            $randomImage = SystemPaths::CLIENT_IMG_PATH . "/projects/templates/bg-" . rand(1, 6) . ".png";
+            $randomImage = SystemPaths::CLIENT_IMG_PATH . "/dashboards/templates/bg-" . rand(1, 6) . ".png";
+            $finalPath = SystemPaths::CLIENT_IMG_PATH . "/projects/" . $this->id_project . "/dashboards/" . $this->title . "/bg.png";
 
             FileUtils::copy($randomImage, $finalPath);
 
